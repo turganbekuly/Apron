@@ -1,0 +1,28 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import AKNetwork
+
+protocol {{ module_info.name }}ProviderProtocol {
+    
+}
+
+final class {{ module_info.name }}Provider: {{ module_info.name }}ProviderProtocol {
+
+    // MARK: - Properties
+    private let service: {{ module_info.name }}ServiceProtocol
+    
+    // MARK: - Init
+    init(service: {{ module_info.name }}ServiceProtocol =
+                    {{ module_info.name }}Service(provider: AKNetworkProvider<{{ module_info.name }}Endpoint>())) {
+        self.service = service
+    }
+    
+    // MARK: - {{ module_info.name }}ProviderProtocol
+
+}

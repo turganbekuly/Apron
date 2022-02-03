@@ -1,0 +1,41 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+final class {{ module_info.name }}View: UITableView {
+    
+    // MARK: - Initialization
+    init() {
+        super.init(frame: .zero, style: .plain)
+        
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        return nil
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        configureColors()
+    }
+    
+    // MARK: - Methods
+    private func configure() {
+        separatorStyle = .none
+        
+        configureColors()
+    }
+    
+    private func configureColors() {
+        backgroundColor = .clear
+    }
+
+}

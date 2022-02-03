@@ -1,0 +1,110 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import DesignSystem
+import UIKit
+
+protocol {{ module_info.name }}DisplayLogic: AnyObject {
+    
+}
+
+final class {{ module_info.name }}ViewController: ViewController {
+    
+    struct Section {
+        enum Section {
+            
+        }
+        enum Row {
+            
+        }
+        
+        let section: Section
+        let rows: [Row]
+    }
+    
+    // MARK: - Properties
+    let interactor: {{ module_info.name }}BusinessLogic
+    var sections: [Section] = []
+    var state: State {
+        didSet {
+            updateState()
+        }
+    }
+    
+    // MARK: - Views
+    lazy var mainView: {{ module_info.name }}View = {
+        let view = {{ module_info.name }}View()
+        view.dataSource = self
+        view.delegate = self
+        return view
+    }()
+    
+    // MARK: - Init
+    init(interactor: {{ module_info.name }}BusinessLogic, state: State) {
+        self.interactor = interactor
+        self.state = state
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        return nil
+    }
+    
+    // MARK: - Life Cycle
+    override func loadView() {
+        super.loadView()
+        
+        configureViews()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        state = { state }()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureNavigation()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        configureColors()
+    }
+    
+    // MARK: - Methods
+    private func configureNavigation() {
+        navigationItem.title = ""
+    }
+    
+    private func configureViews() {
+        [mainView].forEach { view.addSubview($0) }
+        
+        configureColors()
+        makeConstraints()
+    }
+    
+    private func makeConstraints() {
+        mainView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func configureColors() {
+        
+    }
+    
+    deinit {
+        NSLog("deinit \(self)")
+    }
+    
+}

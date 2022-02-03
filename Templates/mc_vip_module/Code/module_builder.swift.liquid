@@ -1,0 +1,33 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Protocols
+import UIKit
+
+final class {{ module_info.name }}Builder: ModuleBuilderProtocol {
+    
+    // MARK: Properties
+    private let state: {{ module_info.name }}ViewController.State
+    
+    // MARK: Initialization
+    init(state: {{ module_info.name }}ViewController.State) {
+        self.state = state
+    }
+    
+    // MARK: - ModuleBuilder
+    func build() -> ViewControllerProtocol {
+        let presenter = {{ module_info.name }}Presenter()
+        let interactor = {{ module_info.name }}Interactor(presenter: presenter)
+        let viewController = {{ module_info.name }}ViewController(interactor: interactor, state: state)
+        
+        presenter.viewController = viewController
+        
+        return viewController
+    }
+    
+}

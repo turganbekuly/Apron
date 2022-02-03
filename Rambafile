@@ -1,0 +1,24 @@
+### Headers settings
+company: Apron
+
+### Xcode project settings
+project_name: Apron
+prefix:
+xcodeproj_path: Apron.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_targets: [Apron]
+
+# The file path for new modules
+project_file_path: Apron/Scenes
+
+# The Xcode group path to new modules
+project_group_path: Apron/Scenes
+
+### Dependencies settings section
+podfile_path: Podfile
+
+### Templates
+templates:
+- {name: mc_vip_module}

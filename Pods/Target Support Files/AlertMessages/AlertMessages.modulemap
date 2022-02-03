@@ -1,0 +1,6 @@
+framework module AlertMessages {
+  umbrella header "AlertMessages-umbrella.h"
+
+  export *
+  module * { export * }
+}

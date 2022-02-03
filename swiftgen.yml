@@ -1,0 +1,25 @@
+fonts:
+  inputs: Development Pods/DesignSystem/DesignSystem/SupportingFiles/Fonts
+  outputs:
+    - templatePath: Development Pods/DesignSystem/Templates/Fonts.stencil
+      output: Development Pods/DesignSystem/DesignSystem/Generated/Fonts.swift
+      params:
+        enumName: FontFamily
+        publicAccess: 1
+strings:
+  inputs: Development Pods/DesignSystem/DesignSystem/SupportingFiles/en.lproj
+  outputs:
+    - templatePath: Development Pods/DesignSystem/Templates/Strings.stencil
+      output: Development Pods/DesignSystem/DesignSystem/Generated/Localization.swift
+      params:
+        enumName: L10n
+        publicAccess: 1
+xcassets:
+  inputs:
+    - Development Pods/DesignSystem/DesignSystem/SupportingFiles/Assets.xcassets
+  outputs:
+    - templatePath: Development Pods/DesignSystem/Templates/Xcassets.stencil
+      output: Development Pods/DesignSystem/DesignSystem/Generated/Assets.swift
+      params:
+        enumName: Assets
+        publicAccess: 1

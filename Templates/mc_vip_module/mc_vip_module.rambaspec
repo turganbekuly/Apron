@@ -1,0 +1,34 @@
+name: "mc_vip_module"
+summary: "Template for creating VIP modules."
+author: "Nurkhat Pazylov"
+version: "1.0.0"
+license: "MyCar.kz"
+
+code_files:
+
+# Controller
+- {name: Controller/ViewController.swift, path: Code/Controller/view_controller.swift.liquid}
+- {name: Controller/+DisplayLogic.swift, path: Code/Controller/module_display_logic.liquid}
+- {name: Controller/+Network.swift, path: Code/Controller/module_network.liquid}
+- {name: Controller/+State.swift, path: Code/Controller/module_state.liquid}
+- {name: Controller/+TableView.swift, path: Code/Controller/module_table_view.liquid}
+
+# Provider
+- {name: Provider/Endpoints.swift, path: Code/Provider/module_endpoint.swift.liquid}
+- {name: Provider/Provider.swift, path: Code/Provider/module_provider.swift.liquid}
+- {name: Provider/Service.swift, path: Code/Provider/module_service.swift.liquid}
+
+# View
+- {name: View/View.swift, path: Code/View/view.swift.liquid}
+
+# Builder
+- {name: Builder.swift, path: Code/module_builder.swift.liquid}
+
+# Data Flow
+- {name: DataFlow.swift, path: Code/data_flow.swift.liquid}
+
+# Interactor
+- {name: Interactor.swift, path: Code/interactor.swift.liquid}
+
+# Presenter
+- {name: Presenter.swift, path: Code/presenter.swift.liquid}

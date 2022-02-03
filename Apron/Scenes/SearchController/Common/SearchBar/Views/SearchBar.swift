@@ -1,0 +1,51 @@
+//
+//  SearchBar.swift
+//  Apron
+//
+//  Created by Akarys Turganbekuly on 14.01.2022.
+//
+
+import DesignSystem
+import UIKit
+
+public final class SearchBar: UISearchBar {
+
+    // MARK: - Init
+
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+
+    public required init?(coder: NSCoder) {
+        nil
+    }
+
+    // MARK: - Life Cycle
+
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+
+        setShowsCancelButton(false, animated: false)
+    }
+
+    // MARK: - Methods
+
+    private func configure() {
+        textField?.font = TypographyFonts.regular12
+        setImage(Assets.navSearchIcon.image, for: .search, state: .normal)
+        setImage(Assets.searchClearButton.image, for: .clear, state: .normal)
+        setSearchFieldBackgroundImage(Assets.searchRoundedView.image.withRenderingMode(.alwaysOriginal), for: .normal)
+        searchTextPositionAdjustment = UIOffset(horizontal: 8.0, vertical: 0.0)
+        configureColors()
+    }
+
+    private func configureColors() {
+        backgroundColor = .clear
+        searchBarStyle = .minimal
+        textField?.backgroundColor = .clear
+        tintColor = Assets.gray.color
+    }
+
+}
+

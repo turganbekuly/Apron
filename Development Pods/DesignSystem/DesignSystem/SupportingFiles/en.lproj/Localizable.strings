@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Akarys Turganbekuly on 31.12.2021.
+  
+*/
+
+"Authorization.Button.SignIn.Title" = "Войти";
+"Authorization.Button.SignIn.Disclaimer" = "У вас уже есть аккаунт?  ";
+"Authorization.Button.SignUp.Title" = "Регистрация";
+"Authorization.SignIn.Title" = "С возвращением!";
+"Authorization.SignUp.Title" = "Регистрация в Apron";

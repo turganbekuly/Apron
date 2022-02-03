@@ -1,0 +1,6 @@
+framework module Configurations {
+  umbrella header "Configurations-umbrella.h"
+
+  export *
+  module * { export * }
+}

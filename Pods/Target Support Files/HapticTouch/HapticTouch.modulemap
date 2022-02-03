@@ -1,0 +1,6 @@
+framework module HapticTouch {
+  umbrella header "HapticTouch-umbrella.h"
+
+  export *
+  module * { export * }
+}
