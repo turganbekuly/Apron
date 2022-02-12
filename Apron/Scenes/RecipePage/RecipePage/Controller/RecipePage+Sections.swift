@@ -15,7 +15,7 @@ extension RecipePageViewController {
             case pages
         }
         enum Row: Equatable {
-            case topView
+            case topView(RecipeInformationCellViewModel)
             case page
 
             static func ==(lhs: Row, rhs: Row) -> Bool {
@@ -32,16 +32,5 @@ extension RecipePageViewController {
 
         let section: Section
         let rows: [Row]
-    }
-
-    public struct PagesCollectionSection {
-        enum Section {
-            case pages
-        }
-        enum Row {
-            case page
-        }
-        var section: Section
-        var rows: [Row]
     }
 }

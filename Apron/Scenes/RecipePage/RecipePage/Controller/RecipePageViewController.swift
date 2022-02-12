@@ -17,30 +17,31 @@ final class RecipePageViewController: ViewController {
     // MARK: - Properties
 
     let interactor: RecipePageBusinessLogic
-    var pages: [RecipeInitialState] = [.ingredients, .instruction, .calories]
-    var delta: CGFloat = 0
 
-    lazy var sections: [Section] = [
-        .init(section: .pages, rows: pages.compactMap { .page($0)} )
-    ]
-    
+    var sections: [Section] = []
+
+    var selectedIndexPath = IndexPath(row: .zero, section: .zero)
+    var pages: [RecipeInitialState] = [.ingredients, .instruction, .calories]
+
     var state: State {
         didSet {
             updateState()
         }
     }
 
-    public var initialState: RecipeInitialState = .ingredients {
-        didSet {
-            selectedIndexPath = IndexPath(row: pages.firstIndex(of: initialState) ?? .zero, section: .zero)
-            configurePager()
-        }
-    }
+    var topView = [
+        RecipeInformationCellViewModel(
+            recipeName: "Легкий грибной суп",
+            recipeSubtitle: "в Вегетарианские рецепты и еще 2 сообществах",
+            recipeSourceURL: "asdgamer1995123"
+        )
+    ]
+    
+    // MARK: - Views factory
 
-    public var selectedIndexPath = IndexPath(row: .zero, section: .zero)
     public lazy var pagerViewController: RecipeInfoPagerViewController = {
         guard
-            let viewController = RecipeInfoPagerBuilder(state: .initial(pages, initialState)).build()
+            let viewController = RecipeInfoPagerBuilder(state: .initial(pages, .ingredients)).build()
             as? RecipeInfoPagerViewController
         else {
             return RecipeInfoPagerViewController(state: .initial([], .ingredients))
@@ -48,26 +49,6 @@ final class RecipePageViewController: ViewController {
 
         viewController.pagerDelegate = self
         return viewController
-    }()
-    
-    // MARK: - Views
-
-    lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.backgroundColor = .clear
-        scrollView.delegate = self
-        return scrollView
-    }()
-
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        return stackView
-    }()
-
-    lazy var infoHeaderView: RecipeInformationView = {
-        let view = RecipeInformationView()
-        return view
     }()
 
     lazy var mainView: RecipePageView = {
@@ -127,40 +108,15 @@ final class RecipePageViewController: ViewController {
     }
     
     private func configureViews() {
-        [infoHeaderView, mainView].forEach {
-            stackView.addArrangedSubview($0)
-        }
-        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: UIScreen.main.bounds.height)
-        [scrollView].forEach { view.addSubview($0) }
-        [stackView].forEach { scrollView.addSubview($0) }
-        
+        [mainView].forEach { view.addSubview($0) }
         configureColors()
         makeConstraints()
     }
     
     private func makeConstraints() {
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        mainView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
-
-        stackView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(360)
-            $0.width.equalTo(view.bounds.width)
-        }
-
-//        infoHeaderView.snp.makeConstraints {
-//            $0.top.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(320)
-//            $0.width.equalTo(view.bounds.width)
-//        }
-//
-//        mainView.snp.makeConstraints {
-//            $0.top.equalTo(infoHeaderView.snp.bottom)
-//            $0.leading.equalToSuperview()
-//            $0.trailing.equalToSuperview()
-//            $0.height.equalTo(34)
-//        }
     }
     
     private func configureColors() {

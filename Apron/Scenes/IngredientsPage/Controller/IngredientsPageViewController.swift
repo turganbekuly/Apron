@@ -8,19 +8,62 @@
 
 import DesignSystem
 import UIKit
+import Models
 
 protocol IngredientsPageDisplayLogic: AnyObject {
     
 }
 
 final class IngredientsPageViewController: ViewController {
+    // MARK: - Dummy data
+
+    var descriptions = [
+        IngredientsDescriptionCellViewModel(
+            description: "Очень простой суп из шампиньонов, картофеля, лука и макарон. Бюджетный, быстрый и лёгкий.",
+            cookingTime: "30 мин"
+        )
+    ]
+
+    var ingredients = [
+        IngredientsListCellViewModel(
+            serveCount: 6,
+            ingredients: [
+                IngredientInfo(
+                    ingredientName: "Шампиньоны",
+                    ingredientMeasurement: "г",
+                    ingredientAmount: 300
+                ),
+                IngredientInfo(
+                    ingredientName: "Шампиньоны",
+                    ingredientMeasurement: "г",
+                    ingredientAmount: 300
+                ),
+                IngredientInfo(
+                    ingredientName: "Шампиньоны",
+                    ingredientMeasurement: "г",
+                    ingredientAmount: 300
+                ),
+                IngredientInfo(
+                    ingredientName: "Шампиньоны",
+                    ingredientMeasurement: "г",
+                    ingredientAmount: 300
+                ),
+                IngredientInfo(
+                    ingredientName: "Шампиньоны",
+                    ingredientMeasurement: "г",
+                    ingredientAmount: 300
+                )
+            ]
+        )
+    ]
     
     struct Section {
         enum Section {
-            
+            case recipe
         }
         enum Row {
-            
+            case description(IngredientsDescriptionCellViewModel)
+            case ingredients(IngredientsListCellViewModel)
         }
         
         let section: Section

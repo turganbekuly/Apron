@@ -99,6 +99,7 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     private func setupViews() {
         backgroundColor = .clear
+        selectionStyle = .none
         [
             titleLabel,
             subtitleLabel,
@@ -116,10 +117,6 @@ final class RecipeInformationViewCell: UITableViewCell {
     }
 
     private func setupConstraints() {
-        snp.makeConstraints {
-            $0.height.equalTo(320)
-        }
-        
         favoriteButton.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-16)

@@ -30,7 +30,7 @@ final class RecipeInfoPagerViewController: PageViewController {
             allViewControllers = pages.compactMap {
                 switch $0 {
                 case .ingredients:
-                    let vc = InstructionsPageBuilder(state: .initial).build()
+                    let vc = IngredientsPageBuilder(state: .initial).build()
                     return vc
                 case .instruction:
                     let vc = InstructionsPageBuilder(state: .initial).build()

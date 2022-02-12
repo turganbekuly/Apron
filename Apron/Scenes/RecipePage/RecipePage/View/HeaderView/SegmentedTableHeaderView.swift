@@ -50,7 +50,7 @@ final class SegmentedTableHeaderView: UITableViewHeaderFooterView {
 
     // MARK: - Views factory
 
-    private lazy var segmentedControl: ScrollableSegmentedControl = {
+    public lazy var segmentedControl: ScrollableSegmentedControl = {
         let segmentedControl = ScrollableSegmentedControl()
         segmentedControl.insertSegment(
             withTitle: RecipeSegment.ingredients.title,
@@ -81,6 +81,7 @@ final class SegmentedTableHeaderView: UITableViewHeaderFooterView {
     // MARK: - Setup Views
 
     private func setupViews() {
+        segmentedControl.selectedSegmentIndex = 0
         [segmentedControl].forEach { addSubview($0) }
         setupConstraints()
     }

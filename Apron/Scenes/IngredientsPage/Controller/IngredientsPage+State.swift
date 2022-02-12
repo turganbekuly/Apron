@@ -20,7 +20,10 @@ extension IngredientsPageViewController {
     public func updateState() {
         switch state {
         case .initial:
-            break
+           sections = [
+            .init(section: .recipe, rows: descriptions.map { .description($0) }),
+            .init(section: .recipe, rows: ingredients.map { .ingredients($0) })
+           ]
         }
     }
     

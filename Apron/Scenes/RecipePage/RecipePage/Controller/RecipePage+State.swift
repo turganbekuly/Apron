@@ -20,12 +20,10 @@ extension RecipePageViewController {
     public func updateState() {
         switch state {
         case .initial:
-            infoHeaderView.configure(with: RecipeInformationCellViewModel(
-                recipeName: "Легкий грибной суп",
-                recipeSubtitle: "в Вегетарианские рецепты и еще 2 сообществах",
-                recipeSourceURL: "asdgamer1995123"
-            ))
-            initialState = .ingredients
+            sections = [
+                .init(section: .topView, rows: topView.compactMap { .topView($0) }),
+                .init(section: .pages, rows: [.page])
+            ]
         }
     }
     

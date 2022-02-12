@@ -22,8 +22,12 @@ extension IngredientsPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .description:
+            let cell: IngredientDescriptionCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
+        case .ingredients:
+            let cell: IngredientsListCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
     
@@ -43,57 +47,32 @@ extension IngredientsPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .description:
+            return 100
+        case .ingredients:
+            return 500
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .description:
+            return 100
+        case .ingredients:
+            return 500
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case let .description(description):
+            guard let cell = cell as? IngredientDescriptionCell else { return }
+            cell.configure(with: description)
+        case let .ingredients(ingredients):
+            guard let cell = cell as? IngredientsListCell else { return }
+            cell.configure(with: ingredients)
         }
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
 }

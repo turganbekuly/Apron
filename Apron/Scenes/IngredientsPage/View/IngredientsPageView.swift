@@ -30,7 +30,14 @@ final class IngredientsPageView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
-        
+
+        [
+            IngredientDescriptionCell.self,
+            IngredientsListCell.self
+        ].forEach {
+            register(cellClass: $0)
+        }
+
         configureColors()
     }
     
