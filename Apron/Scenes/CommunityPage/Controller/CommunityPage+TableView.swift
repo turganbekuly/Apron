@@ -66,7 +66,7 @@ extension CommunityPageViewController: UITableViewDelegate {
             return 34
         case .recipiesView:
             let count = recipies.count
-            let height = count * 270 - 9
+            let height = count * ((Int(tableView.frame.width) / 2) + 100) - 9
             return CGFloat(height > 0 ? height : 0)
         }
     }

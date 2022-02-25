@@ -58,7 +58,7 @@ extension CommunityPageViewController: UICollectionViewDelegateFlowLayout {
             let row: CommunityPageViewController.CommunityPageCollectionSection.Row = recipesSection[indexPath.section].rows[indexPath.row]
             switch row {
             default:
-                return CGSize(width: collectionView.bounds.width - 32, height: 250)
+                return CGSize(width: collectionView.bounds.width - 32, height: (collectionView.bounds.width / 2) + 20)
             }
         }
     }

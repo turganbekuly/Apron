@@ -30,7 +30,7 @@ final class IngredientsPageView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
-
+        isScrollEnabled = false
         [
             IngredientDescriptionCell.self,
             IngredientsListCell.self

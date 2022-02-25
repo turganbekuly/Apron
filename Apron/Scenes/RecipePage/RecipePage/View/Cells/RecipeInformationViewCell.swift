@@ -138,7 +138,7 @@ final class RecipeInformationViewCell: UITableViewCell {
         recipeImageView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(5)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(205)
+            $0.height.equalTo((bounds.width / 1.5))
         }
 
         recipeSourceURLButton.snp.makeConstraints {

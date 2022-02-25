@@ -30,6 +30,7 @@ final class InstructionsPageView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
+        isScrollEnabled = false
 
         [InstructionCell.self].forEach {
             register(cellClass: $0)

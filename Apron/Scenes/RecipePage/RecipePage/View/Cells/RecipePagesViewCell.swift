@@ -23,6 +23,7 @@ final class RecipePagesViewCell: UITableViewCell {
 
     private func setupViews() {
         backgroundColor = .clear
+        selectionStyle = .none
     }
 
     // MARK: - Public method

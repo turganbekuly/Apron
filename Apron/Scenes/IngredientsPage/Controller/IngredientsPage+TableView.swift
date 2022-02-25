@@ -48,9 +48,9 @@ extension IngredientsPageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .description:
-            return 100
+            return 85
         case .ingredients:
-            return 500
+            return CGFloat(((ingredients.first?.ingredients.count ?? 1) * 31) + 1)
         }
     }
     
@@ -58,9 +58,9 @@ extension IngredientsPageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .description:
-            return 100
+            return 85
         case .ingredients:
-            return 500
+            return CGFloat(((ingredients.first?.ingredients.count ?? 1) * 30) + 17)
         }
     }
     

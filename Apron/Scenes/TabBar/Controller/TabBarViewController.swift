@@ -25,14 +25,14 @@ public final class TabBarViewController: AppTabBarController {
 
     public enum ViewControllerTypes {
         case main
+        case search
         case saved
-        case list
         case planner
     }
 
     private lazy var mainModule = MainBuilder(state: .initial).build()
+    private lazy var searchModule = SearchBuilder(state: .initial(.general)).build()
     private lazy var favouriteModule = MainBuilder(state: .initial).build()
-    private lazy var listModule = MainBuilder(state: .initial).build()
     private lazy var plannerModule = MainBuilder(state: .initial).build()
 
     // MARK: - Init
@@ -66,8 +66,8 @@ public final class TabBarViewController: AppTabBarController {
 
         viewControllers = [
             configureViewController(viewController: mainModule, type: .main),
+            configureViewController(viewController: searchModule, type: .search),
             configureViewController(viewController: favouriteModule, type: .saved),
-            configureViewController(viewController: listModule, type: .list),
             configureViewController(viewController: plannerModule, type: .planner)
         ]
     }
@@ -78,12 +78,12 @@ public final class TabBarViewController: AppTabBarController {
         case .main:
             navigationController.tabBarItem.title = "Главная"
             navigationController.tabBarItem.image = Assets.tabHomeSelectedIcon.image
+        case .search:
+            navigationController.tabBarItem.title = "Поиск"
+            navigationController.tabBarItem.image = Assets.navSearchIcon.image
         case .saved:
             navigationController.tabBarItem.title = "Избранное"
             navigationController.tabBarItem.image = Assets.tabFaveSelectedIcon.image
-        case .list:
-            navigationController.tabBarItem.title = "Список"
-            navigationController.tabBarItem.image = Assets.tabListSelectedIcon.image
         case .planner:
             navigationController.tabBarItem.title = "Планнер"
             navigationController.tabBarItem.image = Assets.tabPlannerSelectedIcon.image

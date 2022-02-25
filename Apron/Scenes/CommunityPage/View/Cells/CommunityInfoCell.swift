@@ -62,14 +62,10 @@ final class CommunityInfoCell: UITableViewCell {
         return label
     }()
 
-    private lazy var joinButton: UIButton = {
-        let button = UIButton()
+    private lazy var joinButton: BlackOpButton = {
+        let button = BlackOpButton()
         button.setTitle("Вступить", for: .normal)
-        button.setBackgroundColor(.black, for: .normal)
-        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
-        button.titleLabel?.font = TypographyFonts.regular14
-        button.layer.masksToBounds = true
         button.layer.cornerRadius = 17
         return button
     }()

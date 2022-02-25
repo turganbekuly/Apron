@@ -46,16 +46,28 @@ final class IngredientDescriptionCell: UITableViewCell {
         return label
     }()
 
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Assets.lightGray2.color
+        return view
+    }()
+
     // MARK: - Setup Views
 
     private func setupViews() {
-        [descriptionLabel, timingImageView, timingLabel].forEach {
+        selectionStyle = .none
+        [descriptionLabel, timingImageView, timingLabel, separatorView].forEach {
             contentView.addSubview($0)
         }
         setupConstraints()
     }
 
     private func setupConstraints() {
+        separatorView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+
         descriptionLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16)
@@ -71,6 +83,7 @@ final class IngredientDescriptionCell: UITableViewCell {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(8.5)
             $0.leading.equalTo(timingImageView.snp.trailing).offset(5)
             $0.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalTo(separatorView.snp.top).offset(-13)
         }
     }
 

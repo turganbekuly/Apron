@@ -10,12 +10,12 @@ import Foundation
 public struct IngredientInfo {
     public let ingredientName: String
     public let ingredientMeasurement: String?
-    public let ingredientAmount: Double?
+    public let ingredientAmount: String?
 
     public init(
         ingredientName: String,
         ingredientMeasurement: String?,
-        ingredientAmount: Double?
+        ingredientAmount: String?
     ) {
         self.ingredientName = ingredientName
         self.ingredientMeasurement = ingredientMeasurement

@@ -31,6 +31,7 @@ final class RecipeCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.font = TypographyFonts.regular16
         label.textColor = .black
+        label.numberOfLines = 2
         return label
     }()
 
@@ -141,7 +142,7 @@ final class RecipeCollectionCell: UICollectionViewCell {
         imageView.snp.makeConstraints {
             $0.top.equalTo(recipeNameLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(162)
+            $0.height.equalTo((bounds.width / 2) - 60)
         }
 
         sourceURLLabel.snp.makeConstraints {
@@ -155,8 +156,9 @@ final class RecipeCollectionCell: UICollectionViewCell {
         }
 
         userInfoStackView.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(8)
+            $0.top.equalTo(imageView.snp.bottom).offset(10)
             $0.leading.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
 

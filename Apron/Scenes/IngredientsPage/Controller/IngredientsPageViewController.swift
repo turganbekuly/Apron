@@ -31,27 +31,47 @@ final class IngredientsPageViewController: ViewController {
                 IngredientInfo(
                     ingredientName: "Шампиньоны",
                     ingredientMeasurement: "г",
-                    ingredientAmount: 300
+                    ingredientAmount: "300"
                 ),
                 IngredientInfo(
-                    ingredientName: "Шампиньоны",
+                    ingredientName: "Макароны",
                     ingredientMeasurement: "г",
-                    ingredientAmount: 300
+                    ingredientAmount: "100"
                 ),
                 IngredientInfo(
-                    ingredientName: "Шампиньоны",
-                    ingredientMeasurement: "г",
-                    ingredientAmount: 300
+                    ingredientName: "Картофель",
+                    ingredientMeasurement: "шт",
+                    ingredientAmount: "4"
                 ),
                 IngredientInfo(
-                    ingredientName: "Шампиньоны",
+                    ingredientName: "Лук репчатый",
                     ingredientMeasurement: "г",
-                    ingredientAmount: 300
+                    ingredientAmount: "1"
                 ),
                 IngredientInfo(
-                    ingredientName: "Шампиньоны",
-                    ingredientMeasurement: "г",
-                    ingredientAmount: 300
+                    ingredientName: "Зелень",
+                    ingredientMeasurement: "пучка",
+                    ingredientAmount: "0.5"
+                ),
+                IngredientInfo(
+                    ingredientName: "Соль",
+                    ingredientMeasurement: "по вкусу",
+                    ingredientAmount: "0"
+                ),
+                IngredientInfo(
+                    ingredientName: "Лавровый лист",
+                    ingredientMeasurement: "шт",
+                    ingredientAmount: "1-2"
+                ),
+                IngredientInfo(
+                    ingredientName: "Масло растительное",
+                    ingredientMeasurement: "мл",
+                    ingredientAmount: "30-40"
+                ),
+                IngredientInfo(
+                    ingredientName: "Вода",
+                    ingredientMeasurement: "л",
+                    ingredientAmount: "2.5"
                 )
             ]
         )

@@ -50,6 +50,8 @@ public enum Assets {
   public static let tableRoundedCorners = ImageAsset(name: "table_rounded_corners")
   public static let navAvatarIcon = ImageAsset(name: "nav_avatar_icon")
   public static let navBackButton = ImageAsset(name: "nav_back_button")
+  public static let navCartIcon = ImageAsset(name: "nav_cart_icon")
+  public static let navCartIconFilled = ImageAsset(name: "nav_cart_icon_filled")
   public static let navMoreButton = ImageAsset(name: "nav_more_button")
   public static let navNotificationIcon = ImageAsset(name: "nav_notification_icon")
   public static let navSearchIcon = ImageAsset(name: "nav_search_icon")

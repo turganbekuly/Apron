@@ -158,15 +158,13 @@ public final class CommunityPageViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
+        navigationController?.navigationBar.backgroundColor = .clear
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.leftBarButtonItem =  UIBarButtonItem(customView: backButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
     
     private func configureViews() {
-        navigationBarView.backgroundColor = .clear
-        refreshControl.tintColor = .white
-        refreshControl.backgroundColor = .clear
         mainView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
         backButton.icon = Assets.navBackButton.image.withTintColor(.black)
@@ -210,6 +208,9 @@ public final class CommunityPageViewController: ViewController {
     
     private func configureColors() {
         view.backgroundColor = Assets.secondary.color
+        navigationBarView.backgroundColor = .clear
+        refreshControl.tintColor = .white
+        refreshControl.backgroundColor = .clear
     }
     
     deinit {
@@ -282,7 +283,7 @@ extension CommunityPageViewController {
         if topConstraint.constant <= view.safeAreaInsets.top {
             imageView.isHidden = true
             navigationBarView.backgroundColor = Assets.secondary.color
-            navigationItem.title = "Some Title"
+            navigationItem.title = topInfo.first?.title ?? ""
         } else {
             imageView.isHidden = false
             navigationItem.title = nil

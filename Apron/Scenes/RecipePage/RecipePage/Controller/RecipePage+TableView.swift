@@ -34,7 +34,7 @@ extension RecipePageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .topView:
-            return 320
+            return (view.bounds.width / 2) + 100
         case .page:
             return 1000
         }
@@ -44,7 +44,7 @@ extension RecipePageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .topView:
-            return 320
+            return (view.bounds.width / 2) + 100
         case .page:
             return 1000
         }
@@ -105,10 +105,5 @@ extension RecipePageViewController: UITableViewDelegate {
             guard let view = view as? SegmentedTableHeaderView else { return }
             view.delegate = self
         }
-    }
-
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        pagerViewController.removeFromParent()
-        pagerViewController.view.removeFromSuperview()
     }
 }

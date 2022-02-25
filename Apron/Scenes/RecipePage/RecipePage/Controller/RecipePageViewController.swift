@@ -130,5 +130,7 @@ final class RecipePageViewController: ViewController {
     // MARK: - User actions
 
     @objc
-    private func backButtonTapped() { }
+    private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
 }
