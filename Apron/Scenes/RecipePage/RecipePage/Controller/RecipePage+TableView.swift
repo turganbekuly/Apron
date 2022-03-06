@@ -22,8 +22,8 @@ extension RecipePageViewController: UITableViewDataSource {
         case .topView:
             let cell: RecipeInformationViewCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
-        case .page:
-            let cell: RecipePagesViewCell = tableView.dequeueReusableCell(for: indexPath)
+        case .ingredient:
+            let cell: RecipeIngredientsViewCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -35,8 +35,8 @@ extension RecipePageViewController: UITableViewDelegate {
         switch row {
         case .topView:
             return (view.bounds.width / 2) + 100
-        case .page:
-            return 1000
+        case .ingredient:
+            return CGFloat(140 + ((ingredients.first?.ingredients.count ?? 1) * 72))
         }
     }
 
@@ -45,8 +45,8 @@ extension RecipePageViewController: UITableViewDelegate {
         switch row {
         case .topView:
             return (view.bounds.width / 2) + 100
-        case .page:
-            return 1000
+        case .ingredient:
+            return CGFloat(140 + ((ingredients.first?.ingredients.count ?? 1) * 72))
         }
     }
 
@@ -56,54 +56,9 @@ extension RecipePageViewController: UITableViewDelegate {
         case let .topView(info):
             guard let cell = cell as? RecipeInformationViewCell else { return }
             cell.configure(with: info)
-        case .page:
-            guard let cell = cell as? RecipePagesViewCell else { return }
-            cell.addChildViewController(
-                viewController: pagerViewController,
-                to: self
-            )
-        }
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let section = sections[section].section
-        switch section {
-        case .topView:
-            return UIView()
-        case .pages:
-            let view: SegmentedTableHeaderView = tableView.dequeueReusableHeaderFooterView()
-            return view
-        }
-    }
-
-    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        let section = sections[section].section
-        switch section {
-        case .topView:
-            return 0
-        case .pages:
-            return 34
-        }
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let section = sections[section].section
-        switch section {
-        case .topView:
-            return 0
-        case .pages:
-            return 34
-        }
-    }
-
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let section = sections[section].section
-        switch section {
-        case .topView:
-            break
-        case .pages:
-            guard let view = view as? SegmentedTableHeaderView else { return }
-            view.delegate = self
+        case let .ingredient(ingredient):
+            guard let cell = cell as? RecipeIngredientsViewCell else { return }
+            cell.configure(with: ingredient)
         }
     }
 }

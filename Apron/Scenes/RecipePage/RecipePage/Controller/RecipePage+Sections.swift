@@ -12,22 +12,15 @@ extension RecipePageViewController {
     public struct Section {
         enum Section {
             case topView
-            case pages
+            case ingredients
+//            case calories
+//            case instructions
         }
-        enum Row: Equatable {
+        enum Row {
             case topView(RecipeInformationCellViewModel)
-            case page
-
-            static func ==(lhs: Row, rhs: Row) -> Bool {
-                switch (lhs, rhs) {
-                case (.topView, .topView):
-                    return true
-                case (.page, .page):
-                    return true
-                default:
-                    return false
-                }
-            }
+            case ingredient(IngredientsListCellViewModel)
+//            case calorie
+//            case instruction
         }
 
         let section: Section

@@ -1,14 +1,14 @@
 //
-//  IngredientsListCell.swift
+//  RecipeIngredientsViewCell.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 08.02.2022.
+//  Created by Akarys Turganbekuly on 25.02.2022.
 //
 
 import UIKit
 import DesignSystem
 
-final class IngredientsListCell: UITableViewCell {
+final class RecipeIngredientsViewCell: UITableViewCell {
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -21,6 +21,15 @@ final class IngredientsListCell: UITableViewCell {
     }
 
     // MARK: - Views factory
+
+    private lazy var ingredientsTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.semibold20
+        label.textColor = .black
+        label.text = "Ингредиенты"
+        label.textAlignment = .left
+        return label
+    }()
 
     private lazy var minusButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
@@ -52,10 +61,16 @@ final class IngredientsListCell: UITableViewCell {
         return stackView
     }()
 
+    private lazy var ingredientImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+
     private lazy var ingredientsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
+        stackView.spacing = 24
         return stackView
     }()
 
@@ -64,16 +79,18 @@ final class IngredientsListCell: UITableViewCell {
         view.backgroundColor = Assets.lightGray2.color
         return view
     }()
-
     // MARK: - Setup Views
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
+
         [
+            ingredientsTitleLabel,
             serveStackView,
             ingredientsStackView,
             separatorView
-        ].forEach { contentView.addSubview($0) }
+        ].forEach { contentView.addSubviews($0) }
         setupConstraints()
     }
 
@@ -83,21 +100,25 @@ final class IngredientsListCell: UITableViewCell {
             $0.height.equalTo(1)
         }
 
-        serveStackView.snp.makeConstraints {
+        ingredientsTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+
+        serveStackView.snp.makeConstraints {
+            $0.top.equalTo(ingredientsTitleLabel.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(150)
         }
 
         ingredientsStackView.snp.makeConstraints {
-            $0.top.equalTo(serveStackView.snp.bottom).offset(14)
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().inset(82)
+            $0.top.equalTo(serveStackView.snp.bottom).offset(24)
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(separatorView.snp.top).offset(-16)
         }
     }
 
-    // MARK: - Reusable cell
+    // MARK: - Prepare for reuse
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -111,26 +132,12 @@ final class IngredientsListCell: UITableViewCell {
     func configure(with viewModel: IIngredientsListCellViewModel) {
         serveLabel.text = "\(viewModel.serveCount) порции"
         viewModel.ingredients.forEach {
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.distribution = .equalCentering
-
-            let ingredientName = UILabel()
-            ingredientName.font = TypographyFonts.regular16
-            ingredientName.textColor = .black
-            ingredientName.textAlignment = .left
-
-            let ingredientMeasurement = UILabel()
-            ingredientMeasurement.font = TypographyFonts.bold16
-            ingredientMeasurement.textColor = .black
-            ingredientMeasurement.textAlignment = .left
-
-            stackView.addArrangedSubview(ingredientName)
-            stackView.addArrangedSubview(ingredientMeasurement)
-            let amount = $0.ingredientAmount == nil || $0.ingredientAmount == "0" ? "" : "\($0.ingredientAmount ?? "0")"
-            ingredientName.text = $0.ingredientName
-            ingredientMeasurement.text = "\(amount) \($0.ingredientMeasurement ?? "")"
-            ingredientsStackView.addArrangedSubview(stackView)
+            let view = IngredientView(
+                imageURL: URL(string: $0.ingredientImage ?? ""),
+                name: $0.ingredientName,
+                measureScope: "\($0.ingredientAmount ?? "0") \($0.ingredientMeasurement ?? "")"
+            )
+            ingredientsStackView.addArrangedSubview(view)
         }
         ingredientsStackView.setNeedsUpdateConstraints()
     }

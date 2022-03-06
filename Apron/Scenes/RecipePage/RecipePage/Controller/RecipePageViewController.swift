@@ -8,6 +8,7 @@
 
 import DesignSystem
 import UIKit
+import Models
 
 protocol RecipePageDisplayLogic: AnyObject {
     
@@ -36,20 +37,78 @@ final class RecipePageViewController: ViewController {
             recipeSourceURL: "asdgamer1995123"
         )
     ]
+
+    var descriptions = [
+        IngredientsDescriptionCellViewModel(
+            description: "Очень простой суп из шампиньонов, картофеля, лука и макарон. Бюджетный, быстрый и лёгкий.",
+            cookingTime: "30 мин"
+        )
+    ]
+
+
+    var ingredients = [
+        IngredientsListCellViewModel(
+            serveCount: 6,
+            ingredients: [
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Шампиньоны",
+                    ingredientMeasurement: "г",
+                    ingredientAmount: "300"
+                ),
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Макароны",
+                    ingredientMeasurement: "г",
+                    ingredientAmount: "100"
+                ),
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Картофель",
+                    ingredientMeasurement: "шт",
+                    ingredientAmount: "4"
+                ),
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Лук репчатый",
+                    ingredientMeasurement: "г",
+                    ingredientAmount: "1"
+                ),
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Зелень",
+                    ingredientMeasurement: "пучка",
+                    ingredientAmount: "0.5"
+                ),
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Соль",
+                    ingredientMeasurement: "по вкусу",
+                    ingredientAmount: "0"
+                ),
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Лавровый лист",
+                    ingredientMeasurement: "шт",
+                    ingredientAmount: "1-2"
+                ),
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Масло растительное",
+                    ingredientMeasurement: "мл",
+                    ingredientAmount: "30-40"
+                ),
+                IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Вода",
+                    ingredientMeasurement: "л",
+                    ingredientAmount: "2.5"
+                )
+            ]
+        )
+    ]
     
     // MARK: - Views factory
-
-    public lazy var pagerViewController: RecipeInfoPagerViewController = {
-        guard
-            let viewController = RecipeInfoPagerBuilder(state: .initial(pages, .ingredients)).build()
-            as? RecipeInfoPagerViewController
-        else {
-            return RecipeInfoPagerViewController(state: .initial([], .ingredients))
-        }
-
-        viewController.pagerDelegate = self
-        return viewController
-    }()
 
     lazy var mainView: RecipePageView = {
         let view = RecipePageView()

@@ -64,6 +64,7 @@ public enum Assets {
   public static let recipeLikeUnselected = ImageAsset(name: "recipe_like_unselected")
   public static let recipeSampleImage = ImageAsset(name: "recipe_sample_image")
   public static let recipeShareIcon = ImageAsset(name: "recipe_share_icon")
+  public static let testPlaceholderIcon = ImageAsset(name: "test_placeholder_icon")
   public static let searchRoundedView = ImageAsset(name: "search_rounded_view")
   public static let tabFaveIcon = ImageAsset(name: "tab_fave_icon")
   public static let tabFaveSelectedIcon = ImageAsset(name: "tab_fave_selected_icon")

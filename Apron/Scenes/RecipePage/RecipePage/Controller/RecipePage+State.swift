@@ -22,7 +22,7 @@ extension RecipePageViewController {
         case .initial:
             sections = [
                 .init(section: .topView, rows: topView.compactMap { .topView($0) }),
-                .init(section: .pages, rows: [.page])
+                .init(section: .ingredients, rows: ingredients.compactMap { .ingredient($0) })
             ]
         }
     }
