@@ -67,6 +67,7 @@ final class CommunityInfoCell: UITableViewCell {
         button.setTitle("Вступить", for: .normal)
         button.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 17
+        button.clipsToBounds = true
         return button
     }()
 

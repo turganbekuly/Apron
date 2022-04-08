@@ -36,14 +36,12 @@ final class InstructionView: UIView {
         return label
     }()
 
-    private lazy var textView: UITextView = {
-        let textView = UITextView()
-        textView.isEditable = false
-        textView.font = TypographyFonts.regular14
-        textView.textColor = .black
-        textView.isScrollEnabled = false
-        textView.backgroundColor = .clear
-        return textView
+    private lazy var textView: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.regular14
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        return label
     }()
 
     private lazy var separatorView: UIView = {
@@ -68,14 +66,14 @@ final class InstructionView: UIView {
 
         stepCountLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(22)
         }
 
         textView.snp.makeConstraints {
             $0.top.equalTo(stepCountLabel.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalTo(separatorView.snp.top).offset(-12)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.greaterThanOrEqualTo(separatorView.snp.top).offset(-12)
         }
     }
 }

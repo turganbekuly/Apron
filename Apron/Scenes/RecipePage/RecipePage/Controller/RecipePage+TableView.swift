@@ -25,6 +25,9 @@ extension RecipePageViewController: UITableViewDataSource {
         case .ingredient:
             let cell: RecipeIngredientsViewCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .instruction:
+            let cell: RecipeInstructionsViewCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -34,9 +37,11 @@ extension RecipePageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .topView:
-            return (view.bounds.width / 2) + 100
+            return (view.bounds.width / 2) + 130
         case .ingredient:
-            return CGFloat(140 + ((ingredients.first?.ingredients.count ?? 1) * 72))
+            return CGFloat(54 + ((ingredients.first?.ingredients.count ?? 1) * 38))
+        case .instruction:
+            return CGFloat(84 + (steps.first?.instructions.count ?? 1) * 95)
         }
     }
 
@@ -44,9 +49,11 @@ extension RecipePageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .topView:
-            return (view.bounds.width / 2) + 100
+            return (view.bounds.width / 2) + 130
         case .ingredient:
-            return CGFloat(140 + ((ingredients.first?.ingredients.count ?? 1) * 72))
+            return CGFloat(54 + ((ingredients.first?.ingredients.count ?? 1) * 38))
+        case .instruction:
+            return CGFloat(84 + (steps.first?.instructions.count ?? 1) * 95)
         }
     }
 
@@ -55,10 +62,19 @@ extension RecipePageViewController: UITableViewDelegate {
         switch row {
         case let .topView(info):
             guard let cell = cell as? RecipeInformationViewCell else { return }
+            cell.onEditButtonTapped = {
+                let viewController = RecipeCreationBuilder(state: .initial).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+            }
             cell.configure(with: info)
         case let .ingredient(ingredient):
             guard let cell = cell as? RecipeIngredientsViewCell else { return }
             cell.configure(with: ingredient)
+        case let .instruction(instruction):
+            guard let cell = cell as? RecipeInstructionsViewCell else { return }
+            cell.configure(with: instruction)
         }
     }
 }

@@ -24,6 +24,12 @@ public enum Typography {
         textAlignment: NSTextAlignment = .left,
         url: URL? = nil
     )
+    case semibold18(
+        text: String,
+        color: UIColor = .black,
+        textAlignment: NSTextAlignment = .left,
+        url: URL? = nil
+    )
     case bold16(
         text: String,
         color: UIColor = .black,
@@ -37,6 +43,12 @@ public enum Typography {
         url: URL? = nil
     )
     case regular20(
+        text: String,
+        color: UIColor = .black,
+        textAlignment: NSTextAlignment = .left,
+        url: URL? = nil
+    )
+    case regular18(
         text: String,
         color: UIColor = .black,
         textAlignment: NSTextAlignment = .left,
@@ -81,6 +93,9 @@ public enum Typography {
         case .semibold20(text: let text, color: let color, textAlignment: let textAlignment, url: let url):
             let font = TypographyFonts.semibold20
             return NSAttributedString(text, color, font, textAlignment, -0.005, 24, url)
+        case let .semibold18(text, color, textAlignment, url):
+            let font = TypographyFonts.semibold18
+            return NSAttributedString(text, color, font, textAlignment, 0.025, 22, url)
         case .bold16(text: let text, color: let color, textAlignment: let textAlignment, url: let url):
             let font = TypographyFonts.bold16
             return NSAttributedString(text, color, font, textAlignment, 0, 20, url)
@@ -90,6 +105,9 @@ public enum Typography {
         case .regular20(text: let text, color: let color, textAlignment: let textAlignment, url: let url):
             let font = TypographyFonts.regular20
             return NSAttributedString(text, color, font, textAlignment, 0.025, 24, url)
+        case let .regular18(text, color, textAlignment, url):
+            let font = TypographyFonts.regular18
+            return NSAttributedString(text, color, font, textAlignment, 0.025, 22, url)
         case .regular16(text: let text, color: let color, textAlignment: let textAlignment, url: let url):
             let font = TypographyFonts.regular16
             return NSAttributedString(text, color, font, textAlignment, 0.025, 24, url)

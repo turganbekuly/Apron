@@ -48,8 +48,8 @@ final class ImageHeaderView: UIView {
     }
 
     private func setupConstraints() {
-        snp.makeConstraints { make in
-            make.height.equalTo(188)
+        snp.makeConstraints {
+            $0.height.equalTo(205)
         }
 
         imageView.snp.makeConstraints({ make in

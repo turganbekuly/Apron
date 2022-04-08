@@ -9,6 +9,10 @@ import DesignSystem
 import UIKit
 
 final class RecipeInformationViewCell: UITableViewCell {
+    // MARK: - Properties
+
+    var onEditButtonTapped: (() -> Void)?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -75,6 +79,8 @@ final class RecipeInformationViewCell: UITableViewCell {
     private lazy var editButton: UIButton = {
         let button = UIButton()
         button.setImage(Assets.recipeEditIcon.image, for: .normal)
+        button.isUserInteractionEnabled = true
+        button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -100,6 +106,7 @@ final class RecipeInformationViewCell: UITableViewCell {
     private func setupViews() {
         backgroundColor = .clear
         selectionStyle = .none
+        isUserInteractionEnabled = true
         [
             titleLabel,
             subtitleLabel,
@@ -109,7 +116,7 @@ final class RecipeInformationViewCell: UITableViewCell {
             dislikeButton,
             editButton,
             shareButton
-        ].forEach { addSubview($0) }
+        ].forEach { contentView.addSubview($0) }
 
         [recipeSourceURLButton].forEach { recipeImageView.addSubview($0) }
 
@@ -172,9 +179,16 @@ final class RecipeInformationViewCell: UITableViewCell {
         }
     }
 
+    // MARK: - User actions
+
+    @objc
+    private func editButtonTapped() {
+        onEditButtonTapped?()
+    }
+
     // MARK: - Methods
 
-    func configure(with viewModel: IRecipeInformationCellViewModel) {
+    func configure(with viewModel: IInformationCellViewModel) {
         titleLabel.text = viewModel.recipeName
         subtitleLabel.text = viewModel.recipeSubtitle
         recipeSourceURLButton.setTitle(viewModel.recipeSourceURL, for: .normal)

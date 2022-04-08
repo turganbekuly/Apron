@@ -14,19 +14,6 @@ protocol RecipeCreationDisplayLogic: AnyObject {
 }
 
 final class RecipeCreationViewController: ViewController {
-    
-    struct Section {
-        enum Section {
-            
-        }
-        enum Row {
-            
-        }
-        
-        let section: Section
-        let rows: [Row]
-    }
-    
     // MARK: - Properties
     let interactor: RecipeCreationBusinessLogic
     var sections: [Section] = []
@@ -37,6 +24,15 @@ final class RecipeCreationViewController: ViewController {
     }
     
     // MARK: - Views
+    private lazy var saveButton: BlackOpButton = {
+        let button = BlackOpButton()
+        button.setTitle("Вступить", for: .normal)
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 17
+        button.clipsToBounds = true
+        return button
+    }()
+
     lazy var mainView: RecipeCreationView = {
         let view = RecipeCreationView()
         view.dataSource = self
@@ -83,7 +79,7 @@ final class RecipeCreationViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.title = ""
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func configureViews() {
@@ -100,11 +96,22 @@ final class RecipeCreationViewController: ViewController {
     }
     
     private func configureColors() {
-        
+        view.backgroundColor = Assets.secondary.color
     }
     
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
+    // MARK: - User actions
+
+    @objc
+    private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc
+    private func saveButtonTapped() {
+
+    }
 }

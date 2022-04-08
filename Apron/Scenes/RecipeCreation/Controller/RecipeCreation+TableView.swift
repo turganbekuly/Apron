@@ -22,8 +22,18 @@ extension RecipeCreationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .image:
+            let cell: RecipeCreationImageCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
+        case .description:
+            let cell: RecipeCreationDescriptionCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
+        case .composition:
+            let cell: RecipeCreationAddIngredients = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         default:
-            break
+            let cell: RecipeCreationNamingCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
     
@@ -43,57 +53,51 @@ extension RecipeCreationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .name:
+            return 54
+        case .image:
+            return 167
+        case .description:
+            return 125
+        case .composition:
+            return UITableView.automaticDimension
         default:
-            break
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .name:
+            return 54
+        case .image:
+            return 167
+        case .description:
+            return 125
+        case .composition:
+            return UITableView.automaticDimension
         default:
-            break
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .name:
+            guard let cell = cell as? RecipeCreationNamingCell else { return }
+            cell.configure()
+        case .image:
+            guard let cell = cell as? RecipeCreationImageCell else { return }
+            cell.configure()
+        case .description:
+            guard let cell = cell as? RecipeCreationDescriptionCell else  { return }
+            cell.configure()
+        case .composition:
+            guard let cell = cell as? RecipeCreationAddIngredients else { return }
+            cell.configure()
+        default: break
         }
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
 }

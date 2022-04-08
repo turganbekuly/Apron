@@ -14,13 +14,13 @@ extension RecipePageViewController {
             case topView
             case ingredients
 //            case calories
-//            case instructions
+            case instructions
         }
         enum Row {
-            case topView(RecipeInformationCellViewModel)
+            case topView(InformationCellViewModel)
             case ingredient(IngredientsListCellViewModel)
 //            case calorie
-//            case instruction
+            case instruction(InstructionCellViewModel)
         }
 
         let section: Section

@@ -70,7 +70,6 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
-        stackView.spacing = 24
         return stackView
     }()
 
@@ -118,27 +117,20 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         }
     }
 
-    // MARK: - Prepare for reuse
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        ingredientsStackView.subviews.forEach {
-            $0.removeFromSuperview()
-        }
-    }
-
     // MARK: - Public methods
 
     func configure(with viewModel: IIngredientsListCellViewModel) {
         serveLabel.text = "\(viewModel.serveCount) порции"
+        ingredientsStackView.removeAllArrangedSubviews()
         viewModel.ingredients.forEach {
-            let view = IngredientView(
-                imageURL: URL(string: $0.ingredientImage ?? ""),
+            let view = IngredientView()
+            view.configure(
                 name: $0.ingredientName,
-                measureScope: "\($0.ingredientAmount ?? "0") \($0.ingredientMeasurement ?? "")"
+                measurement: "\($0.ingredientAmount ?? "0")  \($0.ingredientMeasurement ?? "")"
             )
+            
             ingredientsStackView.addArrangedSubview(view)
         }
-        ingredientsStackView.setNeedsUpdateConstraints()
+        ingredientsStackView.layoutIfNeeded()
     }
 }

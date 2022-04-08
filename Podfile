@@ -9,7 +9,7 @@ target 'Apron' do
 
   pod 'SnapKit'
   pod 'SwiftGen', '~> 6.0'
-  pod 'FloatingPanel'
+  pod 'PanModal'
   pod 'Kingfisher'
 
   # Development Pods

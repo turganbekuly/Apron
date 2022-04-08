@@ -31,6 +31,15 @@ final class RecipeCreationView: UITableView {
     private func configure() {
         separatorStyle = .none
         
+        [
+            RecipeCreationNamingCell.self,
+            RecipeCreationImageCell.self,
+            RecipeCreationDescriptionCell.self,
+            RecipeCreationAddIngredients.self
+        ].forEach {
+            register(cellClass: $0)
+        }
+        
         configureColors()
     }
     

@@ -142,7 +142,7 @@ final class RecipeCollectionCell: UICollectionViewCell {
         imageView.snp.makeConstraints {
             $0.top.equalTo(recipeNameLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo((bounds.width / 2) - 60)
+            $0.height.equalTo((bounds.width / 2) - 30)
         }
 
         sourceURLLabel.snp.makeConstraints {

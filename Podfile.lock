@@ -23,8 +23,8 @@ PODS:
     - Protocols
     - SnapKit (= 5.0.1)
   - Disk (0.6.4)
-  - Extensions (0.0.1)
-  - FloatingPanel (2.5.1)
+  - Extensions (0.0.1):
+    - SnapKit (= 5.0.1)
   - Haptica (3.0.2)
   - HapticTouch (0.0.1):
     - Haptica (= 3.0.2)
@@ -40,6 +40,7 @@ PODS:
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - Onboarding (0.0.1)
+  - PanModal (1.2.7)
   - Protocols (0.0.1)
   - QuickLayout (3.0.0)
   - SnapKit (5.0.1)
@@ -60,11 +61,11 @@ DEPENDENCIES:
   - Decoders (from `./Development Pods/Decoders`)
   - DesignSystem (from `./Development Pods/DesignSystem`)
   - Extensions (from `./Development Pods/Extensions`)
-  - FloatingPanel
   - HapticTouch (from `./Development Pods/HapticTouch`)
   - Kingfisher
   - Models (from `./Development Pods/Models`)
   - Onboarding (from `./Development Pods/Onboarding`)
+  - PanModal
   - Protocols (from `./Development Pods/Protocols`)
   - SnapKit
   - Storages (from `./Development Pods/Storages`)
@@ -76,13 +77,13 @@ SPEC REPOS:
     - AlignedCollectionViewFlowLayout
     - BEMCheckBox
     - Disk
-    - FloatingPanel
     - Haptica
     - KeychainAccess
     - Kingfisher
     - lottie-ios
     - M13Checkbox
     - Moya
+    - PanModal
     - QuickLayout
     - SnapKit
     - SwiftDate
@@ -124,8 +125,7 @@ SPEC CHECKSUMS:
   Decoders: 4cb97a705767a209973d74401515ef061921184b
   DesignSystem: 60aebd4b7c1c5e71078e4269dc797d203d259ed0
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e
-  Extensions: ceefd62d3542d2b4c589819f3249eddcf0a9de64
-  FloatingPanel: 523cb50f490f151fc03fabf24a8322e44d22f65f
+  Extensions: d467431adebffd1f7f07b5284c3b213d53c980dc
   Haptica: dc206651beeca25ab4744c633fbf0ae4d1e86baf
   HapticTouch: 03da243d7f1c055766916006b2f4688e18cf1a42
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
@@ -135,6 +135,7 @@ SPEC CHECKSUMS:
   Models: 02494d04c72fa28b5a7063e4d079da720d15ddc5
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   Onboarding: f87883852b3e7544578236da0c4a91c1857f7b51
+  PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
   Protocols: 15b9d34cc719cb47dff58822bcf8ba43a2c5f28b
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
@@ -144,6 +145,6 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: cb2f6767b73999766fb687281914baf45badd5e4
+PODFILE CHECKSUM: d49437be9a8259fb4027a9b40c833710657164a1
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

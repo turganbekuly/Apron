@@ -183,14 +183,14 @@ public final class CommunityPageViewController: ViewController {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.height.equalTo(174)
         }
 
         mainView.snp.makeConstraints {
             tableViewTopConstraint = $0.top
                 .equalToSuperview().offset(imageView.imageHeight - 36)
                 .constraint
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 
@@ -229,13 +229,13 @@ public final class CommunityPageViewController: ViewController {
         cell.recipesCollectionView.reloadData()
     }
 
-    private func configureCommentsSection() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .recipiesView }),
-            let row = sections[section].rows.firstIndex(where: { $0 == .recipiesView }),
-            let cell = mainView.cellForRow(at: .init(row: row, section: section))
-        else { return }
-    }
+//    private func configureCommentsSection() {
+//        guard
+//            let section = sections.firstIndex(where: { $0.section == .recipiesView }),
+//            let row = sections[section].rows.firstIndex(where: { $0 == .recipiesView }),
+//            let cell = mainView.cellForRow(at: .init(row: row, section: section))
+//        else { return }
+//    }
 
     // MARK: - User actions
 

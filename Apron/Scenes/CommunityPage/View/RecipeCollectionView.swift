@@ -14,8 +14,6 @@ public final class RecipeCollectionView: UICollectionView {
     public init() {
         let layout: UICollectionViewFlowLayout = {
             let layout = UICollectionViewFlowLayout()
-//            layout.minimumInteritemSpacing = 0
-//            layout.minimumLineSpacing = 16
             layout.scrollDirection = .vertical
             layout.sectionInset = .init(top: 16, left: 0, bottom: 0, right: 0)
             return layout
@@ -40,6 +38,7 @@ public final class RecipeCollectionView: UICollectionView {
 
     private func configure() {
         showsVerticalScrollIndicator = false
+        isScrollEnabled = false
 
         [RecipeCollectionCell.self].forEach {
             register(cellClass: $0)

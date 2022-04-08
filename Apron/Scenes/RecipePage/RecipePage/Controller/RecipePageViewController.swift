@@ -31,7 +31,7 @@ final class RecipePageViewController: ViewController {
     }
 
     var topView = [
-        RecipeInformationCellViewModel(
+        InformationCellViewModel(
             recipeName: "Легкий грибной суп",
             recipeSubtitle: "в Вегетарианские рецепты и еще 2 сообществах",
             recipeSourceURL: "asdgamer1995123"
@@ -103,6 +103,40 @@ final class RecipePageViewController: ViewController {
                     ingredientName: "Вода",
                     ingredientMeasurement: "л",
                     ingredientAmount: "2.5"
+                )
+            ]
+        )
+    ]
+
+    var steps = [
+        InstructionCellViewModel(
+            instructions: [
+                InstructionInformations(
+                    stepCount: "1",
+                    stepDescription: "Нагреть сковороду с растительным маслом. Обжарить лук, помешивая, на среднем огне до румяности"
+                ),
+                InstructionInformations(
+                    stepCount: "1",
+                    stepDescription: "Подготовить продукты."
+                ),InstructionInformations(
+                    stepCount: "1",
+                    stepDescription: "Подготовить продукты."
+                ),
+                InstructionInformations(
+                    stepCount: "1",
+                    stepDescription: "Подготовить продукты."
+                ),
+                InstructionInformations(
+                    stepCount: "1",
+                    stepDescription: "Подготовить продукты."
+                ),
+                InstructionInformations(
+                    stepCount: "1",
+                    stepDescription: "Подготовить продукты."
+                ),
+                InstructionInformations(
+                    stepCount: "1",
+                    stepDescription: "Подготовить продукты."
                 )
             ]
         )

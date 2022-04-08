@@ -29,7 +29,8 @@ public final class RecipePageView: UITableView {
 
         [
             RecipeInformationViewCell.self,
-            RecipeIngredientsViewCell.self
+            RecipeIngredientsViewCell.self,
+            RecipeInstructionsViewCell.self
         ].forEach {
             register(cellClass: $0)
         }

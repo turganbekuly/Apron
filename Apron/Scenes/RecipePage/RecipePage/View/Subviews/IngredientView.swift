@@ -12,20 +12,8 @@ import Kingfisher
 final class IngredientView: UIView {
     // MARK: - Init
 
-    init(
-        imageURL: URL?,
-        name: String,
-        measureScope: String
-    ) {
-        super.init(frame: .zero)
-
-        self.imageView.kf.setImage(
-            with: imageURL,
-            placeholder: Assets.testPlaceholderIcon.image
-        )
-        self.nameLabel.text = name
-        self.measureScopeLabel.text = measureScope
-
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
     }
 
@@ -35,18 +23,7 @@ final class IngredientView: UIView {
 
     // MARK: - Views factory
 
-    private lazy var imageContainerView: UIView = {
-        let view = UIView()
-        return view
-    }()
-
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 30
-        return imageView
-    }()
-
-    private lazy var measureScopeLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular16
         label.textColor = .black
@@ -54,7 +31,7 @@ final class IngredientView: UIView {
         return label
     }()
 
-    private lazy var nameLabel: UILabel = {
+    private lazy var measureScopeLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.bold16
         label.textColor = .black
@@ -65,30 +42,30 @@ final class IngredientView: UIView {
     // MARK: - Setup Views
 
     private func setupViews() {
-        [imageView, measureScopeLabel, nameLabel].forEach { addSubviews($0) }
+        [nameLabel, measureScopeLabel].forEach { addSubviews($0) }
         setupConstraints()
     }
 
     private func setupConstraints() {
-        imageView.snp.makeConstraints {
+        nameLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
-            $0.size.equalTo(45)
+            $0.trailing.lessThanOrEqualTo(snp.centerX)
+            $0.bottom.equalToSuperview().inset(8)
         }
 
         measureScopeLabel.snp.makeConstraints {
-            $0.centerY.equalTo(imageView.snp.centerY)
-            $0.leading.equalTo(imageView.snp.trailing).offset(24)
-            $0.trailing.equalTo(snp.centerX).offset(-16)
-        }
-
-        nameLabel.snp.makeConstraints {
-            $0.centerY.equalTo(imageView.snp.centerY)
+            $0.centerY.equalTo(nameLabel.snp.centerY)
             $0.trailing.equalToSuperview()
             $0.leading.equalTo(snp.centerX).offset(16)
         }
     }
 
     // MARK: - Public methods
+
+    func configure(name: String, measurement: String) {
+        self.nameLabel.text = name
+        self.measureScopeLabel.text = measurement
+    }
 
     func changeService(newMeasure: String) {
         measureScopeLabel.text = newMeasure

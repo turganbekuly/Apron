@@ -19,4 +19,6 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/AlmostDeveloper/Apron.git", :tag => "#{spec.version}" }
 
   spec.source_files  = ["**/*.{h,m,swift}"]
+
+  spec.dependency 'SnapKit', '5.0.1'
 end

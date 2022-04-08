@@ -20,7 +20,7 @@ extension RecipeCreationViewController {
     public func updateState() {
         switch state {
         case .initial:
-            break
+            sections = [.init(section: .name, rows: [.name, .image, .description, .composition])]
         }
     }
     
