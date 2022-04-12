@@ -8,18 +8,11 @@
 
 import UIKit
 
-final class RecipeCreationView: UICollectionView {
+final class RecipeCreationView: UITableView {
     
     // MARK: - Init
-    public init() {
-        let layout: UICollectionViewFlowLayout = {
-            let layout = UICollectionViewFlowLayout()
-            layout.minimumLineSpacing = 8
-            layout.scrollDirection = .vertical
-            return layout
-        }()
-
-        super.init(frame: .zero, collectionViewLayout: layout)
+    init() {
+        super.init(frame: .zero, style: .plain)
 
         configure()
     }
@@ -36,14 +29,13 @@ final class RecipeCreationView: UICollectionView {
 
     // MARK: - Methods
     private func configure() {
-        allowsMultipleSelection = false
         keyboardDismissMode = .onDrag
-        showsHorizontalScrollIndicator = false
-        isScrollEnabled = true
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
 
         [
             RecipeCreationNamingCell.self,
             RecipeCreationImageCell.self,
+            RecipeCreationPlaceholderImageCell.self,
             RecipeCreationDescriptionCell.self,
             RecipeCreationAddIngredientCell.self,
             RecipeCreationAddInstructionCell.self,

@@ -1,14 +1,14 @@
 //
-//  RecipeCreationNamingCell.swift
+//  RecipeCreationPlaceholderImageCell.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 29.03.2022.
+//  Created by Akarys Turganbekuly on 12.04.2022.
 //
 
 import UIKit
 import DesignSystem
 
-final class RecipeCreationNamingCell: UITableViewCell {
+final class RecipeCreationPlaceholderImageCell: UITableViewCell {
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -22,31 +22,25 @@ final class RecipeCreationNamingCell: UITableViewCell {
 
     // MARK: - Views factory
 
-    private lazy var roudedTextField: RoundedTextField = {
-        let textField = RoundedTextField(
-            placeholder: "Напишите название рецепта"
-        )
-        return textField
-    }()
+    private lazy var imagePlaceholder = PhotoPlaceholderView()
 
     // MARK: - Setup Views
 
     private func setupViews() {
-        [roudedTextField].forEach { contentView.addSubview($0) }
+        contentView.addSubview(imagePlaceholder)
         setupConstraints()
     }
 
     private func setupConstraints() {
-        roudedTextField.snp.makeConstraints {
+        imagePlaceholder.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview()
+            $0.bottom.leading.trailing.equalToSuperview().inset(16)
         }
     }
 
     // MARK: - Public methods
 
     func configure() {
-//        recipeNameLabel.text = "Recipe name"
+
     }
 }

@@ -8,15 +8,15 @@
 import UIKit
 import DesignSystem
 
-final class RecipeCreationDescriptionCell: UICollectionViewCell {
+final class RecipeCreationDescriptionCell: UITableViewCell {
     // MARK: - Private properties
 
     var placeholder = "Напишете описание вашего блюда"
 
     // MARK: - Init
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
 

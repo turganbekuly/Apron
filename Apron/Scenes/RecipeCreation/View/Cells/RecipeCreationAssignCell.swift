@@ -8,7 +8,7 @@
 import UIKit
 import DesignSystem
 
-final class RecipeCreationAssignCell: UICollectionViewCell {
+final class RecipeCreationAssignCell: UITableViewCell {
     // MARK: - Private properties
 
     let attributes: [NSAttributedString.Key: Any] = [
@@ -21,8 +21,8 @@ final class RecipeCreationAssignCell: UICollectionViewCell {
 
     // MARK: - Init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
 

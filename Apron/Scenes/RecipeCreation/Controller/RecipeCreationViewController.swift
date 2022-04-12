@@ -16,16 +16,7 @@ protocol RecipeCreationDisplayLogic: AnyObject {
 final class RecipeCreationViewController: ViewController {
     // MARK: - Properties
     let interactor: RecipeCreationBusinessLogic
-    var sections: [Section] = [
-        .init(
-            section: .info,
-            rows: [
-                .name, .image, .description,
-                .composition, .instruction, .servings,
-                .prepTime, .cookTime
-            ]
-        )
-    ]
+    var sections: [Section] = []
 
     var ingredientSections: [IngredientSection] = []
 
@@ -43,12 +34,39 @@ final class RecipeCreationViewController: ViewController {
     
     // MARK: - Views
     private lazy var saveButton: BlackOpButton = {
-        let button = BlackOpButton()
-        button.setTitle("Вступить", for: .normal)
+        let button = BlackOpButton(arrowState: .none, frame: CGRect(x: 0, y: 0, width: 90, height: 30))
+        button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 17
+        button.layer.cornerRadius = 15
         button.clipsToBounds = true
         return button
+    }()
+
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Добавить рецепт"
+        label.font = TypographyFonts.semibold20
+        label.textColor = .black
+        label.textAlignment = .left
+        return label
+    }()
+
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(
+            Assets.navBackButton.image
+                .withTintColor(.black),
+            for: .normal
+        )
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var leftButtonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [backButton, titleLabel])
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        return stackView
     }()
 
     lazy var mainView: RecipeCreationView = {
@@ -97,12 +115,14 @@ final class RecipeCreationViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationController?.navigationBar.isHidden = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
+        navigationController?.navigationBar.backgroundColor = Assets.secondary.color
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
     }
     
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }

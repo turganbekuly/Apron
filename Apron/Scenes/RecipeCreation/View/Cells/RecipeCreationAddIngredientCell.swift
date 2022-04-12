@@ -12,7 +12,7 @@ protocol AddIngredientCellTappedDelegate: AnyObject {
     func onAddIngredientTapped()
 }
 
-final class RecipeCreationAddIngredientCell: UICollectionViewCell {
+final class RecipeCreationAddIngredientCell: UITableViewCell {
     // MARK: - Private properties
 
     private weak var delegate: (UITableViewDelegate & UITableViewDataSource)? {
@@ -26,8 +26,8 @@ final class RecipeCreationAddIngredientCell: UICollectionViewCell {
 
     // MARK: - Init
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
 

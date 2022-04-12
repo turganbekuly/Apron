@@ -20,7 +20,19 @@ extension RecipeCreationViewController {
     public func updateState() {
         switch state {
         case .initial:
-            break
+            sections = [
+                .init(
+                    section: .info,
+                    rows: [
+                        .name, .imagePlaceholder, .description,
+                        .composition, .instruction, .servings,
+                        .prepTime, .cookTime
+                    ]
+                )
+            ]
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                self.replacePlaceholderCell()
+            }
         }
     }
     

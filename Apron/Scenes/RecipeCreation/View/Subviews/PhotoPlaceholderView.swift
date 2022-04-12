@@ -39,7 +39,7 @@ final class PhotoPlaceholderView: UIView {
         let title = UILabel()
         title.font = TypographyFonts.regular14
         title.textColor = .black
-        title.text = "Add Cover Image"
+        title.text = "Загрузить фото"
         title.textAlignment = .center
         return title
     }()

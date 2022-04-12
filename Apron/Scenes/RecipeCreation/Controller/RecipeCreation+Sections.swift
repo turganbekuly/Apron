@@ -16,6 +16,7 @@ extension RecipeCreationViewController {
         enum Row {
             case name
             case image
+            case imagePlaceholder
             case description
             case composition
             case instruction
@@ -24,8 +25,8 @@ extension RecipeCreationViewController {
             case cookTime
             case collection
         }
-        let section: Section
-        let rows: [Row]
+        var section: Section
+        var rows: [Row]
     }
 
     public struct IngredientSection {

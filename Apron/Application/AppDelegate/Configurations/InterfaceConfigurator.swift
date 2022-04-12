@@ -27,8 +27,8 @@ final class InterfaceConfigurator: ApplicationConfiguratorProtocol {
             fatalError("Window not found")
         }
         
-//        let vc = SplashScreenBuilder(state: .initial).build()
-        let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation()))).build()
+        let vc = SplashScreenBuilder(state: .initial).build()
+//        let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation()))).build()
         let navVC = UINavigationController(rootViewController: vc)
         window.rootViewController = navVC
         window.makeKeyAndVisible()
