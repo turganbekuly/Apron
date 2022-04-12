@@ -8,11 +8,11 @@
 import UIKit
 import DesignSystem
 
-final class RecipeCreationNamingCell: UITableViewCell, UITextFieldDelegate {
+final class RecipeCreationNamingCell: UICollectionViewCell {
     // MARK: - Init
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
     }
 
@@ -24,7 +24,6 @@ final class RecipeCreationNamingCell: UITableViewCell, UITextFieldDelegate {
 
     private lazy var roudedTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            delegate: self,
             placeholder: "Напишите название рецепта"
         )
         return textField
@@ -33,7 +32,6 @@ final class RecipeCreationNamingCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - Setup Views
 
     private func setupViews() {
-        selectionStyle = .none
         [roudedTextField].forEach { contentView.addSubview($0) }
         setupConstraints()
     }

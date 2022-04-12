@@ -72,7 +72,7 @@ public final class AKNetworkProvider<T: AKNetworkTargetType>: MoyaProvider<T> {
 
     private func handleSuccess(data: Data, completion: @escaping (AKResult) -> Void) {
         guard let json = dataToJson(data: data) else {
-            completion(.success(AKJSON()))
+            completion(.success(JSON()))
             return
         }
 
@@ -103,12 +103,12 @@ public final class AKNetworkProvider<T: AKNetworkTargetType>: MoyaProvider<T> {
         completion(.failure(.noInternetConnection))
     }
 
-    private func dataToJson(data: Data) -> AKJSON? {
+    private func dataToJson(data: Data) -> JSON? {
         do {
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-            if let json = jsonObject as? AKJSON {
+            if let json = jsonObject as? JSON {
                 return json
-            } else if let json = jsonObject as? [AKJSON] {
+            } else if let json = jsonObject as? [JSON] {
                 return [
                     "data": json
                 ]

@@ -10,16 +10,13 @@ import UIKit
 public class RoundedTextField: UIView {
     // MARK: - Private properties
 
-    private var delegate: UITextFieldDelegate?
     private var placeholder: String?
 
     // MARK: - Init
 
     public init(
-        delegate: UITextFieldDelegate,
         placeholder: String?
     ) {
-        self.delegate = delegate
         self.placeholder = placeholder
 
         super.init(frame: .zero)
@@ -42,7 +39,7 @@ public class RoundedTextField: UIView {
         return view
     }()
 
-    private lazy var textField: UITextField = {
+    public lazy var textField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = placeholder
         textfield.backgroundColor = .clear

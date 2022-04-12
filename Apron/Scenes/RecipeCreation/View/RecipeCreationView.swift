@@ -8,41 +8,52 @@
 
 import UIKit
 
-final class RecipeCreationView: UITableView {
+final class RecipeCreationView: UICollectionView {
     
-    // MARK: - Initialization
-    init() {
-        super.init(frame: .zero, style: .plain)
-        
+    // MARK: - Init
+    public init() {
+        let layout: UICollectionViewFlowLayout = {
+            let layout = UICollectionViewFlowLayout()
+            layout.minimumLineSpacing = 8
+            layout.scrollDirection = .vertical
+            return layout
+        }()
+
+        super.init(frame: .zero, collectionViewLayout: layout)
+
         configure()
     }
-    
-    required init?(coder: NSCoder) {
+
+    public required init?(coder: NSCoder) {
         return nil
     }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configure() {
-        separatorStyle = .none
-        
+        allowsMultipleSelection = false
+        keyboardDismissMode = .onDrag
+        showsHorizontalScrollIndicator = false
+        isScrollEnabled = true
+
         [
             RecipeCreationNamingCell.self,
             RecipeCreationImageCell.self,
             RecipeCreationDescriptionCell.self,
-            RecipeCreationAddIngredients.self
+            RecipeCreationAddIngredientCell.self,
+            RecipeCreationAddInstructionCell.self,
+            RecipeCreationAssignCell.self
         ].forEach {
             register(cellClass: $0)
         }
-        
         configureColors()
     }
-    
+
     private func configureColors() {
         backgroundColor = .clear
     }

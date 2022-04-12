@@ -1,18 +1,27 @@
 //
-//  RecipeCreationAddIngredients.swift
+//  RecipeCreationAddInstructionCell.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 08.04.2022.
+//  Created by Akarys Turganbekuly on 11.04.2022.
 //
 
 import UIKit
 import DesignSystem
 
-final class RecipeCreationAddIngredients: UITableViewCell, UITextFieldDelegate {
+final class RecipeCreationAddInstructionCell: UICollectionViewCell {
+    // MARK: - Private properties
+
+    private weak var delegate: (UITableViewDelegate & UITableViewDataSource)? {
+        didSet {
+            ingredientsTableView.delegate = delegate
+            ingredientsTableView.dataSource = delegate
+        }
+    }
+
     // MARK: - Init
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
     }
 
@@ -32,17 +41,20 @@ final class RecipeCreationAddIngredients: UITableViewCell, UITextFieldDelegate {
 
     private lazy var roudedTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            delegate: self,
-            placeholder: "+  Добавьте ингредиенты"
+            placeholder: "+  Добавьте шаги приготовления"
         )
         textField.isUserInteractionEnabled = false
         return textField
     }()
 
+    private lazy var ingredientsTableView: RecipeCreationInstructionsView = {
+        let tableView = RecipeCreationInstructionsView()
+        return tableView
+    }()
+
     // MARK: - Setup Views
 
     private func setupViews() {
-        selectionStyle = .none
         [titleLabel, roudedTextField].forEach { contentView.addSubview($0) }
         setupConstraints()
     }
@@ -62,8 +74,9 @@ final class RecipeCreationAddIngredients: UITableViewCell, UITextFieldDelegate {
 
     // MARK: - Public methods
 
-    func configure() {
-        titleLabel.text = "Состав"
+    func configure(delegate: (UITableViewDelegate & UITableViewDataSource)?) {
+        self.delegate = delegate
+        titleLabel.text = "Инструкция"
     }
 }
 

@@ -41,7 +41,10 @@ final class RecipeCreationIngredientCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func configure() {
-
+    func configure(with viewModel: RecipeCreationIngredientViewModelProtocol) {
+        ingredientView.configure(
+            name: viewModel.name,
+            measurement: "\(viewModel.amount) \(viewModel.measurment)"
+        )
     }
 }

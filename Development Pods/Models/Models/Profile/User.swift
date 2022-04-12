@@ -27,7 +27,7 @@ public struct User: Codable {
 
     // MARK: - Init
 
-    public init?(json: AKJSON) {
+    public init?(json: JSON) {
         guard let id = json[CodingKeys.id.rawValue] as? Int else {
             return nil
         }
@@ -41,8 +41,8 @@ public struct User: Codable {
 
     // MARK: - Methods
 
-    public func toJSON() -> AKJSON {
-        var params = AKJSON()
+    public func toJSON() -> JSON {
+        var params = JSON()
         params[CodingKeys.firstName.rawValue] = firstName ?? ""
         params[CodingKeys.lastName.rawValue] = lastName ?? ""
         params[CodingKeys.email.rawValue] = email ?? ""

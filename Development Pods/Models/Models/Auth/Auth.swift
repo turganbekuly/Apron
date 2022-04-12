@@ -21,7 +21,7 @@ public struct Auth: Codable {
 
     // MARK: - Init
 
-    public init?(json: AKJSON) {
+    public init?(json: JSON) {
         guard
             let accessToken = json[CodingKeys.accessToken.rawValue] as? String,
             let refreshToken = json[CodingKeys.refreshToken.rawValue] as? String

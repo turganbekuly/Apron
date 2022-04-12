@@ -8,11 +8,15 @@
 import UIKit
 import DesignSystem
 
-final class RecipeCreationDescriptionCell: UITableViewCell, UITextViewDelegate {
+final class RecipeCreationDescriptionCell: UICollectionViewCell {
+    // MARK: - Private properties
+
+    var placeholder = "Напишете описание вашего блюда"
+
     // MARK: - Init
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
     }
 
@@ -32,7 +36,6 @@ final class RecipeCreationDescriptionCell: UITableViewCell, UITextViewDelegate {
 
     private lazy var roudedTextView: RoundedTextView = {
         let textField = RoundedTextView(
-            delegate: self,
             placeholder: "Напишете описание вашего блюда"
         )
         return textField
@@ -41,7 +44,6 @@ final class RecipeCreationDescriptionCell: UITableViewCell, UITextViewDelegate {
     // MARK: - Setup Views
 
     private func setupViews() {
-        selectionStyle = .none
         [titleLabel, roudedTextView].forEach { contentView.addSubview($0) }
         setupConstraints()
     }

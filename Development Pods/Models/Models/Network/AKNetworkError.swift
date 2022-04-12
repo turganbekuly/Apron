@@ -21,7 +21,7 @@ public struct AKNetworkError: Error {
 
     // MARK: - Init
 
-    public init?(json: AKJSON) {
+    public init?(json: JSON) {
         guard let code = AKServerErrorCode(rawValue: json[CodingKeys.code.rawValue] as? Int ?? 9999) else {
             return nil
         }

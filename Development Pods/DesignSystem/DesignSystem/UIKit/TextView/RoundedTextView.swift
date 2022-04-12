@@ -10,16 +10,13 @@ import UIKit
 public class RoundedTextView: UIView {
     // MARK: - Private properties
 
-    private var delegate: UITextViewDelegate?
     private var placeholder: String?
 
     // MARK: - Init
 
     public init(
-        delegate: UITextViewDelegate?,
         placeholder: String?
     ) {
-        self.delegate = delegate
         self.placeholder = placeholder
 
         super.init(frame: .zero)
@@ -42,10 +39,11 @@ public class RoundedTextView: UIView {
         return view
     }()
 
-    public lazy var textView: UITextView = {
-        let textView = UITextView()
+    public lazy var textView: PlaceholderTextView = {
+        let textView = PlaceholderTextView()
         textView.backgroundColor = .clear
         textView.font = TypographyFonts.regular12
+        textView.placeholder = placeholder
         return textView
     }()
 

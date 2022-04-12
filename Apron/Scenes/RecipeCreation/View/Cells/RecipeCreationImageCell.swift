@@ -8,11 +8,11 @@
 import UIKit
 import DesignSystem
 
-final class RecipeCreationImageCell: UITableViewCell {
+final class RecipeCreationImageCell: UICollectionViewCell {
     // MARK: - Init
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
     }
 

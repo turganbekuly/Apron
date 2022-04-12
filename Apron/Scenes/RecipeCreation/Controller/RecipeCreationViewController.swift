@@ -16,7 +16,25 @@ protocol RecipeCreationDisplayLogic: AnyObject {
 final class RecipeCreationViewController: ViewController {
     // MARK: - Properties
     let interactor: RecipeCreationBusinessLogic
-    var sections: [Section] = []
+    var sections: [Section] = [
+        .init(
+            section: .info,
+            rows: [
+                .name, .image, .description,
+                .composition, .instruction, .servings,
+                .prepTime, .cookTime
+            ]
+        )
+    ]
+
+    var ingredientSections: [IngredientSection] = []
+
+    var ingredients: IngredientsListCellViewModel? {
+        didSet {
+            //
+        }
+    }
+
     var state: State {
         didSet {
             updateState()

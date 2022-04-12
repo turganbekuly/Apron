@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Models
 
 extension RecipePageViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,7 +64,7 @@ extension RecipePageViewController: UITableViewDelegate {
         case let .topView(info):
             guard let cell = cell as? RecipeInformationViewCell else { return }
             cell.onEditButtonTapped = {
-                let viewController = RecipeCreationBuilder(state: .initial).build()
+                let viewController = RecipeCreationBuilder(state: .initial(.create(RecipeCreation()))).build()
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }

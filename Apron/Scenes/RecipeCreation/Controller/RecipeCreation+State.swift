@@ -13,14 +13,14 @@ extension RecipeCreationViewController {
     
     // MARK: - State
     public enum State {
-        case initial
+        case initial(RecipeCreationInitialState)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
-            sections = [.init(section: .name, rows: [.name, .image, .description, .composition])]
+            break
         }
     }
     
