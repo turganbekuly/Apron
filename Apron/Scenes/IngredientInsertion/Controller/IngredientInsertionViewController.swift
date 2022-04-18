@@ -1,19 +1,19 @@
 //
-//  CommunityCreationViewController.swift
+//  IngredientInsertionViewController.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 13/02/2022.
+//  Created by Akarys Turganbekuly on 15/04/2022.
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
 import DesignSystem
 import UIKit
 
-protocol CommunityCreationDisplayLogic: AnyObject {
+protocol IngredientInsertionDisplayLogic: AnyObject {
     
 }
 
-final class CommunityCreationViewController: ViewController {
+final class IngredientInsertionViewController: ViewController {
     
     struct Section {
         enum Section {
@@ -28,24 +28,20 @@ final class CommunityCreationViewController: ViewController {
     }
     
     // MARK: - Properties
-    let interactor: CommunityCreationBusinessLogic
+    let interactor: IngredientInsertionBusinessLogic
     var sections: [Section] = []
     var state: State {
         didSet {
             updateState()
         }
     }
+
+    weak var delegate: RecipeCreationAddIngredientCellProtocol?
     
     // MARK: - Views
-    lazy var mainView: CommunityCreationView = {
-        let view = CommunityCreationView()
-        view.dataSource = self
-        view.delegate = self
-        return view
-    }()
     
     // MARK: - Init
-    init(interactor: CommunityCreationBusinessLogic, state: State) {
+    init(interactor: IngredientInsertionBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
         
@@ -87,16 +83,13 @@ final class CommunityCreationViewController: ViewController {
     }
     
     private func configureViews() {
-        [mainView].forEach { view.addSubview($0) }
+        [].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
     }
     
     private func makeConstraints() {
-        mainView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
     
     private func configureColors() {

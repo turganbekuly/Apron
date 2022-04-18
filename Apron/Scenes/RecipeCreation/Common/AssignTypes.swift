@@ -8,7 +8,7 @@
 import Foundation
 
 enum AssignTypes {
-    case servings
-    case prepTime
-    case cookTime
+    case servings(String)
+    case prepTime(String)
+    case cookTime(String)
 }
