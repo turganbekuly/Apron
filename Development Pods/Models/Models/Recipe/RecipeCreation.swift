@@ -9,13 +9,14 @@ import Foundation
 
 public struct RecipeCreation: Codable {
     private enum CodingKeys: String, CodingKey {
-        case recipeName = "recipe_name"
-        case originalSource = "source"
-        case imageURL = "image_url"
+        case recipeName = "name"
+        case sourceLink = "link"
+        case sourceName = "linkName"
+        case imageURL = "image"
         case description = "description"
         case ingredients = "ingredients"
         case instructions = "instructions"
-        case servings = "servings"
+        case servings = "portions"
         case prepTime = "prep_time"
         case cookTime = "cook_time"
     }
@@ -23,14 +24,15 @@ public struct RecipeCreation: Codable {
     // MARK: - Properties
 
     public var recipeName: String?
-    public var originalSource: RecipeSource?
+    public var sourceLink: String?
+    public var sourceName: String?
     public var imageURL: String?
     public var description: String?
     public var ingredients: [Product]?
     public var instructions: [String]?
-    public var servings: Int?
-    public var prepTime: Int?
-    public var cookTime: Int?
+    public var servings: String?
+    public var prepTime: String?
+    public var cookTime: String?
 
     // MARK: - Init
 
@@ -43,8 +45,11 @@ public struct RecipeCreation: Codable {
         if let name = recipeName {
             params[CodingKeys.recipeName.rawValue] = name
         }
-        if let originalSource = originalSource {
-            params[CodingKeys.originalSource.rawValue] = originalSource
+        if let sourceLink = sourceLink {
+            params[CodingKeys.sourceLink.rawValue] = sourceLink
+        }
+        if let sourceName = sourceName {
+            params[CodingKeys.sourceName.rawValue] = sourceName
         }
         if let imageURL = imageURL {
             params[CodingKeys.imageURL.rawValue] = imageURL

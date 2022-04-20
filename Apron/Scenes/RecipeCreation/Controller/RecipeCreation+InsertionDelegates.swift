@@ -9,6 +9,6 @@ import UIKit
 
 extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
     func onAddIngredientTapped() {
-        // navigate to adding recipe
+        checkCameraAccessIfNeeded()
     }
 }

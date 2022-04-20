@@ -8,7 +8,15 @@
 import UIKit
 import DesignSystem
 
+protocol RecipeCreationAssignCellDelegate: AnyObject {
+    func assignButtonTapped(with type: AssignTypes?)
+}
+
 final class RecipeCreationAssignCell: UITableViewCell {
+    // MARK: - Public properties
+
+    weak var delegate: RecipeCreationAssignCellDelegate?
+
     // MARK: - Private properties
 
     let attributes: [NSAttributedString.Key: Any] = [
@@ -42,6 +50,8 @@ final class RecipeCreationAssignCell: UITableViewCell {
 
     private lazy var assignButton: UIButton = {
         let button = UIButton()
+        button.titleLabel?.font = TypographyFonts.bold14
+        button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(assignButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -58,6 +68,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
+        selectionStyle = .none
         contentView.addSubviews(
             titleLabel,
             subtitlLabel,
@@ -70,7 +81,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
         assignButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().inset(16)
-            $0.width.equalTo(52)
+            $0.width.greaterThanOrEqualTo(52)
         }
 
         titleLabel.snp.makeConstraints {
@@ -83,6 +94,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalTo(assignButton.snp.leading).offset(-16)
+            $0.bottom.equalToSuperview()
         }
     }
 
@@ -90,7 +102,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
 
     @objc
     private func assignButtonTapped() {
-        //
+        delegate?.assignButtonTapped(with: type)
     }
 
     // MARK: - Public properties
@@ -98,29 +110,17 @@ final class RecipeCreationAssignCell: UITableViewCell {
     func configure(type: AssignTypes) {
         self.type = type
         switch type {
-        case .servings:
+        case let .servings(value):
             titleLabel.text = "Количество"
-            let attributeString = NSMutableAttributedString(
-                string: "Задать",
-                attributes: attributes
-            )
-            assignButton.setAttributedTitle(attributeString, for: .normal)
+            assignButton.setTitle(value.isEmpty ? "Задать" : value, for: .normal)
             subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
-        case .prepTime:
+        case let .prepTime(value):
             titleLabel.text = "Время приготовления"
-            let attributeString = NSMutableAttributedString(
-                string: "Задать",
-                attributes: attributes
-            )
-            assignButton.setAttributedTitle(attributeString, for: .normal)
+            assignButton.setTitle(value.isEmpty ? "Задать" : value, for: .normal)
             subtitlLabel.text = "Сколько времени нужно, что бы подготовить это блюдо?"
-        case .cookTime:
+        case let .cookTime(value):
             titleLabel.text = "Время готовки"
-            let attributeString = NSMutableAttributedString(
-                string: "Задать",
-                attributes: attributes
-            )
-            assignButton.setAttributedTitle(attributeString, for: .normal)
+            assignButton.setTitle(value.isEmpty ? "Задать" : value, for: .normal)
             subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
         }
     }

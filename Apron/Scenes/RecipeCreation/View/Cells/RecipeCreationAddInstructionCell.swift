@@ -55,6 +55,7 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
+        selectionStyle = .none
         [titleLabel, roudedTextField].forEach { contentView.addSubview($0) }
         setupConstraints()
     }

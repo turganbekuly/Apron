@@ -7,10 +7,18 @@
 
 import Foundation
 import UIKit
+import Models
 
 extension RecipeCreationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].rows.count
+        switch tableView {
+        case is RecipeCreationView:
+            return sections[section].rows.count
+        case is RecipeCreationIngredientsView:
+            return ingredientSections[section].rows.count
+        default:
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,19 +65,6 @@ extension RecipeCreationViewController: UITableViewDataSource {
 }
 
 extension RecipeCreationViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch tableView {
-        case is RecipeCreationIngredientsView:
-            let row = ingredientSections[indexPath.section].rows[indexPath.row]
-            switch row {
-            case .ingredient:
-                return 38
-            }
-        default:
-            return 0
-        }
-    }
-
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView {
         case is RecipeCreationView:
@@ -84,15 +79,15 @@ extension RecipeCreationViewController: UITableViewDelegate {
             case .description:
                 return 125
             case .composition:
-                return 86
+                return 86 + 60
             case .instruction:
                 return 86
             case .servings:
-                return 70
+                return 80
             case .prepTime:
-                return 70
+                return 80
             case .cookTime:
-                return 70
+                return 80
             default:
                 return 600
             }
@@ -117,9 +112,11 @@ extension RecipeCreationViewController: UITableViewDelegate {
                 cell.configure()
             case .image:
                 guard let cell = cell as? RecipeCreationImageCell else { return }
-                cell.configure()
+                cell.delegate = self
+                cell.configure(image: selectedImage, imageURL: recipeCreation?.imageURL)
             case .imagePlaceholder:
                 guard let cell = cell as? RecipeCreationPlaceholderImageCell else { return }
+                cell.delegate = self
                 cell.configure()
             case .description:
                 guard let cell = cell as? RecipeCreationDescriptionCell else  { return }
@@ -127,26 +124,36 @@ extension RecipeCreationViewController: UITableViewDelegate {
             case .composition:
                 guard let cell = cell as? RecipeCreationAddIngredientCell else { return }
                 cell.configure(delegate: self, newIngredientDelegate: self)
+                ingredientSections = [.init(section: .ingredients, rows: [.ingredient])]
             case .instruction:
                 guard let cell = cell as? RecipeCreationAddInstructionCell else { return }
                 cell.configure(delegate: self)
             case .servings:
                 guard let cell = cell as? RecipeCreationAssignCell else { return }
-                cell.configure(type: .servings)
+                cell.delegate = self
+                cell.configure(type: .servings(recipeCreation?.servings ?? ""))
             case .prepTime:
                 guard let cell = cell as? RecipeCreationAssignCell else { return }
-                cell.configure(type: .prepTime)
+                cell.delegate = self
+                cell.configure(type: .prepTime(recipeCreation?.prepTime ?? ""))
             case .cookTime:
                 guard let cell = cell as? RecipeCreationAssignCell else { return }
-                cell.configure(type: .cookTime)
+                cell.delegate = self
+                cell.configure(type: .cookTime(recipeCreation?.cookTime ?? ""))
             default: break
             }
         case is RecipeCreationIngredientsView:
             let row = ingredientSections[indexPath.section].rows[indexPath.row]
             switch row {
-            case let .ingredient(ingredient):
+            case .ingredient:
                 guard let cell = cell as? RecipeCreationIngredientCell else { return }
-                cell.configure(with: ingredient)
+                let ing = IngredientInfo(
+                    ingredientImage: "",
+                    ingredientName: "Картошка",
+                    ingredientMeasurement: "3",
+                    ingredientAmount: "кг"
+                )
+                cell.configure(with: ing)
             }
         default:
             break

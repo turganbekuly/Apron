@@ -48,6 +48,7 @@ final class RecipeCreationView: UITableView {
 
     private func configureColors() {
         backgroundColor = .clear
+        separatorStyle = .none
     }
 
 }

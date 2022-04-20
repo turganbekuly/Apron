@@ -31,6 +31,7 @@ final class RecipeCreationIngredientsView: UITableView {
         separatorStyle = .none
 
         [
+            RecipeCreationIngredientCell.self
         ].forEach {
             register(cellClass: $0)
         }

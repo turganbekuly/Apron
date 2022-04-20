@@ -8,7 +8,16 @@
 import UIKit
 import DesignSystem
 
+protocol RecipeCreationImageCellProtocol: AnyObject {
+    func editPhoto()
+    func deletePhoto()
+}
+
 final class RecipeCreationImageCell: UITableViewCell {
+    // MARK: - Public properties
+
+    weak var delegate: RecipeCreationImageCellProtocol?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -26,6 +35,9 @@ final class RecipeCreationImageCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.image = Assets.recipeSampleImage.image
         imageView.layer.cornerRadius = 20
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleToFill
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
@@ -52,6 +64,7 @@ final class RecipeCreationImageCell: UITableViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
+        selectionStyle = .none
         contentView.addSubview(imagePlaceholder)
         imagePlaceholder.addSubviews(deleteButton, editButton)
         setupConstraints()
@@ -78,12 +91,29 @@ final class RecipeCreationImageCell: UITableViewCell {
     // MARK: - User actions
 
     @objc
-    private func deleteButtonTapped() { }
+    private func deleteButtonTapped() {
+        delegate?.deletePhoto()
+    }
 
     @objc
-    private func editButtonTapped() { }
+    private func editButtonTapped() {
+        delegate?.editPhoto()
+    }
 
     // MARK: - Public methods
 
-    func configure() { }
+    func configure(image: UIImage?, imageURL: String?) {
+        if let image = image {
+            imagePlaceholder.image = image
+            return
+        }
+
+        if let imageURL = imageURL {
+            imagePlaceholder.kf.setImage(
+                with: URL(string: imageURL),
+                placeholder: Assets.addedImagePlaceholder.image,
+                options: [.transition(.fade(0.25))]
+            )
+        }
+    }
 }

@@ -19,7 +19,8 @@ extension RecipeCreationViewController {
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case .initial:
+        case let .initial(state):
+            self.initialState = state
             sections = [
                 .init(
                     section: .info,
@@ -30,9 +31,6 @@ extension RecipeCreationViewController {
                     ]
                 )
             ]
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                self.replacePlaceholderCell()
-            }
         }
     }
     

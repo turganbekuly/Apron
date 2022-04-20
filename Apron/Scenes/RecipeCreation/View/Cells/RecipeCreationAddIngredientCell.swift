@@ -61,7 +61,8 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
-        [titleLabel, roudedTextField].forEach { contentView.addSubview($0) }
+        selectionStyle = .none
+        [titleLabel, roudedTextField, ingredientsTableView].forEach { contentView.addSubview($0) }
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(onAddIngredientTapped))
         roudedTextField.addGestureRecognizer(tapGR)
         setupConstraints()
@@ -77,6 +78,12 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(38)
+        }
+
+        ingredientsTableView.snp.makeConstraints {
+            $0.top.equalTo(roudedTextField.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().inset(8)
         }
     }
 

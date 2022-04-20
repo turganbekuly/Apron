@@ -8,6 +8,7 @@
 
 import DesignSystem
 import UIKit
+import Models
 
 protocol RecipeCreationDisplayLogic: AnyObject {
     
@@ -16,13 +17,34 @@ protocol RecipeCreationDisplayLogic: AnyObject {
 final class RecipeCreationViewController: ViewController {
     // MARK: - Properties
     let interactor: RecipeCreationBusinessLogic
-    var sections: [Section] = []
 
+    var sections: [Section] = []
     var ingredientSections: [IngredientSection] = []
 
     var ingredients: IngredientsListCellViewModel? {
         didSet {
             //
+        }
+    }
+
+    var initialState: RecipeCreationInitialState? {
+        didSet {
+            switch initialState {
+            case let .create(recipeCreation),
+                let .edit(recipeCreation):
+                self.recipeCreation = recipeCreation
+            default:
+                break
+            }
+        }
+    }
+
+    var recipeCreation: RecipeCreation?
+
+    var selectedImage: UIImage? {
+        didSet {
+            reloadTableViewWithoutAnimation()
+            replaceImageCell(type: .image)
         }
     }
 
@@ -114,6 +136,15 @@ final class RecipeCreationViewController: ViewController {
     }
     
     // MARK: - Methods
+
+    func reloadTableViewWithoutAnimation() {
+        let contentOffset = self.mainView.contentOffset
+        self.mainView.reloadData()
+        self.mainView.layoutIfNeeded()
+        self.mainView.setContentOffset(contentOffset, animated: false)
+    }
+
+
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
         navigationController?.navigationBar.backgroundColor = Assets.secondary.color
@@ -132,7 +163,7 @@ final class RecipeCreationViewController: ViewController {
             make.edges.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = Assets.secondary.color
     }

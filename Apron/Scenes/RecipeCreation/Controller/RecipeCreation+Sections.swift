@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Wormholy
+import Models
 
 extension RecipeCreationViewController {
     public struct Section {
@@ -34,7 +34,18 @@ extension RecipeCreationViewController {
             case ingredients
         }
         enum Row {
-            case ingredient(RecipeCreationIngredientViewModel)
+            case ingredient
+        }
+        let section: Section
+        let rows: [Row]
+    }
+
+    public struct InstructionSection {
+        enum Section {
+            case instructions
+        }
+        enum Row {
+            case instruction
         }
         let section: Section
         let rows: [Row]

@@ -87,6 +87,7 @@ final class RecipeCreationIngredientCell: UITableViewCell {
             $0.top.equalToSuperview().inset(4)
             $0.leading.equalTo(measurementLabel.snp.trailing).offset(8)
             $0.trailing.equalTo(removeButton.snp.leading).offset(-8)
+            $0.bottom.equalToSuperview().inset(4)
         }
 
     }
