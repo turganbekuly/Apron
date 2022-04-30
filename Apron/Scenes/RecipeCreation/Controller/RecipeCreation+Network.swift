@@ -6,8 +6,17 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
+import Models
+
 extension RecipeCreationViewController {
     
     // MARK: - Network
 
+    func createRecipe(recipe: RecipeCreation?) {
+        guard let recipe = recipe else {
+            return
+        }
+
+        interactor.createRecipe(request: .init(recipeCreation: recipe))
+    }
 }

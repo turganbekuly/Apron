@@ -8,7 +8,15 @@
 import UIKit
 import DesignSystem
 
+protocol NamingCellDelegate: AnyObject {
+    func cell(_ cell: RecipeCreationNamingCell, didEnteredName name: String?)
+}
+
 final class RecipeCreationNamingCell: UITableViewCell {
+    // MARK: - Public properties
+
+    weak var delegate: NamingCellDelegate?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -26,6 +34,7 @@ final class RecipeCreationNamingCell: UITableViewCell {
         let textField = RoundedTextField(
             placeholder: "Напишите название рецепта"
         )
+        textField.textField.addTarget(self, action: #selector(didEnterName(_:)), for: .editingChanged)
         return textField
     }()
 
@@ -45,9 +54,16 @@ final class RecipeCreationNamingCell: UITableViewCell {
         }
     }
 
+    // MARK: - User actions
+
+    @objc
+    private func didEnterName(_ sender: UITextField) {
+        delegate?.cell(self, didEnteredName: sender.text)
+    }
+
     // MARK: - Public methods
 
-    func configure() {
-//        recipeNameLabel.text = "Recipe name"
+    func configure(recipeName: String?) {
+        roudedTextField.textField.text = recipeName ?? ""
     }
 }

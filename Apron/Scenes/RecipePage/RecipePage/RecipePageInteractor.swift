@@ -7,7 +7,7 @@
 //
 
 protocol RecipePageBusinessLogic {
-    
+    func getRecipe(request: RecipePageDataFlow.GetRecipe.Request)
 }
 
 final class RecipePageInteractor: RecipePageBusinessLogic {
@@ -25,4 +25,14 @@ final class RecipePageInteractor: RecipePageBusinessLogic {
     
     // MARK: - RecipePageBusinessLogic
 
+    func getRecipe(request: RecipePageDataFlow.GetRecipe.Request) {
+        provider.getRecipe(request: request) { [weak self] in
+            switch $0 {
+            case let .successfull(model):
+                self?.presenter.getRecipe(response: .init(result: .successfull(model: model)))
+            case let .failed(error):
+                self?.presenter.getRecipe(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }

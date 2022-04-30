@@ -11,7 +11,7 @@ import UIKit
 import Models
 
 protocol RecipePageDisplayLogic: AnyObject {
-    
+    func displayRecipe(viewModel: RecipePageDataFlow.GetRecipe.ViewModel)
 }
 
 final class RecipePageViewController: ViewController {
@@ -30,6 +30,18 @@ final class RecipePageViewController: ViewController {
         }
     }
 
+    var recipe: RecipeResponse? {
+        didSet {
+            sections = [
+                .init(section: .topView, rows: [.topView]),
+                .init(section: .description, rows: [.description]),
+                .init(section: .ingredients, rows: [.ingredient]),
+                .init(section: .instructions, rows: [.instruction])
+            ]
+            mainView.reloadData()
+        }
+    }
+
     var topView = [
         InformationCellViewModel(
             recipeName: "Легкий грибной суп",
@@ -42,103 +54,6 @@ final class RecipePageViewController: ViewController {
         IngredientsDescriptionCellViewModel(
             description: "Очень простой суп из шампиньонов, картофеля, лука и макарон. Бюджетный, быстрый и лёгкий.",
             cookingTime: "30 мин"
-        )
-    ]
-
-
-    var ingredients = [
-        IngredientsListCellViewModel(
-            serveCount: 6,
-            ingredients: [
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Шампиньоны",
-                    ingredientMeasurement: "г",
-                    ingredientAmount: "300"
-                ),
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Макароны",
-                    ingredientMeasurement: "г",
-                    ingredientAmount: "100"
-                ),
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Картофель",
-                    ingredientMeasurement: "шт",
-                    ingredientAmount: "4"
-                ),
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Лук репчатый",
-                    ingredientMeasurement: "г",
-                    ingredientAmount: "1"
-                ),
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Зелень",
-                    ingredientMeasurement: "пучка",
-                    ingredientAmount: "0.5"
-                ),
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Соль",
-                    ingredientMeasurement: "по вкусу",
-                    ingredientAmount: "0"
-                ),
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Лавровый лист",
-                    ingredientMeasurement: "шт",
-                    ingredientAmount: "1-2"
-                ),
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Масло растительное",
-                    ingredientMeasurement: "мл",
-                    ingredientAmount: "30-40"
-                ),
-                IngredientInfo(
-                    ingredientImage: "",
-                    ingredientName: "Вода",
-                    ingredientMeasurement: "л",
-                    ingredientAmount: "2.5"
-                )
-            ]
-        )
-    ]
-
-    var steps = [
-        InstructionCellViewModel(
-            instructions: [
-                InstructionInformations(
-                    stepCount: "1",
-                    stepDescription: "Нагреть сковороду с растительным маслом. Обжарить лук, помешивая, на среднем огне до румяности"
-                ),
-                InstructionInformations(
-                    stepCount: "1",
-                    stepDescription: "Подготовить продукты."
-                ),InstructionInformations(
-                    stepCount: "1",
-                    stepDescription: "Подготовить продукты."
-                ),
-                InstructionInformations(
-                    stepCount: "1",
-                    stepDescription: "Подготовить продукты."
-                ),
-                InstructionInformations(
-                    stepCount: "1",
-                    stepDescription: "Подготовить продукты."
-                ),
-                InstructionInformations(
-                    stepCount: "1",
-                    stepDescription: "Подготовить продукты."
-                ),
-                InstructionInformations(
-                    stepCount: "1",
-                    stepDescription: "Подготовить продукты."
-                )
-            ]
         )
     ]
     
@@ -188,7 +103,8 @@ final class RecipePageViewController: ViewController {
         configureColors()
     }
     
-    // MARK: - Methods
+    // MARK: - Setup Views
+
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: Assets.navBackButton.image,
@@ -218,6 +134,22 @@ final class RecipePageViewController: ViewController {
     
     deinit {
         NSLog("deinit \(self)")
+    }
+
+    // MARK: - Private methods
+
+    private func configureTopView() {
+        guard let section = sections.firstIndex(where: { $0.section == .topView }),
+              let row = sections[section].rows.firstIndex(where: { $0 == .topView }),
+              let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? RecipeInformationViewCell else { return }
+
+        cell.configure(
+            with: InformationCellViewModel(
+            recipeName: recipe?.recipeName ?? "",
+            recipeSubtitle: recipe?.description ?? "",
+            recipeSourceURL: recipe?.sourceLink ?? ""
+            )
+        )
     }
 
     // MARK: - User actions

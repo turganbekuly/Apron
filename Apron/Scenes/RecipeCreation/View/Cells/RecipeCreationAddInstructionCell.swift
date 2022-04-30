@@ -8,15 +8,15 @@
 import UIKit
 import DesignSystem
 
+protocol AddInstructionCellTappedDelegate: AnyObject {
+    func onAddInstructionTapped()
+    func onRemoveInstructionTapped(index: Int)
+}
+
 final class RecipeCreationAddInstructionCell: UITableViewCell {
     // MARK: - Private properties
 
-    private weak var delegate: (UITableViewDelegate & UITableViewDataSource)? {
-        didSet {
-            ingredientsTableView.delegate = delegate
-            ingredientsTableView.dataSource = delegate
-        }
-    }
+    private weak var newInstructionDelegate: AddInstructionCellTappedDelegate?
 
     // MARK: - Init
 
@@ -43,20 +43,25 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
         let textField = RoundedTextField(
             placeholder: "+  Добавьте шаги приготовления"
         )
-        textField.isUserInteractionEnabled = false
+        textField.textField.isUserInteractionEnabled = false
         return textField
     }()
 
-    private lazy var ingredientsTableView: RecipeCreationInstructionsView = {
-        let tableView = RecipeCreationInstructionsView()
-        return tableView
+    private lazy var instructionsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 8
+        return stackView
     }()
 
     // MARK: - Setup Views
 
     private func setupViews() {
         selectionStyle = .none
-        [titleLabel, roudedTextField].forEach { contentView.addSubview($0) }
+        [titleLabel, roudedTextField, instructionsStackView].forEach { contentView.addSubview($0) }
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(onAddInstructionTapped))
+        roudedTextField.addGestureRecognizer(tapGR)
         setupConstraints()
     }
 
@@ -71,13 +76,44 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(38)
         }
+
+        instructionsStackView.snp.makeConstraints {
+            $0.top.equalTo(roudedTextField.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().inset(8)
+        }
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func onAddInstructionTapped() {
+        newInstructionDelegate?.onAddInstructionTapped()
     }
 
     // MARK: - Public methods
 
-    func configure(delegate: (UITableViewDelegate & UITableViewDataSource)?) {
-        self.delegate = delegate
+    func configure(
+        instructions: [String]?,
+        newInstructionDelegate: AddInstructionCellTappedDelegate?
+    ) {
+        self.newInstructionDelegate = newInstructionDelegate
         titleLabel.text = "Инструкция"
+        instructionsStackView.removeAllArrangedSubviews()
+
+        guard let instructions = instructions else { return }
+
+        for instruction in instructions {
+            let view = RecipeCreationInstructionView()
+            view.configure(instruction: instruction, image: nil)
+            view.onItemDelete = { [weak self] in
+                guard let self = self,
+                      let index = self.instructionsStackView.arrangedSubviews.firstIndex(of: view) else { return }
+                self.newInstructionDelegate?.onRemoveInstructionTapped(index: index)
+            }
+            instructionsStackView.addArrangedSubview(view)
+        }
+        instructionsStackView.layoutIfNeeded()
     }
 }
 

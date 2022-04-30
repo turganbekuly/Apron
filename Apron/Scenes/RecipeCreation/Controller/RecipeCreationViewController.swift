@@ -9,42 +9,66 @@
 import DesignSystem
 import UIKit
 import Models
+import AlertMessages
 
 protocol RecipeCreationDisplayLogic: AnyObject {
-    
+    func displayRecipe(viewModel: RecipeCreationDataFlow.CreateRecipe.ViewModel)
 }
 
-final class RecipeCreationViewController: ViewController {
+final class RecipeCreationViewController: ViewController, Messagable {
     // MARK: - Properties
+
     let interactor: RecipeCreationBusinessLogic
+
+    // Sections
 
     var sections: [Section] = []
     var ingredientSections: [IngredientSection] = []
 
-    var ingredients: IngredientsListCellViewModel? {
+    var instructions: [String] = [] {
         didSet {
-            //
+            recipeCreation?.instructions = instructions
+            mainView.reloadTableViewWithoutAnimation()
         }
     }
+
+    var recipeCreation: RecipeCreation? {
+        didSet {
+            sections = [
+                .init(
+                    section: .info,
+                    rows: [
+                        .name, .imagePlaceholder, .description,
+                        .composition, .instruction, .servings,
+                        .prepTime, .cookTime
+                    ]
+                )
+            ]
+            mainView.reloadTableViewWithoutAnimation()
+        }
+    }
+
+    var recipeCreationSourceType: RecipeCreationSourceType?
+
+    var selectedImage: UIImage? {
+        didSet {
+            mainView.reloadTableViewWithoutAnimation()
+            replaceImageCell(type: .image)
+        }
+    }
+
+    // Initial state
 
     var initialState: RecipeCreationInitialState? {
         didSet {
             switch initialState {
-            case let .create(recipeCreation),
-                let .edit(recipeCreation):
+            case let .create(recipeCreation, sourceType),
+                let .edit(recipeCreation, sourceType):
                 self.recipeCreation = recipeCreation
+                self.recipeCreationSourceType = sourceType
             default:
                 break
             }
-        }
-    }
-
-    var recipeCreation: RecipeCreation?
-
-    var selectedImage: UIImage? {
-        didSet {
-            reloadTableViewWithoutAnimation()
-            replaceImageCell(type: .image)
         }
     }
 
@@ -54,7 +78,8 @@ final class RecipeCreationViewController: ViewController {
         }
     }
     
-    // MARK: - Views
+    // MARK: - Views factory
+
     private lazy var saveButton: BlackOpButton = {
         let button = BlackOpButton(arrowState: .none, frame: CGRect(x: 0, y: 0, width: 90, height: 30))
         button.setTitle("Сохранить", for: .normal)
@@ -99,6 +124,7 @@ final class RecipeCreationViewController: ViewController {
     }()
     
     // MARK: - Init
+
     init(interactor: RecipeCreationBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
@@ -111,6 +137,7 @@ final class RecipeCreationViewController: ViewController {
     }
     
     // MARK: - Life Cycle
+
     override func loadView() {
         super.loadView()
         
@@ -136,14 +163,6 @@ final class RecipeCreationViewController: ViewController {
     }
     
     // MARK: - Methods
-
-    func reloadTableViewWithoutAnimation() {
-        let contentOffset = self.mainView.contentOffset
-        self.mainView.reloadData()
-        self.mainView.layoutIfNeeded()
-        self.mainView.setContentOffset(contentOffset, animated: false)
-    }
-
 
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
@@ -181,6 +200,26 @@ final class RecipeCreationViewController: ViewController {
 
     @objc
     private func saveButtonTapped() {
-
+        if let _ = recipeCreation?.recipeName,
+           let _ = recipeCreation?.description,
+           let _ = recipeCreation?.ingredients,
+           let _ = recipeCreation?.instructions,
+           let _ = recipeCreation?.servings,
+           let _ = recipeCreation?.prepTime,
+           let _ = recipeCreation?.cookTime
+        {
+            self.createRecipe(recipe: recipeCreation)
+        } else {
+            show(
+                type: .dialog(
+                "Обязательные поля!",
+                "Пожалуйста, заполните все поля, чтобы остальным учасникам было все понятно. Спасибо!",
+                "Понятно",
+                "Заполнить"
+            ),
+                firstAction: nil,
+                secondAction: nil
+            )
+        }
     }
 }

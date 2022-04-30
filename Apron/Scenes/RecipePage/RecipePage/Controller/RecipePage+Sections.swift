@@ -9,18 +9,33 @@ import Foundation
 import Wormholy
 
 extension RecipePageViewController {
-    public struct Section {
+    struct Section {
         enum Section {
             case topView
+            case description
             case ingredients
-//            case calories
             case instructions
         }
         enum Row {
-            case topView(InformationCellViewModel)
-            case ingredient(IngredientsListCellViewModel)
-//            case calorie
-            case instruction(InstructionCellViewModel)
+            case topView
+            case description
+            case ingredient
+            case instruction
+
+            static func == (lhs: Row, rhs: Row) -> Bool {
+                switch(lhs, rhs) {
+                case (.topView, .topView):
+                    return true
+                case (.description, .description):
+                    return true
+                case (.ingredient, .ingredient):
+                    return true
+                case (.instruction, .instruction):
+                    return true
+                default:
+                    return false
+                }
+            }
         }
 
         let section: Section

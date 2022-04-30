@@ -28,7 +28,7 @@ public struct RecipeCreation: Codable {
     public var sourceName: String?
     public var imageURL: String?
     public var description: String?
-    public var ingredients: [Product]?
+    public var ingredients: [RecipeIngredient]?
     public var instructions: [String]?
     public var servings: String?
     public var prepTime: String?
@@ -37,6 +37,19 @@ public struct RecipeCreation: Codable {
     // MARK: - Init
 
     public init() { }
+
+    public init?(from recipe: RecipeResponse) {
+        self.recipeName = recipe.recipeName
+        self.sourceLink = recipe.sourceLink
+        self.sourceName = recipe.sourceName
+        self.imageURL = recipe.imageURL
+        self.description = recipe.description
+        self.ingredients = recipe.ingredients
+        self.instructions = recipe.instructions
+        self.servings = recipe.servings
+        self.prepTime = recipe.prepTime
+        self.cookTime = recipe.cookTime
+    }
 
     // MARK: - Methods
 

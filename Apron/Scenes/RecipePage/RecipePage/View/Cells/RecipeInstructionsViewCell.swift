@@ -43,6 +43,8 @@ final class RecipeInstructionsViewCell: UITableViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
+        selectionStyle = .none
+        backgroundColor = .clear
         [instructionsTitleLabel, stackView].forEach { contentView.addSubviews($0) }
         setupConstraints()
     }
@@ -63,14 +65,16 @@ final class RecipeInstructionsViewCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func configure(with viewModel: IInstructionCellViewModel) {
+    func configure(with viewModel: InstructionCellViewModel) {
         instructionsTitleLabel.text = "Инструкция"
         stackView.removeAllArrangedSubviews()
+        var counter = 1
         viewModel.instructions.forEach {
             let view = InstructionView(
-                counter: $0.stepCount,
-                description: $0.stepDescription
+                counter: counter,
+                description: $0
             )
+            counter += 1
             stackView.addArrangedSubview(view)
         }
         stackView.layoutIfNeeded()

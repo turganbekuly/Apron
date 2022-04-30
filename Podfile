@@ -7,10 +7,8 @@ target 'Apron' do
 
   # Pods for Apron
 
-  pod 'SnapKit'
   pod 'SwiftGen', '~> 6.0'
-  pod 'PanModal'
-  pod 'Kingfisher'
+  pod "LiquidFloatingActionButton"
 
   # Development Pods
 

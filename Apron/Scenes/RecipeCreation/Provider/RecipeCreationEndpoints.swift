@@ -9,23 +9,30 @@
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
 enum RecipeCreationEndpoint {
-    
+    case createRecipe(RecipeCreation)
 }
 
 extension RecipeCreationEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .createRecipe:
+            return "recipes"
+        }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .createRecipe:
+            return .post
+        }
     }
     
     var sampleData: Data {
@@ -33,7 +40,13 @@ extension RecipeCreationEndpoint: AKNetworkTargetType {
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case .createRecipe(let recipeCreation):
+            return .requestParameters(
+                parameters: recipeCreation.toJSON(),
+                encoding: AKJSONEncoding.default
+            )
+        }
     }
     
     var headers: [String: String]? {

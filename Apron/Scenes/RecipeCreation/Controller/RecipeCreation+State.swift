@@ -14,6 +14,8 @@ extension RecipeCreationViewController {
     // MARK: - State
     public enum State {
         case initial(RecipeCreationInitialState)
+        case recipeCreationSucceed(RecipeResponse)
+        case recipeCreationFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -21,16 +23,10 @@ extension RecipeCreationViewController {
         switch state {
         case let .initial(state):
             self.initialState = state
-            sections = [
-                .init(
-                    section: .info,
-                    rows: [
-                        .name, .imagePlaceholder, .description,
-                        .composition, .instruction, .servings,
-                        .prepTime, .cookTime
-                    ]
-                )
-            ]
+        case let .recipeCreationSucceed(recipe):
+            print(recipe)
+        case let .recipeCreationFailed(error):
+            print(error)
         }
     }
     

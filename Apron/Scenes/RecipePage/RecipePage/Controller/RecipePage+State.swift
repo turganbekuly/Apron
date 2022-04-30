@@ -14,17 +14,19 @@ extension RecipePageViewController {
     // MARK: - State
     public enum State {
         case initial
+        case displayRecipe(RecipeResponse)
+        case displayError(AKNetworkError)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
-            sections = [
-                .init(section: .topView, rows: topView.compactMap { .topView($0) }),
-                .init(section: .ingredients, rows: ingredients.compactMap { .ingredient($0) }),
-                .init(section: .instructions, rows: steps.compactMap { .instruction($0) })
-            ]
+            getRecipe(by: 3)
+        case let .displayRecipe(recipe):
+            self.recipe = recipe
+        case let .displayError(error):
+            print(error)
         }
     }
     

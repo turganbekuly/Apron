@@ -151,7 +151,7 @@ final class RecipeInformationViewCell: UITableViewCell {
         recipeSourceURLButton.snp.makeConstraints {
             $0.trailing.bottom.equalToSuperview().inset(11)
             $0.height.equalTo(20)
-            $0.width.greaterThanOrEqualTo(120)
+            $0.width.greaterThanOrEqualTo(50)
         }
 
         likeButton.snp.makeConstraints {

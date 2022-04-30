@@ -56,6 +56,7 @@ final class IngredientDescriptionCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         [descriptionLabel, timingImageView, timingLabel, separatorView].forEach {
             contentView.addSubview($0)
         }

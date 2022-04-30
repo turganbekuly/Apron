@@ -7,7 +7,7 @@
 //
 
 protocol RecipeCreationBusinessLogic {
-    
+    func createRecipe(request: RecipeCreationDataFlow.CreateRecipe.Request)
 }
 
 final class RecipeCreationInteractor: RecipeCreationBusinessLogic {
@@ -25,4 +25,14 @@ final class RecipeCreationInteractor: RecipeCreationBusinessLogic {
     
     // MARK: - RecipeCreationBusinessLogic
 
+    func createRecipe(request: RecipeCreationDataFlow.CreateRecipe.Request) {
+        provider.createRecipe(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.createRecipe(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.createRecipe(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }

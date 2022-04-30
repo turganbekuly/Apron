@@ -12,8 +12,15 @@ import Kingfisher
 final class IngredientView: UIView {
     // MARK: - Init
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(
+        name: String,
+        measurement: String
+    ) {
+        super.init(frame: .zero)
+
+        self.nameLabel.text = name
+        self.measureScopeLabel.text = measurement
+
         setupViews()
     }
 
@@ -42,15 +49,21 @@ final class IngredientView: UIView {
     // MARK: - Setup Views
 
     private func setupViews() {
+        backgroundColor = .clear
         [nameLabel, measureScopeLabel].forEach { addSubviews($0) }
         setupConstraints()
     }
 
     private func setupConstraints() {
+        snp.makeConstraints {
+            $0.height.equalTo(38)
+        }
+
         nameLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.top.equalToSuperview().inset(4)
+            $0.leading.equalToSuperview()
             $0.trailing.lessThanOrEqualTo(snp.centerX)
-            $0.bottom.equalToSuperview().inset(8)
+            $0.bottom.equalToSuperview().inset(4)
         }
 
         measureScopeLabel.snp.makeConstraints {
@@ -61,11 +74,6 @@ final class IngredientView: UIView {
     }
 
     // MARK: - Public methods
-
-    func configure(name: String, measurement: String) {
-        self.nameLabel.text = name
-        self.measureScopeLabel.text = measurement
-    }
 
     func changeService(newMeasure: String) {
         measureScopeLabel.text = newMeasure

@@ -96,11 +96,11 @@ public final class BlackOpButton: Button {
     }
 
     private func configureColors() {
-        setBackgroundColor(.black.withAlphaComponent(0.7), for: .disabled)
+        setBackgroundColor(.black.withAlphaComponent(0.5), for: .disabled)
         setBackgroundColor(.black, for: .normal)
         setBackgroundColor(.black.highlighted, for: .highlighted)
         setTitleColor(.white, for: .disabled)
         setTitleColor(.white, for: .normal)
-        tintColor = isEnabled ? .black : .black.withAlphaComponent(0.7)
+        tintColor = isEnabled ? .black : .black.withAlphaComponent(0.5)
     }
 }

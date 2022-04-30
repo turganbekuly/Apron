@@ -11,19 +11,26 @@ public struct Product: Codable {
     // MARK: - Coding Keys
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, image, protein, fat, carbs
+        case id, name, image
+        case proteinMass, fatMass, carbsMass
+        case productCategoryName, description, kilokalori
     }
 
     // MARK: - Properties
 
-    public let id: Int
-    public let name: String?
-    public let image: String?
-    public let protein: String?
-    public let fat: String?
-    public let carbs: String?
+    public var id: Int?
+    public var name: String?
+    public var productCategoryName: String?
+    public var description: String?
+    public var image: String?
+    public var kilokalori: Double?
+    public var proteinMass: Double?
+    public var fatMass: Double?
+    public var carbsMass: Double?
 
     // MARK: - Init
+
+    public init() {}
 
     public init?(json: JSON) {
         guard let id = json[CodingKeys.id.rawValue] as? Int else {
@@ -32,9 +39,12 @@ public struct Product: Codable {
 
         self.id = id
         self.name = json[CodingKeys.name.rawValue] as? String
+        self.productCategoryName = json[CodingKeys.productCategoryName.rawValue] as? String
+        self.description = json[CodingKeys.description.rawValue] as? String
         self.image = json[CodingKeys.image.rawValue] as? String
-        self.protein = json[CodingKeys.protein.rawValue] as? String
-        self.fat = json[CodingKeys.fat.rawValue] as? String
-        self.carbs = json[CodingKeys.carbs.rawValue] as? String
+        self.kilokalori = json[CodingKeys.kilokalori.rawValue] as? Double
+        self.proteinMass = json[CodingKeys.proteinMass.rawValue] as? Double
+        self.fatMass = json[CodingKeys.fatMass.rawValue] as? Double
+        self.carbsMass = json[CodingKeys.carbsMass.rawValue] as? Double
     }
 }

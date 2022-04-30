@@ -26,7 +26,6 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         let label = UILabel()
         label.font = TypographyFonts.semibold20
         label.textColor = .black
-        label.text = "Ингредиенты"
         label.textAlignment = .left
         return label
     }()
@@ -120,15 +119,15 @@ final class RecipeIngredientsViewCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: IIngredientsListCellViewModel) {
+        ingredientsTitleLabel.text = "Ингредиенты"
         serveLabel.text = "\(viewModel.serveCount) порции"
         ingredientsStackView.removeAllArrangedSubviews()
         viewModel.ingredients.forEach {
-            let view = IngredientView()
-            view.configure(
-                name: $0.ingredientName,
-                measurement: "\($0.ingredientAmount ?? "0")  \($0.ingredientMeasurement ?? "")"
+            let view = IngredientView(
+                name: $0.product?.name ?? "",
+                measurement: "\($0.amount?.clean ?? "")  \($0.measurement ?? "")"
             )
-            
+
             ingredientsStackView.addArrangedSubview(view)
         }
         ingredientsStackView.layoutIfNeeded()

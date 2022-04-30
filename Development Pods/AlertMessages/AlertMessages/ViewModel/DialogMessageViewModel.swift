@@ -25,11 +25,11 @@ public struct DialogMessageViewModel: MessageProtocol {
     }
 
     public var firstButtonTitle: NSAttributedString? {
-        Typography.semibold14(text: firstButtonTitleText, color: .white).styled
+        Typography.semibold14(text: firstButtonTitleText, color: .black).styled
     }
 
     public var secondButtonTitle: NSAttributedString? {
-        Typography.semibold14(text: firstButtonTitleText, color: .white).styled
+        Typography.semibold14(text: secondButtonTitleText, color: .black).styled
     }
 
     public var backgroundColor: UIColor {
@@ -37,11 +37,11 @@ public struct DialogMessageViewModel: MessageProtocol {
     }
 
     public var titleColor: UIColor {
-        .white
+        .black
     }
 
     public var subtitleColor: UIColor? {
-        .white
+        .black
     }
 
     public var iconColor: UIColor? {

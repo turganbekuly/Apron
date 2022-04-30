@@ -7,21 +7,16 @@
 
 import UIKit
 import DesignSystem
+import Models
 
 protocol AddIngredientCellTappedDelegate: AnyObject {
     func onAddIngredientTapped()
+    func onRemoveIngredientTapped(index: Int)
 }
 
 final class RecipeCreationAddIngredientCell: UITableViewCell {
     // MARK: - Private properties
-
-    private weak var delegate: (UITableViewDelegate & UITableViewDataSource)? {
-        didSet {
-            ingredientsTableView.delegate = delegate
-            ingredientsTableView.dataSource = delegate
-        }
-    }
-
+    
     private weak var newIngredientDelegate: AddIngredientCellTappedDelegate?
 
     // MARK: - Init
@@ -53,16 +48,19 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
         return textField
     }()
 
-    private lazy var ingredientsTableView: RecipeCreationIngredientsView = {
-        let tableView = RecipeCreationIngredientsView()
-        return tableView
+    private lazy var ingredientsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 8
+        return stackView
     }()
 
     // MARK: - Setup Views
 
     private func setupViews() {
         selectionStyle = .none
-        [titleLabel, roudedTextField, ingredientsTableView].forEach { contentView.addSubview($0) }
+        [titleLabel, roudedTextField, ingredientsStackView].forEach { contentView.addSubview($0) }
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(onAddIngredientTapped))
         roudedTextField.addGestureRecognizer(tapGR)
         setupConstraints()
@@ -80,7 +78,7 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
             $0.height.equalTo(38)
         }
 
-        ingredientsTableView.snp.makeConstraints {
+        ingredientsStackView.snp.makeConstraints {
             $0.top.equalTo(roudedTextField.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview().inset(8)
@@ -97,10 +95,24 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(
-        delegate: (UITableViewDelegate & UITableViewDataSource)?,
+        ingredients: [RecipeIngredient]?,
         newIngredientDelegate: AddIngredientCellTappedDelegate?
     ) {
-        self.delegate = delegate
-        titleLabel.text = "Состав"
+        self.newIngredientDelegate = newIngredientDelegate
+        titleLabel.text = "Ингредиентыадф"
+        ingredientsStackView.removeAllArrangedSubviews()
+        guard let ingredients = ingredients else { return }
+
+        for ingredient in ingredients {
+            let view = RecipeCreationIngredientView()
+            view.configure(with: ingredient)
+            view.onItemDelete = { [weak self] in
+                guard let self = self,
+                      let index = self.ingredientsStackView.arrangedSubviews.firstIndex(of: view) else { return }
+                self.newIngredientDelegate?.onRemoveIngredientTapped(index: index)
+            }
+            ingredientsStackView.addArrangedSubview(view)
+        }
+        ingredientsStackView.layoutIfNeeded()
     }
 }

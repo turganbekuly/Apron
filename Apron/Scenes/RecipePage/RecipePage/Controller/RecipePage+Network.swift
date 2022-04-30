@@ -10,4 +10,7 @@ extension RecipePageViewController {
     
     // MARK: - Network
 
+    func getRecipe(by id: Int) {
+        interactor.getRecipe(request: .init(id: id))
+    }
 }

@@ -8,10 +8,18 @@
 import UIKit
 import DesignSystem
 
+protocol DescriptionCellDelegate: AnyObject {
+    func cell(_ cell: RecipeCreationDescriptionCell, didEnteredDesc descr: String?)
+}
+
 final class RecipeCreationDescriptionCell: UITableViewCell {
+    // MARK: - Public properties
+
+    weak var delegate: DescriptionCellDelegate?
+
     // MARK: - Private properties
 
-    var placeholder = "Напишете описание вашего блюда"
+    var placeholder = ""
 
     // MARK: - Init
 
@@ -35,10 +43,11 @@ final class RecipeCreationDescriptionCell: UITableViewCell {
     }()
 
     private lazy var roudedTextView: RoundedTextView = {
-        let textField = RoundedTextView(
+        let textView = RoundedTextView(
             placeholder: "Напишете описание вашего блюда"
         )
-        return textField
+        textView.textView.delegate = self
+        return textView
     }()
 
     // MARK: - Setup Views
@@ -64,7 +73,14 @@ final class RecipeCreationDescriptionCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func configure() {
+    func configure(description: String?) {
         titleLabel.text = "Описание"
+        roudedTextView.textView.text = description ?? ""
+    }
+}
+
+extension RecipeCreationDescriptionCell: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.delegate?.cell(self, didEnteredDesc: textView.text)
     }
 }

@@ -7,9 +7,13 @@
 //
 
 import AKNetwork
+import Models
 
 protocol RecipePageServiceProtocol {
-    
+    func getRecipe(
+        request: RecipePageDataFlow.GetRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class RecipePageService: RecipePageServiceProtocol {
@@ -23,5 +27,13 @@ final class RecipePageService: RecipePageServiceProtocol {
     }
     
     // MARK: - RecipePageServiceProtocol
-    
+
+    func getRecipe(
+        request: RecipePageDataFlow.GetRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getRecipe(id: request.id)) { result in
+            completion(result)
+        }
+    }
 }

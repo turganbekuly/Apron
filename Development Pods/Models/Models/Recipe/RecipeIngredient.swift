@@ -11,25 +11,39 @@ public struct RecipeIngredient: Codable {
     // MARK: - Coding Keys
 
     private enum CodingKeys: String, CodingKey {
-        case product, amount, measurement
+        case id
+        case product = "product"
+        case amount, measurement
     }
 
     // MARK: - Properties
 
+    public var id: Int?
     public var product: Product?
-    public var amount: String?
+    public var amount: Double?
     public var measurement: String?
 
     // MARK: - Init
 
     public init() { }
+
+    public init?(json: JSON) {
+        guard let id = json[CodingKeys.id.rawValue] as? Int else {
+            return nil
+        }
+
+        self.id = id
+        self.product = Product(json: json[CodingKeys.product.rawValue] as? JSON ?? [:])
+        self.amount = json[CodingKeys.amount.rawValue] as? Double
+        self.measurement = json[CodingKeys.measurement.rawValue] as? String
+    }
     
     // MARK: - Methods
 
     public func toJSON() -> JSON {
         var params = JSON()
         if let product = product {
-            params[CodingKeys.product.rawValue] = product
+            params["productId"] = product.id
         }
 
         if let amount = amount {

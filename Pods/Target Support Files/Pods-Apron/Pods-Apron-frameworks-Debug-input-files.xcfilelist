@@ -12,12 +12,10 @@ ${BUILT_PRODUCTS_DIR}/Extensions/Extensions.framework
 ${BUILT_PRODUCTS_DIR}/HapticTouch/HapticTouch.framework
 ${BUILT_PRODUCTS_DIR}/Haptica/Haptica.framework
 ${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework
-${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework
 ${BUILT_PRODUCTS_DIR}/Models/Models.framework
 ${BUILT_PRODUCTS_DIR}/Moya/Moya.framework
 ${BUILT_PRODUCTS_DIR}/Onboarding/Onboarding.framework
-${BUILT_PRODUCTS_DIR}/PanModal/PanModal.framework
 ${BUILT_PRODUCTS_DIR}/Protocols/Protocols.framework
 ${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework

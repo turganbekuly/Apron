@@ -9,7 +9,10 @@
 import AKNetwork
 
 protocol RecipeCreationServiceProtocol {
-    
+    func createRecipe(
+        request: RecipeCreationDataFlow.CreateRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class RecipeCreationService: RecipeCreationServiceProtocol {
@@ -23,5 +26,13 @@ final class RecipeCreationService: RecipeCreationServiceProtocol {
     }
     
     // MARK: - RecipeCreationServiceProtocol
-    
+
+    func createRecipe(
+        request: RecipeCreationDataFlow.CreateRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)) {
+            provider.send(
+                target: .createRecipe(request.recipeCreation)) { result in
+                    completion(result)
+                }
+    }
 }

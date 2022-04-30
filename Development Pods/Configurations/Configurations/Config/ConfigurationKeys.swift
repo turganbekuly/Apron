@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+public enum ConfigurationKeys {
+    public static let baseURL = "Configuration.BASE_URL"
+    public static let http = "Configuration.HTTP"
+}

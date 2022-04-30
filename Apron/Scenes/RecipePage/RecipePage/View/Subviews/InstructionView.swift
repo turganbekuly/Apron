@@ -12,12 +12,12 @@ final class InstructionView: UIView {
     // MARK: - Init
 
     init(
-        counter: String,
+        counter: Int,
         description: String
     ) {
         super.init(frame: .zero)
 
-        self.stepCountLabel.text = counter + "шаг"
+        self.stepCountLabel.text = "\(counter) шаг"
         self.textView.text = description
 
         setupViews()

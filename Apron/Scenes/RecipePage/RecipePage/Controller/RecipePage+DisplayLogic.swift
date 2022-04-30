@@ -11,5 +11,8 @@ import UIKit
 extension RecipePageViewController: RecipePageDisplayLogic {
     
     // MARK: - RecipePageDisplayLogic
-    
+
+    func displayRecipe(viewModel: RecipePageDataFlow.GetRecipe.ViewModel) {
+        state = viewModel.state
+    }
 }

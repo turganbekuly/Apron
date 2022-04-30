@@ -11,25 +11,24 @@ import AKNetwork
 import Storages
 
 enum RecipePageEndpoint {
-    
+    case getRecipe(id: Int)
 }
 
 extension RecipePageEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .getRecipe(let id):
+            return "recipes/\(id)"
+        }
     }
     
     var method: AKNetworkMethod {
         return .get
-    }
-    
-    var sampleData: Data {
-        return Data()
     }
     
     var task: AKNetworkTask {

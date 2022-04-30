@@ -7,23 +7,14 @@
 
 import Foundation
 
-struct InstructionInformations {
-    var stepCount: String
-    var stepDescription: String
-}
-
-protocol IInstructionCellViewModel: AnyObject {
-    var instructions: [InstructionInformations] { get }
-}
-
-final class InstructionCellViewModel: IInstructionCellViewModel {
+final class InstructionCellViewModel {
     // MARK: - Properties
 
-    let instructions: [InstructionInformations]
+    let instructions: [String]
 
     // MARK: - Init
 
-    init(instructions: [InstructionInformations]) {
+    init(instructions: [String]) {
         self.instructions = instructions
     }
 }

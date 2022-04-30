@@ -7,9 +7,13 @@
 //
 
 import AKNetwork
+import Models
 
 protocol RecipeCreationProviderProtocol {
-    
+    func createRecipe(
+        request: RecipeCreationDataFlow.CreateRecipe.Request,
+        compeletion: @escaping ((RecipeCreationDataFlow.CreateRecipeResult) -> Void)
+    )
 }
 
 final class RecipeCreationProvider: RecipeCreationProviderProtocol {
@@ -25,4 +29,21 @@ final class RecipeCreationProvider: RecipeCreationProviderProtocol {
     
     // MARK: - RecipeCreationProviderProtocol
 
+    func createRecipe(
+        request: RecipeCreationDataFlow.CreateRecipe.Request,
+        compeletion: @escaping ((RecipeCreationDataFlow.CreateRecipeResult) -> Void)
+    ) {
+        service.createRecipe(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let recipe = RecipeResponse(json: json) {
+                    compeletion(.successful(model: recipe))
+                } else {
+                    compeletion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                compeletion(.failed(error: error))
+            }
+        }
+    }
 }

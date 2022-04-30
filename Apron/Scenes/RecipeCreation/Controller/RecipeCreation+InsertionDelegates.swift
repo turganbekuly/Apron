@@ -6,9 +6,53 @@
 //
 
 import UIKit
+import Models
+
+protocol IngredientSelectedProtocol {
+    func onIngredientSelected(ingredient: RecipeIngredient)
+}
+
+protocol InstructionSelectedProtocol {
+    func onInstructionSelected(image: UIImage?, description: String)
+}
+
+extension RecipeCreationViewController: IngredientSelectedProtocol {
+    func onIngredientSelected(ingredient: RecipeIngredient) {
+        recipeCreation?.ingredients?.append(ingredient)
+    }
+}
+
+extension RecipeCreationViewController: InstructionSelectedProtocol {
+    func onInstructionSelected(image: UIImage?, description: String) {
+        recipeCreation?.instructions?.append(description)
+    }
+}
 
 extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
     func onAddIngredientTapped() {
-        checkCameraAccessIfNeeded()
+        let viewController = IngredientSelectionBuilder(state: .initial(self)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+
+    func onRemoveIngredientTapped(index: Int) {
+        recipeCreation?.ingredients?.remove(at: index)
+    }
+}
+
+
+extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
+    func onRemoveInstructionTapped(index: Int) {
+        instructions.remove(at: index)
+    }
+
+    func onAddInstructionTapped() {
+        let viewController = InstructionSelectionBuilder(
+            state: .initial(self)
+        ).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }

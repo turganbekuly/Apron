@@ -9,18 +9,18 @@ import Foundation
 import Models
 
 protocol IIngredientsListCellViewModel {
-    var serveCount: Int { get }
-    var ingredients: [IngredientInfo] { get }
+    var serveCount: String { get }
+    var ingredients: [RecipeIngredient] { get }
 }
 
 final class IngredientsListCellViewModel: IIngredientsListCellViewModel {
-    var serveCount: Int
+    var serveCount: String
 
-    var ingredients: [IngredientInfo]
+    var ingredients: [RecipeIngredient]
 
     init(
-        serveCount: Int,
-        ingredients: [IngredientInfo]
+        serveCount: String,
+        ingredients: [RecipeIngredient]
     ) {
         self.serveCount = serveCount
         self.ingredients = ingredients

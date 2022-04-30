@@ -36,6 +36,7 @@ public class RoundedTextField: UIView {
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.cornerRadius = 19
         view.clipsToBounds = true
+        view.backgroundColor = .white
         return view
     }()
 
