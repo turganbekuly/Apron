@@ -44,7 +44,7 @@ extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
 
 extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
     func onRemoveInstructionTapped(index: Int) {
-        instructions.remove(at: index)
+        recipeCreation?.instructions?.remove(at: index)
     }
 
     func onAddInstructionTapped() {

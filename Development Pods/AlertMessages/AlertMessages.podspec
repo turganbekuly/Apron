@@ -15,7 +15,12 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/AlmostDeveloper/Apron.git", :tag => "#{spec.version}" }
 
-  spec.source_files  = ["**/*.{h,m,swift,json}"]
+  spec.source_files  = ["**/*.{h,m,swift}"]
+
+  spec.resources =  [
+  'DesignSystem/**/*.{json}'
+  ]
+  spec.resource_bundles = { 'AlertMessages-Assets' => ['AlertMessages/**/*.{xcassets,json}'] }
 
   spec.dependency 'HapticTouch'
   spec.dependency 'Protocols'

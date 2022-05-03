@@ -116,14 +116,14 @@ final class RecipeCreationInstructionView: UIView {
 
     @objc
     private func removeButtonTapped() {
-        //
+        onItemDelete?()
     }
 
     // MARK: - Methods
 
-    func configure(instruction: String, image: UIImage?) {
+    func configure(instruction: String, image: UIImage?, stepCount: String) {
         instructionLabel.text = instruction
-        stepLabel.text = "1 шаг"
+        stepLabel.text = "\(stepCount) шаг"
         guard let image = image else {
             return
         }

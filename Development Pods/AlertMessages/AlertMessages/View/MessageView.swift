@@ -38,13 +38,12 @@ public class MessageView: UIView {
         return view
     }()
 
-    private lazy var animationView: AnimationView = {
-        let animationView = AnimationView()
-        animationView.backgroundColor = .red
-        animationView.animation = Animation.named("LoaderAnimation")
-        animationView.contentMode = .scaleAspectFit
+    lazy var animationView: AnimationView = {
+        let animation = Animation.makeFromBundle(name: "loader_animation")
+        let animationView = AnimationView(animation: animation)
         animationView.loopMode = .loop
-        animationView.animationSpeed = 1.5
+        animationView.contentMode = .scaleAspectFit
+        animationView.backgroundBehavior = .stop
         animationView.play()
         return animationView
     }()
@@ -52,7 +51,7 @@ public class MessageView: UIView {
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let loadingIndicator = UIActivityIndicatorView()
         loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = .white
+        loadingIndicator.style = .medium
         loadingIndicator.startAnimating()
         return loadingIndicator
     }()
@@ -229,8 +228,8 @@ public class MessageView: UIView {
 
     private func makeLoaderConstraints() {
         animationView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 300, height: 300))
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
         }
     }
 
@@ -244,7 +243,6 @@ public class MessageView: UIView {
             iconImageView.tintColor = colorIcon
         case .loader:
             layer.shadowColor = UIColor.black.withAlphaComponent(0.1).cgColor
-            activityIndicator.color = .black
         }
     }
 
@@ -258,3 +256,18 @@ public class MessageView: UIView {
 
 }
 
+// MARK: - Animation Extension
+private extension Animation {
+    static func makeFromBundle(name: String) -> Animation? {
+        return make(name: name, classForModuleBundle: BundleToken.self, bundleName: "AlertMessages-Assets")
+    }
+
+    private static func make(name: String, classForModuleBundle: AnyClass, bundleName: String) -> Animation? {
+        guard let bundlePath = Bundle(for: classForModuleBundle).path(forResource: bundleName, ofType: "bundle") else { return nil }
+        guard let bundle = Bundle(path: bundlePath) else { return nil }
+        guard let path = bundle.path(forResource: name, ofType: "json") else { return nil }
+        return Animation.filepath(path)
+    }
+}
+
+class BundleToken {}

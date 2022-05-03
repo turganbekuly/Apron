@@ -7,22 +7,42 @@
 //
 
 import AKNetwork
+import Models
 
-public protocol CommunityPageProviderProtocol {
-    
+protocol CommunityPageProviderProtocol {
+    func getCommunity(
+        request: CommunityPageDataFlow.GetCommunity.Request,
+        completion: @escaping ((CommunityPageDataFlow.GetCommunityResult) -> Void)
+    )
 }
 
-public final class CommunityPageProvider: CommunityPageProviderProtocol {
+final class CommunityPageProvider: CommunityPageProviderProtocol {
 
     // MARK: - Properties
     private let service: CommunityPageServiceProtocol
     
     // MARK: - Init
-    public init(service: CommunityPageServiceProtocol =
+    init(service: CommunityPageServiceProtocol =
                     CommunityPageService(provider: AKNetworkProvider<CommunityPageEndpoint>())) {
         self.service = service
     }
     
     // MARK: - CommunityPageProviderProtocol
 
+    func getCommunity(
+        request: CommunityPageDataFlow.GetCommunity.Request,
+        completion: @escaping ((CommunityPageDataFlow.GetCommunityResult) -> Void)) {
+            service.getCommunity(request: request) {
+                switch $0 {
+                case let .success(json):
+                    if let community = CommunityResponse(json: json) {
+                        completion(.successful(model: community))
+                    } else {
+                        completion(.failed(error: .invalidData))
+                    }
+                case let .failure(error):
+                    completion(.failed(error: error))
+                }
+            }
+    }
 }

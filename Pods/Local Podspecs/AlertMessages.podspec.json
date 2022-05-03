@@ -18,8 +18,16 @@
     "tag": "0.0.1"
   },
   "source_files": [
-    "**/*.{h,m,swift,json}"
+    "**/*.{h,m,swift}"
   ],
+  "resources": [
+    "DesignSystem/**/*.{json}"
+  ],
+  "resource_bundles": {
+    "AlertMessages-Assets": [
+      "AlertMessages/**/*.{xcassets,json}"
+    ]
+  },
   "dependencies": {
     "HapticTouch": [
 

@@ -8,20 +8,31 @@
 
 import AKNetwork
 
-public protocol CommunityPageServiceProtocol {
-    
+protocol CommunityPageServiceProtocol {
+    func getCommunity(
+        request: CommunityPageDataFlow.GetCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
-public final class CommunityPageService: CommunityPageServiceProtocol {
+final class CommunityPageService: CommunityPageServiceProtocol {
     
     // MARK: - Properties
     private let provider: AKNetworkProvider<CommunityPageEndpoint>
 
     // MARK: - Init
-    public init(provider: AKNetworkProvider<CommunityPageEndpoint>) {
+    init(provider: AKNetworkProvider<CommunityPageEndpoint>) {
         self.provider = provider
     }
     
     // MARK: - CommunityPageServiceProtocol
-    
+
+    func getCommunity(
+        request: CommunityPageDataFlow.GetCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getCommunity(id: request.id)) { result in
+            completion(result)
+        }
+    }
 }

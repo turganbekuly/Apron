@@ -14,6 +14,8 @@ extension CommunityPageViewController {
     // MARK: - State
     public enum State {
         case initial
+        case displayCommunity(CommunityResponse)
+        case displayCommunityError(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -30,6 +32,10 @@ extension CommunityPageViewController {
             recipesSection = [
                 .init(section: .recipes, rows: recipies.compactMap { .recipes($0) })
             ]
+        case let .displayCommunity(model):
+            print(model)
+        case let .displayCommunityError(error):
+            print(error)
         }
     }
     

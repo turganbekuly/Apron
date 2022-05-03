@@ -6,6 +6,27 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-public enum CommunityPageDataFlow {
+import Models
+
+enum CommunityPageDataFlow {
     
+}
+
+extension CommunityPageDataFlow {
+    enum GetCommunity {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: GetCommunityResult
+        }
+        struct ViewModel {
+            var state: CommunityPageViewController.State
+        }
+    }
+
+    enum GetCommunityResult {
+    case successful(model: CommunityResponse)
+    case failed(error: AKNetworkError)
+    }
 }

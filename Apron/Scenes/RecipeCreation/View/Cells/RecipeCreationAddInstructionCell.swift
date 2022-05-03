@@ -102,15 +102,16 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
         instructionsStackView.removeAllArrangedSubviews()
 
         guard let instructions = instructions else { return }
-
+        var step = 1
         for instruction in instructions {
             let view = RecipeCreationInstructionView()
-            view.configure(instruction: instruction, image: nil)
+            view.configure(instruction: instruction, image: nil, stepCount: "\(step)")
             view.onItemDelete = { [weak self] in
                 guard let self = self,
                       let index = self.instructionsStackView.arrangedSubviews.firstIndex(of: view) else { return }
                 self.newInstructionDelegate?.onRemoveInstructionTapped(index: index)
             }
+            step += 1
             instructionsStackView.addArrangedSubview(view)
         }
         instructionsStackView.layoutIfNeeded()

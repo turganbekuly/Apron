@@ -99,7 +99,7 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
         newIngredientDelegate: AddIngredientCellTappedDelegate?
     ) {
         self.newIngredientDelegate = newIngredientDelegate
-        titleLabel.text = "Ингредиентыадф"
+        titleLabel.text = "Ингредиенты"
         ingredientsStackView.removeAllArrangedSubviews()
         guard let ingredients = ingredients else { return }
 

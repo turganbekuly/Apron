@@ -10,4 +10,7 @@ extension CommunityPageViewController {
     
     // MARK: - Network
 
+    func getCommunities(by id: Int) {
+        interactor.getCommunity(request: .init(id: id))
+    }
 }

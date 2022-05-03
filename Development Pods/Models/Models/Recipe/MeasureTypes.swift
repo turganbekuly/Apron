@@ -179,37 +179,37 @@ public enum MeasureTypes: CaseIterable, Decodable {
         case .bag:
             return "мешок"
         case .bar:
-            return "плитка"
+            return "пл"
         case .block:
-            return "брусок"
+            return "брус"
         case .bottle:
-            return "бутылка"
+            return "бут"
         case .box:
-            return "коробка"
+            return "кор"
         case .bulb:
-            return "шарик"
+            return "шар"
         case .bunch:
-            return "гроздь"
+            return "грзд"
         case .can:
-            return "баночка"
+            return "бн"
         case .carton:
-            return "коробка"
+            return "крбк"
         case .centimeter:
             return "см"
         case .clove:
-            return "зубчик"
+            return "зуб"
         case .cup:
-            return "кружка"
+            return "кржк"
         case .deciliter:
             return "дцл"
         case .dollop:
-            return "ложка"
+            return "лжк"
         case .drop:
-            return "капля"
+            return "кп"
         case .fluidOunce:
-            return "жидкая унция"
+            return "fl.oz"
         case .gallon:
-            return "галлон"
+            return "gal"
         case .gram:
             return "гр"
         case .handful:
@@ -239,7 +239,7 @@ public enum MeasureTypes: CaseIterable, Decodable {
         case .pint:
             return "пинта"
         case .pound:
-            return "фт"
+            return "ft"
         case .quart:
             return "1/4 галлона"
         case .rack:
@@ -247,7 +247,7 @@ public enum MeasureTypes: CaseIterable, Decodable {
         case .rib:
             return "ребро"
         case .scoop:
-            return "мерная ложка"
+            return "мер.лож"
         case .serving:
             return "порции"
         case .sheet:

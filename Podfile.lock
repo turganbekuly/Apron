@@ -111,7 +111,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AKNetwork: c138f069e3767abac65c9a70b93531b652120561
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
-  AlertMessages: cdb1d52bc5541b7495cf88cba3baec9410e20b54
+  AlertMessages: ebe522a2ce4f8d932cfae320c714fb012cf98b98
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   Configurations: 2c6d946ac020900a1efcdcecaaedb476e27363f1

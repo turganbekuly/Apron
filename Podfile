@@ -8,7 +8,6 @@ target 'Apron' do
   # Pods for Apron
 
   pod 'SwiftGen', '~> 6.0'
-  pod "LiquidFloatingActionButton"
 
   # Development Pods
 

@@ -11,21 +11,27 @@ import AKNetwork
 import Storages
 
 public enum CommunityPageEndpoint {
-    
+    case getCommunity(id: Int)
 }
 
 extension CommunityPageEndpoint: AKNetworkTargetType {
     
     public var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     public var path: String {
-        return ""
+        switch self {
+        case .getCommunity(let id):
+            return "communities/\(id)"
+        }
     }
     
     public var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .getCommunity:
+            return .get
+        }
     }
     
     public var sampleData: Data {
@@ -33,7 +39,10 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
     }
     
     public var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case .getCommunity:
+            return .requestPlain
+        }
     }
     
     public var headers: [String: String]? {

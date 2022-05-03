@@ -75,7 +75,7 @@ extension Messagable where Self: UIViewController {
         var heightConstraint: EKAttributes.PositionConstraints.Edge {
             switch type {
             case .loader:
-                return .constant(value: 98)
+                return .constant(value: 300)
             default:
                 return .intrinsic
             }
@@ -108,6 +108,7 @@ extension Messagable where Self: UIViewController {
             attributes.screenBackground = .color(color: .black.with(alpha: 0.5))
             attributes.screenInteraction = .absorbTouches
             attributes.scroll = .disabled
+            messageView.animationView.play()
         }
         SwiftEntryKit.display(entry: messageView, using: attributes)
     }

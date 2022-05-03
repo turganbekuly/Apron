@@ -9,21 +9,23 @@
 import DesignSystem
 import UIKit
 import SnapKit
+import Models
+import AlertMessages
 
-public protocol CommunityPageDisplayLogic: AnyObject {
-    
+protocol CommunityPageDisplayLogic: AnyObject {
+    func displayCommunity(viewModel: CommunityPageDataFlow.GetCommunity.ViewModel)
 }
 
-public final class CommunityPageViewController: ViewController {
+public final class CommunityPageViewController: ViewController, Messagable {
     // MARK: - Properties
-    public let interactor: CommunityPageBusinessLogic
-    public var sections: [Section] = []
-    public var recipesSection: [CommunityPageCollectionSection] = [] {
+    let interactor: CommunityPageBusinessLogic
+    var sections: [Section] = []
+    var recipesSection: [CommunityPageCollectionSection] = [] {
         didSet {
             configureRecipesSection()
         }
     }
-    public var state: State {
+    var state: State {
         didSet {
             updateState()
         }
@@ -32,6 +34,22 @@ public final class CommunityPageViewController: ViewController {
     var selectedSegment: CommunitySegmentCell.CommunitySegment? {
         didSet {
             //
+        }
+    }
+
+    var community: CommunityResponse? {
+        didSet {
+            sections = [
+                .init(section: .topView, rows: topInfo.compactMap { .topView($0) }),
+                .init(section: .filterView, rows: filter.compactMap { .filterView($0) }),
+                .init(section: .recipiesView, rows: [.segment]),
+                .init(section: .recipiesView, rows: [.recipiesView])
+            ]
+
+            recipesSection = [
+                .init(section: .recipes, rows: recipies.compactMap { .recipes($0) })
+            ]
+            mainView.reloadTableViewWithoutAnimation()
         }
     }
 
@@ -106,7 +124,7 @@ public final class CommunityPageViewController: ViewController {
     private lazy var refreshControl = UIRefreshControl()
     
     // MARK: - Init
-    public init(interactor: CommunityPageBusinessLogic, state: State) {
+    init(interactor: CommunityPageBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
         

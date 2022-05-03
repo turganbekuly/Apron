@@ -6,18 +6,18 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-public protocol CommunityPageBusinessLogic {
-    
+protocol CommunityPageBusinessLogic {
+    func getCommunity(request: CommunityPageDataFlow.GetCommunity.Request)
 }
 
-public final class CommunityPageInteractor: CommunityPageBusinessLogic {
+final class CommunityPageInteractor: CommunityPageBusinessLogic {
     
     // MARK: - Properties
     private let presenter: CommunityPagePresentationLogic
     private let provider: CommunityPageProviderProtocol
     
     // MARK: - Initialization
-    public init(presenter: CommunityPagePresentationLogic,
+    init(presenter: CommunityPagePresentationLogic,
          provider: CommunityPageProviderProtocol = CommunityPageProvider()) {
         self.presenter = presenter
         self.provider = provider
@@ -25,4 +25,14 @@ public final class CommunityPageInteractor: CommunityPageBusinessLogic {
     
     // MARK: - CommunityPageBusinessLogic
 
+    func getCommunity(request: CommunityPageDataFlow.GetCommunity.Request) {
+        provider.getCommunity(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.getCommunity(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getCommunity(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }
