@@ -7,6 +7,7 @@
 
 import Foundation
 import Models
+import Extensions
 
 public final class CartManager {
     // MARK: - Private properties
@@ -22,7 +23,7 @@ public final class CartManager {
 
     private struct ProductObserver {
         weak var object: AnyObject?
-        let productId: Int
+        let productName: String
         let observer: (() -> Void)
     }
 
@@ -32,7 +33,7 @@ public final class CartManager {
 
     // MARK: - Public properties
 
-    static let shared = CartManager()
+    public static let shared = CartManager()
 
     // MARK: - Private init
 
@@ -40,7 +41,7 @@ public final class CartManager {
 
     // MARK: - Public methods
 
-    func subscribe(
+    public func subscribe(
         _ object: AnyObject,
         observer: @escaping (() -> Void)
     ) {
@@ -48,23 +49,149 @@ public final class CartManager {
         observers[id] = Observer(object: object, observer: observer)
     }
 
-    func subscribe(
+    public func subscribe(
         _ object: AnyObject,
-        productId: Int,
+        productName: String,
         observer: @escaping (() -> Void)
     ) {
         let id = ObjectIdentifier(object)
         productObservers[id] = ProductObserver(
             object: object,
-            productId: productId,
+            productName: productName,
             observer: observer
         )
     }
 
-    func unsubscribe(_ object: AnyObject) {
+    public func unsubscribe(_ object: AnyObject) {
         let id = ObjectIdentifier(object)
         observers.removeValue(forKey: id)
         productObservers.removeValue(forKey: id)
+    }
+
+    // MARK: - Public methods
+
+    public func itemsCount() -> Int {
+        return fetchItemsFromStorage().count
+    }
+
+    public func update(
+        productName: String,
+        quantity: Double?,
+        measurement: String?,
+        recipeName: String?
+    ){
+        var currentItems = fetchItemsFromStorage()
+
+        if let index = currentItems
+            .firstIndex(where: {
+                return ($0.productName == productName)
+                && $0.measurement == measurement
+            }) {
+            let item = currentItems[index]
+
+            if let quantity = quantity {
+                if quantity > 0 {
+                    currentItems[index] = CartItem(
+                        productName: productName,
+                        quantity: quantity,
+                        measurement: measurement,
+                        recipeName: recipeName
+                    )
+
+                    setItemsToStorage(items: currentItems)
+                    sendChangeEvent()
+                    sendChangeEvent(productName: productName)
+                } else {
+                    removeItem(for: item.productName)
+                }
+            } else {
+                currentItems[index] = CartItem(
+                    productName: item.productName,
+                    quantity: quantity,
+                    measurement: measurement,
+                    recipeName: recipeName
+                )
+
+                setItemsToStorage(items: currentItems)
+                sendChangeEvent()
+                sendChangeEvent(productName: productName)
+            }
+        } else {
+            let item = CartItem(
+                productName: productName,
+                quantity: quantity,
+                measurement: measurement,
+                recipeName: recipeName
+            )
+
+            addItemToStorage(item: item)
+            sendChangeEvent()
+            sendChangeEvent(productName: productName)
+        }
+    }
+
+    public func forceAdd(
+        productName: String,
+        quantity: Double?,
+        measurement: String?,
+        recipeName: String?
+    ) {
+        let item = CartItem(
+            productName: productName,
+            quantity: quantity,
+            measurement: measurement,
+            recipeName: recipeName
+        )
+
+        addItemToStorage(item: item)
+        sendChangeEvent()
+        sendChangeEvent(productName: productName)
+    }
+
+    public func removeItems(productName: String) {
+        var items = fetchItemsFromStorage()
+        items.removeAll(where: {
+            $0.productName.caseInsensitiveCompare(productName) == .orderedSame
+
+        })
+        setItemsToStorage(items: items)
+        sendChangeEvent()
+        sendChangeEvent(productName: productName)
+    }
+
+    public func removeItem(for carItemProductName: String) {
+        var currentItems = fetchItemsFromStorage()
+        let productIds = currentItems.map { $0.productName }
+        currentItems.removeAll(where: {
+            $0.productName.caseInsensitiveCompare(carItemProductName) == .orderedSame
+
+        })
+        setItemsToStorage(items: currentItems)
+        sendChangeEvent()
+        productIds.unique().forEach { sendChangeEvent(productName: $0) }
+    }
+
+    public func resetCart() {
+        clearStorage()
+        sendChangeEvent()
+    }
+
+    public func isContains(cartItem name: String) -> Bool {
+        let items = fetchItemsFromStorage()
+        return items.contains(where: {
+            $0.productName.caseInsensitiveCompare(name) == .orderedSame
+        })
+    }
+
+    public func fetchItems() -> [CartItem] {
+        return fetchItemsFromStorage()
+    }
+
+    public func fetchItems(productName: String) -> [CartItem] {
+        let currentItems = fetchItemsFromStorage()
+        return currentItems.filter {
+            $0.productName.caseInsensitiveCompare(productName) == .orderedSame
+        }
     }
 
     // MARK: - Private methods
@@ -73,9 +200,9 @@ public final class CartManager {
         observers.forEach { $0.value.observer() }
     }
 
-    private func sendChangeEvent(productId: Int) {
+    private func sendChangeEvent(productName: String) {
         productObservers.forEach {
-            if $0.value.productId == productId {
+            if $0.value.productName == productName {
                 $0.value.observer()
             }
         }
@@ -94,16 +221,16 @@ public final class CartManager {
         return items
     }
 
-    private func generateNewIdentifierForItem() -> Int {
-        let items = fetchItemsFromStorage()
-
-        if items.isEmpty {
-            return 0
-        } else {
-            guard let lastId = items.last?.id else { return 0 }
-            return lastId + 1
-        }
-    }
+//    private func generateNewIdentifierForItem() -> Int {
+//        let items = fetchItemsFromStorage()
+//
+//        if items.isEmpty {
+//            return 0
+//        } else {
+//            guard let lastId = items.last?.id else { return 0 }
+//            return lastId + 1
+//        }
+//    }
 
     private func setItemsToStorage(items: [CartItem]) {
         let encoder = JSONEncoder()

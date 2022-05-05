@@ -32,8 +32,7 @@ public final class TabBarViewController: AppTabBarController {
 
     private lazy var mainModule = MainBuilder(state: .initial).build()
     private lazy var searchModule = SearchBuilder(state: .initial(.general)).build()
-    private lazy var favouriteModule = MainBuilder(state: .initial).build()
-    private lazy var plannerModule = MainBuilder(state: .initial).build()
+    private lazy var favouriteModule = ShoppingListBuilder(state: .initial).build()
 
     // MARK: - Init
     
@@ -67,8 +66,8 @@ public final class TabBarViewController: AppTabBarController {
         viewControllers = [
             configureViewController(viewController: mainModule, type: .main),
             configureViewController(viewController: searchModule, type: .search),
-            configureViewController(viewController: favouriteModule, type: .saved),
-            configureViewController(viewController: plannerModule, type: .planner)
+            configureViewController(viewController: favouriteModule, type: .saved)
+//            configureViewController(viewController: plannerModule, type: .planner)
         ]
     }
 

@@ -21,6 +21,11 @@ public class MessageView: UIView {
     private var colorTitle: UIColor?
     private var colorSubtitle: UIColor?
     private var colorIcon: UIColor?
+    private let animationsList: [String] = ["burger_machine", "french_fries",
+                                            "mushroom_bros", "walking_avocado",
+                                            "walking_broccoli", "walking_cup",
+                                            "walking_donut", "walking_orange",
+                                            "walking_taco", "loader_animation"]
 
     // MARK: - Views
 
@@ -39,7 +44,7 @@ public class MessageView: UIView {
     }()
 
     lazy var animationView: AnimationView = {
-        let animation = Animation.makeFromBundle(name: "loader_animation")
+        let animation = Animation.makeFromBundle(name: animationsList.randomElement() ?? "")
         let animationView = AnimationView(animation: animation)
         animationView.loopMode = .loop
         animationView.contentMode = .scaleAspectFit
@@ -228,8 +233,7 @@ public class MessageView: UIView {
 
     private func makeLoaderConstraints() {
         animationView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(200)
+            $0.edges.equalToSuperview()
         }
     }
 

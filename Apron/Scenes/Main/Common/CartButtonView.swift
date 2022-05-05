@@ -7,8 +7,13 @@
 
 import UIKit
 import DesignSystem
+import Storages
 
 public final class CartButtonView: UIView {
+    // MARK: - Private properties
+
+    private lazy var cartManager = CartManager.shared
+
     // MARK: - Public properties
 
     var onTap: (() -> Void)?
@@ -18,6 +23,14 @@ public final class CartButtonView: UIView {
     init() {
         super.init(frame: .zero)
         setupViews()
+
+        CartManager.shared.subscribe(self) { [weak self] in
+            self?.updateCount()
+        }
+    }
+
+    deinit {
+        cartManager.unsubscribe(self)
     }
 
     required init?(coder: NSCoder) {
@@ -53,6 +66,9 @@ public final class CartButtonView: UIView {
         backgroundColor = .clear
         [containerView].forEach { addSubviews($0) }
         [imageView, itemCounterLabel].forEach { containerView.addSubviews($0) }
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(counterTapped))
+        containerView.addGestureRecognizer(tapGR)
+        updateCount()
         setupConstraints()
     }
 
@@ -76,5 +92,19 @@ public final class CartButtonView: UIView {
             $0.leading.equalTo(imageView.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(8)
         }
+    }
+
+    // MARK: - Private methods
+
+    private func updateCount() {
+        let count = cartManager.itemsCount()
+        itemCounterLabel.text = "\(count)"
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func counterTapped() {
+        onTap?()
     }
 }

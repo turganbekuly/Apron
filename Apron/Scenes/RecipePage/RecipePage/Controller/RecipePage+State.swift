@@ -23,9 +23,12 @@ extension RecipePageViewController {
         switch state {
         case .initial:
             getRecipe(by: 3)
+            showLoader()
         case let .displayRecipe(recipe):
+            hideLoader()
             self.recipe = recipe
         case let .displayError(error):
+            hideLoader()
             print(error)
         }
     }

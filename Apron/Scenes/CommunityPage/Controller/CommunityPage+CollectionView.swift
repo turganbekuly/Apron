@@ -45,11 +45,10 @@ extension CommunityPageViewController: UICollectionViewDelegateFlowLayout {
         let row = recipesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case .recipes:
-//            let vc = RecipePageBuilder(state: .initial).build()
-//            DispatchQueue.main.async {
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            }
-            show(type: .loader, firstAction: nil, secondAction: nil)
+            let vc = RecipePageBuilder(state: .initial).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 

@@ -67,7 +67,7 @@ extension Messagable where Self: UIViewController {
         var widthConstraint: EKAttributes.PositionConstraints.Edge {
             switch type {
             case .loader:
-                return .constant(value: 247)
+                return .constant(value: 100)
             default:
                 return .offset(value: 8)
             }
@@ -75,7 +75,7 @@ extension Messagable where Self: UIViewController {
         var heightConstraint: EKAttributes.PositionConstraints.Edge {
             switch type {
             case .loader:
-                return .constant(value: 300)
+                return .constant(value: 100)
             default:
                 return .intrinsic
             }

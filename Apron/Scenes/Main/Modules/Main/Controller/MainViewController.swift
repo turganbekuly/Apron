@@ -246,6 +246,7 @@ public final class MainViewController: ViewController, Messagable {
         button.largeContentImageInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
         button.setTitle("0", for: .normal)
+        button.addTarget(self, action: #selector(cartButtonPressed), for: .touchUpInside)
         return button
     }()
 
@@ -300,6 +301,13 @@ public final class MainViewController: ViewController, Messagable {
         avatarView.layer.cornerRadius = 17
         avatarView.backgroundColor = .green
         let cartView = CartButtonView()
+        cartView.onTap = { [weak self] in
+            let viewController = ShoppingListBuilder(state: .initial).build()
+
+            DispatchQueue.main.async {
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
         navigationController?.navigationBar.barTintColor = Assets.secondary.color
@@ -391,6 +399,8 @@ public final class MainViewController: ViewController, Messagable {
     // MARK: - User actions
 
     @objc
-    private func notificationButtonTapped() { }
+    private func cartButtonPressed() {
+
+    }
     
 }

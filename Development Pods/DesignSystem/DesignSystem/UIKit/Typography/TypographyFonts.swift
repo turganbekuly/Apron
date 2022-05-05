@@ -15,6 +15,7 @@ public enum TypographyFonts {
     public static let regular18 = FontFamily.Poppins.regular.font(size: 18)
     public static let medium18 = FontFamily.Poppins.medium.font(size: 18)
     public static let semibold17 = FontFamily.Poppins.semiBold.font(size: 17)
+    public static let regular17 = FontFamily.Poppins.regular.font(size: 17)
     public static let bold16 = FontFamily.Poppins.bold.font(size: 16)
     public static let medium16 = FontFamily.Poppins.medium.font(size: 16)
     public static let semibold16 = FontFamily.Poppins.semiBold.font(size: 16)

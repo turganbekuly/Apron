@@ -15,7 +15,13 @@ public final class BlackOpButton: Button {
         case right
     }
 
+    public enum ButtonType {
+        case blackBackground
+        case whiteBackground
+    }
+
     private let arrowState: ArrowState
+    private let backgroundType: ButtonType
 
     public override var isEnabled: Bool {
         didSet {
@@ -31,8 +37,13 @@ public final class BlackOpButton: Button {
 
     // MARK: - Init
 
-    public init(arrowState: ArrowState = .none, frame: CGRect = .zero) {
+    public init(
+        arrowState: ArrowState = .none,
+        frame: CGRect = .zero,
+        backgroundType: ButtonType = .blackBackground
+    ) {
         self.arrowState = arrowState
+        self.backgroundType = backgroundType
 
         super.init(frame: frame)
         configure()
@@ -96,11 +107,23 @@ public final class BlackOpButton: Button {
     }
 
     private func configureColors() {
-        setBackgroundColor(.black.withAlphaComponent(0.5), for: .disabled)
-        setBackgroundColor(.black, for: .normal)
-        setBackgroundColor(.black.highlighted, for: .highlighted)
-        setTitleColor(.white, for: .disabled)
-        setTitleColor(.white, for: .normal)
-        tintColor = isEnabled ? .black : .black.withAlphaComponent(0.5)
+        switch backgroundType {
+        case .blackBackground:
+            setBackgroundColor(.black.withAlphaComponent(0.5), for: .disabled)
+            setBackgroundColor(.black, for: .normal)
+            setBackgroundColor(.black.highlighted, for: .highlighted)
+            setTitleColor(.white, for: .disabled)
+            setTitleColor(.white, for: .normal)
+            tintColor = isEnabled ? .black : .black.withAlphaComponent(0.5)
+        case .whiteBackground:
+            setBackgroundColor(.white.withAlphaComponent(0.5), for: .disabled)
+            setBackgroundColor(.white, for: .normal)
+            setBackgroundColor(.white.highlighted, for: .highlighted)
+            setTitleColor(.black, for: .disabled)
+            setTitleColor(.black, for: .normal)
+            tintColor = isEnabled ? .white : .white.withAlphaComponent(0.5)
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.black.cgColor
+        }
     }
 }
