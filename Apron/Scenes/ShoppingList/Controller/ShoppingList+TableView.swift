@@ -25,8 +25,8 @@ extension ShoppingListViewController: UITableViewDataSource {
         case .loading:
             let cell: EmptyCartCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
-        default:
-            let cell: UITableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        case .ingredient:
+            let cell: ShoppingItemCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -50,7 +50,7 @@ extension ShoppingListViewController: UITableViewDelegate {
         case .loading:
             return 230
         case .ingredient:
-            return 60
+            return 90
         }
     }
     
@@ -60,7 +60,7 @@ extension ShoppingListViewController: UITableViewDelegate {
         case .loading:
             return 230
         case .ingredient:
-            return 60
+            return 90
         }
     }
     
@@ -69,8 +69,9 @@ extension ShoppingListViewController: UITableViewDelegate {
         switch row {
         case .loading:
             guard let cell = cell as? EmptyCartCell else { return }
-        default:
-            break
+        case let .ingredient(item):
+            guard let cell = cell as? ShoppingItemCell else { return }
+            cell.configure(item: item)
         }
     }
     

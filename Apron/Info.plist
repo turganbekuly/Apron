@@ -10,7 +10,7 @@
 	<key>Configuration.HTTP</key>
 	<string>http://</string>
 	<key>Configuration.BASE_URL</key>
-	<string>ec2-3-88-106-162.compute-1.amazonaws.com/receipts/</string>
+	<string>164.92.189.249/receipts/</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ru</string>
 	<key>CFBundleDisplayName</key>

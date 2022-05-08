@@ -7,59 +7,59 @@
 
 import Foundation
 
-public enum MeasureTypes: CaseIterable, Decodable {
-    case emptyState
-    case asNeeded
-    case kilogram
-    case liter
-    case gram
-    case inch
-    case drop
-    case milligram
-    case milliliter
-    case ounce
-    case package
-    case packet
-    case pint
-    case fluidOunce
-    case gallon
-    case tablespoon
-    case teaspoon
-    case toTaste
-    case handful
-    case head
-    case jar
-    case loaf
-    case pound
-    case bag
-    case bar
-    case block
-    case bottle
-    case box
-    case bulb
-    case bunch
-    case can
-    case carton
-    case centimeter
-    case clove
-    case cup
-    case deciliter
-    case dollop
-    case quart
-    case rack
-    case rib
-    case scoop
-    case serving
-    case sheet
-    case slice
-    case splash
-    case sprig
-    case stalk
-    case stick
-    case tot
-    case tray
-    case tub
-    case tube
+public enum MeasureTypes: String, CaseIterable, Codable {
+    case emptyState = "--"
+    case asNeeded = "по мере необходимости"
+    case bag = "мешок"
+    case bar = "плитка"
+    case block = "брусок"
+    case bottle = "бутылка"
+    case box = "коробка"
+    case bulb = "шарик"
+    case bunch = "гроздь"
+    case can = "жестяная банка"
+    case carton = "картонная коробка"
+    case centimeter = "сантиметр"
+    case clove = "зубчик"
+    case cup = "кружка"
+    case deciliter = "децилитр"
+    case dollop = "ложка"
+    case drop = "капля"
+    case fluidOunce = "жидкая унция"
+    case gallon = "галлон"
+    case gram = "грамм"
+    case handful = "горсть"
+    case head = "головка"
+    case inch = "дюйм"
+    case jar = "банка"
+    case kilogram = "килограмм"
+    case liter = "литр"
+    case loaf = "буханка"
+    case milligram = "миллиграмм"
+    case milliliter = "миллилитр"
+    case ounce = "унция"
+    case package = "упаковка"
+    case packet = "пакет"
+    case pint = "пинта"
+    case pound = "фунт"
+    case quart = "четверть галлона"
+    case rack = "полка"
+    case rib = "ребро"
+    case scoop = "мерная ложка"
+    case serving = "порции"
+    case sheet = "листка"
+    case slice = "кусочек"
+    case splash = "брызги"
+    case sprig = "веточка"
+    case stalk = "стебель"
+    case stick = "палка"
+    case tablespoon = "столовая ложка"
+    case teaspoon = "чайная ложка"
+    case toTaste = "на вкус"
+    case tot = "маленькая рюмка"
+    case tray = "поддон"
+    case tub = "бочка"
+    case tube = "тюбик"
 
     public var title: String {
         switch self {
@@ -173,9 +173,9 @@ public enum MeasureTypes: CaseIterable, Decodable {
     public var units: String {
         switch self {
         case .emptyState:
-            return "--"
+            return ""
         case .asNeeded:
-            return "по мере необходимости"
+            return "по.нужд"
         case .bag:
             return "мешок"
         case .bar:
@@ -225,15 +225,15 @@ public enum MeasureTypes: CaseIterable, Decodable {
         case .liter:
             return "л"
         case .loaf:
-            return "буханка"
+            return "бух"
         case .milligram:
             return "мг"
         case .milliliter:
             return "мл"
         case .ounce:
-            return "унция"
+            return "унц"
         case .package:
-            return "упаковка"
+            return "упак"
         case .packet:
             return "пакет"
         case .pint:
@@ -241,7 +241,7 @@ public enum MeasureTypes: CaseIterable, Decodable {
         case .pound:
             return "ft"
         case .quart:
-            return "1/4 галлона"
+            return "чет.гал"
         case .rack:
             return "полка"
         case .rib:
@@ -249,33 +249,33 @@ public enum MeasureTypes: CaseIterable, Decodable {
         case .scoop:
             return "мер.лож"
         case .serving:
-            return "порции"
+            return "порц"
         case .sheet:
-            return "листка"
+            return "лист"
         case .slice:
-            return "кусочек"
+            return "кус"
         case .splash:
-            return "брызги"
+            return "брыз"
         case .sprig:
-            return "веточка"
+            return "вет"
         case .stalk:
-            return "стебель"
+            return "стеб"
         case .stick:
             return "палка"
         case .tablespoon:
-            return "ст.ложка"
+            return "ст.л"
         case .teaspoon:
-            return "ч.ложка"
+            return "ч.л"
         case .toTaste:
-            return "на вкус"
+            return "на.вк"
         case .tot:
-            return "рюмочка"
+            return "рюм"
         case .tray:
-            return "поддон"
+            return "пдн"
         case .tub:
-            return "бочка"
+            return "боч"
         case .tube:
-            return "тюбик"
+            return "тюб"
         }
     }
 }

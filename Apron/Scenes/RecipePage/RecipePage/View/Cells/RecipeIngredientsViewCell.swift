@@ -125,7 +125,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         viewModel.ingredients.forEach {
             let view = IngredientView(
                 name: $0.product?.name ?? "",
-                measurement: "\($0.amount?.clean ?? "")  \($0.measurement ?? "")"
+                measurement: "\($0.amount?.clean ?? "")  \($0.measurement?.units ?? "")"
             )
 
             ingredientsStackView.addArrangedSubview(view)

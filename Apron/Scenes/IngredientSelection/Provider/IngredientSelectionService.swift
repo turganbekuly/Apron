@@ -7,9 +7,13 @@
 //
 
 import AKNetwork
+import Models
 
 protocol IngredientSelectionServiceProtocol {
-    
+    func getProducts(
+        request: IngredientSelectionDataFlow.GetProducts.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class IngredientSelectionService: IngredientSelectionServiceProtocol {
@@ -23,5 +27,14 @@ final class IngredientSelectionService: IngredientSelectionServiceProtocol {
     }
     
     // MARK: - IngredientSelectionServiceProtocol
+
+    func getProducts(
+        request: IngredientSelectionDataFlow.GetProducts.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getProducts(query: request.query)) { result in
+            completion(result)
+        }
+    }
     
 }

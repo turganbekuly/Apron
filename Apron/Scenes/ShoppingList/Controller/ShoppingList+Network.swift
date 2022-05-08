@@ -10,4 +10,8 @@ extension ShoppingListViewController {
     
     // MARK: - Network
 
+    func fetchCartItems() {
+        interactor.fetchCartItems(request: .init())
+    }
+
 }

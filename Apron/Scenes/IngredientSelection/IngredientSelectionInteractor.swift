@@ -7,7 +7,7 @@
 //
 
 protocol IngredientSelectionBusinessLogic {
-    
+    func getProducts(request: IngredientSelectionDataFlow.GetProducts.Request)
 }
 
 final class IngredientSelectionInteractor: IngredientSelectionBusinessLogic {
@@ -25,4 +25,14 @@ final class IngredientSelectionInteractor: IngredientSelectionBusinessLogic {
     
     // MARK: - IngredientSelectionBusinessLogic
 
+    func getProducts(request: IngredientSelectionDataFlow.GetProducts.Request) {
+        provider.getProducts(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model: model):
+                self?.presenter.getProducts(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getProducts(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }

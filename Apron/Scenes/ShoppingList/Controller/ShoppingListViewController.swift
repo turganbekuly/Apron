@@ -8,19 +8,21 @@
 
 import DesignSystem
 import UIKit
+import Storages
+import AlertMessages
 
 protocol ShoppingListDisplayLogic: AnyObject {
-    
+    func displayCartItems(viewModel: ShoppingListDataFlow.GetCartItems.ViewModel)
 }
 
-final class ShoppingListViewController: ViewController {
+final class ShoppingListViewController: ViewController, Messagable {
     
     struct Section {
         enum Section {
         case ingredients
         }
         enum Row {
-        case ingredient
+        case ingredient(CartItem)
         case loading
         }
         
@@ -34,6 +36,23 @@ final class ShoppingListViewController: ViewController {
     var state: State {
         didSet {
             updateState()
+        }
+    }
+
+    var cartItems: [CartItem]? {
+        didSet {
+            guard let cartItems = cartItems,
+                  !cartItems.isEmpty
+            else {
+                sections = [.init(section: .ingredients, rows: [.loading])]
+                mainView.reloadTableViewWithoutAnimation()
+                return
+            }
+
+            sections = [
+                .init(section: .ingredients, rows: cartItems.compactMap { .ingredient($0) })
+            ]
+            mainView.reloadTableViewWithoutAnimation()
         }
     }
     

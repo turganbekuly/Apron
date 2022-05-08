@@ -6,8 +6,10 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
+import Storages
+
 protocol ShoppingListBusinessLogic {
-    
+    func fetchCartItems(request: ShoppingListDataFlow.GetCartItems.Request)
 }
 
 final class ShoppingListInteractor: ShoppingListBusinessLogic {
@@ -25,4 +27,8 @@ final class ShoppingListInteractor: ShoppingListBusinessLogic {
     
     // MARK: - ShoppingListBusinessLogic
 
+    func fetchCartItems(request: ShoppingListDataFlow.GetCartItems.Request) {
+        let cartItems = CartManager.shared.fetchItems()
+        self.presenter.fetchCartItems(response: .init(result: .successful(cartItems)))
+    }
 }

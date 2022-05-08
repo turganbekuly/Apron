@@ -22,7 +22,7 @@ extension RecipePageViewController {
     public func updateState() {
         switch state {
         case .initial:
-            getRecipe(by: 3)
+            getRecipe(by: 1)
             showLoader()
         case let .displayRecipe(recipe):
             hideLoader()

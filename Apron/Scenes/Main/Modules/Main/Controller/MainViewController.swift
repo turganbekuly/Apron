@@ -9,6 +9,7 @@
 import DesignSystem
 import UIKit
 import AlertMessages
+import Storages
 
 public protocol MainDisplayLogic: AnyObject {
     
@@ -238,18 +239,6 @@ public final class MainViewController: ViewController, Messagable {
         return controller
     }()
 
-    private lazy var cartButton: BlackOpButton = {
-        let button = BlackOpButton(frame: CGRect(x: 0, y: 0, width: 80, height: 38))
-        button.layer.cornerRadius = 17
-        button.layer.masksToBounds = true
-        button.setImage(Assets.navCartIconFilled.image, for: .normal)
-        button.largeContentImageInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
-        button.setTitle("0", for: .normal)
-        button.addTarget(self, action: #selector(cartButtonPressed), for: .touchUpInside)
-        return button
-    }()
-
     public lazy var mainView: MainView = {
         let view = MainView()
         view.dataSource = self
@@ -280,6 +269,24 @@ public final class MainViewController: ViewController, Messagable {
         super.viewDidLoad()
         
         state = { state }()
+
+        CartManager.shared.resetCart()
+        ["Картошка", "Свекла", "Сахар", "Мука"].forEach {
+            CartManager.shared.update(
+                productName: $0,
+                amount: 2,
+                quantity: 1,
+                measurement: "кг",
+                recipeName: "Борщь"
+            )
+        }
+        CartManager.shared.update(
+            productName: "Картошка",
+            amount: 3,
+            quantity: 2,
+            measurement: "кг",
+            recipeName: "Манты"
+        )
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -382,25 +389,7 @@ public final class MainViewController: ViewController, Messagable {
         cell.communityCollectionView.reloadData()
     }
 
-    // MARK: - User actions
-
-    @objc
-    private func searchButtonTapped() {
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(CustomViewController(), animated: true)
-        }
-    }
-    
-    
     deinit {
         NSLog("deinit \(self)")
     }
-
-    // MARK: - User actions
-
-    @objc
-    private func cartButtonPressed() {
-
-    }
-    
 }

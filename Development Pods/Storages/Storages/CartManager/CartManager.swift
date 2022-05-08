@@ -71,12 +71,13 @@ public final class CartManager {
     // MARK: - Public methods
 
     public func itemsCount() -> Int {
-        return fetchItemsFromStorage().count
+        return fetchItemsFromStorage().map { $0.quantity }.reduce(0, +)
     }
 
     public func update(
         productName: String,
-        quantity: Double?,
+        amount: Double?,
+        quantity: Int?,
         measurement: String?,
         recipeName: String?
     ){
@@ -92,10 +93,11 @@ public final class CartManager {
             if let quantity = quantity {
                 if quantity > 0 {
                     currentItems[index] = CartItem(
-                        productName: productName,
-                        quantity: quantity,
+                        productName: item.productName,
+                        amount: (item.amount ?? 0) + (amount ?? 0),
+                        quantity: item.quantity + quantity,
                         measurement: measurement,
-                        recipeName: recipeName
+                        recipeName: (item.recipeName ?? []) + [recipeName ?? ""]
                     )
 
                     setItemsToStorage(items: currentItems)
@@ -107,9 +109,10 @@ public final class CartManager {
             } else {
                 currentItems[index] = CartItem(
                     productName: item.productName,
-                    quantity: quantity,
+                    amount: amount,
+                    quantity: item.quantity + 1,
                     measurement: measurement,
-                    recipeName: recipeName
+                    recipeName: (item.recipeName ?? []) + [recipeName ?? ""]
                 )
 
                 setItemsToStorage(items: currentItems)
@@ -119,9 +122,10 @@ public final class CartManager {
         } else {
             let item = CartItem(
                 productName: productName,
-                quantity: quantity,
+                amount: amount,
+                quantity: quantity ?? 1,
                 measurement: measurement,
-                recipeName: recipeName
+                recipeName: [recipeName ?? ""]
             )
 
             addItemToStorage(item: item)
@@ -132,15 +136,17 @@ public final class CartManager {
 
     public func forceAdd(
         productName: String,
-        quantity: Double?,
+        amount: Double?,
+        quantity: Int?,
         measurement: String?,
         recipeName: String?
     ) {
         let item = CartItem(
             productName: productName,
-            quantity: quantity,
+            amount: amount,
+            quantity: quantity ?? 1,
             measurement: measurement,
-            recipeName: recipeName
+            recipeName: [recipeName ?? ""]
         )
 
         addItemToStorage(item: item)
@@ -192,6 +198,14 @@ public final class CartManager {
         return currentItems.filter {
             $0.productName.caseInsensitiveCompare(productName) == .orderedSame
         }
+    }
+
+    public func getRecipeSources(for productName: String) -> [String] {
+        guard let item = fetchItemsFromStorage().first(where: { $0.productName == productName }) else {
+            return []
+        }
+
+        return item.recipeName ?? []
     }
 
     // MARK: - Private methods

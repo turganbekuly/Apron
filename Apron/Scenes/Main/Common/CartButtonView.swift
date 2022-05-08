@@ -83,14 +83,14 @@ public final class CartButtonView: UIView {
 
         imageView.snp.makeConstraints {
             $0.size.equalTo(18)
-            $0.leading.equalToSuperview().inset(8)
+            $0.leading.equalToSuperview().inset(12)
             $0.centerY.equalToSuperview()
         }
 
         itemCounterLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(imageView.snp.trailing).offset(8)
-            $0.trailing.equalToSuperview().inset(8)
+            $0.trailing.equalToSuperview().inset(12)
         }
     }
 

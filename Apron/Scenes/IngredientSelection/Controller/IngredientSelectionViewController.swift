@@ -11,7 +11,7 @@ import UIKit
 import Models
 
 protocol IngredientSelectionDisplayLogic: AnyObject {
-    
+    func displayProducts(viewModel: IngredientSelectionDataFlow.GetProducts.ViewModel)
 }
 
 final class IngredientSelectionViewController: ViewController {
@@ -26,7 +26,7 @@ final class IngredientSelectionViewController: ViewController {
 
     var delegate: IngredientSelectedProtocol?
 
-    var measurementType: [String] = MeasureTypes.allCases.map { $0.title }
+    var measurementType: [String] = MeasureTypes.allCases.map { $0.rawValue }
 
     var recipeIgredient = RecipeIngredient()
     
@@ -180,10 +180,10 @@ final class IngredientSelectionViewController: ViewController {
         let product = Product()
         recipeIgredient.id = 1
         recipeIgredient.product = product
-        recipeIgredient.product?.name = "Картошка"
+        recipeIgredient.product?.name = recipeTextField.textField.text
         recipeIgredient.product?.id = 7
         recipeIgredient.amount = Double(measureTextField.amountTextField.text ?? "0")
-        recipeIgredient.measurement = measureTextField.measurementTyptextField.text
+        recipeIgredient.measurement = MeasureTypes(rawValue: measureTextField.measurementTyptextField.text ?? "")
         delegate?.onIngredientSelected(ingredient: recipeIgredient)
         navigationController?.popViewController(animated: true)
     }

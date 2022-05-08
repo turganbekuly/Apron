@@ -10,4 +10,7 @@ extension IngredientSelectionViewController {
     
     // MARK: - Network
 
+    func getProducts(query: String) {
+        interactor.getProducts(request: .init(query: query))
+    }
 }

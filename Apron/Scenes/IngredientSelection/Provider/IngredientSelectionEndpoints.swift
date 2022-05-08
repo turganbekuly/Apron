@@ -11,21 +11,27 @@ import AKNetwork
 import Storages
 
 enum IngredientSelectionEndpoint {
-    
+    case getProducts(query: String)
 }
 
 extension IngredientSelectionEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .getProducts:
+            return "products"
+        }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .getProducts:
+            return .get
+        }
     }
     
     var sampleData: Data {
@@ -33,7 +39,13 @@ extension IngredientSelectionEndpoint: AKNetworkTargetType {
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case .getProducts(let query):
+            return .requestParameters(
+                parameters: ["name": query],
+                encoding: AKURLEncoding.queryString
+            )
+        }
     }
     
     var headers: [String: String]? {

@@ -31,7 +31,8 @@ final class ShoppingListView: UITableView {
     private func configure() {
         separatorStyle = .none
         [
-            EmptyCartCell.self
+            EmptyCartCell.self,
+            ShoppingItemCell.self
         ].forEach {
             register(cellClass: $0)
         }

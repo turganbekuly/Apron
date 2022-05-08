@@ -8,19 +8,28 @@
 
 import Models
 import UIKit
+import Storages
 
 extension ShoppingListViewController {
     
     // MARK: - State
     public enum State {
         case initial
+        case cartItemsDidFetch([CartItem])
+        case cartItemsDidFail(AKNetworkError)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
-            sections = [.init(section: .ingredients, rows: [.loading])]
+            showLoader()
+            self.fetchCartItems()
+        case let .cartItemsDidFetch(items):
+            hideLoader()
+            self.cartItems = items
+        case let .cartItemsDidFail(error):
+            print(error)
         }
     }
     

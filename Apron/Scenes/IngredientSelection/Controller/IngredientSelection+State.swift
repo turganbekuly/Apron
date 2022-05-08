@@ -14,6 +14,8 @@ extension IngredientSelectionViewController {
     // MARK: - State
     public enum State {
         case initial(IngredientSelectedProtocol)
+        case fetchProducts([Product])
+        case fetchProductsFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -21,6 +23,10 @@ extension IngredientSelectionViewController {
         switch state {
         case let .initial(delegate):
             self.delegate = delegate
+        case let .fetchProducts(model):
+            print(model)
+        case let .fetchProductsFailed(error):
+            print(error)
         }
     }
     
