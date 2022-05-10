@@ -25,7 +25,7 @@
   ],
   "resource_bundles": {
     "DesignSystem": [
-      "DesignSystem/**/*.{xcassets,ttf,otf,strings,lproj}"
+      "DesignSystem/**/*.{xcassets,ttf,otf,strings,lproj,xib}"
     ]
   },
   "dependencies": {

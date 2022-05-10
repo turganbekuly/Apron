@@ -6,4 +6,28 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-public enum MainDataFlow {}
+import Models
+import AKNetwork
+
+public enum MainDataFlow {
+    
+}
+
+extension MainDataFlow {
+    enum JoinCommunity {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: JoinCommunityResult
+        }
+        struct ViewModel {
+            var state: MainViewController.State
+        }
+    }
+
+    enum JoinCommunityResult {
+        case successfull
+        case failed(error: AKNetworkError)
+    }
+}

@@ -11,15 +11,15 @@ import UIKit
 import AlertMessages
 import Storages
 
-public protocol MainDisplayLogic: AnyObject {
-    
+protocol MainDisplayLogic: AnyObject {
+    func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel)
 }
 
-public final class MainViewController: ViewController, Messagable {
+final class MainViewController: ViewController, Messagable {
     // MARK: - Properties
-    public let interactor: MainBusinessLogic
+    let interactor: MainBusinessLogic
 
-    public var state: State {
+    var state: State {
         didSet {
             updateState()
         }
@@ -223,11 +223,11 @@ public final class MainViewController: ViewController, Messagable {
     ]]
 
     
-    public var selectedIndexPath = IndexPath(row: .zero, section: .zero)
+    var selectedIndexPath = IndexPath(row: .zero, section: .zero)
     
     // MARK: - Views
 
-    public lazy var searchController: SearchController = {
+    lazy var searchController: SearchController = {
         let searchController = SearchResultBuilder(state: .initial).build()
 //        (searchController as? SearchResultViewController)?.delegate = self
         let controller = SearchController(searchResultsController: searchController)
@@ -239,7 +239,7 @@ public final class MainViewController: ViewController, Messagable {
         return controller
     }()
 
-    public lazy var mainView: MainView = {
+    lazy var mainView: MainView = {
         let view = MainView()
         view.dataSource = self
         view.delegate = self
@@ -247,25 +247,25 @@ public final class MainViewController: ViewController, Messagable {
     }()
     
     // MARK: - Init
-    public init(interactor: MainBusinessLogic, state: State) {
+    init(interactor: MainBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
         
         super.init(nibName: nil, bundle: nil)
     }
 
-    public required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         return nil
     }
     
     // MARK: - Life Cycle
-    override public func loadView() {
+    override func loadView() {
         super.loadView()
         
         configureViews()
     }
 
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         state = { state }()
@@ -289,13 +289,13 @@ public final class MainViewController: ViewController, Messagable {
         )
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configureNavigation()
     }
     
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         configureColors()

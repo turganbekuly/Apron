@@ -10,4 +10,7 @@ extension MainViewController {
     
     // MARK: - Network
 
+    func joinCommunity(with id: Int) {
+        interactor.joinCommunity(request: .init(id: id))
+    }
 }

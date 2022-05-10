@@ -29,13 +29,25 @@ final class IngredientSelectionViewController: ViewController {
     var measurementType: [String] = MeasureTypes.allCases.map { $0.rawValue }
 
     var recipeIgredient = RecipeIngredient()
+
+    var products: [Product]? {
+        didSet {
+            if let products = products, !products.isEmpty {
+                dropDown.dataSource = products.compactMap { $0.name }
+                dropDown.show()
+            }
+        }
+    }
     
     // MARK: - Views
 
     lazy var recipeTextField: RoundedTextField = {
         let textField = RoundedTextField(placeholder: "Поиск ингредиента")
+        textField.textField.addTarget(self, action: #selector(didEnterRecipe(_:)), for: .editingChanged)
         return textField
     }()
+
+    private lazy var dropDown = DropDown()
 
     let measureTextField: MeasureInputView = {
         let inputView = MeasureInputView(
@@ -139,6 +151,7 @@ final class IngredientSelectionViewController: ViewController {
 
         configureColors()
         makeConstraints()
+        setupDropdown()
     }
     
     private func makeConstraints() {
@@ -153,6 +166,12 @@ final class IngredientSelectionViewController: ViewController {
             $0.height.equalTo(38)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
+    }
+
+    private func setupDropdown() {
+        dropDown.anchorView = measureTextField
+        dropDown.direction = .bottom
+        dropDown.height = 300
     }
     
     private func configureColors() {
@@ -186,5 +205,11 @@ final class IngredientSelectionViewController: ViewController {
         recipeIgredient.measurement = MeasureTypes(rawValue: measureTextField.measurementTyptextField.text ?? "")
         delegate?.onIngredientSelected(ingredient: recipeIgredient)
         navigationController?.popViewController(animated: true)
+    }
+
+    @objc
+    private func didEnterRecipe(_ sender: UITextField) {
+        dropDown.hide()
+        getProducts(query: sender.text ?? "")
     }
 }

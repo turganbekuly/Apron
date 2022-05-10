@@ -6,20 +6,35 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-public protocol MainBusinessLogic {
-    
+protocol MainBusinessLogic {
+    func joinCommunity(request: MainDataFlow.JoinCommunity.Request)
 }
 
-public final class MainInteractor: MainBusinessLogic {
+final class MainInteractor: MainBusinessLogic {
     
     // MARK: - Properties
     private let presenter: MainPresentationLogic
+    private let provider: MainProviderProtocol
     
     // MARK: - Initialization
-    public init(presenter: MainPresentationLogic) {
+    init(
+        presenter: MainPresentationLogic,
+        provider: MainProviderProtocol = MainProvider()
+    ) {
         self.presenter = presenter
+        self.provider = provider
     }
     
     // MARK: - MainBusinessLogic
 
+    func joinCommunity(request: MainDataFlow.JoinCommunity.Request) {
+        provider.joinCommunity(request: request) { [weak self] in
+            switch $0 {
+            case .successfull:
+                self?.presenter.joinCommunity(response: .init(result: .successfull))
+            case let .failed(error):
+                self?.presenter.joinCommunity(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }

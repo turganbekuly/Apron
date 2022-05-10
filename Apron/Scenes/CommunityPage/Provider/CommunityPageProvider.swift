@@ -14,6 +14,10 @@ protocol CommunityPageProviderProtocol {
         request: CommunityPageDataFlow.GetCommunity.Request,
         completion: @escaping ((CommunityPageDataFlow.GetCommunityResult) -> Void)
     )
+    func joinCommunity(
+        request: MainDataFlow.JoinCommunity.Request,
+        completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
+    )
 }
 
 final class CommunityPageProvider: CommunityPageProviderProtocol {
@@ -44,5 +48,19 @@ final class CommunityPageProvider: CommunityPageProviderProtocol {
                     completion(.failed(error: error))
                 }
             }
+        }
+
+    func joinCommunity(
+        request: MainDataFlow.JoinCommunity.Request,
+        completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
+    ) {
+        service.joinCommunity(request: request) {
+            switch $0 {
+            case .success(_):
+                completion(.successfull)
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
     }
 }

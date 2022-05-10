@@ -30,7 +30,7 @@ final class InterfaceConfigurator: ApplicationConfiguratorProtocol {
         
         let vc = SplashScreenBuilder(state: .initial).build()
 //        let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation()))).build()
-        AuthStorage.shared.accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaW5hc2lsLm9tYXJiZWtAZ21haWwuY29tIiwiZXhwIjoxNjUyMDM4MzAyfQ.o-86RdqKKHW8UcAN-AlicFq6ok0hSerrzhibrBNaDB5IY5UKeQGBjfAktYoj74eg7qQLIiXaAU2qycP1GfPUMw"
+        AuthStorage.shared.accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaW5hc2lsLm9tYXJiZWtAZ21haWwuY29tIiwiZXhwIjoxNjUyMDg3MzYxfQ.7kj00M020BqEGwEy-nHDlomnQyMBOSHoxeHwpdIrZYyiL9Mxy_gR5RRB8fy1MvKSXAgQa6fVOLfl-7kK4OxoGg"
         let navVC = UINavigationController(rootViewController: vc)
         window.rootViewController = navVC
         window.makeKeyAndVisible()

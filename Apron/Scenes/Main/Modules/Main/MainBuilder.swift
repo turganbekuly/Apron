@@ -9,18 +9,18 @@
 import Protocols
 import UIKit
 
-public final class MainBuilder: ModuleBuilderProtocol {
+final class MainBuilder: ModuleBuilderProtocol {
     
     // MARK: Properties
     private let state: MainViewController.State
     
     // MARK: Initialization
-    public init(state: MainViewController.State) {
+    init(state: MainViewController.State) {
         self.state = state
     }
     
     // MARK: - ModuleBuilder
-    public func build() -> ViewControllerProtocol {
+    func build() -> ViewControllerProtocol {
         let presenter = MainPresenter()
         let interactor = MainInteractor(presenter: presenter)
         let viewController = MainViewController(interactor: interactor, state: state)

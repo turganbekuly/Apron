@@ -24,7 +24,7 @@ extension IngredientSelectionViewController {
         case let .initial(delegate):
             self.delegate = delegate
         case let .fetchProducts(model):
-            print(model)
+            self.products = model
         case let .fetchProductsFailed(error):
             print(error)
         }

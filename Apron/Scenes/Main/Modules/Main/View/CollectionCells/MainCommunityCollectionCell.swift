@@ -10,7 +10,15 @@ import UIKit
 import Kingfisher
 import HapticTouch
 
+protocol JoinCommunityProtocol: AnyObject {
+    func didTapJoinCommunity(with id: Int)
+}
+
 final class MainCommunityCollectionCell: UICollectionViewCell {
+    // MARK: - Properties
+
+    weak var delegate: JoinCommunityProtocol?
+
     // MARK: - Init
 
     override init(frame: CGRect) {
@@ -156,5 +164,6 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
             $0.width.equalTo(129)
         }
         layoutIfNeeded()
+        delegate?.didTapJoinCommunity(with: 0)
     }
 }

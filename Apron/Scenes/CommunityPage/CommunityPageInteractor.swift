@@ -8,6 +8,7 @@
 
 protocol CommunityPageBusinessLogic {
     func getCommunity(request: CommunityPageDataFlow.GetCommunity.Request)
+    func joinCommunity(request: MainDataFlow.JoinCommunity.Request)
 }
 
 final class CommunityPageInteractor: CommunityPageBusinessLogic {
@@ -32,6 +33,17 @@ final class CommunityPageInteractor: CommunityPageBusinessLogic {
                 self?.presenter.getCommunity(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.getCommunity(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func joinCommunity(request: MainDataFlow.JoinCommunity.Request) {
+        provider.joinCommunity(request: request) { [weak self] in
+            switch $0 {
+            case .successfull:
+                self?.presenter.joinCommunity(response: .init(result: .successfull))
+            case let .failed(error):
+                self?.presenter.joinCommunity(response: .init(result: .failed(error: error)))
             }
         }
     }

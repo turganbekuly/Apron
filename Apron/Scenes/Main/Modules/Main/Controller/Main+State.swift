@@ -15,6 +15,8 @@ extension MainViewController {
     // MARK: - State
     public enum State {
         case initial
+        case joinedCommunity
+        case joinedCommunityFailed
     }
     
     // MARK: - Methods
@@ -26,6 +28,10 @@ extension MainViewController {
             quickCommunitySections = [.init(section: .quickSimpleCommunities, rows: myRecipes[2].compactMap { .community($0) })]
             healthCommunitySections = [.init(section: .healthyCommunities, rows: myRecipes[3].compactMap { .community($0) })]
             homeCommunitySections = [.init(section: .homemadeCommunities, rows: myRecipes[4].compactMap { .community($0) })]
+        case .joinedCommunity:
+            print("")
+        case .joinedCommunityFailed:
+            print("")
         }
     }
     

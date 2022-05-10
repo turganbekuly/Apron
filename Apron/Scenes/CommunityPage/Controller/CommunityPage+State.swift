@@ -16,6 +16,8 @@ extension CommunityPageViewController {
         case initial
         case displayCommunity(CommunityResponse)
         case displayCommunityError(AKNetworkError)
+        case joinedCommunity
+        case joinedCommunityFailed
     }
     
     // MARK: - Methods
@@ -36,6 +38,10 @@ extension CommunityPageViewController {
             print(model)
         case let .displayCommunityError(error):
             print(error)
+        case .joinedCommunity:
+            print("")
+        case .joinedCommunityFailed:
+            print("")
         }
     }
     

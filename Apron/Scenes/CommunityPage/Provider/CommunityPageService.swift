@@ -13,6 +13,10 @@ protocol CommunityPageServiceProtocol {
         request: CommunityPageDataFlow.GetCommunity.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func joinCommunity(
+        request: MainDataFlow.JoinCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class CommunityPageService: CommunityPageServiceProtocol {
@@ -32,6 +36,15 @@ final class CommunityPageService: CommunityPageServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .getCommunity(id: request.id)) { result in
+            completion(result)
+        }
+    }
+
+    func joinCommunity(
+        request: MainDataFlow.JoinCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .joinCommunity(id: request.id)) { result in
             completion(result)
         }
     }

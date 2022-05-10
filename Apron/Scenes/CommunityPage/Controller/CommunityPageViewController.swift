@@ -14,6 +14,7 @@ import AlertMessages
 
 protocol CommunityPageDisplayLogic: AnyObject {
     func displayCommunity(viewModel: CommunityPageDataFlow.GetCommunity.ViewModel)
+    func displayJoinCommunity(viewModel: CommunityPageDataFlow.JoinCommunity.ViewModel)
 }
 
 public final class CommunityPageViewController: ViewController, Messagable {
@@ -58,7 +59,8 @@ public final class CommunityPageViewController: ViewController, Messagable {
             title: "Итальянская кухня",
             subtitle: "Здесь вы найдете рецепты Итальянских блюд",
             recipiesCount: "865",
-            membersCount: "198 778"
+            membersCount: "198 778",
+            isJoined: false
         )
     ]
 

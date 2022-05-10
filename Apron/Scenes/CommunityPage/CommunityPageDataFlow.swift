@@ -30,3 +30,22 @@ extension CommunityPageDataFlow {
     case failed(error: AKNetworkError)
     }
 }
+
+extension CommunityPageDataFlow {
+    enum JoinCommunity {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: JoinCommunityResult
+        }
+        struct ViewModel {
+            var state: CommunityPageViewController.State
+        }
+    }
+
+    enum JoinCommunityResult {
+        case successfull
+        case failed(error: AKNetworkError)
+    }
+}

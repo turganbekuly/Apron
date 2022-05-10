@@ -12,6 +12,7 @@ protocol ICommunityInfoCellViewModel: AnyObject {
     var subtitle: String? { get }
     var recipiesCount: String { get }
     var membersCount: String { get }
+    var isJoined: Bool { get }
 }
 
 final class CommunityInfoCellViewModel: ICommunityInfoCellViewModel {
@@ -23,10 +24,13 @@ final class CommunityInfoCellViewModel: ICommunityInfoCellViewModel {
 
     var membersCount: String
 
-    init(title: String?, subtitle: String?, recipiesCount: String, membersCount: String) {
+    var isJoined: Bool
+
+    init(title: String?, subtitle: String?, recipiesCount: String, membersCount: String, isJoined: Bool) {
         self.title = title
         self.subtitle = subtitle
         self.recipiesCount = recipiesCount
         self.membersCount = membersCount
+        self.isJoined = isJoined
     }
 }

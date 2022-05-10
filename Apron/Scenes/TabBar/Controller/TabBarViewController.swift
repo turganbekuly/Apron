@@ -32,7 +32,7 @@ public final class TabBarViewController: AppTabBarController {
 
     private lazy var mainModule = MainBuilder(state: .initial).build()
     private lazy var searchModule = SearchBuilder(state: .initial(.general)).build()
-    private lazy var favouriteModule = ShoppingListBuilder(state: .initial).build()
+    private lazy var favouriteModule = SavedRecipesBuilder(state: .initial).build()
 
     // MARK: - Init
     

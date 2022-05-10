@@ -82,6 +82,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
             switch row {
             case let .community(community):
                 guard let cell = cell as? MainCommunityCollectionCell else { return }
+                cell.delegate = self
                 cell.configure(with: community)
             }
         case is FeaturedCommunityCollectionView:

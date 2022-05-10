@@ -92,6 +92,7 @@ extension CommunityPageViewController: UITableViewDelegate {
         switch row {
         case let .topView(infoCell):
             guard let cell = cell as? CommunityInfoCell else { return }
+            cell.delegate = self
             cell.configure(with: infoCell)
         case let .filterView(filter):
             guard let cell = cell as? CommunityFilterCell else { return }

@@ -45,7 +45,8 @@ extension CommunityPageViewController: UICollectionViewDelegateFlowLayout {
         let row = recipesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case .recipes:
-            let vc = RecipePageBuilder(state: .initial).build()
+//            let vc = RecipePageBuilder(state: .initial).build()
+            let vc = CommunityCreationBuilder(state: .initial).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: true)
             }

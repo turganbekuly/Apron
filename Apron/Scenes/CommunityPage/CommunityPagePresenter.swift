@@ -10,6 +10,7 @@ import UIKit
 
 protocol CommunityPagePresentationLogic: AnyObject {
     func getCommunity(response: CommunityPageDataFlow.GetCommunity.Response)
+    func joinCommunity(response: CommunityPageDataFlow.JoinCommunity.Response)
 }
 
 final class CommunityPagePresenter: CommunityPagePresentationLogic {
@@ -30,6 +31,21 @@ final class CommunityPagePresenter: CommunityPagePresentationLogic {
                 viewModel = .init(state: .displayCommunity(model))
             case let .failed(error):
                 viewModel = .init(state: .displayCommunityError(error))
+            }
+        }
+    }
+
+    func joinCommunity(response: CommunityPageDataFlow.JoinCommunity.Response) {
+        DispatchQueue.main.async {
+            var viewModel: CommunityPageDataFlow.JoinCommunity.ViewModel
+
+            defer { self.viewController?.displayJoinCommunity(viewModel: viewModel) }
+
+            switch response.result {
+            case .successfull:
+                viewModel = .init(state: .joinedCommunity)
+            case .failed:
+                viewModel = .init(state: .joinedCommunityFailed)
             }
         }
     }

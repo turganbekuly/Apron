@@ -48,7 +48,33 @@ extension RecipeCreationViewController: UITableViewDataSource {
     }
 }
 
-extension RecipeCreationViewController: UITableViewDelegate {
+extension RecipeCreationViewController:
+    UITableViewDelegate {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        switch row {
+        case .name:
+            return 54
+        case .image:
+            return 221
+        case .imagePlaceholder:
+            return 167
+        case .description:
+            return 125
+        case .composition:
+            return 100 + CGFloat((recipeCreation?.ingredients?.count ?? 0) * 46)
+        case .instruction:
+            return 100 + CGFloat((recipeCreation?.instructions?.count ?? 0) * 80)
+        case .servings:
+            return 80
+        case .prepTime:
+            return 80
+        case .cookTime:
+            return 80
+        default:
+            return 600
+        }
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {

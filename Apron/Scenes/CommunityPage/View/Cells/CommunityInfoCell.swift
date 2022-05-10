@@ -8,9 +8,10 @@
 import DesignSystem
 import UIKit
 import SnapKit
+import HapticTouch
 
 protocol ICommunityInfoCell: AnyObject {
-    func joinButtonTapped()
+    func joinButtonTapped(with id: Int)
 }
 
 final class CommunityInfoCell: UITableViewCell {
@@ -20,6 +21,12 @@ final class CommunityInfoCell: UITableViewCell {
 
     private var titleLabelTrailingToSuperviewConstraint: Constraint?
     private var titleLabelTrailingToInfoButtonConstraint: Constraint?
+
+    var isJoined: Bool = false {
+        didSet {
+            configureButton(isJoined: isJoined)
+        }
+    }
 
     // MARK: - Init
 
@@ -151,7 +158,7 @@ final class CommunityInfoCell: UITableViewCell {
             $0.top.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(34)
-            $0.width.equalTo(93)
+            $0.width.greaterThanOrEqualTo(93)
         }
 
         titleLabel.snp.makeConstraints {
@@ -178,6 +185,20 @@ final class CommunityInfoCell: UITableViewCell {
         }
     }
 
+    // MARK: - Private methods
+
+    private func configureButton(isJoined: Bool) {
+        if isJoined {
+            joinButton.setTitle("Пригласить", for: .normal)
+            joinButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
+            joinButton.setBackgroundColor(Assets.colorsYello.color, for: .highlighted)
+            joinButton.setBackgroundColor(Assets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
+            joinButton.setTitleColor(.black, for: .normal)
+        } else {
+            joinButton.setTitle("Вступить", for: .normal)
+        }
+    }
+
     // MARK: - Methods
 
     func configure(with viewModel: ICommunityInfoCellViewModel) {
@@ -185,12 +206,28 @@ final class CommunityInfoCell: UITableViewCell {
         self.subtitleLabel.text = viewModel.subtitle
         self.recipeCountLabel.text = "\(viewModel.recipiesCount) рецептов"
         self.membersCountLabel.text = "\(viewModel.membersCount) подписчиков"
+        self.isJoined = viewModel.isJoined
     }
 
     // MARK: - User actions
 
     @objc
     private func joinButtonTapped() {
-        delegate?.joinButtonTapped()
+        if isJoined {
+            return
+        }
+
+        HapticTouch.generateSuccess()
+        joinButton.setTitle("Пригласить", for: .normal)
+        joinButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
+        joinButton.setBackgroundColor(Assets.colorsYello.color, for: .highlighted)
+        joinButton.setBackgroundColor(Assets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
+        joinButton.setTitleColor(.black, for: .normal)
+        joinButton.snp.updateConstraints {
+            $0.width.greaterThanOrEqualTo(129)
+        }
+        layoutIfNeeded()
+        isJoined = true
+        delegate?.joinButtonTapped(with: 0)
     }
 }

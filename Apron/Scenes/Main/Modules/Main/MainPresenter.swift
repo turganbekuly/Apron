@@ -6,15 +6,31 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-public protocol MainPresentationLogic: AnyObject {
-    
+import UIKit
+
+protocol MainPresentationLogic: AnyObject {
+    func joinCommunity(response: MainDataFlow.JoinCommunity.Response)
 }
 
-public final class MainPresenter: MainPresentationLogic {
+final class MainPresenter: MainPresentationLogic {
     
     // MARK: - Properties
-    public weak var viewController: MainDisplayLogic?
+    weak var viewController: MainDisplayLogic?
     
     // MARK: - MainPresentationLogic
-    
+
+    func joinCommunity(response: MainDataFlow.JoinCommunity.Response) {
+        DispatchQueue.main.async {
+            var viewModel: MainDataFlow.JoinCommunity.ViewModel
+
+            defer { self.viewController?.displayJoinCommunity(viewModel: viewModel) }
+
+            switch response.result {
+            case .successfull:
+                viewModel = .init(state: .joinedCommunity)
+            case .failed:
+                viewModel = .init(state: .joinedCommunityFailed)
+            }
+        }
+    }
 }

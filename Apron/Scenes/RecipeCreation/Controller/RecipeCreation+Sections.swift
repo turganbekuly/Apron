@@ -9,7 +9,7 @@ import Foundation
 import Models
 
 extension RecipeCreationViewController {
-    public struct Section {
+    struct Section {
         enum Section {
             case info
         }
@@ -27,27 +27,5 @@ extension RecipeCreationViewController {
         }
         var section: Section
         var rows: [Row]
-    }
-
-    public struct IngredientSection {
-        enum Section {
-            case ingredients
-        }
-        enum Row {
-            case ingredient
-        }
-        let section: Section
-        let rows: [Row]
-    }
-
-    public struct InstructionSection {
-        enum Section {
-            case instructions
-        }
-        enum Row {
-            case instruction
-        }
-        let section: Section
-        let rows: [Row]
     }
 }

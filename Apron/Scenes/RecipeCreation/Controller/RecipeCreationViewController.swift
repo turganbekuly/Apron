@@ -23,7 +23,6 @@ final class RecipeCreationViewController: ViewController, Messagable {
     // Sections
 
     var sections: [Section] = []
-    var ingredientSections: [IngredientSection] = []
 
     var instructions: [String] = [] {
         didSet {

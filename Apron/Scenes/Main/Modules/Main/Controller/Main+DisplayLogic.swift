@@ -11,5 +11,8 @@ import UIKit
 extension MainViewController: MainDisplayLogic {
     
     // MARK: - MainDisplayLogic
-    
+
+    func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel) {
+        state = viewModel.state
+    }
 }
