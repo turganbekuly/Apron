@@ -15,5 +15,6 @@ protocol CategorySelectionProtocol: AnyObject {
 extension CommunityCreationViewController: CategorySelectionProtocol {
     func selectedCategory(category: CommunityCategory) {
         self.communityCreation?.category = category
+        self.mainView.reloadTableViewWithoutAnimation()
     }
 }

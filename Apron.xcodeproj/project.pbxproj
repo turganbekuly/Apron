@@ -98,6 +98,7 @@
 		6D226788282D4C09001FFE6D /* CommunityCreation+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D226787282D4C09001FFE6D /* CommunityCreation+Image.swift */; };
 		6D22678A282D4C3E001FFE6D /* CommunityCreation+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D226789282D4C3E001FFE6D /* CommunityCreation+ImagePicker.swift */; };
 		6D22678C282D4C56001FFE6D /* CommunityCreation+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D22678B282D4C56001FFE6D /* CommunityCreation+Photos.swift */; };
+		6D22678E282D69AD001FFE6D /* CommunityCreation+Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D22678D282D69AD001FFE6D /* CommunityCreation+Privacy.swift */; };
 		6D27270627C8A5940001DCC0 /* RecipeIngredientsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D27270527C8A5940001DCC0 /* RecipeIngredientsViewCell.swift */; };
 		6D27270927C8B4860001DCC0 /* IngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D27270827C8B4860001DCC0 /* IngredientView.swift */; };
 		6D27270E27C8EB710001DCC0 /* RecipeCaloriesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D27270D27C8EB710001DCC0 /* RecipeCaloriesViewCell.swift */; };
@@ -408,6 +409,7 @@
 		6D226787282D4C09001FFE6D /* CommunityCreation+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+Image.swift"; sourceTree = "<group>"; };
 		6D226789282D4C3E001FFE6D /* CommunityCreation+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+ImagePicker.swift"; sourceTree = "<group>"; };
 		6D22678B282D4C56001FFE6D /* CommunityCreation+Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+Photos.swift"; sourceTree = "<group>"; };
+		6D22678D282D69AD001FFE6D /* CommunityCreation+Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+Privacy.swift"; sourceTree = "<group>"; };
 		6D27270527C8A5940001DCC0 /* RecipeIngredientsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientsViewCell.swift; sourceTree = "<group>"; };
 		6D27270827C8B4860001DCC0 /* IngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientView.swift; sourceTree = "<group>"; };
 		6D27270D27C8EB710001DCC0 /* RecipeCaloriesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCaloriesViewCell.swift; sourceTree = "<group>"; };
@@ -1630,11 +1632,12 @@
 				86BCD6E4654C1BA9449CBE85 /* CommunityCreationViewController.swift */,
 				6D9F7A4E28298C190053BF5B /* CommunityCreation+Sections.swift */,
 				029A8C3919856A146BDEC2F9 /* CommunityCreation+DisplayLogic.swift */,
-				6D22677E282D4298001FFE6D /* CommunityCreation+Category.swift */,
 				EEFD075EBE8C6C6B9765A10B /* CommunityCreation+Network.swift */,
 				99638E284A319CD12DEC3C63 /* CommunityCreation+State.swift */,
-				6D226785282D4B47001FFE6D /* CommunityCreation+TextField.swift */,
 				83E92E2F2B9A6F2EA371891D /* CommunityCreation+TableView.swift */,
+				6D226785282D4B47001FFE6D /* CommunityCreation+TextField.swift */,
+				6D22677E282D4298001FFE6D /* CommunityCreation+Category.swift */,
+				6D22678D282D69AD001FFE6D /* CommunityCreation+Privacy.swift */,
 				6D226787282D4C09001FFE6D /* CommunityCreation+Image.swift */,
 				6D226789282D4C3E001FFE6D /* CommunityCreation+ImagePicker.swift */,
 				6D22678B282D4C56001FFE6D /* CommunityCreation+Photos.swift */,
@@ -2378,6 +2381,7 @@
 				999936B985405C6585E45EDD /* SavedRecipesView.swift in Sources */,
 				093243BEF7FA801DD6EEE994 /* SavedRecipesBuilder.swift in Sources */,
 				0437D43598F594D2600A1E6B /* SavedRecipesDataFlow.swift in Sources */,
+				6D22678E282D69AD001FFE6D /* CommunityCreation+Privacy.swift in Sources */,
 				67A19DAC9215ACFCB332356A /* SavedRecipesInteractor.swift in Sources */,
 				9A9328CD6D7EB773C020AEFA /* SavedRecipesPresenter.swift in Sources */,
 			);

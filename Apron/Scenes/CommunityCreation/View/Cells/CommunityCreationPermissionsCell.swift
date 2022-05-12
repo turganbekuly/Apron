@@ -9,11 +9,18 @@ import UIKit
 import DesignSystem
 import M13Checkbox
 
+protocol CommunityPermissionLevelProtocol: AnyObject {
+    func permissionLevelSelected(isEditable: Bool)
+}
+
 final class CommunityCreationPermissionsCell: UITableViewCell {
     // MARK: - Properties
 
+    weak var delegate: CommunityPermissionLevelProtocol?
+
     private var isEditable = true {
         didSet {
+            delegate?.permissionLevelSelected(isEditable: isEditable)
             if isEditable {
                 anyoneCheckbox.checkState = .checked
                 nooneCheckbox.checkState = .unchecked

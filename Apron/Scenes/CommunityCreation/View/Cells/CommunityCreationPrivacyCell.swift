@@ -9,6 +9,10 @@ import UIKit
 import DesignSystem
 import M13Checkbox
 
+protocol CommunityPrivacyLevelProtocol: AnyObject {
+    func privacyLevelSelected(isPublic: Bool)
+}
+
 final class CommunityCreationPrivacyCell: UITableViewCell {
     // MARK: - Properties
 
@@ -22,8 +26,11 @@ final class CommunityCreationPrivacyCell: UITableViewCell {
         NSAttributedString.Key.foregroundColor: UIColor.black
     ]
 
+    weak var delegate: CommunityPrivacyLevelProtocol?
+
     private var isPublic = true {
         didSet {
+            delegate?.privacyLevelSelected(isPublic: isPublic)
             if isPublic {
                 publicCheckbox.checkState = .checked
                 privateCheckbox.checkState = .unchecked

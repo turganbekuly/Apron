@@ -31,21 +31,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
         }
     }
 
-    var recipeCreation: RecipeCreation? {
-        didSet {
-            sections = [
-                .init(
-                    section: .info,
-                    rows: [
-                        .name, .imagePlaceholder, .description,
-                        .composition, .instruction, .servings,
-                        .prepTime, .cookTime
-                    ]
-                )
-            ]
-            mainView.reloadTableViewWithoutAnimation()
-        }
-    }
+    var recipeCreation: RecipeCreation?
 
     var recipeCreationSourceType: RecipeCreationSourceType?
 
@@ -65,6 +51,18 @@ final class RecipeCreationViewController: ViewController, Messagable {
                 let .edit(recipeCreation, sourceType):
                 self.recipeCreation = recipeCreation
                 self.recipeCreationSourceType = sourceType
+
+                sections = [
+                    .init(
+                        section: .info,
+                        rows: [
+                            .name, .imagePlaceholder, .description,
+                            .composition, .instruction, .servings,
+                            .prepTime, .cookTime
+                        ]
+                    )
+                ]
+                mainView.reloadData()
             default:
                 break
             }

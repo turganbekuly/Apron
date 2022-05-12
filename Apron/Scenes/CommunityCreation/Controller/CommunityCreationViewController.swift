@@ -27,6 +27,16 @@ final class CommunityCreationViewController: ViewController, Messagable {
             case let .create(communityCreation),
                 let .edit(communityCreation):
                 self.communityCreation = communityCreation
+                sections = [
+                    .init(
+                        section: .info,
+                        rows: [
+                            .name, .imagePlaceholder, .description,
+                            .category, .privacy, .permission
+                        ]
+                    )
+                ]
+                mainView.reloadData()
             default:
                 break
             }
@@ -39,20 +49,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
         }
     }
 
-    var communityCreation: CommunityCreation? {
-        didSet {
-            sections = [
-                .init(
-                    section: .info,
-                    rows: [
-                        .name, .imagePlaceholder, .description,
-                        .category, .privacy, .permission
-                    ]
-                )
-            ]
-            mainView.reloadTableViewWithoutAnimation()
-        }
-    }
+    var communityCreation: CommunityCreation?
 
     var selectedImage: UIImage? {
         didSet {

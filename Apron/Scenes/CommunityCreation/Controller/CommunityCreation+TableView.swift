@@ -133,6 +133,14 @@ extension CommunityCreationViewController: UITableViewDelegate {
         case .category:
             guard let cell = cell as? CommunityCreationCategoryCell else { return }
             cell.configure(with: communityCreation?.category)
+        case .privacy:
+            guard let cell = cell as? CommunityCreationPrivacyCell else { return }
+            cell.delegate = self
+            cell.configure()
+        case .permission:
+            guard let cell = cell as? CommunityCreationPermissionsCell else { return }
+            cell.delegate = self
+            cell.configure(isEdiatable: !(communityCreation?.privateAdding ?? true))
         default:
             break
         }
