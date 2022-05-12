@@ -28,10 +28,10 @@ final class CategorySelectionInteractor: CategorySelectionBusinessLogic {
     func getCategories(request: CategorySelectionDataFlow.GetCategories.Request) {
         provider.getCategories(request: request) {
             switch $0 {
-            case .successful:
-                print(("asd"))
+            case let .successful(model):
+                self.presenter.getCategories(response: .init(result: .successful(model: model)))
             case let .failed(error):
-                print(error)
+                self.presenter.getCategories(response: .init(result: .failed(error: error)))
             }
         }
     }

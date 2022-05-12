@@ -7,6 +7,7 @@
 
 import UIKit
 import Protocols
+import Amplitude
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

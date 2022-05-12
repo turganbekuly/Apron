@@ -36,8 +36,11 @@ extension CategorySelectionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case let .option(category):
+            guard let cell = tableView.cellForRow(at: indexPath) as? CategorySelectionCell else { return }
+            if cell.checkbox.checkState == .checked {
+                selectedCategory = category
+            }
         }
     }
     

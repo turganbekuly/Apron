@@ -8,8 +8,9 @@
 
 import Protocols
 import UIKit
+import PanModal
 
-final class CategorySelectionBuilder: ModuleBuilderProtocol {
+final class CategorySelectionBuilder {
     
     // MARK: Properties
     private let state: CategorySelectionViewController.State
@@ -20,7 +21,7 @@ final class CategorySelectionBuilder: ModuleBuilderProtocol {
     }
     
     // MARK: - ModuleBuilder
-    func build() -> ViewControllerProtocol {
+    func build() -> UIViewController & PanModalPresentable {
         let presenter = CategorySelectionPresenter()
         let interactor = CategorySelectionInteractor(presenter: presenter)
         let viewController = CategorySelectionViewController(interactor: interactor, state: state)

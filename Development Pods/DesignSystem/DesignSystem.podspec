@@ -32,6 +32,5 @@ Pod::Spec.new do |spec|
   spec.dependency 'Protocols'
   spec.dependency 'SnapKit', '5.0.1'
   spec.dependency 'M13Checkbox'
-  spec.dependency 'BEMCheckBox'
 
 end

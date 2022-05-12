@@ -13,22 +13,14 @@ extension CommunityCreationViewController {
     
     // MARK: - State
     public enum State {
-        case initial
+        case initial(CommunityCreationInitialState)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case .initial:
-            sections = [
-                .init(
-                    section: .info,
-                    rows: [
-                        .name, .imagePlaceholder, .description,
-                        .category, .privacy, .permission
-                    ]
-                )
-            ]
+        case let .initial(initialState):
+            self.initialState = initialState
         }
     }
     

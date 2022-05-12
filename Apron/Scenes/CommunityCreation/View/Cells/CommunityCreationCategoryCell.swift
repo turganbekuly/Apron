@@ -7,6 +7,7 @@
 
 import UIKit
 import DesignSystem
+import Models
 
 final class CommunityCreationCategoryCell: UITableViewCell {
     // MARK: - Init
@@ -91,8 +92,12 @@ final class CommunityCreationCategoryCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func configure() {
+    func configure(with category: CommunityCategory?) {
         sectionTitleLabel.text = "Категория"
-        titleLabel.text = "Выберите категорию"
+        guard let category = category else {
+            titleLabel.text = "Выберите категорию"
+            return
+        }
+        titleLabel.text = category.name
     }
 }

@@ -36,8 +36,11 @@ final class CategorySelectionProvider: CategorySelectionProviderProtocol {
         service.getCategories(request: request) {
             switch $0 {
             case let .success(json):
-                if let _ = json["data"] as? [JSON] {
-                    completion(.successful)
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(
+                        model: jsons
+                            .compactMap { CommunityCategory(json: $0) })
+                    )
                 } else {
                     completion(.failed(error: .invalidData))
                 }

@@ -10,4 +10,7 @@ extension CategorySelectionViewController {
     
     // MARK: - Network
 
+    func getCategories() {
+        interactor.getCategories(request: .init())
+    }
 }

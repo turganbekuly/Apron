@@ -43,6 +43,7 @@ public struct CommunityResponse: Codable {
     // MARK: - Init
 
     public init?(json: JSON) {
+        // Add full category model, private adding, visiable flag
         guard let id = json[CodingKeys.id.rawValue] as? Int else {
             return nil
         }

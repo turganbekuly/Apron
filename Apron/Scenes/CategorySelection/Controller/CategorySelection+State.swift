@@ -13,18 +13,21 @@ extension CategorySelectionViewController {
     
     // MARK: - State
     public enum State {
-        case initial
-        case displayCategories
+        case initial(CategorySelectionProtocol)
+        case displayCategories(model: [CommunityCategory])
         case displayCategoriesFailed(error: AKNetworkError)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case .initial:
-            break
-        case .displayCategories:
-            break
+        case let .initial(delegate):
+            self.delegate = delegate
+            showLoader()
+            getCategories()
+        case let .displayCategories(model):
+            hideLoader()
+            self.categories = model
         case .displayCategoriesFailed:
             break
         }

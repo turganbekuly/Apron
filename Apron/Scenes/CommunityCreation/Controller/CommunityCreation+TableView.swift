@@ -57,6 +57,11 @@ extension CommunityCreationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .category:
+            let viewController = CategorySelectionBuilder(state: .initial(self)).build()
+            DispatchQueue.main.async {
+                self.navigationController?.presentPanModal(viewController)
+            }
         default:
             break
         }
@@ -109,6 +114,25 @@ extension CommunityCreationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .name:
+            guard let cell = cell as? CommunityCreationNamingCell else { return }
+            cell.delegate = self
+            cell.configure(recipeName: communityCreation?.communityName)
+        case .description:
+            guard let cell = cell as? CommunityCreationDescriptionCell else { return }
+            cell.delegate = self
+            cell.configure(description: communityCreation?.description)
+        case .imagePlaceholder:
+            guard let cell = cell as? RecipeCreationPlaceholderImageCell else { return }
+            cell.delegate = self
+            cell.configure()
+        case .image:
+            guard let cell = cell as? RecipeCreationImageCell else { return }
+            cell.delegate = self
+            cell.configure(image: selectedImage, imageURL: communityCreation?.imageURL)
+        case .category:
+            guard let cell = cell as? CommunityCreationCategoryCell else { return }
+            cell.configure(with: communityCreation?.category)
         default:
             break
         }

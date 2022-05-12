@@ -25,6 +25,14 @@ public final class Configurations {
         return url
     }
 
+    public static func getAmplitudeAPIKey() -> String {
+        guard let apiKey = getValue(for: ConfigurationKeys.amplitudeApiKey) else {
+            fatalError("Cannot get api key")
+        }
+
+        return apiKey
+    }
+
     private static func getValue(for key: String) -> String? {
         return Bundle.main.object(forInfoDictionaryKey: key) as? String
     }

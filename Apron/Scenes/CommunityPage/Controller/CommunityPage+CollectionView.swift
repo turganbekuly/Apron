@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Models
 
 extension CommunityPageViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -46,7 +47,7 @@ extension CommunityPageViewController: UICollectionViewDelegateFlowLayout {
         switch row {
         case .recipes:
 //            let vc = RecipePageBuilder(state: .initial).build()
-            let vc = CommunityCreationBuilder(state: .initial).build()
+            let vc = CommunityCreationBuilder(state: .initial(.create(CommunityCreation()))).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: true)
             }

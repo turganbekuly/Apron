@@ -8,6 +8,9 @@ target 'Apron' do
   # Pods for Apron
 
   pod 'SwiftGen', '~> 6.0'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/RemoteConfig'
 
   # Development Pods
 

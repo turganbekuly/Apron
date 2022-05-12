@@ -8,11 +8,17 @@
 import KeychainAccess
 import Models
 
+public enum AuthorizationStatus: String {
+    case authorized = "true"
+    case unauthorized = "false"
+}
+
 public protocol AuthStorageProtocol {
     var accessToken: String? { get set }
     var phoneNumber: String? { get set }
     var refreshToken: String? { get set }
     var deviceToken: String? { get set }
+    var isUserAuthorized: Bool { get set }
     func save(model: Auth)
     func clear()
     func canAuthentificate() -> Bool
@@ -26,6 +32,7 @@ public final class AuthStorage: AuthStorageProtocol {
         static let pin = "pin"
         static let refreshToken = "refreshToken"
         static let deviceToken = "deviceToken"
+        static let isUserAuthorized = "isUserAuthorized"
     }
 
     // MARK: - Properties
@@ -51,6 +58,11 @@ public final class AuthStorage: AuthStorageProtocol {
     public var deviceToken: String? {
         get { try? keychain.get(Constants.deviceToken) }
         set { updateDeviceToken(newValue) }
+    }
+
+    public var isUserAuthorized: Bool {
+        get { AuthStorage.isUserAuthorized }
+        set { AuthStorage.isUserAuthorized = newValue }
     }
 
     // MARK: - Init
@@ -106,9 +118,23 @@ public final class AuthStorage: AuthStorageProtocol {
         }
     }
 
+    private func updateUserAuthorization(_ isAuthorized: String?) {
+        if let isAuthorized = isAuthorized {
+            try? keychain.set(isAuthorized, key: Constants.isUserAuthorized)
+        } else {
+            try? keychain.remove(Constants.isUserAuthorized)
+        }
+    }
+
     public func canAuthentificate() -> Bool {
         accessToken != nil && refreshToken != nil
     }
 
 }
 
+private extension AuthStorage {
+
+    // MARK: - AuthStorage
+    @UserDefaultsEntry("isUserAuthorized", defaultValue: false)
+    static var isUserAuthorized: Bool
+}

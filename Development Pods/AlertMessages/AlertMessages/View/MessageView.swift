@@ -21,11 +21,12 @@ public class MessageView: UIView {
     private var colorTitle: UIColor?
     private var colorSubtitle: UIColor?
     private var colorIcon: UIColor?
-    private let animationsList: [String] = ["burger_machine", "french_fries",
-                                            "mushroom_bros", "walking_avocado",
-                                            "walking_broccoli", "walking_cup",
-                                            "walking_donut", "walking_orange",
-                                            "walking_taco", "loader_animation"]
+    private let animationsList: [String] = [
+        "french_fries", "walking_taco",
+        "mushroom_bros", "walking_avocado",
+        "walking_broccoli", "walking_cup",
+        "walking_donut", "walking_orange"
+    ]
 
     // MARK: - Views
 

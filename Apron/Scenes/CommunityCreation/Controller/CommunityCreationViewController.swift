@@ -20,9 +20,44 @@ final class CommunityCreationViewController: ViewController, Messagable {
     // MARK: - Properties
     let interactor: CommunityCreationBusinessLogic
     var sections: [Section] = []
+
+    var initialState: CommunityCreationInitialState? {
+        didSet {
+            switch initialState {
+            case let .create(communityCreation),
+                let .edit(communityCreation):
+                self.communityCreation = communityCreation
+            default:
+                break
+            }
+        }
+    }
+
     var state: State {
         didSet {
             updateState()
+        }
+    }
+
+    var communityCreation: CommunityCreation? {
+        didSet {
+            sections = [
+                .init(
+                    section: .info,
+                    rows: [
+                        .name, .imagePlaceholder, .description,
+                        .category, .privacy, .permission
+                    ]
+                )
+            ]
+            mainView.reloadTableViewWithoutAnimation()
+        }
+    }
+
+    var selectedImage: UIImage? {
+        didSet {
+            mainView.reloadTableViewWithoutAnimation()
+            replaceImageCell(type: .image)
         }
     }
     

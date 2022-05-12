@@ -30,6 +30,10 @@ final class CategorySelectionView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
+        [CategorSelectionHeader.self].forEach {
+            register(aClass: $0)
+        }
+        
         [CategorySelectionCell.self].forEach {
             register(cellClass: $0)
         }

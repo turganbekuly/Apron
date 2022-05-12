@@ -9,6 +9,7 @@ import UIKit
 import DesignSystem
 import M13Checkbox
 import HapticTouch
+import Models
 
 final class CategorySelectionCell: UITableViewCell {
     // MARK: - Init
@@ -89,7 +90,7 @@ final class CategorySelectionCell: UITableViewCell {
         }
     }
 
-    func configure(with text: String) {
-        titleLabel.text = text
+    func configure(with category: CommunityCategory) {
+        titleLabel.text = category.name
     }
 }

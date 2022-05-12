@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import PanModal
 
 protocol AssignTypesSelectedDelegate {
     func didSelected(type: AssignTypes)

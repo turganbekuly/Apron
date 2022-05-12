@@ -26,7 +26,7 @@ extension CategorySelectionDataFlow {
     }
 
     enum GetCategoriesResult {
-        case successful
+        case successful(model: [CommunityCategory])
         case failed(error: AKNetworkError)
     }
 }

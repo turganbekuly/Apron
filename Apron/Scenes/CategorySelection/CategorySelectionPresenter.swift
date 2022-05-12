@@ -26,8 +26,8 @@ final class CategorySelectionPresenter: CategorySelectionPresentationLogic {
             defer { self.viewController?.displayCategories(viewModel: viewModel) }
 
             switch response.result {
-            case .successful:
-                viewModel = .init(state: .displayCategories)
+            case let .successful(model):
+                viewModel = .init(state: .displayCategories(model: model))
             case let .failed(error):
                 viewModel = .init(state: .displayCategoriesFailed(error: error))
             }
