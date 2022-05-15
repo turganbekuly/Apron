@@ -17,10 +17,10 @@ final class SearchViewController: ViewController {
     
     struct Section {
         enum Section {
-            
+            case searchField
         }
         enum Row {
-            
+            case searchField
         }
         
         let section: Section
@@ -36,14 +36,6 @@ final class SearchViewController: ViewController {
         }
     }
     var searchTypes: SearchTypes?
-    
-    // MARK: - Views
-    lazy var mainView: SearchView = {
-        let view = SearchView()
-        view.dataSource = self
-        view.delegate = self
-        return view
-    }()
     
     // MARK: - Init
     init(interactor: SearchBusinessLogic, state: State) {
@@ -95,12 +87,37 @@ final class SearchViewController: ViewController {
 //        controller.searchBar.delegate = self
         return controller
     }()
+
+    private lazy var searchBar: SearchBar = {
+        let bar = SearchBar()
+        bar.placeholder = "Поиск рецептов и сообществ"
+        return bar
+    }()
+
+    lazy var mainView: SearchView = {
+        let view = SearchView()
+        view.dataSource = self
+        view.delegate = self
+        return view
+    }()
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.title = "Search"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.searchController = searchController
+        let avatarView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        avatarView.image = Assets.navAvatarIcon.image
+        avatarView.layer.cornerRadius = 17
+        avatarView.backgroundColor = .green
+        let cartView = CartButtonView()
+        cartView.onTap = { [weak self] in
+            let viewController = ShoppingListBuilder(state: .initial).build()
+
+            DispatchQueue.main.async {
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
+        navigationController?.navigationBar.barTintColor = Assets.secondary.color
     }
     
     private func configureViews() {

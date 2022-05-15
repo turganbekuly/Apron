@@ -134,7 +134,6 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
             $0.leading.equalTo(recipeStackView.snp.trailing).offset(8)
             $0.bottom.equalToSuperview()
         }
-        
     }
 
     // MARK: - Methods

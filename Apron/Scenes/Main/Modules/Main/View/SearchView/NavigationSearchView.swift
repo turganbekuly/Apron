@@ -11,8 +11,8 @@ import DesignSystem
 final class NavigationSearchView: UIView {
     // MARK: - Init
 
-    init(title: String? = "Поиск рецептов и сообществ") {
-        super.init(frame: .zero)
+    init(title: String? = "Поиск рецептов и сообществ", frame: CGRect = .zero) {
+        super.init(frame: frame)
         setupViews()
     }
 

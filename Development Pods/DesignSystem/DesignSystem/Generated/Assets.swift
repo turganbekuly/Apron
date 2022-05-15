@@ -55,6 +55,8 @@ public enum Assets {
   public static let recipeFavoriteIcon = ImageAsset(name: "recipe_favorite_icon")
   public static let searchClearButton = ImageAsset(name: "search_clear_button")
   public static let tableRoundedCorners = ImageAsset(name: "table_rounded_corners")
+  public static let iconPlaceholderCard = ImageAsset(name: "icon_placeholder_card")
+  public static let iconPlaceholderItem = ImageAsset(name: "icon_placeholder_item")
   public static let navAvatarIcon = ImageAsset(name: "nav_avatar_icon")
   public static let navBackButton = ImageAsset(name: "nav_back_button")
   public static let navCartIcon = ImageAsset(name: "nav_cart_icon")

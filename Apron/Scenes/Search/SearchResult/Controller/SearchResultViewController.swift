@@ -18,10 +18,15 @@ public final class SearchResultViewController: ViewController {
 
     public struct Section {
         enum Section {
+//            case everything
+//            case recipe
             case notFound
         }
 
         enum Row {
+//            case everything
+//            case community
+//            case recipe
             case notFound
         }
 

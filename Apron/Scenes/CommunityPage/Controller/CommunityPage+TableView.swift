@@ -50,6 +50,17 @@ extension CommunityPageViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .topView:
+            let viewController = UINavigationController(
+                rootViewController: GeneralSearchBuilder(
+                    state: .initial(.everything)
+                ).build()
+            )
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.modalTransitionStyle = .coverVertical
+            DispatchQueue.main.async { [weak self] in
+                self?.present(viewController, animated: true)
+            }
         default:
             break
         }

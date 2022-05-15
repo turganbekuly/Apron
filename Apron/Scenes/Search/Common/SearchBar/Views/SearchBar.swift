@@ -26,7 +26,7 @@ public final class SearchBar: UISearchBar {
     override public func layoutSubviews() {
         super.layoutSubviews()
 
-        setShowsCancelButton(false, animated: false)
+//        setShowsCancelButton(false, animated: false)
     }
 
     // MARK: - Methods

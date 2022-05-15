@@ -30,6 +30,13 @@ final class SearchView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
+        [SearchHeaderView.self].forEach {
+            register(aClass: $0)
+        }
+
+        [UITableViewCell.self].forEach {
+            register(cellClass: $0)
+        }
         
         configureColors()
     }
