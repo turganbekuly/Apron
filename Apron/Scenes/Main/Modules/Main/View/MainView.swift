@@ -31,16 +31,9 @@ public final class MainView: UITableView {
         separatorStyle = .none
 
         tableHeaderView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 18)))
-        [CommunityCellHeaderView.self].forEach {
-            register(aClass: $0)
-        }
-
         [
          MyCommunityCell.self,
-         FeaturedCommunityCell.self,
-         QuickCommunityCell.self,
-         HealthyCommunityCell.self,
-         HomemadeCommunityCell.self
+         DynamicCommunityCell.self
         ].forEach {
             register(cellClass: $0)
         }

@@ -10,17 +10,22 @@ import Storages
 import DesignSystem
 
 protocol ICollectionDelegateCellViewModel {
+    var sectionHeaderTitle: String { get }
     var collectionDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)? { get }
 }
 
 struct CollectionDelegateCellViewModel: ICollectionDelegateCellViewModel {
     // MARK: - Properties
 
+    var sectionHeaderTitle: String
     var collectionDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)?
 
     // MARK: - Init
 
-    init(collectionDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)?) {
+    init(
+        sectionHeaderTitle: String,
+        collectionDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)?) {
+            self.sectionHeaderTitle = sectionHeaderTitle
         self.collectionDelegate = collectionDelegate
     }
 }

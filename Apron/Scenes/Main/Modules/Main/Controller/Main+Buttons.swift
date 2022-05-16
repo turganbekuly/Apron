@@ -13,27 +13,9 @@ extension MainViewController: IMyCommunityCell {
     }
 }
 
-extension MainViewController: IFeaturedCommunityCell {
-    public func featuredCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton) {
-        // send joined event
-    }
-}
-
-extension MainViewController: IQuickCommunityCell {
-    public func quickCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton) {
-        // send joined event
-    }
-}
-
-extension MainViewController: IHealthyCommunityCell {
-    public func healthyCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton) {
-        // send joined event
-    }
-}
-
-extension MainViewController: IHomemadeCommunityCell {
-    public func homemadeCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton) {
-        // send joined event
+extension MainViewController: DynamicCommunityCellProtocol {
+    func dynamicCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton) {
+        //
     }
 }
 

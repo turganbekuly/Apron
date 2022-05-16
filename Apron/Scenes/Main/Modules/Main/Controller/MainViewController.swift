@@ -25,219 +25,96 @@ final class MainViewController: ViewController, Messagable {
         }
     }
 
-    lazy var sections: [Section] = [
-        .init(section: .my, rows: [.myCommunities]),
-        .init(section: .featured, rows: [.featuredCommunities]),
-        .init(section: .quickSimple, rows: [.quickSimpleCommunities]),
-        .init(section: .healthy, rows: [.healthyCommunities]),
-        .init(section: .homemade, rows: [.homemadeCommunities])
+    lazy var sections: [Section] = []
+
+    lazy var communitiesSection: [CommunitySection] = []
+
+    var recipes: [CommunitiesCollectionViewModel]? {
+        didSet {
+            guard let myRecipes = recipes else { return }
+            sections =  [.init(section: .communities, rows: myRecipes.compactMap { .communities($0.sectionTitle) })]
+            mainView.reloadData()
+        }
+    }
+
+    var myRecipes = [
+        CommunitiesCollectionViewModel(
+            sectionTitle: "Baking",
+            communities: [
+                CommunityCollectionCellViewModel(
+                    imageURL: Assets.cmntImageview.image,
+                    communityName: "Baking community 1",
+                    recipeCount: "1",
+                    membersCount: "199999",
+                    onJoinButtonTapped: nil,
+                    isMyCommunity: true
+                ),
+                CommunityCollectionCellViewModel(
+                    imageURL: Assets.cmntImageview.image,
+                    communityName: "Baking community 2",
+                    recipeCount: "2",
+                    membersCount: "199999",
+                    onJoinButtonTapped: nil,
+                    isMyCommunity: true
+                ),
+                CommunityCollectionCellViewModel(
+                    imageURL: Assets.cmntImageview.image,
+                    communityName: "Baking community 3",
+                    recipeCount: "3",
+                    membersCount: "199999",
+                    onJoinButtonTapped: nil,
+                    isMyCommunity: true
+                ),
+                CommunityCollectionCellViewModel(
+                    imageURL: Assets.cmntImageview.image,
+                    communityName: "Baking community 4",
+                    recipeCount: "4",
+                    membersCount: "199999",
+                    onJoinButtonTapped: nil,
+                    isMyCommunity: true
+                )
+            ]
+        ),
+        CommunitiesCollectionViewModel(
+            sectionTitle: "Quick and Simple",
+            communities: [
+                CommunityCollectionCellViewModel(
+                    imageURL: Assets.cmntImageview.image,
+                    communityName: "Quick and Simple community 1",
+                    recipeCount: "1",
+                    membersCount: "199999",
+                    onJoinButtonTapped: nil,
+                    isMyCommunity: true
+                ),
+                CommunityCollectionCellViewModel(
+                    imageURL: Assets.cmntImageview.image,
+                    communityName: "Quick and Simple community 2",
+                    recipeCount: "2",
+                    membersCount: "199999",
+                    onJoinButtonTapped: nil,
+                    isMyCommunity: true
+                ),
+                CommunityCollectionCellViewModel(
+                    imageURL: Assets.cmntImageview.image,
+                    communityName: "Quick and Simple community 3",
+                    recipeCount: "3",
+                    membersCount: "199999",
+                    onJoinButtonTapped: nil,
+                    isMyCommunity: true
+                ),
+                CommunityCollectionCellViewModel(
+                    imageURL: Assets.cmntImageview.image,
+                    communityName: "Quick and Simple community 4",
+                    recipeCount: "4",
+                    membersCount: "199999",
+                    onJoinButtonTapped: nil,
+                    isMyCommunity: true
+                )
+            ]
+        )
     ]
-
-    lazy var communitiesSection: [CommunitySection] = [
-        .init(section: .myCommunities, rows: myRecipes[0].compactMap { .community($0) }),
-        .init(section: .featuredCommunities, rows: myRecipes[1].compactMap { .community($0) }),
-        .init(section: .quickSimpleCommunities, rows: myRecipes[2].compactMap { .community($0) }),
-        .init(section: .healthyCommunities, rows: myRecipes[3].compactMap { .community($0) }),
-        .init(section: .homemadeCommunities, rows: myRecipes[4].compactMap { .community($0) })
-    ]
-
-    var myCommunitySections: [CommunitySection] = [] {
-        didSet {
-            configureMyComSection()
-        }
-    }
-
-    var featuredCommunitySections: [CommunitySection] = [] {
-        didSet {
-            configureFeaturedComSection()
-        }
-    }
-
-    var quickCommunitySections: [CommunitySection] = [] {
-        didSet {
-            configureQuickComSection()
-        }
-    }
-
-    var healthCommunitySections: [CommunitySection] = [] {
-        didSet {
-            configureHealthComSection()
-        }
-    }
-
-    var homeCommunitySections: [CommunitySection] = [] {
-        didSet {
-            configureHomeComSection()
-        }
-    }
-
-    var myRecipes = [[
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "1",
-            membersCount: "199999",
-            onJoinButtonTapped: nil,
-            isMyCommunity: true
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "2",
-            membersCount: "199999",
-            onJoinButtonTapped: nil,
-            isMyCommunity: true
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "3",
-            membersCount: "199999",
-            onJoinButtonTapped: nil,
-            isMyCommunity: true
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "4",
-            membersCount: "199999",
-            onJoinButtonTapped: nil,
-            isMyCommunity: true
-        )
-    ], [
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "5",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "6",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "7",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "8",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        )
-    ], [
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "9",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "10",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "11",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "12",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        )
-    ], [
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "13",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "14",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "15",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "16",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        )
-    ], [
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "17",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "18",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "19",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        ),
-        CommunityCollectionCellViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "TikTok community",
-            recipeCount: "20",
-            membersCount: "199999",
-            onJoinButtonTapped: nil
-        )
-    ]]
-
-    
-    var selectedIndexPath = IndexPath(row: .zero, section: .zero)
     
     // MARK: - Views
-
-    lazy var searchController: SearchController = {
-        let searchController = SearchResultBuilder(state: .initial).build()
-//        (searchController as? SearchResultViewController)?.delegate = self
-        let controller = SearchController(searchResultsController: searchController)
-        controller.definesPresentationContext = true
-        controller.hidesNavigationBarDuringPresentation = false
-        controller.obscuresBackgroundDuringPresentation = true
-        controller.searchBar.placeholder = "Поиск рецептов и сообществ"
-//        controller.searchBar.delegate = self
-        return controller
-    }()
 
     lazy var mainView: MainView = {
         let view = MainView()
@@ -269,24 +146,6 @@ final class MainViewController: ViewController, Messagable {
         super.viewDidLoad()
         
         state = { state }()
-
-        CartManager.shared.resetCart()
-        ["Картошка", "Свекла", "Сахар", "Мука"].forEach {
-            CartManager.shared.update(
-                productName: $0,
-                amount: 2,
-                quantity: 1,
-                measurement: "кг",
-                recipeName: "Борщь"
-            )
-        }
-        CartManager.shared.update(
-            productName: "Картошка",
-            amount: 3,
-            quantity: 2,
-            measurement: "кг",
-            recipeName: "Манты"
-        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -339,55 +198,15 @@ final class MainViewController: ViewController, Messagable {
 
     // MARK: - Methods
 
-    public func configureMyComSection() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .my }),
-            let row = sections[section].rows.firstIndex(where: { $0 == .myCommunities }),
-            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? MyCommunityCell
-        else { return }
-
-        cell.communityCollectionView.reloadData()
-    }
-
-    public func configureFeaturedComSection() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .featured }),
-            let row = sections[section].rows.firstIndex(where: { $0 == .featuredCommunities }),
-            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? FeaturedCommunityCell
-        else { return }
-
-        cell.communityCollectionView.reloadData()
-    }
-
-    public func configureQuickComSection() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .quickSimple }),
-            let row = sections[section].rows.firstIndex(where: { $0 == .quickSimpleCommunities }),
-            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? QuickCommunityCell
-        else { return }
-
-        cell.communityCollectionView.reloadData()
-    }
-
-    public func configureHealthComSection() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .healthy }),
-            let row = sections[section].rows.firstIndex(where: { $0 == .healthyCommunities }),
-            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? HealthyCommunityCell
-        else { return }
-
-        cell.communityCollectionView.reloadData()
-    }
-
-    public func configureHomeComSection() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .homemade }),
-            let row = sections[section].rows.firstIndex(where: { $0 == .homemadeCommunities }),
-            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? HomemadeCommunityCell
-        else { return }
-
-        cell.communityCollectionView.reloadData()
-    }
+//    public func configureMyComSection() {
+//        guard
+//            let section = sections.firstIndex(where: { $0.section == .myCommunity }),
+//            let row = sections[section].rows.firstIndex(where: { $0 == .myCommunities }),
+//            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? MyCommunityCell
+//        else { return }
+//
+//        cell.communityCollectionView.reloadData()
+//    }
 
     deinit {
         NSLog("deinit \(self)")

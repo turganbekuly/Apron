@@ -11,19 +11,13 @@ extension MainViewController {
 
     struct Section {
         enum Section {
-            case my
-            case featured
-            case quickSimple
-            case healthy
-            case homemade
+            case myCommunity
+            case communities
         }
 
         enum Row {
             case myCommunities
-            case featuredCommunities
-            case quickSimpleCommunities
-            case healthyCommunities
-            case homemadeCommunities
+            case communities(String)
         }
 
         let section: Section
@@ -33,10 +27,7 @@ extension MainViewController {
     struct CommunitySection {
         public enum Section {
             case myCommunities
-            case featuredCommunities
-            case quickSimpleCommunities
-            case healthyCommunities
-            case homemadeCommunities
+            case communities
         }
 
         enum Row {
