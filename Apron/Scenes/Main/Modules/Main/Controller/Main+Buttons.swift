@@ -14,8 +14,11 @@ extension MainViewController: IMyCommunityCell {
 }
 
 extension MainViewController: DynamicCommunityCellProtocol {
-    func dynamicCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton) {
-        //
+    func navigateToCommunity(with id: Int) {
+        let vc = CommunityPageBuilder(state: .initial).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

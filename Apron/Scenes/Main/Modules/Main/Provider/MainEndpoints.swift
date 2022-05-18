@@ -12,6 +12,7 @@ import Storages
 enum MainEndpoint {
     case joinCommunity(id: Int)
     case getCommuntiesByCategories
+    case getMyCommunities
 }
 
 extension MainEndpoint: AKNetworkTargetType {
@@ -25,6 +26,8 @@ extension MainEndpoint: AKNetworkTargetType {
             return "communities/join/\(id)"
         case .getCommuntiesByCategories:
             return "communities/main"
+        case .getMyCommunities:
+            return "communities/getMyCreatedCommunities"
         }
     }
 
@@ -34,6 +37,8 @@ extension MainEndpoint: AKNetworkTargetType {
             return .put
         case .getCommuntiesByCategories:
             return .get
+        case .getMyCommunities:
+            return .get
         }
     }
 
@@ -42,6 +47,8 @@ extension MainEndpoint: AKNetworkTargetType {
         case .joinCommunity:
             return .requestPlain
         case .getCommuntiesByCategories:
+            return .requestPlain
+        case .getMyCommunities:
             return .requestPlain
         }
     }

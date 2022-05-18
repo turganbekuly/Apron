@@ -41,7 +41,7 @@ extension MainViewController {
         }
         
         enum Row {
-            case myCommunity(MyCommunityCollectionViewModel)
+            case myCommunity(CommunityResponse)
         }
         
         var section: Section

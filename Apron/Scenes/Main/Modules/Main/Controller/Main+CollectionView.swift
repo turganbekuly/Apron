@@ -50,13 +50,11 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         case is MyCommunityCollectionView:
             let row = myCommunitySection[indexPath.section].rows[indexPath.row]
             switch row {
-            default:
-                break
-//            case .myCommunity:
-//                let vc = CommunityPageBuilder(state: .initial).build()
-//                DispatchQueue.main.async {
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//                }
+            case .myCommunity:
+                let vc = CommunityPageBuilder(state: .initial).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         default:
             break
@@ -83,7 +81,9 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
             switch row {
             case let .myCommunity(community):
                 guard let cell = cell as? MyCommunityCollectionCell else { return }
-                cell.configure(with: community)
+                cell.configure(
+                    with: MyCommunityCollectionViewModel(community: community)
+                )
             }
         default:
             break

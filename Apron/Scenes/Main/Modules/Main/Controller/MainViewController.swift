@@ -15,6 +15,7 @@ import Models
 protocol MainDisplayLogic: AnyObject {
     func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel)
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel)
+    func displayMyCommunities(viewModel: MainDataFlow.GetMyCommunities.ViewModel)
 }
 
 final class MainViewController: ViewController, Messagable {
@@ -36,34 +37,11 @@ final class MainViewController: ViewController, Messagable {
         }
     }
 
-    var myCommunities: [MyCommunityCollectionViewModel] = [] {
+    var myCommunities: [CommunityResponse] = [] {
         didSet {
             configureCommunities()
         }
     }
-
-    var my = [
-        MyCommunityCollectionViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "My community 1"
-        ),
-        MyCommunityCollectionViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "My community 2"
-        ),
-        MyCommunityCollectionViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "My community 3"
-        ),
-        MyCommunityCollectionViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "My community 4"
-        ),
-        MyCommunityCollectionViewModel(
-            imageURL: Assets.cmntImageview.image,
-            communityName: "My community 5"
-        )
-    ]
     
     // MARK: - Views
 
@@ -163,7 +141,7 @@ final class MainViewController: ViewController, Messagable {
 
 
         if !dynamicCommunities.isEmpty {
-            dynamicCommunities.compactMap { com in
+            let _ = dynamicCommunities.compactMap { com in
                 if let communities = com.communities, !communities.isEmpty {
                     sections.append(
                         .init(

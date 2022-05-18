@@ -11,7 +11,7 @@ import Kingfisher
 import HapticTouch
 
 protocol JoinCommunityProtocol: AnyObject {
-    func navigateToCommunity(with id: Int)
+    func navigateToFromButtonCommunity(with id: Int)
     func didTapJoinCommunity(with id: Int)
 }
 
@@ -186,7 +186,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
     @objc
     private func joinButtonTapped() {
         if isJoined {
-            delegate?.navigateToCommunity(with: id)
+            delegate?.navigateToFromButtonCommunity(with: id)
             return
         }
         HapticTouch.generateSuccess()

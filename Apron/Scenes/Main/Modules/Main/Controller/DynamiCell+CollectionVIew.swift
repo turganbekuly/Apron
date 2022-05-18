@@ -27,6 +27,14 @@ extension DynamicCommunityCell: UICollectionViewDataSource {
 }
 
 extension DynamicCommunityCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let row = dynamicCommunitiesSection[indexPath.section].rows[indexPath.row]
+        switch row {
+        case let .community(community):
+            delegate?.navigateToCommunity(with: community.id)
+        }
+    }
+
     public func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

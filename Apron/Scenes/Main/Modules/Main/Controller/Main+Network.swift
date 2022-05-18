@@ -17,4 +17,8 @@ extension MainViewController {
     func getCommunitiesByCategory() {
         interactor.getCommunitiesByCategory(request: .init())
     }
+
+    func getMyCommunities() {
+        interactor.getMyCommunities(request: .init())
+    }
 }

@@ -9,13 +9,11 @@ import Models
 import UIKit
 
 protocol MyCommunityCollectionViewModelProtocol {
-    var imageURL: UIImage? { get }
-    var communityName: String { get }
+    var community: CommunityResponse? { get }
 }
 
 struct MyCommunityCollectionViewModel: MyCommunityCollectionViewModelProtocol {
     // MARK: - Properties
 
-    var imageURL: UIImage?
-    var communityName: String
+    var community: CommunityResponse?
 }

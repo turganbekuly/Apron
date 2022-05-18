@@ -29,6 +29,7 @@ final class MyCommunityCollectionCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleToFill
         imageView.image = Assets.cmntImageview.image
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -68,9 +69,12 @@ final class MyCommunityCollectionCell: UICollectionViewCell {
     // MARK: - Methods
 
     func configure(with viewModel: MyCommunityCollectionViewModelProtocol) {
-        //            imageView.kf.setImage(with: viewModel.imageURL)
-        communityNameLabel.text = viewModel.communityName
-        imageView.image = viewModel.imageURL
+        guard let community = viewModel.community else { return }
+        imageView.kf.setImage(
+            with: URL(string: community.image ?? ""),
+            placeholder: Assets.iconPlaceholderCard.image
+        )
+        communityNameLabel.text = community.name ?? ""
     }
 }
 

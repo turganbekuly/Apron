@@ -10,7 +10,7 @@ import DesignSystem
 import Models
 
 protocol DynamicCommunityCellProtocol: AnyObject {
-    func dynamicCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton)
+    func navigateToCommunity(with id: Int)
 }
 
 final class DynamicCommunityCell: UITableViewCell {

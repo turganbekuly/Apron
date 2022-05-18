@@ -19,13 +19,15 @@ extension MainViewController {
         case joinedCommunityFailed
         case fetchCommunitiesByCategory([CommunityCategory])
         case fetchCommunitiesByCategoryFailed(AKNetworkError)
+        case fetchMyCommunities([CommunityResponse])
+        case fetchMyCommunititesFailed(AKNetworkError)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
-            myCommunities = my
+            getMyCommunities()
             getCommunitiesByCategory()
         case .joinedCommunity:
             print("")
@@ -34,6 +36,10 @@ extension MainViewController {
         case let .fetchCommunitiesByCategory(model):
             self.dynamicCommunities = model
         case let .fetchCommunitiesByCategoryFailed(error):
+            print(error)
+        case let .fetchMyCommunities(model):
+            myCommunities = model
+        case let .fetchMyCommunititesFailed(error):
             print(error)
         }
     }

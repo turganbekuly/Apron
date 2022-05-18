@@ -12,7 +12,7 @@ extension MainViewController: JoinCommunityProtocol {
         joinCommunity(with: id)
     }
 
-    func navigateToCommunity(with id: Int) {
+    func navigateToFromButtonCommunity(with id: Int) {
         //
     }
 }

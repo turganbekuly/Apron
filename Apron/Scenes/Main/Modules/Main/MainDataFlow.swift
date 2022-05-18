@@ -33,6 +33,25 @@ extension MainDataFlow {
 }
 
 extension MainDataFlow {
+    enum GetMyCommunities {
+        struct Request {
+
+        }
+        struct Response {
+            let result: GetMyCommunitiesResult
+        }
+        struct ViewModel {
+            var state: MainViewController.State
+        }
+    }
+
+    enum GetMyCommunitiesResult {
+        case successful(model: [CommunityResponse])
+        case failed(error: AKNetworkError)
+    }
+}
+
+extension MainDataFlow {
     enum JoinCommunity {
         struct Request {
             let id: Int
