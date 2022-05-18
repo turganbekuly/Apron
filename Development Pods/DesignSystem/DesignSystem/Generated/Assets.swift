@@ -41,6 +41,7 @@ public enum Assets {
   public static let attention = ImageAsset(name: "attention")
   public static let checkOvalOutline = ImageAsset(name: "checkOvalOutline")
   public static let editIcon = ImageAsset(name: "edit_icon")
+  public static let iconRightArrow = ImageAsset(name: "icon_right_arrow")
   public static let loginBackgroundImage = ImageAsset(name: "login_background_image")
   public static let logoBlack = ImageAsset(name: "logo_black")
   public static let logoBlackOld = ImageAsset(name: "logo_black_old")

@@ -22,6 +22,8 @@ public struct CommunityResponse: Codable {
         case recipes
         case joined
         case users
+        case recipesCount
+        case usersCount
     }
 
     // MARK: - Properties
@@ -39,6 +41,8 @@ public struct CommunityResponse: Codable {
     public var recipes: [RecipeResponse]?
     public var users: [Int]?
     public var joined: Bool?
+    public var recipesCount: Int?
+    public var usersCount: Int?
 
     // MARK: - Init
 
@@ -60,5 +64,7 @@ public struct CommunityResponse: Codable {
         self.recipes = (json[CodingKeys.recipes.rawValue] as? [JSON])?.compactMap { RecipeResponse(json: $0 ) } ?? []
         self.users = json[CodingKeys.users.rawValue] as? [Int]
         self.joined = json[CodingKeys.communityCategoryName.rawValue] as? Bool
+        self.recipesCount = json[CodingKeys.recipesCount.rawValue] as? Int
+        self.usersCount = json[CodingKeys.usersCount.rawValue] as? Int
     }
 }

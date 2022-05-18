@@ -13,4 +13,8 @@ extension MainViewController {
     func joinCommunity(with id: Int) {
         interactor.joinCommunity(request: .init(id: id))
     }
+
+    func getCommunitiesByCategory() {
+        interactor.getCommunitiesByCategory(request: .init())
+    }
 }

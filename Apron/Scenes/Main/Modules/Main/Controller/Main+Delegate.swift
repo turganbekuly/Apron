@@ -11,4 +11,8 @@ extension MainViewController: JoinCommunityProtocol {
     func didTapJoinCommunity(with id: Int) {
         joinCommunity(with: id)
     }
+
+    func navigateToCommunity(with id: Int) {
+        //
+    }
 }

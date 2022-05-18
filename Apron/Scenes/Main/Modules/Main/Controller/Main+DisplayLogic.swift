@@ -15,4 +15,8 @@ extension MainViewController: MainDisplayLogic {
     func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel) {
         state = viewModel.state
     }
+
+    func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel) {
+        state = viewModel.state
+    }
 }

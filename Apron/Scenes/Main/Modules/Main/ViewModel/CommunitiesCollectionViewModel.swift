@@ -14,6 +14,5 @@ protocol CommunitiesCollectionViewModelProtocol {
 
 struct CommunitiesCollectionViewModel: CommunitiesCollectionViewModelProtocol {
     var sectionTitle: String
-
     var communities: [CommunityCollectionCellViewModel]
 }

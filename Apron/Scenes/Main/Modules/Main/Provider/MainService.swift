@@ -13,6 +13,10 @@ protocol MainServiceProtocol {
         request: MainDataFlow.JoinCommunity.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func getCommunitiesByCategory(
+        request: MainDataFlow.GetCommunities.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class MainService: MainServiceProtocol {
@@ -32,6 +36,15 @@ final class MainService: MainServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .joinCommunity(id: request.id)) { result in
+            completion(result)
+        }
+    }
+
+    func getCommunitiesByCategory(
+        request: MainDataFlow.GetCommunities.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getCommuntiesByCategories) { result in
             completion(result)
         }
     }

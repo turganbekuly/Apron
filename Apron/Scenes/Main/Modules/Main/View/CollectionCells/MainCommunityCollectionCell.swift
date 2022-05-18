@@ -11,6 +11,7 @@ import Kingfisher
 import HapticTouch
 
 protocol JoinCommunityProtocol: AnyObject {
+    func navigateToCommunity(with id: Int)
     func didTapJoinCommunity(with id: Int)
 }
 
@@ -18,6 +19,12 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
     // MARK: - Properties
 
     weak var delegate: JoinCommunityProtocol?
+    var isJoined: Bool = false {
+        didSet {
+            configureButton(isJoined: isJoined)
+        }
+    }
+    var id = 0
 
     // MARK: - Init
 
@@ -37,12 +44,12 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleToFill
         imageView.image = Assets.cmntImageview.image
+        imageView.clipsToBounds = true
         return imageView
     }()
 
     private lazy var joinButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.setTitle("Вступить", for: .normal)
         button.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 17
         button.layer.masksToBounds = true
@@ -103,6 +110,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         backgroundColor = .clear
         [imageView, joinButton, communityNameLabel, recipeStackView, membersStackView].forEach { contentView.addSubview($0) }
         setupConstraints()
+        configureCell()
     }
 
     private func setupConstraints() {
@@ -136,25 +144,51 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         }
     }
 
+    private func configureCell() {
+        backgroundColor = .clear
+    }
+
     // MARK: - Methods
 
     func configure(with viewModel: ICommunityCollectionCellViewModel) {
-        //            imageView.kf.setImage(with: viewModel.imageURL)
-        if viewModel.isMyCommunity {
-            joinButton.isHidden = true
-        } else {
-            joinButton.isHidden = false
+        guard let community = viewModel.community else { return }
+        id = community.id
+        imageView.kf.setImage(
+            with: URL(string: community.image ?? ""),
+            placeholder: Assets.iconPlaceholderCard.image
+        )
+        communityNameLabel.text = community.name ?? ""
+        recipeCountLabel.text = "\(community.recipesCount ?? 0)"
+        membersCountLabel.text = "\(community.usersCount ?? 0)"
+        isJoined = community.joined ?? false
+    }
+
+    // MARK: - Private methods
+
+    private func configureButton(isJoined: Bool) {
+        guard isJoined else {
+            joinButton.setTitle("Вступить", for: .normal)
+            joinButton.snp.updateConstraints( {
+                $0.width.equalTo(93)
+            })
+            return
         }
-        communityNameLabel.text = viewModel.communityName
-        imageView.image = viewModel.imageURL
-        recipeCountLabel.text = viewModel.recipeCount
-        membersCountLabel.text = viewModel.membersCount
+        joinButton.setTitle("Уже вступили", for: .normal)
+        joinButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
+        joinButton.setTitleColor(.black, for: .normal)
+        joinButton.snp.updateConstraints {
+            $0.width.equalTo(129)
+        }
     }
 
     // MARK: - User actions
 
     @objc
     private func joinButtonTapped() {
+        if isJoined {
+            delegate?.navigateToCommunity(with: id)
+            return
+        }
         HapticTouch.generateSuccess()
         joinButton.setTitle("Уже вступили", for: .normal)
         joinButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
@@ -163,6 +197,6 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
             $0.width.equalTo(129)
         }
         layoutIfNeeded()
-        delegate?.didTapJoinCommunity(with: 0)
+        delegate?.didTapJoinCommunity(with: id)
     }
 }

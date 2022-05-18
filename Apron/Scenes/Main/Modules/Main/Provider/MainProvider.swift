@@ -13,6 +13,11 @@ protocol MainProviderProtocol {
         request: MainDataFlow.JoinCommunity.Request,
         completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
     )
+
+    func getCommunitiesByCategory(
+        request: MainDataFlow.GetCommunities.Request,
+        completion: @escaping (MainDataFlow.GetCommunitiesResult) -> Void
+    )
 }
 
 final class MainProvider: MainProviderProtocol {
@@ -36,6 +41,24 @@ final class MainProvider: MainProviderProtocol {
             switch $0 {
             case .success(_):
                 completion(.successfull)
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getCommunitiesByCategory(
+        request: MainDataFlow.GetCommunities.Request,
+        completion: @escaping (MainDataFlow.GetCommunitiesResult) -> Void
+    ) {
+        service.getCommunitiesByCategory(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { CommunityCategory(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
             case let .failure(error):
                 completion(.failed(error: error))
             }

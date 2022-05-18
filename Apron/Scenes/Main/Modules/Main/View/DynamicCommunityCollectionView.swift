@@ -1,13 +1,13 @@
 //
-//  MyCommunityCollectionView.swift
+//  DynamicCommunityCollectionView.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 17.01.2022.
+//  Created by Akarys Turganbekuly on 17.05.2022.
 //
 
 import UIKit
 
-public final class MyCommunityCollectionView: UICollectionView {
+public final class DynamicCommunityCollectionView: UICollectionView {
 
     // MARK: - Init
 
@@ -42,7 +42,7 @@ public final class MyCommunityCollectionView: UICollectionView {
         showsHorizontalScrollIndicator = false
 
         [
-            MyCommunityCollectionCell.self
+            MainCommunityCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }
@@ -54,5 +54,6 @@ public final class MyCommunityCollectionView: UICollectionView {
     }
 
 }
+
 
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import DesignSystem
+import Models
 
 protocol DynamicCommunityCellProtocol: AnyObject {
     func dynamicCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton)
@@ -16,6 +17,14 @@ final class DynamicCommunityCell: UITableViewCell {
     // MARK: - Properties
 
     weak var delegate: DynamicCommunityCellProtocol?
+    weak var cellActionsDelegate: JoinCommunityProtocol?
+    lazy var dynamicCommunitiesSection: [DynamicCommunitySection] = []
+    var dynamicCommunities: [CommunityResponse] = [] {
+        didSet {
+            dynamicCommunitiesSection = [.init(section: .communities, rows: dynamicCommunities.compactMap { .community($0) })]
+            communityCollectionView.reloadData()
+        }
+    }
 
     // MARK: - Init
 
@@ -32,7 +41,7 @@ final class DynamicCommunityCell: UITableViewCell {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.semibold20
+        label.font = TypographyFonts.semibold18
         label.textColor = .black
         label.textAlignment = .left
         return label
@@ -41,11 +50,13 @@ final class DynamicCommunityCell: UITableViewCell {
     private lazy var seeAllButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = TypographyFonts.regular16
-        button.titleLabel?.textColor = Assets.gray.color
+        button.setTitleColor(Assets.gray.color, for: .normal)
+        button.setTitleColor(Assets.gray.color, for: .highlighted)
+        button.setTitle("Все", for: .normal)
         return button
     }()
 
-    lazy var communityCollectionView = MyCommunityCollectionView()
+    lazy var communityCollectionView = DynamicCommunityCollectionView()
 
     // MARK: - Setup Views
 
@@ -56,12 +67,16 @@ final class DynamicCommunityCell: UITableViewCell {
         ].forEach {
             contentView.addSubview($0)
         }
+        communityCollectionView.delegate = self
+        communityCollectionView.dataSource = self
         setupConstraints()
+        configureCell()
     }
 
     private func setupConstraints() {
         titleLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(16)
+            $0.trailing.equalTo(seeAllButton.snp.leading).offset(-8)
         }
 
         seeAllButton.snp.makeConstraints {
@@ -75,12 +90,16 @@ final class DynamicCommunityCell: UITableViewCell {
         }
     }
 
+    private func configureCell() {
+        backgroundColor = .clear
+        selectionStyle = .none
+    }
+
     // MARK: - Methods
 
-    func configure(with viewModel: ICollectionDelegateCellViewModel) {
+    func configure(with viewModel: IDynamicCollectionDelegateCellViewModel) {
         titleLabel.text = viewModel.sectionHeaderTitle
-        seeAllButton.setTitle("Посмотреть все", for: .normal)
-        communityCollectionView.delegate = viewModel.collectionDelegate
-        communityCollectionView.dataSource = viewModel.collectionDelegate
+        seeAllButton.isHidden = viewModel.showAllButtonEnabled
+        dynamicCommunities = viewModel.dynamicCommunities
     }
 }

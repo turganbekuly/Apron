@@ -9,23 +9,16 @@ import Models
 import Storages
 import DesignSystem
 
-protocol ICollectionDelegateCellViewModel {
+protocol IMyCollectionDelegateCellViewModel {
     var sectionHeaderTitle: String { get }
+    var showAllButtonEnabled: Bool { get }
     var collectionDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)? { get }
 }
 
-struct CollectionDelegateCellViewModel: ICollectionDelegateCellViewModel {
+struct MyCollectionDelegateCellViewModel: IMyCollectionDelegateCellViewModel {
     // MARK: - Properties
 
     var sectionHeaderTitle: String
+    var showAllButtonEnabled: Bool
     var collectionDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)?
-
-    // MARK: - Init
-
-    init(
-        sectionHeaderTitle: String,
-        collectionDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)?) {
-            self.sectionHeaderTitle = sectionHeaderTitle
-        self.collectionDelegate = collectionDelegate
-    }
 }

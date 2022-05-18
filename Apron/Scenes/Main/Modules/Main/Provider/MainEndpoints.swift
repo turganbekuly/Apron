@@ -11,6 +11,7 @@ import Storages
 
 enum MainEndpoint {
     case joinCommunity(id: Int)
+    case getCommuntiesByCategories
 }
 
 extension MainEndpoint: AKNetworkTargetType {
@@ -22,6 +23,8 @@ extension MainEndpoint: AKNetworkTargetType {
         switch self {
         case let .joinCommunity(id):
             return "communities/join/\(id)"
+        case .getCommuntiesByCategories:
+            return "communities/main"
         }
     }
 
@@ -29,12 +32,16 @@ extension MainEndpoint: AKNetworkTargetType {
         switch self {
         case .joinCommunity:
             return .put
+        case .getCommuntiesByCategories:
+            return .get
         }
     }
 
     var task: AKNetworkTask {
         switch self {
         case .joinCommunity:
+            return .requestPlain
+        case .getCommuntiesByCategories:
             return .requestPlain
         }
     }
@@ -44,8 +51,13 @@ extension MainEndpoint: AKNetworkTargetType {
             "Accept-Language": "ru",
             "Content-Type": "application/json"
         ]
-        if let token = AuthStorage.shared.accessToken {
-            headers["Authorization"] = "Bearer \(token)"
+        switch self {
+        case .getCommuntiesByCategories:
+            break
+        default:
+            if let token = AuthStorage.shared.accessToken {
+                headers["Authorization"] = "Bearer \(token)"
+            }
         }
         return headers
     }

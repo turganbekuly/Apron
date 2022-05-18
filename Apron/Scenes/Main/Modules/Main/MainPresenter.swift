@@ -10,6 +10,7 @@ import UIKit
 
 protocol MainPresentationLogic: AnyObject {
     func joinCommunity(response: MainDataFlow.JoinCommunity.Response)
+    func getCommunitiesByCategory(response: MainDataFlow.GetCommunities.Response)
 }
 
 final class MainPresenter: MainPresentationLogic {
@@ -30,6 +31,21 @@ final class MainPresenter: MainPresentationLogic {
                 viewModel = .init(state: .joinedCommunity)
             case .failed:
                 viewModel = .init(state: .joinedCommunityFailed)
+            }
+        }
+    }
+
+    func getCommunitiesByCategory(response: MainDataFlow.GetCommunities.Response) {
+        DispatchQueue.main.async {
+            var viewModel: MainDataFlow.GetCommunities.ViewModel
+
+            defer { self.viewController?.displayCommunities(viewModel: viewModel) }
+
+            switch response.result {
+            case let .successful(model):
+                viewModel = .init(state: .fetchCommunitiesByCategory(model))
+            case let .failed(error):
+                viewModel = .init(state: .fetchCommunitiesByCategoryFailed(error))
             }
         }
     }

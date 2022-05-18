@@ -10,9 +10,11 @@ import DesignSystem
 import UIKit
 import AlertMessages
 import Storages
+import Models
 
 protocol MainDisplayLogic: AnyObject {
     func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel)
+    func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel)
 }
 
 final class MainViewController: ViewController, Messagable {
@@ -26,91 +28,40 @@ final class MainViewController: ViewController, Messagable {
     }
 
     lazy var sections: [Section] = []
+    lazy var myCommunitySection: [MyCommunitiesSection] = []
 
-    lazy var communitiesSection: [CommunitySection] = []
-
-    var recipes: [CommunitiesCollectionViewModel]? {
+    var dynamicCommunities: [CommunityCategory] = [] {
         didSet {
-            guard let myRecipes = recipes else { return }
-            sections =  [.init(section: .communities, rows: myRecipes.compactMap { .communities($0.sectionTitle) })]
-            mainView.reloadData()
+            configureCommunities()
         }
     }
 
-    var myRecipes = [
-        CommunitiesCollectionViewModel(
-            sectionTitle: "Baking",
-            communities: [
-                CommunityCollectionCellViewModel(
-                    imageURL: Assets.cmntImageview.image,
-                    communityName: "Baking community 1",
-                    recipeCount: "1",
-                    membersCount: "199999",
-                    onJoinButtonTapped: nil,
-                    isMyCommunity: true
-                ),
-                CommunityCollectionCellViewModel(
-                    imageURL: Assets.cmntImageview.image,
-                    communityName: "Baking community 2",
-                    recipeCount: "2",
-                    membersCount: "199999",
-                    onJoinButtonTapped: nil,
-                    isMyCommunity: true
-                ),
-                CommunityCollectionCellViewModel(
-                    imageURL: Assets.cmntImageview.image,
-                    communityName: "Baking community 3",
-                    recipeCount: "3",
-                    membersCount: "199999",
-                    onJoinButtonTapped: nil,
-                    isMyCommunity: true
-                ),
-                CommunityCollectionCellViewModel(
-                    imageURL: Assets.cmntImageview.image,
-                    communityName: "Baking community 4",
-                    recipeCount: "4",
-                    membersCount: "199999",
-                    onJoinButtonTapped: nil,
-                    isMyCommunity: true
-                )
-            ]
+    var myCommunities: [MyCommunityCollectionViewModel] = [] {
+        didSet {
+            configureCommunities()
+        }
+    }
+
+    var my = [
+        MyCommunityCollectionViewModel(
+            imageURL: Assets.cmntImageview.image,
+            communityName: "My community 1"
         ),
-        CommunitiesCollectionViewModel(
-            sectionTitle: "Quick and Simple",
-            communities: [
-                CommunityCollectionCellViewModel(
-                    imageURL: Assets.cmntImageview.image,
-                    communityName: "Quick and Simple community 1",
-                    recipeCount: "1",
-                    membersCount: "199999",
-                    onJoinButtonTapped: nil,
-                    isMyCommunity: true
-                ),
-                CommunityCollectionCellViewModel(
-                    imageURL: Assets.cmntImageview.image,
-                    communityName: "Quick and Simple community 2",
-                    recipeCount: "2",
-                    membersCount: "199999",
-                    onJoinButtonTapped: nil,
-                    isMyCommunity: true
-                ),
-                CommunityCollectionCellViewModel(
-                    imageURL: Assets.cmntImageview.image,
-                    communityName: "Quick and Simple community 3",
-                    recipeCount: "3",
-                    membersCount: "199999",
-                    onJoinButtonTapped: nil,
-                    isMyCommunity: true
-                ),
-                CommunityCollectionCellViewModel(
-                    imageURL: Assets.cmntImageview.image,
-                    communityName: "Quick and Simple community 4",
-                    recipeCount: "4",
-                    membersCount: "199999",
-                    onJoinButtonTapped: nil,
-                    isMyCommunity: true
-                )
-            ]
+        MyCommunityCollectionViewModel(
+            imageURL: Assets.cmntImageview.image,
+            communityName: "My community 2"
+        ),
+        MyCommunityCollectionViewModel(
+            imageURL: Assets.cmntImageview.image,
+            communityName: "My community 3"
+        ),
+        MyCommunityCollectionViewModel(
+            imageURL: Assets.cmntImageview.image,
+            communityName: "My community 4"
+        ),
+        MyCommunityCollectionViewModel(
+            imageURL: Assets.cmntImageview.image,
+            communityName: "My community 5"
         )
     ]
     
@@ -198,15 +149,41 @@ final class MainViewController: ViewController, Messagable {
 
     // MARK: - Methods
 
-//    public func configureMyComSection() {
-//        guard
-//            let section = sections.firstIndex(where: { $0.section == .myCommunity }),
-//            let row = sections[section].rows.firstIndex(where: { $0 == .myCommunities }),
-//            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? MyCommunityCell
-//        else { return }
-//
-//        cell.communityCollectionView.reloadData()
-//    }
+    private func configureCommunities() {
+        var sections = [Section]()
+
+        if !myCommunities.isEmpty {
+            myCommunitySection = [.init(section: .myCommunities, rows: myCommunities.compactMap { .myCommunity($0) })]
+            sections.append(
+                .init(
+                    section: .myCommunity, rows: [.myCommunities(myCommunities.count >= 10 ? false : true)]
+                )
+            )
+        }
+
+
+        if !dynamicCommunities.isEmpty {
+            dynamicCommunities.compactMap { com in
+                if let communities = com.communities, !communities.isEmpty {
+                    sections.append(
+                        .init(
+                            section: .communities,
+                            rows: [
+                                .communities(
+                                    com.name ?? "",
+                                    (com.communities?.count ?? 1) >= 10 ? false : true,
+                                    com.communities ?? []
+                                )
+                            ]
+                        )
+                    )
+                }
+            }
+        }
+
+        self.sections = sections
+        mainView.reloadData()
+    }
 
     deinit {
         NSLog("deinit \(self)")
