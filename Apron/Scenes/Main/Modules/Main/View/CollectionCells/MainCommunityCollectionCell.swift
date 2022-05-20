@@ -9,10 +9,12 @@ import DesignSystem
 import UIKit
 import Kingfisher
 import HapticTouch
+import Storages
 
 protocol JoinCommunityProtocol: AnyObject {
     func navigateToFromButtonCommunity(with id: Int)
     func didTapJoinCommunity(with id: Int)
+    func navigateToAuth()
 }
 
 final class MainCommunityCollectionCell: UICollectionViewCell {
@@ -185,6 +187,11 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
 
     @objc
     private func joinButtonTapped() {
+        guard AuthStorage.shared.isUserAuthorized else {
+            delegate?.navigateToAuth()
+            return
+        }
+        
         if isJoined {
             delegate?.navigateToFromButtonCommunity(with: id)
             return

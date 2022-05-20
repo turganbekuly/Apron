@@ -21,6 +21,17 @@ public final class AuthorizationViewController: ViewController {
     }
     
     // MARK: - Views
+
+    private lazy var skipButton: BlackOpButton = {
+        let button = BlackOpButton(arrowState: .none, frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        button.setTitle("Пропустить", for: .normal)
+        button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 15
+        button.clipsToBounds = true
+        return button
+    }()
+
+
     public lazy var mainView: AuthorizationView = {
         let view = AuthorizationView(delegate: self)
         view.isUserInteractionEnabled = true
@@ -53,7 +64,7 @@ public final class AuthorizationViewController: ViewController {
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
     
@@ -65,7 +76,9 @@ public final class AuthorizationViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: skipButton)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = .clear
     }
     
     private func configureViews() {
@@ -82,6 +95,38 @@ public final class AuthorizationViewController: ViewController {
     
     private func configureColors() {
         
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func skipButtonTapped() {
+        let alert = UIAlertController(
+            title: "Вы действительно хотите пропустить?",
+            message: "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.",
+            preferredStyle: .alert
+        )
+        let yesAction = UIAlertAction(title: "Да", style: .default) { [weak self] _ in
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+
+                if self.presentingViewController != nil {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let viewController = TabBarBuilder(state: .initial(.normal)).build()
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                }
+            }
+        }
+        let noAction = UIAlertAction(title: "Нет", style: .cancel)
+        [noAction, yesAction].forEach {
+            alert.addAction($0)
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alert, animated: true, completion: nil)
+        }
     }
     
     deinit {

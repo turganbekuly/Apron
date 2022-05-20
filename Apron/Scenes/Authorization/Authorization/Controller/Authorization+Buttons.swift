@@ -7,12 +7,22 @@
 
 import Foundation
 import Models
+import UIKit
 
 extension AuthorizationViewController: IAuthorizationView {
     public func buttonPressed(type: AuthorizationType) {
-        let viewController = AuthorizationMethodsBuilder(state: .initial(type)).build()
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.modalPresentationStyle = .overCurrentContext
-        present(viewController, animated: true, completion: nil)
+        var viewController: UIViewController?
+
+        switch type {
+        case .signin:
+            viewController = AuthSignInBuilder(state: .initial).build()
+        case .signup:
+            viewController = AuthSignUpBuilder(state: .initial).build()
+        }
+        guard let viewController = viewController else {
+            return
+        }
+
+        self.navigationController?.pushViewController(viewController, animated: false)
     }
 }

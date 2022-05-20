@@ -97,6 +97,12 @@ final class MainViewController: ViewController, Messagable {
         avatarView.backgroundColor = .green
         let cartView = CartButtonView()
         cartView.onTap = { [weak self] in
+            guard AuthStorage.shared.isUserAuthorized else {
+                let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
+                vc.modalPresentationStyle = .fullScreen
+                self?.navigationController?.present(vc, animated: true)
+                return
+            }
             let viewController = ShoppingListBuilder(state: .initial).build()
 
             DispatchQueue.main.async {

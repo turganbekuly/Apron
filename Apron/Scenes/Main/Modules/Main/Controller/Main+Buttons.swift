@@ -6,16 +6,18 @@
 //
 
 import UIKit
-
-extension MainViewController: IMyCommunityCell {
-    public func myCommunity(_ cell: UITableViewCell, didTapJoinButton button: UIButton) {
-        // send joined event
-    }
-}
+import Storages
 
 extension MainViewController: DynamicCommunityCellProtocol {
     func navigateToCommunity(with id: Int) {
-        let vc = CommunityPageBuilder(state: .initial).build()
+        guard AuthStorage.shared.isUserAuthorized else {
+            let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
+            vc.modalPresentationStyle = .fullScreen
+            self.navigationController?.present(vc, animated: true)
+            return
+        }
+
+        let vc = CommunityPageBuilder(state: .initial(id)).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(vc, animated: true)
         }

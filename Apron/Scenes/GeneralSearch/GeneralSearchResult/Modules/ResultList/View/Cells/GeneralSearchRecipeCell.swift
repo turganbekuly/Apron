@@ -104,12 +104,13 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: GeneralSearchRecipeViewModelProtocol) {
+        guard let recipe = viewModel.recipe else { return }
         recipeImageView.kf.setImage(
-            with: URL(string: viewModel.image ?? ""),
+            with: URL(string: recipe.imageURL ?? ""),
             placeholder: Assets.addedImagePlaceholder.image
         )
 
-        recipeNameLabel.text = viewModel.name
-        sourceLinkLabel.text = viewModel.sourceLink ?? ""
+        recipeNameLabel.text = recipe.recipeName ?? ""
+        sourceLinkLabel.text = recipe.sourceLink ?? ""
     }
 }

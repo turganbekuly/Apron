@@ -5,24 +5,12 @@
 //  Created by Akarys Turganbekuly on 13.05.2022.
 //
 
-import Foundation
+import Models
 
 protocol GeneralSearchCommunityViewModelProtocol {
-    var image: String? { get }
-    var name: String { get }
-    var memberCount: String { get }
-    var recipeCount: String { get }
-    var isJoined: Bool { get }
+    var community: CommunityResponse? { get }
 }
 
 struct GeneralSearchCommunityViewModel: GeneralSearchCommunityViewModelProtocol {
-    var image: String?
-
-    var name: String
-
-    var memberCount: String
-
-    var recipeCount: String
-
-    var isJoined: Bool
+    var community: CommunityResponse?
 }

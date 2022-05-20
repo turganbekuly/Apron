@@ -104,7 +104,7 @@ public final class AuthorizationView: UIView {
 
         logoImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-80)
             $0.width.equalTo(215)
             $0.height.equalTo(161)
         }

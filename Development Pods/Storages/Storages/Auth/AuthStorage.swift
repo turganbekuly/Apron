@@ -29,7 +29,6 @@ public final class AuthStorage: AuthStorageProtocol {
     private enum Constants {
         static let accessToken = "accessToken"
         static let phoneNumber = "phoneNumber"
-        static let pin = "pin"
         static let refreshToken = "refreshToken"
         static let deviceToken = "deviceToken"
         static let isUserAuthorized = "isUserAuthorized"

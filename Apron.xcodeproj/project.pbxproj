@@ -10,12 +10,13 @@
 		004FC1690C07873F777E42EA /* RecipePageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F30F5DFD3B61FA222AB3C57 /* RecipePageProvider.swift */; };
 		00529231B4B232EBF94133F4 /* GeneralSearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCCE98BF1D8C467E7886A52 /* GeneralSearchBuilder.swift */; };
 		00A752136B3076C0EA221250 /* InstructionSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4CB6EEEDE43E60C931616 /* InstructionSelectionInteractor.swift */; };
-		01532E2963CC027021376CF0 /* AuthorizationMethodsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B47A3ED06E4261A092BD4 /* AuthorizationMethodsProvider.swift */; };
 		01A7107706655CD77BBF5967 /* ShoppingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF0D88CD14ECC51CAE2B60 /* ShoppingListService.swift */; };
 		036C1C0547104E7237603C25 /* TasteOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB74F2F438C577CD2D52A5B6 /* TasteOnboardingView.swift */; };
 		03F9A387283ABF9BA591540C /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0FFCD4A1E4D6873AE1558 /* SearchPresenter.swift */; };
 		0437D43598F594D2600A1E6B /* SavedRecipesDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D749F247CA15610A586CA /* SavedRecipesDataFlow.swift */; };
 		04E7F786121317BF6112EDBA /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F025921D56357E3AFF4A52E9 /* CategorySelectionViewController.swift */; };
+		0677B5C2731DC3977BA51823 /* CommunitiesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C541CF19298C3BD75082CD /* CommunitiesListInteractor.swift */; };
+		081EA623280F5203A2ACB288 /* AuthSignIn+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AB1398FC49914A218FC7E8 /* AuthSignIn+Network.swift */; };
 		0871EFF3015639C437F28525 /* IngredientSelectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E7C6A1FA1B33EBE5403E90 /* IngredientSelectionProvider.swift */; };
 		08C356949FE03F801DD3AC46 /* GeneralSearchEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F63C3D47E2F8521EFD7D63 /* GeneralSearchEndpoints.swift */; };
 		093243BEF7FA801DD6EEE994 /* SavedRecipesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA128855B1E07BBB8CA9BD /* SavedRecipesBuilder.swift */; };
@@ -25,6 +26,8 @@
 		0E905726F56C8B4FF2BE7AA0 /* SplashScreenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA4D6E704C38AEAE935BBAA /* SplashScreenBuilder.swift */; };
 		0EA51D30DD3C7C337BFC2594 /* RecipeCreationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4724A81F484765F924E98 /* RecipeCreationProvider.swift */; };
 		0EEC62BEC042009C4F7A1BAC /* RecipeCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E7EAB0C7535A1F27147AB /* RecipeCreationView.swift */; };
+		0F28EB5EA4E4B3FF91D7CB8A /* CommunitiesList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A295825AD9761F42D931AE /* CommunitiesList+TableView.swift */; };
+		0F555B24211524417E70DC73 /* CommunitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBCD21077E619B37F8AD5A3 /* CommunitiesListView.swift */; };
 		0F5955053EBEF250C59421D7 /* TasteOnboardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1788EAE4C7646A2370BF13C /* TasteOnboardingInteractor.swift */; };
 		106CCE4ED00E5373FC639823 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E02384C3B98C4EBF41DFC4 /* MainPresenter.swift */; };
 		10917E89DF363D88BB812D31 /* RecipeCreationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E970BAEE35222314EA90A2 /* RecipeCreationBuilder.swift */; };
@@ -45,7 +48,6 @@
 		1901CBCCAE00C4ADF0B01945 /* GeneralSearchResultBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04A71B847737ADBDF7715BE /* GeneralSearchResultBuilder.swift */; };
 		1B6E6A6AB2AF02560FFC7246 /* RecipeCreation+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD60C41068BA5C71E96F27FC /* RecipeCreation+Network.swift */; };
 		1EC726FB9228981D31AABC75 /* RecipePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D08EBF0F47DD37AD9E09732 /* RecipePageService.swift */; };
-		20326E269CA59B2A2C9D1AFA /* AuthorizationMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212FB89A343245D596BFF6A /* AuthorizationMethodsViewController.swift */; };
 		2056B1C9F4A3F6C99E2FDB56 /* ResultListEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA85673EFD4DED2384D1283 /* ResultListEndpoints.swift */; };
 		210BF0C04B2F72F6A377E24E /* CommunityPage+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F59647B97270F3342DDD5 /* CommunityPage+Network.swift */; };
 		233F49C456C77F466507B338 /* ResultList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8632E09F105AB5F35E39EE /* ResultList+TableView.swift */; };
@@ -62,7 +64,10 @@
 		312FEBF788994C21F3E36197 /* IngredientSelectionDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E05AFFEF7DBDF5A0323D42 /* IngredientSelectionDataFlow.swift */; };
 		3170886B90957BED9256A830 /* CommunityCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312A4A523997D7A8D2ABAEA9 /* CommunityCreationInteractor.swift */; };
 		327FB53514A5AB13EFCB5083 /* RecipeCreation+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5607A3D19C89DE4128CAA9 /* RecipeCreation+DisplayLogic.swift */; };
+		32DD730CC23D75C7F566CBEB /* CommunitiesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B08C5B9409870F40CC472F /* CommunitiesListViewController.swift */; };
+		339C71CD29868435EBC6A57C /* AuthSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8DA4C43D8C4223F87139A /* AuthSignInViewController.swift */; };
 		340674D13CCBA95B5ECA5C69 /* ShoppingListDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757EA9D53B349E5D4AB463F /* ShoppingListDataFlow.swift */; };
+		35B03FAD3939850F77B2FC26 /* AuthSignIn+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D9E39DDB60A33AB425287 /* AuthSignIn+State.swift */; };
 		363C02605042283A56E927F9 /* ResultList+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DA35628A4412BA72918D48 /* ResultList+Network.swift */; };
 		36BBB7967628AFEAF5D8A847 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2617B4728D46FD2C3A1FA /* SplashScreenViewController.swift */; };
 		373B14B731AAC0576CD072FF /* CommunityCreationDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61138FD069C8CE399D421F93 /* CommunityCreationDataFlow.swift */; };
@@ -72,7 +77,8 @@
 		3C2074DE2D431043B9F3332F /* RecipeCreationDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8977077DB259DF259358E4E /* RecipeCreationDataFlow.swift */; };
 		3F441B46E895A43777232AAC /* RecipePageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C354F57425B56A05BA01527 /* RecipePageInteractor.swift */; };
 		40EB831DF1A8B034176B2B8A /* CategorySelectionEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD94B2F3F69490438473AC0 /* CategorySelectionEndpoints.swift */; };
-		42E96146450B9BF8F6D8956F /* AuthorizationMethodsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748B3887860827C6FB304FB5 /* AuthorizationMethodsBuilder.swift */; };
+		4339E71985F9EE94CF97C460 /* AuthSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F27003AC9EDB7145EEDE8BA /* AuthSignUpViewController.swift */; };
+		44E321A18F99047531089B16 /* AuthSignUpProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222CFC1886890B18B4342CAF /* AuthSignUpProvider.swift */; };
 		45F495B7DD7E3DDFC97C2A03 /* RecipePage+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06971F63E3624F1595BA2975 /* RecipePage+DisplayLogic.swift */; };
 		469CDA563523DB3D0E30E63B /* GeneralSearchResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FC169D79D96A01A7A31549 /* GeneralSearchResultPresenter.swift */; };
 		46B91795C2F51CE639F3BCBE /* ResultListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F95BFE04883F525E09A860 /* ResultListViewController.swift */; };
@@ -81,9 +87,12 @@
 		49CFBFE0575F4032272266A0 /* RecipePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8462DAB041690FD56309291 /* RecipePageViewController.swift */; };
 		4A9DD88C376DA07070666A25 /* IngredientSelection+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A009B46356CB27A1A26C5E59 /* IngredientSelection+Network.swift */; };
 		4BA7C219A71AA83F07132FFB /* RecipeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A5E27B96732F1441E6DA /* RecipeCreationViewController.swift */; };
+		4BAABB381255BD7CFC386554 /* AuthSignInEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9950E6C37D42C557E64E3A8 /* AuthSignInEndpoints.swift */; };
 		4C3924A0D83E71632A25CDD1 /* IngredientSelection+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755B203C1C250F45F71174 /* IngredientSelection+DisplayLogic.swift */; };
 		4C6A11A9BF60E10BEF9901A6 /* GeneralSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855722DD6C81B9255DD82F12 /* GeneralSearchService.swift */; };
 		4CF3655BE3C8E409CA851466 /* SavedRecipes+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C908FC4C303CEA1116B8A5E /* SavedRecipes+TableView.swift */; };
+		4DDD51FC04F2D9D46EC6EC9E /* CommunitiesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C08BB8469919CC72CB260 /* CommunitiesListPresenter.swift */; };
+		4F33E6A5E722CEBF326D16C3 /* AuthSignUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFBBFEE9D0167D55AB658D6 /* AuthSignUpBuilder.swift */; };
 		50C53426345BBF8BC5E2644D /* CommunityPage+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD03B1CCC4D87F5EDBA6209 /* CommunityPage+TableView.swift */; };
 		519C46291315924EE1C31873 /* Pods_Apron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 296593E8CF2821B04FC4D517 /* Pods_Apron.framework */; };
 		5398772426135BAF337360DB /* SavedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD1ED3C1E56AB0691090F4 /* SavedRecipesViewController.swift */; };
@@ -94,10 +103,10 @@
 		54CE33449E989EF94C36F80F /* GeneralSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA7D80E3D7AF672EF8D010 /* GeneralSearchResultViewController.swift */; };
 		55F31F911D7393733410A4E7 /* GeneralSearch+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771218067DF179D812C3764A /* GeneralSearch+DisplayLogic.swift */; };
 		5947661884A72703CE886A83 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB8C8B880086BEEB171FDDD /* SearchBuilder.swift */; };
-		5AB72B59E200516AE39BD4B2 /* AuthorizationMethodsDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D6E0E8723848D672C2D7B /* AuthorizationMethodsDataFlow.swift */; };
 		5B736EB9EC4B6A9F09B9BE35 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3F8B8739236EF57AEF9789 /* AuthorizationViewController.swift */; };
 		5DD428669DAF9209428D503A /* SavedRecipesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E50276077F0B8C5666E254 /* SavedRecipesProvider.swift */; };
 		5E252040D54C858E27E0304B /* CategorySelectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C75F81B17989DC3384971 /* CategorySelectionService.swift */; };
+		5E4DCFAE43C7DA652098D141 /* AuthSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101AC815BC1D81ACB0C004E5 /* AuthSignUpPresenter.swift */; };
 		603462775E048271F4A39E85 /* SearchDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA0E352E4063849E49F013 /* SearchDataFlow.swift */; };
 		617179ECA01048F3C06835F5 /* ResultList+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B18E92F1FAAEEBC024110 /* ResultList+DisplayLogic.swift */; };
 		63F9BAF9554E1B97D9AC2619 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3016EDC01A906E14C2A9C /* SearchView.swift */; };
@@ -109,6 +118,10 @@
 		6D0A71D8277A12EE0067E580 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A71D6277A12EE0067E580 /* LaunchScreen.storyboard */; };
 		6D0A71E8277AEE6B0067E580 /* InterfaceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A71E7277AEE6B0067E580 /* InterfaceConfigurator.swift */; };
 		6D0A7208277AF1D20067E580 /* ThirdPartiesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A7207277AF1D20067E580 /* ThirdPartiesConfigurator.swift */; };
+		6D1E31D5283642FC0083C350 /* UIScrollView_InfiniteScroll in Frameworks */ = {isa = PBXBuildFile; productRef = 6D1E31D4283642FC0083C350 /* UIScrollView_InfiniteScroll */; };
+		6D1E31D8283652320083C350 /* CommunitiesListInitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E31D7283652320083C350 /* CommunitiesListInitialState.swift */; };
+		6D1E31DC283653410083C350 /* CommunityListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E31DB283653410083C350 /* CommunityListHeaderView.swift */; };
+		6D1E31DE283659640083C350 /* CommunitiesList+InfiniteScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E31DD283659640083C350 /* CommunitiesList+InfiniteScroll.swift */; };
 		6D22677F282D4298001FFE6D /* CommunityCreation+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D22677E282D4298001FFE6D /* CommunityCreation+Category.swift */; };
 		6D226784282D4788001FFE6D /* CommunityCreationInitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D226783282D4788001FFE6D /* CommunityCreationInitialState.swift */; };
 		6D226786282D4B47001FFE6D /* CommunityCreation+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D226785282D4B47001FFE6D /* CommunityCreation+TextField.swift */; };
@@ -122,9 +135,12 @@
 		6D328D2A282E30BB001DF3BE /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D328D29282E30BB001DF3BE /* SearchHeaderView.swift */; };
 		6D369A15281185E000F80B4E /* IngredientSelection+PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D369A14281185E000F80B4E /* IngredientSelection+PickerView.swift */; };
 		6D3DD886283508AD00E0C06D /* DynamicCollectionDelegateCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DD885283508AD00E0C06D /* DynamicCollectionDelegateCellViewModel.swift */; };
+		6D3DD88A283627DB00E0C06D /* CommunitiesListRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DD889283627DB00E0C06D /* CommunitiesListRequestBody.swift */; };
 		6D40954E282BC54D007207A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D40954D282BC54D007207A7 /* GoogleService-Info.plist */; };
+		6D5CBC6B28375A01005CE44F /* AuthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5CBC6A28375A01005CE44F /* AuthNavigationController.swift */; };
+		6D5CBC6D283768B5005CE44F /* AuthSignIn+Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5CBC6C283768B5005CE44F /* AuthSignIn+Button.swift */; };
+		6D5CBC6F28376C93005CE44F /* AuthSignUp+Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5CBC6E28376C93005CE44F /* AuthSignUp+Button.swift */; };
 		6D64F8B72784AF9E00F9EEC0 /* Authorization+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64F8B62784AF9E00F9EEC0 /* Authorization+Buttons.swift */; };
-		6D64F8BC278561B900F9EEC0 /* AuthorizationMethods+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64F8BB278561B900F9EEC0 /* AuthorizationMethods+Buttons.swift */; };
 		6D64F8C727859CBA00F9EEC0 /* TasteOnboardingScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64F8C627859CBA00F9EEC0 /* TasteOnboardingScreenType.swift */; };
 		6D64F8CB2785A62900F9EEC0 /* TasteOnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64F8CA2785A62900F9EEC0 /* TasteOnboardingCell.swift */; };
 		6D64F8CD2785AEC400F9EEC0 /* TasteOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64F8CC2785AEC400F9EEC0 /* TasteOnboardingViewModel.swift */; };
@@ -274,6 +290,7 @@
 		6F041B205103F3C2EE56B34B /* ResultListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DDFD81EFB0AFDB3F181543 /* ResultListPresenter.swift */; };
 		6F4B59AAC82E4C685F861937 /* RecipePageDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27F9B751A7FC15AF4D8C5F8 /* RecipePageDataFlow.swift */; };
 		75690A077FF013DB53AC4F53 /* TasteOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3B1821A380B99D8B681107 /* TasteOnboardingViewController.swift */; };
+		765E95169D187EAFD92EEADA /* CommunitiesListEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1B3284B87F3C670432FF7 /* CommunitiesListEndpoints.swift */; };
 		76A58A6AF98C4ADC4C737D75 /* GeneralSearchResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6849C056F1F733C00C512C /* GeneralSearchResultInteractor.swift */; };
 		77B3DAE89F2569E066EB18AA /* RecipePage+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E4FCB8D1D4E430345B246D /* RecipePage+Network.swift */; };
 		790228BA1C8027770A22C0B9 /* GeneralSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAEDAE0A7C2526BA7088AB9 /* GeneralSearchView.swift */; };
@@ -295,27 +312,37 @@
 		8921BE4287D3D1A1B86E9D9B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F994B30434137C11987C46 /* MainView.swift */; };
 		8A4A0D6016AF234DEB1505AC /* TabBar+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB1D5F0C288CA9DB7A80D3 /* TabBar+State.swift */; };
 		8D5FDD08ED0A73BFF3417579 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F9E14D59241B1C549A8E73 /* SearchService.swift */; };
+		8E975F69096FEA0E94B4DE60 /* CommunitiesList+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759E6A1385FE4E012BE7CBB /* CommunitiesList+State.swift */; };
+		8FE7F354A7D3C0D41A2C5A82 /* AuthSignInProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE91DA2AA19C7D6F628A1BE2 /* AuthSignInProvider.swift */; };
 		9438865A5CDBC594D1E636A6 /* Search+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C93B77B059347C6B88206C /* Search+DisplayLogic.swift */; };
 		9585619A6A6DDBD995AECF5F /* TasteOnboardingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562D4D156DF4EBB0445EB015 /* TasteOnboardingProvider.swift */; };
 		959D6AEF0066C447815E5DBB /* GeneralSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0B48C79FF4FAEBD20C50F /* GeneralSearchResultView.swift */; };
 		95B48CE6A0F6671B1CDFF45F /* SavedRecipes+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5569EC1DFE55F5383E3853AA /* SavedRecipes+DisplayLogic.swift */; };
-		9646A3878900730C853FE43D /* AuthorizationMethods+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFF50E75AE134D71A658D3E /* AuthorizationMethods+DisplayLogic.swift */; };
+		9878C12FBDF48019919C8881 /* AuthSignUp+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E607C2E3764DC4491FFDCAD /* AuthSignUp+DisplayLogic.swift */; };
 		99042A63F4107D7DDFA7F8AF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8C4E380C5D2DDDB559843C /* TabBarViewController.swift */; };
+		9908DFA35DDB8C5F7C5FC242 /* AuthSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157331BE41155AEE0D6E0589 /* AuthSignInView.swift */; };
 		999936B985405C6585E45EDD /* SavedRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE12E6FA75AED4EB1D22890 /* SavedRecipesView.swift */; };
 		99D1D41B322DD74384FAA5A5 /* GeneralSearchResultPagerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DC4A1DD1B8B6F11FCBFEB /* GeneralSearchResultPagerBuilder.swift */; };
 		9A9328CD6D7EB773C020AEFA /* SavedRecipesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1674AAB9EA59944587F0D94A /* SavedRecipesPresenter.swift */; };
 		9A9ACC13E6FE40FBC4978A4F /* CategorySelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B396542D0DF776B1BED62F /* CategorySelectionInteractor.swift */; };
 		9BE7550F6BD281DC1CC7CAE1 /* CommunityPageDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE0CECAA51AC56DCAF4001 /* CommunityPageDataFlow.swift */; };
+		9BF444FFBB90C176E045E108 /* AuthSignIn+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B2A8D3FE1BCAA158650666 /* AuthSignIn+DisplayLogic.swift */; };
 		9CF04418CBDD12A4B6AC4710 /* GeneralSearchResultPager+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A33A025D43FD4B711D7FB6 /* GeneralSearchResultPager+State.swift */; };
+		9D013E00033A4E0334B11679 /* AuthSignInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913399D29DB717EC8DD1DE9B /* AuthSignInBuilder.swift */; };
 		9D10E9FC90C0D8B5EA323533 /* TasteOnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D31249BB9AD13A5E4AA8F7 /* TasteOnboardingPresenter.swift */; };
 		9EEA8448CC6E1942B66A9D51 /* ResultListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBF5A7585C9EA590E4773E5 /* ResultListInteractor.swift */; };
 		9F7213C01ADEFA50745278BA /* CommunityCreation+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E92E2F2B9A6F2EA371891D /* CommunityCreation+TableView.swift */; };
 		9FBF6F7060825D02216CB4BB /* CommunityPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC3D94E2A2EF901E039EE8D /* CommunityPageInteractor.swift */; };
 		A4EE1783E93857830836BE3D /* RecipePageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DE785E0D5A3681033B77F /* RecipePageBuilder.swift */; };
 		A53073644ABF1A023602C641 /* ShoppingListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0887CA26D625261DE78882 /* ShoppingListProvider.swift */; };
+		A66A620884CB91A28BBE0881 /* AuthSignInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950D396D6E79FDDA80C5C94 /* AuthSignInInteractor.swift */; };
 		A945F7462046964328C6DC9A /* GeneralSearch+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E6BE91E93EACFB02A9F193 /* GeneralSearch+State.swift */; };
 		AA81DDD5255FB6239F29999E /* CategorySelectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C3F53A93B94BF8E26416D /* CategorySelectionBuilder.swift */; };
+		AAC3FE5D68525270453B4ECC /* CommunitiesListDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AFDF0CBC0EA0974524565 /* CommunitiesListDataFlow.swift */; };
+		AAE8416F917131BE03B19F60 /* AuthSignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA8F443D623BBB062F7D397 /* AuthSignInPresenter.swift */; };
 		AB6DA83A48B17288BA388F58 /* GeneralSearchResult+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016591C9C5B6CD6251702A91 /* GeneralSearchResult+Network.swift */; };
+		AC411F0FB796CEB3D47E4952 /* CommunitiesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FDC10BF9EB0FCFE69180A /* CommunitiesListService.swift */; };
+		AC8011EDF297551D86BC6988 /* AuthSignInDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D1C26D8D607265C3101CC9 /* AuthSignInDataFlow.swift */; };
 		ADA3C8A7F7045DBA9F22786A /* CategorySelection+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB4B61D4D252ABA7FA1C67 /* CategorySelection+DisplayLogic.swift */; };
 		ADF610EF75CB586C95F28040 /* SavedRecipesEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BFE7C9C94B38F339DFABD5 /* SavedRecipesEndpoints.swift */; };
 		AF5F9BEF8EC144A322BF7F92 /* InstructionSelectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541021E050EF565BC7038098 /* InstructionSelectionBuilder.swift */; };
@@ -330,40 +357,48 @@
 		B8ED9EE6B3B1990A3D716B18 /* InstructionSelection+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392248BD197C79A65B2F515E /* InstructionSelection+State.swift */; };
 		B99F2311E43A9ECEACF14CBE /* Main+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C4C193F38F0DB51B6D4D36 /* Main+DisplayLogic.swift */; };
 		B9B22FD2BC3AC275EB675129 /* SearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815B7FADDC494D5A2276DA01 /* SearchProvider.swift */; };
+		BA40FD0489CF46AE68F568D2 /* CommunitiesList+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B1700B88DDA23BFFA5657F /* CommunitiesList+DisplayLogic.swift */; };
 		BAE24BBE66A9884AEE2789E1 /* GeneralSearchResultProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C9F7EECCBF4895C33D68C /* GeneralSearchResultProvider.swift */; };
 		BAE493D8A1379F5C666AF579 /* CommunityCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFCD187DB6E3761A27CC49F /* CommunityCreationView.swift */; };
+		BC497D0450F2F8BDB70563DC /* AuthSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2A33D464FE01971562FEEB /* AuthSignInService.swift */; };
 		BCF377EA530B80173954547A /* TasteOnboarding+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7705EE07FE17A8CBD9E6D13 /* TasteOnboarding+TableView.swift */; };
 		BE48268A1D6C473138844A39 /* GeneralSearchResultDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8823DCF67D56D2E524BCEDB2 /* GeneralSearchResultDataFlow.swift */; };
-		BF2E4D0E58317C9EA7F87AC0 /* AuthorizationMethodsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FAF5118B4BE466923BC973 /* AuthorizationMethodsPresenter.swift */; };
 		BFF78747FA123A5AC7D9B2AF /* ShoppingListEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097E3291F814374FB41812F8 /* ShoppingListEndpoints.swift */; };
 		C184F171976E5C9C900B42CB /* GeneralSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918B5E6583A561728BD7386A /* GeneralSearchPresenter.swift */; };
 		C2B08AE0F232E745D01C9B0D /* CategorySelection+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB6CB6C9150CF9B99D6D2E /* CategorySelection+State.swift */; };
 		C41B9ADA5BFEAD638EB1A0EC /* GeneralSearchResult+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDE5D46B7BCE177298A3C0 /* GeneralSearchResult+DisplayLogic.swift */; };
 		C4427A826A600A5277E6E13A /* GeneralSearch+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB2D04856BC2AE713AE73E /* GeneralSearch+Network.swift */; };
 		C65E8B10FB492DCAFB2D3CCD /* TasteOnboardingDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79950BCA21CB6775CF56E9B4 /* TasteOnboardingDataFlow.swift */; };
+		C6B86A6E892C3D385569BD61 /* CommunitiesListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2C89376E5026560A55C0DB /* CommunitiesListProvider.swift */; };
 		C704FF83E8458116EDFD94F9 /* SearchEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46487091F1E45FDE156F288 /* SearchEndpoints.swift */; };
+		C763EF248EEEB31D72F7E66B /* AuthSignUp+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C023EC3F194E0A5D2211A8 /* AuthSignUp+State.swift */; };
 		C7B494E866C98043A7A0CD3A /* ResultListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902534FE907C592A3AEA971C /* ResultListService.swift */; };
 		C7E22099BA9E8BF2A245A8FC /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E38DD9C7E6DACF3C99E3D /* MainInteractor.swift */; };
+		CCAAC00AB1EB7FE29D04F3F8 /* AuthSignUpEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91C0BD638B964DD73623A88 /* AuthSignUpEndpoints.swift */; };
 		CEEF694017A980FFC8FEB0FA /* CommunityCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC2308195D8818C5730E508 /* CommunityCreationService.swift */; };
 		CF35C30D39FA74B8469E795C /* RecipeCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BDB697D0EE0D9183EE131D /* RecipeCreationInteractor.swift */; };
 		D04B48B888328560E62D105A /* ShoppingList+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B5218A3E69EFF3B2DA521 /* ShoppingList+DisplayLogic.swift */; };
 		D156E20086C1E0E3329E48A8 /* IngredientSelectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C1AD4FDBE13FFE0B8668F /* IngredientSelectionBuilder.swift */; };
+		D7E52687A59C0CC76022AB2E /* AuthSignUpDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2141663759D044BAD0742 /* AuthSignUpDataFlow.swift */; };
 		D93373529D13FF3B7D8CC4BE /* CategorySelectionDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80CE728A1A3EEB1A14E0C1E /* CategorySelectionDataFlow.swift */; };
 		DA3D792250891F14E5F25C4E /* CategorySelection+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2E0DF79BD255B0D4AEDE18 /* CategorySelection+TableView.swift */; };
 		DA7EA6E61A5082034ACE9CC9 /* InstructionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EECF2EF9FAB814A512930 /* InstructionSelectionView.swift */; };
+		DB3CAB14EC718172D5974C67 /* CommunitiesListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFB1A18833086F158B70B05 /* CommunitiesListBuilder.swift */; };
 		DDAC915433FE03D062CA8103 /* CommunityPage+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC46619C2AC1E3F5D79BBD2 /* CommunityPage+DisplayLogic.swift */; };
 		DDB3571C5F5E21FAD1B1CFDA /* SavedRecipesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B2F8C25BF0876464EB681 /* SavedRecipesService.swift */; };
+		DE2283435D0CBA1D8BA77683 /* AuthSignUp+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0909F67A77FC6E7EE51152 /* AuthSignUp+Network.swift */; };
 		E139E412EFBB9587678D0B71 /* ShoppingListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4014846246EB44965AE3BE63 /* ShoppingListPresenter.swift */; };
 		E1C8443C546E9A1DD989446D /* GeneralSearchResultPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DE978B977888E30F7F1C57 /* GeneralSearchResultPagerViewController.swift */; };
 		E7CF7E78993031235E9B8DD6 /* RecipeCreationEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49C24B6CC46DAC93A76557F /* RecipeCreationEndpoints.swift */; };
 		E7FEB56161C38F13779D0B5A /* MainDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D55BA106ED770E39A5CC310 /* MainDataFlow.swift */; };
 		E825212680547819C469C25A /* CommunityCreationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBC88277714A21039E8B5F1 /* CommunityCreationBuilder.swift */; };
-		E83250F24AD604A3568E6DA8 /* AuthorizationMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3D349063F98D20BDC2261 /* AuthorizationMethodsView.swift */; };
 		E89BC2706FE7E2B32CFD8EF5 /* CommunityPage+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF3D2EB663AE8ADA61F244A /* CommunityPage+State.swift */; };
 		EB5B47FDBBB032DCE420E84F /* SavedRecipes+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0417BA7D098AFC62E57F3 /* SavedRecipes+Network.swift */; };
 		EBC0D18F2F8C4A26699658AB /* ResultListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687B94BC482009DE7E015D0F /* ResultListProvider.swift */; };
 		EC9D0D8075852CD55A4F605A /* Main+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03264A14699ADAAE3DD7DDD /* Main+Network.swift */; };
+		EE3061358D1959077F751EA8 /* AuthSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8B8C5227C91965A76EBFF8 /* AuthSignUpView.swift */; };
 		EE77B799A7C5211A9AEA6494 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B051FD2AB5312324AA4BD73 /* SearchViewController.swift */; };
+		F0716C9575C42FC297E7552E /* AuthSignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE0AADFDE44B75FF5D19753 /* AuthSignUpService.swift */; };
 		F10574718C1441653D9CA41B /* AuthorizationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B413A0C8F4A8310C68054E /* AuthorizationBuilder.swift */; };
 		F3603CCEDD2BD3A80EC538C2 /* GeneralSearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A3A31E8AD2B4BE7A9EB8D3 /* GeneralSearchProvider.swift */; };
 		F3DBBB64B1B2706372B61C2A /* Search+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3524BCD6FF838F0B33172E7 /* Search+State.swift */; };
@@ -371,14 +406,13 @@
 		F60DA28AD741298C3E4C9DA3 /* CommunityCreationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7B7B060738F27B3200323 /* CommunityCreationProvider.swift */; };
 		F89CA6262F31EB11EC19172E /* GeneralSearchResultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975D2A9E390A79B016B9310B /* GeneralSearchResultService.swift */; };
 		F8A9BB7E11F8F46E8DF0139C /* CommunityPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0E0E2F2803D27C74877A1C /* CommunityPageService.swift */; };
-		F8AF1D558EFE4D56548C6C07 /* AuthorizationMethods+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74417EEAB4E762A7B64C7E21 /* AuthorizationMethods+State.swift */; };
+		F921EEDEBB0C70BE2B7466A6 /* AuthSignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF881D6A066D3241F836E02 /* AuthSignUpInteractor.swift */; };
 		F97FE5D51F5D8963316B81C1 /* IngredientSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2327040E28E354F3A4E23E81 /* IngredientSelectionPresenter.swift */; };
-		F997A60DF5272C7BDA3EC399 /* AuthorizationMethodsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E13741501C103D650ED9A89 /* AuthorizationMethodsInteractor.swift */; };
 		FC09E9C8F667213F6FA8EF05 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E499CA47D5EE3FA98DD9CE /* SplashScreenView.swift */; };
+		FD112B7A65CCE884D6C7ACD8 /* CommunitiesList+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0B660677E8E6CFC20CD7FC /* CommunitiesList+Network.swift */; };
 		FD8BF68ED67C75B74DC5CC9F /* RecipePage+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754C35D82BC57F157B14B396 /* RecipePage+State.swift */; };
 		FEA77509A6545CBBF958BEBA /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060500EC2613FD0DB3E0C2FC /* AuthorizationProvider.swift */; };
 		FFF2BEA15E29E67D85CC00F3 /* Authorization+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EC5DF50527232595C879B9 /* Authorization+State.swift */; };
-		FFFBEA66EB1BA12B5B95A1EF /* AuthorizationMethods+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2706A29A06FDB38FBA0596 /* AuthorizationMethods+Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -386,29 +420,35 @@
 		029A8C3919856A146BDEC2F9 /* CommunityCreation+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+DisplayLogic.swift"; sourceTree = "<group>"; };
 		060500EC2613FD0DB3E0C2FC /* AuthorizationProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
 		06971F63E3624F1595BA2975 /* RecipePage+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RecipePage+DisplayLogic.swift"; sourceTree = "<group>"; };
+		0759E6A1385FE4E012BE7CBB /* CommunitiesList+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunitiesList+State.swift"; sourceTree = "<group>"; };
 		08B2360F0296175973F45700 /* RecipePageEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipePageEndpoints.swift; sourceTree = "<group>"; };
 		090022874B0B9BCF15166DAC /* RecipeCreationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeCreationService.swift; sourceTree = "<group>"; };
 		097E3291F814374FB41812F8 /* ShoppingListEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShoppingListEndpoints.swift; sourceTree = "<group>"; };
+		09A295825AD9761F42D931AE /* CommunitiesList+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunitiesList+TableView.swift"; sourceTree = "<group>"; };
 		0A2290FDCA64B87988D01394 /* IngredientSelectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionViewController.swift; sourceTree = "<group>"; };
 		0BCB72DB50A1C6AABC4D6ADB /* TabBarBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarBuilder.swift; sourceTree = "<group>"; };
 		0BFA128855B1E07BBB8CA9BD /* SavedRecipesBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesBuilder.swift; sourceTree = "<group>"; };
 		0C5DE785E0D5A3681033B77F /* RecipePageBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipePageBuilder.swift; sourceTree = "<group>"; };
 		0FCCE98BF1D8C467E7886A52 /* GeneralSearchBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchBuilder.swift; sourceTree = "<group>"; };
 		0FD94B2F3F69490438473AC0 /* CategorySelectionEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionEndpoints.swift; sourceTree = "<group>"; };
-		1212FB89A343245D596BFF6A /* AuthorizationMethodsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationMethodsViewController.swift; sourceTree = "<group>"; };
+		101AC815BC1D81ACB0C004E5 /* AuthSignUpPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpPresenter.swift; sourceTree = "<group>"; };
 		12AB2D04856BC2AE713AE73E /* GeneralSearch+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "GeneralSearch+Network.swift"; sourceTree = "<group>"; };
+		157331BE41155AEE0D6E0589 /* AuthSignInView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInView.swift; sourceTree = "<group>"; };
 		1674AAB9EA59944587F0D94A /* SavedRecipesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesPresenter.swift; sourceTree = "<group>"; };
 		177B2F8C25BF0876464EB681 /* SavedRecipesService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesService.swift; sourceTree = "<group>"; };
 		1BC2308195D8818C5730E508 /* CommunityCreationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityCreationService.swift; sourceTree = "<group>"; };
-		1BFF50E75AE134D71A658D3E /* AuthorizationMethods+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthorizationMethods+DisplayLogic.swift"; sourceTree = "<group>"; };
-		1E13741501C103D650ED9A89 /* AuthorizationMethodsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationMethodsInteractor.swift; sourceTree = "<group>"; };
+		1CBCD21077E619B37F8AD5A3 /* CommunitiesListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListView.swift; sourceTree = "<group>"; };
+		1D8B8C5227C91965A76EBFF8 /* AuthSignUpView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpView.swift; sourceTree = "<group>"; };
+		1DE0AADFDE44B75FF5D19753 /* AuthSignUpService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpService.swift; sourceTree = "<group>"; };
 		1E5607A3D19C89DE4128CAA9 /* RecipeCreation+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RecipeCreation+DisplayLogic.swift"; sourceTree = "<group>"; };
 		1EEB420ED94DDBF4C89634B3 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		1F2F53220FA55AE50B1C5123 /* ShoppingListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		201EECF2EF9FAB814A512930 /* InstructionSelectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InstructionSelectionView.swift; sourceTree = "<group>"; };
 		214C75F81B17989DC3384971 /* CategorySelectionService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionService.swift; sourceTree = "<group>"; };
+		222CFC1886890B18B4342CAF /* AuthSignUpProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpProvider.swift; sourceTree = "<group>"; };
 		2327040E28E354F3A4E23E81 /* IngredientSelectionPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionPresenter.swift; sourceTree = "<group>"; };
 		24B3016EDC01A906E14C2A9C /* SearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		256AFDF0CBC0EA0974524565 /* CommunitiesListDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListDataFlow.swift; sourceTree = "<group>"; };
 		25FC169D79D96A01A7A31549 /* GeneralSearchResultPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultPresenter.swift; sourceTree = "<group>"; };
 		26E05AFFEF7DBDF5A0323D42 /* IngredientSelectionDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionDataFlow.swift; sourceTree = "<group>"; };
 		293B5B244BF5B14A2A04C404 /* IngredientSelectionEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionEndpoints.swift; sourceTree = "<group>"; };
@@ -419,9 +459,9 @@
 		312A4A523997D7A8D2ABAEA9 /* CommunityCreationInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityCreationInteractor.swift; sourceTree = "<group>"; };
 		33EE9B7A7249F2E3149D1B16 /* InstructionSelectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InstructionSelectionViewController.swift; sourceTree = "<group>"; };
 		3474B527CB4C8B574A280E9F /* InstructionSelectionDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InstructionSelectionDataFlow.swift; sourceTree = "<group>"; };
+		34D1C26D8D607265C3101CC9 /* AuthSignInDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInDataFlow.swift; sourceTree = "<group>"; };
 		361239466FD563B871F41B1D /* ShoppingList+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ShoppingList+Network.swift"; sourceTree = "<group>"; };
 		37F994B30434137C11987C46 /* MainView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		386D6E0E8723848D672C2D7B /* AuthorizationMethodsDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationMethodsDataFlow.swift; sourceTree = "<group>"; };
 		38E6BE91E93EACFB02A9F193 /* GeneralSearch+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "GeneralSearch+State.swift"; sourceTree = "<group>"; };
 		392248BD197C79A65B2F515E /* InstructionSelection+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "InstructionSelection+State.swift"; sourceTree = "<group>"; };
 		3B3DC4A1DD1B8B6F11FCBFEB /* GeneralSearchResultPagerBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultPagerBuilder.swift; sourceTree = "<group>"; };
@@ -436,6 +476,7 @@
 		40A1A5E27B96732F1441E6DA /* RecipeCreationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeCreationViewController.swift; sourceTree = "<group>"; };
 		428DC6CB97812F11968F02F5 /* CommunityPageBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageBuilder.swift; sourceTree = "<group>"; };
 		42EE055712A36449C793A9D6 /* CommunityPagePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPagePresenter.swift; sourceTree = "<group>"; };
+		43F1B3284B87F3C670432FF7 /* CommunitiesListEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListEndpoints.swift; sourceTree = "<group>"; };
 		44E499CA47D5EE3FA98DD9CE /* SplashScreenView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		45BFE7C9C94B38F339DFABD5 /* SavedRecipesEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesEndpoints.swift; sourceTree = "<group>"; };
 		4648E42EB56BA8C3955AE3BE /* SplashScreen+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SplashScreen+State.swift"; sourceTree = "<group>"; };
@@ -454,12 +495,14 @@
 		59E989571108CDA2EDB8A7DC /* InstructionSelection+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "InstructionSelection+TableView.swift"; sourceTree = "<group>"; };
 		5DD0417BA7D098AFC62E57F3 /* SavedRecipes+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SavedRecipes+Network.swift"; sourceTree = "<group>"; };
 		5DF3A23AB0DE82F3F247E492 /* Pods-Apron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.debug.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.debug.xcconfig"; sourceTree = "<group>"; };
+		5E607C2E3764DC4491FFDCAD /* AuthSignUp+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthSignUp+DisplayLogic.swift"; sourceTree = "<group>"; };
 		60F9E14D59241B1C549A8E73 /* SearchService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		61138FD069C8CE399D421F93 /* CommunityCreationDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityCreationDataFlow.swift; sourceTree = "<group>"; };
 		61E7C6A1FA1B33EBE5403E90 /* IngredientSelectionProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionProvider.swift; sourceTree = "<group>"; };
 		64C4C193F38F0DB51B6D4D36 /* Main+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Main+DisplayLogic.swift"; sourceTree = "<group>"; };
 		65FD1ED3C1E56AB0691090F4 /* SavedRecipesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesViewController.swift; sourceTree = "<group>"; };
 		66A038ECD06E85F2C7329C2F /* RecipeCreation+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RecipeCreation+State.swift"; sourceTree = "<group>"; };
+		66C541CF19298C3BD75082CD /* CommunitiesListInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListInteractor.swift; sourceTree = "<group>"; };
 		687B94BC482009DE7E015D0F /* ResultListProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListProvider.swift; sourceTree = "<group>"; };
 		6BBF5A7585C9EA590E4773E5 /* ResultListInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListInteractor.swift; sourceTree = "<group>"; };
 		6C7D749F247CA15610A586CA /* SavedRecipesDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesDataFlow.swift; sourceTree = "<group>"; };
@@ -470,6 +513,9 @@
 		6D0A71D9277A12EE0067E580 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D0A71E7277AEE6B0067E580 /* InterfaceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceConfigurator.swift; sourceTree = "<group>"; };
 		6D0A7207277AF1D20067E580 /* ThirdPartiesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartiesConfigurator.swift; sourceTree = "<group>"; };
+		6D1E31D7283652320083C350 /* CommunitiesListInitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesListInitialState.swift; sourceTree = "<group>"; };
+		6D1E31DB283653410083C350 /* CommunityListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityListHeaderView.swift; sourceTree = "<group>"; };
+		6D1E31DD283659640083C350 /* CommunitiesList+InfiniteScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunitiesList+InfiniteScroll.swift"; sourceTree = "<group>"; };
 		6D22677E282D4298001FFE6D /* CommunityCreation+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+Category.swift"; sourceTree = "<group>"; };
 		6D226783282D4788001FFE6D /* CommunityCreationInitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCreationInitialState.swift; sourceTree = "<group>"; };
 		6D226785282D4B47001FFE6D /* CommunityCreation+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+TextField.swift"; sourceTree = "<group>"; };
@@ -483,10 +529,13 @@
 		6D328D29282E30BB001DF3BE /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		6D369A14281185E000F80B4E /* IngredientSelection+PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IngredientSelection+PickerView.swift"; sourceTree = "<group>"; };
 		6D3DD885283508AD00E0C06D /* DynamicCollectionDelegateCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCollectionDelegateCellViewModel.swift; sourceTree = "<group>"; };
+		6D3DD889283627DB00E0C06D /* CommunitiesListRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesListRequestBody.swift; sourceTree = "<group>"; };
 		6D40954D282BC54D007207A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6D55BA106ED770E39A5CC310 /* MainDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainDataFlow.swift; sourceTree = "<group>"; };
+		6D5CBC6A28375A01005CE44F /* AuthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationController.swift; sourceTree = "<group>"; };
+		6D5CBC6C283768B5005CE44F /* AuthSignIn+Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthSignIn+Button.swift"; sourceTree = "<group>"; };
+		6D5CBC6E28376C93005CE44F /* AuthSignUp+Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthSignUp+Button.swift"; sourceTree = "<group>"; };
 		6D64F8B62784AF9E00F9EEC0 /* Authorization+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Authorization+Buttons.swift"; sourceTree = "<group>"; };
-		6D64F8BB278561B900F9EEC0 /* AuthorizationMethods+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthorizationMethods+Buttons.swift"; sourceTree = "<group>"; };
 		6D64F8C627859CBA00F9EEC0 /* TasteOnboardingScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteOnboardingScreenType.swift; sourceTree = "<group>"; };
 		6D64F8CA2785A62900F9EEC0 /* TasteOnboardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteOnboardingCell.swift; sourceTree = "<group>"; };
 		6D64F8CC2785AEC400F9EEC0 /* TasteOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteOnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -623,9 +672,8 @@
 		6DF005B22833B37900DBF439 /* MyCommunityCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommunityCollectionViewModel.swift; sourceTree = "<group>"; };
 		6DF005B62833C57D00DBF439 /* DynamicCommunityCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCommunityCollectionView.swift; sourceTree = "<group>"; };
 		6DF9CD4727F091C70008FEEA /* RecipeCreation+Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeCreation+Sections.swift"; sourceTree = "<group>"; };
+		6DFBBFEE9D0167D55AB658D6 /* AuthSignUpBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpBuilder.swift; sourceTree = "<group>"; };
 		6F28F083ED902BADDD1B98CF /* ResultListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListView.swift; sourceTree = "<group>"; };
-		74417EEAB4E762A7B64C7E21 /* AuthorizationMethods+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthorizationMethods+State.swift"; sourceTree = "<group>"; };
-		748B3887860827C6FB304FB5 /* AuthorizationMethodsBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationMethodsBuilder.swift; sourceTree = "<group>"; };
 		753C5C01545DAA070F0C2B2B /* ResultList+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ResultList+State.swift"; sourceTree = "<group>"; };
 		754C35D82BC57F157B14B396 /* RecipePage+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RecipePage+State.swift"; sourceTree = "<group>"; };
 		758256F517491161017DDCEB /* ShoppingListInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShoppingListInteractor.swift; sourceTree = "<group>"; };
@@ -641,9 +689,11 @@
 		7BBC88277714A21039E8B5F1 /* CommunityCreationBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityCreationBuilder.swift; sourceTree = "<group>"; };
 		7C354F57425B56A05BA01527 /* RecipePageInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipePageInteractor.swift; sourceTree = "<group>"; };
 		7ED948E3AE89714C6AE619A4 /* ResultListBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListBuilder.swift; sourceTree = "<group>"; };
+		7FFB1A18833086F158B70B05 /* CommunitiesListBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListBuilder.swift; sourceTree = "<group>"; };
 		800C2EFF8C436F121909E6CF /* CategorySelection+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CategorySelection+Network.swift"; sourceTree = "<group>"; };
 		815B7FADDC494D5A2276DA01 /* SearchProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchProvider.swift; sourceTree = "<group>"; };
 		8208C63D3849C2C3F9A6D35F /* CommunityPageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageView.swift; sourceTree = "<group>"; };
+		82B08C5B9409870F40CC472F /* CommunitiesListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListViewController.swift; sourceTree = "<group>"; };
 		83E92E2F2B9A6F2EA371891D /* CommunityCreation+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+TableView.swift"; sourceTree = "<group>"; };
 		855722DD6C81B9255DD82F12 /* GeneralSearchService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchService.swift; sourceTree = "<group>"; };
 		868D69A086AA705B0CD62C49 /* IngredientSelection+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "IngredientSelection+State.swift"; sourceTree = "<group>"; };
@@ -653,7 +703,10 @@
 		8823DCF67D56D2E524BCEDB2 /* GeneralSearchResultDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultDataFlow.swift; sourceTree = "<group>"; };
 		8D2E0DF79BD255B0D4AEDE18 /* CategorySelection+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CategorySelection+TableView.swift"; sourceTree = "<group>"; };
 		8DA85673EFD4DED2384D1283 /* ResultListEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListEndpoints.swift; sourceTree = "<group>"; };
+		8EE2141663759D044BAD0742 /* AuthSignUpDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpDataFlow.swift; sourceTree = "<group>"; };
+		8F27003AC9EDB7145EEDE8BA /* AuthSignUpViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpViewController.swift; sourceTree = "<group>"; };
 		902534FE907C592A3AEA971C /* ResultListService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListService.swift; sourceTree = "<group>"; };
+		913399D29DB717EC8DD1DE9B /* AuthSignInBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInBuilder.swift; sourceTree = "<group>"; };
 		913E7EAB0C7535A1F27147AB /* RecipeCreationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeCreationView.swift; sourceTree = "<group>"; };
 		918B5E6583A561728BD7386A /* GeneralSearchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchPresenter.swift; sourceTree = "<group>"; };
 		91E02384C3B98C4EBF41DFC4 /* MainPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
@@ -666,19 +719,23 @@
 		97E2617B4728D46FD2C3A1FA /* SplashScreenViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		98E369B8F76ACB7AF0A4B7E7 /* GeneralSearchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchViewController.swift; sourceTree = "<group>"; };
 		99638E284A319CD12DEC3C63 /* CommunityCreation+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+State.swift"; sourceTree = "<group>"; };
-		9AC3D349063F98D20BDC2261 /* AuthorizationMethodsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationMethodsView.swift; sourceTree = "<group>"; };
 		9B051FD2AB5312324AA4BD73 /* SearchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		9C2706A29A06FDB38FBA0596 /* AuthorizationMethods+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthorizationMethods+Network.swift"; sourceTree = "<group>"; };
+		9B0909F67A77FC6E7EE51152 /* AuthSignUp+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthSignUp+Network.swift"; sourceTree = "<group>"; };
+		9C2C89376E5026560A55C0DB /* CommunitiesListProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListProvider.swift; sourceTree = "<group>"; };
 		9D08EBF0F47DD37AD9E09732 /* RecipePageService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipePageService.swift; sourceTree = "<group>"; };
 		9D58AD9F90CA47DC7C9955E8 /* Main+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Main+State.swift"; sourceTree = "<group>"; };
 		9DC0FFCD4A1E4D6873AE1558 /* SearchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		9DD8DA4C43D8C4223F87139A /* AuthSignInViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInViewController.swift; sourceTree = "<group>"; };
 		9FBA7D80E3D7AF672EF8D010 /* GeneralSearchResultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultViewController.swift; sourceTree = "<group>"; };
 		9FDB1D5F0C288CA9DB7A80D3 /* TabBar+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TabBar+State.swift"; sourceTree = "<group>"; };
 		A009B46356CB27A1A26C5E59 /* IngredientSelection+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "IngredientSelection+Network.swift"; sourceTree = "<group>"; };
 		A06C1AD4FDBE13FFE0B8668F /* IngredientSelectionBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionBuilder.swift; sourceTree = "<group>"; };
+		A07C08BB8469919CC72CB260 /* CommunitiesListPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListPresenter.swift; sourceTree = "<group>"; };
+		A3B2A8D3FE1BCAA158650666 /* AuthSignIn+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthSignIn+DisplayLogic.swift"; sourceTree = "<group>"; };
 		A4F30F4684F1F4C7CEBAF021 /* CommunityPageEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageEndpoints.swift; sourceTree = "<group>"; };
 		A7B36805667DF5BDDE4F4B71 /* GeneralSearch+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "GeneralSearch+TableView.swift"; sourceTree = "<group>"; };
-		A90B47A3ED06E4261A092BD4 /* AuthorizationMethodsProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationMethodsProvider.swift; sourceTree = "<group>"; };
+		A91C0BD638B964DD73623A88 /* AuthSignUpEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpEndpoints.swift; sourceTree = "<group>"; };
+		A9B1700B88DDA23BFFA5657F /* CommunitiesList+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunitiesList+DisplayLogic.swift"; sourceTree = "<group>"; };
 		A9E50276077F0B8C5666E254 /* SavedRecipesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesProvider.swift; sourceTree = "<group>"; };
 		AC9E38DD9C7E6DACF3C99E3D /* MainInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		AE6849C056F1F733C00C512C /* GeneralSearchResultInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultInteractor.swift; sourceTree = "<group>"; };
@@ -693,31 +750,37 @@
 		BB6FFBC5BF06AAE6851064D6 /* CommunityCreationPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityCreationPresenter.swift; sourceTree = "<group>"; };
 		BD3F8B8739236EF57AEF9789 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		BDA4D6E704C38AEAE935BBAA /* SplashScreenBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashScreenBuilder.swift; sourceTree = "<group>"; };
+		BE91DA2AA19C7D6F628A1BE2 /* AuthSignInProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInProvider.swift; sourceTree = "<group>"; };
 		C0EC5DF50527232595C879B9 /* Authorization+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Authorization+State.swift"; sourceTree = "<group>"; };
 		C17DD42BA0808F4375485A95 /* InstructionSelection+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "InstructionSelection+DisplayLogic.swift"; sourceTree = "<group>"; };
 		C35AFF51338FA1C454900A1D /* MainBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
 		C47B0AC440E5F35F97ABD2A6 /* SavedRecipesInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesInteractor.swift; sourceTree = "<group>"; };
 		C7705EE07FE17A8CBD9E6D13 /* TasteOnboarding+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TasteOnboarding+TableView.swift"; sourceTree = "<group>"; };
+		C9950E6C37D42C557E64E3A8 /* AuthSignInEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInEndpoints.swift; sourceTree = "<group>"; };
+		CA2A33D464FE01971562FEEB /* AuthSignInService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInService.swift; sourceTree = "<group>"; };
 		CA3B1821A380B99D8B681107 /* TasteOnboardingViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TasteOnboardingViewController.swift; sourceTree = "<group>"; };
 		CA697D967B7376B82A699D36 /* RecipeCreationPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeCreationPresenter.swift; sourceTree = "<group>"; };
 		CAB8C8B880086BEEB171FDDD /* SearchBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
 		CCC3D94E2A2EF901E039EE8D /* CommunityPageInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageInteractor.swift; sourceTree = "<group>"; };
 		CCCF0D88CD14ECC51CAE2B60 /* ShoppingListService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShoppingListService.swift; sourceTree = "<group>"; };
 		D04A71B847737ADBDF7715BE /* GeneralSearchResultBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultBuilder.swift; sourceTree = "<group>"; };
+		D06D9E39DDB60A33AB425287 /* AuthSignIn+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthSignIn+State.swift"; sourceTree = "<group>"; };
 		D0B94CD0C05AABD2F7BD0A30 /* AuthorizationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		D2EC815DFC0626B913CABB3E /* IngredientSelectionInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionInteractor.swift; sourceTree = "<group>"; };
 		D2F95BFE04883F525E09A860 /* ResultListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListViewController.swift; sourceTree = "<group>"; };
 		D3524BCD6FF838F0B33172E7 /* Search+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Search+State.swift"; sourceTree = "<group>"; };
-		D3FAF5118B4BE466923BC973 /* AuthorizationMethodsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationMethodsPresenter.swift; sourceTree = "<group>"; };
+		D37FDC10BF9EB0FCFE69180A /* CommunitiesListService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunitiesListService.swift; sourceTree = "<group>"; };
 		D42B18E92F1FAAEEBC024110 /* ResultList+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ResultList+DisplayLogic.swift"; sourceTree = "<group>"; };
 		D4A3A31E8AD2B4BE7A9EB8D3 /* GeneralSearchProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchProvider.swift; sourceTree = "<group>"; };
 		D5F63C3D47E2F8521EFD7D63 /* GeneralSearchEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchEndpoints.swift; sourceTree = "<group>"; };
 		D60C3F53A93B94BF8E26416D /* CategorySelectionBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionBuilder.swift; sourceTree = "<group>"; };
 		D7D31249BB9AD13A5E4AA8F7 /* TasteOnboardingPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TasteOnboardingPresenter.swift; sourceTree = "<group>"; };
 		D81C9F7EECCBF4895C33D68C /* GeneralSearchResultProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultProvider.swift; sourceTree = "<group>"; };
+		DE0B660677E8E6CFC20CD7FC /* CommunitiesList+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunitiesList+Network.swift"; sourceTree = "<group>"; };
 		DE149D786CD0C9AECC7CF65F /* CommunityPageProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageProvider.swift; sourceTree = "<group>"; };
 		DEFB6CB6C9150CF9B99D6D2E /* CategorySelection+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CategorySelection+State.swift"; sourceTree = "<group>"; };
 		E2B59F70578E2D1841886005 /* TabBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		E2C023EC3F194E0A5D2211A8 /* AuthSignUp+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthSignUp+State.swift"; sourceTree = "<group>"; };
 		E3E4FCB8D1D4E430345B246D /* RecipePage+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RecipePage+Network.swift"; sourceTree = "<group>"; };
 		E5A7B7B060738F27B3200323 /* CommunityCreationProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityCreationProvider.swift; sourceTree = "<group>"; };
 		E6DDFD81EFB0AFDB3F181543 /* ResultListPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListPresenter.swift; sourceTree = "<group>"; };
@@ -734,7 +797,9 @@
 		EDF3147E9AF39A6BE468E87F /* TasteOnboarding+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TasteOnboarding+Network.swift"; sourceTree = "<group>"; };
 		EEB0DEAA2991183E9F388612 /* GeneralSearchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchInteractor.swift; sourceTree = "<group>"; };
 		EEFD075EBE8C6C6B9765A10B /* CommunityCreation+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+Network.swift"; sourceTree = "<group>"; };
+		EFF881D6A066D3241F836E02 /* AuthSignUpInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignUpInteractor.swift; sourceTree = "<group>"; };
 		F025921D56357E3AFF4A52E9 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
+		F0AB1398FC49914A218FC7E8 /* AuthSignIn+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthSignIn+Network.swift"; sourceTree = "<group>"; };
 		F27F9B751A7FC15AF4D8C5F8 /* RecipePageDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipePageDataFlow.swift; sourceTree = "<group>"; };
 		F37E28319AA99C4A2987BC6B /* GeneralSearchResultEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultEndpoints.swift; sourceTree = "<group>"; };
 		F49C24B6CC46DAC93A76557F /* RecipeCreationEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeCreationEndpoints.swift; sourceTree = "<group>"; };
@@ -744,10 +809,12 @@
 		F712B1ABA5D1D2C95608376E /* MainViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F72DA1AAE2E03BBCAEBEAE85 /* SavedRecipes+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SavedRecipes+State.swift"; sourceTree = "<group>"; };
 		F7EB4B61D4D252ABA7FA1C67 /* CategorySelection+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CategorySelection+DisplayLogic.swift"; sourceTree = "<group>"; };
+		F950D396D6E79FDDA80C5C94 /* AuthSignInInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInInteractor.swift; sourceTree = "<group>"; };
 		FD60C41068BA5C71E96F27FC /* RecipeCreation+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RecipeCreation+Network.swift"; sourceTree = "<group>"; };
 		FDDDD93731865BDB1200E4AE /* Search+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Search+TableView.swift"; sourceTree = "<group>"; };
 		FDF7244590BC86BC4AAFC12F /* CategorySelectionPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionPresenter.swift; sourceTree = "<group>"; };
 		FE0E0E2F2803D27C74877A1C /* CommunityPageService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageService.swift; sourceTree = "<group>"; };
+		FFA8F443D623BBB062F7D397 /* AuthSignInPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthSignInPresenter.swift; sourceTree = "<group>"; };
 		FFD03B1CCC4D87F5EDBA6209 /* CommunityPage+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityPage+TableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -763,6 +830,7 @@
 				519C46291315924EE1C31873 /* Pods_Apron.framework in Frameworks */,
 				6DF3F0BB28185EA500B6DAD3 /* FacebookBasics in Frameworks */,
 				6DF3F0B528185D2900B6DAD3 /* OneSignal in Frameworks */,
+				6D1E31D5283642FC0083C350 /* UIScrollView_InfiniteScroll in Frameworks */,
 				6DECD69F2819246A00BEB774 /* PanModal in Frameworks */,
 				6DF3F0BF28185EA500B6DAD3 /* FacebookLogin in Frameworks */,
 				6DF3F0B828185D5D00B6DAD3 /* Sentry in Frameworks */,
@@ -918,14 +986,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		211BB63B1BBA484C9659810D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				9AC3D349063F98D20BDC2261 /* AuthorizationMethodsView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		24A3817B0D3C06D149895B84 /* IngredientSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -951,6 +1011,16 @@
 				6DB8DE2527AC38A000471B0B /* RecipePage+TableView.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		26C528817AD398F4F5B17562 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				A91C0BD638B964DD73623A88 /* AuthSignUpEndpoints.swift */,
+				222CFC1886890B18B4342CAF /* AuthSignUpProvider.swift */,
+				1DE0AADFDE44B75FF5D19753 /* AuthSignUpService.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 		28C3229A40F48FE757785FF3 /* Controller */ = {
@@ -1057,6 +1127,16 @@
 			path = ResultList;
 			sourceTree = "<group>";
 		};
+		3F416F6823603684502AC026 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				C9950E6C37D42C557E64E3A8 /* AuthSignInEndpoints.swift */,
+				BE91DA2AA19C7D6F628A1BE2 /* AuthSignInProvider.swift */,
+				CA2A33D464FE01971562FEEB /* AuthSignInService.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
 		401ED04C902CAAD656DF19AF /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -1087,15 +1167,22 @@
 		4F496F416028B8AACA434493 /* AuthorizationMethods */ = {
 			isa = PBXGroup;
 			children = (
-				F80B85576473C508CA53F6BF /* Controller */,
-				C5B69ACE418CBA77B894EBEC /* Provider */,
-				211BB63B1BBA484C9659810D /* View */,
-				748B3887860827C6FB304FB5 /* AuthorizationMethodsBuilder.swift */,
-				386D6E0E8723848D672C2D7B /* AuthorizationMethodsDataFlow.swift */,
-				1E13741501C103D650ED9A89 /* AuthorizationMethodsInteractor.swift */,
-				D3FAF5118B4BE466923BC973 /* AuthorizationMethodsPresenter.swift */,
+				916D71E02F13F08D50FC18DD /* AuthSignIn */,
+				DA0489F1113D3B709B92F486 /* AuthSignUp */,
 			);
 			path = AuthorizationMethods;
+			sourceTree = "<group>";
+		};
+		5141AB4CAEAE516C670D685A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9DD8DA4C43D8C4223F87139A /* AuthSignInViewController.swift */,
+				A3B2A8D3FE1BCAA158650666 /* AuthSignIn+DisplayLogic.swift */,
+				6D5CBC6C283768B5005CE44F /* AuthSignIn+Button.swift */,
+				F0AB1398FC49914A218FC7E8 /* AuthSignIn+Network.swift */,
+				D06D9E39DDB60A33AB425287 /* AuthSignIn+State.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		546FABB57D6ACB1625CBC120 /* Provider */ = {
@@ -1248,8 +1335,25 @@
 				2904C274EE9D600E5CC4188C /* CategorySelection */,
 				EFE0791EC327C802B3440C37 /* SavedRecipes */,
 				F1441708150560C0F5DA774F /* GeneralSearch */,
+				89A6D9BF10224FBF3CDAF683 /* CommunitiesList */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		6D1E31D6283652260083C350 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6D1E31D7283652320083C350 /* CommunitiesListInitialState.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6D1E31DA283653370083C350 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				6D1E31DB283653410083C350 /* CommunityListHeaderView.swift */,
+			);
+			path = HeaderView;
 			sourceTree = "<group>";
 		};
 		6D226782282D477B001FFE6D /* Common */ = {
@@ -1296,6 +1400,14 @@
 			path = "GoogleService-Info";
 			sourceTree = "<group>";
 		};
+		6D5CBC69283759CE005CE44F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6D5CBC6A28375A01005CE44F /* AuthNavigationController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		6D5CF227C1F8A18D468EAB16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1309,6 +1421,7 @@
 		6D64F8C32785716800F9EEC0 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				6D5CBC69283759CE005CE44F /* Common */,
 				0E6A5C85F5ADA40A14A4A363 /* Authorization */,
 				4F496F416028B8AACA434493 /* AuthorizationMethods */,
 			);
@@ -1826,6 +1939,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7AF71F3207058FAFE05AFF92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				157331BE41155AEE0D6E0589 /* AuthSignInView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		809C462059C24860D824EBB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1833,6 +1954,38 @@
 				D0B94CD0C05AABD2F7BD0A30 /* AuthorizationView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		83DF4E27876B2B6B053B7CB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D8B8C5227C91965A76EBFF8 /* AuthSignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8995EA220FED5E50E2B41207 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6D1E31DA283653370083C350 /* HeaderView */,
+				1CBCD21077E619B37F8AD5A3 /* CommunitiesListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		89A6D9BF10224FBF3CDAF683 /* CommunitiesList */ = {
+			isa = PBXGroup;
+			children = (
+				6D1E31D6283652260083C350 /* Common */,
+				D9AD1050F744EC92CA6E6599 /* Controller */,
+				997ECEA88C2E6703B4BB501C /* Provider */,
+				8995EA220FED5E50E2B41207 /* View */,
+				7FFB1A18833086F158B70B05 /* CommunitiesListBuilder.swift */,
+				256AFDF0CBC0EA0974524565 /* CommunitiesListDataFlow.swift */,
+				66C541CF19298C3BD75082CD /* CommunitiesListInteractor.swift */,
+				A07C08BB8469919CC72CB260 /* CommunitiesListPresenter.swift */,
+			);
+			path = CommunitiesList;
 			sourceTree = "<group>";
 		};
 		8FC2939E0DE755226F5727C8 /* View */ = {
@@ -1846,6 +1999,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		916D71E02F13F08D50FC18DD /* AuthSignIn */ = {
+			isa = PBXGroup;
+			children = (
+				5141AB4CAEAE516C670D685A /* Controller */,
+				3F416F6823603684502AC026 /* Provider */,
+				7AF71F3207058FAFE05AFF92 /* View */,
+				913399D29DB717EC8DD1DE9B /* AuthSignInBuilder.swift */,
+				34D1C26D8D607265C3101CC9 /* AuthSignInDataFlow.swift */,
+				F950D396D6E79FDDA80C5C94 /* AuthSignInInteractor.swift */,
+				FFA8F443D623BBB062F7D397 /* AuthSignInPresenter.swift */,
+			);
+			path = AuthSignIn;
+			sourceTree = "<group>";
+		};
 		950F3926212B7C2F810DBCFC /* InstructionSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -1857,6 +2024,17 @@
 				3E72174ECFEB2949317FFF8E /* InstructionSelectionPresenter.swift */,
 			);
 			path = InstructionSelection;
+			sourceTree = "<group>";
+		};
+		997ECEA88C2E6703B4BB501C /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				43F1B3284B87F3C670432FF7 /* CommunitiesListEndpoints.swift */,
+				6D3DD889283627DB00E0C06D /* CommunitiesListRequestBody.swift */,
+				9C2C89376E5026560A55C0DB /* CommunitiesListProvider.swift */,
+				D37FDC10BF9EB0FCFE69180A /* CommunitiesListService.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 		9A7704F5884BF17593DDD0F1 /* Provider */ = {
@@ -2021,14 +2199,6 @@
 			path = TasteOnboarding;
 			sourceTree = "<group>";
 		};
-		C5B69ACE418CBA77B894EBEC /* Provider */ = {
-			isa = PBXGroup;
-			children = (
-				A90B47A3ED06E4261A092BD4 /* AuthorizationMethodsProvider.swift */,
-			);
-			path = Provider;
-			sourceTree = "<group>";
-		};
 		C5FE47B490CD897DA0572470 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2070,6 +2240,33 @@
 				9FDB1D5F0C288CA9DB7A80D3 /* TabBar+State.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		D9AD1050F744EC92CA6E6599 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				82B08C5B9409870F40CC472F /* CommunitiesListViewController.swift */,
+				A9B1700B88DDA23BFFA5657F /* CommunitiesList+DisplayLogic.swift */,
+				DE0B660677E8E6CFC20CD7FC /* CommunitiesList+Network.swift */,
+				0759E6A1385FE4E012BE7CBB /* CommunitiesList+State.swift */,
+				6D1E31DD283659640083C350 /* CommunitiesList+InfiniteScroll.swift */,
+				09A295825AD9761F42D931AE /* CommunitiesList+TableView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DA0489F1113D3B709B92F486 /* AuthSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				FDE0AA22B63FE80EBC7DC96A /* Controller */,
+				26C528817AD398F4F5B17562 /* Provider */,
+				83DF4E27876B2B6B053B7CB4 /* View */,
+				6DFBBFEE9D0167D55AB658D6 /* AuthSignUpBuilder.swift */,
+				8EE2141663759D044BAD0742 /* AuthSignUpDataFlow.swift */,
+				EFF881D6A066D3241F836E02 /* AuthSignUpInteractor.swift */,
+				101AC815BC1D81ACB0C004E5 /* AuthSignUpPresenter.swift */,
+			);
+			path = AuthSignUp;
 			sourceTree = "<group>";
 		};
 		DA1E976093484427C00010A7 /* View */ = {
@@ -2227,18 +2424,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		F80B85576473C508CA53F6BF /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1212FB89A343245D596BFF6A /* AuthorizationMethodsViewController.swift */,
-				6D64F8BB278561B900F9EEC0 /* AuthorizationMethods+Buttons.swift */,
-				1BFF50E75AE134D71A658D3E /* AuthorizationMethods+DisplayLogic.swift */,
-				9C2706A29A06FDB38FBA0596 /* AuthorizationMethods+Network.swift */,
-				74417EEAB4E762A7B64C7E21 /* AuthorizationMethods+State.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		F847603B53D606D74AF52CF8 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -2247,6 +2432,18 @@
 				CCCF0D88CD14ECC51CAE2B60 /* ShoppingListService.swift */,
 			);
 			path = Provider;
+			sourceTree = "<group>";
+		};
+		FDE0AA22B63FE80EBC7DC96A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F27003AC9EDB7145EEDE8BA /* AuthSignUpViewController.swift */,
+				6D5CBC6E28376C93005CE44F /* AuthSignUp+Button.swift */,
+				5E607C2E3764DC4491FFDCAD /* AuthSignUp+DisplayLogic.swift */,
+				9B0909F67A77FC6E7EE51152 /* AuthSignUp+Network.swift */,
+				E2C023EC3F194E0A5D2211A8 /* AuthSignUp+State.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2278,6 +2475,7 @@
 				6DF3F0C028185EA500B6DAD3 /* FacebookShare */,
 				6DECD69E2819246A00BEB774 /* PanModal */,
 				6DECD6A1281924E300BEB774 /* Kingfisher */,
+				6D1E31D4283642FC0083C350 /* UIScrollView_InfiniteScroll */,
 			);
 			productName = Apron;
 			productReference = 6D0A71C8277A12EC0067E580 /* Apron.app */;
@@ -2314,6 +2512,7 @@
 				6DF3F0B928185EA500B6DAD3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				6DECD69D2819246A00BEB774 /* XCRemoteSwiftPackageReference "PanModal" */,
 				6DECD6A0281924E300BEB774 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6D1E31D3283642FC0083C350 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
 			);
 			productRefGroup = 6D0A71C9277A12EC0067E580 /* Products */;
 			projectDirPath = "";
@@ -2419,6 +2618,7 @@
 				6D64F8B72784AF9E00F9EEC0 /* Authorization+Buttons.swift in Sources */,
 				FFF2BEA15E29E67D85CC00F3 /* Authorization+State.swift in Sources */,
 				6D226788282D4C09001FFE6D /* CommunityCreation+Image.swift in Sources */,
+				6D1E31DC283653410083C350 /* CommunityListHeaderView.swift in Sources */,
 				6D9D5E462800414D0087527B /* RecipeCreationIngredientView.swift in Sources */,
 				FEA77509A6545CBBF958BEBA /* AuthorizationProvider.swift in Sources */,
 				121660650C0056B19DEE3D07 /* AuthorizationView.swift in Sources */,
@@ -2428,15 +2628,12 @@
 				6DCF95AE27902E2E009FEE78 /* Main+CollectionView.swift in Sources */,
 				6D78DA7C281D516E009E383E /* RecipeCreation+TextField.swift in Sources */,
 				F10574718C1441653D9CA41B /* AuthorizationBuilder.swift in Sources */,
-				20326E269CA59B2A2C9D1AFA /* AuthorizationMethodsViewController.swift in Sources */,
 				6D9D5E3F28002BB00087527B /* RecipeCreationDescriptionCell.swift in Sources */,
-				9646A3878900730C853FE43D /* AuthorizationMethods+DisplayLogic.swift in Sources */,
-				FFFBEA66EB1BA12B5B95A1EF /* AuthorizationMethods+Network.swift in Sources */,
-				F8AF1D558EFE4D56548C6C07 /* AuthorizationMethods+State.swift in Sources */,
 				6D84303A2795D25F004E27E5 /* Community+Sections.swift in Sources */,
 				6DDBBB342791DCDE00BFE1C2 /* SearchController.swift in Sources */,
 				6DF005AA28324D4D00DBF439 /* DynamicCommunityCell.swift in Sources */,
 				6DCF95B027902E32009FEE78 /* Main+TableView.swift in Sources */,
+				6D1E31D8283652320083C350 /* CommunitiesListInitialState.swift in Sources */,
 				6DCEC9AD280401B7002ABD06 /* RecipeCreationIngredientViewModel.swift in Sources */,
 				6DB8DE2627AC38A000471B0B /* RecipePage+TableView.swift in Sources */,
 				6DDBBB422791DEC700BFE1C2 /* SearchResultView.swift in Sources */,
@@ -2449,26 +2646,20 @@
 				6DE489CD27E2516C00C14781 /* RecipeInstructionsViewCell.swift in Sources */,
 				6DA42380279720DB00CA183D /* CommunitySegmentCell.swift in Sources */,
 				6D9301ED282ED9100018EF14 /* GeneralSearchResult+CollectionView.swift in Sources */,
-				01532E2963CC027021376CF0 /* AuthorizationMethodsProvider.swift in Sources */,
 				6DD31AB0280EE35C006A0C06 /* RecipeCreation+Photos.swift in Sources */,
 				6D64F8CB2785A62900F9EEC0 /* TasteOnboardingCell.swift in Sources */,
-				E83250F24AD604A3568E6DA8 /* AuthorizationMethodsView.swift in Sources */,
-				42E96146450B9BF8F6D8956F /* AuthorizationMethodsBuilder.swift in Sources */,
 				6DCF95A827900EC7009FEE78 /* CommunityCollectionCellViewModel.swift in Sources */,
 				6DDBBB3F2791DEA000BFE1C2 /* SearchResult+TableView.swift in Sources */,
 				6DA423872797280200CA183D /* CommunityPage+Segment.swift in Sources */,
-				5AB72B59E200516AE39BD4B2 /* AuthorizationMethodsDataFlow.swift in Sources */,
 				6D64F91E2786C4AE00F9EEC0 /* SkipButtonView.swift in Sources */,
 				6D9F7A432823AE270053BF5B /* EmptyCartCell.swift in Sources */,
 				6D369A15281185E000F80B4E /* IngredientSelection+PickerView.swift in Sources */,
-				6D64F8BC278561B900F9EEC0 /* AuthorizationMethods+Buttons.swift in Sources */,
 				6DD31AAE280EE1BC006A0C06 /* RecipeCreation+ImagePicker.swift in Sources */,
 				6DCF95AC27902C14009FEE78 /* MyCollectionDelegateCellViewModel.swift in Sources */,
-				F997A60DF5272C7BDA3EC399 /* AuthorizationMethodsInteractor.swift in Sources */,
-				BF2E4D0E58317C9EA7F87AC0 /* AuthorizationMethodsPresenter.swift in Sources */,
 				6D9F7A6B282A71BE0053BF5B /* Main+Delegate.swift in Sources */,
 				75690A077FF013DB53AC4F53 /* TasteOnboardingViewController.swift in Sources */,
 				6DAFD67F27A0718E006CF12D /* InformationCellViewModel.swift in Sources */,
+				6D5CBC6F28376C93005CE44F /* AuthSignUp+Button.swift in Sources */,
 				6D64F9202786C7F200F9EEC0 /* SkipButtonNavigationView.swift in Sources */,
 				6DDBBB392791DE7400BFE1C2 /* SearchResultBuilder.swift in Sources */,
 				6DCF95B527903920009FEE78 /* Main+Buttons.swift in Sources */,
@@ -2567,6 +2758,7 @@
 				6D27270927C8B4860001DCC0 /* IngredientView.swift in Sources */,
 				6D82676B28014B0700AF2D57 /* RecipeCreation+TableView.swift in Sources */,
 				9FBF6F7060825D02216CB4BB /* CommunityPageInteractor.swift in Sources */,
+				6D5CBC6B28375A01005CE44F /* AuthNavigationController.swift in Sources */,
 				7D893531FC3919E90D771734 /* CommunityPagePresenter.swift in Sources */,
 				36BBB7967628AFEAF5D8A847 /* SplashScreenViewController.swift in Sources */,
 				6D78DA76281D45B2009E383E /* RecipeCreationSourceType.swift in Sources */,
@@ -2596,6 +2788,7 @@
 				EE77B799A7C5211A9AEA6494 /* SearchViewController.swift in Sources */,
 				9438865A5CDBC594D1E636A6 /* Search+DisplayLogic.swift in Sources */,
 				8131F8C47FC31F056FDD700E /* Search+Network.swift in Sources */,
+				6D3DD88A283627DB00E0C06D /* CommunitiesListRequestBody.swift in Sources */,
 				F3DBBB64B1B2706372B61C2A /* Search+State.swift in Sources */,
 				28CE5B64EA278E9862AD61E3 /* Search+TableView.swift in Sources */,
 				C704FF83E8458116EDFD94F9 /* SearchEndpoints.swift in Sources */,
@@ -2708,6 +2901,7 @@
 				4CF3655BE3C8E409CA851466 /* SavedRecipes+TableView.swift in Sources */,
 				ADF610EF75CB586C95F28040 /* SavedRecipesEndpoints.swift in Sources */,
 				5DD428669DAF9209428D503A /* SavedRecipesProvider.swift in Sources */,
+				6D1E31DE283659640083C350 /* CommunitiesList+InfiniteScroll.swift in Sources */,
 				DDB3571C5F5E21FAD1B1CFDA /* SavedRecipesService.swift in Sources */,
 				999936B985405C6585E45EDD /* SavedRecipesView.swift in Sources */,
 				093243BEF7FA801DD6EEE994 /* SavedRecipesBuilder.swift in Sources */,
@@ -2760,6 +2954,44 @@
 				6D3DD886283508AD00E0C06D /* DynamicCollectionDelegateCellViewModel.swift in Sources */,
 				9EEA8448CC6E1942B66A9D51 /* ResultListInteractor.swift in Sources */,
 				6F041B205103F3C2EE56B34B /* ResultListPresenter.swift in Sources */,
+				32DD730CC23D75C7F566CBEB /* CommunitiesListViewController.swift in Sources */,
+				BA40FD0489CF46AE68F568D2 /* CommunitiesList+DisplayLogic.swift in Sources */,
+				FD112B7A65CCE884D6C7ACD8 /* CommunitiesList+Network.swift in Sources */,
+				8E975F69096FEA0E94B4DE60 /* CommunitiesList+State.swift in Sources */,
+				0F28EB5EA4E4B3FF91D7CB8A /* CommunitiesList+TableView.swift in Sources */,
+				765E95169D187EAFD92EEADA /* CommunitiesListEndpoints.swift in Sources */,
+				C6B86A6E892C3D385569BD61 /* CommunitiesListProvider.swift in Sources */,
+				AC411F0FB796CEB3D47E4952 /* CommunitiesListService.swift in Sources */,
+				0F555B24211524417E70DC73 /* CommunitiesListView.swift in Sources */,
+				DB3CAB14EC718172D5974C67 /* CommunitiesListBuilder.swift in Sources */,
+				AAC3FE5D68525270453B4ECC /* CommunitiesListDataFlow.swift in Sources */,
+				0677B5C2731DC3977BA51823 /* CommunitiesListInteractor.swift in Sources */,
+				4DDD51FC04F2D9D46EC6EC9E /* CommunitiesListPresenter.swift in Sources */,
+				4339E71985F9EE94CF97C460 /* AuthSignUpViewController.swift in Sources */,
+				9878C12FBDF48019919C8881 /* AuthSignUp+DisplayLogic.swift in Sources */,
+				DE2283435D0CBA1D8BA77683 /* AuthSignUp+Network.swift in Sources */,
+				C763EF248EEEB31D72F7E66B /* AuthSignUp+State.swift in Sources */,
+				CCAAC00AB1EB7FE29D04F3F8 /* AuthSignUpEndpoints.swift in Sources */,
+				44E321A18F99047531089B16 /* AuthSignUpProvider.swift in Sources */,
+				F0716C9575C42FC297E7552E /* AuthSignUpService.swift in Sources */,
+				EE3061358D1959077F751EA8 /* AuthSignUpView.swift in Sources */,
+				4F33E6A5E722CEBF326D16C3 /* AuthSignUpBuilder.swift in Sources */,
+				D7E52687A59C0CC76022AB2E /* AuthSignUpDataFlow.swift in Sources */,
+				F921EEDEBB0C70BE2B7466A6 /* AuthSignUpInteractor.swift in Sources */,
+				5E4DCFAE43C7DA652098D141 /* AuthSignUpPresenter.swift in Sources */,
+				339C71CD29868435EBC6A57C /* AuthSignInViewController.swift in Sources */,
+				9BF444FFBB90C176E045E108 /* AuthSignIn+DisplayLogic.swift in Sources */,
+				081EA623280F5203A2ACB288 /* AuthSignIn+Network.swift in Sources */,
+				35B03FAD3939850F77B2FC26 /* AuthSignIn+State.swift in Sources */,
+				4BAABB381255BD7CFC386554 /* AuthSignInEndpoints.swift in Sources */,
+				8FE7F354A7D3C0D41A2C5A82 /* AuthSignInProvider.swift in Sources */,
+				BC497D0450F2F8BDB70563DC /* AuthSignInService.swift in Sources */,
+				9908DFA35DDB8C5F7C5FC242 /* AuthSignInView.swift in Sources */,
+				6D5CBC6D283768B5005CE44F /* AuthSignIn+Button.swift in Sources */,
+				9D013E00033A4E0334B11679 /* AuthSignInBuilder.swift in Sources */,
+				AC8011EDF297551D86BC6988 /* AuthSignInDataFlow.swift in Sources */,
+				A66A620884CB91A28BBE0881 /* AuthSignInInteractor.swift in Sources */,
+				AAE8416F917131BE03B19F60 /* AuthSignInPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2983,6 +3215,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6D1E31D3283642FC0083C350 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pronebird/UIScrollView-InfiniteScroll";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		6DECD69D2819246A00BEB774 /* XCRemoteSwiftPackageReference "PanModal" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/slackhq/PanModal.git";
@@ -3034,6 +3274,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6D1E31D4283642FC0083C350 /* UIScrollView_InfiniteScroll */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D1E31D3283642FC0083C350 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */;
+			productName = UIScrollView_InfiniteScroll;
+		};
 		6DECD69E2819246A00BEB774 /* PanModal */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6DECD69D2819246A00BEB774 /* XCRemoteSwiftPackageReference "PanModal" */;

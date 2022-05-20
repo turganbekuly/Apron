@@ -28,8 +28,9 @@ final class InterfaceConfigurator: ApplicationConfiguratorProtocol {
             fatalError("Window not found")
         }
         
-        let vc = SplashScreenBuilder(state: .initial).build()
-//        let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation()))).build()
+//        let vc = SplashScreenBuilder(state: .initial).build()
+        let vc = AuthorizationBuilder(state: .initial).build()
+        AuthStorage.shared.isUserAuthorized = false
         AuthStorage.shared.accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaW5hc2lsLm9tYXJiZWtAZ21haWwuY29tIiwiZXhwIjoxNjUyODk1MjczfQ.8y4P0vwJncJAmSKU-J2zt2UMJMtGRubXvN1ZUieoLW21vevkaGCApEqfWe4__aJ0CZwNBRh-UIdVzsDVfnyiTA"
         let navVC = UINavigationController(rootViewController: vc)
         window.rootViewController = navVC

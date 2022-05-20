@@ -144,13 +144,14 @@ final class GeneralSearchCommunityCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: GeneralSearchCommunityViewModelProtocol) {
+        guard let community = viewModel.community else { return }
         communityImageView.kf.setImage(
-            with: URL(string: viewModel.image ?? ""),
+            with: URL(string: community.image ?? ""),
             placeholder: Assets.addedImagePlaceholder.image
         )
 
-        communityNameLabel.text = viewModel.name
-        recipeCountLabel.text = viewModel.recipeCount
-        membersCountLabel.text = viewModel.memberCount
+        communityNameLabel.text = community.name ?? ""
+        recipeCountLabel.text = "\(community.recipesCount ?? 0)"
+        membersCountLabel.text = "\(community.usersCount ?? 0)"
     }
 }

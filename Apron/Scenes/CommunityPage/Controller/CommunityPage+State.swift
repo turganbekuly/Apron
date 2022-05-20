@@ -13,7 +13,7 @@ extension CommunityPageViewController {
     
     // MARK: - State
     public enum State {
-        case initial
+        case initial(Int)
         case displayCommunity(CommunityResponse)
         case displayCommunityError(AKNetworkError)
         case joinedCommunity
@@ -23,7 +23,8 @@ extension CommunityPageViewController {
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case .initial:
+        case let .initial(id):
+            getCommunities(by: id)
             sections = [
                 .init(section: .topView, rows: topInfo.compactMap { .topView($0) }),
                 .init(section: .filterView, rows: filter.compactMap { .filterView($0) }),
