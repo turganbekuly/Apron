@@ -6,31 +6,16 @@
 //
 
 import Foundation
+import Models
 
 protocol ICommunityInfoCellViewModel: AnyObject {
-    var title: String? { get }
-    var subtitle: String? { get }
-    var recipiesCount: String { get }
-    var membersCount: String { get }
-    var isJoined: Bool { get }
+    var community: CommunityResponse? { get }
 }
 
 final class CommunityInfoCellViewModel: ICommunityInfoCellViewModel {
-    var title: String?
+    var community: CommunityResponse?
 
-    var subtitle: String?
-
-    var recipiesCount: String
-
-    var membersCount: String
-
-    var isJoined: Bool
-
-    init(title: String?, subtitle: String?, recipiesCount: String, membersCount: String, isJoined: Bool) {
-        self.title = title
-        self.subtitle = subtitle
-        self.recipiesCount = recipiesCount
-        self.membersCount = membersCount
-        self.isJoined = isJoined
+    init(community: CommunityResponse?) {
+        self.community = community
     }
 }

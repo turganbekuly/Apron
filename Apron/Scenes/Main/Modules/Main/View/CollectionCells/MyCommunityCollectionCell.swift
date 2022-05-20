@@ -27,7 +27,7 @@ final class MyCommunityCollectionCell: UICollectionViewCell {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.image = Assets.cmntImageview.image
         imageView.clipsToBounds = true
         return imageView

@@ -25,18 +25,8 @@ extension CommunityPageViewController {
         switch state {
         case let .initial(id):
             getCommunities(by: id)
-            sections = [
-                .init(section: .topView, rows: topInfo.compactMap { .topView($0) }),
-                .init(section: .filterView, rows: filter.compactMap { .filterView($0) }),
-                .init(section: .recipiesView, rows: [.segment]),
-                .init(section: .recipiesView, rows: [.recipiesView])
-            ]
-
-            recipesSection = [
-                .init(section: .recipes, rows: recipies.compactMap { .recipes($0) })
-            ]
         case let .displayCommunity(model):
-            print(model)
+            self.community = model
         case let .displayCommunityError(error):
             print(error)
         case .joinedCommunity:

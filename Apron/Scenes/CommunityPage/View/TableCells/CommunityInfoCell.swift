@@ -9,9 +9,12 @@ import DesignSystem
 import UIKit
 import SnapKit
 import HapticTouch
+import Storages
 
 protocol ICommunityInfoCell: AnyObject {
     func joinButtonTapped(with id: Int)
+    func inviteButtonTapped()
+    func navigateToAuth()
 }
 
 final class CommunityInfoCell: UITableViewCell {
@@ -27,6 +30,8 @@ final class CommunityInfoCell: UITableViewCell {
             configureButton(isJoined: isJoined)
         }
     }
+
+    var id = 0
 
     // MARK: - Init
 
@@ -202,18 +207,26 @@ final class CommunityInfoCell: UITableViewCell {
     // MARK: - Methods
 
     func configure(with viewModel: ICommunityInfoCellViewModel) {
-        self.titleLabel.text = viewModel.title
-        self.subtitleLabel.text = viewModel.subtitle
-        self.recipeCountLabel.text = "\(viewModel.recipiesCount) рецептов"
-        self.membersCountLabel.text = "\(viewModel.membersCount) подписчиков"
-        self.isJoined = viewModel.isJoined
+        guard let community = viewModel.community else { return }
+        self.titleLabel.text = community.name ?? ""
+        self.subtitleLabel.text = community.description ?? ""
+        self.recipeCountLabel.text = "\(community.recipes?.count ?? 0) рецептов"
+        self.membersCountLabel.text = "\(community.users?.count ?? 0) подписчиков"
+        self.isJoined = community.joined ?? false
+        self.id = community.id
     }
 
     // MARK: - User actions
 
     @objc
     private func joinButtonTapped() {
+        guard AuthStorage.shared.isUserAuthorized else {
+            delegate?.navigateToAuth()
+            return
+        }
+
         if isJoined {
+            delegate?.inviteButtonTapped()
             return
         }
 
@@ -228,6 +241,6 @@ final class CommunityInfoCell: UITableViewCell {
         }
         layoutIfNeeded()
         isJoined = true
-        delegate?.joinButtonTapped(with: 0)
+        delegate?.joinButtonTapped(with: id)
     }
 }

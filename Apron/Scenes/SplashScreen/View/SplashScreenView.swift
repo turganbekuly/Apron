@@ -50,7 +50,7 @@ final class SplashScreenView: UIView {
                 self?.delegate?.animationDidFinished()
             }
         }
-        animationView.contentMode = .scaleToFill
+        animationView.contentMode = .scaleAspectFill
     }
 
     private func setupConstraints() {

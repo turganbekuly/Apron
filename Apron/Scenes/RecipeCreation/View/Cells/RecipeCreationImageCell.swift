@@ -36,7 +36,7 @@ final class RecipeCreationImageCell: UITableViewCell {
         imageView.image = Assets.recipeSampleImage.image
         imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         return imageView
     }()

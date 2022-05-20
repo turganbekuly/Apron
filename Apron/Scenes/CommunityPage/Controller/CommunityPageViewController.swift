@@ -40,66 +40,33 @@ public final class CommunityPageViewController: ViewController, Messagable {
 
     var community: CommunityResponse? {
         didSet {
+            guard let community = community else {
+                return
+            }
+
             sections = [
-                .init(section: .topView, rows: topInfo.compactMap { .topView($0) }),
-                .init(section: .filterView, rows: filter.compactMap { .filterView($0) }),
+                .init(
+                    section: .topView,
+                    rows: [.topView(CommunityInfoCellViewModel(community: community))]
+                ),
+                .init(
+                    section: .filterView,
+                    rows: [.filterView(CommunityFilterCellViewModel(searchbarPlaceholder: "\(community.name ?? "")"))]
+                ),
                 .init(section: .recipiesView, rows: [.segment]),
                 .init(section: .recipiesView, rows: [.recipiesView])
             ]
 
             recipesSection = [
-                .init(section: .recipes, rows: recipies.compactMap { .recipes($0) })
+                .init(
+                    section: .recipes,
+                    rows: community.recipes?
+                        .compactMap { .recipes(CommunityRecipesCollectionCellViewModel(recipe: $0)) } ?? []
+                )
             ]
             mainView.reloadTableViewWithoutAnimation()
         }
     }
-
-    var topInfo = [
-        CommunityInfoCellViewModel(
-            title: "Итальянская кухня",
-            subtitle: "Здесь вы найдете рецепты Итальянских блюд",
-            recipiesCount: "865",
-            membersCount: "198 778",
-            isJoined: false
-        )
-    ]
-
-    var filter = [
-        CommunityFilterCellViewModel(searchbarPlaceholder: "Итальянская кухня")
-    ]
-
-    var recipies: [CommunityRecipesCollectionCellViewModel] = [
-        CommunityRecipesCollectionCellViewModel(
-            recipeName: "Пицца Маргарита",
-            cookingTime: "45 мин",
-            imageURL: "",
-            favCount: "0",
-            userImage: "",
-            userName: "Akarys Turganbekuly",
-            sourceURL: "apron.ws",
-            postingTime: "3 для назад"
-        ),
-        CommunityRecipesCollectionCellViewModel(
-            recipeName: "Пицца Маргарита",
-            cookingTime: "45 мин",
-            imageURL: "",
-            favCount: "45",
-            userImage: "",
-            userName: "Akarys Turganbekuly",
-            sourceURL: "apron.ws",
-            postingTime: "3 для назад"
-        ),
-        CommunityRecipesCollectionCellViewModel(
-            recipeName: "Пицца Маргарита",
-            cookingTime: "45 мин",
-            imageURL: "",
-            favCount: "45",
-            userImage: "",
-            userName: "Akarys Turganbekuly",
-            sourceURL: "apron.ws",
-            postingTime: "3 для назад"
-        )
-    ]
 
     private var tableViewTopConstraint: Constraint?
     private var cacheOffset: CGPoint?
@@ -303,7 +270,7 @@ extension CommunityPageViewController {
         if topConstraint.constant <= view.safeAreaInsets.top {
             imageView.isHidden = true
             navigationBarView.backgroundColor = Assets.secondary.color
-            navigationItem.title = topInfo.first?.title ?? ""
+            navigationItem.title = community?.name ?? ""
         } else {
             imageView.isHidden = false
             navigationItem.title = nil

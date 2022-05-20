@@ -135,7 +135,7 @@ final class RecipeCollectionCell: UICollectionViewCell {
         }
 
         cookingInfoStackView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.centerY.equalTo(recipeNameLabel.snp.centerY)
             $0.trailing.equalToSuperview()
         }
 
@@ -165,25 +165,26 @@ final class RecipeCollectionCell: UICollectionViewCell {
     // MARK: - Configure
 
     func configure(with viewModel: ICommunityRecipesCollectionCellViewModel) {
-        self.recipeNameLabel.text = viewModel.recipeName
-        self.cookingTimeLabel.text = viewModel.cookingTime
+        guard let recipe = viewModel.recipe else { return }
+        self.recipeNameLabel.text = recipe.recipeName ?? ""
+        self.cookingTimeLabel.text = recipe.cookTime ?? ""
         self.imageView.kf.setImage(
-            with: URL(string: viewModel.imageURL),
+            with: URL(string: recipe.imageURL ?? ""),
             placeholder: Assets.communityMockImage.image
         )
-        if viewModel.favCount != "0" {
-            self.favoriteButton.setTitle(viewModel.favCount, for: .normal)
-            faveButtonWidthConstraint?.update(offset: 70)
-        }
-        self.sourceURLLabel.text = viewModel.sourceURL
+//        if viewModel.favCount != "0" {
+//            self.favoriteButton.setTitle(viewModel.favCount, for: .normal)
+//            faveButtonWidthConstraint?.update(offset: 70)
+//        }
+        self.sourceURLLabel.text = recipe.sourceLink ?? ""
 //        if !viewModel.userImage.isEmpty {
-        self.avaImageView.kf.setImage(with: URL(string: viewModel.userImage), placeholder: Assets.navAvatarIcon.image)
+        self.avaImageView.kf.setImage(with: URL(string: "viewModel.userImage"), placeholder: Assets.navAvatarIcon.image)
 //        } else {
 //            DispatchQueue.main.async {
 //                self.avaImageView.setNameTitleImage(string: viewModel.userName)
 //            }
 //        }
-        self.nameLabel.text = viewModel.userName
-        self.postingTimeLabel.text = viewModel.postingTime
+        self.nameLabel.text = recipe.authorName ?? ""
+        self.postingTimeLabel.text = recipe.createdAt ?? ""
     }
 }

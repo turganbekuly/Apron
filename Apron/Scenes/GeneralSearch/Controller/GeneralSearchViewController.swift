@@ -71,7 +71,7 @@ final class GeneralSearchViewController: ViewController {
 
     public lazy var searchController: SearchController = {
         let searchController = GeneralSearchResultBuilder(
-            state: .initial(.main)
+            state: .initial(initialState ?? .main)
         ).build()
         let controller = SearchController(searchResultsController: searchController)
         controller.definesPresentationContext = true

@@ -46,10 +46,9 @@ extension CommunityPageViewController: UICollectionViewDelegateFlowLayout {
         let row = recipesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case .recipes:
-//            let vc = RecipePageBuilder(state: .initial).build()
-            let vc = CommunityCreationBuilder(state: .initial(.create(CommunityCreation()))).build()
+            let vc = RecipePageBuilder(state: .initial).build()
             DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.pushViewController(vc, animated: false)
             }
         }
     }
@@ -60,7 +59,7 @@ extension CommunityPageViewController: UICollectionViewDelegateFlowLayout {
             let row: CommunityPageViewController.CommunityPageCollectionSection.Row = recipesSection[indexPath.section].rows[indexPath.row]
             switch row {
             default:
-                return CGSize(width: collectionView.bounds.width - 32, height: (collectionView.bounds.width / 2) + 70)
+                return CGSize(width: collectionView.bounds.width - 32, height: (collectionView.bounds.width / 2) + 30)
             }
         }
     }

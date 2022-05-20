@@ -25,7 +25,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     private lazy var recipeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.image = Assets.cmntImageview.image
         return imageView
     }()

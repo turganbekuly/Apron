@@ -34,7 +34,7 @@ final class IngredientDescriptionCell: UITableViewCell {
     private lazy var timingImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Assets.recipeCookingTimeIcon.image
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 

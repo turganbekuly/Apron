@@ -8,7 +8,15 @@
 import DesignSystem
 import UIKit
 
+protocol SearchBarProtocol: AnyObject {
+    func searchBarDidTap()
+}
+
 final class CommunityFilterCell: UITableViewCell {
+    // MARK: - Properties
+
+    weak var delegate: SearchBarProtocol?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,6 +49,8 @@ final class CommunityFilterCell: UITableViewCell {
     private func setupViews() {
         backgroundColor = .clear
         selectionStyle = .none
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(searchBarTapped))
+        searchView.addGestureRecognizer(tapGR)
         [searchView, filterButton].forEach { contentView.addSubview($0) }
         setupConstraints()
     }
@@ -57,6 +67,13 @@ final class CommunityFilterCell: UITableViewCell {
             $0.height.equalTo(38)
             $0.width.equalTo(38)
         }
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func searchBarTapped() {
+        delegate?.searchBarDidTap()
     }
 
     // MARK: - Methods

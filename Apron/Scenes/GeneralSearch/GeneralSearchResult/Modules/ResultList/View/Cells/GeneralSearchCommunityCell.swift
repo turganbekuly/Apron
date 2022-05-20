@@ -26,7 +26,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
     private lazy var communityImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.image = Assets.cmntImageview.image
         return imageView
     }()
