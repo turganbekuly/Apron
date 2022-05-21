@@ -11,6 +11,7 @@ import UIKit
 protocol CommunityPagePresentationLogic: AnyObject {
     func getCommunity(response: CommunityPageDataFlow.GetCommunity.Response)
     func joinCommunity(response: CommunityPageDataFlow.JoinCommunity.Response)
+    func getRecipesByCommunity(response: CommunityPageDataFlow.GetRecipesByCommunity.Response)
 }
 
 final class CommunityPagePresenter: CommunityPagePresentationLogic {
@@ -46,6 +47,21 @@ final class CommunityPagePresenter: CommunityPagePresentationLogic {
                 viewModel = .init(state: .joinedCommunity)
             case .failed:
                 viewModel = .init(state: .joinedCommunityFailed)
+            }
+        }
+    }
+
+    func getRecipesByCommunity(response: CommunityPageDataFlow.GetRecipesByCommunity.Response) {
+        DispatchQueue.main.async {
+            var viewModel: CommunityPageDataFlow.GetRecipesByCommunity.ViewModel
+
+            defer { self.viewController?.displayRecipesByCommunity(viewModel: viewModel) }
+
+            switch response.result {
+            case let .successful(model):
+                viewModel = .init(state: .displayRecipes(model))
+            case let .failed(error):
+                viewModel = .init(state: .displayRecipesFailed(error))
             }
         }
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 extension CommunityPageViewController: ICommunitySegmentCell {
-    public func cell(_ cell: CommunitySegmentCell, didChangedSegment segment: CommunitySegmentCell.CommunitySegment) {
+    public func cell(_ cell: CommunitySegmentView, didChangedSegment segment: CommunitySegmentView.CommunitySegment) {
         self.selectedSegment = segment
     }
 }

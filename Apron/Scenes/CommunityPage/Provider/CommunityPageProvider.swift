@@ -15,8 +15,13 @@ protocol CommunityPageProviderProtocol {
         completion: @escaping ((CommunityPageDataFlow.GetCommunityResult) -> Void)
     )
     func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
+        request: CommunityPageDataFlow.JoinCommunity.Request,
+        completion: @escaping (CommunityPageDataFlow.JoinCommunityResult) -> Void
+    )
+    func getRecipesByCommunity(
+        request: CommunityPageDataFlow.GetRecipesByCommunity.Request,
+        completion: @escaping ((CommunityPageDataFlow.GetRecipesByCommunityResult) -> Void
+        )
     )
 }
 
@@ -51,13 +56,31 @@ final class CommunityPageProvider: CommunityPageProviderProtocol {
         }
 
     func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
+        request: CommunityPageDataFlow.JoinCommunity.Request,
+        completion: @escaping (CommunityPageDataFlow.JoinCommunityResult) -> Void
     ) {
         service.joinCommunity(request: request) {
             switch $0 {
             case .success(_):
                 completion(.successfull)
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getRecipesByCommunity(
+        request: CommunityPageDataFlow.GetRecipesByCommunity.Request,
+        completion: @escaping ((CommunityPageDataFlow.GetRecipesByCommunityResult) -> Void)
+    ) {
+        service.getRecipesByCommunity(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
             case let .failure(error):
                 completion(.failed(error: error))
             }

@@ -40,9 +40,9 @@ extension CommunitiesListEndpoint: AKNetworkTargetType {
         case let .getCommunities(body):
             return .requestParameters(
                 parameters: [
-                    "page": "\(body.pageNumber)",
-                    "limit": "20",
-                    "communityCategoryId": "\(body.id)"
+                    "page": body.pageNumber,
+                    "limit": 20,
+                    "communityCategoryId": body.id
                 ],
                 encoding: AKURLEncoding.queryString
             )

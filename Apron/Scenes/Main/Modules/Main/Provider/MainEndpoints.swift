@@ -27,7 +27,7 @@ extension MainEndpoint: AKNetworkTargetType {
         case .getCommuntiesByCategories:
             return "communities/main"
         case .getMyCommunities:
-            return "communities/getMyCreatedCommunities"
+            return "communities/getMyCreatedCommunities/true"
         }
     }
 

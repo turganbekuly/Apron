@@ -14,7 +14,11 @@ protocol CommunityPageServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     )
     func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
+        request: CommunityPageDataFlow.JoinCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
+    func getRecipesByCommunity(
+        request: CommunityPageDataFlow.GetRecipesByCommunity.Request,
         completion: @escaping ((AKResult) -> Void)
     )
 }
@@ -41,10 +45,24 @@ final class CommunityPageService: CommunityPageServiceProtocol {
     }
 
     func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
+        request: CommunityPageDataFlow.JoinCommunity.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .joinCommunity(id: request.id)) { result in
+            completion(result)
+        }
+    }
+
+    func getRecipesByCommunity(
+        request: CommunityPageDataFlow.GetRecipesByCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(
+            target: .getRecipesByCommunity(
+                id: request.id,
+                currentPage: request.currentPage
+            )
+        ) { result in
             completion(result)
         }
     }

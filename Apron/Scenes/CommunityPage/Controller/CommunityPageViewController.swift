@@ -15,24 +15,21 @@ import AlertMessages
 protocol CommunityPageDisplayLogic: AnyObject {
     func displayCommunity(viewModel: CommunityPageDataFlow.GetCommunity.ViewModel)
     func displayJoinCommunity(viewModel: CommunityPageDataFlow.JoinCommunity.ViewModel)
+    func displayRecipesByCommunity(viewModel: CommunityPageDataFlow.GetRecipesByCommunity.ViewModel)
 }
 
 public final class CommunityPageViewController: ViewController, Messagable {
     // MARK: - Properties
     let interactor: CommunityPageBusinessLogic
     var sections: [Section] = []
-    var recipesSection: [CommunityPageCollectionSection] = [] {
-        didSet {
-            configureRecipesSection()
-        }
-    }
+
     var state: State {
         didSet {
             updateState()
         }
     }
 
-    var selectedSegment: CommunitySegmentCell.CommunitySegment? {
+    var selectedSegment: CommunitySegmentView.CommunitySegment? {
         didSet {
             //
         }
@@ -44,29 +41,34 @@ public final class CommunityPageViewController: ViewController, Messagable {
                 return
             }
 
+            self.id = community.id
+            
             sections = [
                 .init(
                     section: .topView,
-                    rows: [.topView(CommunityInfoCellViewModel(community: community))]
-                ),
-                .init(
-                    section: .filterView,
-                    rows: [.filterView(CommunityFilterCellViewModel(searchbarPlaceholder: "\(community.name ?? "")"))]
-                ),
-                .init(section: .recipiesView, rows: [.segment]),
-                .init(section: .recipiesView, rows: [.recipiesView])
-            ]
-
-            recipesSection = [
-                .init(
-                    section: .recipes,
-                    rows: community.recipes?
-                        .compactMap { .recipes(CommunityRecipesCollectionCellViewModel(recipe: $0)) } ?? []
+                    rows: recipes.compactMap { .recipiesView($0) }
                 )
             ]
+
             mainView.reloadTableViewWithoutAnimation()
         }
     }
+
+    var recipes: [RecipeResponse] = [] {
+        didSet {
+            sections = [
+                .init(
+                    section: .topView,
+                    rows: recipes.compactMap { .recipiesView($0) }
+                )
+            ]
+            
+            mainView.reloadTableViewWithoutAnimation()
+        }
+    }
+
+    var currentPage = 1
+    var id = 0
 
     private var tableViewTopConstraint: Constraint?
     private var cacheOffset: CGPoint?
@@ -206,22 +208,14 @@ public final class CommunityPageViewController: ViewController, Messagable {
 
     // MARK: - Methods
 
-    private func configureRecipesSection() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .recipiesView }),
-            let row = sections[section].rows.firstIndex(where: { $0 == .recipiesView }),
-            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? CommunityRecipeCell
-        else { return }
-
-        cell.recipesCollectionView.reloadData()
-    }
-
-//    private func configureCommentsSection() {
+//    private func configureRecipesSection() {
 //        guard
-//            let section = sections.firstIndex(where: { $0.section == .recipiesView }),
+//            let section = sections.firstIndex(where: { $0.section == .topView }),
 //            let row = sections[section].rows.firstIndex(where: { $0 == .recipiesView }),
-//            let cell = mainView.cellForRow(at: .init(row: row, section: section))
+//            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? CommunityRecipeCell
 //        else { return }
+//
+////        cell.recipesCollectionView.reloadData()
 //    }
 
     // MARK: - User actions

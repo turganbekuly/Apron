@@ -19,4 +19,8 @@ extension CommunityPageViewController: CommunityPageDisplayLogic {
     func displayJoinCommunity(viewModel: CommunityPageDataFlow.JoinCommunity.ViewModel) {
         state = viewModel.state
     }
+
+    func displayRecipesByCommunity(viewModel: CommunityPageDataFlow.GetRecipesByCommunity.ViewModel) {
+        state = viewModel.state
+    }
 }

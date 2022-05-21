@@ -49,3 +49,23 @@ extension CommunityPageDataFlow {
         case failed(error: AKNetworkError)
     }
 }
+
+extension CommunityPageDataFlow {
+    enum GetRecipesByCommunity {
+        struct Request {
+            let id: Int
+            let currentPage: Int
+        }
+        struct Response {
+            let result: GetRecipesByCommunityResult
+        }
+        struct ViewModel {
+            var state: CommunityPageViewController.State
+        }
+    }
+
+    enum GetRecipesByCommunityResult {
+        case successful(model: [RecipeResponse])
+        case failed(error: AKNetworkError)
+    }
+}

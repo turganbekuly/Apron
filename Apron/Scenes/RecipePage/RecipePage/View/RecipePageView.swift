@@ -30,6 +30,7 @@ public final class RecipePageView: UITableView {
         [
             RecipeInformationViewCell.self,
             IngredientDescriptionCell.self,
+            RecipeCaloriesViewCell.self,
             RecipeIngredientsViewCell.self,
             RecipeInstructionsViewCell.self
         ].forEach {

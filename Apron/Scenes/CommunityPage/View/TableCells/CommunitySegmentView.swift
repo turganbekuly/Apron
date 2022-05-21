@@ -1,5 +1,5 @@
 //
-//  CommunitySegmentCell.swift
+//  CommunitySegmentView.swift
 //  Apron
 //
 //  Created by Akarys Turganbekuly on 18.01.2022.
@@ -9,10 +9,10 @@ import DesignSystem
 import UIKit
 
 public protocol ICommunitySegmentCell: AnyObject {
-    func cell(_ cell: CommunitySegmentCell, didChangedSegment segment: CommunitySegmentCell.CommunitySegment)
+    func cell(_ cell: CommunitySegmentView, didChangedSegment segment: CommunitySegmentView.CommunitySegment)
 }
 
-public final class CommunitySegmentCell: UITableViewCell {
+public final class CommunitySegmentView: UIView {
 
     public enum CommunitySegment: Int, CaseIterable {
         case recipes = 0, comments = 1
@@ -53,9 +53,8 @@ public final class CommunitySegmentCell: UITableViewCell {
 
     // MARK: - Init
 
-    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         configureViews()
     }
 
@@ -84,9 +83,8 @@ public final class CommunitySegmentCell: UITableViewCell {
     }
 
     private func configureViews() {
-        selectionStyle = .none
         [segmentedControl].forEach {
-            contentView.addSubview($0)
+            addSubview($0)
         }
 
         configureColors()
@@ -94,11 +92,8 @@ public final class CommunitySegmentCell: UITableViewCell {
     }
 
     private func makeConstraints() {
-        segmentedControl.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalTo(34)
+        segmentedControl.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 

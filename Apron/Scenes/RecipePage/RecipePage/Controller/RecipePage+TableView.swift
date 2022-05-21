@@ -29,6 +29,9 @@ extension RecipePageViewController: UITableViewDataSource {
         case .ingredient:
             let cell: RecipeIngredientsViewCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .nutrition:
+            let cell: RecipeCaloriesViewCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         case .instruction:
             let cell: RecipeInstructionsViewCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
@@ -37,6 +40,21 @@ extension RecipePageViewController: UITableViewDataSource {
 }
 
 extension RecipePageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        switch row {
+        case .topView:
+            return (view.bounds.width / 2) + 130
+        case .description:
+            return 80
+        case .ingredient:
+            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 38))
+        case .nutrition:
+            return 60
+        case .instruction:
+            return CGFloat(84 + (recipe?.instructions?.count ?? 1) * 95)
+        }
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -46,6 +64,8 @@ extension RecipePageViewController: UITableViewDelegate {
             return 80
         case .ingredient:
             return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 38))
+        case .nutrition:
+            return 60
         case .instruction:
             return CGFloat(84 + (recipe?.instructions?.count ?? 1) * 95)
         }
@@ -84,6 +104,9 @@ extension RecipePageViewController: UITableViewDelegate {
                 serveCount: recipe?.servings ?? "0",
                 ingredients: recipe?.ingredients ?? []
             ))
+        case .nutrition:
+            guard let cell = cell as? RecipeCaloriesViewCell else { return }
+            cell.configure()
         case .instruction:
             guard let cell = cell as? RecipeInstructionsViewCell else { return }
             cell.configure(with: InstructionCellViewModel(

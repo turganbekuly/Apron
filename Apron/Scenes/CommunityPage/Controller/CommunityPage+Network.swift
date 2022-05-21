@@ -17,4 +17,8 @@ extension CommunityPageViewController {
     func joinCommunity(with id: Int) {
         interactor.joinCommunity(request: .init(id: id))
     }
+
+    func getRecipesByCommunity(id: Int, currentPage: Int) {
+        interactor.getRecipesByCommunity(request: .init(id: id, currentPage: currentPage))
+    }
 }

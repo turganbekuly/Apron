@@ -31,7 +31,7 @@ final class InterfaceConfigurator: ApplicationConfiguratorProtocol {
         let vc = SplashScreenBuilder(state: .initial).build()
 //        let vc = AuthorizationBuilder(state: .initial).build()
         AuthStorage.shared.isUserAuthorized = true
-        AuthStorage.shared.accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaW5hc2lsLm9tYXJiZWtAZ21haWwuY29tIiwiZXhwIjoxNjUzMDYwMDcyfQ.JupN2wjNTaR_glrmXiUJOMhyigzdkCIQc3x6L4qrcQHiCej7uooN8qs3xCgr5JvuibgUGwnL5CrRbUKkj4-sWg"
+        AuthStorage.shared.accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaW5hc2lsLm9tYXJiZWtAZ21haWwuY29tIiwiZXhwIjoxNjUzMTU4NzQ4fQ.sPEL0Y9AgU63ZL4htdZE4G1E31dIcu7rAOPh3NpR_cIoiB-DQ_ZvOJAkuJBVErZ0hW8VwFCy1hPTlOHXMEBwpw"
         let navVC = UINavigationController(rootViewController: vc)
         window.rootViewController = navVC
         window.makeKeyAndVisible()

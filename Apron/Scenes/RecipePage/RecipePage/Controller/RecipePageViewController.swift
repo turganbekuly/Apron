@@ -37,6 +37,7 @@ final class RecipePageViewController: ViewController, Messagable {
                 .init(section: .topView, rows: [.topView]),
                 .init(section: .description, rows: [.description]),
                 .init(section: .ingredients, rows: [.ingredient]),
+                .init(section: .nutritions, rows: [.nutrition]),
                 .init(section: .instructions, rows: [.instruction])
             ]
             mainView.reloadData()

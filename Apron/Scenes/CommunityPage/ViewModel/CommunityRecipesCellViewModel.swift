@@ -1,5 +1,5 @@
 //
-//  CommunityRecipesCollectionCellViewModel.swift
+//  CommunityRecipesCellViewModel.swift
 //  Apron
 //
 //  Created by Akarys Turganbekuly on 19.01.2022.
@@ -8,11 +8,11 @@
 import Foundation
 import Models
 
-protocol ICommunityRecipesCollectionCellViewModel: AnyObject {
+protocol CommunityRecipesCellViewModelProtocol: AnyObject {
     var recipe: RecipeResponse? { get }
 }
 
-final class CommunityRecipesCollectionCellViewModel: ICommunityRecipesCollectionCellViewModel {
+final class CommunityRecipesCellViewModel: CommunityRecipesCellViewModelProtocol {
     // MARK: - Properties
 
     var recipe: RecipeResponse?

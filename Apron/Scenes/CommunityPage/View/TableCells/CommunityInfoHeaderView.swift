@@ -1,5 +1,5 @@
 //
-//  CommunityInfoCell.swift
+//  CommunityInfoHeaderView.swift
 //  Apron
 //
 //  Created by Akarys Turganbekuly on 17.01.2022.
@@ -17,7 +17,7 @@ protocol ICommunityInfoCell: AnyObject {
     func navigateToAuth()
 }
 
-final class CommunityInfoCell: UITableViewCell {
+final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
     // MARK: - Properties
 
     weak var delegate: ICommunityInfoCell?
@@ -33,10 +33,22 @@ final class CommunityInfoCell: UITableViewCell {
 
     var id = 0
 
+    weak var filterViewDelegate: SearchBarProtocol? {
+        didSet {
+            filterView.delegate = filterViewDelegate
+        }
+    }
+    weak var segmentDelegate: ICommunitySegmentCell? {
+        didSet {
+            segmentView.delegate = segmentDelegate
+        }
+    }
+
     // MARK: - Init
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+
         setupViews()
     }
 
@@ -125,19 +137,31 @@ final class CommunityInfoCell: UITableViewCell {
 
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = Assets.lightGray.color
+        view.backgroundColor = Assets.lightGray2.color
         return view
     }()
+
+    private lazy var filterView = CommunityFilterView()
+    private lazy var segmentView = CommunitySegmentView()
 
     // MARK: - Setup Views
 
     private func setupViews() {
         backgroundColor = .clear
-        selectionStyle = .none
         [roundedCornerView, containerView].forEach { contentView.addSubview($0) }
-        [titleLabel, subtitleLabel, joinButton, recipeStackView, membersStackView, separatorView].forEach {
+        [
+            titleLabel,
+            subtitleLabel,
+            joinButton,
+            recipeStackView,
+            membersStackView,
+            separatorView,
+            filterView,
+            segmentView
+        ].forEach {
             containerView.addSubview($0)
         }
+        
         setupConstraints()
     }
 
@@ -155,7 +179,8 @@ final class CommunityInfoCell: UITableViewCell {
         }
 
         separatorView.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalToSuperview()
+            $0.top.equalTo(recipeStackView.snp.bottom).offset(24)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }
 
@@ -180,13 +205,23 @@ final class CommunityInfoCell: UITableViewCell {
         recipeStackView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(8)
             $0.leading.equalToSuperview().offset(16)
-            $0.bottom.equalTo(separatorView.snp.top).inset(-12)
         }
 
         membersStackView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(8)
             $0.leading.equalTo(recipeStackView.snp.trailing).offset(5)
-            $0.bottom.equalTo(separatorView.snp.top).inset(-12)
+        }
+
+        filterView.snp.makeConstraints {
+            $0.top.equalTo(separatorView.snp.bottom).offset(18)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(38)
+        }
+
+        segmentView.snp.makeConstraints {
+            $0.top.equalTo(filterView.snp.bottom).offset(24)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(34)
         }
     }
 
@@ -214,6 +249,10 @@ final class CommunityInfoCell: UITableViewCell {
         self.membersCountLabel.text = "\(community.users?.count ?? 0) подписчиков"
         self.isJoined = community.joined ?? false
         self.id = community.id
+        segmentView.configure(
+            with: CommunitySegmentedCellViewModel(filter: CommunitySegmentView.CommunitySegment.recipes)
+        )
+        filterView.configure(with: CommunityFilterCellViewModel(searchbarPlaceholder: viewModel.searchbarPlaceholder))
     }
 
     // MARK: - User actions

@@ -13,6 +13,7 @@ import Storages
 public enum CommunityPageEndpoint {
     case getCommunity(id: Int)
     case joinCommunity(id: Int)
+    case getRecipesByCommunity(id: Int, currentPage: Int)
 }
 
 extension CommunityPageEndpoint: AKNetworkTargetType {
@@ -27,6 +28,8 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return "communities/\(id)"
         case let .joinCommunity(id):
             return "communities/join/\(id)"
+        case .getRecipesByCommunity:
+            return "recipes/recipesByCommunityId"
         }
     }
     
@@ -36,6 +39,8 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return .get
         case .joinCommunity:
             return .put
+        case .getRecipesByCommunity:
+            return .get
         }
     }
     
@@ -49,6 +54,11 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return .requestPlain
         case .joinCommunity:
             return .requestPlain
+        case let .getRecipesByCommunity(id, currentPage):
+            return .requestParameters(
+                parameters: ["communityId": id, "limit": 20, "page": currentPage],
+                encoding: AKURLEncoding.queryString
+            )
         }
     }
     

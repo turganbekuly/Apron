@@ -17,8 +17,8 @@ public struct CommunitySegmentedCellViewModel: ICommunitySegmentedCellViewModel 
 
     // MARK: - Init
 
-    public init(filter: CommunitySegmentCell.CommunitySegment?) {
-        index = filter?.rawValue ?? CommunitySegmentCell.CommunitySegment.recipes.rawValue
+    public init(filter: CommunitySegmentView.CommunitySegment?) {
+        index = filter?.rawValue ?? CommunitySegmentView.CommunitySegment.recipes.rawValue
     }
 
 }

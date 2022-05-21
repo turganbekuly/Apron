@@ -18,6 +18,8 @@ extension CommunityPageViewController {
         case displayCommunityError(AKNetworkError)
         case joinedCommunity
         case joinedCommunityFailed
+        case displayRecipes([RecipeResponse])
+        case displayRecipesFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -25,6 +27,7 @@ extension CommunityPageViewController {
         switch state {
         case let .initial(id):
             getCommunities(by: id)
+            getRecipesByCommunity(id: id, currentPage: currentPage)
         case let .displayCommunity(model):
             self.community = model
         case let .displayCommunityError(error):
@@ -33,6 +36,10 @@ extension CommunityPageViewController {
             print("")
         case .joinedCommunityFailed:
             print("")
+        case let .displayRecipes(model):
+            self.recipes = model
+        case let .displayRecipesFailed(error):
+            print(error)
         }
     }
     

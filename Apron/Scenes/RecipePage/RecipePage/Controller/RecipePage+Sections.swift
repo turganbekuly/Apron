@@ -14,12 +14,14 @@ extension RecipePageViewController {
             case topView
             case description
             case ingredients
+            case nutritions
             case instructions
         }
         enum Row {
             case topView
             case description
             case ingredient
+            case nutrition
             case instruction
 
             static func == (lhs: Row, rhs: Row) -> Bool {
@@ -29,6 +31,8 @@ extension RecipePageViewController {
                 case (.description, .description):
                     return true
                 case (.ingredient, .ingredient):
+                    return true
+                case (.nutrition, .nutrition):
                     return true
                 case (.instruction, .instruction):
                     return true
