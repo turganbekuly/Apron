@@ -23,6 +23,7 @@ open class AppTabBarController: UITabBarController, ViewControllerProtocol {
 //        tabBar.centerButtonColor = Assets.colorsYello.color
 //        tabBar.buttonImage = Assets.tabbarAddIcon.image
         tabBar.tintColor = .black
+        self.tabBar.backgroundColor = .white
     }
 }
 

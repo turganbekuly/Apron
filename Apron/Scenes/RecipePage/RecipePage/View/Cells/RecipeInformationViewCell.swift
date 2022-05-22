@@ -34,14 +34,6 @@ final class RecipeInformationViewCell: UITableViewCell {
         return label
     }()
 
-    private lazy var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = TypographyFonts.regular12
-        label.textColor = .black
-        label.numberOfLines = 0
-        return label
-    }()
-
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
@@ -109,7 +101,6 @@ final class RecipeInformationViewCell: UITableViewCell {
         isUserInteractionEnabled = true
         [
             titleLabel,
-            subtitleLabel,
             recipeImageView,
             favoriteButton,
             likeButton,
@@ -137,13 +128,8 @@ final class RecipeInformationViewCell: UITableViewCell {
             $0.trailing.equalTo(favoriteButton.snp.leading).offset(-16)
         }
 
-        subtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview().inset(16)
-        }
-
         recipeImageView.snp.makeConstraints {
-            $0.top.equalTo(subtitleLabel.snp.bottom).offset(5)
+            $0.top.equalTo(favoriteButton.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo((bounds.width / 1.5))
         }
@@ -190,7 +176,6 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     func configure(with viewModel: IInformationCellViewModel) {
         titleLabel.text = viewModel.recipeName
-        subtitleLabel.text = viewModel.recipeSubtitle
         recipeSourceURLButton.setTitle(viewModel.recipeSourceURL, for: .normal)
         recipeSourceURLButton.sizeToFit()
         recipeImageView.image = Assets.recipeSampleImage.image

@@ -77,7 +77,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
     
     // MARK: - Views factory
 
-    private lazy var saveButton: BlackOpButton = {
+    lazy var saveButton: BlackOpButton = {
         let button = BlackOpButton(arrowState: .none, frame: CGRect(x: 0, y: 0, width: 90, height: 30))
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)

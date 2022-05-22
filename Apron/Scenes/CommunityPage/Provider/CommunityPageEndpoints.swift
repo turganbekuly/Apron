@@ -56,7 +56,7 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return .requestPlain
         case let .getRecipesByCommunity(id, currentPage):
             return .requestParameters(
-                parameters: ["communityId": id, "limit": 20, "page": currentPage],
+                parameters: ["communityId": id, "limit": 5, "page": currentPage],
                 encoding: AKURLEncoding.queryString
             )
         }

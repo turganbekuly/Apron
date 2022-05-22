@@ -54,18 +54,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
         }
     }
 
-    var recipes: [RecipeResponse] = [] {
-        didSet {
-            sections = [
-                .init(
-                    section: .topView,
-                    rows: recipes.compactMap { .recipiesView($0) }
-                )
-            ]
-            
-            mainView.reloadTableViewWithoutAnimation()
-        }
-    }
+    var recipes: [RecipeResponse] = []
 
     var currentPage = 1
     var id = 0
@@ -90,6 +79,16 @@ public final class CommunityPageViewController: ViewController, Messagable {
         view.dataSource = self
         view.delegate = self
         return view
+    }()
+
+    private lazy var createRecipeButton: BlackOpButton = {
+        let button = BlackOpButton(backgroundType: .yelloBackground)
+        //        button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 25
+        button.layer.masksToBounds = true
+        button.setImage(Assets.creationPlusButton.image, for: .normal)
+        button.clipsToBounds = true
+        return button
     }()
 
     private lazy var refreshControl = UIRefreshControl()
@@ -161,7 +160,12 @@ public final class CommunityPageViewController: ViewController, Messagable {
         backButton.onTouch = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        [imageView, mainView, navigationBarView].forEach { view.addSubview($0) }
+        [imageView, mainView, navigationBarView, createRecipeButton].forEach { view.addSubview($0) }
+
+        mainView.addInfiniteScroll { [weak self] _ in
+            guard let self = self else { return }
+            self.getRecipesByCommunity(id: self.id, currentPage: self.currentPage)
+        }
         
         configureColors()
         makeConstraints()
@@ -180,6 +184,11 @@ public final class CommunityPageViewController: ViewController, Messagable {
                 .constraint
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+
+        createRecipeButton.snp.makeConstraints {
+            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.size.equalTo(50)
         }
     }
 

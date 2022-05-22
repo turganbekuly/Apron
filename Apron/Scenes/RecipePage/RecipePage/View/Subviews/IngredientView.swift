@@ -10,16 +10,33 @@ import DesignSystem
 import Kingfisher
 
 final class IngredientView: UIView {
+    // MARK: - Properties
+
+    private var initialServingsCount = 0
+
+    private var changedServingsCount = 0 {
+        didSet {
+            amount = (initialAmount / Double(initialServingsCount)) * Double(changedServingsCount)
+        }
+    }
+
+    private var amount: Double = 0 {
+        didSet {
+            self.measureScopeLabel.text = "\(String(format: "%.1f", amount)) \(unit)"
+        }
+    }
+
+    private var initialAmount: Double = 0 {
+        didSet {
+            amount = initialAmount
+        }
+    }
+    private var unit: String = ""
+
     // MARK: - Init
 
-    init(
-        name: String,
-        measurement: String
-    ) {
-        super.init(frame: .zero)
-
-        self.nameLabel.text = name
-        self.measureScopeLabel.text = measurement
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
         setupViews()
     }
@@ -42,7 +59,7 @@ final class IngredientView: UIView {
         let label = UILabel()
         label.font = TypographyFonts.bold16
         label.textColor = .black
-        label.textAlignment = .left
+        label.textAlignment = .center
         return label
     }()
 
@@ -62,7 +79,7 @@ final class IngredientView: UIView {
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(4)
             $0.leading.equalToSuperview()
-            $0.trailing.lessThanOrEqualTo(snp.centerX)
+            $0.trailing.equalTo(snp.centerX).offset(8)
             $0.bottom.equalToSuperview().inset(4)
         }
 
@@ -75,7 +92,18 @@ final class IngredientView: UIView {
 
     // MARK: - Public methods
 
-    func changeService(newMeasure: String) {
-        measureScopeLabel.text = newMeasure
+    func configure(
+        name: String,
+        amount: Double,
+        unit: String
+    ) {
+        self.nameLabel.text = name
+        self.initialAmount = amount
+        self.unit = unit
+    }
+
+    func changeServings(initialCount: Int, changedCount: Int) {
+        self.initialServingsCount = initialCount
+        self.changedServingsCount = changedCount
     }
 }

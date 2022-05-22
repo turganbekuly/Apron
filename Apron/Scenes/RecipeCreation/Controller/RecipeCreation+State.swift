@@ -24,9 +24,9 @@ extension RecipeCreationViewController {
         case let .initial(state):
             self.initialState = state
         case let .recipeCreationSucceed(recipe):
-            print(recipe)
-        case let .recipeCreationFailed(error):
-            print(error)
+            show(type: .success("Рецепт создался успешно"), firstAction: nil, secondAction: nil)
+        case .recipeCreationFailed:
+            show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)
         }
     }
     

@@ -28,6 +28,11 @@ extension MainViewController: JoinCommunityProtocol {
             self.navigationController?.present(vc, animated: true)
             return
         }
+
+        let vc = CommunityPageBuilder(state: .initial(id)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     func navigateToAuth() {

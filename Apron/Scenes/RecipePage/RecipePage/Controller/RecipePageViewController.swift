@@ -43,21 +43,6 @@ final class RecipePageViewController: ViewController, Messagable {
             mainView.reloadData()
         }
     }
-
-    var topView = [
-        InformationCellViewModel(
-            recipeName: "Легкий грибной суп",
-            recipeSubtitle: "в Вегетарианские рецепты и еще 2 сообществах",
-            recipeSourceURL: "asdgamer1995123"
-        )
-    ]
-
-    var descriptions = [
-        IngredientsDescriptionCellViewModel(
-            description: "Очень простой суп из шампиньонов, картофеля, лука и макарон. Бюджетный, быстрый и лёгкий.",
-            cookingTime: "30 мин"
-        )
-    ]
     
     // MARK: - Views factory
 
@@ -148,7 +133,6 @@ final class RecipePageViewController: ViewController, Messagable {
         cell.configure(
             with: InformationCellViewModel(
             recipeName: recipe?.recipeName ?? "",
-            recipeSubtitle: recipe?.description ?? "",
             recipeSourceURL: recipe?.sourceLink ?? ""
             )
         )

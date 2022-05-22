@@ -30,7 +30,7 @@ public struct RecipeCreation: Codable {
     public var description: String?
     public var ingredients: [RecipeIngredient]?
     public var instructions: [String]?
-    public var servings: String?
+    public var servings: Int?
     public var prepTime: String?
     public var cookTime: String?
 
@@ -79,12 +79,12 @@ public struct RecipeCreation: Codable {
         if let servings = servings {
             params[CodingKeys.servings.rawValue] = servings
         }
-        if let prepTime = prepTime {
-            params[CodingKeys.prepTime.rawValue] = prepTime
-        }
-        if let cookTime = cookTime {
-            params[CodingKeys.cookTime.rawValue] = cookTime
-        }
+//        if let prepTime = prepTime {
+//            params[CodingKeys.prepTime.rawValue] = prepTime
+//        }
+//        if let cookTime = cookTime {
+//            params[CodingKeys.cookTime.rawValue] = cookTime
+//        }
         return params
     }
 }

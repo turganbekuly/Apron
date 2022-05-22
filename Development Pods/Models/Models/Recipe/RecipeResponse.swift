@@ -34,7 +34,7 @@ public struct RecipeResponse: Codable {
     public var description: String?
     public var ingredients: [RecipeIngredient]?
     public var instructions: [String]?
-    public var servings: String?
+    public var servings: Int?
     public var prepTime: String?
     public var cookTime: String?
 
@@ -54,7 +54,7 @@ public struct RecipeResponse: Codable {
         self.description = json[CodingKeys.description.rawValue] as? String
         self.ingredients = (json[CodingKeys.ingredients.rawValue] as? [JSON])?.compactMap { RecipeIngredient(json: $0) } ?? []
         self.instructions = json[CodingKeys.instructions.rawValue] as? [String]
-        self.servings = json[CodingKeys.servings.rawValue] as? String
+        self.servings = json[CodingKeys.servings.rawValue] as? Int
         self.prepTime = json[CodingKeys.prepTime.rawValue] as? String
         self.cookTime = json[CodingKeys.cookTime.rawValue] as? String
     }

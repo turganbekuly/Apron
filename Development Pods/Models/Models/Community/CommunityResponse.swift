@@ -63,7 +63,7 @@ public struct CommunityResponse: Codable {
         self.webLink = json[CodingKeys.webLink.rawValue] as? String
         self.recipes = (json[CodingKeys.recipes.rawValue] as? [JSON])?.compactMap { RecipeResponse(json: $0 ) } ?? []
         self.users = json[CodingKeys.users.rawValue] as? [Int]
-        self.joined = json[CodingKeys.communityCategoryName.rawValue] as? Bool
+        self.joined = json[CodingKeys.joined.rawValue] as? Bool
         self.recipesCount = json[CodingKeys.recipesCount.rawValue] as? Int
         self.usersCount = json[CodingKeys.usersCount.rawValue] as? Int
     }

@@ -24,8 +24,9 @@ final class NutritionView: UIView {
 
     private lazy var typeLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.regular16
+        label.font = TypographyFonts.regular12
         label.textColor = Assets.gray.color
+        label.textAlignment = .center
         return label
     }()
 
@@ -33,12 +34,14 @@ final class NutritionView: UIView {
         let label = UILabel()
         label.font = TypographyFonts.semibold16
         label.textColor = .black
+        label.textAlignment = .center
         return label
     }()
 
     // MARK: - Setup Views
 
     private func setupViews() {
+        backgroundColor = .clear
         [typeLabel, measureLabel].forEach {
             addSubview($0)
         }

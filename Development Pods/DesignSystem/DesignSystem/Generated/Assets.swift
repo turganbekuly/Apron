@@ -56,6 +56,12 @@ public enum Assets {
   public static let recipeFavoriteIcon = ImageAsset(name: "recipe_favorite_icon")
   public static let searchClearButton = ImageAsset(name: "search_clear_button")
   public static let tableRoundedCorners = ImageAsset(name: "table_rounded_corners")
+  public static let communityAboutIcon = ImageAsset(name: "community_about_icon")
+  public static let communityPrivateIcon = ImageAsset(name: "community_private_icon")
+  public static let communityPublicIcon = ImageAsset(name: "community_public_icon")
+  public static let recipeAddIcon = ImageAsset(name: "recipe_add_icon")
+  public static let recipeNewIcon = ImageAsset(name: "recipe_new_icon")
+  public static let recipeSaveLinkIcon = ImageAsset(name: "recipe_saveLink_icon")
   public static let iconPlaceholderCard = ImageAsset(name: "icon_placeholder_card")
   public static let iconPlaceholderItem = ImageAsset(name: "icon_placeholder_item")
   public static let navAvatarIcon = ImageAsset(name: "nav_avatar_icon")
@@ -65,6 +71,7 @@ public enum Assets {
   public static let navMoreButton = ImageAsset(name: "nav_more_button")
   public static let navNotificationIcon = ImageAsset(name: "nav_notification_icon")
   public static let navSearchIcon = ImageAsset(name: "nav_search_icon")
+  public static let creationPlusButton = ImageAsset(name: "creation_plus_button")
   public static let minusButtonIcon = ImageAsset(name: "minus_button_icon")
   public static let plusButtonIcon = ImageAsset(name: "plus_button_icon")
   public static let recipeDislikeSelected = ImageAsset(name: "recipe_dislike_selected")
@@ -89,6 +96,8 @@ public enum Assets {
   public static let tabPlannerIcon = ImageAsset(name: "tab_planner_icon")
   public static let tabPlannerSelectedIcon = ImageAsset(name: "tab_planner_selected_icon")
   public static let tabbarAddIcon = ImageAsset(name: "tabbar_add_icon")
+  public static let tabbarAddIcon20px = ImageAsset(name: "tabbar_add_icon_20px")
+  public static let tabbarAddIconThin = ImageAsset(name: "tabbar_add_icon_thin")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

@@ -44,13 +44,13 @@ extension RecipePageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .topView:
-            return (view.bounds.width / 2) + 130
+            return (view.bounds.width / 2) + 120
         case .description:
             return 80
         case .ingredient:
             return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 38))
         case .nutrition:
-            return 60
+            return 203
         case .instruction:
             return CGFloat(84 + (recipe?.instructions?.count ?? 1) * 95)
         }
@@ -59,13 +59,13 @@ extension RecipePageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .topView:
-            return (view.bounds.width / 2) + 130
+            return (view.bounds.width / 2) + 120
         case .description:
             return 80
         case .ingredient:
             return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 38))
         case .nutrition:
-            return 60
+            return 203
         case .instruction:
             return CGFloat(84 + (recipe?.instructions?.count ?? 1) * 95)
         }
@@ -89,7 +89,6 @@ extension RecipePageViewController: UITableViewDelegate {
             }
             cell.configure(with: InformationCellViewModel(
                 recipeName: recipe?.recipeName ?? "",
-                recipeSubtitle: "asdkasdkaskdasd",
                 recipeSourceURL: recipe?.sourceName
             ))
         case .description:
@@ -101,12 +100,18 @@ extension RecipePageViewController: UITableViewDelegate {
         case .ingredient:
             guard let cell = cell as? RecipeIngredientsViewCell else { return }
             cell.configure(with: IngredientsListCellViewModel(
-                serveCount: recipe?.servings ?? "0",
+                serveCount: recipe?.servings ?? 1,
                 ingredients: recipe?.ingredients ?? []
             ))
         case .nutrition:
             guard let cell = cell as? RecipeCaloriesViewCell else { return }
-            cell.configure()
+            let ingredients = self.recipe?.ingredients
+            cell.configure(with: CaloriesCellViewModel(
+                proteinCount: ingredients?.reduce(0, { $0 + ($1.product?.proteinMass ?? 0) }),
+                fatCount: ingredients?.reduce(0, { $0 + ($1.product?.fatMass ?? 0) }),
+                carbsCount: ingredients?.reduce(0, { $0 + ($1.product?.carbsMass ?? 0) }),
+                ccalCount: ingredients?.reduce(0, { $0 + ($1.product?.kilokalori ?? 0) })
+            ))
         case .instruction:
             guard let cell = cell as? RecipeInstructionsViewCell else { return }
             cell.configure(with: InstructionCellViewModel(

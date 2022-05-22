@@ -202,7 +202,7 @@ final class IngredientSelectionViewController: ViewController {
         recipeIgredient.product?.name = recipeTextField.textField.text
         recipeIgredient.product?.id = 7
         recipeIgredient.amount = Double(measureTextField.amountTextField.text ?? "0")
-        recipeIgredient.measurement = MeasureTypes(rawValue: measureTextField.measurementTyptextField.text ?? "")
+        recipeIgredient.measurement = measureTextField.measurementTyptextField.text
         delegate?.onIngredientSelected(ingredient: recipeIgredient)
         navigationController?.popViewController(animated: true)
     }

@@ -28,16 +28,20 @@ final class RecipeCaloriesViewCell: UITableViewCell {
         label.font = TypographyFonts.semibold20
         label.textColor = .black
         label.textAlignment = .left
+        label.text = "Калорийность"
         return label
     }()
 
     private lazy var scaleImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = Assets.calQuaterIcon.image
         return imageView
     }()
 
     private lazy var calPerServingLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .left
         return label
     }()
 
@@ -55,13 +59,17 @@ final class RecipeCaloriesViewCell: UITableViewCell {
             carbsView
         ])
         stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
         return stackView
     }()
+    private lazy var sectionDivider = SeparatorView()
 
     // MARK: - Setup Views
 
     private func setupViews() {
-        [stackView].forEach {
+        backgroundColor = .clear
+        selectionStyle = .none
+        [caloriesTitleLabel, scaleImageView, calPerServingLabel, stackView, sectionDivider].forEach {
             addSubview($0)
         }
 
@@ -69,6 +77,28 @@ final class RecipeCaloriesViewCell: UITableViewCell {
     }
 
     private func setupConstraints() {
+        sectionDivider.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+
+        caloriesTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+
+        scaleImageView.snp.makeConstraints {
+            $0.top.equalTo(caloriesTitleLabel.snp.bottom).offset(24)
+            $0.leading.equalToSuperview().offset(16)
+            $0.size.equalTo(53)
+        }
+
+        calPerServingLabel.snp.makeConstraints {
+            $0.centerY.equalTo(scaleImageView.snp.centerY)
+            $0.leading.equalTo(scaleImageView.snp.trailing).offset(8)
+            $0.trailing.equalToSuperview().inset(16)
+        }
+
         firstDivider.snp.makeConstraints {
             $0.width.equalTo(1)
         }
@@ -78,15 +108,27 @@ final class RecipeCaloriesViewCell: UITableViewCell {
         }
 
         stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(scaleImageView.snp.bottom).offset(16)
+            $0.bottom.equalTo(sectionDivider.snp.top).offset(-12)
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
+    }
+
+    private func attributedLabelSetup(firstString: String, secondString: String) {
+        let firstAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black, .font: TypographyFonts.semibold18]
+        let secondAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black, .font: TypographyFonts.regular16]
+        let firstString = NSMutableAttributedString(string: firstString, attributes: firstAttributes)
+        let secondString = NSAttributedString(string: secondString, attributes: secondAttributes)
+        firstString.append(secondString)
+        calPerServingLabel.attributedText = firstString
     }
 
     // MARK: - Public methods
 
-    func configure() {
-        fatView.configure(type: "Fat", measure: "25 g")
-        proteinView.configure(type: "Protein", measure: "44 g")
-        carbsView.configure(type: "Carbs", measure: "12 g")
+    func configure(with viewModel: CaloriesCellViewModelProtocol) {
+        fatView.configure(type: "ЖИРЫ", measure: "\(viewModel.fatCount ?? 0) g")
+        proteinView.configure(type: "БЕЛКИ", measure: "\(viewModel.proteinCount ?? 0) g")
+        carbsView.configure(type: "УГЛЕВОДЫ", measure: "\(viewModel.carbsCount ?? 0) g")
+        attributedLabelSetup(firstString: "\(viewModel.ccalCount ?? 0) ", secondString: "Ккал на 1 порцию")
     }
 }

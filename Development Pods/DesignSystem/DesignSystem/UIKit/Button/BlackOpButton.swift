@@ -18,6 +18,7 @@ public final class BlackOpButton: Button {
     public enum ButtonType {
         case blackBackground
         case whiteBackground
+        case yelloBackground
     }
 
     private let arrowState: ArrowState
@@ -38,9 +39,9 @@ public final class BlackOpButton: Button {
     // MARK: - Init
 
     public init(
+        backgroundType: ButtonType = .blackBackground,
         arrowState: ArrowState = .none,
-        frame: CGRect = .zero,
-        backgroundType: ButtonType = .blackBackground
+        frame: CGRect = .zero
     ) {
         self.arrowState = arrowState
         self.backgroundType = backgroundType
@@ -124,6 +125,15 @@ public final class BlackOpButton: Button {
             tintColor = isEnabled ? .white : .white.withAlphaComponent(0.5)
             layer.borderWidth = 1
             layer.borderColor = UIColor.black.cgColor
+        case .yelloBackground:
+            setBackgroundColor(Assets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
+            setBackgroundColor(Assets.colorsYello.color, for: .normal)
+            setBackgroundColor(Assets.colorsYello.color.highlighted, for: .highlighted)
+            setTitleColor(.black, for: .disabled)
+            setTitleColor(.black, for: .normal)
+            tintColor = isEnabled ? Assets.colorsYello.color : Assets.colorsYello.color.withAlphaComponent(0.5)
+            layer.borderWidth = 1
+            layer.borderColor = Assets.colorsYello.color.cgColor
         }
     }
 }

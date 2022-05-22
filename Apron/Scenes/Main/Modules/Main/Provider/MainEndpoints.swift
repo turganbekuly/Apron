@@ -58,13 +58,20 @@ extension MainEndpoint: AKNetworkTargetType {
             "Accept-Language": "ru",
             "Content-Type": "application/json"
         ]
-        switch self {
-        case .getCommuntiesByCategories:
-            break
-        default:
+
+        if AuthStorage.shared.isUserAuthorized {
             if let token = AuthStorage.shared.accessToken {
                 headers["Authorization"] = "Bearer \(token)"
             }
+        } else {
+            switch self {
+            case .getCommuntiesByCategories:
+                break
+            default:
+                if let token = AuthStorage.shared.accessToken {
+                    headers["Authorization"] = "Bearer \(token)"
+                }
+            } 
         }
         return headers
     }

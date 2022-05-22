@@ -80,6 +80,7 @@ final class GeneralSearchViewController: ViewController {
         controller.searchBar.placeholder = "Поиск рецептов и сообществ"
         controller.searchResultsUpdater = self
         controller.searchBar.delegate = self
+        controller.delegate = self
         return controller
     }()
     
@@ -116,10 +117,8 @@ final class GeneralSearchViewController: ViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if isFirstAppear {
-            searchController.searchBar.becomeFirstResponder()
-            isFirstAppear = false
-        }
+
+        searchController.isActive = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {

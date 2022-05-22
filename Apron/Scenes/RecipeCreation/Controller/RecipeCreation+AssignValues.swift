@@ -27,7 +27,7 @@ extension RecipeCreationViewController: AssignTypesSelectedDelegate {
     func didSelected(type: AssignTypes) {
         switch type {
         case .servings(let string):
-            recipeCreation?.servings = string
+            recipeCreation?.servings = Int(string)
         case .prepTime(let string):
             recipeCreation?.prepTime = string
         case .cookTime(let string):

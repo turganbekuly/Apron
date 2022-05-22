@@ -51,6 +51,16 @@ final class MainViewController: ViewController, Messagable {
         view.delegate = self
         return view
     }()
+
+    private lazy var createCommunityButton: BlackOpButton = {
+        let button = BlackOpButton(backgroundType: .yelloBackground)
+        button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 25
+        button.layer.masksToBounds = true
+        button.setImage(Assets.creationPlusButton.image, for: .normal)
+        button.clipsToBounds = true
+        return button
+    }()
     
     // MARK: - Init
     init(interactor: MainBusinessLogic, state: State) {
@@ -115,7 +125,7 @@ final class MainViewController: ViewController, Messagable {
     }
     
     private func configureViews() {
-        [mainView].forEach { view.addSubview($0) }
+        [mainView, createCommunityButton].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
@@ -125,10 +135,25 @@ final class MainViewController: ViewController, Messagable {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        createCommunityButton.snp.makeConstraints {
+            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.size.equalTo(50)
+        }
     }
     
     private func configureColors() {
         view.backgroundColor = Assets.secondary.color
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func createButtonTapped() {
+        let vc = CreateActionFlowBuilder.init(state: .initial(.community)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.presentPanModal(vc)
+        }
     }
 
     // MARK: - Methods

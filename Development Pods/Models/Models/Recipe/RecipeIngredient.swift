@@ -21,7 +21,7 @@ public struct RecipeIngredient: Codable {
     public var id: Int?
     public var product: Product?
     public var amount: Double?
-    public var measurement: MeasureTypes?
+    public var measurement: String?
 
     // MARK: - Init
 
@@ -35,7 +35,7 @@ public struct RecipeIngredient: Codable {
         self.id = id
         self.product = Product(json: json[CodingKeys.product.rawValue] as? JSON ?? [:])
         self.amount = json[CodingKeys.amount.rawValue] as? Double
-        self.measurement = json[CodingKeys.measurement.rawValue] as? MeasureTypes
+        self.measurement = json[CodingKeys.measurement.rawValue] as? String
     }
     
     // MARK: - Methods

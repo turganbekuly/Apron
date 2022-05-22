@@ -7,8 +7,28 @@
 
 import UIKit
 import DesignSystem
+import HapticTouch
 
 final class RecipeIngredientsViewCell: UITableViewCell {
+    // MARK: - Properties
+
+    private var servingCount = 0 {
+        didSet {
+            serveLabel.text = "\(servingCount) порции"
+            ingredientsStackView.subviews.forEach {
+                if let view = $0 as? IngredientView {
+                    view.changeServings(initialCount: initialServeCount, changedCount: servingCount)
+                }
+            }
+        }
+    }
+
+    private var initialServeCount = 0 {
+        didSet {
+            servingCount = initialServeCount
+        }
+    }
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,12 +53,14 @@ final class RecipeIngredientsViewCell: UITableViewCell {
     private lazy var minusButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         button.setImage(Assets.minusButtonIcon.image, for: .normal)
+        button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         return button
     }()
 
     private lazy var plusButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         button.setImage(Assets.plusButtonIcon.image, for: .normal)
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -116,18 +138,34 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         }
     }
 
+    // MARK: - User actions
+
+    @objc
+    private func minusButtonTapped() {
+        guard servingCount > 1 else { return }
+        servingCount -= 1
+        HapticTouch.generateMedium()
+    }
+
+    @objc
+    private func plusButtonTapped() {
+        servingCount += 1
+        HapticTouch.generateMedium()
+    }
+
     // MARK: - Public methods
 
     func configure(with viewModel: IIngredientsListCellViewModel) {
         ingredientsTitleLabel.text = "Ингредиенты"
-        serveLabel.text = "\(viewModel.serveCount) порции"
+        self.initialServeCount = viewModel.serveCount
         ingredientsStackView.removeAllArrangedSubviews()
         viewModel.ingredients.forEach {
-            let view = IngredientView(
+            let view = IngredientView()
+            view.configure(
                 name: $0.product?.name ?? "",
-                measurement: "\($0.amount?.clean ?? "")  \($0.measurement?.units ?? "")"
+                amount: $0.amount ?? 0,
+                unit: $0.measurement ?? ""
             )
-
             ingredientsStackView.addArrangedSubview(view)
         }
         ingredientsStackView.layoutIfNeeded()

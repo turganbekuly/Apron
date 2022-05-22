@@ -20,3 +20,9 @@ extension GeneralSearchViewController: UISearchResultsUpdating {
         viewController.searchTerm = searchController.searchBar.text
     }
 }
+
+extension GeneralSearchViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.becomeFirstResponder()
+    }
+}

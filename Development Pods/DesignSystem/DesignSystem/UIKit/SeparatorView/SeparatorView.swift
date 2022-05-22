@@ -16,7 +16,7 @@ public final class SeparatorView: UIView {
         public var color: UIColor {
             switch self {
             default:
-                return Assets.gray.color
+                return Assets.lightGray2.color
             }
         }
     }

@@ -37,10 +37,27 @@ extension CommunityPageViewController {
         case .joinedCommunityFailed:
             print("")
         case let .displayRecipes(model):
-            self.recipes = model
+            updateList(with: model)
         case let .displayRecipesFailed(error):
             print(error)
         }
     }
-    
+
+    private func updateList(with recipes: [RecipeResponse]) {
+        if self.recipes.isEmpty {
+            self.recipes = recipes
+        } else {
+            self.recipes.append(contentsOf: recipes)
+            mainView.finishInfiniteScroll()
+        }
+
+        configureRecipes()
+    }
+
+    func configureRecipes() {
+        guard let section = sections.firstIndex(where: { $0.section == .topView }) else { return }
+        currentPage += 1
+        sections[section].rows = recipes.compactMap { .recipiesView($0) }
+        mainView.reloadData()
+    }
 }

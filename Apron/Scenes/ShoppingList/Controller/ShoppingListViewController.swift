@@ -66,9 +66,8 @@ final class ShoppingListViewController: ViewController, Messagable {
 
     private lazy var shareButton: BlackOpButton = {
         let button = BlackOpButton(
-            arrowState: .none,
-            frame: CGRect(x: 0, y: 0, width: 90, height: 30),
-            backgroundType: .whiteBackground
+            backgroundType: .whiteBackground, arrowState: .none,
+            frame: CGRect(x: 0, y: 0, width: 90, height: 30)
         )
         button.setTitle("Поделиться", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)

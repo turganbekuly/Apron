@@ -24,7 +24,7 @@ extension CommunityPageViewController {
             }
         }
 
-        let section: Section
-        let rows: [Row]
+        var section: Section
+        var rows: [Row]
     }
 }

@@ -130,7 +130,7 @@ extension RecipeCreationViewController:
         case .servings:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self
-            cell.configure(type: .servings(recipeCreation?.servings ?? ""))
+            cell.configure(type: .servings("\(recipeCreation?.servings ?? 0)"))
         case .prepTime:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self
