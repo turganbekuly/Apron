@@ -12,7 +12,7 @@ import Models
 import AlertMessages
 
 protocol CommunityCreationDisplayLogic: AnyObject {
-    
+    func displayCreatedCommunity(with viewModel: CommunityCreationDataFlow.CreateCommunity.ViewModel)
 }
 
 final class CommunityCreationViewController: ViewController, Messagable {
@@ -177,6 +177,24 @@ final class CommunityCreationViewController: ViewController, Messagable {
 
     @objc
     private func saveButtonTapped() {
-        //
+        if let _ = communityCreation?.communityName,
+//           let _ = communityCreation?.imageURL,
+           let _ = communityCreation?.description,
+           let _ = communityCreation?.category,
+           let _ = communityCreation?.privateAdding
+        {
+            self.createCommunity(with: communityCreation)
+        } else {
+            show(
+                type: .dialog(
+                "Обязательные поля!",
+                "Пожалуйста, заполните все поля, чтобы остальным учасникам было все понятно. Спасибо!",
+                "Понятно",
+                "Заполнить"
+            ),
+                firstAction: nil,
+                secondAction: nil
+            )
+        }
     }
 }

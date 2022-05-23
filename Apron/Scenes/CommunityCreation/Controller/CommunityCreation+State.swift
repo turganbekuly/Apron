@@ -14,6 +14,8 @@ extension CommunityCreationViewController {
     // MARK: - State
     public enum State {
         case initial(CommunityCreationInitialState)
+        case communityCreationSucceed(CommunityResponse)
+        case communityCreationFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -21,6 +23,14 @@ extension CommunityCreationViewController {
         switch state {
         case let .initial(initialState):
             self.initialState = initialState
+        case let .communityCreationSucceed(community):
+            show(type: .success("Рецепт создался успешно"), firstAction: nil, secondAction: nil)
+            let vc = CommunityPageBuilder(state: .initial(community.id)).build()
+            dismiss(animated: true) {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        case .communityCreationFailed:
+            show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)
         }
     }
     

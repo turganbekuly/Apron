@@ -21,11 +21,11 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
             case buttons
         }
         enum Row {
-            case privateCommunity
-            case publicCommunity
-            case aboutCommunities
-            case savedRecipe
-            case newRecipe
+            case privateCommunity(CreateActionType)
+            case publicCommunity(CreateActionType)
+            case aboutCommunities(CreateActionType)
+            case savedRecipe(CreateActionType)
+            case newRecipe(CreateActionType)
         }
         
         let section: Section
@@ -41,19 +41,36 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
         }
     }
 
+    weak var delegate: CreateActionFlowProtocol?
+
     var initialState: CreateActionInitialState? {
         didSet {
             switch initialState {
             case .community:
-                sections = [.init(section: .buttons, rows: [.publicCommunity, .privateCommunity, .aboutCommunities])]
+                sections = [
+                    .init(
+                        section: .buttons, rows: [
+                            .publicCommunity(.publicCommunity),
+                            .privateCommunity(.privateCommunity),
+                            .aboutCommunities(.aboutCommunities)
+                        ]
+                    )
+                ]
             case .recipe:
-                sections = [.init(section: .buttons, rows: [.savedRecipe, .newRecipe])]
+                sections = [
+                    .init(
+                        section: .buttons,
+                        rows: [
+                            .savedRecipe(.savedRecipe),
+                            .newRecipe(.newRecipe)
+                        ]
+                    )
+                ]
             default:
                 break
             }
-//            panModalSetNeedsLayoutUpdate()
-//            panModalTransition(to: .longForm)
             mainView.reloadData()
+
         }
     }
 
@@ -64,15 +81,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
     }
 
     var longFormHeight: PanModalHeight {
-        switch initialState {
-        case .community:
-            return .contentHeight(200)
-        case .recipe:
-            return .contentHeight(150)
-        default:
-            break
-        }
-        return .contentHeight(200)
+        return .contentHeight(170)
     }
 
     var cornerRadius: CGFloat {

@@ -18,14 +18,14 @@ protocol InstructionSelectedProtocol {
 
 extension RecipeCreationViewController: IngredientSelectedProtocol {
     func onIngredientSelected(ingredient: RecipeIngredient) {
-        recipeCreation?.ingredients?.append(ingredient)
+        recipeCreation?.ingredients.append(ingredient)
         mainView.reloadTableViewWithoutAnimation()
     }
 }
 
 extension RecipeCreationViewController: InstructionSelectedProtocol {
     func onInstructionSelected(image: UIImage?, description: String) {
-        recipeCreation?.instructions?.append(description)
+        recipeCreation?.instructions.append(description)
         mainView.reloadTableViewWithoutAnimation()
     }
 }
@@ -39,7 +39,7 @@ extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
     }
 
     func onRemoveIngredientTapped(index: Int) {
-        recipeCreation?.ingredients?.remove(at: index)
+        recipeCreation?.ingredients.remove(at: index)
         mainView.reloadTableViewWithoutAnimation()
     }
 }
@@ -47,7 +47,7 @@ extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
 
 extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
     func onRemoveInstructionTapped(index: Int) {
-        recipeCreation?.instructions?.remove(at: index)
+        recipeCreation?.instructions.remove(at: index)
         mainView.reloadTableViewWithoutAnimation()
     }
 

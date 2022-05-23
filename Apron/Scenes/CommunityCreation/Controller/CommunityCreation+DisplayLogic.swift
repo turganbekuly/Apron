@@ -11,5 +11,8 @@ import UIKit
 extension CommunityCreationViewController: CommunityCreationDisplayLogic {
     
     // MARK: - CommunityCreationDisplayLogic
-    
+
+    func displayCreatedCommunity(with viewModel: CommunityCreationDataFlow.CreateCommunity.ViewModel) {
+        state = viewModel.state
+    }
 }

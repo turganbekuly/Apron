@@ -62,9 +62,9 @@ extension RecipeCreationViewController:
         case .description:
             return 125
         case .composition:
-            return 100 + CGFloat((recipeCreation?.ingredients?.count ?? 0) * 46)
+            return 100 + CGFloat((recipeCreation?.ingredients.count ?? 0) * 46)
         case .instruction:
-            return 100 + CGFloat((recipeCreation?.instructions?.count ?? 0) * 80)
+            return 100 + CGFloat((recipeCreation?.instructions.count ?? 0) * 80)
         case .servings:
             return 80
         case .prepTime:
@@ -87,9 +87,9 @@ extension RecipeCreationViewController:
         case .description:
             return 125
         case .composition:
-            return 100 + CGFloat((recipeCreation?.ingredients?.count ?? 0) * 46)
+            return 100 + CGFloat((recipeCreation?.ingredients.count ?? 0) * 46)
         case .instruction:
-            return 100 + CGFloat((recipeCreation?.instructions?.count ?? 0) * 80)
+            return 100 + CGFloat((recipeCreation?.instructions.count ?? 0) * 80)
         case .servings:
             return 80
         case .prepTime:

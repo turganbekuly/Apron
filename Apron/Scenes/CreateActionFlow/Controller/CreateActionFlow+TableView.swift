@@ -37,8 +37,14 @@ extension CreateActionFlowViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case let .aboutCommunities(type),
+            let .newRecipe(type),
+            let .privateCommunity(type),
+            let .publicCommunity(type),
+            let .savedRecipe(type):
+            dismiss(animated: true) {
+                self.delegate?.handleChosenAction(type: type)
+            }
         }
     }
     
@@ -89,14 +95,14 @@ extension CreateActionFlowViewController: UITableViewDelegate {
         case .savedRecipe:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: Assets.communityPrivateIcon.image,
+                image: Assets.recipeAddIcon.image,
                 title: "Добавить сохраненный рецепт",
                 subtitle: nil
             ))
         case .newRecipe:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: Assets.communityPrivateIcon.image,
+                image: Assets.recipeNewIcon.image,
                 title: "Создать новый рецепт",
                 subtitle: nil
             ))

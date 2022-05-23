@@ -7,6 +7,7 @@ ${BUILT_PRODUCTS_DIR}/Configurations/Configurations.framework
 ${BUILT_PRODUCTS_DIR}/Decoders/Decoders.framework
 ${BUILT_PRODUCTS_DIR}/DesignSystem/DesignSystem.framework
 ${BUILT_PRODUCTS_DIR}/Disk/Disk.framework
+${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/Extensions/Extensions.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework

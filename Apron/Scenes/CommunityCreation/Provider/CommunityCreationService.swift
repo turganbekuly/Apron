@@ -7,9 +7,13 @@
 //
 
 import AKNetwork
+import Models
 
 protocol CommunityCreationServiceProtocol {
-    
+    func createCommunity(
+        request: CommunityCreationDataFlow.CreateCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class CommunityCreationService: CommunityCreationServiceProtocol {
@@ -23,5 +27,13 @@ final class CommunityCreationService: CommunityCreationServiceProtocol {
     }
     
     // MARK: - CommunityCreationServiceProtocol
-    
+
+    func createCommunity(
+        request: CommunityCreationDataFlow.CreateCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .communityCreation(request.communityCreation)) { result in
+            completion(result)
+        }
+    }
 }

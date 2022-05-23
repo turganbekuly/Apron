@@ -50,23 +50,23 @@ final class CommunityFilterView: UIView {
         backgroundColor = .clear
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(searchBarTapped))
         searchView.addGestureRecognizer(tapGR)
-        [searchView, filterButton].forEach { addSubview($0) }
+        [searchView].forEach { addSubview($0) }
         setupConstraints()
     }
 
     private func setupConstraints() {
         searchView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
-            $0.trailing.equalTo(filterButton.snp.leading).offset(-12)
+            $0.top.leading.trailing.equalToSuperview()
+//            $0.trailing.equalTo(filterButton.snp.leading).offset(-12)
             $0.bottom.equalToSuperview()
         }
 
-        filterButton.snp.makeConstraints {
-            $0.centerY.equalTo(searchView.snp.centerY)
-            $0.trailing.equalToSuperview()
-            $0.height.equalTo(38)
-            $0.width.equalTo(38)
-        }
+//        filterButton.snp.makeConstraints {
+//            $0.centerY.equalTo(searchView.snp.centerY)
+//            $0.trailing.equalToSuperview()
+//            $0.height.equalTo(38)
+//            $0.width.equalTo(38)
+//        }
     }
 
     // MARK: - User actions

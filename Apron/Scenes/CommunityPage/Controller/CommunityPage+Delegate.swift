@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Storages
+import Models
 
 extension CommunityPageViewController: ICommunityInfoCell {
     func inviteButtonTapped() {
@@ -39,6 +40,20 @@ extension CommunityPageViewController: SearchBarProtocol {
         viewController.modalTransitionStyle = .coverVertical
         DispatchQueue.main.async { [weak self] in
             self?.present(viewController, animated: true)
+        }
+    }
+}
+
+extension CommunityPageViewController: CreateActionFlowProtocol {
+    func handleChosenAction(type: CreateActionType) {
+        switch type {
+        case .newRecipe:
+            let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .community))).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        default:
+            break
         }
     }
 }

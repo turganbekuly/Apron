@@ -230,6 +230,8 @@
 		6DB1ACFB2837C28100EEEAFA /* CommunityFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB1ACF72837C28100EEEAFA /* CommunityFilterView.swift */; };
 		6DB8DE2627AC38A000471B0B /* RecipePage+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB8DE2527AC38A000471B0B /* RecipePage+TableView.swift */; };
 		6DB8DE2827AC38B400471B0B /* RecipePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB8DE2727AC38B400471B0B /* RecipePageView.swift */; };
+		6DC59CA2283BC75C00661FAA /* CreateActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC59CA1283BC75C00661FAA /* CreateActionType.swift */; };
+		6DC59CB0283BD7F700661FAA /* DropDown in Resources */ = {isa = PBXBuildFile; fileRef = 6DC59CAF283BD7F700661FAA /* DropDown */; };
 		6DCEC9AD280401B7002ABD06 /* RecipeCreationIngredientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEC9AC280401B7002ABD06 /* RecipeCreationIngredientViewModel.swift */; };
 		6DCEC9AF28042025002ABD06 /* RecipeCreationAddInstructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEC9AE28042025002ABD06 /* RecipeCreationAddInstructionCell.swift */; };
 		6DCEC9B928044991002ABD06 /* RecipeCreation+InsertionDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEC9B828044991002ABD06 /* RecipeCreation+InsertionDelegates.swift */; };
@@ -636,6 +638,8 @@
 		6DB1ACF72837C28100EEEAFA /* CommunityFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityFilterView.swift; sourceTree = "<group>"; };
 		6DB8DE2527AC38A000471B0B /* RecipePage+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipePage+TableView.swift"; sourceTree = "<group>"; };
 		6DB8DE2727AC38B400471B0B /* RecipePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePageView.swift; sourceTree = "<group>"; };
+		6DC59CA1283BC75C00661FAA /* CreateActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActionType.swift; sourceTree = "<group>"; };
+		6DC59CAF283BD7F700661FAA /* DropDown */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DropDown; path = "../../Downloads/DropDown-master/DropDown"; sourceTree = "<group>"; };
 		6DCEC9AC280401B7002ABD06 /* RecipeCreationIngredientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCreationIngredientViewModel.swift; sourceTree = "<group>"; };
 		6DCEC9AE28042025002ABD06 /* RecipeCreationAddInstructionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCreationAddInstructionCell.swift; sourceTree = "<group>"; };
 		6DCEC9B828044991002ABD06 /* RecipeCreation+InsertionDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeCreation+InsertionDelegates.swift"; sourceTree = "<group>"; };
@@ -1309,6 +1313,7 @@
 				6D0A71DF277A13AC0067E580 /* Application */,
 				6D0A7236277B34FB0067E580 /* Scenes */,
 				6D0A71D4277A12EE0067E580 /* Assets.xcassets */,
+				6DC59CAF283BD7F700661FAA /* DropDown */,
 				6D0A71D6277A12EE0067E580 /* LaunchScreen.storyboard */,
 				6D0A71D9277A12EE0067E580 /* Info.plist */,
 			);
@@ -1432,6 +1437,7 @@
 			isa = PBXGroup;
 			children = (
 				6D507A12283A5EDF000E6141 /* CreateActionInitialState.swift */,
+				6DC59CA1283BC75C00661FAA /* CreateActionType.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2590,6 +2596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D0A71D8277A12EE0067E580 /* LaunchScreen.storyboard in Resources */,
+				6DC59CB0283BD7F700661FAA /* DropDown in Resources */,
 				6D0A71D5277A12EE0067E580 /* Assets.xcassets in Resources */,
 				6D40954E282BC54D007207A7 /* GoogleService-Info.plist in Resources */,
 				6DA4239F27988B8A00CA183D /* splash_lottie_animation.json in Resources */,
@@ -2997,6 +3004,7 @@
 				6D8A08CD2835031200133D46 /* DynamiCell+CollectionVIew.swift in Sources */,
 				469CDA563523DB3D0E30E63B /* GeneralSearchResultPresenter.swift in Sources */,
 				E1C8443C546E9A1DD989446D /* GeneralSearchResultPagerViewController.swift in Sources */,
+				6DC59CA2283BC75C00661FAA /* CreateActionType.swift in Sources */,
 				9CF04418CBDD12A4B6AC4710 /* GeneralSearchResultPager+State.swift in Sources */,
 				99D1D41B322DD74384FAA5A5 /* GeneralSearchResultPagerBuilder.swift in Sources */,
 				46B91795C2F51CE639F3BCBE /* ResultListViewController.swift in Sources */,

@@ -9,23 +9,30 @@
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
 enum CommunityCreationEndpoint {
-    
+    case communityCreation(CommunityCreation)
 }
 
 extension CommunityCreationEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .communityCreation:
+            return "communities"
+        }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .communityCreation:
+            return .post
+        }
     }
     
     var sampleData: Data {
@@ -33,7 +40,13 @@ extension CommunityCreationEndpoint: AKNetworkTargetType {
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case .communityCreation(let communityCreation):
+            return .requestParameters(
+                parameters: communityCreation.toJSON(),
+                encoding: AKJSONEncoding.default
+            )
+        }
     }
     
     var headers: [String: String]? {

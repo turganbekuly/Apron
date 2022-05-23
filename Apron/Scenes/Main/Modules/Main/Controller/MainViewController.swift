@@ -150,7 +150,7 @@ final class MainViewController: ViewController, Messagable {
 
     @objc
     private func createButtonTapped() {
-        let vc = CreateActionFlowBuilder.init(state: .initial(.community)).build()
+        let vc = CreateActionFlowBuilder.init(state: .initial(.community, self)).build()
         DispatchQueue.main.async {
             self.navigationController?.presentPanModal(vc)
         }

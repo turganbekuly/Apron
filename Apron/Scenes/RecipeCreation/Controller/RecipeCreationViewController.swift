@@ -197,6 +197,9 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     @objc
     private func saveButtonTapped() {
+        recipeCreation?.imageURL = "djfaksdjfkasdfklasdf"
+        recipeCreation?.sourceLink = "faskdfkasdfkasdf"
+        recipeCreation?.sourceName = "asdfaskdfkasdfk"
         if let _ = recipeCreation?.recipeName,
            let _ = recipeCreation?.description,
            let _ = recipeCreation?.ingredients,

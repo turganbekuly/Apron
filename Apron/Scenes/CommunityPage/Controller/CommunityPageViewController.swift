@@ -83,7 +83,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
 
     private lazy var createRecipeButton: BlackOpButton = {
         let button = BlackOpButton(backgroundType: .yelloBackground)
-        //        button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
         button.setImage(Assets.creationPlusButton.image, for: .normal)
@@ -215,24 +215,20 @@ public final class CommunityPageViewController: ViewController, Messagable {
         NSLog("deinit \(self)")
     }
 
-    // MARK: - Methods
-
-//    private func configureRecipesSection() {
-//        guard
-//            let section = sections.firstIndex(where: { $0.section == .topView }),
-//            let row = sections[section].rows.firstIndex(where: { $0 == .recipiesView }),
-//            let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? CommunityRecipeCell
-//        else { return }
-//
-////        cell.recipesCollectionView.reloadData()
-//    }
-
     // MARK: - User actions
 
     @objc
     private func refreshControlActivated() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.refreshControl.endRefreshing()
+        }
+    }
+
+    @objc
+    private func createButtonTapped() {
+        let vc = CreateActionFlowBuilder.init(state: .initial(.recipe, self)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.presentPanModal(vc)
         }
     }
 }

@@ -6,7 +6,7 @@
       "location" : "https://github.com/amplitude/Amplitude-iOS",
       "state" : {
         "branch" : "main",
-        "revision" : "e135cfe3b4fc13fbf17e7e475b8d0053aa44eeec"
+        "revision" : "55ee555c68c4c8e36d1166b608447cab3aec6b4f"
       }
     },
     {
@@ -24,7 +24,7 @@
       "location" : "https://github.com/facebook/facebook-ios-sdk",
       "state" : {
         "branch" : "main",
-        "revision" : "8600debb571c58fea2b1338e85be41353fc2fdcf"
+        "revision" : "5cc0dfc4070d63aa09f41d106d147edfc4cf240d"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
-        "revision" : "1a7b5480eb750a8e171654b9b1cb0a2cbeb27a55",
-        "version" : "7.2.1"
+        "revision" : "59eb199fdb8dd47733624e8b0277822d0232579e",
+        "version" : "7.2.2"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/OneSignal/OneSignal-XCFramework",
       "state" : {
-        "revision" : "a0b4c9250172a90330f3e33042ec7dfa93ed19bf",
-        "version" : "3.10.3"
+        "revision" : "40b9789aabfbff1b6a02974c4d100ddfe047d94d",
+        "version" : "3.11.1"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa.git",
       "state" : {
-        "revision" : "ccb6c292a202eb9366c87889509ef5a793d7137a",
-        "version" : "7.13.0"
+        "revision" : "afa4cd596e5cf97a797fb9b5c3afeea4add2c7a3",
+        "version" : "7.15.0"
       }
     },
     {

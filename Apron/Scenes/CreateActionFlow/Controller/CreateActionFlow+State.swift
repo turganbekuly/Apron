@@ -9,18 +9,23 @@
 import Models
 import UIKit
 
+protocol CreateActionFlowProtocol: AnyObject {
+    func handleChosenAction(type: CreateActionType)
+}
+
 extension CreateActionFlowViewController {
     
     // MARK: - State
     public enum State {
-        case initial(CreateActionInitialState)
+        case initial(CreateActionInitialState, CreateActionFlowProtocol)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(state):
+        case let .initial(state, delegate):
             self.initialState = state
+            self.delegate = delegate
         }
     }
     

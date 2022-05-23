@@ -7,7 +7,7 @@
 //
 
 protocol CommunityCreationBusinessLogic {
-    
+    func createCommunity(request: CommunityCreationDataFlow.CreateCommunity.Request)
 }
 
 final class CommunityCreationInteractor: CommunityCreationBusinessLogic {
@@ -25,4 +25,14 @@ final class CommunityCreationInteractor: CommunityCreationBusinessLogic {
     
     // MARK: - CommunityCreationBusinessLogic
 
+    func createCommunity(request: CommunityCreationDataFlow.CreateCommunity.Request) {
+        provider.createCommunity(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.createCommunity(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.createCommunity(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }

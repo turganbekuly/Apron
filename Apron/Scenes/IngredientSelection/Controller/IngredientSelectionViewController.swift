@@ -9,6 +9,7 @@
 import DesignSystem
 import UIKit
 import Models
+import DropDown
 
 protocol IngredientSelectionDisplayLogic: AnyObject {
     func displayProducts(viewModel: IngredientSelectionDataFlow.GetProducts.ViewModel)
@@ -171,7 +172,7 @@ final class IngredientSelectionViewController: ViewController {
     private func setupDropdown() {
         dropDown.anchorView = measureTextField
         dropDown.direction = .bottom
-        dropDown.height = 300
+//        dropDown.height = 300
     }
     
     private func configureColors() {
