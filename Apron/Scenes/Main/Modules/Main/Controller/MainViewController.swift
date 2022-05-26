@@ -28,8 +28,10 @@ final class MainViewController: ViewController, Messagable {
         }
     }
 
-    lazy var sections: [Section] = []
-    lazy var myCommunitySection: [MyCommunitiesSection] = []
+    lazy var sections: [Section] = [
+        .init(section: .myCommunity, rows: [.myCommunities([])]),
+        .init(section: .communities, rows: [.communities("Сообщество", [], 0)])
+    ]
 
     var dynamicCommunities: [CommunityCategory] = [] {
         didSet {
@@ -49,6 +51,13 @@ final class MainViewController: ViewController, Messagable {
         let view = MainView()
         view.dataSource = self
         view.delegate = self
+        view.refreshControl = refreshControl
+        return view
+    }()
+
+    public lazy var refreshControl: UIRefreshControl = {
+        let view = UIRefreshControl()
+        view.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         return view
     }()
 
@@ -160,12 +169,16 @@ final class MainViewController: ViewController, Messagable {
 
     private func configureCommunities() {
         var sections = [Section]()
-
         if !myCommunities.isEmpty {
-            myCommunitySection = [.init(section: .myCommunities, rows: myCommunities.compactMap { .myCommunity($0) })]
             sections.append(
                 .init(
-                    section: .myCommunity, rows: [.myCommunities(myCommunities.count >= 10 ? false : true)]
+                    section: .myCommunity, rows: [.myCommunities(myCommunities)]
+                )
+            )
+        } else {
+            sections.append(
+                .init(
+                    section: .myCommunity, rows: [.myCommunities([])]
                 )
             )
         }
@@ -180,7 +193,6 @@ final class MainViewController: ViewController, Messagable {
                             rows: [
                                 .communities(
                                     com.name ?? "",
-                                    (com.communities?.count ?? 1) >= 2 ? false : true,
                                     com.communities ?? [],
                                     com.id
                                 )
@@ -193,6 +205,19 @@ final class MainViewController: ViewController, Messagable {
 
         self.sections = sections
         mainView.reloadData()
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func refresh(_ sender: UIRefreshControl) {
+        sections = [
+            .init(section: .myCommunity, rows: [.myCommunities([])]),
+            .init(section: .communities, rows: [.communities("Сообщество", [], 0)])
+        ]
+        mainView.reloadData()
+        getMyCommunities()
+        getCommunitiesByCategory()
     }
 
     deinit {

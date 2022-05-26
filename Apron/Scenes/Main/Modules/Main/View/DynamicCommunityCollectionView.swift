@@ -42,7 +42,8 @@ public final class DynamicCommunityCollectionView: UICollectionView {
         showsHorizontalScrollIndicator = false
 
         [
-            MainCommunityCollectionCell.self
+            MainCommunityCollectionCell.self,
+            MainCommunityEmptyCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }

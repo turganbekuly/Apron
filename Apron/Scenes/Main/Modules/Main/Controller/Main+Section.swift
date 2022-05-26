@@ -16,8 +16,8 @@ extension MainViewController {
         }
         
         enum Row: Equatable {
-            case myCommunities(Bool)
-            case communities(String, Bool, [CommunityResponse], Int)
+            case myCommunities([CommunityResponse])
+            case communities(String, [CommunityResponse], Int)
             
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch (lhs, rhs) {
@@ -34,19 +34,6 @@ extension MainViewController {
         let section: Section
         var rows: [Row]
     }
-    
-    struct MyCommunitiesSection {
-        enum Section {
-            case myCommunities
-        }
-        
-        enum Row {
-            case myCommunity(CommunityResponse)
-        }
-        
-        var section: Section
-        var rows: [Row]
-    }
 }
 
 extension DynamicCommunityCell {
@@ -57,6 +44,23 @@ extension DynamicCommunityCell {
 
         enum Row {
             case community(CommunityResponse)
+            case loader
+        }
+
+        var section: Section
+        var rows: [Row]
+    }
+}
+
+extension MyCommunityCell {
+    struct MyCommunitiesSection {
+        enum Section {
+            case myCommunities
+        }
+
+        enum Row {
+            case myCommunity(CommunityResponse)
+            case emptyView
         }
 
         var section: Section

@@ -7,10 +7,34 @@
 
 import UIKit
 import DesignSystem
+import Models
 
-//protocol MyCommunitySeeAllTapped
+protocol MyCommunityCellProtocol: AnyObject {
+    func navigateToCommunity(with id: Int)
+    func navigateToSeeAll(with categoryID: Int, title: String)
+}
 
 public final class MyCommunityCell: UITableViewCell {
+    // MARK: - Properties
+
+    weak var delegate: MyCommunityCellProtocol?
+    lazy var myCommunitiesSection: [MyCommunitiesSection] = [.init(section: .myCommunities, rows: Array(repeating: .emptyView, count: 1))] {
+        didSet {
+            communityCollectionView.reloadData()
+        }
+    }
+
+    var myCommunities: [CommunityResponse] = [] {
+        didSet {
+            myCommunitiesSection = [
+                .init(
+                    section: .myCommunities,
+                    rows: myCommunities.compactMap { .myCommunity($0) }
+                )
+            ]
+        }
+    }
+
     // MARK: - Init
 
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -29,6 +53,7 @@ public final class MyCommunityCell: UITableViewCell {
         label.font = TypographyFonts.semibold18
         label.textColor = .black
         label.textAlignment = .left
+        label.text = "Мое сообщество"
         return label
     }()
 
@@ -82,10 +107,12 @@ public final class MyCommunityCell: UITableViewCell {
     // MARK: - Methods
 
     func configure(with viewModel: IMyCollectionDelegateCellViewModel) {
-        titleLabel.text = viewModel.sectionHeaderTitle
-        seeAllButton.isHidden = viewModel.showAllButtonEnabled
-        communityCollectionView.delegate = viewModel.collectionDelegate
-        communityCollectionView.dataSource = viewModel.collectionDelegate
+        seeAllButton.isHidden = viewModel.myCommunities.count > 10 ? false : true
+        if !viewModel.myCommunities.isEmpty {
+            myCommunities = viewModel.myCommunities
+        } else {
+            myCommunitiesSection = [.init(section: .myCommunities, rows: Array(repeating: .emptyView, count: 1))]
+        }
     }
 }
 

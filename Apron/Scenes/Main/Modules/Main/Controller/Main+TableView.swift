@@ -35,7 +35,7 @@ extension MainViewController: UITableViewDelegate {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .myCommunities:
-            return 210
+            return myCommunities.isEmpty ? 57 : 210
         case .communities:
             return 305
         }
@@ -45,7 +45,7 @@ extension MainViewController: UITableViewDelegate {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .myCommunities:
-            return 210
+            return myCommunities.isEmpty ? 57 : 210
         case .communities:
             return 305
         }
@@ -54,20 +54,17 @@ extension MainViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case let .myCommunities(shouldHide):
+        case let .myCommunities(myCommunities):
             guard let cell = cell as? MyCommunityCell else { return }
             cell.configure(with: MyCollectionDelegateCellViewModel(
-                sectionHeaderTitle: "Мое сообщество",
-                showAllButtonEnabled: shouldHide,
-                collectionDelegate: self
+                myCommunities: myCommunities
             ))
-        case let .communities(title, shouldHide, communities, categoryID):
+        case let .communities(title, communities, categoryID):
             guard let cell = cell as? DynamicCommunityCell else { return }
             cell.delegate = self
             cell.cellActionsDelegate = self
             cell.configure(with: DynamicCollectionDelegateCellViewModel(
                 sectionHeaderTitle: title,
-                showAllButtonEnabled: shouldHide,
                 categoryID: categoryID,
                 dynamicCommunities: communities
             ))

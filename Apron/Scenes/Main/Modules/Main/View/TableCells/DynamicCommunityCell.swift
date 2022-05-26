@@ -19,7 +19,13 @@ final class DynamicCommunityCell: UITableViewCell {
 
     weak var delegate: DynamicCommunityCellProtocol?
     weak var cellActionsDelegate: JoinCommunityProtocol?
-    lazy var dynamicCommunitiesSection: [DynamicCommunitySection] = []
+    lazy var dynamicCommunitiesSection: [DynamicCommunitySection] = [
+        .init(section: .communities, rows: Array(repeating: .loader, count: 10))
+    ] {
+        didSet {
+            communityCollectionView.reloadData()
+        }
+    }
     var categoryID = 0
     var title = "" {
         didSet {
@@ -29,7 +35,6 @@ final class DynamicCommunityCell: UITableViewCell {
     var dynamicCommunities: [CommunityResponse] = [] {
         didSet {
             dynamicCommunitiesSection = [.init(section: .communities, rows: dynamicCommunities.compactMap { .community($0) })]
-            communityCollectionView.reloadData()
         }
     }
 
@@ -114,8 +119,10 @@ final class DynamicCommunityCell: UITableViewCell {
 
     func configure(with viewModel: IDynamicCollectionDelegateCellViewModel) {
         title = viewModel.sectionHeaderTitle
-        seeAllButton.isHidden = viewModel.showAllButtonEnabled
-        dynamicCommunities = viewModel.dynamicCommunities
+        seeAllButton.isHidden = viewModel.dynamicCommunities.count > 10 ? false : true
+        if !viewModel.dynamicCommunities.isEmpty {
+            dynamicCommunities = viewModel.dynamicCommunities
+        }
         categoryID = viewModel.categoryID
     }
 }

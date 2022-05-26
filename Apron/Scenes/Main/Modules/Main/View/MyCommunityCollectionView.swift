@@ -42,7 +42,8 @@ public final class MyCommunityCollectionView: UICollectionView {
         showsHorizontalScrollIndicator = false
 
         [
-            MyCommunityCollectionCell.self
+            MyCommunityCollectionCell.self,
+            MyCommunityEmptyCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }

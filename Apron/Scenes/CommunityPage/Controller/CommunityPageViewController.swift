@@ -42,7 +42,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
             }
 
             self.id = community.id
-            
+            self.imageView.imageUrl = community.image
             sections = [
                 .init(
                     section: .topView,
@@ -65,7 +65,6 @@ public final class CommunityPageViewController: ViewController, Messagable {
     // MARK: - Views
     lazy var imageView: ImageHeaderView = {
         let imageHeader = ImageHeaderView()
-        imageHeader.imageUrl = ""
         return imageHeader
     }()
 

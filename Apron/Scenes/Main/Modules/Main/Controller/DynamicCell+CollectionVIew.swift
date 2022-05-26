@@ -1,5 +1,5 @@
 //
-//  DynamiCell+CollectionVIew.swift
+//  DynamicCell+CollectionVIew.swift
 //  Apron
 //
 //  Created by Akarys Turganbekuly on 18.05.2022.
@@ -22,6 +22,9 @@ extension DynamicCommunityCell: UICollectionViewDataSource {
         case .community:
             let cell: MainCommunityCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
+        case .loader:
+            let cell: MainCommunityEmptyCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -32,6 +35,8 @@ extension DynamicCommunityCell: UICollectionViewDelegateFlowLayout {
         switch row {
         case let .community(community):
             delegate?.navigateToCommunity(with: community.id)
+        default:
+            break
         }
     }
 
@@ -44,6 +49,8 @@ extension DynamicCommunityCell: UICollectionViewDelegateFlowLayout {
         switch row {
         case .community:
             return CGSize(width: 200, height: 250)
+        case .loader:
+            return CGSize(width: 200, height: 220)
         }
     }
 
@@ -56,6 +63,8 @@ extension DynamicCommunityCell: UICollectionViewDelegateFlowLayout {
             cell.configure(
                 with: CommunityCollectionCellViewModel(community: community)
             )
+        default:
+            break
         }
     }
 }
