@@ -41,7 +41,8 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             let .newRecipe(type),
             let .privateCommunity(type),
             let .publicCommunity(type),
-            let .savedRecipe(type):
+            let .savedRecipe(type),
+            let .shoppingList(type):
             dismiss(animated: true) {
                 self.delegate?.handleChosenAction(type: type)
             }
@@ -105,6 +106,12 @@ extension CreateActionFlowViewController: UITableViewDelegate {
                 image: Assets.recipeNewIcon.image,
                 title: "Создать новый рецепт",
                 subtitle: nil
+            ))
+        case .shoppingList:
+            guard let cell = cell as? CreateButtonCell else { return }
+            cell.configure(with: CreateButtonCellViewModel(
+                image: Assets.tabListIcon.image,
+                title: "Добавить в список покупок"
             ))
         }
     }

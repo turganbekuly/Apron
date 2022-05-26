@@ -11,6 +11,7 @@ import Models
 
 protocol DynamicCommunityCellProtocol: AnyObject {
     func navigateToCommunity(with id: Int)
+    func navigateToSeeAll(with categoryID: Int, title: String)
 }
 
 final class DynamicCommunityCell: UITableViewCell {
@@ -19,6 +20,12 @@ final class DynamicCommunityCell: UITableViewCell {
     weak var delegate: DynamicCommunityCellProtocol?
     weak var cellActionsDelegate: JoinCommunityProtocol?
     lazy var dynamicCommunitiesSection: [DynamicCommunitySection] = []
+    var categoryID = 0
+    var title = "" {
+        didSet {
+            titleLabel.text = title
+        }
+    }
     var dynamicCommunities: [CommunityResponse] = [] {
         didSet {
             dynamicCommunitiesSection = [.init(section: .communities, rows: dynamicCommunities.compactMap { .community($0) })]
@@ -53,6 +60,7 @@ final class DynamicCommunityCell: UITableViewCell {
         button.setTitleColor(Assets.gray.color, for: .normal)
         button.setTitleColor(Assets.gray.color, for: .highlighted)
         button.setTitle("Все", for: .normal)
+        button.addTarget(self, action: #selector(seeAllButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -95,11 +103,19 @@ final class DynamicCommunityCell: UITableViewCell {
         selectionStyle = .none
     }
 
+    // MARK: - User actions
+
+    @objc
+    private func seeAllButtonTapped() {
+        delegate?.navigateToSeeAll(with: categoryID, title: title)
+    }
+
     // MARK: - Methods
 
     func configure(with viewModel: IDynamicCollectionDelegateCellViewModel) {
-        titleLabel.text = viewModel.sectionHeaderTitle
+        title = viewModel.sectionHeaderTitle
         seeAllButton.isHidden = viewModel.showAllButtonEnabled
         dynamicCommunities = viewModel.dynamicCommunities
+        categoryID = viewModel.categoryID
     }
 }

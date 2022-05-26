@@ -1,54 +1,53 @@
 //
-//  CommunitiesListEndpoints.swift
+//  AuthorizationEndpoints.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 19/05/2022.
-//  Copyright © 2022 Apron. All rights reserved.
+//  Created by Akarys Turganbekuly on 25.05.2022.
 //
 
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
-enum CommunitiesListEndpoint {
-    case getCommunities(body: CommunitiesListRequestBody)
+enum AuthorizationEndpoints {
+    case login(email: String, password: String)
 }
 
-extension CommunitiesListEndpoint: AKNetworkTargetType {
-    
+extension AuthorizationEndpoints: AKNetworkTargetType {
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
-        case .getCommunities:
-            return "communities"
+        case .login:
+            return "users/login"
         }
     }
-    
+
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .login:
+            return .post
+        }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
-        case let .getCommunities(body):
+        case let .login(email, password):
             return .requestParameters(
-                parameters: [
-                    "page": body.pageNumber,
-                    "limit": 10,
-                    "communityCategoryId": body.id
-                ],
-                encoding: AKURLEncoding.queryString
+                parameters: ["email": email, "password": password],
+                encoding: AKJSONEncoding.default
             )
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -59,5 +58,6 @@ extension CommunitiesListEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }
+

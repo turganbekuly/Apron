@@ -28,8 +28,8 @@ public struct RecipeCreation: Codable {
     public var sourceName: String?
     public var imageURL: String?
     public var description: String?
-    public var ingredients: [RecipeIngredient] = []
-    public var instructions: [String] = []
+    public var ingredients = [RecipeIngredient]()
+    public var instructions = [String]()
     public var servings: Int?
     public var prepTime: String?
     public var cookTime: String?
@@ -71,9 +71,9 @@ public struct RecipeCreation: Codable {
             params[CodingKeys.description.rawValue] = description
         }
         
-        params[CodingKeys.ingredients.rawValue] = ingredients.compactMap { $0.toJSON }
+        params[CodingKeys.ingredients.rawValue] = ingredients.compactMap { $0.toJSON() }
 
-        params[CodingKeys.instructions.rawValue] = instructions.compactMap { $0 }
+        params[CodingKeys.instructions.rawValue] = instructions
 
         if let servings = servings {
             params[CodingKeys.servings.rawValue] = servings

@@ -61,13 +61,14 @@ extension MainViewController: UITableViewDelegate {
                 showAllButtonEnabled: shouldHide,
                 collectionDelegate: self
             ))
-        case let .communities(title, shouldHide, communities):
+        case let .communities(title, shouldHide, communities, categoryID):
             guard let cell = cell as? DynamicCommunityCell else { return }
             cell.delegate = self
             cell.cellActionsDelegate = self
             cell.configure(with: DynamicCollectionDelegateCellViewModel(
                 sectionHeaderTitle: title,
                 showAllButtonEnabled: shouldHide,
+                categoryID: categoryID,
                 dynamicCommunities: communities
             ))
         }

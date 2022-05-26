@@ -17,7 +17,7 @@ extension MainViewController {
         
         enum Row: Equatable {
             case myCommunities(Bool)
-            case communities(String, Bool, [CommunityResponse])
+            case communities(String, Bool, [CommunityResponse], Int)
             
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch (lhs, rhs) {

@@ -8,6 +8,8 @@
 import UIKit
 import DesignSystem
 
+//protocol MyCommunitySeeAllTapped
+
 public final class MyCommunityCell: UITableViewCell {
     // MARK: - Init
 

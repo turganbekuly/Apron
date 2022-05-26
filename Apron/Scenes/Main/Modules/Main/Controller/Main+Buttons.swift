@@ -22,5 +22,12 @@ extension MainViewController: DynamicCommunityCellProtocol {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+
+    func navigateToSeeAll(with categoryID: Int, title: String) {
+        let vc = CommunitiesListBuilder(state: .initial(.all(id: categoryID, name: title))).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 

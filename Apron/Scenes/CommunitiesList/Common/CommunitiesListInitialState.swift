@@ -9,5 +9,5 @@ import Foundation
 
 enum CommunitiesListInitialState {
     case myCommunities(Int)
-    case all(Int)
+    case all(id: Int, name: String)
 }

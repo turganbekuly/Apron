@@ -26,6 +26,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
             case aboutCommunities(CreateActionType)
             case savedRecipe(CreateActionType)
             case newRecipe(CreateActionType)
+            case shoppingList(CreateActionType)
         }
         
         let section: Section
@@ -46,7 +47,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
     var initialState: CreateActionInitialState? {
         didSet {
             switch initialState {
-            case .community:
+            case .communityFromMain:
                 sections = [
                     .init(
                         section: .buttons, rows: [
@@ -56,7 +57,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
                         ]
                     )
                 ]
-            case .recipe:
+            case .recipeFromCommunity:
                 sections = [
                     .init(
                         section: .buttons,
@@ -65,6 +66,10 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
                             .newRecipe(.newRecipe)
                         ]
                     )
+                ]
+            case .addToFromRecipe:
+                sections = [
+                    .init(section: .buttons, rows: [.shoppingList(.shoppingList)])
                 ]
             default:
                 break

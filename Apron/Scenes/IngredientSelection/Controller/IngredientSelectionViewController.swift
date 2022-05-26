@@ -173,6 +173,13 @@ final class IngredientSelectionViewController: ViewController {
         dropDown.anchorView = measureTextField
         dropDown.direction = .bottom
 //        dropDown.height = 300
+        dropDown.selectionAction = { [weak self] (index, product) in
+            guard let self = self,
+                  let products = self.products
+            else { return }
+            self.recipeIgredient.product = products[index]
+            self.recipeTextField.textField.text = product
+        }
     }
     
     private func configureColors() {
@@ -197,11 +204,6 @@ final class IngredientSelectionViewController: ViewController {
 
     @objc
     private func saveButtonTapped() {
-        let product = Product()
-        recipeIgredient.id = 1
-        recipeIgredient.product = product
-        recipeIgredient.product?.name = recipeTextField.textField.text
-        recipeIgredient.product?.id = 7
         recipeIgredient.amount = Double(measureTextField.amountTextField.text ?? "0")
         recipeIgredient.measurement = measureTextField.measurementTyptextField.text
         delegate?.onIngredientSelected(ingredient: recipeIgredient)

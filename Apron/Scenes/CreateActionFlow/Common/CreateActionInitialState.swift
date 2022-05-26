@@ -8,6 +8,7 @@
 import Foundation
 
 enum CreateActionInitialState {
-    case community
-    case recipe
+    case communityFromMain
+    case recipeFromCommunity
+    case addToFromRecipe
 }

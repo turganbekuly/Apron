@@ -25,8 +25,8 @@ final class CommunitiesListViewController: ViewController {
             case community(CommunityResponse)
         }
         
-        let section: Section
-        let rows: [Row]
+        var section: Section
+        var rows: [Row]
     }
     
     // MARK: - Properties
@@ -41,9 +41,9 @@ final class CommunitiesListViewController: ViewController {
     var initialState: CommunitiesListInitialState? {
         didSet {
             switch initialState {
-            case let .myCommunities(id),
-                let .all(id):
+            case let .all(id, name):
                 self.id = id
+                self.categoryName = name
             default:
                 break
             }
@@ -52,7 +52,17 @@ final class CommunitiesListViewController: ViewController {
 
     var communities: [CommunityResponse] = []
     var currentPage = 1
-    var id = 0
+    var id = 0 {
+        didSet {
+            self.getCommunities(with: id, currentPage: currentPage)
+        }
+    }
+
+    var categoryName: String? {
+        didSet {
+            titleLabel.text = categoryName ?? ""
+        }
+    }
     
     // MARK: - Views
     lazy var mainView: CommunitiesListView = {
@@ -60,6 +70,32 @@ final class CommunitiesListViewController: ViewController {
         view.dataSource = self
         view.delegate = self
         return view
+    }()
+
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.semibold20
+        label.textColor = .black
+        label.textAlignment = .left
+        return label
+    }()
+
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(
+            Assets.navBackButton.image
+                .withTintColor(.black),
+            for: .normal
+        )
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var leftButtonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [backButton, titleLabel])
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        return stackView
     }()
     
     // MARK: - Init
@@ -101,7 +137,8 @@ final class CommunitiesListViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.title = ""
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
+        navigationController?.navigationBar.backgroundColor = Assets.secondary.color
     }
     
     private func configureViews() {
@@ -110,6 +147,7 @@ final class CommunitiesListViewController: ViewController {
             guard let self = self else { return }
             self.getCommunities(with: self.id, currentPage: self.currentPage)
         }
+
         configureColors()
         makeConstraints()
     }
@@ -121,7 +159,14 @@ final class CommunitiesListViewController: ViewController {
     }
     
     private func configureColors() {
-        
+        view.backgroundColor = Assets.secondary.color
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     deinit {

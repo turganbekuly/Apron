@@ -9,19 +9,23 @@
 import Protocols
 import UIKit
 
-public final class AuthorizationBuilder: ModuleBuilderProtocol {
+final class AuthorizationBuilder: ModuleBuilderProtocol {
     
     // MARK: Properties
     private let state: AuthorizationViewController.State
     
     // MARK: Initialization
-    public init(state: AuthorizationViewController.State) {
+    init(state: AuthorizationViewController.State) {
         self.state = state
     }
     
     // MARK: - ModuleBuilder
-    public func build() -> ViewControllerProtocol {
-        let viewController = AuthorizationViewController(state: state)
+    func build() -> ViewControllerProtocol {
+        let presenter = AuthorizationPresenter()
+        let interactor = AuthorizationInteractor(presenter: presenter)
+        let viewController = AuthorizationViewController(interactor: interactor, state: state)
+
+        presenter.viewController = viewController
         
         return viewController
     }

@@ -34,19 +34,8 @@ final class RecipeInformationViewCell: UITableViewCell {
         return label
     }()
 
-    private lazy var favoriteButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .black
-        button.setImage(Assets.recipeFavoriteIcon.image, for: .normal)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 19
-        return button
-    }()
-
     private lazy var recipeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 10
         return imageView
     }()
 
@@ -102,7 +91,6 @@ final class RecipeInformationViewCell: UITableViewCell {
         [
             titleLabel,
             recipeImageView,
-            favoriteButton,
             likeButton,
             dislikeButton,
             editButton,
@@ -115,22 +103,14 @@ final class RecipeInformationViewCell: UITableViewCell {
     }
 
     private func setupConstraints() {
-        favoriteButton.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.height.equalTo(38)
-            $0.width.equalTo(38)
-        }
-
         titleLabel.snp.makeConstraints {
-            $0.centerY.equalTo(favoriteButton.snp.centerY)
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalTo(favoriteButton.snp.leading).offset(-16)
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
 
         recipeImageView.snp.makeConstraints {
-            $0.top.equalTo(favoriteButton.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo((bounds.width / 1.5))
         }
 

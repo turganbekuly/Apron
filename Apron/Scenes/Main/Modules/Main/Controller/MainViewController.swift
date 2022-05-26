@@ -150,7 +150,7 @@ final class MainViewController: ViewController, Messagable {
 
     @objc
     private func createButtonTapped() {
-        let vc = CreateActionFlowBuilder.init(state: .initial(.community, self)).build()
+        let vc = CreateActionFlowBuilder.init(state: .initial(.communityFromMain, self)).build()
         DispatchQueue.main.async {
             self.navigationController?.presentPanModal(vc)
         }
@@ -180,8 +180,9 @@ final class MainViewController: ViewController, Messagable {
                             rows: [
                                 .communities(
                                     com.name ?? "",
-                                    (com.communities?.count ?? 1) >= 10 ? false : true,
-                                    com.communities ?? []
+                                    (com.communities?.count ?? 1) >= 2 ? false : true,
+                                    com.communities ?? [],
+                                    com.id
                                 )
                             ]
                         )

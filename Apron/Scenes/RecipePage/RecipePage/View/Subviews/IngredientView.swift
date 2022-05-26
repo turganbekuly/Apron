@@ -98,8 +98,8 @@ final class IngredientView: UIView {
         unit: String
     ) {
         self.nameLabel.text = name
-        self.initialAmount = amount
         self.unit = unit
+        self.initialAmount = amount
     }
 
     func changeServings(initialCount: Int, changedCount: Int) {

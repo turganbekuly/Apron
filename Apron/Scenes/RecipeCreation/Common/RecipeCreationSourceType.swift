@@ -8,7 +8,7 @@
 import Foundation
 
 enum RecipeCreationSourceType {
-    case community
+    case community(id: Int)
     case saved
     case planner
     case recipe

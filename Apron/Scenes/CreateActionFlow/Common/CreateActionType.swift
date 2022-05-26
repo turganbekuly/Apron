@@ -13,4 +13,5 @@ enum CreateActionType {
     case aboutCommunities
     case savedRecipe
     case newRecipe
+    case shoppingList
 }

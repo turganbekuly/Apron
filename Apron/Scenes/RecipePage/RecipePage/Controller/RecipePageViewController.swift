@@ -52,6 +52,17 @@ final class RecipePageViewController: ViewController, Messagable {
         view.delegate = self
         return view
     }()
+
+    private lazy var bottomStickyView: RecipeBottomStickyView = {
+        $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        $0.layer.cornerRadius = 15
+        $0.delegate = self
+        $0.layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        $0.layer.shadowOffset = CGSize(width: 4, height: -5)
+        $0.layer.shadowOpacity = 0.6
+        $0.layer.shadowRadius = 15
+        return $0
+    }(RecipeBottomStickyView())
     
     // MARK: - Init
     init(interactor: RecipePageBusinessLogic, state: State) {
@@ -82,6 +93,12 @@ final class RecipePageViewController: ViewController, Messagable {
         super.viewWillAppear(animated)
         
         configureNavigation()
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -104,12 +121,17 @@ final class RecipePageViewController: ViewController, Messagable {
     }
     
     private func configureViews() {
-        [mainView].forEach { view.addSubview($0) }
+        [mainView, bottomStickyView].forEach { view.addSubview($0) }
+        mainView.contentInset.bottom += 100
         configureColors()
         makeConstraints()
     }
     
     private func makeConstraints() {
+        bottomStickyView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(100)
+        }
         mainView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -142,6 +164,6 @@ final class RecipePageViewController: ViewController, Messagable {
 
     @objc
     private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
     }
 }
