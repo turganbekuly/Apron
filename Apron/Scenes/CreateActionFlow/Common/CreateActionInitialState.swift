@@ -8,7 +8,10 @@
 import Foundation
 
 enum CreateActionInitialState {
-    case communityFromMain
-    case recipeFromCommunity
-    case addToFromRecipe
+    case mainPageCommunityCreation
+    case communityPageRecipeCreation
+    case communityPageMore
+    case recipePageMore
+    case recipePageAddTo
+    case savedPageCreate
 }

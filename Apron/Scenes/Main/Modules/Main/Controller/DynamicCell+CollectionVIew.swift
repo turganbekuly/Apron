@@ -47,10 +47,8 @@ extension DynamicCommunityCell: UICollectionViewDelegateFlowLayout {
     ) -> CGSize {
         let row = dynamicCommunitiesSection[indexPath.section].rows[indexPath.row]
         switch row {
-        case .community:
+        case .community, .loader:
             return CGSize(width: 200, height: 250)
-        case .loader:
-            return CGSize(width: 200, height: 220)
         }
     }
 

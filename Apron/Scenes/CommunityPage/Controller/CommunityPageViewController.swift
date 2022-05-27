@@ -143,7 +143,8 @@ public final class CommunityPageViewController: ViewController, Messagable {
         return statusBarStyle()
     }
     
-    // MARK: - Methods
+    // MARK: - Private Methods
+
     private func configureNavigation() {
         navigationController?.navigationBar.backgroundColor = .clear
         navigationItem.setHidesBackButton(true, animated: false)
@@ -164,6 +165,11 @@ public final class CommunityPageViewController: ViewController, Messagable {
         mainView.addInfiniteScroll { [weak self] _ in
             guard let self = self else { return }
             self.getRecipesByCommunity(id: self.id, currentPage: self.currentPage)
+        }
+
+        moreButton.onTouch = { [weak self] in
+            guard let self = self else { return }
+            self.navigateToCreateActionFlow(with: .communityPageMore)
         }
         
         configureColors()
@@ -209,6 +215,15 @@ public final class CommunityPageViewController: ViewController, Messagable {
         refreshControl.tintColor = .white
         refreshControl.backgroundColor = .clear
     }
+
+    // MARK: - Public methods
+
+    func navigateToCreateActionFlow(with state: CreateActionInitialState) {
+        let vc = CreateActionFlowBuilder.init(state: .initial(state, self)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.presentPanModal(vc)
+        }
+    }
     
     deinit {
         NSLog("deinit \(self)")
@@ -225,10 +240,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
 
     @objc
     private func createButtonTapped() {
-        let vc = CreateActionFlowBuilder.init(state: .initial(.recipeFromCommunity, self)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.presentPanModal(vc)
-        }
+        navigateToCreateActionFlow(with: .communityPageRecipeCreation)
     }
 }
 

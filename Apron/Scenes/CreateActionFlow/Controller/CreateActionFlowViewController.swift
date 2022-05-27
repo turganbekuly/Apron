@@ -18,7 +18,13 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
     
     struct Section {
         enum Section {
-            case buttons
+            case mainPageCreation
+            case communityPageCreation
+            case communityPageRecipe
+            case communityPageReport
+            case communityPageMore
+            case recipePageAdd
+            case savedPageCreate
         }
         enum Row {
             case privateCommunity(CreateActionType)
@@ -26,7 +32,16 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
             case aboutCommunities(CreateActionType)
             case savedRecipe(CreateActionType)
             case newRecipe(CreateActionType)
+            case recipeAddTo(CreateActionType)
+            case recipeShare(CreateActionType)
+            case recipeSave(CreateActionType)
+            case recipeReportType(CreateActionType)
+            case reportRecipe(CreateActionType)
+            case reportUser(CreateActionType)
+            case shareCommunity(CreateActionType)
+            case reportCommunity(CreateActionType)
             case shoppingList(CreateActionType)
+            case mealPlan(CreateActionType)
         }
         
         let section: Section
@@ -47,30 +62,38 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
     var initialState: CreateActionInitialState? {
         didSet {
             switch initialState {
-            case .communityFromMain:
+            case .mainPageCommunityCreation:
                 sections = [
                     .init(
-                        section: .buttons, rows: [
+                        section: .mainPageCreation, rows: [
                             .publicCommunity(.publicCommunity),
                             .privateCommunity(.privateCommunity),
                             .aboutCommunities(.aboutCommunities)
                         ]
                     )
                 ]
-            case .recipeFromCommunity:
+            case .communityPageRecipeCreation:
                 sections = [
                     .init(
-                        section: .buttons,
+                        section: .communityPageCreation,
                         rows: [
                             .savedRecipe(.savedRecipe),
                             .newRecipe(.newRecipe)
                         ]
                     )
                 ]
-            case .addToFromRecipe:
+            case .recipePageAddTo:
                 sections = [
-                    .init(section: .buttons, rows: [.shoppingList(.shoppingList)])
+                    .init(section: .recipePageAdd, rows: [.shoppingList(.shoppingList)])
                 ]
+            case .communityPageMore:
+                sections = [
+                    .init(
+                        section: .communityPageMore,
+                        rows: [.shareCommunity(.shareCommunity), .reportCommunity(.reportCommunity)]
+                    )
+                ]
+
             default:
                 break
             }

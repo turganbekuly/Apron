@@ -13,5 +13,16 @@ enum CreateActionType {
     case aboutCommunities
     case savedRecipe
     case newRecipe
+    case recipeAddTo
+    case recipeShare
+    case recipeSave
+    case recipeReportType
+    case reportRecipe
+    case reportUser
+    case shareCommunity
+    case reportCommunity
     case shoppingList
+    case mealPlan
 }
+
+

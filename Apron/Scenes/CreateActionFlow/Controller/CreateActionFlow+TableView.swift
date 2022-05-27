@@ -37,12 +37,21 @@ extension CreateActionFlowViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case let .aboutCommunities(type),
-            let .newRecipe(type),
-            let .privateCommunity(type),
+        case let .privateCommunity(type),
             let .publicCommunity(type),
+            let .aboutCommunities(type),
             let .savedRecipe(type),
-            let .shoppingList(type):
+            let .newRecipe(type),
+            let .recipeAddTo(type),
+            let .recipeShare(type),
+            let .recipeSave(type),
+            let .recipeReportType(type),
+            let .reportRecipe(type),
+            let .reportUser(type),
+            let .shareCommunity(type),
+            let .reportCommunity(type),
+            let .shoppingList(type),
+            let .mealPlan(type):
             dismiss(animated: true) {
                 self.delegate?.handleChosenAction(type: type)
             }
@@ -113,6 +122,8 @@ extension CreateActionFlowViewController: UITableViewDelegate {
                 image: Assets.tabListIcon.image,
                 title: "Добавить в список покупок"
             ))
+        default:
+            break
         }
     }
 }

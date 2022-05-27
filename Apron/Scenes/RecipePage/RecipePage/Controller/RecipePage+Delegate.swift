@@ -9,7 +9,7 @@ import Foundation
 
 extension RecipePageViewController: BottomStickyViewDelegate {
     func addButtonTapped() {
-        let vc = CreateActionFlowBuilder(state: .initial(.addToFromRecipe, self)).build()
+        let vc = CreateActionFlowBuilder(state: .initial(.recipePageAddTo, self)).build()
         DispatchQueue.main.async {
             self.navigationController?.presentPanModal(vc)
         }

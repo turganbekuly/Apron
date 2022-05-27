@@ -35,7 +35,7 @@ extension MainViewController: UITableViewDelegate {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .myCommunities:
-            return myCommunities.isEmpty ? 57 : 210
+            return myCommunities.isEmpty ? 100 : 210
         case .communities:
             return 305
         }
@@ -45,7 +45,7 @@ extension MainViewController: UITableViewDelegate {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .myCommunities:
-            return myCommunities.isEmpty ? 57 : 210
+            return myCommunities.isEmpty ? 100 : 210
         case .communities:
             return 305
         }
@@ -54,8 +54,9 @@ extension MainViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case let .myCommunities(myCommunities):
+        case let .myCommunities:
             guard let cell = cell as? MyCommunityCell else { return }
+            cell.delegate = self
             cell.configure(with: MyCollectionDelegateCellViewModel(
                 myCommunities: myCommunities
             ))

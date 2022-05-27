@@ -37,13 +37,9 @@ extension MyCommunityCell: UICollectionViewDelegateFlowLayout {
         let row = myCommunitiesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case let .myCommunity(community):
-//            let vc = CommunityPageBuilder(state: .initial(community.id)).build()
-//            DispatchQueue.main.async {
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            }
-            print("navigate to about")
-        case .emptyView:
-            print("navigate to about")
+            delegate?.navigateToMyCommunity(with: community.id)
+        default:
+            break
         }
     }
 
@@ -53,7 +49,7 @@ extension MyCommunityCell: UICollectionViewDelegateFlowLayout {
         case .myCommunity:
             return CGSize(width: 120, height: 150)
         case .emptyView:
-            return CGSize(width: collectionView.bounds.width - 32, height: 57)
+            return CGSize(width: collectionView.bounds.width, height: 57)
         }
     }
 

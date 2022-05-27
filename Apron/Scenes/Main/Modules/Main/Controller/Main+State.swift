@@ -30,17 +30,18 @@ extension MainViewController {
             getMyCommunities()
             getCommunitiesByCategory()
         case .joinedCommunity:
-            print("")
+            getMyCommunities()
+            getCommunitiesByCategory()
         case .joinedCommunityFailed:
             print("")
         case let .fetchCommunitiesByCategory(model):
-//            self.dynamicCommunities = model
+            self.dynamicCommunities = model
             endRefreshingIfNeeded()
         case let .fetchCommunitiesByCategoryFailed(error):
             print(error)
             endRefreshingIfNeeded()
         case let .fetchMyCommunities(model):
-//            myCommunities = model
+            myCommunities = model
             endRefreshingIfNeeded()
         case let .fetchMyCommunititesFailed(error):
             print(error)

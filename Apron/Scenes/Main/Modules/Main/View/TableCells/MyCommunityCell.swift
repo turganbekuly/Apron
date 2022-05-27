@@ -10,15 +10,15 @@ import DesignSystem
 import Models
 
 protocol MyCommunityCellProtocol: AnyObject {
-    func navigateToCommunity(with id: Int)
-    func navigateToSeeAll(with categoryID: Int, title: String)
+    func navigateToMyCommunity(with id: Int)
+    func navigateToSeeAll()
 }
 
 public final class MyCommunityCell: UITableViewCell {
     // MARK: - Properties
 
     weak var delegate: MyCommunityCellProtocol?
-    lazy var myCommunitiesSection: [MyCommunitiesSection] = [.init(section: .myCommunities, rows: Array(repeating: .emptyView, count: 1))] {
+    lazy var myCommunitiesSection: [MyCommunitiesSection] = [] {
         didSet {
             communityCollectionView.reloadData()
         }
@@ -26,12 +26,13 @@ public final class MyCommunityCell: UITableViewCell {
 
     var myCommunities: [CommunityResponse] = [] {
         didSet {
-            myCommunitiesSection = [
-                .init(
-                    section: .myCommunities,
-                    rows: myCommunities.compactMap { .myCommunity($0) }
-                )
-            ]
+            if !myCommunities.isEmpty {
+                myCommunitiesSection = [
+                    .init(section: .myCommunities, rows: myCommunities.compactMap { .myCommunity($0) })
+                ]
+            } else {
+                myCommunitiesSection = [.init(section: .myCommunities, rows: [.emptyView])]
+            }
         }
     }
 
@@ -63,6 +64,7 @@ public final class MyCommunityCell: UITableViewCell {
         button.setTitleColor(Assets.gray.color, for: .normal)
         button.setTitleColor(Assets.gray.color, for: .highlighted)
         button.setTitle("Все", for: .normal)
+        button.addTarget(self, action: #selector(seeAllButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -78,6 +80,8 @@ public final class MyCommunityCell: UITableViewCell {
         ].forEach {
             contentView.addSubview($0)
         }
+        communityCollectionView.delegate = self
+        communityCollectionView.dataSource = self
         setupConstraints()
         configureCell()
     }
@@ -104,15 +108,18 @@ public final class MyCommunityCell: UITableViewCell {
         selectionStyle = .none
     }
 
+    // MARK: - User actions
+
+    @objc
+    private func seeAllButtonTapped() {
+        delegate?.navigateToSeeAll()
+    }
+
     // MARK: - Methods
 
     func configure(with viewModel: IMyCollectionDelegateCellViewModel) {
         seeAllButton.isHidden = viewModel.myCommunities.count > 10 ? false : true
-        if !viewModel.myCommunities.isEmpty {
-            myCommunities = viewModel.myCommunities
-        } else {
-            myCommunitiesSection = [.init(section: .myCommunities, rows: Array(repeating: .emptyView, count: 1))]
-        }
+        myCommunities = viewModel.myCommunities
     }
 }
 

@@ -8,6 +8,18 @@
 import Foundation
 import Models
 
+enum CustomerStatus: String {
+    case loggedIn = "logged_in"
+    case guest
+}
+
+enum AddButtonTypeStatus: String {
+    case privateCommunity = "private_community"
+    case publicCommunity = "public_community"
+    case newRecipe = "new_recipe"
+    case savedRecipe = "saved_recipe"
+}
+
 enum AnalyticsEvents {
     case homePageViewed(HomePageViewedModel)
 }

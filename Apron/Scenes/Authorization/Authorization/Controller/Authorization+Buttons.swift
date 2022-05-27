@@ -15,7 +15,7 @@ extension AuthorizationViewController: IAuthorizationView {
 
         switch type {
         default:
-            interactor.login(request: .init(email: "dinasil.omarbek@gmail.com", password: "12345678"))
+            interactor.login(request: .init(email: "akarysid@gmail.com", password: "12345678"))
         }
 //        switch type {
 //        case .signin:
