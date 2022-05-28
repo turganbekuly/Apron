@@ -8,9 +8,11 @@
 
 import DesignSystem
 import UIKit
+import Models
+import UIScrollView_InfiniteScroll
 
 protocol ResultListDisplayLogic: AnyObject {
-    
+    func displayRecipesByCommunityID(with viewModel: ResultListDataFlow.GetRecipesByCommunityID.ViewModel)
 }
 
 final class ResultListViewController: ViewController {
@@ -18,17 +20,17 @@ final class ResultListViewController: ViewController {
     struct Section {
         enum Section {
             case everything
-            case community
-            case recipe
+            case communities
+            case recipes
         }
         enum Row {
             case community
-            case recipe
+            case recipe(RecipeResponse)
             case loading
         }
         
-        let section: Section
-        let rows: [Row]
+        var section: Section
+        var rows: [Row]
     }
     
     // MARK: - Properties
@@ -40,37 +42,50 @@ final class ResultListViewController: ViewController {
         }
     }
 
+    var currentPage = 1
+
     var query: String? {
         didSet {
             switch initialState {
             case .everything:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    self.sections = [
-                        .init(section: .everything, rows: Array(repeating: .loading, count: 10))
-                    ]
-                    self.mainView.reloadData()
-                }
-            case .recipe:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    self.sections = [
-                        .init(section: .everything, rows: Array(repeating: .loading, count: 10))
-                    ]
-                    self.mainView.reloadData()
-                }
+                sections = [
+                    .init(section: .everything, rows: Array(repeating: .loading, count: 10))
+                ]
+                mainView.reloadData()
+            case .recipe, .recipesFromCommunityPage:
+                sections = [
+                    .init(section: .everything, rows: Array(repeating: .loading, count: 10))
+                ]
+                mainView.reloadData()
+                getRecipesByCommunityId(id: id, currentPage: currentPage, query: query ?? "")
             case .community:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    self.sections = [
-                        .init(section: .everything, rows: Array(repeating: .loading, count: 10))
-                    ]
-                    self.mainView.reloadData()
-                }
+                sections = [
+                    .init(section: .everything, rows: Array(repeating: .loading, count: 10))
+                ]
+                mainView.reloadData()
             default:
                 break
             }
         }
     }
 
-    var initialState: GeneralSearchInitialState?
+    var initialState: GeneralSearchInitialState? {
+        didSet {
+            switch initialState {
+            case let .recipesFromCommunityPage(id):
+                self.id = id
+            default: break
+            }
+        }
+    }
+
+    var id = 0
+
+    var recipesList: [RecipeResponse] = [] {
+        didSet {
+            sections = [.init(section: .recipes, rows: recipesList.compactMap { .recipe($0) })]
+        }
+    }
     
     // MARK: - Views
     lazy var mainView: ResultListView = {
@@ -124,7 +139,16 @@ final class ResultListViewController: ViewController {
     
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
+        mainView.addInfiniteScroll { [weak self] _ in
+            guard let self = self else { return }
+            self.getRecipesByCommunityId(
+                id: self.id,
+                currentPage: self.currentPage,
+                query: self.query ?? ""
+            )
+        }
+
         configureColors()
         makeConstraints()
     }

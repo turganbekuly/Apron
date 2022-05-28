@@ -14,6 +14,8 @@ extension ResultListViewController {
     // MARK: - State
     public enum State {
         case initial(GeneralSearchInitialState, String?)
+        case fetchRecipesByCommunityId([RecipeResponse])
+        case fetchRecipesByCommunityIdFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -22,7 +24,29 @@ extension ResultListViewController {
         case let .initial(initialState, query):
             self.initialState = initialState
             self.query = query
+        case let .fetchRecipesByCommunityId(model):
+            updateList(with: model)
+        case let .fetchRecipesByCommunityIdFailed(error):
+            print(error)
         }
+    }
+
+    private func updateList(with recipes: [RecipeResponse]) {
+        if self.recipesList.isEmpty {
+            self.recipesList = recipes
+        } else {
+            self.recipesList.append(contentsOf: recipes)
+            mainView.finishInfiniteScroll()
+        }
+
+        configureRecipes()
+    }
+
+    func configureRecipes() {
+        guard let section = sections.firstIndex(where: { $0.section == .recipes }) else { return }
+        currentPage += 1
+        sections[section].rows = recipesList.compactMap { .recipe($0) }
+        mainView.reloadData()
     }
     
 }

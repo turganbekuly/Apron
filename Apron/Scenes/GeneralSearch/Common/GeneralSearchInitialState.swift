@@ -12,13 +12,14 @@ public enum GeneralSearchInitialState: Equatable {
     case everything
     case recipe
     case community
-    case saved
+    case savedRecipes
+    case recipesFromCommunityPage(id: Int)
 
     var title: String? {
         switch self {
         case .everything:
             return "Все"
-        case .recipe:
+        case .recipe, .recipesFromCommunityPage:
             return "Рецепты"
         case .community:
             return "Сообщество"
@@ -31,7 +32,7 @@ public enum GeneralSearchInitialState: Equatable {
         switch self {
         case .everything:
             return "Everything"
-        case .recipe:
+        case .recipe, .recipesFromCommunityPage:
             return "Recipes"
         case .community:
             return "Communities"
@@ -52,7 +53,9 @@ public enum GeneralSearchInitialState: Equatable {
             return true
         case (.community, .community):
             return true
-        case (.saved, .saved):
+        case (.savedRecipes, .savedRecipes):
+            return true
+        case (.recipesFromCommunityPage, .recipesFromCommunityPage):
             return true
         default:
             return false

@@ -54,9 +54,12 @@ final class GeneralSearchResultViewController: ViewController {
             case .main:
                 pages = [.everything, .recipe, .community]
                 pagerInitialState = .everything
-            case .recipe, .saved:
+            case .recipe, .savedRecipes:
                 pages = [.recipe]
                 pagerInitialState = .recipe
+            case let .recipesFromCommunityPage(id):
+                pages = [.recipesFromCommunityPage(id: id)]
+                pagerInitialState = .recipesFromCommunityPage(id: id)
             default:
                 break
             }

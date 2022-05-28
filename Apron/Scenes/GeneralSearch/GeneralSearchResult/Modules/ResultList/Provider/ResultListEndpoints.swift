@@ -9,23 +9,30 @@
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
 enum ResultListEndpoint {
-    
+    case getRecipesByCommunityID(RecipesByCommunityIDRequestBody)
 }
 
 extension ResultListEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .getRecipesByCommunityID:
+            return "recipes/recipesByCommunityId"
+        }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .getRecipesByCommunityID:
+            return .get
+        }
     }
     
     var sampleData: Data {
@@ -33,7 +40,18 @@ extension ResultListEndpoint: AKNetworkTargetType {
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case let .getRecipesByCommunityID(requestBody):
+            return .requestParameters(
+                parameters: [
+                    "communityId": requestBody.id,
+                    "limit": 20,
+                    "page": requestBody.currentPage,
+                    "name": requestBody.query
+                ],
+                encoding: AKURLEncoding.queryString
+            )
+        }
     }
     
     var headers: [String: String]? {

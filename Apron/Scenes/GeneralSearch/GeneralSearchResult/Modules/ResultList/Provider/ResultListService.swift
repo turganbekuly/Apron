@@ -9,7 +9,10 @@
 import AKNetwork
 
 protocol ResultListServiceProtocol {
-    
+    func getRecipesByCommunityID(
+        request: ResultListDataFlow.GetRecipesByCommunityID.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class ResultListService: ResultListServiceProtocol {
@@ -23,5 +26,13 @@ final class ResultListService: ResultListServiceProtocol {
     }
     
     // MARK: - ResultListServiceProtocol
-    
+
+    func getRecipesByCommunityID(
+        request: ResultListDataFlow.GetRecipesByCommunityID.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getRecipesByCommunityID(request.body)) { result in
+            completion(result)
+        }
+    }
 }

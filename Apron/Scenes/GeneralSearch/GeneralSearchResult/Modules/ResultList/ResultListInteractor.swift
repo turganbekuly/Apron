@@ -7,7 +7,9 @@
 //
 
 protocol ResultListBusinessLogic {
-    
+    func getRecipesByCommunityID(
+        request: ResultListDataFlow.GetRecipesByCommunityID.Request
+    )
 }
 
 final class ResultListInteractor: ResultListBusinessLogic {
@@ -25,4 +27,14 @@ final class ResultListInteractor: ResultListBusinessLogic {
     
     // MARK: - ResultListBusinessLogic
 
+    func getRecipesByCommunityID(request: ResultListDataFlow.GetRecipesByCommunityID.Request) {
+        provider.getRecipesByCommunityID(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model: model):
+                self?.presenter.getRecipesByCommunityID(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getRecipesByCommunityID(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }

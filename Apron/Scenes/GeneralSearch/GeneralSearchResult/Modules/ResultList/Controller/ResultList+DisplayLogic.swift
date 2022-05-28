@@ -11,5 +11,9 @@ import UIKit
 extension ResultListViewController: ResultListDisplayLogic {
     
     // MARK: - ResultListDisplayLogic
+
+    func displayRecipesByCommunityID(with viewModel: ResultListDataFlow.GetRecipesByCommunityID.ViewModel) {
+        state = viewModel.state
+    }
     
 }

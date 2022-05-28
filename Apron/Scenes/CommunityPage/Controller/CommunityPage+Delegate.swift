@@ -31,9 +31,10 @@ extension CommunityPageViewController: ICommunityInfoCell {
 
 extension CommunityPageViewController: SearchBarProtocol {
     func searchBarDidTap() {
+        guard let community = community else { return }
         let viewController = UINavigationController(
             rootViewController: GeneralSearchBuilder(
-                state: .initial(.recipe)
+                state: .initial(.recipesFromCommunityPage(id: community.id))
             ).build()
         )
         viewController.modalPresentationStyle = .fullScreen

@@ -31,11 +31,6 @@ final class GeneralSearchViewController: ViewController {
     let interactor: GeneralSearchBusinessLogic
 
     var sections: [Section] = []
-    var searchSections: [SearchResultViewController.Section] = [] {
-        didSet {
-            (searchController.searchResultsController as? SearchResultViewController)?.sections = searchSections
-        }
-    }
 
     var state: State {
         didSet {
@@ -45,20 +40,7 @@ final class GeneralSearchViewController: ViewController {
 
     private var isFirstAppear = true
 
-    var initialState: GeneralSearchInitialState? {
-        didSet {
-            switch initialState {
-            case .everything:
-                print("asd")
-            case .recipe:
-                print("asd")
-            case .saved:
-                print("asd")
-            default:
-                break
-            }
-        }
-    }
+    var initialState: GeneralSearchInitialState?
     
     // MARK: - Views
 
@@ -97,16 +79,12 @@ final class GeneralSearchViewController: ViewController {
     }
     
     // MARK: - Life Cycle
-    override func loadView() {
-        super.loadView()
-        
-        configureViews()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         state = { state }()
+        configureViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {

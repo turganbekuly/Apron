@@ -1221,6 +1221,7 @@
 		3C1FA948345D5B4496E7C5B0 /* ResultList */ = {
 			isa = PBXGroup;
 			children = (
+				6D7FF8EE28425AF400D04B6D /* ViewModel */,
 				28C3229A40F48FE757785FF3 /* Controller */,
 				0D078A9CCAB9695C12F2E5E3 /* Provider */,
 				7A3EDF4B2E661F8A45F8F2DF /* View */,
@@ -1678,6 +1679,13 @@
 				6D7B8F2F2840EB8C0055884E /* JoinedCommunityModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6D7FF8EE28425AF400D04B6D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		6D84303B2795D78A004E27E5 /* ViewModel */ = {
