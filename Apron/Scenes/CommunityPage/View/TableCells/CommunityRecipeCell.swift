@@ -8,11 +8,26 @@
 import DesignSystem
 import UIKit
 import SnapKit
+import Storages
+import HapticTouch
+
+protocol CommunityRecipeCellProtocol: AnyObject {
+    func didTapSaveRecipe(with id: Int)
+    func navigateToAuthFromRecipe()
+    func navigateToRecipe(with id: Int)
+}
 
 final class CommunityRecipeCell: UITableViewCell {
     // MARK: - Properties
 
+    weak var delegate: CommunityRecipeCellProtocol?
     private var faveButtonWidthConstraint: Constraint?
+    private var isSaved: Bool = false {
+        didSet {
+            configureButton(isSaved: isSaved)
+        }
+    }
+    private var id = 0
 
     // MARK: - Init
 
@@ -44,11 +59,12 @@ final class CommunityRecipeCell: UITableViewCell {
 
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .black
+        button.setBackgroundColor(.black, for: .normal)
         button.setImage(Assets.recipeFavoriteIcon.image, for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 19
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -165,6 +181,39 @@ final class CommunityRecipeCell: UITableViewCell {
         }
     }
 
+    // MARK: - Private methods
+
+    private func configureButton(isSaved: Bool) {
+        guard isSaved else {
+            favoriteButton.setBackgroundColor(.black, for: .normal)
+            favoriteButton.setImage(Assets.recipeFavoriteIcon.image, for: .normal)
+            return
+        }
+
+        favoriteButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
+        favoriteButton.setImage(Assets.tabFaveSelectedIcon.image, for: .normal)
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func saveButtonTapped() {
+        guard AuthStorage.shared.isUserAuthorized else {
+            delegate?.navigateToAuthFromRecipe()
+            return
+        }
+
+        guard !isSaved else {
+            delegate?.navigateToRecipe(with: id)
+            return
+        }
+
+        HapticTouch.generateSuccess()
+        favoriteButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
+        favoriteButton.setImage(Assets.tabFaveSelectedIcon.image, for: .normal)
+        delegate?.didTapSaveRecipe(with: id)
+    }
+
     // MARK: - Configure
 
     func configure(with viewModel: CommunityRecipesCellViewModelProtocol) {
@@ -175,6 +224,7 @@ final class CommunityRecipeCell: UITableViewCell {
             with: URL(string: recipe.imageURL ?? ""),
             placeholder: Assets.communityMockImage.image
         )
+        self.id = recipe.id
 //        if viewModel.favCount != "0" {
 //            self.favoriteButton.setTitle(viewModel.favCount, for: .normal)
 //            faveButtonWidthConstraint?.update(offset: 70)

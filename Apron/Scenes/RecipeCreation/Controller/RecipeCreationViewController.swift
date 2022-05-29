@@ -33,7 +33,18 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     var recipeCreation: RecipeCreation?
 
-    var recipeCreationSourceType: RecipeCreationSourceType?
+    var recipeCreationSourceType: RecipeCreationSourceType? {
+        didSet {
+            switch recipeCreationSourceType {
+            case let .community(_, delegate):
+                self.delegate = delegate
+            default:
+                break
+            }
+        }
+    }
+
+    weak var delegate: CommunityPageCreateRecipeProtocol?
 
     var selectedImage: UIImage? {
         didSet {

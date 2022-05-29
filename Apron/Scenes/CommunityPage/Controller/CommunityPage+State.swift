@@ -20,6 +20,8 @@ extension CommunityPageViewController {
         case joinedCommunityFailed
         case displayRecipes([RecipeResponse])
         case displayRecipesFailed(AKNetworkError)
+        case saveRecipe(Int)
+        case saveRecipeFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -40,6 +42,10 @@ extension CommunityPageViewController {
             updateList(with: model)
         case let .displayRecipesFailed(error):
             print(error)
+        case let .saveRecipe(newCount):
+            print(newCount)
+        case let .saveRecipeFailed(error):
+            print(error)
         }
     }
 
@@ -48,16 +54,21 @@ extension CommunityPageViewController {
             self.recipes = recipes
         } else {
             self.recipes.append(contentsOf: recipes)
-            mainView.finishInfiniteScroll()
         }
 
         configureRecipes()
     }
 
     func configureRecipes() {
+        guard !recipes.isEmpty else {
+            sections = [.init(section: .topView, rows: [.emptyView])]
+            mainView.reloadData()
+            return
+        }
         guard let section = sections.firstIndex(where: { $0.section == .topView }) else { return }
         currentPage += 1
         sections[section].rows = recipes.compactMap { .recipiesView($0) }
+        mainView.finishInfiniteScroll()
         mainView.reloadData()
     }
 }

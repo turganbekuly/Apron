@@ -12,7 +12,7 @@ import Models
 protocol CommunityPageProviderProtocol {
     func getCommunity(
         request: CommunityPageDataFlow.GetCommunity.Request,
-        completion: @escaping ((CommunityPageDataFlow.GetCommunityResult) -> Void)
+        completion: @escaping (CommunityPageDataFlow.GetCommunityResult) -> Void
     )
     func joinCommunity(
         request: CommunityPageDataFlow.JoinCommunity.Request,
@@ -20,8 +20,11 @@ protocol CommunityPageProviderProtocol {
     )
     func getRecipesByCommunity(
         request: CommunityPageDataFlow.GetRecipesByCommunity.Request,
-        completion: @escaping ((CommunityPageDataFlow.GetRecipesByCommunityResult) -> Void
-        )
+        completion: @escaping (CommunityPageDataFlow.GetRecipesByCommunityResult) -> Void
+    )
+    func saveRecipe(
+        request: CommunityPageDataFlow.SaveRecipe.Request,
+        completion: @escaping (CommunityPageDataFlow.SaveRecipeResult) -> Void
     )
 }
 
@@ -40,7 +43,8 @@ final class CommunityPageProvider: CommunityPageProviderProtocol {
 
     func getCommunity(
         request: CommunityPageDataFlow.GetCommunity.Request,
-        completion: @escaping ((CommunityPageDataFlow.GetCommunityResult) -> Void)) {
+        completion: @escaping (CommunityPageDataFlow.GetCommunityResult) -> Void
+    ) {
             service.getCommunity(request: request) {
                 switch $0 {
                 case let .success(json):
@@ -71,13 +75,31 @@ final class CommunityPageProvider: CommunityPageProviderProtocol {
 
     func getRecipesByCommunity(
         request: CommunityPageDataFlow.GetRecipesByCommunity.Request,
-        completion: @escaping ((CommunityPageDataFlow.GetRecipesByCommunityResult) -> Void)
+        completion: @escaping (CommunityPageDataFlow.GetRecipesByCommunityResult) -> Void
     ) {
         service.getRecipesByCommunity(request: request) {
             switch $0 {
             case let .success(json):
                 if let jsons = json["data"] as? [JSON] {
                     completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func saveRecipe(
+        request: CommunityPageDataFlow.SaveRecipe.Request,
+        completion: @escaping (CommunityPageDataFlow.SaveRecipeResult) -> Void
+    ) {
+        service.saveRecipe(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["savedCount"] as? Int {
+                    completion(.successful(model: jsons))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

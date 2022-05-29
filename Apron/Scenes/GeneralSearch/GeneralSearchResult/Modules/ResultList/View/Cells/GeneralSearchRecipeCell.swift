@@ -26,7 +26,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = Assets.cmntImageview.image
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -60,6 +60,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [recipeNameLabel, sourceLinkLabel])
         stackView.axis = .vertical
+        stackView.spacing = 8
         return stackView
     }()
 
@@ -77,7 +78,8 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     private func setupConstraints() {
         recipeImageView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(16)
-            $0.size.equalTo(56)
+            $0.width.equalTo(56)
+            $0.bottom.equalToSuperview()
         }
 
         favoriteButton.snp.makeConstraints {
@@ -90,7 +92,6 @@ final class GeneralSearchRecipeCell: UITableViewCell {
             $0.centerY.equalTo(recipeImageView.snp.centerY)
             $0.leading.equalTo(recipeImageView.snp.trailing).offset(14)
             $0.trailing.equalTo(favoriteButton.snp.leading).offset(-14)
-            $0.height.equalTo(56)
         }
     }
 

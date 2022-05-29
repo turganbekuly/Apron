@@ -23,7 +23,7 @@ final class ShoppingListViewController: ViewController, Messagable {
         }
         enum Row {
         case ingredient(CartItem)
-        case loading
+        case empty
         }
         
         let section: Section
@@ -44,7 +44,7 @@ final class ShoppingListViewController: ViewController, Messagable {
             guard let cartItems = cartItems,
                   !cartItems.isEmpty
             else {
-                sections = [.init(section: .ingredients, rows: [.loading])]
+                sections = [.init(section: .ingredients, rows: [.empty])]
                 mainView.reloadTableViewWithoutAnimation()
                 return
             }

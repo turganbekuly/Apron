@@ -44,17 +44,3 @@ extension CommunityPageViewController: SearchBarProtocol {
         }
     }
 }
-
-extension CommunityPageViewController: CreateActionFlowProtocol {
-    func handleChosenAction(type: CreateActionType) {
-        switch type {
-        case .newRecipe:
-            let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .community(id: community?.id ?? 1)))).build()
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        default:
-            break
-        }
-    }
-}

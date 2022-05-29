@@ -69,3 +69,22 @@ extension CommunityPageDataFlow {
         case failed(error: AKNetworkError)
     }
 }
+
+extension CommunityPageDataFlow {
+    enum SaveRecipe {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: SaveRecipeResult
+        }
+        struct ViewModel {
+            var state: CommunityPageViewController.State
+        }
+    }
+
+    enum SaveRecipeResult {
+        case successful(model: Int)
+        case failed(error: AKNetworkError)
+    }
+}

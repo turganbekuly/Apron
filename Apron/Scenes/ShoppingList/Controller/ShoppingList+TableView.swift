@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DesignSystem
 
 extension ShoppingListViewController: UITableViewDataSource {
     
@@ -22,7 +23,7 @@ extension ShoppingListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case .loading:
+        case .empty:
             let cell: EmptyCartCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         case .ingredient:
@@ -47,7 +48,7 @@ extension ShoppingListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case .loading:
+        case .empty:
             return 230
         case .ingredient:
             return 90
@@ -57,7 +58,7 @@ extension ShoppingListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case .loading:
+        case .empty:
             return 230
         case .ingredient:
             return 90
@@ -67,8 +68,12 @@ extension ShoppingListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case .loading:
+        case .empty:
             guard let cell = cell as? EmptyCartCell else { return }
+            cell.configure(
+                with: "Добавьте товары в свой список покупок",
+                image: Assets.emptyCart.image
+            )
         case let .ingredient(item):
             guard let cell = cell as? ShoppingItemCell else { return }
             cell.configure(item: item)

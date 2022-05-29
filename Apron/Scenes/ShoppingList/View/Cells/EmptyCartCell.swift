@@ -43,8 +43,6 @@ final class EmptyCartCell: UITableViewCell {
         backgroundColor = .clear
         selectionStyle = .none
         [emptyTextLabel, emptyStateImageView].forEach { addSubview($0) }
-        emptyTextLabel.text = "Добавьте товары в свой список покупок"
-        emptyStateImageView.image = Assets.emptyCart.image
         setupConstraints()
     }
 
@@ -58,5 +56,12 @@ final class EmptyCartCell: UITableViewCell {
             $0.top.equalTo(emptyTextLabel.snp.bottom).offset(22)
             $0.leading.trailing.equalToSuperview()
         }
+    }
+
+    // MARK: - Methods
+
+    func configure(with title: String, image: UIImage) {
+        self.emptyTextLabel.text = title
+        self.emptyStateImageView.image = image
     }
 }

@@ -10,6 +10,7 @@ protocol CommunityPageBusinessLogic {
     func getCommunity(request: CommunityPageDataFlow.GetCommunity.Request)
     func joinCommunity(request: CommunityPageDataFlow.JoinCommunity.Request)
     func getRecipesByCommunity(request: CommunityPageDataFlow.GetRecipesByCommunity.Request)
+    func saveRecipe(request: CommunityPageDataFlow.SaveRecipe.Request)
 }
 
 final class CommunityPageInteractor: CommunityPageBusinessLogic {
@@ -60,6 +61,17 @@ final class CommunityPageInteractor: CommunityPageBusinessLogic {
                 self?.presenter.getRecipesByCommunity(
                     response: .init(result: .failed(error: error))
                 )
+            }
+        }
+    }
+
+    func saveRecipe(request: CommunityPageDataFlow.SaveRecipe.Request) {
+        provider.saveRecipe(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.saveRecipe(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.saveRecipe(response: .init(result: .failed(error: error)))
             }
         }
     }

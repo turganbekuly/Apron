@@ -74,6 +74,9 @@ extension ResultListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case let .recipe(recipe):
+            guard let cell = cell as? GeneralSearchRecipeCell else { return }
+            cell.configure(with: GeneralSearchRecipeViewModel(recipe: recipe))
         default:
             break
         }

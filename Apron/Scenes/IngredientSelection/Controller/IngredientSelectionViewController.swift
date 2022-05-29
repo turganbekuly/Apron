@@ -172,7 +172,6 @@ final class IngredientSelectionViewController: ViewController {
     private func setupDropdown() {
         dropDown.anchorView = measureTextField
         dropDown.direction = .bottom
-//        dropDown.height = 300
         dropDown.selectionAction = { [weak self] (index, product) in
             guard let self = self,
                   let products = self.products

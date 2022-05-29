@@ -30,11 +30,11 @@ public struct SuccessMessageViewModel: MessageProtocol {
     }
 
     public var backgroundColor: UIColor {
-        Assets.green.color
+        Assets.colorsYello.color
     }
 
     public var titleColor: UIColor {
-        .white
+        .black
     }
 
     public var subtitleColor: UIColor? {

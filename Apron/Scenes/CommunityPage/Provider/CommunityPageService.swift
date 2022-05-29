@@ -21,6 +21,10 @@ protocol CommunityPageServiceProtocol {
         request: CommunityPageDataFlow.GetRecipesByCommunity.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func saveRecipe(
+        request: CommunityPageDataFlow.SaveRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class CommunityPageService: CommunityPageServiceProtocol {
@@ -63,6 +67,15 @@ final class CommunityPageService: CommunityPageServiceProtocol {
                 currentPage: request.currentPage
             )
         ) { result in
+            completion(result)
+        }
+    }
+
+    func saveRecipe(
+        request: CommunityPageDataFlow.SaveRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .saveRecipe(id: request.id)) { result in
             completion(result)
         }
     }

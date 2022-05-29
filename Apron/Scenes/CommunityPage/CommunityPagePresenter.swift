@@ -12,6 +12,7 @@ protocol CommunityPagePresentationLogic: AnyObject {
     func getCommunity(response: CommunityPageDataFlow.GetCommunity.Response)
     func joinCommunity(response: CommunityPageDataFlow.JoinCommunity.Response)
     func getRecipesByCommunity(response: CommunityPageDataFlow.GetRecipesByCommunity.Response)
+    func saveRecipe(response: CommunityPageDataFlow.SaveRecipe.Response)
 }
 
 final class CommunityPagePresenter: CommunityPagePresentationLogic {
@@ -62,6 +63,21 @@ final class CommunityPagePresenter: CommunityPagePresentationLogic {
                 viewModel = .init(state: .displayRecipes(model))
             case let .failed(error):
                 viewModel = .init(state: .displayRecipesFailed(error))
+            }
+        }
+    }
+
+    func saveRecipe(response: CommunityPageDataFlow.SaveRecipe.Response) {
+        DispatchQueue.main.async {
+            var viewModel: CommunityPageDataFlow.SaveRecipe.ViewModel
+
+            defer { self.viewController?.displaySaveRecipe(viewModel: viewModel) }
+
+            switch response.result {
+            case let .successful(count):
+                viewModel = .init(state: .saveRecipe(count))
+            case let .failed(error):
+                viewModel = .init(state: .saveRecipeFailed(error))
             }
         }
     }

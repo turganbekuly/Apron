@@ -117,12 +117,14 @@ final class GeneralSearchViewController: ViewController {
     }
 
     private func configureNavigation() {
-        navigationItem.titleView = searchController.searchBar
-        definesPresentationContext = true
+//        navigationItem.titleView = searchController.searchBar
+//        definesPresentationContext = true
     }
     
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
+        navigationItem.titleView = searchController.searchBar
+        definesPresentationContext = true
         configureColors()
         makeConstraints()
     }

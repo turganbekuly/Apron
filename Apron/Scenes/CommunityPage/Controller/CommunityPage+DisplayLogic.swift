@@ -23,4 +23,8 @@ extension CommunityPageViewController: CommunityPageDisplayLogic {
     func displayRecipesByCommunity(viewModel: CommunityPageDataFlow.GetRecipesByCommunity.ViewModel) {
         state = viewModel.state
     }
+
+    func displaySaveRecipe(viewModel: CommunityPageDataFlow.SaveRecipe.ViewModel) {
+        state = viewModel.state
+    }
 }

@@ -52,6 +52,7 @@ public enum Assets {
   public static let cmntMemberIcon = ImageAsset(name: "cmnt_member_icon")
   public static let cmntRecipeIcon = ImageAsset(name: "cmnt_recipe_icon")
   public static let communityMockImage = ImageAsset(name: "community_mock_image")
+  public static let emptyRecipesIcon = ImageAsset(name: "empty_recipes_icon")
   public static let recipeCookingTimeIcon = ImageAsset(name: "recipe_cooking_time_icon")
   public static let recipeFavoriteIcon = ImageAsset(name: "recipe_favorite_icon")
   public static let searchClearButton = ImageAsset(name: "search_clear_button")

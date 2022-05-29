@@ -14,6 +14,7 @@ public enum CommunityPageEndpoint {
     case getCommunity(id: Int)
     case joinCommunity(id: Int)
     case getRecipesByCommunity(id: Int, currentPage: Int)
+    case saveRecipe(id: Int)
 }
 
 extension CommunityPageEndpoint: AKNetworkTargetType {
@@ -30,6 +31,8 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return "communities/join/\(id)"
         case .getRecipesByCommunity:
             return "recipes/recipesByCommunityId"
+        case let .saveRecipe(id):
+            return "recipes/saveRecipe/\(id)"
         }
     }
     
@@ -41,6 +44,8 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return .put
         case .getRecipesByCommunity:
             return .get
+        case .saveRecipe:
+            return .put
         }
     }
     
@@ -59,6 +64,8 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
                 parameters: ["communityId": id, "limit": 5, "page": currentPage],
                 encoding: AKURLEncoding.queryString
             )
+        case .saveRecipe:
+            return .requestPlain
         }
     }
     

@@ -16,6 +16,7 @@ protocol CommunityPageDisplayLogic: AnyObject {
     func displayCommunity(viewModel: CommunityPageDataFlow.GetCommunity.ViewModel)
     func displayJoinCommunity(viewModel: CommunityPageDataFlow.JoinCommunity.ViewModel)
     func displayRecipesByCommunity(viewModel: CommunityPageDataFlow.GetRecipesByCommunity.ViewModel)
+    func displaySaveRecipe(viewModel: CommunityPageDataFlow.SaveRecipe.ViewModel)
 }
 
 public final class CommunityPageViewController: ViewController, Messagable {
@@ -43,12 +44,18 @@ public final class CommunityPageViewController: ViewController, Messagable {
 
             self.id = community.id
             self.imageView.imageUrl = community.image
-            sections = [
-                .init(
-                    section: .topView,
-                    rows: recipes.compactMap { .recipiesView($0) }
-                )
-            ]
+            if recipes.isEmpty {
+                sections = [
+                    .init(section: .topView, rows: [.emptyView])
+                ]
+            } else {
+                sections = [
+                    .init(
+                        section: .topView,
+                        rows: recipes.compactMap { .recipiesView($0) }
+                    )
+                ]
+            }
 
             mainView.reloadTableViewWithoutAnimation()
         }
