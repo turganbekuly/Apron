@@ -10,6 +10,7 @@ import Models
 
 public struct CartItem: Codable {
     public let productName: String
+    public let productCategoryName: String
     public let quantity: Int
     public var recipeName: [String]?
     public var amount: Double?
@@ -17,12 +18,14 @@ public struct CartItem: Codable {
 
     public init(
         productName: String,
+        productCategoryName: String,
         amount: Double?,
         quantity: Int,
         measurement: String?,
         recipeName: [String]?
     ) {
         self.productName = productName
+        self.productCategoryName = productCategoryName
         self.amount = amount
         self.quantity = quantity
         self.measurement = measurement

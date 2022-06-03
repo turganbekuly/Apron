@@ -14,6 +14,22 @@ protocol ResultListProviderProtocol {
         request: ResultListDataFlow.GetRecipesByCommunityID.Request,
         completion: @escaping ((ResultListDataFlow.GetRecipesByCommunityIDResult) -> Void)
     )
+    func getEverything(
+        request: ResultListDataFlow.GetEverything.Request,
+        completion: @escaping ((ResultListDataFlow.GetEverythingResult) -> Void)
+    )
+    func getSavedRecipes(
+        request: ResultListDataFlow.GetSavedRecipes.Request,
+        completion: @escaping ((ResultListDataFlow.GetSavedRecipesResult) -> Void)
+    )
+    func getRecipes(
+        request: ResultListDataFlow.GetRecipes.Request,
+        completion: @escaping ((ResultListDataFlow.GetRecipesResult) -> Void)
+    )
+    func getCommunities(
+        request: ResultListDataFlow.GetCommunities.Request,
+        completion: @escaping ((ResultListDataFlow.GetCommunitiesResult) -> Void)
+    )
 }
 
 final class ResultListProvider: ResultListProviderProtocol {
@@ -38,6 +54,78 @@ final class ResultListProvider: ResultListProviderProtocol {
             case let .success(json):
                 if let jsons = json["data"] as? [JSON] {
                     completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getEverything(
+        request: ResultListDataFlow.GetEverything.Request,
+        completion: @escaping ((ResultListDataFlow.GetEverythingResult) -> Void)
+    ) {
+        service.getEverything(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = SearchEverythingResponse(json: json) {
+                    completion(.successful(model: jsons))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getSavedRecipes(
+        request: ResultListDataFlow.GetSavedRecipes.Request,
+        completion: @escaping ((ResultListDataFlow.GetSavedRecipesResult) -> Void)
+    ) {
+        service.getSavedRecipes(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getRecipes(
+        request: ResultListDataFlow.GetRecipes.Request,
+        completion: @escaping ((ResultListDataFlow.GetRecipesResult) -> Void)
+    ) {
+        service.getRecipes(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { RecipesResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getCommunities(
+        request: ResultListDataFlow.GetCommunities.Request,
+        completion: @escaping ((ResultListDataFlow.GetCommunitiesResult) -> Void)
+    ) {
+        service.getCommunities(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { CommunityResponse(json: $0) }))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

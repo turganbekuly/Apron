@@ -27,7 +27,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = Assets.cmntImageview.image
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -48,7 +48,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
         return label
     }()
 
-    private lazy var recipeImageView: UIImageView = {
+    private lazy var recipeImageIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Assets.cmntRecipeIcon.image
         return imageView
@@ -61,7 +61,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
         return label
     }()
 
-    private lazy var membersImageView: UIImageView = {
+    private lazy var membersImageIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Assets.cmntMemberIcon.image
         return imageView
@@ -74,41 +74,36 @@ final class GeneralSearchCommunityCell: UITableViewCell {
         return label
     }()
 
-    private lazy var infomartionStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [communityNameLabel, consistanceStackView])
-        stackView.axis = .vertical
-        return stackView
-    }()
-
-    private lazy var consistanceStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [recipeStackView, membersStackView])
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        return stackView
-    }()
-
     private lazy var recipeStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [recipeImageView, recipeCountLabel])
+        let stackView = UIStackView(arrangedSubviews: [recipeImageIcon, recipeCountLabel])
         stackView.axis = .horizontal
         stackView.spacing = 5
         return stackView
     }()
 
     private lazy var membersStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [membersImageView, membersCountLabel])
+        let stackView = UIStackView(arrangedSubviews: [membersImageIcon, membersCountLabel])
         stackView.axis = .horizontal
         stackView.spacing = 5
         return stackView
     }()
+
+    private lazy var informationStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [recipeStackView, membersStackView])
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+
     // MARK: - Setup Views
 
     private func setupViews() {
         backgroundColor = .clear
         selectionStyle = .none
         [communityImageView,
-         joinButton,
          communityNameLabel,
-         infomartionStackView
+         joinButton,
+         informationStackView
         ].forEach { contentView.addSubview($0) }
         setupConstraints()
     }
@@ -116,7 +111,8 @@ final class GeneralSearchCommunityCell: UITableViewCell {
     private func setupConstraints() {
         communityImageView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(16)
-            $0.size.equalTo(56)
+            $0.width.equalTo(56)
+            $0.bottom.equalToSuperview()
         }
 
         joinButton.snp.makeConstraints {
@@ -126,11 +122,15 @@ final class GeneralSearchCommunityCell: UITableViewCell {
             $0.width.equalTo(93)
         }
 
-        infomartionStackView.snp.makeConstraints {
-            $0.centerY.equalTo(communityImageView.snp.centerY)
+        communityNameLabel.snp.makeConstraints {
+            $0.top.equalTo(communityImageView.snp.top).offset(4)
             $0.leading.equalTo(communityImageView.snp.trailing).offset(14)
             $0.trailing.equalTo(joinButton.snp.leading).offset(-14)
-            $0.height.equalTo(56)
+        }
+
+        informationStackView.snp.makeConstraints {
+            $0.top.equalTo(communityNameLabel.snp.bottom).offset(4)
+            $0.leading.equalTo(communityImageView.snp.trailing).offset(14)
         }
     }
 
@@ -153,5 +153,6 @@ final class GeneralSearchCommunityCell: UITableViewCell {
         communityNameLabel.text = community.name ?? ""
         recipeCountLabel.text = "\(community.recipesCount ?? 0)"
         membersCountLabel.text = "\(community.usersCount ?? 0)"
+        informationStackView.layoutIfNeeded()
     }
 }

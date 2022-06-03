@@ -13,6 +13,10 @@ import Models
 
 enum ResultListEndpoint {
     case getRecipesByCommunityID(RecipesByCommunityIDRequestBody)
+    case getEverything(query: String)
+    case getSavedRecipes(query: String, currentPage: Int)
+    case getRecipes(query: String, currentPage: Int)
+    case getCommunities(query: String, currentPage: Int)
 }
 
 extension ResultListEndpoint: AKNetworkTargetType {
@@ -25,12 +29,24 @@ extension ResultListEndpoint: AKNetworkTargetType {
         switch self {
         case .getRecipesByCommunityID:
             return "recipes/recipesByCommunityId"
+        case .getEverything:
+            return "recipes/searchByRecipesAndCommunities"
+        case .getSavedRecipes:
+            return "recipes/mySavedRecipes"
+        case .getRecipes:
+            return "recipes"
+        case .getCommunities:
+            return "communities"
         }
     }
     
     var method: AKNetworkMethod {
         switch self {
-        case .getRecipesByCommunityID:
+        case .getRecipesByCommunityID,
+                .getEverything,
+                .getSavedRecipes,
+                .getRecipes,
+                .getCommunities:
             return .get
         }
     }
@@ -49,6 +65,26 @@ extension ResultListEndpoint: AKNetworkTargetType {
                     "page": requestBody.currentPage,
                     "name": requestBody.query
                 ],
+                encoding: AKURLEncoding.queryString
+            )
+        case let .getEverything(query):
+            return .requestParameters(
+                parameters: ["name": query],
+                encoding: AKURLEncoding.queryString
+            )
+        case let .getSavedRecipes(query, currentPage):
+            return .requestParameters(
+                parameters: ["page": currentPage, "limit": 20, "name": query],
+                encoding: AKURLEncoding.queryString
+            )
+        case let .getRecipes(query, currentPage):
+            return .requestParameters(
+                parameters: ["page": currentPage, "limit": 20, "name": query],
+                encoding: AKURLEncoding.queryString
+            )
+        case let .getCommunities(query, currentPage):
+            return .requestParameters(
+                parameters: ["page": currentPage, "limit": 20, "name": query],
                 encoding: AKURLEncoding.queryString
             )
         }

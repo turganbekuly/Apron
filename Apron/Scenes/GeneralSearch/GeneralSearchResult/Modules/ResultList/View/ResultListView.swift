@@ -30,6 +30,8 @@ final class ResultListView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
+        keyboardDismissMode = .onDrag
+
         [
             GeneralSearchCommunityCell.self,
             GeneralSearchRecipeCell.self,

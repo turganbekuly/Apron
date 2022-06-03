@@ -34,7 +34,7 @@ extension CommunityPageViewController: SearchBarProtocol {
         guard let community = community else { return }
         let viewController = UINavigationController(
             rootViewController: GeneralSearchBuilder(
-                state: .initial(.recipesFromCommunityPage(id: community.id))
+                state: .initial(.main)
             ).build()
         )
         viewController.modalPresentationStyle = .fullScreen

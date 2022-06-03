@@ -13,7 +13,7 @@ public final class CommunityPageView: UITableView {
     // MARK: - Initialization
 
     public init() {
-        super.init(frame: .zero, style: .plain)
+        super.init(frame: .zero, style: .grouped)
 
         configure()
     }
@@ -26,13 +26,18 @@ public final class CommunityPageView: UITableView {
 
     private func configure() {
         separatorStyle = .none
+        showsVerticalScrollIndicator = false
         tableFooterView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 64)))
 
         [
-            CommunityInfoCell.self,
-            CommunityFilterCell.self,
-            CommunitySegmentCell.self,
-            CommunityRecipeCell.self
+            CommunityInfoHeaderView.self
+        ].forEach {
+            register(aClass: $0)
+        }
+
+        [
+            CommunityRecipeCell.self,
+            EmptyCartCell.self
         ].forEach {
             register(cellClass: $0)
         }

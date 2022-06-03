@@ -10,10 +10,22 @@ protocol ResultListBusinessLogic {
     func getRecipesByCommunityID(
         request: ResultListDataFlow.GetRecipesByCommunityID.Request
     )
+    func getEverything(
+        request: ResultListDataFlow.GetEverything.Request
+    )
+    func getSavedRecipes(
+        request: ResultListDataFlow.GetSavedRecipes.Request
+    )
+    func getRecipes(
+        request: ResultListDataFlow.GetRecipes.Request
+    )
+    func getCommunities(
+        request: ResultListDataFlow.GetCommunities.Request
+    )
 }
 
 final class ResultListInteractor: ResultListBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: ResultListPresentationLogic
     private let provider: ResultListProviderProtocol
@@ -34,6 +46,50 @@ final class ResultListInteractor: ResultListBusinessLogic {
                 self?.presenter.getRecipesByCommunityID(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.getRecipesByCommunityID(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func getEverything(request: ResultListDataFlow.GetEverything.Request) {
+        provider.getEverything(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model: model):
+                self?.presenter.getEverything(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getEverything(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func getSavedRecipes(request: ResultListDataFlow.GetSavedRecipes.Request) {
+        provider.getSavedRecipes(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model: model):
+                self?.presenter.getSavedRecipes(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getSavedRecipes(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func getRecipes(request: ResultListDataFlow.GetRecipes.Request) {
+        provider.getRecipes(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model: model):
+                self?.presenter.getRecipes(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getRecipes(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func getCommunities(request: ResultListDataFlow.GetCommunities.Request) {
+        provider.getCommunities(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model: model):
+                self?.presenter.getCommunities(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getCommunities(response: .init(result: .failed(error: error)))
             }
         }
     }

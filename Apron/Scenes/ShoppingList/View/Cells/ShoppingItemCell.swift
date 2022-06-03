@@ -134,7 +134,7 @@ final class ShoppingItemCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(item: CartItem) {
-        sourceRecipsButton.text = "Какой-то там рецепт"
+        sourceRecipsButton.text = item.recipeName?.first ?? ""
         ingredientNameLabel.text = item.productName
         measurementLabel.text = "\(item.amount ?? 0) \(item.measurement ?? "")"
     }

@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 extension SplashScreenViewController: ISplashScreenView {
     func animationDidFinished() {
         let vc = AuthorizationBuilder(state: .initial).build()
+        let navVc = UINavigationController(rootViewController: vc)
         DispatchQueue.main.async {
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(navVc, animated: true)
         }
     }
 }

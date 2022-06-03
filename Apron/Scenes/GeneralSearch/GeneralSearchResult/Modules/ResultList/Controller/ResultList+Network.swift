@@ -24,4 +24,20 @@ extension ResultListViewController {
             )
         )
     }
+
+    func getEverything(query: String) {
+        interactor.getEverything(request: .init(query: query))
+    }
+
+    func getSavedRecipes(currentPage: Int, query: String) {
+        interactor.getSavedRecipes(request: .init(query: query, currentPage: currentPage))
+    }
+
+    func getRecipes(currentPage: Int, query: String) {
+        interactor.getRecipes(request: .init(query: query, currentPage: currentPage))
+    }
+
+    func getCommunities(currentPage: Int, query: String) {
+        interactor.getCommunities(request: .init(query: query, currentPage: currentPage))
+    }
 }

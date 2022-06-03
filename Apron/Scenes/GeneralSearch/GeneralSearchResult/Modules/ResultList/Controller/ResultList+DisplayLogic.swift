@@ -9,11 +9,26 @@
 import UIKit
 
 extension ResultListViewController: ResultListDisplayLogic {
-    
+
     // MARK: - ResultListDisplayLogic
 
     func displayRecipesByCommunityID(with viewModel: ResultListDataFlow.GetRecipesByCommunityID.ViewModel) {
         state = viewModel.state
     }
-    
+
+    func displayEverything(with viewModel: ResultListDataFlow.GetEverything.ViewModel) {
+        state = viewModel.state
+    }
+
+    func displaySavedRecipes(with viewModel: ResultListDataFlow.GetSavedRecipes.ViewModel) {
+        state = viewModel.state
+    }
+
+    func displayRecipes(with viewModel: ResultListDataFlow.GetRecipes.ViewModel) {
+        state = viewModel.state
+    }
+
+    func displayCommunities(with viewModel: ResultListDataFlow.GetCommunities.ViewModel) {
+        state = viewModel.state
+    }
 }

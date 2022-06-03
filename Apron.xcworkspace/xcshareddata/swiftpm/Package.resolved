@@ -24,7 +24,7 @@
       "location" : "https://github.com/facebook/facebook-ios-sdk",
       "state" : {
         "branch" : "main",
-        "revision" : "5cc0dfc4070d63aa09f41d106d147edfc4cf240d"
+        "revision" : "429adb9d03c30304efab3a5738fbffeb4855b5ec"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa.git",
       "state" : {
-        "revision" : "afa4cd596e5cf97a797fb9b5c3afeea4add2c7a3",
-        "version" : "7.15.0"
+        "revision" : "b34ce9048e6b8b082ea6b15e6b50583d46c936ea",
+        "version" : "7.16.0"
       }
     },
     {

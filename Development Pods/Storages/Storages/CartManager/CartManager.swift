@@ -76,6 +76,7 @@ public final class CartManager {
 
     public func update(
         productName: String,
+        productCategoryName: String,
         amount: Double?,
         quantity: Int?,
         measurement: String?,
@@ -94,6 +95,7 @@ public final class CartManager {
                 if quantity > 0 {
                     currentItems[index] = CartItem(
                         productName: item.productName,
+                        productCategoryName: item.productCategoryName,
                         amount: (item.amount ?? 0) + (amount ?? 0),
                         quantity: item.quantity + quantity,
                         measurement: measurement,
@@ -109,6 +111,7 @@ public final class CartManager {
             } else {
                 currentItems[index] = CartItem(
                     productName: item.productName,
+                    productCategoryName: item.productCategoryName,
                     amount: amount,
                     quantity: item.quantity + 1,
                     measurement: measurement,
@@ -122,6 +125,7 @@ public final class CartManager {
         } else {
             let item = CartItem(
                 productName: productName,
+                productCategoryName: productCategoryName,
                 amount: amount,
                 quantity: quantity ?? 1,
                 measurement: measurement,
@@ -136,6 +140,7 @@ public final class CartManager {
 
     public func forceAdd(
         productName: String,
+        productCategoryName: String,
         amount: Double?,
         quantity: Int?,
         measurement: String?,
@@ -143,6 +148,7 @@ public final class CartManager {
     ) {
         let item = CartItem(
             productName: productName,
+            productCategoryName: productCategoryName,
             amount: amount,
             quantity: quantity ?? 1,
             measurement: measurement,

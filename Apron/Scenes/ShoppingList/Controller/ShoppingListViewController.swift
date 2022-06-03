@@ -10,6 +10,7 @@ import DesignSystem
 import UIKit
 import Storages
 import AlertMessages
+import Models
 
 protocol ShoppingListDisplayLogic: AnyObject {
     func displayCartItems(viewModel: ShoppingListDataFlow.GetCartItems.ViewModel)
@@ -38,6 +39,8 @@ final class ShoppingListViewController: ViewController, Messagable {
             updateState()
         }
     }
+
+    var itemsDictionary = [String: [CartItem]]()
 
     var cartItems: [CartItem]? {
         didSet {
@@ -102,6 +105,16 @@ final class ShoppingListViewController: ViewController, Messagable {
         stackView.spacing = 8
         return stackView
     }()
+
+    private lazy var addProductButton: BlackOpButton = {
+        let button = BlackOpButton(backgroundType: .yelloBackground)
+        button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 25
+        button.layer.masksToBounds = true
+        button.setImage(Assets.creationPlusButton.image, for: .normal)
+        button.clipsToBounds = true
+        return button
+    }()
     
     // MARK: - Init
     init(interactor: ShoppingListBusinessLogic, state: State) {
@@ -148,7 +161,7 @@ final class ShoppingListViewController: ViewController, Messagable {
     }
     
     private func configureViews() {
-        [mainView].forEach { view.addSubview($0) }
+        [mainView, addProductButton].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
@@ -157,6 +170,11 @@ final class ShoppingListViewController: ViewController, Messagable {
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+
+        addProductButton.snp.makeConstraints {
+            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.size.equalTo(50)
         }
     }
     
@@ -179,5 +197,26 @@ final class ShoppingListViewController: ViewController, Messagable {
     private func saveButtonTapped() {
         //
     }
-    
+
+    @objc
+    private func createButtonTapped() {
+        let vc = IngredientSelectionBuilder(state: .initial(self)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+}
+
+extension ShoppingListViewController: IngredientSelectedProtocol {
+    func onIngredientSelected(ingredient: RecipeIngredient) {
+        CartManager.shared.update(
+            productName: ingredient.product?.name ?? "",
+            productCategoryName: ingredient.product?.productCategoryName ?? "",
+            amount: ingredient.amount ?? 0,
+            quantity: 1,
+            measurement: ingredient.measurement ?? "",
+            recipeName: "Личный продукт"
+        )
+        fetchCartItems()
+    }
 }

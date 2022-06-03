@@ -7,6 +7,8 @@
 
 import UIKit
 import DesignSystem
+import HapticTouch
+import Storages
 
 protocol BottomStickyViewDelegate: AnyObject {
     func addButtonTapped()
@@ -71,11 +73,13 @@ final class RecipeBottomStickyView: View {
 
     @objc
     private func addButtonTapped() {
+        HapticTouch.generateLight()
         delegate?.addButtonTapped()
     }
 
     @objc
     private func saveButtonTapped() {
+        HapticTouch.generateSuccess()
         delegate?.saveButtonTapped()
     }
 }

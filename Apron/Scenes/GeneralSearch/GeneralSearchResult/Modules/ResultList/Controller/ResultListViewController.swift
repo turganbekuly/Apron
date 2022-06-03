@@ -10,9 +10,14 @@ import DesignSystem
 import UIKit
 import Models
 import UIScrollView_InfiniteScroll
+import Extensions
 
 protocol ResultListDisplayLogic: AnyObject {
     func displayRecipesByCommunityID(with viewModel: ResultListDataFlow.GetRecipesByCommunityID.ViewModel)
+    func displayEverything(with viewModel: ResultListDataFlow.GetEverything.ViewModel)
+    func displaySavedRecipes(with viewModel: ResultListDataFlow.GetSavedRecipes.ViewModel)
+    func displayRecipes(with viewModel: ResultListDataFlow.GetRecipes.ViewModel)
+    func displayCommunities(with viewModel: ResultListDataFlow.GetCommunities.ViewModel)
 }
 
 final class ResultListViewController: ViewController {
@@ -24,7 +29,7 @@ final class ResultListViewController: ViewController {
             case recipes
         }
         enum Row {
-            case community
+            case community(CommunityResponse)
             case recipe(RecipeResponse)
             case loading
         }
@@ -42,6 +47,8 @@ final class ResultListViewController: ViewController {
         }
     }
 
+    var throttler = Throttler(minimumDelay: 0.3)
+
     var currentPage = 1
 
     var query: String? {
@@ -52,17 +59,59 @@ final class ResultListViewController: ViewController {
                     .init(section: .everything, rows: Array(repeating: .loading, count: 10))
                 ]
                 mainView.reloadData()
-            case .recipe, .recipesFromCommunityPage:
+                throttler.throttle { [weak self] in
+                    guard let self = self else { return }
+                    self.getEverything(query: self.query ?? "")
+                }
+            case .recipesFromCommunityPage:
                 sections = [
-                    .init(section: .everything, rows: Array(repeating: .loading, count: 10))
+                    .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
                 ]
                 mainView.reloadData()
-                getRecipesByCommunityId(id: id, currentPage: currentPage, query: query ?? "")
+                throttler.throttle { [weak self] in
+                    guard let self = self else { return }
+                    self.getRecipesByCommunityId(
+                        id: self.id,
+                        currentPage: self.currentPage,
+                        query: self.query ?? ""
+                    )
+                }
             case .community:
                 sections = [
-                    .init(section: .everything, rows: Array(repeating: .loading, count: 10))
+                    .init(section: .communities, rows: Array(repeating: .loading, count: 10))
                 ]
                 mainView.reloadData()
+                throttler.throttle { [weak self] in
+                    guard let self = self else { return }
+                    self.getCommunities(
+                        currentPage: self.currentPage,
+                        query: self.query ?? ""
+                    )
+                }
+            case .savedRecipes:
+                sections = [
+                    .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
+                ]
+                mainView.reloadData()
+                throttler.throttle { [weak self] in
+                    guard let self = self else { return }
+                    self.getSavedRecipes(
+                        currentPage: self.currentPage,
+                        query: self.query ?? ""
+                    )
+                }
+            case .recipe:
+                sections = [
+                    .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
+                ]
+                mainView.reloadData()
+                throttler.throttle { [weak self] in
+                    guard let self = self else { return }
+                    self.getRecipes(
+                        currentPage: self.currentPage,
+                        query: self.query ?? ""
+                    )
+                }
             default:
                 break
             }
@@ -81,12 +130,10 @@ final class ResultListViewController: ViewController {
 
     var id = 0
 
-    var recipesList: [RecipeResponse] = [] {
-        didSet {
-            sections = [.init(section: .recipes, rows: recipesList.compactMap { .recipe($0) })]
-        }
-    }
-    
+    var recipesList: [RecipeResponse] = []
+
+    var communitiesList: [CommunityResponse] = []
+
     // MARK: - Views
     lazy var mainView: ResultListView = {
         let view = ResultListView()

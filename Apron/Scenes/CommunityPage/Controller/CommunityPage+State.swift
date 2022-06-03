@@ -18,7 +18,7 @@ extension CommunityPageViewController {
         case displayCommunityError(AKNetworkError)
         case joinedCommunity
         case joinedCommunityFailed
-        case displayRecipes([RecipeResponse])
+        case displayRecipes([RecipesResponse])
         case displayRecipesFailed(AKNetworkError)
         case saveRecipe(Int)
         case saveRecipeFailed(AKNetworkError)
@@ -49,11 +49,11 @@ extension CommunityPageViewController {
         }
     }
 
-    private func updateList(with recipes: [RecipeResponse]) {
+    private func updateList(with recipes: [RecipesResponse]) {
         if self.recipes.isEmpty {
-            self.recipes = recipes
+            self.recipes = recipes.compactMap { $0.recipe }
         } else {
-            self.recipes.append(contentsOf: recipes)
+            self.recipes.append(contentsOf: recipes.compactMap { $0.recipe })
         }
 
         configureRecipes()
