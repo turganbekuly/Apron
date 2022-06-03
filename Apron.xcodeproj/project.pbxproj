@@ -1356,7 +1356,6 @@
 				6D0A71D4277A12EE0067E580 /* Assets.xcassets */,
 				6DC59CAF283BD7F700661FAA /* DropDown */,
 				6D0A71D6277A12EE0067E580 /* LaunchScreen.storyboard */,
-				6D0A71D9277A12EE0067E580 /* Info.plist */,
 			);
 			path = Apron;
 			sourceTree = "<group>";
@@ -1364,6 +1363,7 @@
 		6D0A71DF277A13AC0067E580 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				6DB0A39B284A1953009721BD /* Resources */,
 				6D0A71E0277A13B40067E580 /* AppDelegate */,
 			);
 			path = Application;
@@ -1794,6 +1794,14 @@
 				6D507A0A283A1E89000E6141 /* CaloriesCellViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6DB0A39B284A1953009721BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D0A71D9277A12EE0067E580 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		6DB1ACF32837C27600EEEAFA /* TableCells */ = {
@@ -3303,7 +3311,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Apron/Info.plist;
+				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Apron;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите приложению доступ к камере телефона для создания снимков.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Разрешите приложению использовать Face ID/Touch ID для быстрой и удобной аутентификации.";
@@ -3336,7 +3344,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Apron/Info.plist;
+				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Apron;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите приложению доступ к камере телефона для создания снимков.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Разрешите приложению использовать Face ID/Touch ID для быстрой и удобной аутентификации.";
