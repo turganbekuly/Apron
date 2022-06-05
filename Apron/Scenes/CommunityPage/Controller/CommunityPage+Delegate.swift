@@ -16,12 +16,7 @@ extension CommunityPageViewController: ICommunityInfoCell {
     }
 
     func navigateToAuth() {
-        guard AuthStorage.shared.isUserAuthorized else {
-            let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController?.present(vc, animated: true)
-            return
-        }
+        handleAuthorizationStatus { }
     }
 
     func joinButtonTapped(with id: Int) {

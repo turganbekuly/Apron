@@ -107,7 +107,7 @@ final class ResultListProvider: ResultListProviderProtocol {
             switch $0 {
             case let .success(json):
                 if let jsons = json["data"] as? [JSON] {
-                    completion(.successful(model: jsons.compactMap { RecipesResponse(json: $0) }))
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

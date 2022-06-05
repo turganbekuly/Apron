@@ -8,33 +8,42 @@
 
 import DesignSystem
 import UIKit
+import Models
+import UIScrollView_InfiniteScroll
 
 protocol SavedRecipesDisplayLogic: AnyObject {
-    
+    func displaySavedRecipes(with viewModel: SavedRecipesDataFlow.GetSavedRecipe.ViewModel)
 }
 
 final class SavedRecipesViewController: ViewController {
     
     struct Section {
         enum Section {
-            
+            case recipes
         }
         enum Row {
-            
+            case recipe(RecipeResponse)
+            case empty
+            case loading
         }
         
-        let section: Section
-        let rows: [Row]
+        var section: Section
+        var rows: [Row]
     }
     
     // MARK: - Properties
     let interactor: SavedRecipesBusinessLogic
-    var sections: [Section] = []
+    lazy var sections: [Section] = [
+        .init(section: .recipes, rows: savedRecipes.compactMap { .recipe($0) })
+    ]
     var state: State {
         didSet {
             updateState()
         }
     }
+
+    var savedRecipes: [RecipeResponse] = []
+    var currentPage = 1
     
     // MARK: - Views
     lazy var mainView: SavedRecipesView = {
@@ -102,7 +111,12 @@ final class SavedRecipesViewController: ViewController {
     
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
+        mainView.addInfiniteScroll { [weak self] _ in
+            guard let self = self else { return }
+            self.getSavedRecipes(page: self.currentPage)
+        }
+
         configureColors()
         makeConstraints()
     }

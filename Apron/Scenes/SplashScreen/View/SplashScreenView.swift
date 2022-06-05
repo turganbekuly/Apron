@@ -45,10 +45,8 @@ final class SplashScreenView: UIView {
         setupConstraints()
         animationView.loopMode = .playOnce
         animationView.animationSpeed = 0.75
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.animationView.play() { [weak self] _ in
-                self?.delegate?.animationDidFinished()
-            }
+        animationView.play() { [weak self] _ in
+            self?.delegate?.animationDidFinished()
         }
         animationView.contentMode = .scaleAspectFill
     }

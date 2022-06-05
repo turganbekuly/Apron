@@ -23,12 +23,7 @@ extension CommunityPageViewController: CommunityRecipeCellProtocol {
     }
 
     func navigateToAuthFromRecipe() {
-        guard AuthStorage.shared.isUserAuthorized else {
-            let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController?.present(vc, animated: true)
-            return
-        }
+        handleAuthorizationStatus { }
     }
 
 }

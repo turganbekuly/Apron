@@ -11,6 +11,7 @@ import UIKit
 import SnapKit
 import Models
 import AlertMessages
+import Storages
 
 protocol CommunityPageDisplayLogic: AnyObject {
     func displayCommunity(viewModel: CommunityPageDataFlow.GetCommunity.ViewModel)
@@ -247,6 +248,9 @@ public final class CommunityPageViewController: ViewController, Messagable {
 
     @objc
     private func createButtonTapped() {
+        guard AuthStorage.shared.isUserAuthorized else {
+            return
+        }
         navigateToCreateActionFlow(with: .communityPageRecipeCreation)
     }
 }

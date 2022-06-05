@@ -10,16 +10,12 @@ import Storages
 
 extension MainViewController: DynamicCommunityCellProtocol {
     func navigateToCommunity(with id: Int) {
-        guard AuthStorage.shared.isUserAuthorized else {
-            let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController?.present(vc, animated: true)
-            return
-        }
-
-        let vc = CommunityPageBuilder(state: .initial(id)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(vc, animated: true)
+        handleAuthorizationStatus { [weak self] in
+            guard let self = self else { return }
+            let vc = CommunityPageBuilder(state: .initial(id)).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 
@@ -33,16 +29,12 @@ extension MainViewController: DynamicCommunityCellProtocol {
 
 extension MainViewController: MyCommunityCellProtocol {
     func navigateToMyCommunity(with id: Int) {
-        guard AuthStorage.shared.isUserAuthorized else {
-            let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController?.present(vc, animated: true)
-            return
-        }
-
-        let vc = CommunityPageBuilder(state: .initial(id)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(vc, animated: true)
+        handleAuthorizationStatus { [weak self] in
+            guard let self = self else { return }
+            let vc = CommunityPageBuilder(state: .initial(id)).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 

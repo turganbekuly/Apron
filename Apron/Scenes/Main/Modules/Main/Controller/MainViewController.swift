@@ -116,16 +116,11 @@ final class MainViewController: ViewController, Messagable {
         avatarView.backgroundColor = .green
         let cartView = CartButtonView()
         cartView.onTap = { [weak self] in
-            guard AuthStorage.shared.isUserAuthorized else {
-                let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
-                vc.modalPresentationStyle = .fullScreen
-                self?.navigationController?.present(vc, animated: true)
-                return
-            }
+            guard let self = self else { return }
             let viewController = ShoppingListBuilder(state: .initial).build()
 
             DispatchQueue.main.async {
-                self?.navigationController?.pushViewController(viewController, animated: true)
+                self.navigationController?.pushViewController(viewController, animated: true)
             }
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
@@ -159,9 +154,11 @@ final class MainViewController: ViewController, Messagable {
 
     @objc
     private func createButtonTapped() {
-        let vc = CreateActionFlowBuilder.init(state: .initial(.mainPageCommunityCreation, self)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.presentPanModal(vc)
+        handleAuthorizationStatus {
+            let vc = CreateActionFlowBuilder.init(state: .initial(.mainPageCommunityCreation, self)).build()
+            DispatchQueue.main.async {
+                self.navigationController?.presentPanModal(vc)
+            }
         }
     }
 

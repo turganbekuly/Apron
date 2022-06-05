@@ -74,8 +74,8 @@ final class CommunityPagePresenter: CommunityPagePresentationLogic {
             defer { self.viewController?.displaySaveRecipe(viewModel: viewModel) }
 
             switch response.result {
-            case let .successful(count):
-                viewModel = .init(state: .saveRecipe(count))
+            case let .successful(recipe):
+                viewModel = .init(state: .saveRecipe(recipe))
             case let .failed(error):
                 viewModel = .init(state: .saveRecipeFailed(error))
             }

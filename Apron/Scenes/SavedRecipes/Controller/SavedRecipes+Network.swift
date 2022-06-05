@@ -10,4 +10,7 @@ extension SavedRecipesViewController {
     
     // MARK: - Network
 
+    func getSavedRecipes(page: Int) {
+        interactor.getSavedRecipes(request: .init(page: page))
+    }
 }

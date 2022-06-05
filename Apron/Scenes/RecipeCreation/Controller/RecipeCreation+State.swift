@@ -23,9 +23,9 @@ extension RecipeCreationViewController {
         switch state {
         case let .initial(state):
             self.initialState = state
-        case let .recipeCreationSucceed(recipe):
+        case .recipeCreationSucceed:
             show(type: .success("Рецепт создался успешно"), firstAction: nil, secondAction: nil)
-            delegate?.didCreate(recipe: recipe)
+            delegate?.didCreate()
             self.navigationController?.popViewController(animated: true)
         case .recipeCreationFailed:
             show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)

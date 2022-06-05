@@ -10,9 +10,14 @@ import DesignSystem
 import UIKit
 
 
-public final class SplashScreenViewController: ViewController {
+protocol SplashScreenDisplayLogic: AnyObject {
+    func displayUpdateToken(with viewModel: SplashScreenDataFlow.UpdateToken.ViewModel)
+}
+
+final class SplashScreenViewController: ViewController {
     // MARK: - Properties
-    public var state: State {
+    let interactor: SplashScreenBusinessLogic
+    var state: State {
         didSet {
             updateState()
         }
@@ -25,36 +30,37 @@ public final class SplashScreenViewController: ViewController {
     }()
     
     // MARK: - Init
-    public init(state: State) {
+    init(interactor: SplashScreenBusinessLogic, state: State) {
+        self.interactor = interactor
         self.state = state
         
         super.init(nibName: nil, bundle: nil)
     }
 
-    public required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         return nil
     }
     
     // MARK: - Life Cycle
-    override public func loadView() {
+    override func loadView() {
         super.loadView()
         
         configureViews()
     }
 
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         state = { state }()
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configureNavigation()
     }
     
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         configureColors()

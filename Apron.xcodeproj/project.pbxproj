@@ -91,7 +91,6 @@
 		4BAABB381255BD7CFC386554 /* AuthSignInEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9950E6C37D42C557E64E3A8 /* AuthSignInEndpoints.swift */; };
 		4C3924A0D83E71632A25CDD1 /* IngredientSelection+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755B203C1C250F45F71174 /* IngredientSelection+DisplayLogic.swift */; };
 		4C6A11A9BF60E10BEF9901A6 /* GeneralSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855722DD6C81B9255DD82F12 /* GeneralSearchService.swift */; };
-		4CF3655BE3C8E409CA851466 /* SavedRecipes+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C908FC4C303CEA1116B8A5E /* SavedRecipes+TableView.swift */; };
 		4DDD51FC04F2D9D46EC6EC9E /* CommunitiesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C08BB8469919CC72CB260 /* CommunitiesListPresenter.swift */; };
 		4F33E6A5E722CEBF326D16C3 /* AuthSignUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFBBFEE9D0167D55AB658D6 /* AuthSignUpBuilder.swift */; };
 		519C46291315924EE1C31873 /* Pods_Apron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 296593E8CF2821B04FC4D517 /* Pods_Apron.framework */; };
@@ -229,13 +228,25 @@
 		6DA4238E2797F30000CA183D /* CommunityRecipesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4238D2797F30000CA183D /* CommunityRecipesCellViewModel.swift */; };
 		6DA423962798044200CA183D /* CommunityCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA423952798044200CA183D /* CommunityCollectionViewModel.swift */; };
 		6DA4239F27988B8A00CA183D /* splash_lottie_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 6DA4239E27988B8A00CA183D /* splash_lottie_animation.json */; };
-		6DA423A127988F1D00CA183D /* SplashScreen+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA423A027988F1D00CA183D /* SplashScreen+Animation.swift */; };
 		6DAA85CD279DBD1C006F92BD /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA85CC279DBD1C006F92BD /* LoginTextField.swift */; };
 		6DAD239328115019000D11A0 /* MeasureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD239228115019000D11A0 /* MeasureInputView.swift */; };
 		6DAD563527C508360022842E /* CartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD563427C508360022842E /* CartButtonView.swift */; };
 		6DAFD66F279EC15A006CF12D /* RecipeInformationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAFD66E279EC15A006CF12D /* RecipeInformationViewCell.swift */; };
 		6DAFD67C27A06F2E006CF12D /* RecipeInitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAFD67B27A06F2E006CF12D /* RecipeInitialState.swift */; };
 		6DAFD67F27A0718E006CF12D /* InformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAFD67E27A0718E006CF12D /* InformationCellViewModel.swift */; };
+		6DB0A3A3284B6CFE009721BD /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3A2284B6CFE009721BD /* ViewController+Extension.swift */; };
+		6DB0A3A5284B7FF0009721BD /* SavedRecipes+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3A4284B7FF0009721BD /* SavedRecipes+CollectionView.swift */; };
+		6DB0A3A7284B93BB009721BD /* SavedRecipeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3A6284B93BB009721BD /* SavedRecipeHeaderView.swift */; };
+		6DB0A3AC284C7367009721BD /* SplashScreenEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3AB284C7367009721BD /* SplashScreenEndpoints.swift */; };
+		6DB0A3AE284C736F009721BD /* SplashScreenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3AD284C736F009721BD /* SplashScreenService.swift */; };
+		6DB0A3B0284C7377009721BD /* SplashScreenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3AF284C7377009721BD /* SplashScreenProvider.swift */; };
+		6DB0A3B2284C7384009721BD /* SplashScreenDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3B1284C7384009721BD /* SplashScreenDataFlow.swift */; };
+		6DB0A3B4284C738B009721BD /* SplashScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3B3284C738B009721BD /* SplashScreenInteractor.swift */; };
+		6DB0A3B6284C7392009721BD /* SplashScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3B5284C7392009721BD /* SplashScreenPresenter.swift */; };
+		6DB0A3B8284C7BA3009721BD /* SplashScreen+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3B7284C7BA3009721BD /* SplashScreen+DisplayLogic.swift */; };
+		6DB0A3BA284C7C59009721BD /* SplashScreen+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3B9284C7C59009721BD /* SplashScreen+Network.swift */; };
+		6DB0A3BC284C8179009721BD /* SplashScreen+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3BB284C8179009721BD /* SplashScreen+Animation.swift */; };
+		6DB0A3BE284C86D0009721BD /* SavedRecipes+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A3BD284C86D0009721BD /* SavedRecipes+Delegate.swift */; };
 		6DB1ACF92837C28100EEEAFA /* CommunityInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB1ACF52837C28000EEEAFA /* CommunityInfoHeaderView.swift */; };
 		6DB1ACFA2837C28100EEEAFA /* CommunitySegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB1ACF62837C28000EEEAFA /* CommunitySegmentView.swift */; };
 		6DB1ACFB2837C28100EEEAFA /* CommunityFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB1ACF72837C28100EEEAFA /* CommunityFilterView.swift */; };
@@ -508,7 +519,6 @@
 		45BFE7C9C94B38F339DFABD5 /* SavedRecipesEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesEndpoints.swift; sourceTree = "<group>"; };
 		4648E42EB56BA8C3955AE3BE /* SplashScreen+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SplashScreen+State.swift"; sourceTree = "<group>"; };
 		491EF7947CEF4DA3A962784E /* CategorySelectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
-		4C908FC4C303CEA1116B8A5E /* SavedRecipes+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SavedRecipes+TableView.swift"; sourceTree = "<group>"; };
 		4CC46619C2AC1E3F5D79BBD2 /* CommunityPage+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityPage+DisplayLogic.swift"; sourceTree = "<group>"; };
 		4FD4724A81F484765F924E98 /* RecipeCreationProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeCreationProvider.swift; sourceTree = "<group>"; };
 		5084F7383799B72421013F75 /* CreateActionFlowViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateActionFlowViewController.swift; sourceTree = "<group>"; };
@@ -654,13 +664,27 @@
 		6DA4238D2797F30000CA183D /* CommunityRecipesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRecipesCellViewModel.swift; sourceTree = "<group>"; };
 		6DA423952798044200CA183D /* CommunityCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCollectionViewModel.swift; sourceTree = "<group>"; };
 		6DA4239E27988B8A00CA183D /* splash_lottie_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_lottie_animation.json; sourceTree = "<group>"; };
-		6DA423A027988F1D00CA183D /* SplashScreen+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+Animation.swift"; sourceTree = "<group>"; };
 		6DAA85CC279DBD1C006F92BD /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		6DAD239228115019000D11A0 /* MeasureInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureInputView.swift; sourceTree = "<group>"; };
 		6DAD563427C508360022842E /* CartButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartButtonView.swift; sourceTree = "<group>"; };
 		6DAFD66E279EC15A006CF12D /* RecipeInformationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInformationViewCell.swift; sourceTree = "<group>"; };
 		6DAFD67B27A06F2E006CF12D /* RecipeInitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInitialState.swift; sourceTree = "<group>"; };
 		6DAFD67E27A0718E006CF12D /* InformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellViewModel.swift; sourceTree = "<group>"; };
+		6DB0A3A0284A4356009721BD /* Apron.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Apron.entitlements; sourceTree = "<group>"; };
+		6DB0A3A1284A4356009721BD /* ApronRelease.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ApronRelease.entitlements; sourceTree = "<group>"; };
+		6DB0A3A2284B6CFE009721BD /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		6DB0A3A4284B7FF0009721BD /* SavedRecipes+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedRecipes+CollectionView.swift"; sourceTree = "<group>"; };
+		6DB0A3A6284B93BB009721BD /* SavedRecipeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipeHeaderView.swift; sourceTree = "<group>"; };
+		6DB0A3AB284C7367009721BD /* SplashScreenEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenEndpoints.swift; sourceTree = "<group>"; };
+		6DB0A3AD284C736F009721BD /* SplashScreenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenService.swift; sourceTree = "<group>"; };
+		6DB0A3AF284C7377009721BD /* SplashScreenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenProvider.swift; sourceTree = "<group>"; };
+		6DB0A3B1284C7384009721BD /* SplashScreenDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenDataFlow.swift; sourceTree = "<group>"; };
+		6DB0A3B3284C738B009721BD /* SplashScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenInteractor.swift; sourceTree = "<group>"; };
+		6DB0A3B5284C7392009721BD /* SplashScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenPresenter.swift; sourceTree = "<group>"; };
+		6DB0A3B7284C7BA3009721BD /* SplashScreen+DisplayLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+DisplayLogic.swift"; sourceTree = "<group>"; };
+		6DB0A3B9284C7C59009721BD /* SplashScreen+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+Network.swift"; sourceTree = "<group>"; };
+		6DB0A3BB284C8179009721BD /* SplashScreen+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+Animation.swift"; sourceTree = "<group>"; };
+		6DB0A3BD284C86D0009721BD /* SavedRecipes+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedRecipes+Delegate.swift"; sourceTree = "<group>"; };
 		6DB1ACF52837C28000EEEAFA /* CommunityInfoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityInfoHeaderView.swift; sourceTree = "<group>"; };
 		6DB1ACF62837C28000EEEAFA /* CommunitySegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitySegmentView.swift; sourceTree = "<group>"; };
 		6DB1ACF72837C28100EEEAFA /* CommunityFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityFilterView.swift; sourceTree = "<group>"; };
@@ -1349,6 +1373,8 @@
 		6D0A71CA277A12EC0067E580 /* Apron */ = {
 			isa = PBXGroup;
 			children = (
+				6DB0A3A0284A4356009721BD /* Apron.entitlements */,
+				6DB0A3A1284A4356009721BD /* ApronRelease.entitlements */,
 				6D78BB09282BACF900B2819F /* Analytics */,
 				6DA4239D27988B5800CA183D /* Resources */,
 				6D0A71DF277A13AC0067E580 /* Application */,
@@ -1504,6 +1530,7 @@
 			isa = PBXGroup;
 			children = (
 				6D5CBC6A28375A01005CE44F /* AuthNavigationController.swift */,
+				6DB0A3A2284B6CFE009721BD /* ViewController+Extension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1512,7 +1539,9 @@
 			isa = PBXGroup;
 			children = (
 				97E2617B4728D46FD2C3A1FA /* SplashScreenViewController.swift */,
-				6DA423A027988F1D00CA183D /* SplashScreen+Animation.swift */,
+				6DB0A3BB284C8179009721BD /* SplashScreen+Animation.swift */,
+				6DB0A3B7284C7BA3009721BD /* SplashScreen+DisplayLogic.swift */,
+				6DB0A3B9284C7C59009721BD /* SplashScreen+Network.swift */,
 				4648E42EB56BA8C3955AE3BE /* SplashScreen+State.swift */,
 			);
 			path = Controller;
@@ -1737,6 +1766,7 @@
 			isa = PBXGroup;
 			children = (
 				6D9F7A61282A697B0053BF5B /* SavedRecipeCell.swift */,
+				6DB0A3A6284B93BB009721BD /* SavedRecipeHeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1802,6 +1832,16 @@
 				6D0A71D9277A12EE0067E580 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6DB0A3AA284C735C009721BD /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				6DB0A3AB284C7367009721BD /* SplashScreenEndpoints.swift */,
+				6DB0A3AD284C736F009721BD /* SplashScreenService.swift */,
+				6DB0A3AF284C7377009721BD /* SplashScreenProvider.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 		6DB1ACF32837C27600EEEAFA /* TableCells */ = {
@@ -2296,8 +2336,12 @@
 			isa = PBXGroup;
 			children = (
 				6D5CF227C1F8A18D468EAB16 /* Controller */,
+				6DB0A3AA284C735C009721BD /* Provider */,
 				AC57483B54109183B2656A1F /* View */,
 				BDA4D6E704C38AEAE935BBAA /* SplashScreenBuilder.swift */,
+				6DB0A3B1284C7384009721BD /* SplashScreenDataFlow.swift */,
+				6DB0A3B3284C738B009721BD /* SplashScreenInteractor.swift */,
+				6DB0A3B5284C7392009721BD /* SplashScreenPresenter.swift */,
 			);
 			path = SplashScreen;
 			sourceTree = "<group>";
@@ -2337,7 +2381,8 @@
 				5569EC1DFE55F5383E3853AA /* SavedRecipes+DisplayLogic.swift */,
 				5DD0417BA7D098AFC62E57F3 /* SavedRecipes+Network.swift */,
 				F72DA1AAE2E03BBCAEBEAE85 /* SavedRecipes+State.swift */,
-				4C908FC4C303CEA1116B8A5E /* SavedRecipes+TableView.swift */,
+				6DB0A3A4284B7FF0009721BD /* SavedRecipes+CollectionView.swift */,
+				6DB0A3BD284C86D0009721BD /* SavedRecipes+Delegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2764,6 +2809,8 @@
 				6D0A7208277AF1D20067E580 /* ThirdPartiesConfigurator.swift in Sources */,
 				6D7B8F2E2840E9200055884E /* CommunityPageViewed.swift in Sources */,
 				5B736EB9EC4B6A9F09B9BE35 /* AuthorizationViewController.swift in Sources */,
+				6DB0A3B8284C7BA3009721BD /* SplashScreen+DisplayLogic.swift in Sources */,
+				6DB0A3B0284C7377009721BD /* SplashScreenProvider.swift in Sources */,
 				6DAFD66F279EC15A006CF12D /* RecipeInformationViewCell.swift in Sources */,
 				6D22677F282D4298001FFE6D /* CommunityCreation+Category.swift in Sources */,
 				6D64F8B72784AF9E00F9EEC0 /* Authorization+Buttons.swift in Sources */,
@@ -2790,6 +2837,7 @@
 				6DB8DE2627AC38A000471B0B /* RecipePage+TableView.swift in Sources */,
 				6DDBBB422791DEC700BFE1C2 /* SearchResultView.swift in Sources */,
 				6D8430402795E264004E27E5 /* ImageHeaderView.swift in Sources */,
+				6DB0A3A3284B6CFE009721BD /* ViewController+Extension.swift in Sources */,
 				6D27270E27C8EB710001DCC0 /* RecipeCaloriesViewCell.swift in Sources */,
 				6D716DC2280462A500922259 /* RecipeCreationAssignCell.swift in Sources */,
 				6D9301F9283144510018EF14 /* GeneralSearchShimmerView.swift in Sources */,
@@ -2831,6 +2879,7 @@
 				6D64F8E52786B0F700F9EEC0 /* TasteOnboardingHeaderViewModel.swift in Sources */,
 				6DF9CD4827F091C70008FEEA /* RecipeCreation+Sections.swift in Sources */,
 				6DCF95A3278FFE1E009FEE78 /* Main+Section.swift in Sources */,
+				6DB0A3B6284C7392009721BD /* SplashScreenPresenter.swift in Sources */,
 				9585619A6A6DDBD995AECF5F /* TasteOnboardingProvider.swift in Sources */,
 				036C1C0547104E7237603C25 /* TasteOnboardingView.swift in Sources */,
 				6DAD563527C508360022842E /* CartButtonView.swift in Sources */,
@@ -2838,6 +2887,7 @@
 				6D716DC72804725E00922259 /* AssignTypes.swift in Sources */,
 				6D69BBF72812D921000237E1 /* InstructionSelection+Image.swift in Sources */,
 				6DD31AC52810230A006A0C06 /* AssignBottomSheet+State.swift in Sources */,
+				6DB0A3B4284C738B009721BD /* SplashScreenInteractor.swift in Sources */,
 				6D716DCF28059D5C00922259 /* RecipeCreationPlaceholderImageCell.swift in Sources */,
 				6DD6734F282EC54200C2AB4C /* GeneralSearchRecipeViewModel.swift in Sources */,
 				6D8930A427A5B45800D50946 /* InstructionCellViewModel.swift in Sources */,
@@ -2856,6 +2906,7 @@
 				9D10E9FC90C0D8B5EA323533 /* TasteOnboardingPresenter.swift in Sources */,
 				6D9F7A65282A6C100053BF5B /* MainEndpoints.swift in Sources */,
 				6D226784282D4788001FFE6D /* CommunityCreationInitialState.swift in Sources */,
+				6DB0A3B2284C7384009721BD /* SplashScreenDataFlow.swift in Sources */,
 				6D64F8CD2785AEC400F9EEC0 /* TasteOnboardingViewModel.swift in Sources */,
 				6DD16A0A278CB1C600026EBC /* MainInitialState.swift in Sources */,
 				6DA4238A2797E62C00CA183D /* CommunityRecipeCell.swift in Sources */,
@@ -2892,7 +2943,6 @@
 				6D84302027957F79004E27E5 /* MyCommunityCollectionView.swift in Sources */,
 				6DB8DE2827AC38B400471B0B /* RecipePageView.swift in Sources */,
 				6DDBBB322791DBB400BFE1C2 /* SearchBar.swift in Sources */,
-				6DA423A127988F1D00CA183D /* SplashScreen+Animation.swift in Sources */,
 				6D9F7A5428299A910053BF5B /* CommunityCreationPrivacyCell.swift in Sources */,
 				6DE23C8227B29D4A00773140 /* IngredientsListCellViewModel.swift in Sources */,
 				6D9D5E2C27FDF9440087527B /* RecipeCreationImageCell.swift in Sources */,
@@ -2920,6 +2970,8 @@
 				6D944FF727F31D7400ABD6AD /* RecipeCreationNamingCell.swift in Sources */,
 				487EF2A0A104ED145A8FD9A0 /* SplashScreen+State.swift in Sources */,
 				6D9F7A62282A697B0053BF5B /* SavedRecipeCell.swift in Sources */,
+				6DB0A3BC284C8179009721BD /* SplashScreen+Animation.swift in Sources */,
+				6DB0A3AC284C7367009721BD /* SplashScreenEndpoints.swift in Sources */,
 				6D6168B428436DA700EE263F /* CommunityPage+CellDelegate.swift in Sources */,
 				6DF005B72833C57D00DBF439 /* DynamicCommunityCollectionView.swift in Sources */,
 				FC09E9C8F667213F6FA8EF05 /* SplashScreenView.swift in Sources */,
@@ -2942,6 +2994,7 @@
 				15F07444B9B53883DA86AB98 /* RecipePagePresenter.swift in Sources */,
 				6DE23C7E27B2945F00773140 /* IngredientsDescriptionCellViewModel.swift in Sources */,
 				EE77B799A7C5211A9AEA6494 /* SearchViewController.swift in Sources */,
+				6DB0A3AE284C736F009721BD /* SplashScreenService.swift in Sources */,
 				9438865A5CDBC594D1E636A6 /* Search+DisplayLogic.swift in Sources */,
 				8131F8C47FC31F056FDD700E /* Search+Network.swift in Sources */,
 				6D3DD88A283627DB00E0C06D /* CommunitiesListRequestBody.swift in Sources */,
@@ -2965,6 +3018,7 @@
 				4BA7C219A71AA83F07132FFB /* RecipeCreationViewController.swift in Sources */,
 				6D70D29F27D4DA7500947CBE /* CaloriesView.swift in Sources */,
 				327FB53514A5AB13EFCB5083 /* RecipeCreation+DisplayLogic.swift in Sources */,
+				6DB0A3BE284C86D0009721BD /* SavedRecipes+Delegate.swift in Sources */,
 				1B6E6A6AB2AF02560FFC7246 /* RecipeCreation+Network.swift in Sources */,
 				53BB4EB144DE7049DF24F727 /* RecipeCreation+State.swift in Sources */,
 				E7CF7E78993031235E9B8DD6 /* RecipeCreationEndpoints.swift in Sources */,
@@ -2972,6 +3026,7 @@
 				6DD6734D282EC28B00C2AB4C /* GeneralSearchRecipeCell.swift in Sources */,
 				64284E2E8BE05777E43AE9DF /* RecipeCreationService.swift in Sources */,
 				0EEC62BEC042009C4F7A1BAC /* RecipeCreationView.swift in Sources */,
+				6DB0A3A5284B7FF0009721BD /* SavedRecipes+CollectionView.swift in Sources */,
 				10917E89DF363D88BB812D31 /* RecipeCreationBuilder.swift in Sources */,
 				3C2074DE2D431043B9F3332F /* RecipeCreationDataFlow.swift in Sources */,
 				CF35C30D39FA74B8469E795C /* RecipeCreationInteractor.swift in Sources */,
@@ -3021,6 +3076,7 @@
 				B08DB807292BA1AA9F179F3D /* ShoppingListInteractor.swift in Sources */,
 				E139E412EFBB9587678D0B71 /* ShoppingListPresenter.swift in Sources */,
 				10A05F394C34E8E9F274E3C4 /* CommunityCreationViewController.swift in Sources */,
+				6DB0A3A7284B93BB009721BD /* SavedRecipeHeaderView.swift in Sources */,
 				822FFAAB308DD521EA64605B /* CommunityCreation+DisplayLogic.swift in Sources */,
 				793EFB76DBBDF213F5BA6279 /* CommunityCreation+Network.swift in Sources */,
 				143286991B8C7654E2813E85 /* CommunityCreation+State.swift in Sources */,
@@ -3062,7 +3118,6 @@
 				6DD6734B282EC0E300C2AB4C /* GeneralSearchCommunityViewModel.swift in Sources */,
 				2D4D9EB397276733A55226D2 /* SavedRecipes+State.swift in Sources */,
 				6D9F7A69282A6C230053BF5B /* MainService.swift in Sources */,
-				4CF3655BE3C8E409CA851466 /* SavedRecipes+TableView.swift in Sources */,
 				ADF610EF75CB586C95F28040 /* SavedRecipesEndpoints.swift in Sources */,
 				5DD428669DAF9209428D503A /* SavedRecipesProvider.swift in Sources */,
 				DDB3571C5F5E21FAD1B1CFDA /* SavedRecipesService.swift in Sources */,
@@ -3125,6 +3180,7 @@
 				32DD730CC23D75C7F566CBEB /* CommunitiesListViewController.swift in Sources */,
 				BA40FD0489CF46AE68F568D2 /* CommunitiesList+DisplayLogic.swift in Sources */,
 				FD112B7A65CCE884D6C7ACD8 /* CommunitiesList+Network.swift in Sources */,
+				6DB0A3BA284C7C59009721BD /* SplashScreen+Network.swift in Sources */,
 				8E975F69096FEA0E94B4DE60 /* CommunitiesList+State.swift in Sources */,
 				0F28EB5EA4E4B3FF91D7CB8A /* CommunitiesList+TableView.swift in Sources */,
 				765E95169D187EAFD92EEADA /* CommunitiesListEndpoints.swift in Sources */,
@@ -3307,9 +3363,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
@@ -3329,7 +3386,7 @@
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Apron Production Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "Apron Prod Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3342,9 +3399,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
@@ -3364,7 +3422,7 @@
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Apron Production Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "Apron Prod Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

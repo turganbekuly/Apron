@@ -11,5 +11,8 @@ import UIKit
 extension SavedRecipesViewController: SavedRecipesDisplayLogic {
     
     // MARK: - SavedRecipesDisplayLogic
-    
+
+    func displaySavedRecipes(with viewModel: SavedRecipesDataFlow.GetSavedRecipe.ViewModel) {
+        state = viewModel.state
+    }
 }

@@ -17,7 +17,7 @@ public struct SearchEverythingResponse: Codable {
 
     // MARK: - Properties
 
-    public var recipes: [RecipesResponse]?
+    public var recipes: [RecipeResponse]?
     public var recipesCount: Int?
     public var communities: [CommunityResponse]?
     public var communitiesCount: Int?
@@ -27,7 +27,7 @@ public struct SearchEverythingResponse: Codable {
     public init?(json: JSON) {
         self.recipesCount = json[CodingKeys.recipesCount.rawValue] as? Int
         self.recipes = (json[CodingKeys.recipes.rawValue] as? [JSON])?
-            .compactMap { RecipesResponse(json: $0) } ?? []
+            .compactMap { RecipeResponse(json: $0) } ?? []
         self.communitiesCount = json[CodingKeys.communitiesCount.rawValue] as? Int
         self.communities = (json[CodingKeys.communities.rawValue] as? [JSON])?
             .compactMap { CommunityResponse(json: $0) } ?? []

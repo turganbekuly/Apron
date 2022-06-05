@@ -85,7 +85,7 @@ extension ResultListDataFlow {
     }
 
     enum GetRecipesResult {
-        case successful(model: [RecipesResponse])
+        case successful(model: [RecipeResponse])
         case failed(error: AKNetworkError)
     }
 }

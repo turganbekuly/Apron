@@ -7,7 +7,7 @@
 //
 
 protocol SavedRecipesBusinessLogic {
-    
+    func getSavedRecipes(request: SavedRecipesDataFlow.GetSavedRecipe.Request)
 }
 
 final class SavedRecipesInteractor: SavedRecipesBusinessLogic {
@@ -25,4 +25,14 @@ final class SavedRecipesInteractor: SavedRecipesBusinessLogic {
     
     // MARK: - SavedRecipesBusinessLogic
 
+    func getSavedRecipes(request: SavedRecipesDataFlow.GetSavedRecipe.Request) {
+        provider.getSavedRecipes(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.getSavedRecipes(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getSavedRecipes(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }

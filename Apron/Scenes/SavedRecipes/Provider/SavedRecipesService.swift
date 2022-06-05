@@ -9,7 +9,10 @@
 import AKNetwork
 
 protocol SavedRecipesServiceProtocol {
-    
+    func getSavedRecipes(
+        request: SavedRecipesDataFlow.GetSavedRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class SavedRecipesService: SavedRecipesServiceProtocol {
@@ -23,5 +26,13 @@ final class SavedRecipesService: SavedRecipesServiceProtocol {
     }
     
     // MARK: - SavedRecipesServiceProtocol
-    
+
+    func getSavedRecipes(
+        request: SavedRecipesDataFlow.GetSavedRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getRecipes(page: request.page)) { result in
+            completion(result)
+        }
+    }
 }

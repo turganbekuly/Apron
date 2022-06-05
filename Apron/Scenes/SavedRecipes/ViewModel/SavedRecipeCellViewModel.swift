@@ -8,11 +8,11 @@
 import Foundation
 
 protocol SavedRecipeCellViewModelProtocol {
-    var image: String { get }
-    var name: String { get }
+    var image: String? { get }
+    var name: String? { get }
 }
 
 struct SavedRecipeCellViewModel: SavedRecipeCellViewModelProtocol {
-    let image: String
-    let name: String
+    let image: String?
+    let name: String?
 }

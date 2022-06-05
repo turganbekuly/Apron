@@ -1,50 +1,53 @@
 //
-//  SavedRecipesEndpoints.swift
+//  SplashScreenEndpoints.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 10/05/2022.
-//  Copyright © 2022 Apron. All rights reserved.
+//  Created by Akarys Turganbekuly on 05.06.2022.
 //
 
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
-enum SavedRecipesEndpoint {
-    case getRecipes(page: Int)
+enum SplashScreenEndpoints {
+    case updateToken(refreshToken: String)
 }
 
-extension SavedRecipesEndpoint: AKNetworkTargetType {
-    
+extension SplashScreenEndpoints: AKNetworkTargetType {
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
-        case .getRecipes:
-            return "recipes/mySavedRecipes"
+        case .updateToken:
+            return "refreshToken"
         }
     }
-    
+
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .updateToken:
+            return .post
+        }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
-        case let .getRecipes(page):
+        case let .updateToken(refreshToken):
             return .requestParameters(
-                parameters: ["page": page, "limit": 20],
-                encoding: AKURLEncoding.queryString
+                parameters: ["refreshToken": refreshToken],
+                encoding: AKJSONEncoding.default
             )
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -55,5 +58,7 @@ extension SavedRecipesEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }
+
+

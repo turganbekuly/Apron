@@ -2,18 +2,22 @@
 //  SplashScreen+Animation.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 20.01.2022.
+//  Created by Akarys Turganbekuly on 05.06.2022.
 //
 
 import Foundation
-import UIKit
+import Storages
 
 extension SplashScreenViewController: ISplashScreenView {
     func animationDidFinished() {
-        let vc = AuthorizationBuilder(state: .initial).build()
-        let navVc = UINavigationController(rootViewController: vc)
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(navVc, animated: true)
+        if let token = AuthStorage.shared.refreshToken {
+            updateToken(with: token)
+        } else {
+            AuthStorage.shared.clear()
+            let vc = AuthorizationBuilder(state: .initial).build()
+            DispatchQueue.main.async {
+                UIApplication.shared.windows.first?.rootViewController = vc
+            }
         }
     }
 }

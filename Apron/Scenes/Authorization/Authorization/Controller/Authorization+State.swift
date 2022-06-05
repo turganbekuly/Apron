@@ -24,10 +24,8 @@ extension AuthorizationViewController {
         switch state {
         case .initial:
             AuthStorage.shared.clear()
-            AuthStorage.shared.isUserAuthorized = false
         case let .loginSucceed(model):
-            AuthStorage.shared.isUserAuthorized = true
-            AuthStorage.shared.accessToken = model.accessToken
+            AuthStorage.shared.save(model: model)
             let viewController = TabBarBuilder(state: .initial(.normal)).build()
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = viewController

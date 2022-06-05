@@ -32,12 +32,18 @@ final class RecipeCreationViewController: ViewController, Messagable {
     }
 
     var recipeCreation: RecipeCreation?
+    var recipeCommunityId = 0 {
+        didSet {
+            recipeCreation?.communityId = recipeCommunityId
+        }
+    }
 
     var recipeCreationSourceType: RecipeCreationSourceType? {
         didSet {
             switch recipeCreationSourceType {
-            case let .community(_, delegate):
+            case let .community(id, delegate):
                 self.delegate = delegate
+                self.recipeCommunityId = id
             default:
                 break
             }

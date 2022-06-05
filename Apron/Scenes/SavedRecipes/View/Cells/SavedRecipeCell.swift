@@ -70,8 +70,9 @@ final class SavedRecipeCell: UICollectionViewCell {
 
     func configure(with viewModel: SavedRecipeCellViewModelProtocol) {
         savedImageView.kf.setImage(
-            with: URL(string: viewModel.image),
-            placeholder: Assets.iconPlaceholderItem.image
+            with: URL(string: viewModel.image ?? ""),
+            placeholder: Assets.communityMockImage.image
         )
+        recipeNameLabel.text = viewModel.name ?? ""
     }
 }

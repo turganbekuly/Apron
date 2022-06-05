@@ -10,7 +10,7 @@ import DesignSystem
 import Models
 
 protocol CommunityPageCreateRecipeProtocol: AnyObject {
-    func didCreate(recipe: RecipeResponse)
+    func didCreate()
 }
 
 extension CommunityPageViewController: CreateActionFlowProtocol {
@@ -25,7 +25,7 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
                 )
             ).build()
             DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.pushViewController(vc, animated: false)
             }
         default:
             break
@@ -34,10 +34,8 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
 }
 
 extension CommunityPageViewController: CommunityPageCreateRecipeProtocol {
-    func didCreate(recipe: RecipeResponse) {
-        guard let section = sections.firstIndex(where: { $0.section == .topView }) else { return }
-        self.recipes.insert(recipe, at: 0)
-        sections[section].rows = self.recipes.compactMap { .recipiesView($0) }
-        mainView.reloadData()
+    func didCreate() {
+        recipes.removeAll()
+        getRecipesByCommunity(id: id, currentPage: 1)
     }
 }

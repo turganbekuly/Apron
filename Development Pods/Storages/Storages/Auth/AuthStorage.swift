@@ -75,12 +75,14 @@ public final class AuthStorage: AuthStorageProtocol {
     public func save(model: Auth) {
         accessToken = model.accessToken
         refreshToken = model.refreshToken
+        isUserAuthorized = true
     }
 
     public func clear() {
         accessToken = nil
         refreshToken = nil
         phoneNumber = nil
+        isUserAuthorized = false
 
         UserStorage().clear()
     }

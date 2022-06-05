@@ -20,7 +20,7 @@ extension ResultListViewController {
         case fetchEverythingFailed(AKNetworkError)
         case fetchSavedRecipes([RecipeResponse])
         case fetchSavedRecipesFailed(AKNetworkError)
-        case fetchRecipes([RecipesResponse])
+        case fetchRecipes([RecipeResponse])
         case fetchRecipesFailed(AKNetworkError)
         case fetchCommunities([CommunityResponse])
         case fetchCommunitiesFailed(AKNetworkError)
@@ -38,7 +38,7 @@ extension ResultListViewController {
         case let .fetchRecipesByCommunityIdFailed(error):
             print(error)
         case let .fetchEverything(model):
-            self.recipesList = model.recipes?.compactMap { $0.recipe } ?? []
+            self.recipesList = model.recipes?.compactMap { $0 } ?? []
             sections = [
                 .init(section: .everything, rows: recipesList.compactMap { .recipe($0) }),
                 .init(section: .everything, rows: model.communities?.compactMap { .community($0) } ?? [])
@@ -64,11 +64,11 @@ extension ResultListViewController {
 
     // MARK: - Recipes Infinite Scroll
 
-    private func updateRecipiesList(with recipes: [RecipesResponse]) {
+    private func updateRecipiesList(with recipes: [RecipeResponse]) {
         if self.recipesList.isEmpty {
-            self.recipesList = recipes.compactMap { $0.recipe }
+            self.recipesList = recipes.compactMap { $0 }
         } else {
-            self.recipesList.append(contentsOf: recipes.compactMap { $0.recipe })
+            self.recipesList.append(contentsOf: recipes.compactMap { $0 })
         }
 
         configureRecipes()

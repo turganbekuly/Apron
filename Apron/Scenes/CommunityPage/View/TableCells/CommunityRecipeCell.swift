@@ -54,6 +54,7 @@ final class CommunityRecipeCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
@@ -136,7 +137,6 @@ final class CommunityRecipeCell: UITableViewCell {
         [
             recipeNameLabel,
             recipeImageView,
-            favoriteButton,
             cookingInfoStackView,
             sourceURLLabel,
             userInfoStackView
@@ -225,19 +225,21 @@ final class CommunityRecipeCell: UITableViewCell {
             placeholder: Assets.communityMockImage.image
         )
         self.id = recipe.id
-//        if viewModel.favCount != "0" {
-//            self.favoriteButton.setTitle(viewModel.favCount, for: .normal)
+        self.sourceURLLabel.text = recipe.sourceLink ?? ""
+        self.avaImageView.setNameTitleImage(string: recipe.authorName ?? "User")
+        self.nameLabel.text = recipe.authorName ?? ""
+        self.postingTimeLabel.text = recipe.createdAt ?? ""
+        self.isSaved = recipe.isSaved ?? false
+//        if viewModel.recipe?.savedUserCount != 0 {
+//            self.favoriteButton.setTitle("\(recipe.savedUserCount ?? 1)", for: .normal)
 //            faveButtonWidthConstraint?.update(offset: 70)
 //        }
-        self.sourceURLLabel.text = recipe.sourceLink ?? ""
 //        if !viewModel.userImage.isEmpty {
-        self.avaImageView.kf.setImage(with: URL(string: "viewModel.userImage"), placeholder: Assets.navAvatarIcon.image)
+//        self.avaImageView.kf.setImage(with: URL(string: "viewModel.userImage"), placeholder: Assets.navAvatarIcon.image)
 //        } else {
 //            DispatchQueue.main.async {
 //                self.avaImageView.setNameTitleImage(string: viewModel.userName)
 //            }
 //        }
-        self.nameLabel.text = recipe.authorName ?? ""
-        self.postingTimeLabel.text = recipe.createdAt ?? ""
     }
 }

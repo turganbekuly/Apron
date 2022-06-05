@@ -9,20 +9,23 @@
 import Protocols
 import UIKit
 
-public final class SplashScreenBuilder: ModuleBuilderProtocol {
+final class SplashScreenBuilder: ModuleBuilderProtocol {
     
     // MARK: Properties
     private let state: SplashScreenViewController.State
     
     // MARK: Initialization
-    public init(state: SplashScreenViewController.State) {
+    init(state: SplashScreenViewController.State) {
         self.state = state
     }
     
     // MARK: - ModuleBuilder
-    public func build() -> ViewControllerProtocol {
-        let viewController = SplashScreenViewController(state: state)
-        
+    func build() -> ViewControllerProtocol {
+        let presenter = SplashScreenPresenter()
+        let interactor = SplashScreenInteractor(presenter: presenter)
+        let viewController = SplashScreenViewController(interactor: interactor, state: state)
+
+        presenter.viewController = viewController
         return viewController
     }
     

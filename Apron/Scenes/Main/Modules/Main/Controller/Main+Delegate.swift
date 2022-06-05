@@ -12,36 +12,21 @@ import Models
 
 extension MainViewController: JoinCommunityProtocol {
     func didTapJoinCommunity(with id: Int) {
-        guard AuthStorage.shared.isUserAuthorized else {
-            let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController?.present(vc, animated: true)
-            return
+        handleAuthorizationStatus {
+            self.joinCommunity(with: id)
         }
-        
-        joinCommunity(with: id)
     }
 
     func navigateToFromButtonCommunity(with id: Int) {
-        guard AuthStorage.shared.isUserAuthorized else {
-            let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController?.present(vc, animated: true)
-            return
-        }
-
-        let vc = CommunityPageBuilder(state: .initial(id)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(vc, animated: true)
+        handleAuthorizationStatus {
+            let vc = CommunityPageBuilder(state: .initial(id)).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 
     func navigateToAuth() {
-        guard AuthStorage.shared.isUserAuthorized else {
-            let vc = UINavigationController(rootViewController: AuthorizationBuilder(state: .initial).build())
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController?.present(vc, animated: true)
-            return
-        }
+        handleAuthorizationStatus { }
     }
 }

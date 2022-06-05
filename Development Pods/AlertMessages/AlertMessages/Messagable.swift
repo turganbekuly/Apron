@@ -93,11 +93,11 @@ extension Messagable where Self: UIViewController {
             attributes.positionConstraints.verticalOffset = 64
         case .success, .regular:
             attributes.displayDuration = 3
-            attributes.windowLevel = .normal
+            attributes.position = .bottom
             HapticTouch.generateSuccess()
         case .error:
             attributes.displayDuration = 3
-            attributes.windowLevel = .normal
+            attributes.position = .bottom
             HapticTouch.generateError()
         case .loader:
             attributes.displayDuration = .infinity

@@ -65,7 +65,7 @@ extension CommunityPageDataFlow {
     }
 
     enum GetRecipesByCommunityResult {
-        case successful(model: [RecipesResponse])
+        case successful(model: [RecipeResponse])
         case failed(error: AKNetworkError)
     }
 }
@@ -84,7 +84,7 @@ extension CommunityPageDataFlow {
     }
 
     enum SaveRecipeResult {
-        case successful(model: Int)
+        case successful(model: RecipeResponse)
         case failed(error: AKNetworkError)
     }
 }

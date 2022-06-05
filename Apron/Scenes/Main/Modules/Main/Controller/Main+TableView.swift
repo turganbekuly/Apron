@@ -54,7 +54,7 @@ extension MainViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case let .myCommunities:
+        case .myCommunities:
             guard let cell = cell as? MyCommunityCell else { return }
             cell.delegate = self
             cell.configure(with: MyCollectionDelegateCellViewModel(
