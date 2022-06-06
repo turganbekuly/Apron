@@ -259,7 +259,6 @@
 		6DC4EB4E283E09BE008D3F57 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4EB4D283E09BE008D3F57 /* AuthorizationInteractor.swift */; };
 		6DC4EB50283E09C4008D3F57 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4EB4F283E09C4008D3F57 /* AuthorizationPresenter.swift */; };
 		6DC59CA2283BC75C00661FAA /* CreateActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC59CA1283BC75C00661FAA /* CreateActionType.swift */; };
-		6DC59CB0283BD7F700661FAA /* DropDown in Resources */ = {isa = PBXBuildFile; fileRef = 6DC59CAF283BD7F700661FAA /* DropDown */; };
 		6DCEC9AD280401B7002ABD06 /* RecipeCreationIngredientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEC9AC280401B7002ABD06 /* RecipeCreationIngredientViewModel.swift */; };
 		6DCEC9AF28042025002ABD06 /* RecipeCreationAddInstructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEC9AE28042025002ABD06 /* RecipeCreationAddInstructionCell.swift */; };
 		6DCEC9B928044991002ABD06 /* RecipeCreation+InsertionDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEC9B828044991002ABD06 /* RecipeCreation+InsertionDelegates.swift */; };
@@ -697,7 +696,6 @@
 		6DC4EB4D283E09BE008D3F57 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
 		6DC4EB4F283E09C4008D3F57 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
 		6DC59CA1283BC75C00661FAA /* CreateActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActionType.swift; sourceTree = "<group>"; };
-		6DC59CAF283BD7F700661FAA /* DropDown */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DropDown; path = "../../Downloads/DropDown-master/DropDown"; sourceTree = "<group>"; };
 		6DCEC9AC280401B7002ABD06 /* RecipeCreationIngredientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCreationIngredientViewModel.swift; sourceTree = "<group>"; };
 		6DCEC9AE28042025002ABD06 /* RecipeCreationAddInstructionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCreationAddInstructionCell.swift; sourceTree = "<group>"; };
 		6DCEC9B828044991002ABD06 /* RecipeCreation+InsertionDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeCreation+InsertionDelegates.swift"; sourceTree = "<group>"; };
@@ -1380,7 +1378,6 @@
 				6D0A71DF277A13AC0067E580 /* Application */,
 				6D0A7236277B34FB0067E580 /* Scenes */,
 				6D0A71D4277A12EE0067E580 /* Assets.xcassets */,
-				6DC59CAF283BD7F700661FAA /* DropDown */,
 				6D0A71D6277A12EE0067E580 /* LaunchScreen.storyboard */,
 			);
 			path = Apron;
@@ -2724,7 +2721,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D0A71D8277A12EE0067E580 /* LaunchScreen.storyboard in Resources */,
-				6DC59CB0283BD7F700661FAA /* DropDown in Resources */,
 				6D0A71D5277A12EE0067E580 /* Assets.xcassets in Resources */,
 				6D40954E282BC54D007207A7 /* GoogleService-Info.plist in Resources */,
 				6DA4239F27988B8A00CA183D /* splash_lottie_animation.json in Resources */,

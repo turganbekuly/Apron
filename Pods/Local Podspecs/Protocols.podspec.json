@@ -19,10 +19,5 @@
   },
   "source_files": [
     "**/*.{h,m,swift}"
-  ],
-  "dependencies": {
-    "Storages": [
-
-    ]
-  }
+  ]
 }

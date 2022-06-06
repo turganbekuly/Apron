@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Разрешите приложению использовать Face ID/Touch ID для быстрой и удобной аутентификации.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Разрешите приложению доступ к камере телефона для создания снимков.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Разрешите приложению доступ к галерее для загрузки фото и видео.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Разрешите приложению доступ к геолокации.</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Apron</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>Configuration.AMPLITUDE_API_KEY</key>
 	<string>becfe5fdb6479d4df85b98227683bc97</string>
 	<key>Configuration.BASE_URL</key>

@@ -11,7 +11,7 @@ target 'Apron' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/RemoteConfig'
-  pod 'DropDown'
+  pod 'DropDown', '2.3.2'
 
   # Development Pods
 
