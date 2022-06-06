@@ -19,12 +19,21 @@
       }
     },
     {
+      "identity" : "dropdown",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AssistoLab/DropDown",
+      "state" : {
+        "branch" : "master",
+        "revision" : "2ab6f6ce19f0117d1a76ea043ef8f57722c65d16"
+      }
+    },
+    {
       "identity" : "facebook-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/facebook/facebook-ios-sdk",
       "state" : {
         "branch" : "main",
-        "revision" : "429adb9d03c30304efab3a5738fbffeb4855b5ec"
+        "revision" : "89d056c218ddb15d09e87b6b063dd7e7e4239b6d"
       }
     },
     {

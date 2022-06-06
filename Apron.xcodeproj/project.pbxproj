@@ -187,6 +187,7 @@
 		6D8930A427A5B45800D50946 /* InstructionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8930A327A5B45800D50946 /* InstructionCellViewModel.swift */; };
 		6D8A08CD2835031200133D46 /* DynamicCell+CollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8A08CC2835031200133D46 /* DynamicCell+CollectionVIew.swift */; };
 		6D8EBCF1283CAE6400F77EBF /* RecipeBottomStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EBCF0283CAE6400F77EBF /* RecipeBottomStickyView.swift */; };
+		6D8F5CFE284DDB5000EFE0E4 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 6D8F5CFD284DDB5000EFE0E4 /* DropDown */; };
 		6D9301EB282ED74C0018EF14 /* GeneralSearchReulst+Pager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9301EA282ED74C0018EF14 /* GeneralSearchReulst+Pager.swift */; };
 		6D9301ED282ED9100018EF14 /* GeneralSearchResult+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9301EC282ED9100018EF14 /* GeneralSearchResult+CollectionView.swift */; };
 		6D9301F0282ED98B0018EF14 /* SegmentItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9301EF282ED98B0018EF14 /* SegmentItemCell.swift */; };
@@ -898,6 +899,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DECD6A2281924E300BEB774 /* Kingfisher in Frameworks */,
+				6D8F5CFE284DDB5000EFE0E4 /* DropDown in Frameworks */,
 				6DF3F0B228185D0400B6DAD3 /* Amplitude in Frameworks */,
 				6DF3F0BD28185EA500B6DAD3 /* FacebookCore in Frameworks */,
 				6DF3F0C128185EA500B6DAD3 /* FacebookShare in Frameworks */,
@@ -2668,6 +2670,7 @@
 				6DECD69E2819246A00BEB774 /* PanModal */,
 				6DECD6A1281924E300BEB774 /* Kingfisher */,
 				6D1E31D4283642FC0083C350 /* UIScrollView_InfiniteScroll */,
+				6D8F5CFD284DDB5000EFE0E4 /* DropDown */,
 			);
 			productName = Apron;
 			productReference = 6D0A71C8277A12EC0067E580 /* Apron.app */;
@@ -2705,6 +2708,7 @@
 				6DECD69D2819246A00BEB774 /* XCRemoteSwiftPackageReference "PanModal" */,
 				6DECD6A0281924E300BEB774 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				6D1E31D3283642FC0083C350 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
+				6D8F5CFC284DDB5000EFE0E4 /* XCRemoteSwiftPackageReference "DropDown" */,
 			);
 			productRefGroup = 6D0A71C9277A12EC0067E580 /* Products */;
 			projectDirPath = "";
@@ -3362,7 +3366,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
@@ -3398,7 +3402,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
@@ -3457,6 +3461,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		6D8F5CFC284DDB5000EFE0E4 /* XCRemoteSwiftPackageReference "DropDown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AssistoLab/DropDown";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		6DECD69D2819246A00BEB774 /* XCRemoteSwiftPackageReference "PanModal" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/slackhq/PanModal.git";
@@ -3512,6 +3524,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D1E31D3283642FC0083C350 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */;
 			productName = UIScrollView_InfiniteScroll;
+		};
+		6D8F5CFD284DDB5000EFE0E4 /* DropDown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D8F5CFC284DDB5000EFE0E4 /* XCRemoteSwiftPackageReference "DropDown" */;
+			productName = DropDown;
 		};
 		6DECD69E2819246A00BEB774 /* PanModal */ = {
 			isa = XCSwiftPackageProductDependency;

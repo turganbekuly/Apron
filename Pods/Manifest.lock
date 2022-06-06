@@ -21,7 +21,6 @@ PODS:
     - Protocols
     - SnapKit (= 5.0.1)
   - Disk (0.6.4)
-  - DropDown (2.3.2)
   - Extensions (0.0.1):
     - SnapKit (= 5.0.1)
   - Firebase/Analytics (8.12.1):
@@ -166,7 +165,6 @@ DEPENDENCIES:
   - Configurations (from `./Development Pods/Configurations`)
   - Decoders (from `./Development Pods/Decoders`)
   - DesignSystem (from `./Development Pods/DesignSystem`)
-  - DropDown (= 2.3.2)
   - Extensions (from `./Development Pods/Extensions`)
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -183,7 +181,6 @@ SPEC REPOS:
     - Alamofire
     - AlignedCollectionViewFlowLayout
     - Disk
-    - DropDown
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -242,7 +239,6 @@ SPEC CHECKSUMS:
   Decoders: 4cb97a705767a209973d74401515ef061921184b
   DesignSystem: 0642015deb1f0482e9a2fbef0878980182f787c3
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e
-  DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
   Extensions: d467431adebffd1f7f07b5284c3b213d53c980dc
   Firebase: 580d09e8edafc3073ebf09c03fd42e4d80d35fe9
   FirebaseABTesting: 1b05c92327b3f0a9545cea3bab4d93e82550e29b
@@ -274,6 +270,6 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: 84eee8fe50d08b19788e4c3251d40eb07b91e8cd
+PODFILE CHECKSUM: 78ecbdc02fc85fa6018e4683a830c4af4f0cd68d
 
 COCOAPODS: 1.10.2
