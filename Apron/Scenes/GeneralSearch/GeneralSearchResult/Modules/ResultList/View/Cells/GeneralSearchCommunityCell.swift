@@ -50,27 +50,27 @@ final class GeneralSearchCommunityCell: UITableViewCell {
 
     private lazy var recipeImageIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.cmntRecipeIcon.image
+        imageView.image = ApronAssets.cmntRecipeIcon.image
         return imageView
     }()
 
     private lazy var recipeCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         return label
     }()
 
     private lazy var membersImageIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.cmntMemberIcon.image
+        imageView.image = ApronAssets.cmntMemberIcon.image
         return imageView
     }()
 
     private lazy var membersCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         return label
     }()
 
@@ -147,7 +147,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
         guard let community = viewModel.community else { return }
         communityImageView.kf.setImage(
             with: URL(string: community.image ?? ""),
-            placeholder: Assets.addedImagePlaceholder.image
+            placeholder: ApronAssets.addedImagePlaceholder.image
         )
 
         communityNameLabel.text = community.name ?? ""

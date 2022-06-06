@@ -61,7 +61,7 @@ final class CommunityRecipeCell: UITableViewCell {
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.setBackgroundColor(.black, for: .normal)
-        button.setImage(Assets.recipeFavoriteIcon.image, for: .normal)
+        button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 19
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
@@ -71,14 +71,14 @@ final class CommunityRecipeCell: UITableViewCell {
 
     private lazy var cookingTimeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.recipeCookingTimeIcon.image
+        imageView.image = ApronAssets.recipeCookingTimeIcon.image
         return imageView
     }()
 
     private lazy var cookingTimeLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular14
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         return label
     }()
 
@@ -113,7 +113,7 @@ final class CommunityRecipeCell: UITableViewCell {
     private lazy var postingTimeLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         return label
     }()
 
@@ -186,12 +186,12 @@ final class CommunityRecipeCell: UITableViewCell {
     private func configureButton(isSaved: Bool) {
         guard isSaved else {
             favoriteButton.setBackgroundColor(.black, for: .normal)
-            favoriteButton.setImage(Assets.recipeFavoriteIcon.image, for: .normal)
+            favoriteButton.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
             return
         }
 
-        favoriteButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
-        favoriteButton.setImage(Assets.tabFaveSelectedIcon.image, for: .normal)
+        favoriteButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        favoriteButton.setImage(ApronAssets.tabFaveSelectedIcon.image, for: .normal)
     }
 
     // MARK: - User actions
@@ -209,8 +209,8 @@ final class CommunityRecipeCell: UITableViewCell {
         }
 
         HapticTouch.generateSuccess()
-        favoriteButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
-        favoriteButton.setImage(Assets.tabFaveSelectedIcon.image, for: .normal)
+        favoriteButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        favoriteButton.setImage(ApronAssets.tabFaveSelectedIcon.image, for: .normal)
         delegate?.didTapSaveRecipe(with: id)
     }
 
@@ -222,7 +222,7 @@ final class CommunityRecipeCell: UITableViewCell {
         self.cookingTimeLabel.text = recipe.cookTime ?? ""
         self.recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
-            placeholder: Assets.communityMockImage.image
+            placeholder: ApronAssets.communityMockImage.image
         )
         self.id = recipe.id
         self.sourceURLLabel.text = recipe.sourceLink ?? ""

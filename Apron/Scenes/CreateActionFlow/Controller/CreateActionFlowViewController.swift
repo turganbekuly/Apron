@@ -183,7 +183,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
     
     deinit {

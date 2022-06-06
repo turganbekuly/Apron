@@ -16,10 +16,10 @@ strings:
         publicAccess: 1
 xcassets:
   inputs:
-    - Development Pods/DesignSystem/DesignSystem/SupportingFiles/Assets.xcassets
+    - Development Pods/DesignSystem/DesignSystem/SupportingFiles/ApronAssets.xcassets
   outputs:
     - templatePath: Development Pods/DesignSystem/Templates/Xcassets.stencil
-      output: Development Pods/DesignSystem/DesignSystem/Generated/Assets.swift
+      output: Development Pods/DesignSystem/DesignSystem/Generated/ApronAssets.swift
       params:
-        enumName: Assets
+        enumName: ApronAssets
         publicAccess: 1

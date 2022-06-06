@@ -24,14 +24,14 @@ final class PhotoPlaceholderView: UIView {
 
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = Assets.lightGray2.color
+        view.backgroundColor = ApronAssets.lightGray2.color
         view.layer.cornerRadius = 20
         return view
     }()
 
     private lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.cameraIcon.image
+        imageView.image = ApronAssets.cameraIcon.image
         return imageView
     }()
 

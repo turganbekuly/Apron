@@ -91,7 +91,7 @@ final class ShoppingListViewController: ViewController, Messagable {
     private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(
-            Assets.navBackButton.image
+            ApronAssets.navBackButton.image
                 .withTintColor(.black),
             for: .normal
         )
@@ -111,7 +111,7 @@ final class ShoppingListViewController: ViewController, Messagable {
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
-        button.setImage(Assets.creationPlusButton.image, for: .normal)
+        button.setImage(ApronAssets.creationPlusButton.image, for: .normal)
         button.clipsToBounds = true
         return button
     }()
@@ -156,7 +156,7 @@ final class ShoppingListViewController: ViewController, Messagable {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
-        navigationController?.navigationBar.backgroundColor = Assets.secondary.color
+        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: shareButton)
     }
     
@@ -179,7 +179,7 @@ final class ShoppingListViewController: ViewController, Messagable {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
     
     deinit {

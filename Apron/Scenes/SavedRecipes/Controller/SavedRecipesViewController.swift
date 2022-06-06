@@ -93,7 +93,7 @@ final class SavedRecipesViewController: ViewController {
     // MARK: - Methods
     private func configureNavigation() {
         let avatarView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        avatarView.image = Assets.navAvatarIcon.image
+        avatarView.image = ApronAssets.navAvatarIcon.image
         avatarView.layer.cornerRadius = 17
         avatarView.backgroundColor = .green
         let cartView = CartButtonView()
@@ -106,7 +106,7 @@ final class SavedRecipesViewController: ViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
-        navigationController?.navigationBar.barTintColor = Assets.secondary.color
+        navigationController?.navigationBar.barTintColor = ApronAssets.secondary.color
     }
     
     private func configureViews() {
@@ -128,7 +128,7 @@ final class SavedRecipesViewController: ViewController {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
     
     deinit {

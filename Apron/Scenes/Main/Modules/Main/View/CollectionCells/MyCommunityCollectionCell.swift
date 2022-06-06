@@ -42,7 +42,7 @@ final class MyCommunityCollectionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = Assets.cmntImageview.image
+        imageView.image = ApronAssets.cmntImageview.image
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -86,7 +86,7 @@ final class MyCommunityCollectionCell: UICollectionViewCell {
         guard let community = viewModel.community else { return }
         imageView.kf.setImage(
             with: URL(string: community.image ?? ""),
-            placeholder: Assets.iconPlaceholderCard.image
+            placeholder: ApronAssets.iconPlaceholderCard.image
         )
         communityNameLabel.text = community.name ?? ""
     }

@@ -126,14 +126,14 @@ public final class BlackOpButton: Button {
             layer.borderWidth = 1
             layer.borderColor = UIColor.black.cgColor
         case .yelloBackground:
-            setBackgroundColor(Assets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
-            setBackgroundColor(Assets.colorsYello.color, for: .normal)
-            setBackgroundColor(Assets.colorsYello.color.highlighted, for: .highlighted)
+            setBackgroundColor(ApronAssets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
+            setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+            setBackgroundColor(ApronAssets.colorsYello.color.highlighted, for: .highlighted)
             setTitleColor(.black, for: .disabled)
             setTitleColor(.black, for: .normal)
-            tintColor = isEnabled ? Assets.colorsYello.color : Assets.colorsYello.color.withAlphaComponent(0.5)
+            tintColor = isEnabled ? ApronAssets.colorsYello.color : ApronAssets.colorsYello.color.withAlphaComponent(0.5)
             layer.borderWidth = 1
-            layer.borderColor = Assets.colorsYello.color.cgColor
+            layer.borderColor = ApronAssets.colorsYello.color.cgColor
         }
     }
 }

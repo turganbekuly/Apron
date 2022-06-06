@@ -52,14 +52,14 @@ final class RecipeIngredientsViewCell: UITableViewCell {
 
     private lazy var minusButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        button.setImage(Assets.minusButtonIcon.image, for: .normal)
+        button.setImage(ApronAssets.minusButtonIcon.image, for: .normal)
         button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         return button
     }()
 
     private lazy var plusButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        button.setImage(Assets.plusButtonIcon.image, for: .normal)
+        button.setImage(ApronAssets.plusButtonIcon.image, for: .normal)
         button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -96,7 +96,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
 
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = Assets.lightGray2.color
+        view.backgroundColor = ApronAssets.lightGray2.color
         return view
     }()
     // MARK: - Setup Views

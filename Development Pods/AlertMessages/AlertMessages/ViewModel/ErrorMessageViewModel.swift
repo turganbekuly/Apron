@@ -10,7 +10,7 @@ public struct ErrorMessageViewModel: MessageProtocol {
     // MARK: - MessageProtocol
 
     public var icon: UIImage? {
-        Assets.attention.image
+        ApronAssets.attention.image
     }
 
     public var title: NSAttributedString? {
@@ -30,7 +30,7 @@ public struct ErrorMessageViewModel: MessageProtocol {
     }
 
     public var backgroundColor: UIColor {
-        Assets.red.color
+        ApronAssets.red.color
     }
 
     public var titleColor: UIColor {

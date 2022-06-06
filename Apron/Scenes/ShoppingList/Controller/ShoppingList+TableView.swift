@@ -72,7 +72,7 @@ extension ShoppingListViewController: UITableViewDelegate {
             guard let cell = cell as? EmptyCartCell else { return }
             cell.configure(
                 with: "Добавьте товары в свой список покупок",
-                image: Assets.emptyCart.image
+                image: ApronAssets.emptyCart.image
             )
         case let .ingredient(item):
             guard let cell = cell as? ShoppingItemCell else { return }

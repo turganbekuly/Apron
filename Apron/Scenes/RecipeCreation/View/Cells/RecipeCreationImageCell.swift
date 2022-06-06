@@ -33,7 +33,7 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var imagePlaceholder: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.recipeSampleImage.image
+        imageView.image = ApronAssets.recipeSampleImage.image
         imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -43,8 +43,8 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var deleteButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundColor(Assets.colorsYello.color, for: .normal)
-        button.setImage(Assets.trashIcon.image, for: .normal)
+        button.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        button.setImage(ApronAssets.trashIcon.image, for: .normal)
         button.layer.cornerRadius = 15.5
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
@@ -53,8 +53,8 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = Assets.colorsYello.color
-        button.setImage(Assets.editIcon.image, for: .normal)
+        button.backgroundColor = ApronAssets.colorsYello.color
+        button.setImage(ApronAssets.editIcon.image, for: .normal)
         button.layer.cornerRadius = 15.5
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
@@ -111,7 +111,7 @@ final class RecipeCreationImageCell: UITableViewCell {
         if let imageURL = imageURL {
             imagePlaceholder.kf.setImage(
                 with: URL(string: imageURL),
-                placeholder: Assets.addedImagePlaceholder.image,
+                placeholder: ApronAssets.addedImagePlaceholder.image,
                 options: [.transition(.fade(0.25))]
             )
         }

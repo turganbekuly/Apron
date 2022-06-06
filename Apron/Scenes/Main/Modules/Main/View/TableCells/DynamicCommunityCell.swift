@@ -66,8 +66,8 @@ final class DynamicCommunityCell: UITableViewCell {
     private lazy var seeAllButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = TypographyFonts.regular16
-        button.setTitleColor(Assets.gray.color, for: .normal)
-        button.setTitleColor(Assets.gray.color, for: .highlighted)
+        button.setTitleColor(ApronAssets.gray.color, for: .normal)
+        button.setTitleColor(ApronAssets.gray.color, for: .highlighted)
         button.setTitle("Все", for: .normal)
         button.addTarget(self, action: #selector(seeAllButtonTapped), for: .touchUpInside)
         return button

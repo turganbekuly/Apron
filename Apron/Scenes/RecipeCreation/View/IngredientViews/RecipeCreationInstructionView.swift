@@ -48,14 +48,14 @@ final class RecipeCreationInstructionView: UIView {
 
     private lazy var stepLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         label.font = TypographyFonts.regular14
         return label
     }()
 
     private lazy var removeButton: UIButton = {
         let button = UIButton()
-        button.setImage(Assets.trashIcon.image, for: .normal)
+        button.setImage(ApronAssets.trashIcon.image, for: .normal)
         button.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
         return button
     }()

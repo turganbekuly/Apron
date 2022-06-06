@@ -89,7 +89,7 @@ extension CommunityPageViewController: UITableViewDelegate {
             guard let cell = cell as? EmptyCartCell else { return }
             cell.configure(
                 with: "Добавьте рецепты в сообщество",
-                image: Assets.emptyRecipesIcon.image
+                image: ApronAssets.emptyRecipesIcon.image
             )
         }
     }

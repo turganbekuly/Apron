@@ -28,7 +28,7 @@ public struct RegularMessageViewModel: MessageProtocol {
     }
 
     public var backgroundColor: UIColor {
-        Assets.gray.color
+        ApronAssets.gray.color
     }
 
     public var titleColor: UIColor {
@@ -40,7 +40,7 @@ public struct RegularMessageViewModel: MessageProtocol {
     }
 
     public var iconColor: UIColor? {
-        Assets.blue.color
+        ApronAssets.blue.color
     }
 
     // MARK: - Init

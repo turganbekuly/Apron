@@ -43,7 +43,7 @@ final class CommunityCreationCategoryCell: UITableViewCell {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         label.font = TypographyFonts.regular12
         label.textAlignment = .left
         label.text = "Выберите категорию"
@@ -52,7 +52,7 @@ final class CommunityCreationCategoryCell: UITableViewCell {
 
     private lazy var arrowImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.arrowForward.image
+        imageView.image = ApronAssets.arrowForward.image
         return imageView
     }()
 

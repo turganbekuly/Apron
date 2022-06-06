@@ -25,7 +25,7 @@ public class NavigationBar: UINavigationBar {
         UIBarButtonItem.appearance()
             .setTitleTextAttributes(
                 [
-                    .foregroundColor: Assets.red.color,
+                    .foregroundColor: ApronAssets.red.color,
                     .font: TypographyFonts.semibold16
                 ],
                 for: .normal
@@ -45,7 +45,7 @@ public class NavigationBar: UINavigationBar {
         ]
 
         var backImage: UIImage? {
-            return Assets.navBackButton.image
+            return ApronAssets.navBackButton.image
                 .withInsets(UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 0))?
                 .withRenderingMode(.alwaysOriginal)
         }
@@ -66,7 +66,7 @@ public class NavigationBar: UINavigationBar {
         UIBarButtonItem.appearance()
             .setTitleTextAttributes(
                 [
-                    .foregroundColor: Assets.red.color,
+                    .foregroundColor: ApronAssets.red.color,
                     .font: TypographyFonts.semibold16
                 ],
                 for: .normal
@@ -85,7 +85,7 @@ public class NavigationBar: UINavigationBar {
         ]
 
         var backImage: UIImage? {
-            return Assets.navBackButton.image
+            return ApronAssets.navBackButton.image
                 .withInsets(UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 0))?
                 .withRenderingMode(.alwaysOriginal)
         }

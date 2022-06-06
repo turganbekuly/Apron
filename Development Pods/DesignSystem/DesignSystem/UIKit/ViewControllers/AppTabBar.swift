@@ -21,7 +21,7 @@ public final class AppTabBar: UITabBar {
     @IBInspectable public var buttonTitle: String?
 
     @IBInspectable public var tabbarColor: UIColor = .white
-    @IBInspectable public var unselectedItemColor: UIColor = Assets.gray.color
+    @IBInspectable public var unselectedItemColor: UIColor = ApronAssets.gray.color
 
     private var shapeLayer: CALayer?
 

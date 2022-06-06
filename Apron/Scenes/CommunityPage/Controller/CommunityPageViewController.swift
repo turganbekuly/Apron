@@ -93,7 +93,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
-        button.setImage(Assets.creationPlusButton.image, for: .normal)
+        button.setImage(ApronAssets.creationPlusButton.image, for: .normal)
         button.clipsToBounds = true
         return button
     }()
@@ -163,8 +163,8 @@ public final class CommunityPageViewController: ViewController, Messagable {
     private func configureViews() {
         mainView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
-        backButton.icon = Assets.navBackButton.image.withTintColor(.black)
-        moreButton.icon = Assets.navMoreButton.image.withTintColor(.black)
+        backButton.icon = ApronAssets.navBackButton.image.withTintColor(.black)
+        moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
         backButton.onTouch = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
@@ -218,7 +218,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
         navigationBarView.backgroundColor = .clear
         refreshControl.tintColor = .white
         refreshControl.backgroundColor = .clear
@@ -290,7 +290,7 @@ extension CommunityPageViewController {
         // navigation bar overlay
         if topConstraint.constant <= view.safeAreaInsets.top {
             imageView.isHidden = true
-            navigationBarView.backgroundColor = Assets.secondary.color
+            navigationBarView.backgroundColor = ApronAssets.secondary.color
             navigationItem.title = community?.name ?? ""
         } else {
             imageView.isHidden = false

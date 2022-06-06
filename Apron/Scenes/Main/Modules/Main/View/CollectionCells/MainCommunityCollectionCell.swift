@@ -59,7 +59,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = Assets.cmntImageview.image
+        imageView.image = ApronAssets.cmntImageview.image
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -82,27 +82,27 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
 
     private lazy var recipeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.cmntRecipeIcon.image
+        imageView.image = ApronAssets.cmntRecipeIcon.image
         return imageView
     }()
 
     private lazy var recipeCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         return label
     }()
 
     private lazy var membersImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.cmntMemberIcon.image
+        imageView.image = ApronAssets.cmntMemberIcon.image
         return imageView
     }()
 
     private lazy var membersCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         return label
     }()
 
@@ -171,7 +171,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         id = community.id
         imageView.kf.setImage(
             with: URL(string: community.image ?? ""),
-            placeholder: Assets.iconPlaceholderCard.image
+            placeholder: ApronAssets.iconPlaceholderCard.image
         )
         communityNameLabel.text = community.name ?? ""
         recipeCountLabel.text = "\(community.recipesCount ?? 0)"
@@ -190,7 +190,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
             return
         }
         joinButton.setTitle("Уже вступили", for: .normal)
-        joinButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
+        joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
         joinButton.setTitleColor(.black, for: .normal)
         joinButton.snp.updateConstraints {
             $0.width.equalTo(129)
@@ -212,7 +212,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         }
         HapticTouch.generateSuccess()
         joinButton.setTitle("Уже вступили", for: .normal)
-        joinButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
+        joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
         joinButton.setTitleColor(.black, for: .normal)
         joinButton.snp.updateConstraints {
             $0.width.equalTo(129)

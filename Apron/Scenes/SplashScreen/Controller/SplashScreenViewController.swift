@@ -85,7 +85,7 @@ final class SplashScreenViewController: ViewController {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.colorsYello.color
+        view.backgroundColor = ApronAssets.colorsYello.color
     }
     
     deinit {

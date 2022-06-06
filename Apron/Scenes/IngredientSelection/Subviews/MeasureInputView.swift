@@ -45,7 +45,7 @@ final class MeasureInputView: UIView {
 
     private lazy var dividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = Assets.gray.color
+        view.backgroundColor = ApronAssets.gray.color
         return view
     }()
 

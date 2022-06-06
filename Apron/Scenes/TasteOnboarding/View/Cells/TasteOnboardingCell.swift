@@ -33,7 +33,7 @@ final class TasteOnboardingCell: UITableViewCell {
         checkbox.boxType = .square
         checkbox.cornerRadius = 8
         checkbox.stateChangeAnimation = .fill
-        checkbox.tintColor = Assets.colorsYello.color
+        checkbox.tintColor = ApronAssets.colorsYello.color
         checkbox.secondaryTintColor = .gray
         checkbox.secondaryCheckmarkTintColor = .black
         checkbox.isUserInteractionEnabled = false

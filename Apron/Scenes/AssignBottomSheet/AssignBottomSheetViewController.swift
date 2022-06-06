@@ -61,7 +61,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
     private lazy var subtitlLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         label.textAlignment = .left
         label.numberOfLines = 2
         return label
@@ -155,7 +155,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
     
     deinit {

@@ -60,7 +60,7 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
 
     private lazy var roundedCornerView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.tableRoundedCorners.image
+        imageView.image = ApronAssets.tableRoundedCorners.image
         return imageView
     }()
 
@@ -97,27 +97,27 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
 
     private lazy var recipeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.cmntRecipeIcon.image
+        imageView.image = ApronAssets.cmntRecipeIcon.image
         return imageView
     }()
 
     private lazy var recipeCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         return label
     }()
 
     private lazy var membersImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.cmntMemberIcon.image
+        imageView.image = ApronAssets.cmntMemberIcon.image
         return imageView
     }()
 
     private lazy var membersCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         return label
     }()
 
@@ -137,7 +137,7 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
 
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = Assets.lightGray2.color
+        view.backgroundColor = ApronAssets.lightGray2.color
         return view
     }()
 
@@ -230,9 +230,9 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
     private func configureButton(isJoined: Bool) {
         if isJoined {
             joinButton.setTitle("Пригласить", for: .normal)
-            joinButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
-            joinButton.setBackgroundColor(Assets.colorsYello.color, for: .highlighted)
-            joinButton.setBackgroundColor(Assets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
+            joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+            joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .highlighted)
+            joinButton.setBackgroundColor(ApronAssets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
             joinButton.setTitleColor(.black, for: .normal)
         } else {
             joinButton.setTitle("Вступить", for: .normal)
@@ -271,9 +271,9 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
 
         HapticTouch.generateSuccess()
         joinButton.setTitle("Пригласить", for: .normal)
-        joinButton.setBackgroundColor(Assets.colorsYello.color, for: .normal)
-        joinButton.setBackgroundColor(Assets.colorsYello.color, for: .highlighted)
-        joinButton.setBackgroundColor(Assets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
+        joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .highlighted)
+        joinButton.setBackgroundColor(ApronAssets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
         joinButton.setTitleColor(.black, for: .normal)
         joinButton.snp.updateConstraints {
             $0.width.greaterThanOrEqualTo(129)

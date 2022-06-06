@@ -73,8 +73,8 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
 
     public lazy var nextButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = Assets.colorsYello.color
-        button.setImage(Assets.arrowForward.image, for: .normal)
+        button.backgroundColor = ApronAssets.colorsYello.color
+        button.setImage(ApronAssets.arrowForward.image, for: .normal)
         button.layer.cornerRadius = 28
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         return button
@@ -152,7 +152,7 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
 
     // MARK: - User actions

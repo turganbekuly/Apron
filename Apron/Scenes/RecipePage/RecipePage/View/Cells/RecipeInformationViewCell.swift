@@ -41,8 +41,8 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     private lazy var likeButton: UIButton = {
         let button = UIButton()
-        button.setImage(Assets.recipeLikeUnselected.image, for: .normal)
-        button.setTitleColor(Assets.gray.color, for: .normal)
+        button.setImage(ApronAssets.recipeLikeUnselected.image, for: .normal)
+        button.setTitleColor(ApronAssets.gray.color, for: .normal)
         button.setTitle("20", for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         return button
@@ -50,16 +50,16 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     private lazy var dislikeButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(Assets.gray.color, for: .normal)
+        button.setTitleColor(ApronAssets.gray.color, for: .normal)
         button.setTitle("2", for: .normal)
-        button.setImage(Assets.recipeDislikeUnselected.image, for: .normal)
+        button.setImage(ApronAssets.recipeDislikeUnselected.image, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         return button
     }()
 
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.setImage(Assets.recipeEditIcon.image, for: .normal)
+        button.setImage(ApronAssets.recipeEditIcon.image, for: .normal)
         button.isUserInteractionEnabled = true
         button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         return button
@@ -67,7 +67,7 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     private lazy var shareButton: UIButton = {
         let button = UIButton()
-        button.setImage(Assets.recipeShareIcon.image, for: .normal)
+        button.setImage(ApronAssets.recipeShareIcon.image, for: .normal)
         return button
     }()
 
@@ -158,6 +158,6 @@ final class RecipeInformationViewCell: UITableViewCell {
         titleLabel.text = viewModel.recipeName
         recipeSourceURLButton.setTitle(viewModel.recipeSourceURL, for: .normal)
         recipeSourceURLButton.sizeToFit()
-        recipeImageView.image = Assets.recipeSampleImage.image
+        recipeImageView.image = ApronAssets.recipeSampleImage.image
     }
 }

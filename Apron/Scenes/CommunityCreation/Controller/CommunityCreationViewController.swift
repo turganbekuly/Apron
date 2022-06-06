@@ -81,7 +81,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
     private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(
-            Assets.navBackButton.image
+            ApronAssets.navBackButton.image
                 .withTintColor(.black),
             for: .normal
         )
@@ -143,7 +143,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
-        navigationController?.navigationBar.backgroundColor = Assets.secondary.color
+        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
     }
     
@@ -161,7 +161,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
     
     deinit {

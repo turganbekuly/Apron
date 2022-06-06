@@ -76,16 +76,16 @@ public final class TabBarViewController: AppTabBarController {
         switch type {
         case .main:
             navigationController.tabBarItem.title = "Главная"
-            navigationController.tabBarItem.image = Assets.tabHomeSelectedIcon.image
+            navigationController.tabBarItem.image = ApronAssets.tabHomeSelectedIcon.image
         case .search:
             navigationController.tabBarItem.title = "Поиск"
-            navigationController.tabBarItem.image = Assets.navSearchIcon.image
+            navigationController.tabBarItem.image = ApronAssets.navSearchIcon.image
         case .saved:
             navigationController.tabBarItem.title = "Избранное"
-            navigationController.tabBarItem.image = Assets.tabFaveSelectedIcon.image
+            navigationController.tabBarItem.image = ApronAssets.tabFaveSelectedIcon.image
         case .planner:
             navigationController.tabBarItem.title = "Планнер"
-            navigationController.tabBarItem.image = Assets.tabPlannerSelectedIcon.image
+            navigationController.tabBarItem.image = ApronAssets.tabPlannerSelectedIcon.image
         }
         return navigationController
     }

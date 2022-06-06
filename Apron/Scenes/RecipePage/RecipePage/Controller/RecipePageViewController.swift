@@ -111,13 +111,13 @@ final class RecipePageViewController: ViewController, Messagable {
 
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: Assets.navBackButton.image,
+            image: ApronAssets.navBackButton.image,
             style: .plain,
             target: self,
             action: #selector(backButtonTapped)
         )
         navigationItem.leftBarButtonItem?.tintColor = .black
-        navigationController?.navigationBar.backgroundColor = Assets.secondary.color
+        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
     }
     
     private func configureViews() {
@@ -138,7 +138,7 @@ final class RecipePageViewController: ViewController, Messagable {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
     
     deinit {

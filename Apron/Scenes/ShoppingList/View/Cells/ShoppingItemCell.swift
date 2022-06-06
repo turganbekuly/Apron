@@ -51,7 +51,7 @@ final class ShoppingItemCell: UITableViewCell {
     private lazy var sourceRecipsButton: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         label.textAlignment = .left
         return label
     }()
@@ -77,7 +77,7 @@ final class ShoppingItemCell: UITableViewCell {
         checkbox.boxType = .square
         checkbox.cornerRadius = 8
         checkbox.stateChangeAnimation = .fill
-        checkbox.tintColor = Assets.colorsYello.color
+        checkbox.tintColor = ApronAssets.colorsYello.color
         checkbox.secondaryTintColor = .gray
         checkbox.secondaryCheckmarkTintColor = .black
         return checkbox

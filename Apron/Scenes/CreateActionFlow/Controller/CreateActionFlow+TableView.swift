@@ -84,42 +84,42 @@ extension CreateActionFlowViewController: UITableViewDelegate {
         case .privateCommunity:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: Assets.communityPrivateIcon.image,
+                image: ApronAssets.communityPrivateIcon.image,
                 title: "Создать закрытое сообщество",
                 subtitle: "Присоединиться могут только люди, которых вы пригласили"
             ))
         case .publicCommunity:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: Assets.communityPublicIcon.image,
+                image: ApronAssets.communityPublicIcon.image,
                 title: "Создать публичное сообщество",
                 subtitle: "Любой может просматривать и присоединяться"
             ))
         case .aboutCommunities:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: Assets.communityAboutIcon.image,
+                image: ApronAssets.communityAboutIcon.image,
                 title: "Подробнее о сообществах",
                 subtitle: nil
             ))
         case .savedRecipe:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: Assets.recipeAddIcon.image,
+                image: ApronAssets.recipeAddIcon.image,
                 title: "Добавить сохраненный рецепт",
                 subtitle: nil
             ))
         case .newRecipe:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: Assets.recipeNewIcon.image,
+                image: ApronAssets.recipeNewIcon.image,
                 title: "Создать новый рецепт",
                 subtitle: nil
             ))
         case .shoppingList:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: Assets.tabListIcon.image,
+                image: ApronAssets.tabListIcon.image,
                 title: "Добавить в список покупок"
             ))
         default:

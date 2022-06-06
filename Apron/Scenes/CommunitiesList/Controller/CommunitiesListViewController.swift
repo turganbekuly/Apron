@@ -83,7 +83,7 @@ final class CommunitiesListViewController: ViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(
-            Assets.navBackButton.image
+            ApronAssets.navBackButton.image
                 .withTintColor(.black),
             for: .normal
         )
@@ -138,7 +138,7 @@ final class CommunitiesListViewController: ViewController {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
-        navigationController?.navigationBar.backgroundColor = Assets.secondary.color
+        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
     }
     
     private func configureViews() {
@@ -159,7 +159,7 @@ final class CommunitiesListViewController: ViewController {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
 
     // MARK: - User actions

@@ -3366,11 +3366,11 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Apron;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите приложению доступ к камере телефона для создания снимков.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Разрешите приложению использовать Face ID/Touch ID для быстрой и удобной аутентификации.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Разрешите приложению доступ к геолокации.";
@@ -3402,11 +3402,11 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Apron;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите приложению доступ к камере телефона для создания снимков.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Разрешите приложению использовать Face ID/Touch ID для быстрой и удобной аутентификации.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Разрешите приложению доступ к геолокации.";

@@ -37,7 +37,7 @@ final class CommunityFilterView: UIView {
 
     private lazy var filterButton: UIButton = {
         let button = UIButton()
-        button.setImage(Assets.buttonFilterIcon.image, for: .normal)
+        button.setImage(ApronAssets.buttonFilterIcon.image, for: .normal)
         button.setBackgroundColor(.black, for: .normal)
         button.layer.cornerRadius = 19
         button.clipsToBounds = true

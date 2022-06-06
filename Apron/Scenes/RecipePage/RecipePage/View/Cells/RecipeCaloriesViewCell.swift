@@ -35,7 +35,7 @@ final class RecipeCaloriesViewCell: UITableViewCell {
     private lazy var scaleImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = Assets.calQuaterIcon.image
+        imageView.image = ApronAssets.calQuaterIcon.image
         return imageView
     }()
 

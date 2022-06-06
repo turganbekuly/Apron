@@ -29,7 +29,7 @@ final class MyCommunityEmptyCollectionCell: UICollectionViewCell {
     lazy var emptyLabelTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        let firstAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: Assets.lightGray.color, .font: TypographyFonts.regular12]
+        let firstAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: ApronAssets.lightGray.color, .font: TypographyFonts.regular12]
         let secondAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black, .font: TypographyFonts.semibold12]
         let firstString = NSMutableAttributedString(string: "Вы пока еще не вступили не в одно сообщество.\nУзнать ", attributes: firstAttributes)
         let secondString = NSAttributedString(string: "подробнее о сообществах", attributes: secondAttributes)

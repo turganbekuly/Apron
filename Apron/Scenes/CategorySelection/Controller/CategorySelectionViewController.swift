@@ -168,7 +168,7 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
 
     // MARK: - User actions

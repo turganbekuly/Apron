@@ -83,7 +83,7 @@ final class InstructionSelectionViewController: ViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(
-            Assets.navBackButton.image
+            ApronAssets.navBackButton.image
                 .withTintColor(.black),
             for: .normal
         )
@@ -138,7 +138,7 @@ final class InstructionSelectionViewController: ViewController {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
-        navigationController?.navigationBar.backgroundColor = Assets.secondary.color
+        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
     }
     
@@ -156,7 +156,7 @@ final class InstructionSelectionViewController: ViewController {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
 
     private func configureSaveButton() {

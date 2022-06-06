@@ -13,7 +13,7 @@ open class CustomClearTextField: UITextField {
 
         for view in subviews {
             if let button = view as? UIButton {
-                let image = Assets.searchClearButton.image
+                let image = ApronAssets.searchClearButton.image
                 button.setImage(image, for: .normal)
                 button.tintColor = .white
             }

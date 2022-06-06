@@ -63,7 +63,7 @@ private extension ImageHeaderView {
     func setup(with imageUrl: String) {
         imageView.kf.setImage(
             with: URL(string: imageUrl),
-            placeholder: Assets.communityMockImage.image,
+            placeholder: ApronAssets.communityMockImage.image,
             options: [.transition(.fade(0.4))]
         )
     }

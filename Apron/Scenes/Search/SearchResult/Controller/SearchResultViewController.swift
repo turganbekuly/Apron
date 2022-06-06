@@ -112,7 +112,7 @@ public final class SearchResultViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
 
     deinit {

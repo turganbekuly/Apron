@@ -38,7 +38,7 @@ final class RecipeBottomStickyView: View {
         button.layer.cornerRadius = 19
         button.clipsToBounds = true
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-        button.setImage(Assets.recipeFavoriteIcon.image, for: .normal)
+        button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
         return button
     }()
 

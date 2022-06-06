@@ -32,7 +32,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
 
     private lazy var favoriteButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.setImage(Assets.recipeFavoriteIcon.image, for: .normal)
+        button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
         button.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
         button.layer.masksToBounds = true
@@ -52,7 +52,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     private lazy var sourceLinkLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = Assets.gray.color
+        label.textColor = ApronAssets.gray.color
         label.textAlignment = .left
         return label
     }()
@@ -108,7 +108,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
         guard let recipe = viewModel.recipe else { return }
         recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
-            placeholder: Assets.addedImagePlaceholder.image
+            placeholder: ApronAssets.addedImagePlaceholder.image
         )
 
         recipeNameLabel.text = recipe.recipeName ?? ""

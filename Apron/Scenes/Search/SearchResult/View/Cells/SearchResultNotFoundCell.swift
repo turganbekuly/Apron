@@ -6,7 +6,7 @@ public final class SearchResultNotFoundCell: UITableViewCell {
     // MARK: - Views
 
     private lazy var iconImageView: UIImageView = {
-        let view = UIImageView(image: Assets.navSearchIcon.image)
+        let view = UIImageView(image: ApronAssets.navSearchIcon.image)
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -64,8 +64,8 @@ public final class SearchResultNotFoundCell: UITableViewCell {
 
     private func configureColors() {
         backgroundColor = .clear
-        iconImageView.tintColor = Assets.gray.color
-        titleLabel.textColor = Assets.gray.color
+        iconImageView.tintColor = ApronAssets.gray.color
+        titleLabel.textColor = ApronAssets.gray.color
     }
 
 }

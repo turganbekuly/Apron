@@ -48,7 +48,7 @@ public final class CartButtonView: UIView {
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Assets.navCartIconFilled.image
+        imageView.image = ApronAssets.navCartIconFilled.image
         return imageView
     }()
 

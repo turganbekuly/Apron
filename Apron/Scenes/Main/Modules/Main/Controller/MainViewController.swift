@@ -66,7 +66,7 @@ final class MainViewController: ViewController, Messagable {
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
-        button.setImage(Assets.creationPlusButton.image, for: .normal)
+        button.setImage(ApronAssets.creationPlusButton.image, for: .normal)
         button.clipsToBounds = true
         return button
     }()
@@ -111,7 +111,7 @@ final class MainViewController: ViewController, Messagable {
     // MARK: - Setup Views
     private func configureNavigation() {
         let avatarView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        avatarView.image = Assets.navAvatarIcon.image
+        avatarView.image = ApronAssets.navAvatarIcon.image
         avatarView.layer.cornerRadius = 17
         avatarView.backgroundColor = .green
         let cartView = CartButtonView()
@@ -125,7 +125,7 @@ final class MainViewController: ViewController, Messagable {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
-        navigationController?.navigationBar.barTintColor = Assets.secondary.color
+        navigationController?.navigationBar.barTintColor = ApronAssets.secondary.color
     }
     
     private func configureViews() {
@@ -147,7 +147,7 @@ final class MainViewController: ViewController, Messagable {
     }
     
     private func configureColors() {
-        view.backgroundColor = Assets.secondary.color
+        view.backgroundColor = ApronAssets.secondary.color
     }
 
     // MARK: - User actions
