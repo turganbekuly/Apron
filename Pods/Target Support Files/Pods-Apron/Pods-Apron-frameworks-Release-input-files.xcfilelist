@@ -3,6 +3,8 @@ ${BUILT_PRODUCTS_DIR}/AKNetwork/AKNetwork.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AlertMessages/AlertMessages.framework
 ${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework
+${BUILT_PRODUCTS_DIR}/Amplitude/Amplitude.framework
+${BUILT_PRODUCTS_DIR}/AnalyticsConnector/AnalyticsConnector.framework
 ${BUILT_PRODUCTS_DIR}/Configurations/Configurations.framework
 ${BUILT_PRODUCTS_DIR}/Decoders/Decoders.framework
 ${BUILT_PRODUCTS_DIR}/DesignSystem/DesignSystem.framework
@@ -11,6 +13,7 @@ ${BUILT_PRODUCTS_DIR}/Extensions/Extensions.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework
+${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework
@@ -19,17 +22,19 @@ ${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework
 ${BUILT_PRODUCTS_DIR}/HapticTouch/HapticTouch.framework
 ${BUILT_PRODUCTS_DIR}/Haptica/Haptica.framework
 ${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework
 ${BUILT_PRODUCTS_DIR}/Models/Models.framework
 ${BUILT_PRODUCTS_DIR}/Moya/Moya.framework
 ${BUILT_PRODUCTS_DIR}/Onboarding/Onboarding.framework
+${BUILT_PRODUCTS_DIR}/PanModal/PanModal.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
 ${BUILT_PRODUCTS_DIR}/Protocols/Protocols.framework
-${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/Storages/Storages.framework
 ${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework
 ${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework
+${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework
 ${BUILT_PRODUCTS_DIR}/Wormholy/Wormholy.framework
 ${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework
 ${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework

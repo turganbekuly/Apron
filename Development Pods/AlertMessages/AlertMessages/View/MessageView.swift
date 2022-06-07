@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Lottie
 
+@available(iOS 13.0, *)
 public class MessageView: UIView {
 
     // MARK: - Properties

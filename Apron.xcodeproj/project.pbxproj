@@ -117,7 +117,6 @@
 		6D0A71D8277A12EE0067E580 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A71D6277A12EE0067E580 /* LaunchScreen.storyboard */; };
 		6D0A71E8277AEE6B0067E580 /* InterfaceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A71E7277AEE6B0067E580 /* InterfaceConfigurator.swift */; };
 		6D0A7208277AF1D20067E580 /* ThirdPartiesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A7207277AF1D20067E580 /* ThirdPartiesConfigurator.swift */; };
-		6D1E31D5283642FC0083C350 /* UIScrollView_InfiniteScroll in Frameworks */ = {isa = PBXBuildFile; productRef = 6D1E31D4283642FC0083C350 /* UIScrollView_InfiniteScroll */; };
 		6D1E31D8283652320083C350 /* CommunitiesListInitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E31D7283652320083C350 /* CommunitiesListInitialState.swift */; };
 		6D1E31DC283653410083C350 /* CommunityListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E31DB283653410083C350 /* CommunityListHeaderView.swift */; };
 		6D22677F282D4298001FFE6D /* CommunityCreation+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D22677E282D4298001FFE6D /* CommunityCreation+Category.swift */; };
@@ -303,20 +302,11 @@
 		6DE23C9027B922D800773140 /* SearchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE23C8F27B922D800773140 /* SearchTypes.swift */; };
 		6DE489CD27E2516C00C14781 /* RecipeInstructionsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE489CC27E2516C00C14781 /* RecipeInstructionsViewCell.swift */; };
 		6DEA52742848E42A007375A0 /* SavedRecipeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEA52732848E429007375A0 /* SavedRecipeCellViewModel.swift */; };
-		6DECD69F2819246A00BEB774 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 6DECD69E2819246A00BEB774 /* PanModal */; };
-		6DECD6A2281924E300BEB774 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6DECD6A1281924E300BEB774 /* Kingfisher */; };
 		6DF005AA28324D4D00DBF439 /* DynamicCommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF005A928324D4D00DBF439 /* DynamicCommunityCell.swift */; };
 		6DF005AC2832750200DBF439 /* CommunitiesCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF005AB2832750200DBF439 /* CommunitiesCollectionViewModel.swift */; };
 		6DF005AE2833680E00DBF439 /* MyCommunityCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF005AD2833680E00DBF439 /* MyCommunityCollectionCell.swift */; };
 		6DF005B32833B37900DBF439 /* MyCommunityCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF005B22833B37900DBF439 /* MyCommunityCollectionViewModel.swift */; };
 		6DF005B72833C57D00DBF439 /* DynamicCommunityCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF005B62833C57D00DBF439 /* DynamicCommunityCollectionView.swift */; };
-		6DF3F0B228185D0400B6DAD3 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 6DF3F0B128185D0400B6DAD3 /* Amplitude */; };
-		6DF3F0B528185D2900B6DAD3 /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = 6DF3F0B428185D2900B6DAD3 /* OneSignal */; };
-		6DF3F0B828185D5D00B6DAD3 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 6DF3F0B728185D5D00B6DAD3 /* Sentry */; };
-		6DF3F0BB28185EA500B6DAD3 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 6DF3F0BA28185EA500B6DAD3 /* FacebookBasics */; };
-		6DF3F0BD28185EA500B6DAD3 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6DF3F0BC28185EA500B6DAD3 /* FacebookCore */; };
-		6DF3F0BF28185EA500B6DAD3 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 6DF3F0BE28185EA500B6DAD3 /* FacebookLogin */; };
-		6DF3F0C128185EA500B6DAD3 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 6DF3F0C028185EA500B6DAD3 /* FacebookShare */; };
 		6DF9CD4827F091C70008FEEA /* RecipeCreation+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9CD4727F091C70008FEEA /* RecipeCreation+Sections.swift */; };
 		6DFE0207283929F2008C2B61 /* NutritionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE0206283929F2008C2B61 /* NutritionView.swift */; };
 		6E606E3426562018EB1F4AC3 /* IngredientSelectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7801798F43B8CA7A364CD3DE /* IngredientSelectionService.swift */; };
@@ -898,18 +888,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DECD6A2281924E300BEB774 /* Kingfisher in Frameworks */,
 				6D8F5CFE284DDB5000EFE0E4 /* DropDown in Frameworks */,
-				6DF3F0B228185D0400B6DAD3 /* Amplitude in Frameworks */,
-				6DF3F0BD28185EA500B6DAD3 /* FacebookCore in Frameworks */,
-				6DF3F0C128185EA500B6DAD3 /* FacebookShare in Frameworks */,
 				519C46291315924EE1C31873 /* Pods_Apron.framework in Frameworks */,
-				6DF3F0BB28185EA500B6DAD3 /* FacebookBasics in Frameworks */,
-				6DF3F0B528185D2900B6DAD3 /* OneSignal in Frameworks */,
-				6D1E31D5283642FC0083C350 /* UIScrollView_InfiniteScroll in Frameworks */,
-				6DECD69F2819246A00BEB774 /* PanModal in Frameworks */,
-				6DF3F0BF28185EA500B6DAD3 /* FacebookLogin in Frameworks */,
-				6DF3F0B828185D5D00B6DAD3 /* Sentry in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,6 +1361,7 @@
 				6D0A7236277B34FB0067E580 /* Scenes */,
 				6D0A71D4277A12EE0067E580 /* Assets.xcassets */,
 				6D0A71D6277A12EE0067E580 /* LaunchScreen.storyboard */,
+				6D0A71D9277A12EE0067E580 /* Info.plist */,
 			);
 			path = Apron;
 			sourceTree = "<group>";
@@ -1388,7 +1369,6 @@
 		6D0A71DF277A13AC0067E580 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				6DB0A39B284A1953009721BD /* Resources */,
 				6D0A71E0277A13B40067E580 /* AppDelegate */,
 			);
 			path = Application;
@@ -1823,14 +1803,6 @@
 				6D507A0A283A1E89000E6141 /* CaloriesCellViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		6DB0A39B284A1953009721BD /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				6D0A71D9277A12EE0067E580 /* Info.plist */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		6DB0A3AA284C735C009721BD /* Provider */ = {
@@ -2648,11 +2620,11 @@
 			buildConfigurationList = 6D0A71DC277A12EE0067E580 /* Build configuration list for PBXNativeTarget "Apron" */;
 			buildPhases = (
 				7FEDB2511A48726592583300 /* [CP] Check Pods Manifest.lock */,
+				6D8F5D00284F155700EFE0E4 /* Swiftgen */,
 				6D0A71C4277A12EC0067E580 /* Sources */,
 				6D0A71C5277A12EC0067E580 /* Frameworks */,
 				6D0A71C6277A12EC0067E580 /* Resources */,
 				28084D3733FCDC5FE42DD6B1 /* [CP] Embed Pods Frameworks */,
-				6D5D7B55277F1F0D001D570D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2660,16 +2632,6 @@
 			);
 			name = Apron;
 			packageProductDependencies = (
-				6DF3F0B128185D0400B6DAD3 /* Amplitude */,
-				6DF3F0B428185D2900B6DAD3 /* OneSignal */,
-				6DF3F0B728185D5D00B6DAD3 /* Sentry */,
-				6DF3F0BA28185EA500B6DAD3 /* FacebookBasics */,
-				6DF3F0BC28185EA500B6DAD3 /* FacebookCore */,
-				6DF3F0BE28185EA500B6DAD3 /* FacebookLogin */,
-				6DF3F0C028185EA500B6DAD3 /* FacebookShare */,
-				6DECD69E2819246A00BEB774 /* PanModal */,
-				6DECD6A1281924E300BEB774 /* Kingfisher */,
-				6D1E31D4283642FC0083C350 /* UIScrollView_InfiniteScroll */,
 				6D8F5CFD284DDB5000EFE0E4 /* DropDown */,
 			);
 			productName = Apron;
@@ -2701,13 +2663,6 @@
 			);
 			mainGroup = 6D0A71BF277A12EC0067E580;
 			packageReferences = (
-				6DF3F0B028185D0400B6DAD3 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
-				6DF3F0B328185D2900B6DAD3 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */,
-				6DF3F0B628185D5D00B6DAD3 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
-				6DF3F0B928185EA500B6DAD3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
-				6DECD69D2819246A00BEB774 /* XCRemoteSwiftPackageReference "PanModal" */,
-				6DECD6A0281924E300BEB774 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				6D1E31D3283642FC0083C350 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
 				6D8F5CFC284DDB5000EFE0E4 /* XCRemoteSwiftPackageReference "DropDown" */,
 			);
 			productRefGroup = 6D0A71C9277A12EC0067E580 /* Products */;
@@ -2751,7 +2706,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6D5D7B55277F1F0D001D570D /* ShellScript */ = {
+		6D8F5D00284F155700EFE0E4 /* Swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2760,6 +2715,7 @@
 			);
 			inputPaths = (
 			);
+			name = Swiftgen;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -3366,10 +3322,10 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apron/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите приложению доступ к камере телефона для создания снимков.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Разрешите приложению использовать Face ID/Touch ID для быстрой и удобной аутентификации.";
@@ -3379,6 +3335,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3402,10 +3359,10 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Apron/Application/Resources/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apron/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите приложению доступ к камере телефона для создания снимков.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Разрешите приложению использовать Face ID/Touch ID для быстрой и удобной аутентификации.";
@@ -3415,6 +3372,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3453,14 +3411,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6D1E31D3283642FC0083C350 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pronebird/UIScrollView-InfiniteScroll";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		6D8F5CFC284DDB5000EFE0E4 /* XCRemoteSwiftPackageReference "DropDown" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AssistoLab/DropDown";
@@ -3469,111 +3419,13 @@
 				kind = branch;
 			};
 		};
-		6DECD69D2819246A00BEB774 /* XCRemoteSwiftPackageReference "PanModal" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/slackhq/PanModal.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		6DECD6A0281924E300BEB774 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
-		6DF3F0B028185D0400B6DAD3 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		6DF3F0B328185D2900B6DAD3 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/OneSignal/OneSignal-XCFramework";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
-		6DF3F0B628185D5D00B6DAD3 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
-		6DF3F0B928185EA500B6DAD3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6D1E31D4283642FC0083C350 /* UIScrollView_InfiniteScroll */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6D1E31D3283642FC0083C350 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */;
-			productName = UIScrollView_InfiniteScroll;
-		};
 		6D8F5CFD284DDB5000EFE0E4 /* DropDown */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6D8F5CFC284DDB5000EFE0E4 /* XCRemoteSwiftPackageReference "DropDown" */;
 			productName = DropDown;
-		};
-		6DECD69E2819246A00BEB774 /* PanModal */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DECD69D2819246A00BEB774 /* XCRemoteSwiftPackageReference "PanModal" */;
-			productName = PanModal;
-		};
-		6DECD6A1281924E300BEB774 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DECD6A0281924E300BEB774 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		6DF3F0B128185D0400B6DAD3 /* Amplitude */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DF3F0B028185D0400B6DAD3 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
-			productName = Amplitude;
-		};
-		6DF3F0B428185D2900B6DAD3 /* OneSignal */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DF3F0B328185D2900B6DAD3 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */;
-			productName = OneSignal;
-		};
-		6DF3F0B728185D5D00B6DAD3 /* Sentry */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DF3F0B628185D5D00B6DAD3 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = Sentry;
-		};
-		6DF3F0BA28185EA500B6DAD3 /* FacebookBasics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DF3F0B928185EA500B6DAD3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookBasics;
-		};
-		6DF3F0BC28185EA500B6DAD3 /* FacebookCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DF3F0B928185EA500B6DAD3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookCore;
-		};
-		6DF3F0BE28185EA500B6DAD3 /* FacebookLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DF3F0B928185EA500B6DAD3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookLogin;
-		};
-		6DF3F0C028185EA500B6DAD3 /* FacebookShare */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DF3F0B928185EA500B6DAD3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookShare;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

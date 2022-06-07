@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'HapticTouch'
   spec.dependency 'Protocols'
   spec.dependency 'DesignSystem'
-  spec.dependency 'SwiftEntryKit', '1.2.7'
+  spec.dependency 'SwiftEntryKit'
   spec.dependency 'lottie-ios'
 
 end

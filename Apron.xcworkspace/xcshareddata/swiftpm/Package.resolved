@@ -1,84 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "amplitude-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/amplitude/Amplitude-iOS",
-      "state" : {
-        "branch" : "main",
-        "revision" : "55ee555c68c4c8e36d1166b608447cab3aec6b4f"
-      }
-    },
-    {
-      "identity" : "analytics-connector-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/amplitude/analytics-connector-ios.git",
-      "state" : {
-        "revision" : "b44981119e2efc0edd1d2e26831c3c4c0e0264e6",
-        "version" : "1.0.0"
-      }
-    },
-    {
       "identity" : "dropdown",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AssistoLab/DropDown",
       "state" : {
         "branch" : "master",
         "revision" : "2ab6f6ce19f0117d1a76ea043ef8f57722c65d16"
-      }
-    },
-    {
-      "identity" : "facebook-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/facebook/facebook-ios-sdk",
-      "state" : {
-        "branch" : "main",
-        "revision" : "89d056c218ddb15d09e87b6b063dd7e7e4239b6d"
-      }
-    },
-    {
-      "identity" : "kingfisher",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Kingfisher.git",
-      "state" : {
-        "revision" : "59eb199fdb8dd47733624e8b0277822d0232579e",
-        "version" : "7.2.2"
-      }
-    },
-    {
-      "identity" : "onesignal-xcframework",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/OneSignal/OneSignal-XCFramework",
-      "state" : {
-        "revision" : "40b9789aabfbff1b6a02974c4d100ddfe047d94d",
-        "version" : "3.11.1"
-      }
-    },
-    {
-      "identity" : "panmodal",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/slackhq/PanModal.git",
-      "state" : {
-        "revision" : "b012aecb6b67a8e46369227f893c12544846613f",
-        "version" : "1.2.7"
-      }
-    },
-    {
-      "identity" : "sentry-cocoa",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/getsentry/sentry-cocoa.git",
-      "state" : {
-        "revision" : "b34ce9048e6b8b082ea6b15e6b50583d46c936ea",
-        "version" : "7.16.0"
-      }
-    },
-    {
-      "identity" : "uiscrollview-infinitescroll",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pronebird/UIScrollView-InfiniteScroll",
-      "state" : {
-        "revision" : "0fe87a8e185827720cb98b6a7145c8ea8de21fed",
-        "version" : "1.2.0"
       }
     }
   ],
