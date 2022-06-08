@@ -12,16 +12,17 @@ import UIKit
 extension TabBarViewController {
     
     // MARK: - State
-    public enum State {
+     enum State {
         case initial(TabBarInitialState)
     }
     
     // MARK: - Methods
-    public func updateState() {
+     func updateState() {
         switch state {
         case let .initial(state):
             configureTabBar()
             configureInitialState(state)
+            pendingDeeplinkProvider.delegate = self
         }
     }
 

@@ -23,9 +23,7 @@ Pod::Spec.new do |spec|
   'DesignSystem/**/*.{ttf}'
   ]
   spec.resource_bundles = {
-    'DesignSystem' => [
-    'DesignSystem/**/*.{xcassets,ttf,otf,strings,lproj}'
-    ]
+    'DesignSystem' => ['DesignSystem/**/*.{xcassets,ttf,otf,strings,lproj}']
   }
   spec.dependency 'AlignedCollectionViewFlowLayout', '1.1.2'
   spec.dependency 'Extensions'

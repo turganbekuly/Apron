@@ -10,20 +10,22 @@ import DesignSystem
 import UIKit
 import Protocols
 
-public protocol TabBarDisplayLogic: AnyObject {
+ protocol TabBarDisplayLogic: AnyObject {
     
 }
 
-public final class TabBarViewController: AppTabBarController {
+ final class TabBarViewController: AppTabBarController {
     // MARK: - Properties
 
-    public var state: State {
+     var state: State {
         didSet {
             updateState()
         }
     }
 
-    public enum ViewControllerTypes {
+    lazy var pendingDeeplinkProvider = DeeplinkServicesContainer.shared.pendingDeeplinkProvider
+
+     enum ViewControllerTypes {
         case main
         case search
         case saved
@@ -36,24 +38,24 @@ public final class TabBarViewController: AppTabBarController {
 
     // MARK: - Init
     
-    public init(state: State) {
+     init(state: State) {
         self.state = state
 
         super.init(nibName: nil, bundle: nil)
     }
 
-    public required init?(coder: NSCoder) {
+     required init?(coder: NSCoder) {
         return nil
     }
     
     // MARK: - Life Cycle
     
-    override public func viewDidLoad() {
+    override  func viewDidLoad() {
         super.viewDidLoad()
         state = { state }()
     }
     
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         configureColors()
@@ -61,13 +63,12 @@ public final class TabBarViewController: AppTabBarController {
     
     // MARK: - Methods
 
-    public func configureTabBar() {
+     func configureTabBar() {
 
         viewControllers = [
             configureViewController(viewController: mainModule, type: .main),
             configureViewController(viewController: searchModule, type: .search),
             configureViewController(viewController: favouriteModule, type: .saved)
-//            configureViewController(viewController: plannerModule, type: .planner)
         ]
     }
 

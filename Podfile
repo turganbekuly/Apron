@@ -16,12 +16,13 @@ def commonPods
 
   pod 'SwiftGen', '~> 6.0'
 
-  #Analytics
+  #Analytics & User interaction
 
   pod 'Amplitude'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/RemoteConfig'
+  pod 'OneSignal', '3.8.0'
 end
 
 def developmentPods

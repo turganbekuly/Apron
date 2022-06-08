@@ -10,6 +10,7 @@ import Firebase
 import Protocols
 import Configurations
 import FirebaseAnalytics
+import OneSignal
 
 final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     // MARK: - Methods
@@ -17,6 +18,7 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     func configure(_ application: UIApplication?, launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
         configureFirebase()
         configureAnalytics()
+        configureOneSignal(launchOptions: launchOptions)
     }
 
     private func configureFirebase() {
@@ -30,5 +32,15 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
             appsflyerDevKey: "",
             appleAppID: ""
         )
+    }
+
+    private func configureOneSignal(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        OneSignal.setNotificationOpenedHandler { result in
+            guard let url = URL(string: result.notification.launchURL ?? "") else { return }
+
+            DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
+        }
+        OneSignal.initWithLaunchOptions(launchOptions)
+//        OneSignal.setAppId(MCConfigurations.getOneSignalAppID())
     }
 }

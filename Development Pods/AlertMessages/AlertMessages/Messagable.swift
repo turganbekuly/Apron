@@ -16,6 +16,7 @@ public protocol Messagable: AnyObject {
     func hideLoader()
 }
 
+@available(iOS 13.0, *)
 extension Messagable where Self: UIViewController {
 
     public func show(type: MessageType, firstAction: (() -> Void)? = nil, secondAction: (() -> Void)? = nil) {

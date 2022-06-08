@@ -25,6 +25,10 @@ public final class Configurations {
         return url
     }
 
+    public static func getWebBaseHost() -> String {
+        getValue(for: ConfigurationKeys.webBasedURL) ?? ""
+    }
+
     public static func getAmplitudeAPIKey() -> String {
         guard let apiKey = getValue(for: ConfigurationKeys.amplitudeApiKey) else {
             fatalError("Cannot get api key")

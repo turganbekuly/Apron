@@ -152,6 +152,7 @@ PODS:
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - Onboarding (0.0.1)
+  - OneSignal (3.8.0)
   - PanModal (1.2.7)
   - PromisesObjC (2.1.0)
   - Protocols (0.0.1)
@@ -181,6 +182,7 @@ DEPENDENCIES:
   - Kingfisher
   - Models (from `./Development Pods/Models`)
   - Onboarding (from `./Development Pods/Onboarding`)
+  - OneSignal (= 3.8.0)
   - PanModal
   - Protocols (from `./Development Pods/Protocols`)
   - Storages (from `./Development Pods/Storages`)
@@ -213,6 +215,7 @@ SPEC REPOS:
     - M13Checkbox
     - Moya
     - nanopb
+    - OneSignal
     - PanModal
     - PromisesObjC
     - SnapKit
@@ -280,6 +283,7 @@ SPEC CHECKSUMS:
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   Onboarding: f87883852b3e7544578236da0c4a91c1857f7b51
+  OneSignal: bb3c8da4467f2b48a89398da5ff107ba70cff06e
   PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
   Protocols: 15b9d34cc719cb47dff58822bcf8ba43a2c5f28b
@@ -291,6 +295,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: 93aeb5a008d0d01c3aa3c384a598178d784ab2d3
+PODFILE CHECKSUM: 52ff5b9dec95a112ff914987eda987f04a7fc095
 
 COCOAPODS: 1.10.2

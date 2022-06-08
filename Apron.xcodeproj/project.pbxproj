@@ -112,6 +112,11 @@
 		64284E2E8BE05777E43AE9DF /* RecipeCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090022874B0B9BCF15166DAC /* RecipeCreationService.swift */; };
 		645AD167241B8155BDDF6E52 /* ShoppingList+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7686D8B027E2DA02F1DFE33D /* ShoppingList+State.swift */; };
 		67A19DAC9215ACFCB332356A /* SavedRecipesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47B0AC440E5F35F97ABD2A6 /* SavedRecipesInteractor.swift */; };
+		6D047F81284F85B600BAA2EA /* TabBar+Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D047F80284F85B600BAA2EA /* TabBar+Deeplink.swift */; };
+		6D047F85284F85F000BAA2EA /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D047F84284F85F000BAA2EA /* Deeplink.swift */; };
+		6D047F87284F864100BAA2EA /* DeeplinkServicesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D047F86284F864100BAA2EA /* DeeplinkServicesContainer.swift */; };
+		6D047F89284F865E00BAA2EA /* DeeplinkFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D047F88284F865E00BAA2EA /* DeeplinkFactory.swift */; };
+		6D047F8B284F866800BAA2EA /* PendingDeeplinkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D047F8A284F866800BAA2EA /* PendingDeeplinkProvider.swift */; };
 		6D0A71CC277A12EC0067E580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A71CB277A12EC0067E580 /* AppDelegate.swift */; };
 		6D0A71D5277A12EE0067E580 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A71D4277A12EE0067E580 /* Assets.xcassets */; };
 		6D0A71D8277A12EE0067E580 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D0A71D6277A12EE0067E580 /* LaunchScreen.storyboard */; };
@@ -535,6 +540,11 @@
 		687B94BC482009DE7E015D0F /* ResultListProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListProvider.swift; sourceTree = "<group>"; };
 		6BBF5A7585C9EA590E4773E5 /* ResultListInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListInteractor.swift; sourceTree = "<group>"; };
 		6C7D749F247CA15610A586CA /* SavedRecipesDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesDataFlow.swift; sourceTree = "<group>"; };
+		6D047F80284F85B600BAA2EA /* TabBar+Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+Deeplink.swift"; sourceTree = "<group>"; };
+		6D047F84284F85F000BAA2EA /* Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
+		6D047F86284F864100BAA2EA /* DeeplinkServicesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkServicesContainer.swift; sourceTree = "<group>"; };
+		6D047F88284F865E00BAA2EA /* DeeplinkFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkFactory.swift; sourceTree = "<group>"; };
+		6D047F8A284F866800BAA2EA /* PendingDeeplinkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingDeeplinkProvider.swift; sourceTree = "<group>"; };
 		6D0A71C8277A12EC0067E580 /* Apron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D0A71CB277A12EC0067E580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D0A71D4277A12EE0067E580 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1332,6 +1342,25 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		6D047F82284F85DA00BAA2EA /* Deeplink */ = {
+			isa = PBXGroup;
+			children = (
+				6D047F83284F85E700BAA2EA /* Model */,
+				6D047F86284F864100BAA2EA /* DeeplinkServicesContainer.swift */,
+				6D047F88284F865E00BAA2EA /* DeeplinkFactory.swift */,
+				6D047F8A284F866800BAA2EA /* PendingDeeplinkProvider.swift */,
+			);
+			path = Deeplink;
+			sourceTree = "<group>";
+		};
+		6D047F83284F85E700BAA2EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6D047F84284F85F000BAA2EA /* Deeplink.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6D0A71BF277A12EC0067E580 = {
 			isa = PBXGroup;
 			children = (
@@ -1355,6 +1384,7 @@
 			children = (
 				6DB0A3A0284A4356009721BD /* Apron.entitlements */,
 				6DB0A3A1284A4356009721BD /* ApronRelease.entitlements */,
+				6D047F82284F85DA00BAA2EA /* Deeplink */,
 				6D78BB09282BACF900B2819F /* Analytics */,
 				6DA4239D27988B5800CA183D /* Resources */,
 				6D0A71DF277A13AC0067E580 /* Application */,
@@ -1395,10 +1425,10 @@
 		6D0A7236277B34FB0067E580 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6E428BC0FF36D183017001C5 /* TabBar */,
 				BF64925A4EE2F8B6F84CC6EC /* SplashScreen */,
 				6D64F8C32785716800F9EEC0 /* Authorization */,
 				C57D192383862C6B15300A47 /* TasteOnboarding */,
-				6E428BC0FF36D183017001C5 /* TabBar */,
 				BABDD39D1013D44DECE14BBF /* Main */,
 				56F95E25FCFE95626C212459 /* Search */,
 				138EF5205FEBE099ECEF854E /* CommunityPage */,
@@ -2393,6 +2423,7 @@
 			isa = PBXGroup;
 			children = (
 				ED8C4E380C5D2DDDB559843C /* TabBarViewController.swift */,
+				6D047F80284F85B600BAA2EA /* TabBar+Deeplink.swift */,
 				9FDB1D5F0C288CA9DB7A80D3 /* TabBar+State.swift */,
 			);
 			path = Controller;
@@ -2819,6 +2850,7 @@
 				6D64F9202786C7F200F9EEC0 /* SkipButtonNavigationView.swift in Sources */,
 				6DDBBB392791DE7400BFE1C2 /* SearchResultBuilder.swift in Sources */,
 				6DCF95B527903920009FEE78 /* Main+Buttons.swift in Sources */,
+				6D047F89284F865E00BAA2EA /* DeeplinkFactory.swift in Sources */,
 				6D9301F3282EDAD20018EF14 /* SegmentCellViewModel.swift in Sources */,
 				F40771BFAE1D19595F40D6BE /* TasteOnboarding+DisplayLogic.swift in Sources */,
 				7DE71DEBC88D23850687C907 /* TasteOnboarding+Network.swift in Sources */,
@@ -3060,6 +3092,8 @@
 				C2B08AE0F232E745D01C9B0D /* CategorySelection+State.swift in Sources */,
 				DA3D792250891F14E5F25C4E /* CategorySelection+TableView.swift in Sources */,
 				40EB831DF1A8B034176B2B8A /* CategorySelectionEndpoints.swift in Sources */,
+				6D047F87284F864100BAA2EA /* DeeplinkServicesContainer.swift in Sources */,
+				6D047F81284F85B600BAA2EA /* TabBar+Deeplink.swift in Sources */,
 				1628BFA3A661986073DABCE8 /* CategorySelectionProvider.swift in Sources */,
 				5E252040D54C858E27E0304B /* CategorySelectionService.swift in Sources */,
 				B0472A0080264A29126DC857 /* CategorySelectionView.swift in Sources */,
@@ -3090,6 +3124,7 @@
 				A945F7462046964328C6DC9A /* GeneralSearch+State.swift in Sources */,
 				148295389083F4F1F24DE928 /* GeneralSearch+TableView.swift in Sources */,
 				08C356949FE03F801DD3AC46 /* GeneralSearchEndpoints.swift in Sources */,
+				6D047F8B284F866800BAA2EA /* PendingDeeplinkProvider.swift in Sources */,
 				F3603CCEDD2BD3A80EC538C2 /* GeneralSearchProvider.swift in Sources */,
 				4C6A11A9BF60E10BEF9901A6 /* GeneralSearchService.swift in Sources */,
 				790228BA1C8027770A22C0B9 /* GeneralSearchView.swift in Sources */,
@@ -3102,6 +3137,7 @@
 				6D507A19283A600F000E6141 /* CreateButtonCellViewModel.swift in Sources */,
 				AB6DA83A48B17288BA388F58 /* GeneralSearchResult+Network.swift in Sources */,
 				85E4C032DE688B2B86FBC6FB /* GeneralSearchResult+State.swift in Sources */,
+				6D047F85284F85F000BAA2EA /* Deeplink.swift in Sources */,
 				7AC62D32CF89865AEDD1D498 /* GeneralSearchResultEndpoints.swift in Sources */,
 				BAE24BBE66A9884AEE2789E1 /* GeneralSearchResultProvider.swift in Sources */,
 				F89CA6262F31EB11EC19172E /* GeneralSearchResultService.swift in Sources */,
@@ -3343,7 +3379,7 @@
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Apron Prod Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "Apron Production Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3380,7 +3416,7 @@
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Apron Prod Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "Apron Production Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
