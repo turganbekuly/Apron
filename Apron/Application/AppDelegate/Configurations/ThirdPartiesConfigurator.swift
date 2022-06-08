@@ -41,6 +41,6 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
             DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
         }
         OneSignal.initWithLaunchOptions(launchOptions)
-//        OneSignal.setAppId(MCConfigurations.getOneSignalAppID())
+        OneSignal.setAppId(Configurations.getOneSignalAppID())
     }
 }

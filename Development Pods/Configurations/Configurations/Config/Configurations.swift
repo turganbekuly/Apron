@@ -29,6 +29,10 @@ public final class Configurations {
         getValue(for: ConfigurationKeys.webBasedURL) ?? ""
     }
 
+    public static func getOneSignalAppID() -> String {
+        getValue(for: ConfigurationKeys.oneSignalAppID) ?? ""
+    }
+
     public static func getAmplitudeAPIKey() -> String {
         guard let apiKey = getValue(for: ConfigurationKeys.amplitudeApiKey) else {
             fatalError("Cannot get api key")

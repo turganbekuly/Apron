@@ -43,5 +43,4 @@ extension PendingDeeplinkProviderImpl: DeeplinkHandler {
     func handleDeeplink(with url: URL) {
         pendingDeeplink = DeeplinkFactory().makeDeeplink(from: url)
     }
-
 }
