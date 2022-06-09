@@ -2431,7 +2431,7 @@ Copyright 2022
 Permission is granted to Apron.com
 
 
-## OneSignal
+## OneSignalXCFramework
 
 Modified MIT License
 

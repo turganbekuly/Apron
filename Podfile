@@ -22,7 +22,7 @@ def commonPods
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/RemoteConfig'
-  pod 'OneSignal', '3.8.0'
+  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
 end
 
 def developmentPods
@@ -49,7 +49,6 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.1'
-      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
     end
   end
 end

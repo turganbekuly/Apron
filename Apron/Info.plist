@@ -24,10 +24,10 @@
 	<string>164.92.189.249/receipts/</string>
 	<key>Configuration.HTTP</key>
 	<string>http://</string>
-	<key>Configuration.WEB_BASED_HOST</key>
-	<string>apron.ws</string>
 	<key>Configuration.ONE_SIGNAL_APP_ID</key>
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
+	<key>Configuration.WEB_BASED_HOST</key>
+	<string>apron.ws</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>
