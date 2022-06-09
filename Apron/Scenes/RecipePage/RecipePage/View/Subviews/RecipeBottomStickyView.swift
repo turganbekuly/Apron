@@ -22,6 +22,17 @@ final class RecipeBottomStickyView: View {
 
     // MARK: - Views factory
 
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+
+    private lazy var textField: RoundedTextField = {
+        let textField = RoundedTextField(placeholder: "Оставьте ваш комментарий")
+        textField.textField.isUserInteractionEnabled = false
+        return textField
+    }()
+
     private lazy var addButton: BlackOpButton = {
         let button = BlackOpButton()
         button.setTitle("Добавить в корзину", for: .normal)

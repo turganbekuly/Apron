@@ -16,6 +16,8 @@ extension RecipePageViewController {
         case initial(id: Int)
         case displayRecipe(RecipeResponse)
         case displayError(AKNetworkError)
+        case rateRecipe(RatingResponse)
+        case rateRecipeError(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -29,6 +31,10 @@ extension RecipePageViewController {
             self.recipe = recipe
         case let .displayError(error):
             hideLoader()
+            print(error)
+        case let .rateRecipe(rating):
+            print(rating)
+        case let .rateRecipeError(error):
             print(error)
         }
     }

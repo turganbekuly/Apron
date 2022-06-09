@@ -14,6 +14,10 @@ protocol RecipePageProviderProtocol {
         request: RecipePageDataFlow.GetRecipe.Request,
         completion: @escaping (RecipePageDataFlow.GetRecipeResult) -> Void
     )
+    func rateRecipe(
+        request: RecipePageDataFlow.RateRecipe.Request,
+        completion: @escaping (RecipePageDataFlow.RateRecipeResult) -> Void
+    )
 }
 
 final class RecipePageProvider: RecipePageProviderProtocol {
@@ -38,6 +42,24 @@ final class RecipePageProvider: RecipePageProviderProtocol {
             case let .success(json):
                 if let recipe = RecipeResponse(json: json) {
                     completion(.successfull(model: recipe))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func rateRecipe(
+        request: RecipePageDataFlow.RateRecipe.Request,
+        completion: @escaping (RecipePageDataFlow.RateRecipeResult) -> Void
+    ) {
+        service.rateRecipe(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let rating = RatingResponse(json: json) {
+                    completion(.successful(model: rating))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

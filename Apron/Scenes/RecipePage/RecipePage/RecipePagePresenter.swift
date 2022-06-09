@@ -10,6 +10,7 @@ import UIKit
 
 protocol RecipePagePresentationLogic: AnyObject {
     func getRecipe(response: RecipePageDataFlow.GetRecipe.Response)
+    func rateRecipe(response: RecipePageDataFlow.RateRecipe.Response)
 }
 
 final class RecipePagePresenter: RecipePagePresentationLogic {
@@ -30,6 +31,21 @@ final class RecipePagePresenter: RecipePagePresentationLogic {
                 viewModel = .init(state: .displayRecipe(model))
             case let .failed(error):
                 viewModel = .init(state: .displayError(error))
+            }
+        }
+    }
+
+    func rateRecipe(response: RecipePageDataFlow.RateRecipe.Response) {
+        DispatchQueue.main.async {
+            var viewModel: RecipePageDataFlow.RateRecipe.ViewModel
+
+            defer { self.viewController?.displayRating(viewModel: viewModel) }
+
+            switch response.result {
+            case let .successful(model):
+                viewModel = .init(state: .rateRecipe(model))
+            case let .failed(error):
+                viewModel = .init(state: .rateRecipeError(error))
             }
         }
     }

@@ -13,6 +13,7 @@ import AlertMessages
 
 protocol RecipePageDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipePageDataFlow.GetRecipe.ViewModel)
+    func displayRating(viewModel: RecipePageDataFlow.RateRecipe.ViewModel)
 }
 
 final class RecipePageViewController: ViewController, Messagable {

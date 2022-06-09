@@ -9,9 +9,11 @@
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
 enum RecipePageEndpoint {
     case getRecipe(id: Int)
+    case rateRecipe(body: RatingRequestBody)
 }
 
 extension RecipePageEndpoint: AKNetworkTargetType {
@@ -24,15 +26,27 @@ extension RecipePageEndpoint: AKNetworkTargetType {
         switch self {
         case .getRecipe(let id):
             return "recipes/\(id)"
+        case .rateRecipe:
+            return "likes/likeToRecipe"
         }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .getRecipe:
+            return .get
+        case .rateRecipe:
+            return .post
+        }
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case .getRecipe:
+            return .requestPlain
+        case let .rateRecipe(body):
+            return .requestParameters(parameters: body.toJSON(), encoding: AKJSONEncoding.default)
+        }
     }
     
     var headers: [String: String]? {

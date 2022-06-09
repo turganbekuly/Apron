@@ -8,6 +8,7 @@
 
 protocol RecipePageBusinessLogic {
     func getRecipe(request: RecipePageDataFlow.GetRecipe.Request)
+    func rateRecipe(request: RecipePageDataFlow.RateRecipe.Request)
 }
 
 final class RecipePageInteractor: RecipePageBusinessLogic {
@@ -32,6 +33,17 @@ final class RecipePageInteractor: RecipePageBusinessLogic {
                 self?.presenter.getRecipe(response: .init(result: .successfull(model: model)))
             case let .failed(error):
                 self?.presenter.getRecipe(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func rateRecipe(request: RecipePageDataFlow.RateRecipe.Request) {
+        provider.rateRecipe(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.rateRecipe(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.rateRecipe(response: .init(result: .failed(error: error)))
             }
         }
     }

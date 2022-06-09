@@ -32,3 +32,22 @@ extension RecipePageDataFlow {
         case failed(error: AKNetworkError)
     }
 }
+
+extension RecipePageDataFlow {
+    enum RateRecipe {
+        struct Request {
+            let body: RatingRequestBody
+        }
+        struct Response {
+            let result: RateRecipeResult
+        }
+        struct ViewModel {
+            var state: RecipePageViewController.State
+        }
+    }
+
+    enum RateRecipeResult {
+        case successful(model: RatingResponse)
+        case failed(error: AKNetworkError)
+    }
+}
