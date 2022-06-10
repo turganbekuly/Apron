@@ -47,10 +47,11 @@ final class LoginTextField: UIView {
         return view
     }()
 
-    private lazy var textField: UITextField = {
+    lazy var textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .clear
         textField.placeholder = placeholder
+        textField.autocapitalizationType = .none
         return textField
     }()
 

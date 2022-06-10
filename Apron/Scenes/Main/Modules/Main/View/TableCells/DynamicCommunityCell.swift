@@ -21,7 +21,9 @@ final class DynamicCommunityCell: UITableViewCell {
     weak var cellActionsDelegate: JoinCommunityProtocol?
     lazy var dynamicCommunitiesSection: [DynamicCommunitySection] = [] {
         didSet {
-            communityCollectionView.reloadData()
+            communityCollectionView.performBatchUpdates {
+                communityCollectionView.reloadData()
+            }
         }
     }
     var categoryID = 0

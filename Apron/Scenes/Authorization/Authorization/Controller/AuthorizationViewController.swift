@@ -68,8 +68,8 @@ final class AuthorizationViewController: ViewController {
         state = { state }()
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         configureNavigation()
     }
     

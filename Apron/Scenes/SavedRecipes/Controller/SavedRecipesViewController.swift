@@ -34,7 +34,7 @@ final class SavedRecipesViewController: ViewController {
     // MARK: - Properties
     let interactor: SavedRecipesBusinessLogic
     lazy var sections: [Section] = [
-        .init(section: .recipes, rows: savedRecipes.compactMap { .recipe($0) })
+        .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
     ]
     var state: State {
         didSet {
@@ -50,6 +50,13 @@ final class SavedRecipesViewController: ViewController {
         let view = SavedRecipesView()
         view.dataSource = self
         view.delegate = self
+        view.refreshControl = refreshControl
+        return view
+    }()
+
+    public lazy var refreshControl: UIRefreshControl = {
+        let view = UIRefreshControl()
+        view.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         return view
     }()
     
@@ -129,6 +136,16 @@ final class SavedRecipesViewController: ViewController {
     
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func refresh(_ sender: UIRefreshControl) {
+        sections = [.init(section: .recipes, rows: Array(repeating: .loading, count: 10))]
+        mainView.reloadData()
+        currentPage = 1
+        getSavedRecipes(page: currentPage)
     }
     
     deinit {

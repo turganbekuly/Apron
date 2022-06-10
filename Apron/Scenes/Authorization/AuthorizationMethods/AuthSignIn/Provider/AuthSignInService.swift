@@ -9,7 +9,10 @@
 import AKNetwork
 
 protocol AuthSignInServiceProtocol {
-    
+    func login(
+        request: AuthSignInDataFlow.Login.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class AuthSignInService: AuthSignInServiceProtocol {
@@ -23,5 +26,16 @@ final class AuthSignInService: AuthSignInServiceProtocol {
     }
     
     // MARK: - AuthSignInServiceProtocol
-    
+
+    func login(
+        request: AuthSignInDataFlow.Login.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .login(
+            email: request.email,
+            password: request.password
+        )) { result in
+            completion(result)
+        }
+    }
 }

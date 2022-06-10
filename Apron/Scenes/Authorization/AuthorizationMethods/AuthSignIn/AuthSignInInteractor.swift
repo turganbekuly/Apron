@@ -7,7 +7,7 @@
 //
 
 protocol AuthSignInBusinessLogic {
-    
+    func login(request: AuthSignInDataFlow.Login.Request)
 }
 
 final class AuthSignInInteractor: AuthSignInBusinessLogic {
@@ -25,4 +25,14 @@ final class AuthSignInInteractor: AuthSignInBusinessLogic {
     
     // MARK: - AuthSignInBusinessLogic
 
+    func login(request: AuthSignInDataFlow.Login.Request) {
+        provider.login(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.login(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.login(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
 }

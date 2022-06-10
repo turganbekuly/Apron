@@ -8,12 +8,13 @@
 
 import APRUIKit
 import UIKit
+import AlertMessages
 
 protocol AuthSignInDisplayLogic: AnyObject {
-    
+    func login(viewModel: AuthSignInDataFlow.Login.ViewModel)
 }
 
-final class AuthSignInViewController: ViewController {
+final class AuthSignInViewController: ViewController, Messagable {
     // MARK: - Properties
 
     let interactor: AuthSignInBusinessLogic

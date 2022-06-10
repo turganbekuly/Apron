@@ -45,6 +45,7 @@ public class RoundedTextField: UIView {
         textfield.placeholder = placeholder
         textfield.backgroundColor = .clear
         textfield.font = TypographyFonts.regular12
+        textfield.autocapitalizationType = .none
         return textfield
     }()
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CommunityResponse: Codable {
+public struct CommunityResponse: Codable, Equatable {
     private enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -66,5 +66,12 @@ public struct CommunityResponse: Codable {
         self.joined = json[CodingKeys.joined.rawValue] as? Bool
         self.recipesCount = json[CodingKeys.recipesCount.rawValue] as? Int
         self.usersCount = json[CodingKeys.usersCount.rawValue] as? Int
+    }
+
+    // MARK: - Methods
+
+    public static func == (lhs: CommunityResponse, rhs: CommunityResponse) -> Bool {
+        if lhs.id == rhs.id { return true }
+        return false
     }
 }

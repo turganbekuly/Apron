@@ -10,4 +10,7 @@ extension AuthSignInViewController {
     
     // MARK: - Network
 
+    func login(email: String, password: String) {
+        interactor.login(request: .init(email: email, password: password))
+    }
 }

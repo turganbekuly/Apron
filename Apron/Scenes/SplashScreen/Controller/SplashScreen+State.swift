@@ -33,8 +33,10 @@ extension SplashScreenViewController {
         case .updateTokenFailed:
             AuthStorage.shared.clear()
             let vc = AuthorizationBuilder(state: .initial).build()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
-                UIApplication.shared.windows.first?.rootViewController = vc
+                self.present(navVC, animated: true)
             }
         }
     }

@@ -11,31 +11,43 @@ import AKNetwork
 import Storages
 
 enum AuthSignInEndpoint {
-    
+    case login(email: String, password: String)
 }
 
 extension AuthSignInEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
-    
+
     var path: String {
-        return ""
+        switch self {
+        case .login:
+            return "users/login"
+        }
     }
-    
+
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .login:
+            return .post
+        }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case let .login(email, password):
+            return .requestParameters(
+                parameters: ["email": email, "password": password],
+                encoding: AKJSONEncoding.default
+            )
+        }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -46,5 +58,4 @@ extension AuthSignInEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
 }

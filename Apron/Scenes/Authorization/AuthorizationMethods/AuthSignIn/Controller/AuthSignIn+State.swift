@@ -8,19 +8,32 @@
 
 import Models
 import UIKit
+import Storages
 
 extension AuthSignInViewController {
     
     // MARK: - State
     public enum State {
         case initial
+        case loginSucceed(Auth)
+        case loginFailed(AKNetworkError)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
-            break
+            AuthStorage.shared.clear()
+        case let .loginSucceed(model):
+            hideLoader()
+            AuthStorage.shared.save(model: model)
+            let viewController = TabBarBuilder(state: .initial(.normal)).build()
+            DispatchQueue.main.async {
+                UIApplication.shared.windows.first?.rootViewController = viewController
+            }
+        case let .loginFailed(error):
+            hideLoader()
+            print(error)
         }
     }
     

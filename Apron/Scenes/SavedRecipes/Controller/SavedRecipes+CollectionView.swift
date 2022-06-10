@@ -23,6 +23,9 @@ extension SavedRecipesViewController: UICollectionViewDataSource {
         case .recipe:
             let cell: SavedRecipeCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
+        case .loading:
+            let cell: MainCommunityEmptyCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
+            return cell
         default:
             let cell: UICollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
@@ -47,7 +50,7 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case .recipe:
+        case .recipe, .loading:
             return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 218)
         default:
             return CGSize(width: 0, height: 0)

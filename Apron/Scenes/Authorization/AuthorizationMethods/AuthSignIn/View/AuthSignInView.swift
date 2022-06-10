@@ -10,7 +10,7 @@ import UIKit
 import APRUIKit
 
 protocol SignInProtocol: AnyObject {
-    func signInTapped()
+    func signInTapped(email: String, password: String)
 }
 
 final class AuthSignInView: UIView {
@@ -40,6 +40,7 @@ final class AuthSignInView: UIView {
 
     lazy var passwordTextField: LoginTextField = {
         let textField = LoginTextField(placeholder: "***********", title: "Password")
+        textField.textField.isSecureTextEntry = true
         return textField
     }()
 
@@ -91,6 +92,9 @@ final class AuthSignInView: UIView {
 
     @objc
     private func continueButtonTapped() {
-        delegate?.signInTapped()
+        delegate?.signInTapped(
+            email: emailTextField.textField.text ?? "",
+            password: passwordTextField.textField.text ?? ""
+        )
     }
 }

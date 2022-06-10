@@ -201,7 +201,7 @@ final class MainViewController: ViewController, Messagable {
         }
 
         self.sections = sections
-        mainView.reloadData()
+        mainView.reloadTableViewWithoutAnimation()
     }
 
     // MARK: - User actions

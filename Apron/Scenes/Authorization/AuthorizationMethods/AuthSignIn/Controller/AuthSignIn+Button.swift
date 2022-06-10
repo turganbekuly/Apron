@@ -8,10 +8,8 @@
 import UIKit
 
 extension AuthSignInViewController: SignInProtocol {
-    func signInTapped() {
-        let viewController = TabBarBuilder(state: .initial(.normal)).build()
-        DispatchQueue.main.async {
-            UIApplication.shared.windows.first?.rootViewController = viewController
-        }
+    func signInTapped(email: String, password: String) {
+        login(email: email, password: password)
+        showLoader()
     }
 }

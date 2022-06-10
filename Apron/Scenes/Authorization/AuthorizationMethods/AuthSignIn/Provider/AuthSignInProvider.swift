@@ -7,9 +7,13 @@
 //
 
 import AKNetwork
+import Models
 
 protocol AuthSignInProviderProtocol {
-    
+    func login(
+        request: AuthSignInDataFlow.Login.Request,
+        compeletion: @escaping ((AuthSignInDataFlow.LoginResult) -> Void)
+    )
 }
 
 final class AuthSignInProvider: AuthSignInProviderProtocol {
@@ -25,4 +29,21 @@ final class AuthSignInProvider: AuthSignInProviderProtocol {
     
     // MARK: - AuthSignInProviderProtocol
 
+    func login(
+        request: AuthSignInDataFlow.Login.Request,
+        compeletion: @escaping ((AuthSignInDataFlow.LoginResult) -> Void)
+    ) {
+        service.login(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = Auth(json: json) {
+                    compeletion(.successful(model: jsons))
+                } else {
+                    compeletion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                compeletion(.failed(error: error))
+            }
+        }
+    }
 }

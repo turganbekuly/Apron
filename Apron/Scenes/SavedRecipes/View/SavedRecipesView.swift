@@ -43,7 +43,7 @@ final class SavedRecipesView: UICollectionView {
         showsHorizontalScrollIndicator = false
 
         [
-            SavedRecipeHeaderView.self
+            SavedRecipeHeaderView.self,
         ].forEach {
             register(
                 viewClass: $0,
@@ -52,7 +52,8 @@ final class SavedRecipesView: UICollectionView {
         }
 
         [
-            SavedRecipeCell.self
+            SavedRecipeCell.self,
+            MainCommunityEmptyCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }

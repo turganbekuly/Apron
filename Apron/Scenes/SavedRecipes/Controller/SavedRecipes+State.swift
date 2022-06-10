@@ -26,7 +26,7 @@ extension SavedRecipesViewController {
         case let .getSavedRecipesSucceed(model):
             updateList(with: model)
         case let .getSavedRecipesFailed(error):
-            print(error)
+            endRefreshingIfNeeded()
         }
     }
 
@@ -43,7 +43,14 @@ extension SavedRecipesViewController {
         guard let section = sections.firstIndex(where: { $0.section == .recipes }) else { return }
         currentPage += 1
         sections[section].rows = savedRecipes.compactMap { .recipe($0) }
+        endRefreshingIfNeeded()
         mainView.finishInfiniteScroll()
         mainView.reloadData()
+    }
+
+    func endRefreshingIfNeeded() {
+        DispatchQueue.main.async { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
     }
 }
