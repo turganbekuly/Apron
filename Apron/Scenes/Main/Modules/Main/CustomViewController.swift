@@ -7,7 +7,7 @@
 
 import UIKit
 import Protocols
-import DesignSystem
+import APRUIKit
 
 final class CustomViewController: ViewController {
 

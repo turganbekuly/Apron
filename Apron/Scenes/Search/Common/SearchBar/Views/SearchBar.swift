@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 14.01.2022.
 //
 
-import DesignSystem
+import APRUIKit
 import UIKit
 
 public final class SearchBar: UISearchBar {

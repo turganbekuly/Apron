@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 04.06.2022.
 //
 
-import DesignSystem
+import APRUIKit
 import Storages
 
 extension ViewController {

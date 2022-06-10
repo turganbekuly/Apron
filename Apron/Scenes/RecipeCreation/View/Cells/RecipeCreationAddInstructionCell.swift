@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 protocol AddInstructionCellTappedDelegate: AnyObject {
     func onAddInstructionTapped()

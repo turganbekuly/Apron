@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 protocol RecipeCreationPlaceholderImageCellProtocol: AnyObject {
     func chooseImageDidTapped()

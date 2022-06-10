@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 extension ShoppingListViewController: UITableViewDataSource {
     

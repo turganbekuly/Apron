@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 protocol CommunityDescriptionCellDelegate: AnyObject {
     func cell(_ cell: CommunityCreationDescriptionCell, didEnteredDesc descr: String?)

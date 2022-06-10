@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "recipe_like_unselected.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

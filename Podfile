@@ -28,7 +28,7 @@ end
 def developmentPods
   pod 'Protocols', path: './Development Pods/Protocols'
   pod 'Onboarding', path: './Development Pods/Onboarding'
-  pod 'DesignSystem', path: './Development Pods/DesignSystem'
+  pod 'APRUIKit', path: './Development Pods/APRUIKit'
   pod 'Extensions', path: './Development Pods/Extensions'
   pod 'Configurations', path: './Development Pods/Configurations'
   pod 'Storages', path: './Development Pods/Storages'

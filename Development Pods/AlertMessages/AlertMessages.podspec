@@ -18,13 +18,13 @@ Pod::Spec.new do |spec|
   spec.source_files  = ["**/*.{h,m,swift}"]
 
   spec.resources =  [
-  'DesignSystem/**/*.{json}'
+  'APRUIKit/**/*.{json}'
   ]
   spec.resource_bundles = { 'AlertMessages-Assets' => ['AlertMessages/**/*.{xcassets,json}'] }
 
   spec.dependency 'HapticTouch'
   spec.dependency 'Protocols'
-  spec.dependency 'DesignSystem'
+  spec.dependency 'APRUIKit'
   spec.dependency 'SwiftEntryKit'
   spec.dependency 'lottie-ios'
 

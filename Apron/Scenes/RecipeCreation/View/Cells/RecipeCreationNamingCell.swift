@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 protocol NamingCellDelegate: AnyObject {
     func cell(_ cell: RecipeCreationNamingCell, didEnteredName name: String?)

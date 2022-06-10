@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 final class CaloriesView: UIView {
     // MARK: - Init

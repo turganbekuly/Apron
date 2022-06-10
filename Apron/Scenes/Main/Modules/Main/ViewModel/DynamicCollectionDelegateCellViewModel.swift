@@ -7,7 +7,7 @@
 
 import Models
 import Storages
-import DesignSystem
+import APRUIKit
 
 protocol IDynamicCollectionDelegateCellViewModel {
     var sectionHeaderTitle: String { get }

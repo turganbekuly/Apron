@@ -7,7 +7,7 @@
 
 import UIKit
 import Photos
-import DesignSystem
+import APRUIKit
 
 extension RecipeCreationViewController {
     // MARK: - Open media modal

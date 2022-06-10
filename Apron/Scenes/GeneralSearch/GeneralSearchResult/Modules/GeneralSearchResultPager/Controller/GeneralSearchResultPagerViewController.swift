@@ -7,7 +7,7 @@
 //
 
 import Models
-import DesignSystem
+import APRUIKit
 import UIKit
 
 public protocol GeneralSearchResultPagerViewControllerDelegate: AnyObject {

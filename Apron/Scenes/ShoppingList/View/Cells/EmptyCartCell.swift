@@ -1,12 +1,12 @@
 //
 //  EmptyCartCell.swift
-//  DesignSystem
+//  APRUIKit
 //
 //  Created by Akarys Turganbekuly on 05.05.2022.
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 final class EmptyCartCell: UITableViewCell {
     // MARK: - Init

@@ -11,16 +11,16 @@ import UIKit
 
 extension AuthorizationViewController: IAuthorizationView {
     public func buttonPressed(type: AuthorizationType) {
-//        let viewController = TabBarBuilder(state: .initial(.normal)).build()
-//        DispatchQueue.main.async {
-//            UIApplication.shared.windows.first?.rootViewController = viewController
-//        }
-        var viewController: UIViewController?
-
-        switch type {
-        default:
-            interactor.login(request: .init(email: "akarysid@gmail.com", password: "12345678"))
+        let viewController = TabBarBuilder(state: .initial(.normal)).build()
+        DispatchQueue.main.async {
+            UIApplication.shared.windows.first?.rootViewController = viewController
         }
+//        var viewController: UIViewController?
+//
+//        switch type {
+//        default:
+//            interactor.login(request: .init(email: "akarysid@gmail.com", password: "12345678"))
+//        }
 //        switch type {
 //        case .signin:
 //            viewController = AuthSignInBuilder(state: .initial).build()

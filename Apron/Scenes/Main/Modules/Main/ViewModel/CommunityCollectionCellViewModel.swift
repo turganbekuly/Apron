@@ -7,7 +7,7 @@
 
 import Models
 import Storages
-import DesignSystem
+import APRUIKit
 import UIKit
 
 protocol ICommunityCollectionCellViewModel {

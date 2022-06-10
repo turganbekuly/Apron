@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "creation_plus_button.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

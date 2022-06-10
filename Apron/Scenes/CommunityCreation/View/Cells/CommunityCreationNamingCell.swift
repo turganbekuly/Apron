@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 protocol CommunityNamingCellDelegate: AnyObject {
     func cell(_ cell: CommunityCreationNamingCell, didEnteredName name: String?)

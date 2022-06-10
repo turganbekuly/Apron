@@ -1,4 +1,4 @@
-import DesignSystem
+import APRUIKit
 import UIKit
 
 public struct ErrorMessageViewModel: MessageProtocol {

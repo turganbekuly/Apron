@@ -8,7 +8,7 @@
 
 import Models
 import UIKit
-import DesignSystem
+import APRUIKit
 
 extension MainViewController {
     

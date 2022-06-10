@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 protocol SignUpProtocol: AnyObject {
     func signUpTapped()

@@ -18,6 +18,6 @@ Pod::Spec.new do |spec|
   spec.source_files  = ["**/*.{h,m,swift}"]
 
   spec.dependency 'Decoders'
-  spec.dependency 'DesignSystem'
+  spec.dependency 'APRUIKit'
 
 end

@@ -6,7 +6,7 @@
 //
 
 import Models
-import DesignSystem
+import APRUIKit
 import SnapKit
 import UIKit
 

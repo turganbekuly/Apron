@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 import Lottie
 
 protocol ISplashScreenView: AnyObject {

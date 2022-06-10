@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 06.01.2022.
 //
 
-import DesignSystem
+import APRUIKit
 import UIKit
 
 protocol ISkipButtonActionHander: AnyObject {

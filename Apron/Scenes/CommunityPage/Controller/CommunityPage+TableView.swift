@@ -8,7 +8,7 @@
 
 import UIKit
 import UIScrollView_InfiniteScroll
-import DesignSystem
+import APRUIKit
 
 extension CommunityPageViewController: UITableViewDataSource {
 

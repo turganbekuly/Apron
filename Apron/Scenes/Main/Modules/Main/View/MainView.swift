@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 public final class MainView: UITableView {
 

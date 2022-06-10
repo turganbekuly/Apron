@@ -7,7 +7,7 @@
 
 import Models
 import Storages
-import DesignSystem
+import APRUIKit
 
 protocol IMyCollectionDelegateCellViewModel {
     var myCommunities: [CommunityResponse] { get }

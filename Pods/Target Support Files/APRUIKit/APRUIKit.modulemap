@@ -1,0 +1,6 @@
+framework module APRUIKit {
+  umbrella header "APRUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

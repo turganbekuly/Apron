@@ -6,7 +6,7 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-import DesignSystem
+import APRUIKit
 import UIKit
 import Storages
 import AlertMessages

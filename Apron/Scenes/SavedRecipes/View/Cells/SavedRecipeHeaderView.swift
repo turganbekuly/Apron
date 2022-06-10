@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 protocol SavedHeaderActionProtocol: AnyObject {
     func searchBarDidTap()

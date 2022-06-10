@@ -26,6 +26,18 @@ Permission is granted to Apron.com
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>Copyright 2021
+Permission is granted to Apron.ws
+</string>
+			<key>License</key>
+			<string>Custom</string>
+			<key>Title</key>
+			<string>APRUIKit</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>Copyright (c) 2014-2022 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -177,18 +189,6 @@ Permission is granted to Apron.com
 			<string>Custom</string>
 			<key>Title</key>
 			<string>Decoders</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
-			<string>Copyright 2022
-Permission is granted to Apron.com
-</string>
-			<key>License</key>
-			<string>Custom</string>
-			<key>Title</key>
-			<string>DesignSystem</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

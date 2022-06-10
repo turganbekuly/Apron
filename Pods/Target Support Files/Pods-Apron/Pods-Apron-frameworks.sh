@@ -177,6 +177,7 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AKNetwork/AKNetwork.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/APRUIKit/APRUIKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlertMessages/AlertMessages.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework"
@@ -184,7 +185,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AnalyticsConnector/AnalyticsConnector.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Configurations/Configurations.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Decoders/Decoders.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/DesignSystem/DesignSystem.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Disk/Disk.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Extensions/Extensions.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework"
@@ -222,6 +222,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AKNetwork/AKNetwork.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/APRUIKit/APRUIKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlertMessages/AlertMessages.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework"
@@ -229,7 +230,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AnalyticsConnector/AnalyticsConnector.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Configurations/Configurations.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Decoders/Decoders.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/DesignSystem/DesignSystem.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Disk/Disk.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Extensions/Extensions.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework"

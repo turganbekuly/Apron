@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 protocol DescriptionCellDelegate: AnyObject {
     func cell(_ cell: RecipeCreationDescriptionCell, didEnteredDesc descr: String?)

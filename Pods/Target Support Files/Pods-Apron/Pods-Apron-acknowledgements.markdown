@@ -7,6 +7,12 @@ Copyright 2022
 Permission is granted to Apron.com
 
 
+## APRUIKit
+
+Copyright 2021
+Permission is granted to Apron.ws
+
+
 ## Alamofire
 
 Copyright (c) 2014-2022 Alamofire Software Foundation (http://alamofire.org/)
@@ -116,12 +122,6 @@ Permission is granted to Apron.com
 
 
 ## Decoders
-
-Copyright 2022
-Permission is granted to Apron.com
-
-
-## DesignSystem
 
 Copyright 2022
 Permission is granted to Apron.com

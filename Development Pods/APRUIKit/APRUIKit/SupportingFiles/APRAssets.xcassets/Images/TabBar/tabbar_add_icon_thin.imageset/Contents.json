@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "tabbar_add_icon_thin.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

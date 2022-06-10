@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 23.01.2022.
 //
 
-import DesignSystem
+import APRUIKit
 import UIKit
 
 final class LoginTextField: UIView {

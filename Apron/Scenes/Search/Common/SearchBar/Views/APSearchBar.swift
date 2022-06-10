@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 import SnapKit
 
 public protocol SearchBarDelegate: AnyObject {

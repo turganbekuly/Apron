@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AKNetwork/AKNetwork.framework
+${BUILT_PRODUCTS_DIR}/APRUIKit/APRUIKit.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AlertMessages/AlertMessages.framework
 ${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework
@@ -7,7 +8,6 @@ ${BUILT_PRODUCTS_DIR}/Amplitude/Amplitude.framework
 ${BUILT_PRODUCTS_DIR}/AnalyticsConnector/AnalyticsConnector.framework
 ${BUILT_PRODUCTS_DIR}/Configurations/Configurations.framework
 ${BUILT_PRODUCTS_DIR}/Decoders/Decoders.framework
-${BUILT_PRODUCTS_DIR}/DesignSystem/DesignSystem.framework
 ${BUILT_PRODUCTS_DIR}/Disk/Disk.framework
 ${BUILT_PRODUCTS_DIR}/Extensions/Extensions.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework

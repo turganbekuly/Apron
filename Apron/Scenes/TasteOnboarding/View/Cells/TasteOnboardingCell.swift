@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 05.01.2022.
 //
 
-import DesignSystem
+import APRUIKit
 import UIKit
 import M13Checkbox
 import HapticTouch

@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 14.05.2022.
 //
 
-import DesignSystem
+import APRUIKit
 import UIKit
 
 extension GeneralSearchResultViewController: UICollectionViewDataSource {

@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 19.01.2022.
 //
 
-import DesignSystem
+import APRUIKit
 import UIKit
 import SnapKit
 import Storages

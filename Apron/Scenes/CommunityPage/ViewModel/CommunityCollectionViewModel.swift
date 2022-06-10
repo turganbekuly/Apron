@@ -7,7 +7,7 @@
 
 import Models
 import Storages
-import DesignSystem
+import APRUIKit
 
 protocol ICommunityCollectionViewModel {
     var recipesDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)? { get }

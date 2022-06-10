@@ -7,7 +7,7 @@
 
 import UIKit
 import Photos
-import DesignSystem
+import APRUIKit
 
 extension CommunityCreationViewController {
     // MARK: - Open media modal

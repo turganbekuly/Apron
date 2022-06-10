@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 public protocol IAuthorizationView: AnyObject {
     func buttonPressed(type: AuthorizationType)

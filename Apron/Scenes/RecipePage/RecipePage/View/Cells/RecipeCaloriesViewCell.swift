@@ -7,7 +7,7 @@
 
 
 import UIKit
-import DesignSystem
+import APRUIKit
 
 final class RecipeCaloriesViewCell: UITableViewCell {
     // MARK: - Init

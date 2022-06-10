@@ -6,7 +6,7 @@
 //
 
 import HapticTouch
-import DesignSystem
+import APRUIKit
 import SwiftEntryKit
 import UIKit
 

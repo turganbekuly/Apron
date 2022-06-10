@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 import Models
 
 protocol DynamicCommunityCellProtocol: AnyObject {

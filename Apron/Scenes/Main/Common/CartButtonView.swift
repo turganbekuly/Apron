@@ -1,12 +1,12 @@
 //
 //  CartButtonView.swift
-//  DesignSystem
+//  APRUIKit
 //
 //  Created by Akarys Turganbekuly on 22.02.2022.
 //
 
 import UIKit
-import DesignSystem
+import APRUIKit
 import Storages
 
 public final class CartButtonView: UIView {
@@ -48,7 +48,8 @@ public final class CartButtonView: UIView {
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.navCartIconFilled.image
+        imageView.image = UIImage(systemName: "cart.fill")
+        imageView.tintColor = .white
         return imageView
     }()
 

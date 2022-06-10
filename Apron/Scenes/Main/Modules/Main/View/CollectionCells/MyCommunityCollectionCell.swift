@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 17.05.2022.
 //
 
-import DesignSystem
+import APRUIKit
 import UIKit
 import Kingfisher
 import HapticTouch
