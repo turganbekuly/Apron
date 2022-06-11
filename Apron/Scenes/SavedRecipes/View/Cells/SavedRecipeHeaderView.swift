@@ -43,12 +43,17 @@ final class SavedRecipeHeaderView: UICollectionReusableView {
         searchView.addGestureRecognizer(tapGR)
         addSubview(searchView)
         setupConstraints()
+        configureColor()
     }
 
     private func setupConstraints() {
         searchView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(16)
         }
+    }
+
+    private func configureColor() {
+        backgroundColor = ApronAssets.secondary.color
     }
 
     // MARK: - User actions
