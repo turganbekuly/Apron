@@ -37,7 +37,7 @@ extension CommunitiesListViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .community(community):
-            let viewController = CommunityPageBuilder(state: .initial(community.id)).build()
+            let viewController = CommunityPageBuilder(state: .initial(.fromMain(id: community.id))).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(viewController, animated: true)
             }

@@ -8,7 +8,7 @@
 import Extensions
 import UIKit
 
-public final class BlackOpButton: Button {
+public final class BlackOpButton: DefaultButton {
     public enum ArrowState {
         case none
         case left
@@ -22,7 +22,11 @@ public final class BlackOpButton: Button {
     }
 
     private let arrowState: ArrowState
-    private let backgroundType: ButtonType
+    public var backgroundType: ButtonType {
+        didSet {
+            configureColors()
+        }
+    }
 
     public override var isEnabled: Bool {
         didSet {

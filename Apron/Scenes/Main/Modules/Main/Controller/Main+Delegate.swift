@@ -19,7 +19,7 @@ extension MainViewController: JoinCommunityProtocol {
 
     func navigateToFromButtonCommunity(with id: Int) {
         handleAuthorizationStatus {
-            let vc = CommunityPageBuilder(state: .initial(id)).build()
+            let vc = CommunityPageBuilder(state: .initial(.fromMain(id: id))).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: true)
             }

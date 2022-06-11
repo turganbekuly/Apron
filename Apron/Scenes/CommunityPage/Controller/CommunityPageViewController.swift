@@ -31,6 +31,20 @@ public final class CommunityPageViewController: ViewController, Messagable {
         }
     }
 
+    var initialState: CommunityPageInitialState? {
+        didSet {
+            switch initialState {
+            case let .fromMain(id),
+                let .fromAddedRecipes(id):
+                getCommunities(by: id)
+                getRecipesByCommunity(id: id, currentPage: currentPage)
+                self.id = id
+            default:
+                break
+            }
+        }
+    }
+
     var selectedSegment: CommunitySegmentView.CommunitySegment? {
         didSet {
             //
@@ -43,7 +57,6 @@ public final class CommunityPageViewController: ViewController, Messagable {
                 return
             }
 
-            self.id = community.id
             self.imageView.imageUrl = community.image
             if recipes.isEmpty {
                 sections = [
@@ -166,7 +179,14 @@ public final class CommunityPageViewController: ViewController, Messagable {
         backButton.icon = ApronAssets.navBackButton.image.withTintColor(.black)
         moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
         backButton.onTouch = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            switch self?.initialState {
+            case .fromMain:
+                self?.navigationController?.popViewController(animated: true)
+            case .fromAddedRecipes:
+                self?.navigationController?.popToRootViewController(animated: true)
+            default:
+                break
+            }
         }
         [imageView, mainView, navigationBarView, createRecipeButton].forEach { view.addSubview($0) }
 

@@ -12,8 +12,8 @@ import UIKit
 extension CommunityPageViewController {
     
     // MARK: - State
-    public enum State {
-        case initial(Int)
+    enum State {
+        case initial(CommunityPageInitialState)
         case displayCommunity(CommunityResponse)
         case displayCommunityError(AKNetworkError)
         case joinedCommunity
@@ -25,11 +25,10 @@ extension CommunityPageViewController {
     }
     
     // MARK: - Methods
-    public func updateState() {
+    func updateState() {
         switch state {
-        case let .initial(id):
-            getCommunities(by: id)
-            getRecipesByCommunity(id: id, currentPage: currentPage)
+        case let .initial(initialState):
+            self.initialState = initialState
         case let .displayCommunity(model):
             self.community = model
         case let .displayCommunityError(error):
