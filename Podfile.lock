@@ -18,6 +18,7 @@ PODS:
     - AlignedCollectionViewFlowLayout
     - Extensions
     - M13Checkbox
+    - NVActivityIndicatorView
     - Protocols
     - SnapKit
   - Configurations (0.0.1)
@@ -151,6 +152,9 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - Onboarding (0.0.1)
   - OneSignalXCFramework (3.11.1):
     - OneSignalXCFramework/OneSignalCore (= 3.11.1)
@@ -224,6 +228,7 @@ SPEC REPOS:
     - M13Checkbox
     - Moya
     - nanopb
+    - NVActivityIndicatorView
     - OneSignalXCFramework
     - PanModal
     - PromisesObjC
@@ -261,11 +266,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AKNetwork: c138f069e3767abac65c9a70b93531b652120561
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
-  AlertMessages: 8b8319e245637e6b09a7338fc3cec1fcb5046286
+  AlertMessages: 8ee9d8c7c0ea2295fea1eda9c3a09e45e8183cb3
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   Amplitude: 2904f346250510b9e19a4e2262017bcf1d4368f9
   AnalyticsConnector: 4c386d5972ac9da86e22d668564dbbac97558754
-  APRUIKit: aae6f54358cc0b41321bc5ce7e2ea2a3cbbd3515
+  APRUIKit: 6a78aefc354a0dc868e4b74f348d33a843dc2300
   Configurations: 2c6d946ac020900a1efcdcecaaedb476e27363f1
   Decoders: 4cb97a705767a209973d74401515ef061921184b
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e
@@ -291,6 +296,7 @@ SPEC CHECKSUMS:
   Models: a7fbee4374677bbf44a75e78335690af7d949c2c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   Onboarding: f87883852b3e7544578236da0c4a91c1857f7b51
   OneSignalXCFramework: 8bdcaa3b7f6082565bf29c5481435376a33e94f2
   PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974

@@ -27,12 +27,10 @@ final class AuthorizationViewController: ViewController {
     
     // MARK: - Views
 
-    private lazy var skipButton: BlackOpButton = {
-        let button = BlackOpButton(arrowState: .none, frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+    private lazy var skipButton: NavigationButton = {
+        let button = NavigationButton()
         button.setTitle("Пропустить", for: .normal)
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
         return button
     }()
 
@@ -84,6 +82,10 @@ final class AuthorizationViewController: ViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: skipButton)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = .clear
+        skipButton.snp.makeConstraints {
+            $0.height.equalTo(30)
+            $0.width.equalTo(100)
+        }
     }
     
     private func configureViews() {

@@ -64,12 +64,10 @@ final class IngredientSelectionViewController: ViewController {
         return picker
     }()
 
-    private lazy var saveButton: BlackOpButton = {
-        let button = BlackOpButton(arrowState: .none, frame: CGRect(x: 0, y: 0, width: 90, height: 30))
+    private lazy var saveButton: NavigationButton = {
+        let button = NavigationButton()
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
         return button
     }()
 
@@ -141,6 +139,10 @@ final class IngredientSelectionViewController: ViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
+        saveButton.snp.makeConstraints {
+            $0.height.equalTo(30)
+            $0.width.equalTo(100)
+        }
     }
     
     private func configureViews() {

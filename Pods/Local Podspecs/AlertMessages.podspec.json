@@ -21,7 +21,7 @@
     "**/*.{h,m,swift}"
   ],
   "resources": [
-    "DesignSystem/**/*.{json}"
+    "APRUIKit/**/*.{json}"
   ],
   "resource_bundles": {
     "AlertMessages-Assets": [

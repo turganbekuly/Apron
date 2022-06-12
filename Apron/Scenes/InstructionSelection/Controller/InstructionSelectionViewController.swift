@@ -62,12 +62,10 @@ final class InstructionSelectionViewController: ViewController {
         return view
     }()
 
-    private lazy var saveButton: BlackOpButton = {
-        let button = BlackOpButton(arrowState: .none, frame: CGRect(x: 0, y: 0, width: 90, height: 30))
+    private lazy var navigationRightButton: NavigationButton = {
+        let button = NavigationButton()
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
         return button
     }()
 
@@ -139,7 +137,11 @@ final class InstructionSelectionViewController: ViewController {
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navigationRightButton)
+        navigationRightButton.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(30)
+        }
     }
     
     private func configureViews() {
@@ -162,10 +164,10 @@ final class InstructionSelectionViewController: ViewController {
     private func configureSaveButton() {
         guard let description = instructionDesc, !description.isEmpty
         else {
-            saveButton.isEnabled = false
+            navigationRightButton.isEnabled = false
             return
         }
-        saveButton.isEnabled = true
+        navigationRightButton.isEnabled = true
     }
 
     // MARK: - User actions

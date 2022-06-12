@@ -67,15 +67,11 @@ final class ShoppingListViewController: ViewController, Messagable {
         return view
     }()
 
-    private lazy var shareButton: BlackOpButton = {
-        let button = BlackOpButton(
-            backgroundType: .whiteBackground, arrowState: .none,
-            frame: CGRect(x: 0, y: 0, width: 90, height: 30)
-        )
+    private lazy var navigationRightButton: NavigationButton = {
+        let button = NavigationButton()
+        button.backgroundType = .whiteBackground
         button.setTitle("Поделиться", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
         return button
     }()
 
@@ -157,7 +153,11 @@ final class ShoppingListViewController: ViewController, Messagable {
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: shareButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navigationRightButton)
+        navigationRightButton.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(30)
+        }
     }
     
     private func configureViews() {

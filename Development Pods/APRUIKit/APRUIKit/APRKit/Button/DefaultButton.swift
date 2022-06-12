@@ -21,9 +21,13 @@ open class DefaultButton: UIButton {
     }()
 
     // MARK: - Init
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    public init() {
+        super.init(frame: .zero)
+        configure()
+    }
 
+    public override init(frame: CGRect = .zero) {
+        super.init(frame: frame)
         configure()
     }
 

@@ -42,5 +42,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'Protocols'
   spec.dependency 'SnapKit'
   spec.dependency 'M13Checkbox'
+  spec.dependency 'NVActivityIndicatorView'
 
 end
