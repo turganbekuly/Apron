@@ -1,0 +1,6 @@
+framework module RemoteConfig {
+  umbrella header "RemoteConfig-umbrella.h"
+
+  export *
+  module * { export * }
+}

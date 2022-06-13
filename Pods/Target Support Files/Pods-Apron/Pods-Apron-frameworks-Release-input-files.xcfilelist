@@ -10,6 +10,7 @@ ${BUILT_PRODUCTS_DIR}/Configurations/Configurations.framework
 ${BUILT_PRODUCTS_DIR}/Decoders/Decoders.framework
 ${BUILT_PRODUCTS_DIR}/Disk/Disk.framework
 ${BUILT_PRODUCTS_DIR}/Extensions/Extensions.framework
+${BUILT_PRODUCTS_DIR}/FeatureToggle/FeatureToggle.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework
@@ -31,6 +32,7 @@ ${BUILT_PRODUCTS_DIR}/Onboarding/Onboarding.framework
 ${BUILT_PRODUCTS_DIR}/PanModal/PanModal.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
 ${BUILT_PRODUCTS_DIR}/Protocols/Protocols.framework
+${BUILT_PRODUCTS_DIR}/RemoteConfig/RemoteConfig.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/Storages/Storages.framework
 ${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework

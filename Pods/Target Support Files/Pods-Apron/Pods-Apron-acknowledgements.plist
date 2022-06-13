@@ -237,6 +237,18 @@ Permission is granted to Apron.com
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>Copyright 2021
+Permission is granted to Apron.ws
+</string>
+			<key>License</key>
+			<string>Custom</string>
+			<key>Title</key>
+			<string>FeatureToggle</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>
                                  Apache License
                            Version 2.0, January 2004
@@ -2976,6 +2988,18 @@ Permission is granted to Apron.com
 			<string>Custom</string>
 			<key>Title</key>
 			<string>Protocols</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright 2021
+Permission is granted to Apron.ws
+</string>
+			<key>License</key>
+			<string>Custom</string>
+			<key>Title</key>
+			<string>RemoteConfig</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

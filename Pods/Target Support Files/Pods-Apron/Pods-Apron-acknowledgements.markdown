@@ -158,6 +158,12 @@ Copyright 2022
 Permission is granted to Apron.com
 
 
+## FeatureToggle
+
+Copyright 2021
+Permission is granted to Apron.ws
+
+
 ## Firebase
 
 
@@ -2750,6 +2756,12 @@ THE SOFTWARE.
 
 Copyright 2022
 Permission is granted to Apron.com
+
+
+## RemoteConfig
+
+Copyright 2021
+Permission is granted to Apron.ws
 
 
 ## SnapKit

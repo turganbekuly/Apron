@@ -26,7 +26,7 @@ final class SplashScreenPresenter: SplashScreenPresentationLogic {
 
             switch response.result {
             case let .successful(model):
-                viewModel = .init(state: .updateTokenSucceed(model))
+                viewModel = .init(state: .updateTokenSucceed(newToken: model))
             case let .failed(error):
                 viewModel = .init(state: .updateTokenFailed(error))
             }

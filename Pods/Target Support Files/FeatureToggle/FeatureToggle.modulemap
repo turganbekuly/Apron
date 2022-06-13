@@ -1,0 +1,6 @@
+framework module FeatureToggle {
+  umbrella header "FeatureToggle-umbrella.h"
+
+  export *
+  module * { export * }
+}

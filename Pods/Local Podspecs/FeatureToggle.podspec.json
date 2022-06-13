@@ -1,0 +1,24 @@
+{
+  "name": "FeatureToggle",
+  "version": "0.0.1",
+  "summary": "FeatureToggle для Apron.kz",
+  "description": "0.0.1 Первая версия",
+  "homepage": "https://apron.ws",
+  "license": {
+    "type": "Custom",
+    "text": "    Copyright 2021\n    Permission is granted to Apron.ws\n"
+  },
+  "authors": {
+    "Akarys Turganbekuly": "support@apron.ws"
+  },
+  "platforms": {
+    "ios": "13.0"
+  },
+  "source": {
+    "git": "https://github.com/turganbekuly/Apron.git",
+    "tag": "0.0.1"
+  },
+  "source_files": [
+    "**/*.{h,m,swift}"
+  ]
+}

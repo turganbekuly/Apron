@@ -1,6 +1,6 @@
 //
 //  UserSignedUpModel.swift
-//  SnoonuAnalytics
+//  Analytics
 //
 //  Created by Akarys Turganbekuly on 31.08.2021.
 //

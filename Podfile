@@ -37,6 +37,8 @@ def developmentPods
   pod 'HapticTouch', path: './Development Pods/HapticTouch'
   pod 'AKNetwork', path: './Development Pods/AKNetwork'
   pod 'AlertMessages', path: './Development pods/AlertMessages'
+  pod 'FeatureToggle', path: './Development pods/FeatureToggle'
+  pod 'RemoteConfig', path: './Development pods/RemoteConfig'
 end
 
 
