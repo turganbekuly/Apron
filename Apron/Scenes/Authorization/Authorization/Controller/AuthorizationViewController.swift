@@ -79,6 +79,7 @@ final class AuthorizationViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
+        navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: skipButton)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = .clear
@@ -122,7 +123,7 @@ final class AuthorizationViewController: ViewController {
                 } else {
                     let viewController = TabBarBuilder(state: .initial(.normal)).build()
                     DispatchQueue.main.async {
-                        self.navigationController?.pushViewController(viewController, animated: true)
+                        UIApplication.shared.windows.first?.rootViewController = viewController
                     }
                 }
             }

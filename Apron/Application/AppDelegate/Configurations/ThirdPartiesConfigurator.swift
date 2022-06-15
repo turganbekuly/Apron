@@ -42,5 +42,8 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
         }
         OneSignal.initWithLaunchOptions(launchOptions)
         OneSignal.setAppId(Configurations.getOneSignalAppID())
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notification: \(accepted)")
+        })
     }
 }

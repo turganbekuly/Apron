@@ -15,10 +15,8 @@ extension SplashScreenViewController: ISplashScreenView {
         } else {
             AuthStorage.shared.clear()
             let vc = AuthorizationBuilder(state: .initial).build()
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
-                self.present(navVC, animated: true)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

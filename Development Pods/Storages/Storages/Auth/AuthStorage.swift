@@ -19,6 +19,7 @@ public protocol AuthStorageProtocol {
     var refreshToken: String? { get set }
     var deviceToken: String? { get set }
     var isUserAuthorized: Bool { get set }
+    var launchAuthorizationScreenShown: Bool { get set }
     func save(model: Auth)
     func clear()
     func canAuthentificate() -> Bool
@@ -32,6 +33,7 @@ public final class AuthStorage: AuthStorageProtocol {
         static let refreshToken = "refreshToken"
         static let deviceToken = "deviceToken"
         static let isUserAuthorized = "isUserAuthorized"
+        static let launchAuthorizationScreenShown = "launchAuthorizationScreenShown"
     }
 
     // MARK: - Properties
@@ -62,6 +64,11 @@ public final class AuthStorage: AuthStorageProtocol {
     public var isUserAuthorized: Bool {
         get { AuthStorage.isUserAuthorized }
         set { AuthStorage.isUserAuthorized = newValue }
+    }
+
+    public var launchAuthorizationScreenShown: Bool {
+        get { AuthStorage.launchAuthorizationScreenShown }
+        set { AuthStorage.launchAuthorizationScreenShown = newValue }
     }
 
     // MARK: - Init
@@ -134,8 +141,13 @@ public final class AuthStorage: AuthStorageProtocol {
 }
 
 private extension AuthStorage {
-
-    // MARK: - AuthStorage
+    // MARK: - User authorized
     @UserDefaultsEntry("isUserAuthorized", defaultValue: false)
     static var isUserAuthorized: Bool
+}
+
+private extension AuthStorage {
+    // MARK: - First entry from start
+    @UserDefaultsEntry("launchAuthorizationScreenShown", defaultValue: false)
+    static var launchAuthorizationScreenShown: Bool
 }

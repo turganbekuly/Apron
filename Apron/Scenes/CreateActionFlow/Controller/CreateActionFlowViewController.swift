@@ -98,7 +98,6 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
                 break
             }
             mainView.reloadData()
-
         }
     }
 
@@ -109,7 +108,23 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
     }
 
     var longFormHeight: PanModalHeight {
-        return .contentHeight(170)
+        guard let initialState = initialState else {
+            return .contentHeight(170)
+        }
+        switch initialState {
+        case .mainPageCommunityCreation:
+            return .contentHeight(170)
+        case .communityPageRecipeCreation:
+            return .contentHeight(90)
+        case .communityPageMore:
+            return .contentHeight(30)
+        case .recipePageMore:
+            return .contentHeight(170)
+        case .recipePageAddTo:
+            return .contentHeight(170)
+        case .savedPageCreate:
+            return .contentHeight(170)
+        }
     }
 
     var cornerRadius: CGFloat {
@@ -156,6 +171,12 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
         super.viewWillAppear(animated)
         
         configureNavigation()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        panModalSetNeedsLayoutUpdate()
+        panModalTransition(to: .longForm)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

@@ -184,6 +184,8 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
     private func configureButton(isJoined: Bool) {
         guard isJoined else {
             joinButton.setTitle("Вступить", for: .normal)
+            joinButton.setBackgroundColor(.black, for: .normal)
+            joinButton.setTitleColor(.white, for: .normal)
             joinButton.snp.updateConstraints( {
                 $0.width.equalTo(93)
             })
@@ -211,12 +213,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
             return
         }
         HapticTouch.generateSuccess()
-        joinButton.setTitle("Уже вступили", for: .normal)
-        joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-        joinButton.setTitleColor(.black, for: .normal)
-        joinButton.snp.updateConstraints {
-            $0.width.equalTo(129)
-        }
+        isJoined = true
         layoutIfNeeded()
         delegate?.didTapJoinCommunity(with: id)
     }

@@ -8,6 +8,7 @@
 import UIKit
 import Protocols
 import Amplitude
+import Storages
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         configurators.forEach { $0.configure(application, launchOptions: launchOptions) }
+        AuthStorage.shared.clear()
         return true
     }
 
