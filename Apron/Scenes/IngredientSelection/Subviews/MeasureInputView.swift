@@ -8,13 +8,19 @@
 import UIKit
 import APRUIKit
 
-protocol MeasureInputViewProtocol: AnyObject { }
+protocol MeasureInputViewProtocol: AnyObject {
+    func measurementTextFieldDidChange(text: String?)
+}
 
 final class MeasureInputView: UIView {
     // MARK: - Private properties
 
     private var amountPlaceholder: String?
     private var measurePlaceholder: String?
+
+    // MARK: - Public properties
+
+    weak var delegate: MeasureInputViewProtocol?
 
     // MARK: - Init
 
@@ -62,6 +68,7 @@ final class MeasureInputView: UIView {
         textfield.placeholder = measurePlaceholder
         textfield.backgroundColor = .clear
         textfield.font = TypographyFonts.regular12
+        textfield.addTarget(self, action: #selector(measureTextFieldChanged(_:)), for: .editingChanged)
         return textfield
     }()
 
@@ -97,5 +104,12 @@ final class MeasureInputView: UIView {
             $0.leading.equalTo(dividerView.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(16)
         }
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func measureTextFieldChanged(_ sender: UITextField) {
+        delegate?.measurementTextFieldDidChange(text: sender.text)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Models
 import Storages
+import APRUIKit
 
 extension AuthorizationViewController {
     
@@ -30,8 +31,8 @@ extension AuthorizationViewController {
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = viewController
             }
-        case let .loginFailed(error):
-            print(error)
+        case .loginFailed:
+            show(type: .error(L10n.Common.errorMessage))
         }
     }
     

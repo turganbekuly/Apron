@@ -10,12 +10,13 @@ import APRUIKit
 import Protocols
 import UIKit
 import SnapKit
+import AlertMessages
 
 protocol AuthorizationDisplayLogic: AnyObject {
     func login(viewModel: AuthorizationDataFlow.Login.ViewModel)
 }
 
-final class AuthorizationViewController: ViewController {
+final class AuthorizationViewController: ViewController, Messagable {
     // MARK: - Properties
     let interactor: AuthorizationBusinessLogic
 
@@ -29,7 +30,7 @@ final class AuthorizationViewController: ViewController {
 
     private lazy var skipButton: NavigationButton = {
         let button = NavigationButton()
-        button.setTitle("Пропустить", for: .normal)
+        button.setTitle(L10n.Common.Skip.title, for: .normal)
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -110,11 +111,14 @@ final class AuthorizationViewController: ViewController {
     @objc
     private func skipButtonTapped() {
         let alert = UIAlertController(
-            title: "Вы действительно хотите пропустить?",
-            message: "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.",
+            title: L10n.Authorization.Skip.title,
+            message: L10n.Authorization.Skip.message,
             preferredStyle: .alert
         )
-        let yesAction = UIAlertAction(title: "Да", style: .default) { [weak self] _ in
+        let yesAction = UIAlertAction(
+            title: L10n.Common.yes,
+            style: .default
+        ) { [weak self] _ in
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
 
@@ -128,7 +132,10 @@ final class AuthorizationViewController: ViewController {
                 }
             }
         }
-        let noAction = UIAlertAction(title: "Нет", style: .cancel)
+        let noAction = UIAlertAction(
+            title: L10n.Common.no,
+            style: .cancel
+        )
         [noAction, yesAction].forEach {
             alert.addAction($0)
         }

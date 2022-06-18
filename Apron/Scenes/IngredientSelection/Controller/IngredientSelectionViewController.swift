@@ -10,12 +10,13 @@ import APRUIKit
 import UIKit
 import Models
 import DropDown
+import AlertMessages
 
 protocol IngredientSelectionDisplayLogic: AnyObject {
     func displayProducts(viewModel: IngredientSelectionDataFlow.GetProducts.ViewModel)
 }
 
-final class IngredientSelectionViewController: ViewController {
+final class IngredientSelectionViewController: ViewController, Messagable {
     // MARK: - Properties
 
     let interactor: IngredientSelectionBusinessLogic
@@ -50,11 +51,12 @@ final class IngredientSelectionViewController: ViewController {
 
     private lazy var dropDown = DropDown()
 
-    let measureTextField: MeasureInputView = {
+    lazy var measureTextField: MeasureInputView = {
         let inputView = MeasureInputView(
             amountPlaceholder: "Введите кол-во",
             measurePlaceholder: "Выберите тип"
         )
+        inputView.delegate = self
         return inputView
     }()
 
@@ -187,7 +189,7 @@ final class IngredientSelectionViewController: ViewController {
         view.backgroundColor = ApronAssets.secondary.color
     }
 
-    private func configureSaveButtonEnabled(isEnabled: Bool) {
+    func configureSaveButtonEnabled(isEnabled: Bool) {
         saveButton.isEnabled = isEnabled
     }
     
@@ -205,6 +207,10 @@ final class IngredientSelectionViewController: ViewController {
 
     @objc
     private func saveButtonTapped() {
+        guard let _ = recipeIgredient.id else {
+            show(type: .error("Пожалуйста, выберите ингредиент из списка"))
+            return
+        }
         recipeIgredient.amount = Double(measureTextField.amountTextField.text ?? "0")
         recipeIgredient.measurement = measureTextField.measurementTyptextField.text
         delegate?.onIngredientSelected(ingredient: recipeIgredient)

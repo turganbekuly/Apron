@@ -9,15 +9,16 @@
 import APRUIKit
 import UIKit
 import Protocols
+import RemoteConfig
 
- protocol TabBarDisplayLogic: AnyObject {
+protocol TabBarDisplayLogic: AnyObject {
     
 }
 
- final class TabBarViewController: AppTabBarController {
+final class TabBarViewController: AppTabBarController {
     // MARK: - Properties
 
-     var state: State {
+    var state: State {
         didSet {
             updateState()
         }
@@ -25,11 +26,10 @@ import Protocols
 
     lazy var pendingDeeplinkProvider = DeeplinkServicesContainer.shared.pendingDeeplinkProvider
 
-     enum ViewControllerTypes {
+    enum ViewControllerTypes {
         case main
         case search
         case saved
-        case planner
     }
 
     private lazy var mainModule = MainBuilder(state: .initial).build()
@@ -38,13 +38,13 @@ import Protocols
 
     // MARK: - Init
     
-     init(state: State) {
+    init(state: State) {
         self.state = state
 
         super.init(nibName: nil, bundle: nil)
     }
 
-     required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         return nil
     }
     
@@ -54,8 +54,13 @@ import Protocols
         super.viewDidLoad()
         state = { state }()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handleRemoteConfig()
+    }
     
-     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         configureColors()
@@ -63,7 +68,7 @@ import Protocols
     
     // MARK: - Methods
 
-     func configureTabBar() {
+    func configureTabBar() {
 
         viewControllers = [
             configureViewController(viewController: mainModule, type: .main),
@@ -76,17 +81,14 @@ import Protocols
         let navigationController = UINavigationController(rootViewController: viewController)
         switch type {
         case .main:
-            navigationController.tabBarItem.title = "Главная"
+            navigationController.tabBarItem.title = L10n.TabBar.Home.title
             navigationController.tabBarItem.image = ApronAssets.tabHomeSelectedIcon.image
         case .search:
-            navigationController.tabBarItem.title = "Поиск"
+            navigationController.tabBarItem.title = L10n.TabBar.Search.title
             navigationController.tabBarItem.image = ApronAssets.navSearchIcon.image
         case .saved:
-            navigationController.tabBarItem.title = "Избранное"
+            navigationController.tabBarItem.title = L10n.TabBar.Saved.title
             navigationController.tabBarItem.image = ApronAssets.tabFaveSelectedIcon.image
-        case .planner:
-            navigationController.tabBarItem.title = "Планнер"
-            navigationController.tabBarItem.image = ApronAssets.tabPlannerSelectedIcon.image
         }
         return navigationController
     }

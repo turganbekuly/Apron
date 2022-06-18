@@ -11,8 +11,13 @@ import Protocols
 import Configurations
 import FirebaseAnalytics
 import OneSignal
+import RemoteConfig
+import FeatureToggle
 
 final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
+    // MARK: - Private proeprties
+
+    var remoteConfigManager = RemoteConfigManager.shared.remoteConfig
     // MARK: - Methods
 
     func configure(_ application: UIApplication?, launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
@@ -23,7 +28,6 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
 
     private func configureFirebase() {
         FirebaseApp.configure()
-        Analytics.logEvent("test", parameters: [:])
     }
 
     private func configureAnalytics() {
@@ -45,5 +49,18 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notification: \(accepted)")
         })
+    }
+
+    private func prepareFirebaseRemoteConfig() {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let settings = RemoteConfigSettings()
+        settings.minimumFetchInterval = 0
+        remoteConfig.configSettings = settings
+        remoteConfig.fetchAndActivate { [weak self] _, _ in
+            self?.remoteConfigManager.updateConfig { toggles in
+                var config: [String: String] = [:]
+                toggles.forEach { config[$0.key] = "\($0.value)" }
+            }
+        }
     }
 }

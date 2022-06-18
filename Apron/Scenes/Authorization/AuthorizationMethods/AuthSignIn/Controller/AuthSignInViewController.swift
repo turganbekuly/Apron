@@ -98,7 +98,7 @@ final class AuthSignInViewController: ViewController, Messagable {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = .clear
     }
     
     private func configureViews() {

@@ -97,7 +97,7 @@ final class AuthSignUpViewController: ViewController {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = .clear
     }
     
     private func configureViews() {

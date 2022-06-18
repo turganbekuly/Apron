@@ -32,6 +32,63 @@ public enum L10n {
       /// Регистрация в Apron
       public static let title = L10n.tr("APRLocalizable", "Authorization.SignUp.Title")
     }
+    public enum Skip {
+      /// Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.
+      public static let message = L10n.tr("APRLocalizable", "Authorization.Skip.Message")
+      /// Вы действительно хотите пропустить?
+      public static let title = L10n.tr("APRLocalizable", "Authorization.Skip.Title")
+    }
+  }
+
+  public enum Common {
+    /// Произошла ошибка! Пожалуйста, попробуйте позднее
+    public static let errorMessage = L10n.tr("APRLocalizable", "Common.ErrorMessage")
+    /// Нет
+    public static let no = L10n.tr("APRLocalizable", "Common.No")
+    /// Да
+    public static let yes = L10n.tr("APRLocalizable", "Common.Yes")
+    public enum Join {
+      /// Вступить
+      public static let title = L10n.tr("APRLocalizable", "Common.Join.Title")
+    }
+    public enum Joined {
+      /// Уже вступили
+      public static let title = L10n.tr("APRLocalizable", "Common.Joined.Title")
+    }
+    public enum Save {
+      /// Сохранить
+      public static let title = L10n.tr("APRLocalizable", "Common.Save.Title")
+    }
+    public enum Share {
+      /// Поделиться
+      public static let title = L10n.tr("APRLocalizable", "Common.Share.Title")
+    }
+    public enum Skip {
+      /// Пропустить
+      public static let title = L10n.tr("APRLocalizable", "Common.Skip.Title")
+    }
+  }
+
+  public enum Communities {
+    public enum MyCommunity {
+      /// Мои сообщества
+      public static let title = L10n.tr("APRLocalizable", "Communities.MyCommunity.Title")
+    }
+  }
+
+  public enum TabBar {
+    public enum Home {
+      /// Главная
+      public static let title = L10n.tr("APRLocalizable", "TabBar.Home.Title")
+    }
+    public enum Saved {
+      /// Избранное
+      public static let title = L10n.tr("APRLocalizable", "TabBar.Saved.Title")
+    }
+    public enum Search {
+      /// Поиск
+      public static let title = L10n.tr("APRLocalizable", "TabBar.Search.Title")
+    }
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
