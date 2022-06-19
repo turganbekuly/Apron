@@ -34,8 +34,8 @@ import Configurations
             switch components.first {
             case "saved":
                 return .openSavedRecipes
-            case "planner":
-                return .openPlanner
+//            case "planner":
+//                return .openPlanner
             case "list":
                 return .openShoppingList
             default:

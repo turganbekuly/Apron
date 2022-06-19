@@ -22,6 +22,7 @@ extension TabBarViewController {
         case let .initial(state):
             configureTabBar()
             configureInitialState(state)
+            performDeeplink()
             pendingDeeplinkProvider.delegate = self
         }
     }

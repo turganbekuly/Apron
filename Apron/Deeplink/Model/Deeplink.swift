@@ -10,6 +10,5 @@ enum Deeplink: Equatable {
     case openRecipe(id: Int)
     case openShoppingList
     case openSavedRecipes
-    case openPlanner
     case unknown
 }

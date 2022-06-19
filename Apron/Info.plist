@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>OneSignal_suppress_launch_urls</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -26,7 +28,7 @@
 	<string>http://</string>
 	<key>Configuration.ONE_SIGNAL_APP_ID</key>
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
-	<key>Configuration.WEB_BASED_HOST</key>
+	<key>Configuration.WEB_BASED_URL</key>
 	<string>apron.ws</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>

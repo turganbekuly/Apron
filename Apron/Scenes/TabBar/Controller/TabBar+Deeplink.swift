@@ -26,77 +26,37 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
         changeTab(for: deeplink)
         guard let navigationController = children[safe: selectedIndex] as? UINavigationController else { return }
 
-        //        switch deeplink {
-        //        case .openAds:
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController
-        //            else { return }
-        //
-        //            DispatchQueue.main.async {
-        //                mainController.routeToAds(with: .hidden(Filter()))
-        //            }
-        //        case .openPersonalAds:
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is ProfileViewController }) as? ProfileViewController
-        //            else { return }
-        //
-        //            DispatchQueue.main.async {
-        //                mainController.showPersonalAds(initialState: .main)
-        //            }
-        //        case let .openAd(id):
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController
-        //            else { return }
-        //
-        //            mainController.setTabBarHidden(true)
-        //            let controller = AdBuilder(state: .initial(.main, id, [], nil)).build()
-        //            DispatchQueue.main.async {
-        //                navigationController.pushViewController(controller, animated: true)
-        //            }
-        //        case let .openPersonalAd(id):
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController
-        //            else { return }
-        //
-        //            mainController.setTabBarHidden(true)
-        //            let controller = AdBuilder(state: .initial(.active, id, [], nil)).build()
-        //            DispatchQueue.main.async {
-        //                navigationController.pushViewController(controller, animated: true)
-        //            }
-        //        case .openFavorites:
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is ProfileViewController }) as? ProfileViewController
-        //            else { return }
-        //
-        //            DispatchQueue.main.async {
-        //                mainController.showFavorites()
-        //            }
-        //        case .openCreateAd:
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController
-        //            else { return }
-        //
-        //            DispatchQueue.main.async {
-        //                mainController.showCreateAd()
-        //            }
-        //        case .openSellNow:
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController
-        //            else { return }
-        //
-        //            DispatchQueue.main.async {
-        //                mainController.showSellNow()
-        //            }
-        //        case .openBlog:
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController
-        //            else { return }
-        //
-        //            DispatchQueue.main.async {
-        //                mainController.showBlog()
-        //            }
-        //        case .openCredit:
-        //            guard let mainController = navigationController.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController
-        //            else { return }
-        //
-        //            DispatchQueue.main.async {
-        //                mainController.showCredit()
-        //            }
-        //        case .unknown:
-        //            print("Did received unknown")
-        //        }
+        switch deeplink {
+        case .openCommunity(let id):
+            guard
+                let mainController = navigationController.viewControllers
+                    .first(where: { $0 is MainViewController }) as? MainViewController
+            else { return }
+            let vc = CommunityPageBuilder(state: .initial(.fromMain(id: id))).build()
+            mainController.hidesBottomBarWhenPushed = false
+            DispatchQueue.main.async {
+                navigationController.pushViewController(vc, animated: true)
+            }
+        case .openRecipe(let id):
+            guard
+                let mainController = navigationController.viewControllers
+                    .first(where: { $0 is MainViewController }) as? MainViewController
+            else { return }
+            let vc = RecipePageBuilder(state: .initial(id: id)).build()
+            mainController.hidesBottomBarWhenPushed = true
+            DispatchQueue.main.async {
+                navigationController.pushViewController(vc, animated: true)
+            }
+        case .openShoppingList:
+            let vc = ShoppingListBuilder(state: .initial).build()
+            DispatchQueue.main.async {
+                navigationController.pushViewController(vc, animated: true)
+            }
+        case .openSavedRecipes:
+            changeTab(for: .openSavedRecipes)
+        case .unknown:
+            print("Did received unknown")
+        }
     }
 
     private func changeTab(for deeplink: Deeplink) {
@@ -104,8 +64,8 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
         case .openCommunity, .openRecipe, .openShoppingList:
             selectedIndex = 0
         case .openSavedRecipes:
-            selectedIndex = 1
-        case .unknown, .openPlanner:
+            selectedIndex = 2
+        case .unknown:
             print("Did received unknown")
         }
     }
