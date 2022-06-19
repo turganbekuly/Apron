@@ -33,18 +33,18 @@ extension MainViewController {
             getMyCommunities()
             getCommunitiesByCategory()
         case .joinedCommunityFailed:
-            print("")
+            show(type: .error(L10n.Common.errorMessage))
         case let .fetchCommunitiesByCategory(model):
             self.dynamicCommunities = model
             endRefreshingIfNeeded()
-        case let .fetchCommunitiesByCategoryFailed(error):
-            print(error)
+        case .fetchCommunitiesByCategoryFailed:
+            show(type: .error(L10n.Common.errorMessage))
             endRefreshingIfNeeded()
         case let .fetchMyCommunities(model):
             myCommunities = model
             endRefreshingIfNeeded()
-        case let .fetchMyCommunititesFailed(error):
-            print(error)
+        case .fetchMyCommunititesFailed:
+            show(type: .error(L10n.Common.errorMessage))
             endRefreshingIfNeeded()
         }
     }

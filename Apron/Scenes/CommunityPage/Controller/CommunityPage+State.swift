@@ -8,6 +8,7 @@
 
 import Models
 import UIKit
+import APRUIKit
 
 extension CommunityPageViewController {
     
@@ -31,20 +32,20 @@ extension CommunityPageViewController {
             self.initialState = initialState
         case let .displayCommunity(model):
             self.community = model
-        case let .displayCommunityError(error):
-            print(error)
+        case .displayCommunityError:
+            show(type: .error(L10n.Common.errorMessage))
         case .joinedCommunity:
             print("")
         case .joinedCommunityFailed:
-            print("")
+            show(type: .error(L10n.Common.errorMessage))
         case let .displayRecipes(model):
             updateList(with: model)
-        case let .displayRecipesFailed(error):
-            print(error)
+        case .displayRecipesFailed:
+            show(type: .error(L10n.Common.errorMessage))
         case let .saveRecipe(newCount):
             print(newCount)
-        case let .saveRecipeFailed(error):
-            print(error)
+        case .saveRecipeFailed:
+            show(type: .error(L10n.Common.errorMessage))
         }
     }
 

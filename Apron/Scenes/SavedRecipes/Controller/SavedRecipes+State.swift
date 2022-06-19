@@ -25,7 +25,7 @@ extension SavedRecipesViewController {
             getSavedRecipes(page: currentPage)
         case let .getSavedRecipesSucceed(model):
             updateList(with: model)
-        case let .getSavedRecipesFailed(error):
+        case .getSavedRecipesFailed:
             endRefreshingIfNeeded()
         }
     }

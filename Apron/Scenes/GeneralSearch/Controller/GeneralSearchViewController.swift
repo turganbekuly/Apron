@@ -46,8 +46,8 @@ final class GeneralSearchViewController: ViewController {
 
     lazy var mainView: GeneralSearchView = {
         let view = GeneralSearchView()
-        view.dataSource = self
-        view.delegate = self
+//        view.dataSource = self
+//        view.delegate = self
         return view
     }()
 

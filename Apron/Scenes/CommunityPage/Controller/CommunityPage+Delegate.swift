@@ -26,7 +26,7 @@ extension CommunityPageViewController: ICommunityInfoCell {
 
 extension CommunityPageViewController: SearchBarProtocol {
     func searchBarDidTap() {
-        guard let community = community else { return }
+        guard let _ = community else { return }
         let viewController = UINavigationController(
             rootViewController: GeneralSearchBuilder(
                 state: .initial(.main)

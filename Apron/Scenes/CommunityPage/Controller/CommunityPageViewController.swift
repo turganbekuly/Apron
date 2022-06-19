@@ -70,7 +70,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
                     )
                 ]
             }
-
+            createRecipeButton.isHidden = community.privateAdding == true ? true : false
             mainView.reloadTableViewWithoutAnimation()
         }
     }
@@ -108,6 +108,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
         button.layer.masksToBounds = true
         button.setImage(ApronAssets.creationPlusButton.image, for: .normal)
         button.clipsToBounds = true
+        button.isHidden = true
         return button
     }()
 
