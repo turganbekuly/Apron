@@ -67,8 +67,8 @@ final class AuthorizationViewController: ViewController, Messagable {
         state = { state }()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureNavigation()
     }
     

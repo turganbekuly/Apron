@@ -10,12 +10,13 @@ import APRUIKit
 import UIKit
 import Protocols
 import RemoteConfig
+import AlertMessages
 
 protocol TabBarDisplayLogic: AnyObject {
     
 }
 
-final class TabBarViewController: AppTabBarController {
+final class TabBarViewController: AppTabBarController, Messagable {
     // MARK: - Properties
 
     var state: State {

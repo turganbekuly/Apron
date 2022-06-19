@@ -24,6 +24,7 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
         configureFirebase()
         configureAnalytics()
         configureOneSignal(launchOptions: launchOptions)
+        prepareFirebaseRemoteConfig()
     }
 
     private func configureFirebase() {

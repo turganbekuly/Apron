@@ -63,6 +63,7 @@ public enum ApronAssets {
   public static let recipeAddIcon = ImageAsset(name: "recipe_add_icon")
   public static let recipeNewIcon = ImageAsset(name: "recipe_new_icon")
   public static let recipeSaveLinkIcon = ImageAsset(name: "recipe_saveLink_icon")
+  public static let forceUpdateImage = ImageAsset(name: "force_update_image")
   public static let iconPlaceholderCard = ImageAsset(name: "icon_placeholder_card")
   public static let iconPlaceholderItem = ImageAsset(name: "icon_placeholder_item")
   public static let navAvatarIcon = ImageAsset(name: "nav_avatar_icon")

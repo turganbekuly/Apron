@@ -13,6 +13,7 @@ public enum MessageType {
     case error(String)
     case success(String)
     case regular(UIImage, String)
+    case forceUpdate
 
     public var name: String {
         switch self {
@@ -26,6 +27,8 @@ public enum MessageType {
             return "regular"
         case .success:
             return "success"
+        case .forceUpdate:
+            return "forceUpdate"
         }
     }
 }

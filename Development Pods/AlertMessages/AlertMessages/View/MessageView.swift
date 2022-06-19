@@ -101,6 +101,8 @@ public class MessageView: UIView {
             return [iconImageView]
         case .loader:
             return [animationView]
+        case .forceUpdate:
+            return [subtitleLabel, firstButton, iconImageView]
         }
     }()
 
@@ -147,6 +149,13 @@ public class MessageView: UIView {
             iconImageView.image = viewModel.icon
         case .loader:
             addShadow(offset: .zero, radius: 50, opacity: 1)
+        case .forceUpdate:
+            subtitleLabel.attributedText = viewModel.subtitle
+            iconImageView.image = viewModel.icon
+            firstButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
+            firstButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+            firstButton.layer.cornerRadius = 28
+            firstButton.clipsToBounds = true
         }
         colorBackground = viewModel.backgroundColor
         colorTitle = viewModel.titleColor
@@ -180,6 +189,8 @@ public class MessageView: UIView {
             makeSuccessConstraints()
         case .loader:
             makeLoaderConstraints()
+        case .forceUpdate:
+            makeForceUpdateConstraints()
         }
     }
 
@@ -239,11 +250,38 @@ public class MessageView: UIView {
         }
     }
 
+    private func makeForceUpdateConstraints() {
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        headerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(16)
+        }
+        iconImageView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(200)
+        }
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(iconImageView.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+        firstButton.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(8)
+            make.height.equalTo(56)
+        }
+    }
+
     private func configureColors() {
         headerView.backgroundColor = colorBackground
         titleLabel.textColor = colorTitle
         switch type {
-        case .dialog:
+        case .dialog, .forceUpdate:
             subtitleLabel.textColor = colorSubtitle
         case .error, .regular, .success:
             iconImageView.tintColor = colorIcon

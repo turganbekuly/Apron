@@ -33,8 +33,7 @@ extension ResultListViewController {
             self.initialState = initialState
             self.query = query
         case let .fetchRecipesByCommunityId(model):
-//            updateRecipiesList(with: model)
-            print(model)
+            updateRecipiesList(with: model)
         case let .fetchRecipesByCommunityIdFailed(error):
             print(error)
         case let .fetchEverything(model):
@@ -47,8 +46,7 @@ extension ResultListViewController {
         case let .fetchEverythingFailed(error):
             print(error)
         case let .fetchSavedRecipes(model):
-//            updateRecipiesList(with: model)
-            print(model)
+            updateRecipiesList(with: model)
         case let .fetchSavedRecipesFailed(error):
             print(error)
         case let .fetchRecipes(model):

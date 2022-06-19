@@ -36,6 +36,18 @@ extension Messagable where Self: UIViewController {
         show(messageView: messageView, for: type)
     }
 
+    public func showForceUpdate(type: MessageType = .forceUpdate, updateButton: (() -> Void)? = nil) {
+        guard !SwiftEntryKit.isCurrentlyDisplaying(entryNamed: type.name) else { return }
+
+        let messageView = MessageView(type: type)
+        messageView.didTappedFirstButton = { [weak self] in
+            updateButton?()
+        }
+
+        configure(messageView: messageView, with: type)
+        show(messageView: messageView, for: type)
+    }
+
     public func showLoader() {
         show(type: .loader)
     }
@@ -55,6 +67,8 @@ extension Messagable where Self: UIViewController {
                 firstButtonTitle: firstButtonTitle,
                 secondButtonTitle: secondButtonTitle
             ))
+        case .forceUpdate:
+            messageView.configure(with: ForceUpdateMessageViewModel())
         case let .error(title):
             messageView.configure(with: ErrorMessageViewModel(title: title))
         case let .regular(icon, title):
@@ -110,6 +124,16 @@ extension Messagable where Self: UIViewController {
             attributes.screenInteraction = .absorbTouches
             attributes.scroll = .disabled
             messageView.animationView.play()
+        case .forceUpdate:
+            attributes.displayDuration = .infinity
+            attributes.entranceAnimation = .init(fade: .some(.init(from: 0, to: 1, duration: 0.3)))
+            attributes.entryInteraction = .absorbTouches
+            attributes.exitAnimation = .init(fade: .some(.init(from: 1, to: 0, duration: 0.3)))
+            attributes.position = .center
+            attributes.screenBackground = .color(color: .black.with(alpha: 0.7))
+            attributes.screenInteraction = .absorbTouches
+            attributes.scroll = .disabled
+            HapticTouch.generateError()
         }
         SwiftEntryKit.display(entry: messageView, using: attributes)
     }
