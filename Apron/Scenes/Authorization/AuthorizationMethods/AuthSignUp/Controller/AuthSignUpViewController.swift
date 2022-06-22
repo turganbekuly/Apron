@@ -30,32 +30,7 @@ final class AuthSignUpViewController: ViewController {
         return view
     }()
 
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Регистрация"
-        label.font = TypographyFonts.semibold20
-        label.textColor = .black
-        label.textAlignment = .left
-        return label
-    }()
-
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(
-            ApronAssets.navBackButton.image
-                .withTintColor(.black),
-            for: .normal
-        )
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var leftButtonStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [backButton, titleLabel])
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        return stackView
-    }()
+    private lazy var backButton = NavigationBackButton()
     
     // MARK: - Init
     init(interactor: AuthSignUpBusinessLogic, state: State) {
@@ -96,7 +71,11 @@ final class AuthSignUpViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
+        backButton.configure(with: "Регистрация")
+        backButton.onBackButtonTapped = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = .clear
     }
     
@@ -116,13 +95,6 @@ final class AuthSignUpViewController: ViewController {
     
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
-    }
-
-    // MARK: - User actions
-
-    @objc
-    private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
     }
     
     deinit {

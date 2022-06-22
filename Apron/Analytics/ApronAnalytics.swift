@@ -1,5 +1,5 @@
 //
-//  Analytics.swift
+//  ApronAnalytics.swift
 //  Apron
 //
 //  Created by Akarys Turganbekuly on 11.05.2022.

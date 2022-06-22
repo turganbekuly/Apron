@@ -1,0 +1,38 @@
+/* 
+  APRLocalizable.strings
+  APRUIKit
+
+  Created by Akarys Turganbekuly on 10.06.2022.
+  
+*/
+
+// MARK: - TabBar
+
+"TabBar.Home.Title" = "Главная";
+"TabBar.Search.Title" = "Поиск";
+"TabBar.Saved.Title" = "Избранное";
+
+// MARK: - Common
+
+"Common.ErrorMessage" = "Произошла ошибка! Пожалуйста, попробуйте позднее";
+"Common.Yes" = "Да";
+"Common.No" = "Нет";
+"Common.Skip.Title" = "Пропустить";
+"Common.Save.Title" = "Сохранить";
+"Common.Share.Title" = "Поделиться";
+"Common.Join.Title" = "Вступить";
+"Common.Joined.Title" = "Уже вступили";
+
+// MARK: - Authorization
+
+"Authorization.Button.SignIn.Title" = "Войти";
+"Authorization.Button.SignIn.Disclaimer" = "У вас уже есть аккаунт?  ";
+"Authorization.Button.SignUp.Title" = "Регистрация";
+"Authorization.SignIn.Title" = "С возвращением!";
+"Authorization.SignUp.Title" = "Регистрация в Apron";
+"Authorization.Skip.Title" = "Вы действительно хотите пропустить?";
+"Authorization.Skip.Message" = "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.";
+
+// MARK: - Communities
+
+"Communities.MyCommunity.Title" = "Мои сообщества";

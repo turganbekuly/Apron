@@ -35,7 +35,6 @@ final class AuthorizationViewController: ViewController, Messagable {
         return button
     }()
 
-
     lazy var mainView: AuthorizationView = {
         let view = AuthorizationView(delegate: self)
         view.isUserInteractionEnabled = true

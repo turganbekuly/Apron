@@ -44,6 +44,8 @@ final class CommunitiesListViewController: ViewController {
             case let .all(id, name):
                 self.id = id
                 self.categoryName = name
+            case .myCommunities:
+                self.categoryName = L10n.Communities.MyCommunity.title
             default:
                 break
             }
@@ -60,7 +62,7 @@ final class CommunitiesListViewController: ViewController {
 
     var categoryName: String? {
         didSet {
-            titleLabel.text = categoryName ?? ""
+            backButton.configure(with: categoryName ?? "")
         }
     }
     
@@ -72,31 +74,7 @@ final class CommunitiesListViewController: ViewController {
         return view
     }()
 
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = TypographyFonts.semibold20
-        label.textColor = .black
-        label.textAlignment = .left
-        return label
-    }()
-
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(
-            ApronAssets.navBackButton.image
-                .withTintColor(.black),
-            for: .normal
-        )
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var leftButtonStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [backButton, titleLabel])
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        return stackView
-    }()
+    private lazy var backButton = NavigationBackButton()
     
     // MARK: - Init
     init(interactor: CommunitiesListBusinessLogic, state: State) {
@@ -137,7 +115,10 @@ final class CommunitiesListViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
+        backButton.onBackButtonTapped = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
     }
     
@@ -160,13 +141,6 @@ final class CommunitiesListViewController: ViewController {
     
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
-    }
-
-    // MARK: - User actions
-
-    @objc
-    private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
     }
     
     deinit {

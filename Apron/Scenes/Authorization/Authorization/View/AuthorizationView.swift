@@ -8,6 +8,7 @@
 
 import UIKit
 import APRUIKit
+import AuthenticationServices
 
 public protocol IAuthorizationView: AnyObject {
     func buttonPressed(type: AuthorizationType)
@@ -51,6 +52,16 @@ public final class AuthorizationView: UIView {
         return view
     }()
 
+    lazy var appleSignInButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton(
+            authorizationButtonType: .signIn,
+            authorizationButtonStyle: .white
+        )
+        button.cornerRadius = 25
+        button.addTarget(self, action: #selector(appleSigInTapped), for: .touchUpInside)
+        return button
+    }()
+
     lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ApronAssets.logoWhite.image
@@ -64,7 +75,7 @@ public final class AuthorizationView: UIView {
         button.setTitle(L10n.Authorization.Button.SignUp.title, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular20
         button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 28
+        button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(sigupButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -89,7 +100,7 @@ public final class AuthorizationView: UIView {
         backgroundImageView.addSubview(overlayView)
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(siginButtonTapped))
         signInButtonTitle.addGestureRecognizer(tapGR)
-        [logoImageView, signUpButton, signInButtonTitle].forEach { overlayView.addSubview($0) }
+        [logoImageView, signUpButton, signInButtonTitle, appleSignInButton].forEach { overlayView.addSubview($0) }
         setupConstraints()
     }
 
@@ -109,10 +120,16 @@ public final class AuthorizationView: UIView {
             $0.height.equalTo(161)
         }
 
+        appleSignInButton.snp.makeConstraints {
+            $0.bottom.equalTo(signUpButton.snp.top).offset(-24)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(50)
+        }
+
         signUpButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(signInButtonTitle.snp.top).offset(-24)
-            $0.height.equalTo(56)
+            $0.height.equalTo(50)
         }
 
         signInButtonTitle.snp.makeConstraints {
@@ -131,5 +148,10 @@ public final class AuthorizationView: UIView {
     @objc
     private func sigupButtonTapped() {
         delegate?.buttonPressed(type: .signup)
+    }
+
+    @objc
+    private func appleSigInTapped() {
+
     }
 }

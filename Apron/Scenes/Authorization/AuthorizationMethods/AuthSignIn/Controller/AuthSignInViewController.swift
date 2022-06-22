@@ -31,32 +31,7 @@ final class AuthSignInViewController: ViewController, Messagable {
         return view
     }()
 
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Вход"
-        label.font = TypographyFonts.semibold20
-        label.textColor = .black
-        label.textAlignment = .left
-        return label
-    }()
-
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(
-            ApronAssets.navBackButton.image
-                .withTintColor(.black),
-            for: .normal
-        )
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var leftButtonStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [backButton, titleLabel])
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        return stackView
-    }()
+    private lazy var backButton = NavigationBackButton()
     
     // MARK: - Init
     init(interactor: AuthSignInBusinessLogic, state: State) {
@@ -97,7 +72,11 @@ final class AuthSignInViewController: ViewController, Messagable {
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonStackView)
+        backButton.configure(with: "Вход")
+        backButton.onBackButtonTapped = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = .clear
     }
     
@@ -117,13 +96,6 @@ final class AuthSignInViewController: ViewController, Messagable {
     
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
-    }
-
-    // MARK: - User actions
-
-    @objc
-    private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
     }
     
     deinit {

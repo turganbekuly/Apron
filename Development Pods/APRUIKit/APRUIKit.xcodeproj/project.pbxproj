@@ -105,6 +105,7 @@
 		6D3C1B5B28532C4F00CADE85 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Localization.swift; path = ../../../DesignSystem/DesignSystem/Generated/Localization.swift; sourceTree = "<group>"; };
 		6D3C1B5C28532C4F00CADE85 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = ../../../DesignSystem/DesignSystem/Generated/Fonts.swift; sourceTree = "<group>"; };
 		6D3C1B6128532E6800CADE85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/APRLocalizable.strings; sourceTree = "<group>"; };
+		6DC9239F2862F4BC00A1790E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/APRLocalizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +362,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 6D3C1ADE285320EC00CADE85;
 			productRefGroup = 6D3C1AE9285320EC00CADE85 /* Products */;
@@ -443,6 +445,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6D3C1B6128532E6800CADE85 /* en */,
+				6DC9239F2862F4BC00A1790E /* ru */,
 			);
 			name = APRLocalizable.strings;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -517,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
