@@ -31,14 +31,31 @@ public final class CommunityPageViewController: ViewController, Messagable {
         }
     }
 
+    var communityPageViewedSourceType: CommunityPageSourceType = .unknown
+
     var initialState: CommunityPageInitialState? {
         didSet {
             switch initialState {
-            case let .fromMain(id),
-                let .fromAddedRecipes(id):
+            case let .fromMain(id):
                 getCommunities(by: id)
                 getRecipesByCommunity(id: id, currentPage: currentPage)
                 self.id = id
+                self.communityPageViewedSourceType = .homepage
+            case let .fromAddedRecipes(id):
+                getCommunities(by: id)
+                getRecipesByCommunity(id: id, currentPage: currentPage)
+                self.id = id
+                self.communityPageViewedSourceType = .unknown
+            case let .fromDeeplink(id):
+                getCommunities(by: id)
+                getRecipesByCommunity(id: id, currentPage: currentPage)
+                self.id = id
+                self.communityPageViewedSourceType = .deeplink
+            case let .fromSearch(id):
+                getCommunities(by: id)
+                getRecipesByCommunity(id: id, currentPage: currentPage)
+                self.id = id
+                self.communityPageViewedSourceType = .search
             default:
                 break
             }
@@ -70,6 +87,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
                     )
                 ]
             }
+            communityPageViewedEvent(community: community)
             createRecipeButton.isHidden = community.privateAdding == true ? true : false
             mainView.reloadTableViewWithoutAnimation()
         }
@@ -243,6 +261,32 @@ public final class CommunityPageViewController: ViewController, Messagable {
         navigationBarView.backgroundColor = .clear
         refreshControl.tintColor = .white
         refreshControl.backgroundColor = .clear
+    }
+
+    // MARK: - Analytics events
+
+    func communityPageViewedEvent(community: CommunityResponse) {
+        ApronAnalytics.shared.sendAppsflyerEvent(
+            .communityPageViewed(
+                CommunityPageViewedModel(
+                    communityID: community.id,
+                    communityName: community.name ?? "",
+                    sourceType: communityPageViewedSourceType
+                )
+            )
+        )
+    }
+
+    func joinedCommunityEvent() {
+        ApronAnalytics.shared.sendAmplitudeEvent(
+            .joinedCommunity(
+                JoinedCommunityModel(
+                    communityID: community?.id ?? 0,
+                    communityName: community?.name ?? "",
+                    sourceType: .community
+                )
+            )
+        )
     }
 
     // MARK: - Public methods

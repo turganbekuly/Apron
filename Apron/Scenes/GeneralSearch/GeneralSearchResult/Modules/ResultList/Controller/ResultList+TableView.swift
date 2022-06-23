@@ -42,6 +42,28 @@ extension ResultListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case let .community(community):
+            ApronAnalytics.shared.sendAmplitudeEvent(
+                .searchMade(
+                    SearchMadeModel(
+                    searchTerm: query ?? "",
+                    sourceType: sourceType,
+                    selectedItemTab: "\(initialState ?? .everything)",
+                    selectedItemName: community.name ?? ""
+                    )
+                )
+            )
+        case let .recipe(recipe):
+            ApronAnalytics.shared.sendAmplitudeEvent(
+                .searchMade(
+                    SearchMadeModel(
+                    searchTerm: query ?? "",
+                    sourceType: sourceType,
+                    selectedItemTab: "\(initialState ?? .everything)",
+                    selectedItemName: recipe.recipeName ?? ""
+                    )
+                )
+            )
         default:
             break
         }

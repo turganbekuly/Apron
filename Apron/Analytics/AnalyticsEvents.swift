@@ -28,7 +28,7 @@ enum CommunityCreationSourceTypeModel: String, Codable {
 // MARK: - AnalyticsEvents
 
 enum AnalyticsEvents {
-    case homePageViewed(HomePageViewedModel)
+    case homePageViewed(CustomerStatus)
     case authorization(AuthorizationModel)
     case communitiesListPageViewed(CommunitiesListPageViewedModel)
     case communityPageViewed(CommunityPageViewedModel)
@@ -80,8 +80,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
 
     var eventProperties: [String : Any] {
         switch self {
-        case .homePageViewed(_):
-            return [:]
+        case let .homePageViewed(model):
+            return ["customer_status": model.rawValue]
         case let .authorization(model):
             return model.toJSON()
         case let .communitiesListPageViewed(model):

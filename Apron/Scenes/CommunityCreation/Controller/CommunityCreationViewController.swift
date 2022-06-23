@@ -24,8 +24,22 @@ final class CommunityCreationViewController: ViewController, Messagable {
     var initialState: CommunityCreationInitialState? {
         didSet {
             switch initialState {
-            case let .create(communityCreation),
-                let .edit(communityCreation):
+            case let .create(communityCreation, sourceType):
+                ApronAnalytics.shared.sendAmplitudeEvent(
+                    .communityCreationPageViewed(sourceType)
+                )
+                self.communityCreation = communityCreation
+                sections = [
+                    .init(
+                        section: .info,
+                        rows: [
+                            .name, .imagePlaceholder, .description,
+                            .category, .privacy, .permission
+                        ]
+                    )
+                ]
+                mainView.reloadData()
+            case let .edit(communityCreation):
                 self.communityCreation = communityCreation
                 sections = [
                     .init(
@@ -147,6 +161,21 @@ final class CommunityCreationViewController: ViewController, Messagable {
     
     deinit {
         NSLog("deinit \(self)")
+    }
+
+    // MARK: - Analytics
+
+    func sendCommunityCreatedAnalytics(community: CommunityResponse) {
+        ApronAnalytics.shared.sendAmplitudeEvent(
+            .communityCreated(
+                CommunityCreatedModel(
+                    categoryID: community.id,
+                    categoryName: community.name ?? "",
+                    additionLevel: community.privateAdding == true ? .private : .public,
+                    visibilityLevel: .everyone
+                )
+            )
+        )
     }
 
     // MARK: - User actions

@@ -98,8 +98,16 @@ final class MainViewController: ViewController, Messagable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         configureNavigation()
+        if AuthStorage.shared.isUserAuthorized {
+            ApronAnalytics.shared.sendAmplitudeEvent(
+                .homePageViewed(.loggedIn)
+            )
+        } else {
+            ApronAnalytics.shared.sendAmplitudeEvent(
+                .homePageViewed(.guest)
+            )
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

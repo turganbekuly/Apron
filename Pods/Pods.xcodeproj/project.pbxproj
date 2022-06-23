@@ -706,7 +706,6 @@
 		6DD833CB4736B28E600A17718BC219BB /* FIRCLSMachException.c in Sources */ = {isa = PBXBuildFile; fileRef = 506DA4C85C2BF732930BEDA770A1FF80 /* FIRCLSMachException.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6DE36CFFA92FEE6835301421E8E4626C /* EKStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E267327FDC82E6686E406ADD0751FE6 /* EKStyleView.swift */; };
 		6EA5C0684B65EE2204DBADC373A4C5BA /* FIRComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB136A0B63F35149267275408A1442B /* FIRComponent.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		6F4C0D38348F5298D0C9AA2A3DB92BE8 /* HomePageViewedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF27724E5D863A9C5F7A81769E6D1F /* HomePageViewedModel.swift */; };
 		6F5128757ACC22EA37B3E39DF6616381 /* Toggles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7BBFF82709BCDE3C6E2BD1A7EF9598 /* Toggles.swift */; };
 		6F81EAC4E006B6495271FD0FD4ABA5F3 /* RCNConfigDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C48FCCF59C91FEA04D54D0C7B4FD18B /* RCNConfigDefines.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7005EE48757A58A4EB2A9F4BC643E6AC /* GDTCORUploadBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA05F34D4636E905860FEEF53946326 /* GDTCORUploadBatch.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3821,7 +3820,6 @@
 		E2211F541D7D88428127B996F40B2345 /* Product.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E29DD61D8940D849525C3191605F8152 /* KFImageOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KFImageOptions.swift; path = Sources/SwiftUI/KFImageOptions.swift; sourceTree = "<group>"; };
 		E2B63D462DB7F827C4B11FD51E4F8E2D /* FirebaseCore */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FirebaseCore; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2EF27724E5D863A9C5F7A81769E6D1F /* HomePageViewedModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePageViewedModel.swift; sourceTree = "<group>"; };
 		E31BFC96E3627A7F2EB86D0E73660EAC /* FIRBundleUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRBundleUtil.m; path = FirebaseCore/Sources/FIRBundleUtil.m; sourceTree = "<group>"; };
 		E35DD4F4E5B13528D6A5BF17C7663C79 /* APRUIKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = APRUIKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E36293F18AA61F571C5B3C66EFFB5C8C /* EKAttributes+StatusBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "EKAttributes+StatusBar.swift"; path = "Source/Model/EntryAttributes/EKAttributes+StatusBar.swift"; sourceTree = "<group>"; };
@@ -4965,14 +4963,6 @@
 			path = "../Target Support Files/NVActivityIndicatorView";
 			sourceTree = "<group>";
 		};
-		248E1DA7F1F048AB48062DCE083B125D /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				E2EF27724E5D863A9C5F7A81769E6D1F /* HomePageViewedModel.swift */,
-			);
-			path = Analytics;
-			sourceTree = "<group>";
-		};
 		26B2385C0F652647B21D81D7F9D2CE38 /* Decoders */ = {
 			isa = PBXGroup;
 			children = (
@@ -5530,7 +5520,6 @@
 		619926540C0FC8FC35118CF96D3E3ECE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				248E1DA7F1F048AB48062DCE083B125D /* Analytics */,
 				76BF76E807E24EE4D117C0BD62FEE3FB /* Models */,
 				A76A87EA0CB803CEF27B2DA11FE4D10A /* Pod */,
 				C52C762D48683C4D0072D2B14697C9BC /* Support Files */,
@@ -10762,7 +10751,6 @@
 				7BA1B1396D6E52FE7F5B6E2D589BF750 /* CommunityCategory.swift in Sources */,
 				D32C31CD723ED68C8807B3978CF72C5C /* CommunityCreation.swift in Sources */,
 				778F3646B72854D9AA56A915FF3C11E6 /* CommunityResponse.swift in Sources */,
-				6F4C0D38348F5298D0C9AA2A3DB92BE8 /* HomePageViewedModel.swift in Sources */,
 				7781990275E267E04A4A395FA81B0DC6 /* IngredientInfo.swift in Sources */,
 				04B23B0277783962C70BEFA94B2265CF /* JSON.swift in Sources */,
 				F104F4A0D8344000FB0371D93DBED11D /* MeasureTypes.swift in Sources */,

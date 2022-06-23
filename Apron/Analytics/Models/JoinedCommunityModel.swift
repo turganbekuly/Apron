@@ -11,6 +11,7 @@ enum JoinedCommunitySourceType: String, Codable {
     case homepage
     case community
     case search
+    case unknown
 }
 
 struct JoinedCommunityModel: Codable {
@@ -27,7 +28,7 @@ struct JoinedCommunityModel: Codable {
     init(
         communityID: Int,
         communityName: String,
-        sourceType: CommunityPageSourceType
+        sourceType: JoinedCommunitySourceType
     ) {
         self.communityID = communityID
         self.communityName = communityName

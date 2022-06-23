@@ -12,8 +12,17 @@ import Models
 extension MainViewController: CreateActionFlowProtocol {
     func handleChosenAction(type: CreateActionType) {
         switch type {
-        case .privateCommunity, .publicCommunity:
-            let vc = CommunityCreationBuilder(state: .initial(.create(CommunityCreation()))).build()
+        case .privateCommunity:
+            let vc = CommunityCreationBuilder(state: .initial(
+                .create(CommunityCreation(), .privateButton))
+            ).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        case .publicCommunity:
+            let vc = CommunityCreationBuilder(state: .initial(
+                .create(CommunityCreation(), .publicButton))
+            ).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: true)
             }

@@ -35,7 +35,7 @@ extension CommunityPageViewController {
         case .displayCommunityError:
             show(type: .error(L10n.Common.errorMessage))
         case .joinedCommunity:
-            print("")
+            joinedCommunityEvent()
         case .joinedCommunityFailed:
             show(type: .error(L10n.Common.errorMessage))
         case let .displayRecipes(model):

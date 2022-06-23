@@ -53,76 +53,22 @@ final class ResultListViewController: ViewController {
 
     var query: String? {
         didSet {
-            switch initialState {
-            case .everything:
-                sections = [
-                    .init(section: .everything, rows: Array(repeating: .loading, count: 10))
-                ]
-                mainView.reloadData()
-                throttler.throttle { [weak self] in
-                    guard let self = self else { return }
-                    self.getEverything(query: self.query ?? "")
-                }
-            case .recipesFromCommunityPage:
-                sections = [
-                    .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
-                ]
-                mainView.reloadData()
-                throttler.throttle { [weak self] in
-                    guard let self = self else { return }
-                    self.getRecipesByCommunityId(
-                        id: self.id,
-                        currentPage: self.currentPage,
-                        query: self.query ?? ""
-                    )
-                }
-            case .community:
-                sections = [
-                    .init(section: .communities, rows: Array(repeating: .loading, count: 10))
-                ]
-                mainView.reloadData()
-                throttler.throttle { [weak self] in
-                    guard let self = self else { return }
-                    self.getCommunities(
-                        currentPage: self.currentPage,
-                        query: self.query ?? ""
-                    )
-                }
-            case .savedRecipes:
-                sections = [
-                    .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
-                ]
-                mainView.reloadData()
-                throttler.throttle { [weak self] in
-                    guard let self = self else { return }
-                    self.getSavedRecipes(
-                        currentPage: self.currentPage,
-                        query: self.query ?? ""
-                    )
-                }
-            case .recipe:
-                sections = [
-                    .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
-                ]
-                mainView.reloadData()
-                throttler.throttle { [weak self] in
-                    guard let self = self else { return }
-                    self.getRecipes(
-                        currentPage: self.currentPage,
-                        query: self.query ?? ""
-                    )
-                }
-            default:
-                break
-            }
+            handleNewQuery(initialState: initialState, query: query)
         }
     }
+
+    var sourceType: SearchMadeSourceType = .searchTab
 
     var initialState: GeneralSearchInitialState? {
         didSet {
             switch initialState {
+            case .everything, .recipe, .community, .main:
+                sourceType = .searchTab
+            case .savedRecipes:
+                sourceType = .savedTab
             case let .recipesFromCommunityPage(id):
                 self.id = id
+                sourceType = .communityPage
             default: break
             }
         }
@@ -208,6 +154,73 @@ final class ResultListViewController: ViewController {
     
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
+    }
+
+    // MARK: - Private Methods
+
+    private func handleNewQuery(initialState: GeneralSearchInitialState?, query: String?) {
+        switch initialState {
+        case .everything:
+            sections = [
+                .init(section: .everything, rows: Array(repeating: .loading, count: 10))
+            ]
+            mainView.reloadData()
+            throttler.throttle { [weak self] in
+                guard let self = self else { return }
+                self.getEverything(query: self.query ?? "")
+            }
+        case .recipesFromCommunityPage:
+            sections = [
+                .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
+            ]
+            mainView.reloadData()
+            throttler.throttle { [weak self] in
+                guard let self = self else { return }
+                self.getRecipesByCommunityId(
+                    id: self.id,
+                    currentPage: self.currentPage,
+                    query: self.query ?? ""
+                )
+            }
+        case .community:
+            sections = [
+                .init(section: .communities, rows: Array(repeating: .loading, count: 10))
+            ]
+            mainView.reloadData()
+            throttler.throttle { [weak self] in
+                guard let self = self else { return }
+                self.getCommunities(
+                    currentPage: self.currentPage,
+                    query: self.query ?? ""
+                )
+            }
+        case .savedRecipes:
+            sections = [
+                .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
+            ]
+            mainView.reloadData()
+            throttler.throttle { [weak self] in
+                guard let self = self else { return }
+                self.getSavedRecipes(
+                    currentPage: self.currentPage,
+                    query: self.query ?? ""
+                )
+            }
+        case .recipe:
+            sections = [
+                .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
+            ]
+            mainView.reloadData()
+            throttler.throttle { [weak self] in
+                guard let self = self else { return }
+                self.getRecipes(
+                    currentPage: self.currentPage,
+                    query: self.query ?? ""
+                )
+            }
+        default:
+            break
+        }
     }
     
     deinit {

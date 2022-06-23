@@ -11,7 +11,7 @@ enum CommunityPageSourceType: String, Codable {
     case homepage
     case search
     case deeplink
-    case banner
+    case unknown
 }
 
 struct CommunityPageViewedModel: Codable {

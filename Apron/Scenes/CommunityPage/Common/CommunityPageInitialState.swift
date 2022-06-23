@@ -10,4 +10,6 @@ import Foundation
 enum CommunityPageInitialState {
     case fromMain(id: Int)
     case fromAddedRecipes(id: Int)
+    case fromDeeplink(id: Int)
+    case fromSearch(id: Int)
 }

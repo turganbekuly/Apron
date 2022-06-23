@@ -10,5 +10,5 @@ import Models
 
 enum CommunityCreationInitialState {
     case edit(CommunityCreation)
-    case create(CommunityCreation)
+    case create(CommunityCreation, CommunityCreationSourceTypeModel)
 }
