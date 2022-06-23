@@ -1,5 +1,5 @@
 //
-//  CommunityPageViewed.swift
+//  CommunityPageViewedModel.swift
 //  Apron
 //
 //  Created by Akarys Turganbekuly on 27.05.2022.
@@ -14,7 +14,7 @@ enum CommunityPageSourceType: String, Codable {
     case banner
 }
 
-struct CommunityPageViewed: Codable {
+struct CommunityPageViewedModel: Codable {
     private enum CodingKeys: String, CodingKey {
         case communityID = "community_id"
         case communityName = "community_name"
