@@ -30,6 +30,10 @@ protocol ResultListProviderProtocol {
         request: ResultListDataFlow.GetCommunities.Request,
         completion: @escaping ((ResultListDataFlow.GetCommunitiesResult) -> Void)
     )
+    func saveRecipe(
+        request: ResultListDataFlow.SaveRecipe.Request,
+        completion: @escaping (ResultListDataFlow.SaveRecipeResult) -> Void
+    )
 }
 
 final class ResultListProvider: ResultListProviderProtocol {
@@ -126,6 +130,24 @@ final class ResultListProvider: ResultListProviderProtocol {
             case let .success(json):
                 if let jsons = json["data"] as? [JSON] {
                     completion(.successful(model: jsons.compactMap { CommunityResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func saveRecipe(
+        request: ResultListDataFlow.SaveRecipe.Request,
+        completion: @escaping (ResultListDataFlow.SaveRecipeResult) -> Void
+    ) {
+        service.saveRecipe(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = RecipeResponse(json: json) {
+                    completion(.successful(model: jsons))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

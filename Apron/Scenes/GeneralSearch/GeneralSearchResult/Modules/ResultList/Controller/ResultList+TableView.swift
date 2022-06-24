@@ -53,6 +53,10 @@ extension ResultListViewController: UITableViewDelegate {
                     )
                 )
             )
+            let vc = CommunityPageBuilder(state: .initial(.fromSearch(id: community.id))).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         case let .recipe(recipe):
             ApronAnalytics.shared.sendAmplitudeEvent(
                 .searchMade(
@@ -64,6 +68,10 @@ extension ResultListViewController: UITableViewDelegate {
                     )
                 )
             )
+            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         default:
             break
         }
@@ -98,6 +106,7 @@ extension ResultListViewController: UITableViewDelegate {
         switch row {
         case let .recipe(recipe):
             guard let cell = cell as? GeneralSearchRecipeCell else { return }
+            cell.delegate = self
             cell.configure(with: GeneralSearchRecipeViewModel(recipe: recipe))
         case let .community(community):
             guard let cell = cell as? GeneralSearchCommunityCell else { return }

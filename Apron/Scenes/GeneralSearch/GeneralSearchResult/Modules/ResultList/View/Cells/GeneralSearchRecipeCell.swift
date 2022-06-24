@@ -7,8 +7,30 @@
 
 import UIKit
 import APRUIKit
+import Models
+import Storages
+import HapticTouch
+
+protocol GeneralSearchRecipeCellProtocol: AnyObject {
+    func didTapSaveRecipe(with id: Int)
+    func navigateToAuthFromRecipe()
+    func navigateToRecipe(with id: Int)
+}
 
 final class GeneralSearchRecipeCell: UITableViewCell {
+    // MARK: - Private properties
+
+    private var id = 0
+    private var isSaved: Bool = false {
+        didSet {
+            configureButton(isSaved: isSaved)
+        }
+    }
+
+    // MARK: - Public properties
+
+    weak var delegate: GeneralSearchRecipeCellProtocol?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -95,17 +117,44 @@ final class GeneralSearchRecipeCell: UITableViewCell {
         }
     }
 
+    // MARK: - Private methods
+
+    private func configureButton(isSaved: Bool) {
+        guard isSaved else {
+            favoriteButton.setBackgroundColor(.black, for: .normal)
+            favoriteButton.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
+            return
+        }
+
+        favoriteButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        favoriteButton.setImage(ApronAssets.tabFaveSelectedIcon.image, for: .normal)
+    }
+
     // MARK: - User actions
 
     @objc
     private func favoriteButtonTapped() {
-        //
+        guard AuthStorage.shared.isUserAuthorized else {
+            delegate?.navigateToAuthFromRecipe()
+            return
+        }
+
+        guard !isSaved else {
+            delegate?.navigateToRecipe(with: id)
+            return
+        }
+
+        HapticTouch.generateSuccess()
+        favoriteButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        favoriteButton.setImage(ApronAssets.tabFaveSelectedIcon.image, for: .normal)
+        delegate?.didTapSaveRecipe(with: id)
     }
 
     // MARK: - Public methods
 
     func configure(with viewModel: GeneralSearchRecipeViewModelProtocol) {
         guard let recipe = viewModel.recipe else { return }
+        isSaved = recipe.isSaved ?? false
         recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
             placeholder: ApronAssets.addedImagePlaceholder.image

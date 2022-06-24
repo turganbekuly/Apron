@@ -29,6 +29,10 @@ protocol ResultListServiceProtocol {
         request: ResultListDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func saveRecipe(
+        request: ResultListDataFlow.SaveRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class ResultListService: ResultListServiceProtocol {
@@ -93,6 +97,15 @@ final class ResultListService: ResultListServiceProtocol {
             query: request.query,
             currentPage: request.currentPage
         )) { result in
+            completion(result)
+        }
+    }
+
+    func saveRecipe(
+        request: ResultListDataFlow.SaveRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .saveRecipe(id: request.id)) { result in
             completion(result)
         }
     }

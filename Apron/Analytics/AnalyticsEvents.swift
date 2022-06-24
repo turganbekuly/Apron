@@ -19,6 +19,7 @@ enum RecipeCreationSourceTypeModel: String, Codable {
     case community = "community_page"
     case saved = "saved_recipes"
     case deeplink
+    case search
 }
 
 enum CommunityCreationSourceTypeModel: String, Codable {

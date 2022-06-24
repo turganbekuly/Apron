@@ -11,6 +11,7 @@ import UIKit
 import Models
 import UIScrollView_InfiniteScroll
 import Extensions
+import AlertMessages
 
 protocol ResultListDisplayLogic: AnyObject {
     func displayRecipesByCommunityID(with viewModel: ResultListDataFlow.GetRecipesByCommunityID.ViewModel)
@@ -18,9 +19,10 @@ protocol ResultListDisplayLogic: AnyObject {
     func displaySavedRecipes(with viewModel: ResultListDataFlow.GetSavedRecipes.ViewModel)
     func displayRecipes(with viewModel: ResultListDataFlow.GetRecipes.ViewModel)
     func displayCommunities(with viewModel: ResultListDataFlow.GetCommunities.ViewModel)
+    func displaySaveRecipe(viewModel: ResultListDataFlow.SaveRecipe.ViewModel)
 }
 
-final class ResultListViewController: ViewController {
+final class ResultListViewController: ViewController, Messagable {
     
     struct Section {
         enum Section {

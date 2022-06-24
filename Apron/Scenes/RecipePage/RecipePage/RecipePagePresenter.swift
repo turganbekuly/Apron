@@ -11,6 +11,7 @@ import UIKit
 protocol RecipePagePresentationLogic: AnyObject {
     func getRecipe(response: RecipePageDataFlow.GetRecipe.Response)
     func rateRecipe(response: RecipePageDataFlow.RateRecipe.Response)
+    func saveRecipe(response: RecipePageDataFlow.SaveRecipe.Response)
 }
 
 final class RecipePagePresenter: RecipePagePresentationLogic {
@@ -46,6 +47,21 @@ final class RecipePagePresenter: RecipePagePresentationLogic {
                 viewModel = .init(state: .rateRecipe(model))
             case let .failed(error):
                 viewModel = .init(state: .rateRecipeError(error))
+            }
+        }
+    }
+
+    func saveRecipe(response: RecipePageDataFlow.SaveRecipe.Response) {
+        DispatchQueue.main.async {
+            var viewModel: RecipePageDataFlow.SaveRecipe.ViewModel
+
+            defer { self.viewController?.displaySaveRecipe(viewModel: viewModel) }
+
+            switch response.result {
+            case let .successful(recipe):
+                viewModel = .init(state: .saveRecipe(recipe))
+            case let .failed(error):
+                viewModel = .init(state: .saveRecipeFailed(error))
             }
         }
     }

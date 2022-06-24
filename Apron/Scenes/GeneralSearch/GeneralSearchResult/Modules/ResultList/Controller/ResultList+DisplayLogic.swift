@@ -31,4 +31,8 @@ extension ResultListViewController: ResultListDisplayLogic {
     func displayCommunities(with viewModel: ResultListDataFlow.GetCommunities.ViewModel) {
         state = viewModel.state
     }
+
+    func displaySaveRecipe(viewModel: ResultListDataFlow.SaveRecipe.ViewModel) {
+        state = viewModel.state
+    }
 }

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>OneSignal_suppress_launch_urls</key>
-	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>Russia</string>
 	<key>CFBundleDisplayName</key>
@@ -45,6 +43,8 @@
 	<string>Разрешите приложению доступ к геолокации.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Разрешите приложению доступ к галерее для загрузки фото и видео.</string>
+	<key>OneSignal_suppress_launch_urls</key>
+	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

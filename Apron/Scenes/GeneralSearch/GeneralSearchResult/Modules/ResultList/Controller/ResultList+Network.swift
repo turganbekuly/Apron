@@ -40,4 +40,8 @@ extension ResultListViewController {
     func getCommunities(currentPage: Int, query: String) {
         interactor.getCommunities(request: .init(query: query, currentPage: currentPage))
     }
+
+    func saveRecipe(with id: Int) {
+        interactor.saveRecipe(request: .init(id: id))
+    }
 }

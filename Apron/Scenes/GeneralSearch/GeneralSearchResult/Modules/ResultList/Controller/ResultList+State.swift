@@ -8,6 +8,7 @@
 
 import Models
 import UIKit
+import APRUIKit
 
 extension ResultListViewController {
     
@@ -24,6 +25,8 @@ extension ResultListViewController {
         case fetchRecipesFailed(AKNetworkError)
         case fetchCommunities([CommunityResponse])
         case fetchCommunitiesFailed(AKNetworkError)
+        case saveRecipe(RecipeResponse)
+        case saveRecipeFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -57,6 +60,10 @@ extension ResultListViewController {
             updateCommunitiesList(with: model)
         case let .fetchCommunitiesFailed(error):
             print(error)
+        case let .saveRecipe(newCount):
+            print(newCount)
+        case .saveRecipeFailed:
+            show(type: .error(L10n.Common.errorMessage))
         }
     }
 

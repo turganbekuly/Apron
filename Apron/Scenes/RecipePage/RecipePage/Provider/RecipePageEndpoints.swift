@@ -14,6 +14,7 @@ import Models
 enum RecipePageEndpoint {
     case getRecipe(id: Int)
     case rateRecipe(body: RatingRequestBody)
+    case saveRecipe(id: Int)
 }
 
 extension RecipePageEndpoint: AKNetworkTargetType {
@@ -28,6 +29,8 @@ extension RecipePageEndpoint: AKNetworkTargetType {
             return "recipes/\(id)"
         case .rateRecipe:
             return "likes/likeToRecipe"
+        case let .saveRecipe(id):
+            return "recipes/saveRecipe/\(id)"
         }
     }
     
@@ -37,6 +40,8 @@ extension RecipePageEndpoint: AKNetworkTargetType {
             return .get
         case .rateRecipe:
             return .post
+        case .saveRecipe:
+            return .put
         }
     }
     
@@ -46,6 +51,8 @@ extension RecipePageEndpoint: AKNetworkTargetType {
             return .requestPlain
         case let .rateRecipe(body):
             return .requestParameters(parameters: body.toJSON(), encoding: AKJSONEncoding.default)
+        case .saveRecipe:
+            return .requestPlain
         }
     }
     

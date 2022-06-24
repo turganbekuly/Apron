@@ -110,3 +110,21 @@ extension ResultListDataFlow {
     }
 }
 
+extension ResultListDataFlow {
+    enum SaveRecipe {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: SaveRecipeResult
+        }
+        struct ViewModel {
+            var state: ResultListViewController.State
+        }
+    }
+
+    enum SaveRecipeResult {
+        case successful(model: RecipeResponse)
+        case failed(error: AKNetworkError)
+    }
+}

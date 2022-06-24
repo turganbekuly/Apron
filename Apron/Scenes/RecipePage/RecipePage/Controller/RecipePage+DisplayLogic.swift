@@ -19,4 +19,8 @@ extension RecipePageViewController: RecipePageDisplayLogic {
     func displayRating(viewModel: RecipePageDataFlow.RateRecipe.ViewModel) {
         state = viewModel.state
     }
+
+    func displaySaveRecipe(viewModel: RecipePageDataFlow.SaveRecipe.ViewModel) {
+        state = viewModel.state
+    }
 }

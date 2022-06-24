@@ -40,6 +40,14 @@ extension RecipePageViewController: UITableViewDataSource {
 }
 
 extension RecipePageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        switch row {
+        default:
+            break
+        }
+    }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {

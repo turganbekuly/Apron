@@ -14,6 +14,7 @@ import AlertMessages
 protocol RecipePageDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipePageDataFlow.GetRecipe.ViewModel)
     func displayRating(viewModel: RecipePageDataFlow.RateRecipe.ViewModel)
+    func displaySaveRecipe(viewModel: RecipePageDataFlow.SaveRecipe.ViewModel)
 }
 
 final class RecipePageViewController: ViewController, Messagable {

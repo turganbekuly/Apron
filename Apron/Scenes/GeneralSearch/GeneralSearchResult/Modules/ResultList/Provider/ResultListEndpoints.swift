@@ -17,6 +17,7 @@ enum ResultListEndpoint {
     case getSavedRecipes(query: String, currentPage: Int)
     case getRecipes(query: String, currentPage: Int)
     case getCommunities(query: String, currentPage: Int)
+    case saveRecipe(id: Int)
 }
 
 extension ResultListEndpoint: AKNetworkTargetType {
@@ -37,6 +38,8 @@ extension ResultListEndpoint: AKNetworkTargetType {
             return "recipes"
         case .getCommunities:
             return "communities"
+        case let .saveRecipe(id):
+            return "recipes/saveRecipe/\(id)"
         }
     }
     
@@ -48,6 +51,8 @@ extension ResultListEndpoint: AKNetworkTargetType {
                 .getRecipes,
                 .getCommunities:
             return .get
+        case .saveRecipe:
+            return .put
         }
     }
     
@@ -87,6 +92,8 @@ extension ResultListEndpoint: AKNetworkTargetType {
                 parameters: ["page": currentPage, "limit": 20, "name": query],
                 encoding: AKURLEncoding.queryString
             )
+        case .saveRecipe:
+            return .requestPlain
         }
     }
     

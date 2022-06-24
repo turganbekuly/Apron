@@ -17,7 +17,8 @@ extension RecipePageViewController: BottomStickyViewDelegate {
     }
 
     func saveButtonTapped() {
-        //
+        guard let recipe = recipe else { return }
+        saveRecipe(with: recipe.id)
     }
 }
 

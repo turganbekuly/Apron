@@ -8,6 +8,7 @@
 
 import Models
 import UIKit
+import APRUIKit
 
 extension RecipePageViewController {
     
@@ -18,12 +19,15 @@ extension RecipePageViewController {
         case displayError(AKNetworkError)
         case rateRecipe(RatingResponse)
         case rateRecipeError(AKNetworkError)
+        case saveRecipe(RecipeResponse)
+        case saveRecipeFailed(AKNetworkError)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
         case let .initial(id, sourceType):
+            self.initialState = sourceType
             getRecipe(by: id)
             showLoader()
         case let .displayRecipe(recipe):
@@ -36,6 +40,10 @@ extension RecipePageViewController {
             print(rating)
         case let .rateRecipeError(error):
             print(error)
+        case let .saveRecipe(newCount):
+            print(newCount)
+        case .saveRecipeFailed:
+            show(type: .error(L10n.Common.errorMessage))
         }
     }
     
