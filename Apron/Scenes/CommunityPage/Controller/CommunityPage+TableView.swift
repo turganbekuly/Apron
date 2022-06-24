@@ -47,7 +47,7 @@ extension CommunityPageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .recipiesView(recipe):
-            let vc = RecipePageBuilder(state: .initial(id: recipe.id)).build()
+            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .community)).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: false)
             }

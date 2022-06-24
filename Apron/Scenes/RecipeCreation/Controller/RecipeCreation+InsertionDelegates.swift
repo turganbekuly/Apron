@@ -18,6 +18,14 @@ protocol InstructionSelectedProtocol {
 
 extension RecipeCreationViewController: IngredientSelectedProtocol {
     func onIngredientSelected(ingredient: RecipeIngredient) {
+        ApronAnalytics.shared.sendAmplitudeEvent(
+            .ingredientAdded(
+                IngredientAddedModel(
+                    id: ingredient.product?.id ?? 0,
+                    name: ingredient.product?.name ?? ""
+                )
+            )
+        )
         recipeCreation?.ingredients.append(ingredient)
         mainView.reloadTableViewWithoutAnimation()
     }

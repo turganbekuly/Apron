@@ -37,6 +37,9 @@ extension RecipePageViewController: CreateActionFlowProtocol {
                                    recipeName: self.recipe?.recipeName ?? ""
                 )
             }
+            ApronAnalytics.shared.sendAmplitudeEvent(
+                .recipeIngredientsAddedToShoppingList(ingredients.map { $0.product?.name ?? "" })
+            )
         default:
             break
         }

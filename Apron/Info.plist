@@ -23,7 +23,7 @@
 	<key>Configuration.AMPLITUDE_API_KEY</key>
 	<string>becfe5fdb6479d4df85b98227683bc97</string>
 	<key>Configuration.BASE_URL</key>
-	<string>164.92.189.249/receipts/</string>
+	<string>104.248.249.70/receipts/</string>
 	<key>Configuration.HTTP</key>
 	<string>http://</string>
 	<key>Configuration.ONE_SIGNAL_APP_ID</key>

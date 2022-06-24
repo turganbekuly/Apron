@@ -38,7 +38,7 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .recipe(recipe):
-            let vc = RecipePageBuilder(state: .initial(id: recipe.id)).build()
+            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .saved)).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: false)
             }

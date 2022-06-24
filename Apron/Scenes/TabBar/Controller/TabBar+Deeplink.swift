@@ -42,7 +42,7 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
                 let mainController = navigationController.viewControllers
                     .first(where: { $0 is MainViewController }) as? MainViewController
             else { return }
-            let vc = RecipePageBuilder(state: .initial(id: id)).build()
+            let vc = RecipePageBuilder(state: .initial(id: id, .deeplink)).build()
             mainController.hidesBottomBarWhenPushed = true
             DispatchQueue.main.async {
                 navigationController.pushViewController(vc, animated: true)

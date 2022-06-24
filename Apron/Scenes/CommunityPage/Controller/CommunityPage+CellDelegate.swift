@@ -16,7 +16,7 @@ extension CommunityPageViewController: CommunityRecipeCellProtocol {
     }
 
     func navigateToRecipe(with id: Int) {
-        let vc = RecipePageBuilder(state: .initial(id: id)).build()
+        let vc = RecipePageBuilder(state: .initial(id: id, .community)).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(vc, animated: true)
         }

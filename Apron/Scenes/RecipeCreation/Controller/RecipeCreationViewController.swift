@@ -38,12 +38,23 @@ final class RecipeCreationViewController: ViewController, Messagable {
         }
     }
 
+    var analyticsSourceType: RecipeCreationSourceTypeModel? {
+        didSet {
+            ApronAnalytics.shared.sendAmplitudeEvent(
+                .recipeCreationPageViewed(analyticsSourceType ?? .community)
+            )
+        }
+    }
+
     var recipeCreationSourceType: RecipeCreationSourceType? {
         didSet {
             switch recipeCreationSourceType {
             case let .community(id, delegate):
                 self.delegate = delegate
                 self.recipeCommunityId = id
+                analyticsSourceType = .community
+            case .saved:
+                analyticsSourceType = .saved
             default:
                 break
             }

@@ -19,6 +19,11 @@ final class RecipeBottomStickyView: View {
     // MARK: - Properties
 
     weak var delegate: BottomStickyViewDelegate?
+    private var isSaved = false {
+        didSet {
+            if isSaved { configureSavedButton() }
+        }
+    }
 
     // MARK: - Views factory
 
@@ -90,7 +95,23 @@ final class RecipeBottomStickyView: View {
 
     @objc
     private func saveButtonTapped() {
+        guard !isSaved else { return }
         HapticTouch.generateSuccess()
+        configureSavedButton()
         delegate?.saveButtonTapped()
+    }
+
+    // MARK: - Private methods
+
+    private func configureSavedButton() {
+        saveButton.backgroundType = .yelloBackground
+        saveButton.setTitle("Сохранен", for: .normal)
+        saveButton.setImage(ApronAssets.recipeFavoriteIcon.image.withTintColor(.black), for: .normal)
+    }
+
+    // MARK: - Public methods
+
+    func configure(isSaved: Bool) {
+        self.isSaved = isSaved
     }
 }

@@ -110,6 +110,8 @@ final class ShoppingListViewController: ViewController, Messagable {
         super.viewDidLoad()
         
         state = { state }()
+
+        ApronAnalytics.shared.sendAmplitudeEvent(.shoppingListViewed)
     }
     
     override func viewWillAppear(_ animated: Bool) {

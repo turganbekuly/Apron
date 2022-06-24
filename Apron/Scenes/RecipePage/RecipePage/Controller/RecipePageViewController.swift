@@ -32,8 +32,23 @@ final class RecipePageViewController: ViewController, Messagable {
         }
     }
 
+    var initialState: RecipeCreationSourceTypeModel?
+
     var recipe: RecipeResponse? {
         didSet {
+            if let recipe = recipe {
+                ApronAnalytics.shared.sendAmplitudeEvent(
+                    .recipePageViewed(
+                        RecipePageViewedModel(
+                            recipeID: recipe.id,
+                            recipeName: recipe.recipeName ?? "",
+                            sourceType: initialState ?? .community,
+                            isSaved: recipe.isSaved ?? false
+                        )
+                    )
+                )
+                bottomStickyView.configure(isSaved: recipe.isSaved ?? false)
+            }
             sections = [
                 .init(section: .topView, rows: [.topView]),
                 .init(section: .description, rows: [.description]),

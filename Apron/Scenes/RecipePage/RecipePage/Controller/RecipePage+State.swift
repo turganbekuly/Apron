@@ -13,7 +13,7 @@ extension RecipePageViewController {
     
     // MARK: - State
     public enum State {
-        case initial(id: Int)
+        case initial(id: Int, RecipeCreationSourceTypeModel)
         case displayRecipe(RecipeResponse)
         case displayError(AKNetworkError)
         case rateRecipe(RatingResponse)
@@ -23,7 +23,7 @@ extension RecipePageViewController {
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(id):
+        case let .initial(id, sourceType):
             getRecipe(by: id)
             showLoader()
         case let .displayRecipe(recipe):

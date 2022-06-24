@@ -23,7 +23,18 @@ extension RecipeCreationViewController {
         switch state {
         case let .initial(state):
             self.initialState = state
-        case .recipeCreationSucceed:
+        case let .recipeCreationSucceed(recipe):
+            ApronAnalytics.shared.sendAmplitudeEvent(
+                .recipeCreated(
+                    RecipeCreatedModel(
+                        recipeID: recipe.id,
+                        recipeName: recipe.recipeName ?? "",
+                        sourceType: analyticsSourceType ?? .community,
+                        imageAdded: selectedImage != nil ? true : false,
+                        ingredients: recipe.ingredients?.map { $0.product?.name ?? ""} ?? []
+                    )
+                )
+            )
             show(type: .success("Рецепт создался успешно"), firstAction: nil, secondAction: nil)
             delegate?.didCreate()
             self.navigationController?.popViewController(animated: true)
