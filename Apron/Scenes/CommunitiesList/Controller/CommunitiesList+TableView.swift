@@ -63,8 +63,9 @@ extension CommunitiesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case let .community(community):
+            guard let cell = cell as? GeneralSearchCommunityCell else { return }
+            cell.configure(with: GeneralSearchCommunityViewModel(community: community))
         }
     }
     

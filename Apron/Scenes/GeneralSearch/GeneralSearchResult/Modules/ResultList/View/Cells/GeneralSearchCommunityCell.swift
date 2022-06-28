@@ -7,9 +7,28 @@
 
 import UIKit
 import APRUIKit
-import Kingfisher
+import HapticTouch
+import Storages
+
+protocol GeneralSearchJoinCommunityProtocol: AnyObject {
+    func navigateToFromButtonCommunity(with id: Int)
+    func didTapJoinCommunity(with id: Int)
+    func navigateToAuth()
+}
 
 final class GeneralSearchCommunityCell: UITableViewCell {
+    // MARK: - Properties
+
+    weak var delegate: GeneralSearchJoinCommunityProtocol?
+
+    var isJoined: Bool = false {
+        didSet {
+            configureButton(isJoined: isJoined)
+        }
+    }
+
+    var id = 0
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -138,13 +157,46 @@ final class GeneralSearchCommunityCell: UITableViewCell {
 
     @objc
     private func joinButtonTapped() {
+        guard AuthStorage.shared.isUserAuthorized else {
+            delegate?.navigateToAuth()
+            return
+        }
 
+        if isJoined {
+            delegate?.navigateToFromButtonCommunity(with: id)
+            return
+        }
+        HapticTouch.generateSuccess()
+        isJoined = true
+        layoutIfNeeded()
+        delegate?.didTapJoinCommunity(with: id)
+    }
+
+    // MARK: - Private methods
+
+    private func configureButton(isJoined: Bool) {
+        guard isJoined else {
+            joinButton.setTitle("Вступить", for: .normal)
+            joinButton.setBackgroundColor(.black, for: .normal)
+            joinButton.setTitleColor(.white, for: .normal)
+            joinButton.snp.updateConstraints( {
+                $0.width.equalTo(93)
+            })
+            return
+        }
+        joinButton.setTitle("Уже вступили", for: .normal)
+        joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        joinButton.setTitleColor(.black, for: .normal)
+        joinButton.snp.updateConstraints {
+            $0.width.equalTo(129)
+        }
     }
 
     // MARK: - Public methods
 
     func configure(with viewModel: GeneralSearchCommunityViewModelProtocol) {
         guard let community = viewModel.community else { return }
+        id = community.id
         communityImageView.kf.setImage(
             with: URL(string: community.image ?? ""),
             placeholder: ApronAssets.addedImagePlaceholder.image
@@ -154,5 +206,6 @@ final class GeneralSearchCommunityCell: UITableViewCell {
         recipeCountLabel.text = "\(community.recipesCount ?? 0)"
         membersCountLabel.text = "\(community.usersCount ?? 0)"
         informationStackView.layoutIfNeeded()
+        isJoined = community.joined ?? false
     }
 }

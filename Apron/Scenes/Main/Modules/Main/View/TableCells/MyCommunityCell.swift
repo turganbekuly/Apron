@@ -118,7 +118,7 @@ public final class MyCommunityCell: UITableViewCell {
     // MARK: - Methods
 
     func configure(with viewModel: IMyCollectionDelegateCellViewModel) {
-        seeAllButton.isHidden = viewModel.myCommunities.count > 10 ? false : true
+        seeAllButton.isHidden = true //viewModel.myCommunities.count >= 10 ? false : true
         myCommunities = viewModel.myCommunities
     }
 }

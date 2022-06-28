@@ -31,7 +31,7 @@ final class CommunitiesListViewController: ViewController {
     
     // MARK: - Properties
     let interactor: CommunitiesListBusinessLogic
-    var sections: [Section] = []
+    lazy var sections: [Section] = [.init(section: .communities, rows: communities.compactMap { .community($0) })]
     var state: State {
         didSet {
             updateState()

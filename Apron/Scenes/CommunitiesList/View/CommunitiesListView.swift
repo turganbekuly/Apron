@@ -32,6 +32,12 @@ final class CommunitiesListView: UITableView {
         separatorStyle = .none
 
         [
+            CommunityListHeaderView.self
+        ].forEach {
+            register(aClass: $0)
+        }
+        
+        [
             GeneralSearchCommunityCell.self
         ].forEach {
             register(cellClass: $0)
