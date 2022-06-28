@@ -8,6 +8,12 @@
 
 import APRUIKit
 import UIKit
+import Models
+
+protocol ResultListViewControllerDelegate: AnyObject {
+    func controller(_ contoller: UIViewController, didSelect recipe: RecipeResponse)
+    func controller(_ controller: UIViewController, didSelect community: CommunityResponse)
+}
 
 protocol GeneralSearchDisplayLogic: AnyObject {
     
@@ -53,7 +59,7 @@ final class GeneralSearchViewController: ViewController {
 
     public lazy var searchController: SearchController = {
         let searchController = GeneralSearchResultBuilder(
-            state: .initial(initialState ?? .main)
+            state: .initial(initialState ?? .main, self)
         ).build()
         let controller = SearchController(searchResultsController: searchController)
         controller.definesPresentationContext = true

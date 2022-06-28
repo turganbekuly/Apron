@@ -8,7 +8,15 @@
 import UIKit
 import APRUIKit
 
+protocol SearchHeaderViewDelegate: AnyObject {
+    func onSearchDidTap()
+}
+
 final class SearchHeaderView: UITableViewHeaderFooterView {
+    // MARK: - Public properties
+
+    weak var delegate: SearchHeaderViewDelegate?
+
     // MARK: - Init
 
     override init(reuseIdentifier: String?) {
@@ -29,6 +37,8 @@ final class SearchHeaderView: UITableViewHeaderFooterView {
         contentView.addSubviews(
             searchView
         )
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(searchViewDidTap))
+        searchView.addGestureRecognizer(tapGR)
         setupConstraints()
     }
 
@@ -38,6 +48,13 @@ final class SearchHeaderView: UITableViewHeaderFooterView {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(38)
         }
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func searchViewDidTap() {
+        delegate?.onSearchDidTap()
     }
 
     // MARK: - Public methods

@@ -53,8 +53,7 @@ extension ResultListDataFlow {
 extension ResultListDataFlow {
     enum GetSavedRecipes {
         struct Request {
-            let query: String
-            let currentPage: Int
+            let body: SearchByQueryRequestBody
         }
         struct Response {
             let result: GetSavedRecipesResult
@@ -73,8 +72,7 @@ extension ResultListDataFlow {
 extension ResultListDataFlow {
     enum GetRecipes {
         struct Request {
-            let query: String
-            let currentPage: Int
+            let body: SearchByQueryRequestBody
         }
         struct Response {
             let result: GetRecipesResult
@@ -93,8 +91,7 @@ extension ResultListDataFlow {
 extension ResultListDataFlow {
     enum GetCommunities {
         struct Request {
-            let query: String
-            let currentPage: Int
+            let body: SearchByQueryRequestBody
         }
         struct Response {
             let result: GetCommunitiesResult

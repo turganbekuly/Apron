@@ -173,6 +173,7 @@ final class AddSavedRecipesViewController: ViewController {
 
     @objc
     private func refresh(_ sender: UIRefreshControl) {
+        savedRecipes.removeAll()
         sections = [.init(section: .recipes, rows: Array(repeating: .loading, count: 10))]
         mainView.reloadData()
         currentPage = 1

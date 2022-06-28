@@ -13,8 +13,8 @@ import APRUIKit
 extension ResultListViewController {
     
     // MARK: - State
-    public enum State {
-        case initial(GeneralSearchInitialState, String?)
+    enum State {
+        case initial(GeneralSearchInitialState, String?, ResultListViewControllerDelegate?)
         case fetchRecipesByCommunityId([RecipeResponse])
         case fetchRecipesByCommunityIdFailed(AKNetworkError)
         case fetchEverything(SearchEverythingResponse)
@@ -30,11 +30,12 @@ extension ResultListViewController {
     }
     
     // MARK: - Methods
-    public func updateState() {
+    func updateState() {
         switch state {
-        case let .initial(initialState, query):
+        case let .initial(initialState, query, delegate):
             self.initialState = initialState
             self.query = query
+            self.delegate = delegate
         case let .fetchRecipesByCommunityId(model):
             updateRecipiesList(with: model)
         case let .fetchRecipesByCommunityIdFailed(error):

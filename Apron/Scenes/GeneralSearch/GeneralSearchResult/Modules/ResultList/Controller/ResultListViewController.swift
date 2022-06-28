@@ -41,6 +41,8 @@ final class ResultListViewController: ViewController, Messagable {
     }
     
     // MARK: - Properties
+
+    weak var delegate: ResultListViewControllerDelegate?
     let interactor: ResultListBusinessLogic
     var sections: [Section] = []
     var state: State {
@@ -163,6 +165,9 @@ final class ResultListViewController: ViewController, Messagable {
     private func handleNewQuery(initialState: GeneralSearchInitialState?, query: String?) {
         switch initialState {
         case .everything:
+            recipesList.removeAll()
+            communitiesList.removeAll()
+            currentPage = 1
             sections = [
                 .init(section: .everything, rows: Array(repeating: .loading, count: 10))
             ]
@@ -172,6 +177,8 @@ final class ResultListViewController: ViewController, Messagable {
                 self.getEverything(query: self.query ?? "")
             }
         case .recipesFromCommunityPage:
+            recipesList.removeAll()
+            currentPage = 1
             sections = [
                 .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
             ]
@@ -185,6 +192,8 @@ final class ResultListViewController: ViewController, Messagable {
                 )
             }
         case .community:
+            communitiesList.removeAll()
+            currentPage = 1
             sections = [
                 .init(section: .communities, rows: Array(repeating: .loading, count: 10))
             ]
@@ -197,6 +206,8 @@ final class ResultListViewController: ViewController, Messagable {
                 )
             }
         case .savedRecipes:
+            recipesList.removeAll()
+            currentPage = 1
             sections = [
                 .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
             ]
@@ -209,6 +220,8 @@ final class ResultListViewController: ViewController, Messagable {
                 )
             }
         case .recipe:
+            recipesList.removeAll()
+            currentPage = 1
             sections = [
                 .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
             ]

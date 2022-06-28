@@ -181,7 +181,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
 
     @objc
     private func saveButtonTapped() {
-        guard let _ = recipeIgredient.id else {
+        guard let _ = recipeIgredient.product?.id else {
             show(type: .error("Пожалуйста, выберите ингредиент из списка"))
             return
         }

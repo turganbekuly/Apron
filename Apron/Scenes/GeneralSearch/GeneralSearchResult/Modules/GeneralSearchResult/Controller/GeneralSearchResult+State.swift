@@ -13,13 +13,14 @@ extension GeneralSearchResultViewController {
     
     // MARK: - State
     public enum State {
-        case initial(GeneralSearchInitialState)
+        case initial(GeneralSearchInitialState, ResultListViewControllerDelegate?)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(initialState):
+        case let .initial(initialState, delegate):
+            self.delegate = delegate
             self.initialState = initialState
         }
     }

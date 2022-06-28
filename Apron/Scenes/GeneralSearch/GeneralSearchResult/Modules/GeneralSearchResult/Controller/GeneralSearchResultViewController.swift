@@ -28,6 +28,7 @@ final class GeneralSearchResultViewController: ViewController {
     }
     
     // MARK: - Properties
+    weak var delegate: ResultListViewControllerDelegate?
     let interactor: GeneralSearchResultBusinessLogic
     lazy var sections: [Section] = []
     var state: State {
@@ -54,9 +55,12 @@ final class GeneralSearchResultViewController: ViewController {
             case .main:
                 pages = [.everything, .recipe, .community]
                 pagerInitialState = .everything
-            case .recipe, .savedRecipes:
+            case .recipe:
                 pages = [.recipe]
                 pagerInitialState = .recipe
+            case .savedRecipes:
+                pages = [.savedRecipes]
+                pagerInitialState = .savedRecipes
             case let .recipesFromCommunityPage(id):
                 pages = [.recipesFromCommunityPage(id: id)]
                 pagerInitialState = .recipesFromCommunityPage(id: id)
@@ -71,15 +75,14 @@ final class GeneralSearchResultViewController: ViewController {
     public var pagerInitialState: GeneralSearchInitialState = .everything {
         didSet {
             selectedIndexPath = IndexPath(row: pages.firstIndex(of: pagerInitialState) ?? .zero, section: .zero)
-            configurePager()
         }
     }
 
     lazy var pagerViewController: GeneralSearchResultPagerViewController = {
         guard let viewController = GeneralSearchResultPagerBuilder(
-            state: .initial(pages, pagerInitialState)
+            state: .initial(pages, pagerInitialState, delegate)
         ).build() as? GeneralSearchResultPagerViewController else {
-            return GeneralSearchResultPagerViewController(state: .initial([], .everything))
+            return GeneralSearchResultPagerViewController(state: .initial([], .everything, delegate))
         }
         viewController.pagerDelegate = self
         return viewController
@@ -108,14 +111,14 @@ final class GeneralSearchResultViewController: ViewController {
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
-        configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         state = { state }()
+        configureViews()
+        configurePager()
     }
     
     override func viewWillAppear(_ animated: Bool) {

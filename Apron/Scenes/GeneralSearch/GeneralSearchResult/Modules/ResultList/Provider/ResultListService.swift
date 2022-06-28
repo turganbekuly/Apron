@@ -69,10 +69,8 @@ final class ResultListService: ResultListServiceProtocol {
         request: ResultListDataFlow.GetSavedRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .getSavedRecipes(
-            query: request.query,
-            currentPage: request.currentPage
-        )) { result in
+        provider.send(target: .getSavedRecipes(request.body))
+        { result in
             completion(result)
         }
     }
@@ -81,10 +79,8 @@ final class ResultListService: ResultListServiceProtocol {
         request: ResultListDataFlow.GetRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .getRecipes(
-            query: request.query,
-            currentPage: request.currentPage
-        )) { result in
+        provider.send(target: .getRecipes(request.body))
+        { result in
             completion(result)
         }
     }
@@ -93,10 +89,8 @@ final class ResultListService: ResultListServiceProtocol {
         request: ResultListDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .getCommunities(
-            query: request.query,
-            currentPage: request.currentPage
-        )) { result in
+        provider.send(target: .getCommunities(request.body))
+        { result in
             completion(result)
         }
     }

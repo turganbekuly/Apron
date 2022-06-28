@@ -199,12 +199,8 @@ public final class CommunityPageViewController: ViewController, Messagable {
         moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
         backButton.onTouch = { [weak self] in
             switch self?.initialState {
-            case .fromMain:
-                self?.navigationController?.popViewController(animated: true)
-            case .fromAddedRecipes:
-                self?.navigationController?.popToRootViewController(animated: true)
             default:
-                break
+                self?.navigationController?.popViewController(animated: true)
             }
         }
         [imageView, mainView, navigationBarView, createRecipeButton].forEach { view.addSubview($0) }

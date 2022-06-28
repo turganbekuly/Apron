@@ -14,9 +14,9 @@ import Models
 enum ResultListEndpoint {
     case getRecipesByCommunityID(RecipesByCommunityIDRequestBody)
     case getEverything(query: String)
-    case getSavedRecipes(query: String, currentPage: Int)
-    case getRecipes(query: String, currentPage: Int)
-    case getCommunities(query: String, currentPage: Int)
+    case getSavedRecipes(SearchByQueryRequestBody)
+    case getRecipes(SearchByQueryRequestBody)
+    case getCommunities(SearchByQueryRequestBody)
     case saveRecipe(id: Int)
 }
 
@@ -68,7 +68,7 @@ extension ResultListEndpoint: AKNetworkTargetType {
                     "communityId": requestBody.id,
                     "limit": 20,
                     "page": requestBody.currentPage,
-                    "name": requestBody.query
+                    "name": "\(requestBody.query)"
                 ],
                 encoding: AKURLEncoding.queryString
             )
@@ -77,19 +77,21 @@ extension ResultListEndpoint: AKNetworkTargetType {
                 parameters: ["name": query],
                 encoding: AKURLEncoding.queryString
             )
-        case let .getSavedRecipes(query, currentPage):
+        case let .getSavedRecipes(body):
             return .requestParameters(
-                parameters: ["page": currentPage, "limit": 20, "name": query],
+                parameters: body.toJSON(),
                 encoding: AKURLEncoding.queryString
             )
-        case let .getRecipes(query, currentPage):
+        case let .getRecipes(body):
+            print(AKNetworkTask.requestParameters(parameters: body.toJSON(), encoding: AKURLEncoding.queryString))
             return .requestParameters(
-                parameters: ["page": currentPage, "limit": 20, "name": query],
+                parameters: body.toJSON(),
                 encoding: AKURLEncoding.queryString
             )
-        case let .getCommunities(query, currentPage):
+        case let .getCommunities(body):
+            print(AKNetworkTask.requestParameters(parameters: body.toJSON(), encoding: AKURLEncoding.queryString))
             return .requestParameters(
-                parameters: ["page": currentPage, "limit": 20, "name": query],
+                parameters: body.toJSON(),
                 encoding: AKURLEncoding.queryString
             )
         case .saveRecipe:

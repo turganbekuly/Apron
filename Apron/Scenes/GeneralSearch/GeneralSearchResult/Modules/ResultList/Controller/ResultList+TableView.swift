@@ -53,10 +53,8 @@ extension ResultListViewController: UITableViewDelegate {
                     )
                 )
             )
-            let vc = CommunityPageBuilder(state: .initial(.fromSearch(id: community.id))).build()
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+
+            delegate?.controller(self, didSelect: community)
         case let .recipe(recipe):
             ApronAnalytics.shared.sendAmplitudeEvent(
                 .searchMade(
@@ -68,10 +66,7 @@ extension ResultListViewController: UITableViewDelegate {
                     )
                 )
             )
-            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            delegate?.controller(self, didSelect: recipe)
         default:
             break
         }

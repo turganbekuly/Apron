@@ -10,15 +10,16 @@ import Models
 import APRUIKit
 import UIKit
 
-public protocol GeneralSearchResultPagerViewControllerDelegate: AnyObject {
+protocol GeneralSearchResultPagerViewControllerDelegate: AnyObject {
     func controller(_ controller: GeneralSearchResultPagerViewController, didSelectIndex index: Int)
 }
 
-public final class GeneralSearchResultPagerViewController: PageViewController {
+final class GeneralSearchResultPagerViewController: PageViewController {
 
     // MARK: - Properties
-    public weak var pagerDelegate: GeneralSearchResultPagerViewControllerDelegate?
-    public var state: State {
+    weak var selectionDelegate: ResultListViewControllerDelegate?
+    weak var pagerDelegate: GeneralSearchResultPagerViewControllerDelegate?
+    var state: State {
         didSet {
             updateState()
         }
@@ -33,30 +34,30 @@ public final class GeneralSearchResultPagerViewController: PageViewController {
         }
     }
     
-    public var pages = [GeneralSearchInitialState]() {
+    var pages = [GeneralSearchInitialState]() {
         didSet {
             selectedIndex = pages.firstIndex(of: currentPage) ?? 0
             allViewControllers = pages.compactMap {
-                ResultListBuilder(state: .initial($0, query)).build()
+                ResultListBuilder(state: .initial($0, query, selectionDelegate)).build()
             }
         }
     }
-    public var currentPage: GeneralSearchInitialState = .everything
-    public var allViewControllers = [UIViewController]() {
+    var currentPage: GeneralSearchInitialState = .everything
+    var allViewControllers = [UIViewController]() {
         didSet {
             setInitialViewController()
         }
     }
-    public var selectedIndex = 0
+    var selectedIndex = 0
 
     // MARK: - Init
-    public init(state: State) {
+    init(state: State) {
         self.state = state
 
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
 
-    public required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         return nil
     }
 
@@ -68,7 +69,7 @@ public final class GeneralSearchResultPagerViewController: PageViewController {
     }
 
     // MARK: - Methods
-    public func setFirst(index: Int) {
+    func setFirst(index: Int) {
         guard let viewController = allViewControllers[safe: index] else {
             return
         }
@@ -82,7 +83,7 @@ public final class GeneralSearchResultPagerViewController: PageViewController {
         }
     }
 
-    public func setInitialViewController() {
+    func setInitialViewController() {
         guard let viewController = allViewControllers[safe: selectedIndex] else {
             return
         }

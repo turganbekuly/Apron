@@ -12,15 +12,16 @@ import UIKit
 extension GeneralSearchResultPagerViewController {
     
     // MARK: - State
-    public enum State {
-        case initial([GeneralSearchInitialState], GeneralSearchInitialState)
+    enum State {
+        case initial([GeneralSearchInitialState], GeneralSearchInitialState, ResultListViewControllerDelegate?)
     }
     
     // MARK: - Methods
-    public func updateState() {
+    func updateState() {
         switch state {
-        case let .initial(pages, currentPage):
+        case let .initial(pages, currentPage, delegate):
             self.currentPage = currentPage
+            self.selectionDelegate = delegate
             self.pages = pages
         }
     }

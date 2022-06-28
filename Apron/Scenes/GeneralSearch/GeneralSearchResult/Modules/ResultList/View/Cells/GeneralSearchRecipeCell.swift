@@ -155,6 +155,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     func configure(with viewModel: GeneralSearchRecipeViewModelProtocol) {
         guard let recipe = viewModel.recipe else { return }
         isSaved = recipe.isSaved ?? false
+        id = recipe.id
         recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
             placeholder: ApronAssets.addedImagePlaceholder.image

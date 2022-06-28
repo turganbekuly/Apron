@@ -24,7 +24,6 @@ extension SearchViewController: UITableViewDataSource {
         switch row {
         default:
             let cell: UITableViewCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.backgroundColor = .red
             return cell
         }
     }
@@ -94,6 +93,7 @@ extension SearchViewController: UITableViewDelegate {
         switch section {
         case .searchField:
             guard let view = view as? SearchHeaderView else { return }
+            view.delegate = self
             view.configure()
         }
     }

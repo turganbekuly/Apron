@@ -76,24 +76,6 @@ final class SearchViewController: ViewController {
 
     // MARK: - Views factory
 
-    public lazy var searchController: SearchController = {
-        let searchController = SearchResultBuilder(state: .initial).build()
-//        (searchController as? SearchResultViewController)?.delegate = self
-        let controller = SearchController(searchResultsController: searchController)
-        controller.definesPresentationContext = true
-        controller.hidesNavigationBarDuringPresentation = false
-        controller.obscuresBackgroundDuringPresentation = true
-        controller.searchBar.placeholder = "Поиск рецептов и сообществ"
-//        controller.searchBar.delegate = self
-        return controller
-    }()
-
-    private lazy var searchBar: SearchBar = {
-        let bar = SearchBar()
-        bar.placeholder = "Поиск рецептов и сообществ"
-        return bar
-    }()
-
     lazy var mainView: SearchView = {
         let view = SearchView()
         view.dataSource = self
