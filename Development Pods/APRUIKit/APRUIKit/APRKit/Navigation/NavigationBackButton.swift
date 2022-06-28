@@ -34,14 +34,12 @@ public final class NavigationBackButton: UIView {
         return label
     }()
 
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(
-            ApronAssets.navBackButton.image
-                .withTintColor(.black),
-            for: .normal
-        )
-        return button
+    private lazy var backButton: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ApronAssets.navBackButton.image
+            .withTintColor(.black)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
 
     private lazy var leftButtonStackView: UIStackView = {
@@ -55,7 +53,7 @@ public final class NavigationBackButton: UIView {
 
     private func setupViews() {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(backButtonTapped))
-        addGestureRecognizer(tapGR)
+        leftButtonStackView.addGestureRecognizer(tapGR)
         addSubview(leftButtonStackView)
         setupConstraints()
     }

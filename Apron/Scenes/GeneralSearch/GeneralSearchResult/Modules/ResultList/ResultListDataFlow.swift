@@ -125,3 +125,22 @@ extension ResultListDataFlow {
         case failed(error: AKNetworkError)
     }
 }
+
+extension ResultListDataFlow {
+    enum JoinCommunity {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: JoinCommunityResult
+        }
+        struct ViewModel {
+            var state: ResultListViewController.State
+        }
+    }
+
+    enum JoinCommunityResult {
+        case successfull
+        case failed(error: AKNetworkError)
+    }
+}

@@ -10,12 +10,14 @@ import APRUIKit
 import UIKit
 import Models
 import UIScrollView_InfiniteScroll
+import AlertMessages
 
 protocol CommunitiesListDisplayLogic: AnyObject {
     func displayCommunities(viewModel: CommunitiesListDataFlow.GetCommunities.ViewModel)
+    func displayJoinCommunity(viewModel: CommunitiesListDataFlow.JoinCommunity.ViewModel)
 }
 
-final class CommunitiesListViewController: ViewController {
+final class CommunitiesListViewController: ViewController, Messagable {
     
     struct Section {
         enum Section {

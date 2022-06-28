@@ -15,4 +15,8 @@ extension CommunitiesListViewController: CommunitiesListDisplayLogic {
     func displayCommunities(viewModel: CommunitiesListDataFlow.GetCommunities.ViewModel) {
         state = viewModel.state
     }
+
+    func displayJoinCommunity(viewModel: CommunitiesListDataFlow.JoinCommunity.ViewModel) {
+        state = viewModel.state
+    }
 }

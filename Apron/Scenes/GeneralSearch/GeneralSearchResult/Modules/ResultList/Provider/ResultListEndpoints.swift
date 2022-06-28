@@ -18,6 +18,7 @@ enum ResultListEndpoint {
     case getRecipes(SearchByQueryRequestBody)
     case getCommunities(SearchByQueryRequestBody)
     case saveRecipe(id: Int)
+    case joinCommunity(id: Int)
 }
 
 extension ResultListEndpoint: AKNetworkTargetType {
@@ -40,6 +41,8 @@ extension ResultListEndpoint: AKNetworkTargetType {
             return "communities"
         case let .saveRecipe(id):
             return "recipes/saveRecipe/\(id)"
+        case let .joinCommunity(id):
+            return "communities/join/\(id)"
         }
     }
     
@@ -51,7 +54,7 @@ extension ResultListEndpoint: AKNetworkTargetType {
                 .getRecipes,
                 .getCommunities:
             return .get
-        case .saveRecipe:
+        case .saveRecipe, .joinCommunity:
             return .put
         }
     }
@@ -83,18 +86,16 @@ extension ResultListEndpoint: AKNetworkTargetType {
                 encoding: AKURLEncoding.queryString
             )
         case let .getRecipes(body):
-            print(AKNetworkTask.requestParameters(parameters: body.toJSON(), encoding: AKURLEncoding.queryString))
             return .requestParameters(
                 parameters: body.toJSON(),
                 encoding: AKURLEncoding.queryString
             )
         case let .getCommunities(body):
-            print(AKNetworkTask.requestParameters(parameters: body.toJSON(), encoding: AKURLEncoding.queryString))
             return .requestParameters(
                 parameters: body.toJSON(),
                 encoding: AKURLEncoding.queryString
             )
-        case .saveRecipe:
+        case .saveRecipe, .joinCommunity:
             return .requestPlain
         }
     }

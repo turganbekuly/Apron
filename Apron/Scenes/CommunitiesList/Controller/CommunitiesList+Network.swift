@@ -13,4 +13,8 @@ extension CommunitiesListViewController {
     func getCommunities(with id: Int, currentPage: Int) {
         interactor.getCommunities(request: .init(pageNumber: currentPage, id: id))
     }
+
+    func joinCommunity(with id: Int) {
+        interactor.joinCommunity(request: .init(id: id))
+    }
 }

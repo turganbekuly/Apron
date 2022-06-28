@@ -13,6 +13,11 @@ protocol CommunitiesListServiceProtocol {
         request: CommunitiesListDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+
+    func joinCommunity(
+        request: CommunitiesListDataFlow.JoinCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class CommunitiesListService: CommunitiesListServiceProtocol {
@@ -37,6 +42,12 @@ final class CommunitiesListService: CommunitiesListServiceProtocol {
                 id: request.id
             ))
         ) { result in
+            completion(result)
+        }
+    }
+
+    func joinCommunity(request: CommunitiesListDataFlow.JoinCommunity.Request, completion: @escaping ((AKResult) -> Void)) {
+        provider.send(target: .joinCommunity(id: request.id)) { result in
             completion(result)
         }
     }

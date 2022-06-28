@@ -12,6 +12,7 @@ import Storages
 
 enum CommunitiesListEndpoint {
     case getCommunities(body: CommunitiesListRequestBody)
+    case joinCommunity(id: Int)
 }
 
 extension CommunitiesListEndpoint: AKNetworkTargetType {
@@ -24,11 +25,18 @@ extension CommunitiesListEndpoint: AKNetworkTargetType {
         switch self {
         case .getCommunities:
             return "communities"
+        case let .joinCommunity(id):
+            return "communities/join/\(id)"
         }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .getCommunities:
+            return .get
+        case .joinCommunity:
+            return .put
+        }
     }
     
     var sampleData: Data {
@@ -46,6 +54,8 @@ extension CommunitiesListEndpoint: AKNetworkTargetType {
                 ],
                 encoding: AKURLEncoding.queryString
             )
+        case .joinCommunity:
+            return .requestPlain
         }
     }
     

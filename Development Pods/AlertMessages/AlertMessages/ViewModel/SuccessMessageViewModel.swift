@@ -42,7 +42,7 @@ public struct SuccessMessageViewModel: MessageProtocol {
     }
 
     public var iconColor: UIColor? {
-        ApronAssets.secondary.color
+        .black
     }
 
     // MARK: - Init

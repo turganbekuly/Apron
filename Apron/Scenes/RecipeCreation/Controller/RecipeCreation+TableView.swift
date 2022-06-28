@@ -91,13 +91,13 @@ extension RecipeCreationViewController:
         case .instruction:
             return 100 + CGFloat((recipeCreation?.instructions.count ?? 0) * 80)
         case .servings:
-            return 80
+            return 100
         case .prepTime:
-            return 80
+            return 100
         case .cookTime:
-            return 80
+            return 100
         default:
-            return 600
+            return 0
         }
     }
 

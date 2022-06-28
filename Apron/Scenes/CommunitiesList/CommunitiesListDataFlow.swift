@@ -29,3 +29,22 @@ extension CommunitiesListDataFlow {
         case failed(error: AKNetworkError)
     }
 }
+
+extension CommunitiesListDataFlow {
+    enum JoinCommunity {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: JoinCommunityResult
+        }
+        struct ViewModel {
+            var state: CommunitiesListViewController.State
+        }
+    }
+
+    enum JoinCommunityResult {
+        case successfull
+        case failed(error: AKNetworkError)
+    }
+}

@@ -8,6 +8,7 @@
 
 protocol CommunitiesListBusinessLogic {
     func getCommunities(request: CommunitiesListDataFlow.GetCommunities.Request)
+    func joinCommunity(request: CommunitiesListDataFlow.JoinCommunity.Request)
 }
 
 final class CommunitiesListInteractor: CommunitiesListBusinessLogic {
@@ -32,6 +33,17 @@ final class CommunitiesListInteractor: CommunitiesListBusinessLogic {
                 self?.presenter.getCommunities(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.getCommunities(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func joinCommunity(request: CommunitiesListDataFlow.JoinCommunity.Request) {
+        provider.joinCommunity(request: request) { [weak self] in
+            switch $0 {
+            case .successfull:
+                self?.presenter.joinCommunity(response: .init(result: .successfull))
+            case let .failed(error):
+                self?.presenter.joinCommunity(response: .init(result: .failed(error: error)))
             }
         }
     }

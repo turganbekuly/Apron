@@ -34,6 +34,10 @@ protocol ResultListProviderProtocol {
         request: ResultListDataFlow.SaveRecipe.Request,
         completion: @escaping (ResultListDataFlow.SaveRecipeResult) -> Void
     )
+    func joinCommunity(
+        request: ResultListDataFlow.JoinCommunity.Request,
+        completion: @escaping (ResultListDataFlow.JoinCommunityResult) -> Void
+    )
 }
 
 final class ResultListProvider: ResultListProviderProtocol {
@@ -151,6 +155,17 @@ final class ResultListProvider: ResultListProviderProtocol {
                 } else {
                     completion(.failed(error: .invalidData))
                 }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func joinCommunity(request: ResultListDataFlow.JoinCommunity.Request, completion: @escaping (ResultListDataFlow.JoinCommunityResult) -> Void) {
+        service.joinCommunity(request: request) {
+            switch $0 {
+            case .success(_):
+                completion(.successfull)
             case let .failure(error):
                 completion(.failed(error: error))
             }

@@ -14,6 +14,11 @@ protocol CommunitiesListProviderProtocol {
         request: CommunitiesListDataFlow.GetCommunities.Request,
         completion: @escaping ((CommunitiesListDataFlow.GetCommunitiesResult) -> Void)
     )
+
+    func joinCommunity(
+        request: CommunitiesListDataFlow.JoinCommunity.Request,
+        completion: @escaping (CommunitiesListDataFlow.JoinCommunityResult) -> Void
+    )
 }
 
 final class CommunitiesListProvider: CommunitiesListProviderProtocol {
@@ -41,6 +46,17 @@ final class CommunitiesListProvider: CommunitiesListProviderProtocol {
                 } else {
                     completion(.failed(error: .invalidData))
                 }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func joinCommunity(request: CommunitiesListDataFlow.JoinCommunity.Request, completion: @escaping (CommunitiesListDataFlow.JoinCommunityResult) -> Void) {
+        service.joinCommunity(request: request) {
+            switch $0 {
+            case .success(_):
+                completion(.successfull)
             case let .failure(error):
                 completion(.failed(error: error))
             }

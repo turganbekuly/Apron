@@ -8,6 +8,8 @@
 
 import Models
 import UIKit
+import APRUIKit
+import HapticTouch
 
 extension CommunitiesListViewController {
     
@@ -16,6 +18,8 @@ extension CommunitiesListViewController {
         case initial(CommunitiesListInitialState)
         case fetchCommunities([CommunityResponse])
         case fetchCommunitiesFailed(AKNetworkError)
+        case joinedCommunity
+        case joinedCommunityFailed
     }
     
     // MARK: - Methods
@@ -27,6 +31,10 @@ extension CommunitiesListViewController {
             updateList(with: model)
         case let .fetchCommunitiesFailed(error):
             print(error)
+        case .joinedCommunity:
+            HapticTouch.generateSuccess()
+        case .joinedCommunityFailed:
+            show(type: .error(L10n.Common.errorMessage))
         }
     }
 

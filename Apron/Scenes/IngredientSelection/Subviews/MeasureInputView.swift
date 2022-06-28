@@ -60,6 +60,7 @@ final class MeasureInputView: UIView {
         textfield.placeholder = amountPlaceholder
         textfield.backgroundColor = .clear
         textfield.font = TypographyFonts.regular12
+        textfield.keyboardType = .decimalPad
         return textfield
     }()
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import APRUIKit
+import SnapKit
 
 protocol RecipeCreationAssignCellDelegate: AnyObject {
     func assignButtonTapped(with type: AssignTypes?)
@@ -26,6 +27,8 @@ final class RecipeCreationAssignCell: UITableViewCell {
     ]
 
     private var type: AssignTypes?
+
+    private var buttonWidth: Constraint?
 
     // MARK: - Init
     
@@ -62,6 +65,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
         label.textColor = ApronAssets.gray.color
         label.textAlignment = .left
         label.numberOfLines = 2
+        label.sizeToFit()
         return label
     }()
 
@@ -81,7 +85,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
         assignButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().inset(16)
-            $0.width.greaterThanOrEqualTo(52)
+            buttonWidth = $0.width.equalTo(55).constraint
         }
 
         titleLabel.snp.makeConstraints {
@@ -111,17 +115,23 @@ final class RecipeCreationAssignCell: UITableViewCell {
         self.type = type
         switch type {
         case let .servings(value):
-            titleLabel.text = "Количество"
-            assignButton.setTitle(value.isEmpty ? "Задать" : value, for: .normal)
+            titleLabel.text = "Количество порции"
+            assignButton.setTitle(value == "0" ? "Задать" : value, for: .normal)
             subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
         case let .prepTime(value):
             titleLabel.text = "Время приготовления"
-            assignButton.setTitle(value.isEmpty ? "Задать" : value, for: .normal)
+            assignButton.setTitle(value.isEmpty ? "Задать" : "\(value) минут", for: .normal)
             subtitlLabel.text = "Сколько времени нужно, что бы подготовить это блюдо?"
+            if !value.isEmpty {
+                buttonWidth?.update(offset: 80)
+            }
         case let .cookTime(value):
             titleLabel.text = "Время готовки"
-            assignButton.setTitle(value.isEmpty ? "Задать" : value, for: .normal)
+            assignButton.setTitle(value.isEmpty ? "Задать" : "\(value) минут", for: .normal)
             subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
+            if !value.isEmpty {
+                buttonWidth?.update(offset: 80)
+            }
         }
     }
 }

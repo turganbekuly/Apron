@@ -23,6 +23,7 @@ protocol ResultListBusinessLogic {
         request: ResultListDataFlow.GetCommunities.Request
     )
     func saveRecipe(request: ResultListDataFlow.SaveRecipe.Request)
+    func joinCommunity(request: ResultListDataFlow.JoinCommunity.Request)
 }
 
 final class ResultListInteractor: ResultListBusinessLogic {
@@ -102,6 +103,17 @@ final class ResultListInteractor: ResultListBusinessLogic {
                 self?.presenter.saveRecipe(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.saveRecipe(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func joinCommunity(request: ResultListDataFlow.JoinCommunity.Request) {
+        provider.joinCommunity(request: request) { [weak self] in
+            switch $0 {
+            case .successfull:
+                self?.presenter.joinCommunity(response: .init(result: .successfull))
+            case let .failed(error):
+                self?.presenter.joinCommunity(response: .init(result: .failed(error: error)))
             }
         }
     }

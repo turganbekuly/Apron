@@ -33,6 +33,10 @@ protocol ResultListServiceProtocol {
         request: ResultListDataFlow.SaveRecipe.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func joinCommunity(
+        request: ResultListDataFlow.JoinCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class ResultListService: ResultListServiceProtocol {
@@ -100,6 +104,12 @@ final class ResultListService: ResultListServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .saveRecipe(id: request.id)) { result in
+            completion(result)
+        }
+    }
+
+    func joinCommunity(request: ResultListDataFlow.JoinCommunity.Request, completion: @escaping ((AKResult) -> Void)) {
+        provider.send(target: .joinCommunity(id: request.id)) { result in
             completion(result)
         }
     }

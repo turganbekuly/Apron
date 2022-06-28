@@ -129,6 +129,6 @@ final class RecipeCaloriesViewCell: UITableViewCell {
         fatView.configure(type: "ЖИРЫ", measure: String(format: "%.1f", viewModel.fatCount ?? 0) + "g")
         proteinView.configure(type: "БЕЛКИ", measure: String(format: "%.1f", viewModel.proteinCount ?? 0) + "g")
         carbsView.configure(type: "УГЛЕВОДЫ", measure: String(format: "%.1f", viewModel.carbsCount ?? 0) + "g")
-        attributedLabelSetup(firstString: "\(viewModel.ccalCount ?? 0) ", secondString: "Ккал на 1 порцию")
+        attributedLabelSetup(firstString: "\(viewModel.ccalCount ?? 0) ", secondString: "Ккал на 100 гр")
     }
 }

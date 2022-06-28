@@ -20,6 +20,7 @@ protocol ResultListDisplayLogic: AnyObject {
     func displayRecipes(with viewModel: ResultListDataFlow.GetRecipes.ViewModel)
     func displayCommunities(with viewModel: ResultListDataFlow.GetCommunities.ViewModel)
     func displaySaveRecipe(viewModel: ResultListDataFlow.SaveRecipe.ViewModel)
+    func displayJoinCommunity(viewModel: ResultListDataFlow.JoinCommunity.ViewModel)
 }
 
 final class ResultListViewController: ViewController, Messagable {

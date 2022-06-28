@@ -9,6 +9,7 @@
 import Models
 import UIKit
 import APRUIKit
+import HapticTouch
 
 extension ResultListViewController {
     
@@ -27,6 +28,8 @@ extension ResultListViewController {
         case fetchCommunitiesFailed(AKNetworkError)
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
+        case joinedCommunity
+        case joinedCommunityFailed
     }
     
     // MARK: - Methods
@@ -61,9 +64,13 @@ extension ResultListViewController {
             updateCommunitiesList(with: model)
         case let .fetchCommunitiesFailed(error):
             print(error)
-        case let .saveRecipe(newCount):
-            print(newCount)
+        case .saveRecipe:
+            HapticTouch.generateSuccess()
         case .saveRecipeFailed:
+            show(type: .error(L10n.Common.errorMessage))
+        case .joinedCommunity:
+            HapticTouch.generateSuccess()
+        case .joinedCommunityFailed:
             show(type: .error(L10n.Common.errorMessage))
         }
     }

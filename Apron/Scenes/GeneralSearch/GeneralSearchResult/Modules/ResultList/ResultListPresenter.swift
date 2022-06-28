@@ -25,6 +25,7 @@ protocol ResultListPresentationLogic: AnyObject {
         response: ResultListDataFlow.GetCommunities.Response
     )
     func saveRecipe(response: ResultListDataFlow.SaveRecipe.Response)
+    func joinCommunity(response: ResultListDataFlow.JoinCommunity.Response)
 }
 
 final class ResultListPresenter: ResultListPresentationLogic {
@@ -120,6 +121,21 @@ final class ResultListPresenter: ResultListPresentationLogic {
                 viewModel = .init(state: .saveRecipe(recipe))
             case let .failed(error):
                 viewModel = .init(state: .saveRecipeFailed(error))
+            }
+        }
+    }
+
+    func joinCommunity(response: ResultListDataFlow.JoinCommunity.Response) {
+        DispatchQueue.main.async {
+            var viewModel: ResultListDataFlow.JoinCommunity.ViewModel
+
+            defer { self.viewController?.displayJoinCommunity(viewModel: viewModel) }
+
+            switch response.result {
+            case .successfull:
+                viewModel = .init(state: .joinedCommunity)
+            case .failed:
+                viewModel = .init(state: .joinedCommunityFailed)
             }
         }
     }

@@ -118,7 +118,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
         [titleLabel, subtitlLabel, picker, saveButton].forEach { view.addSubview($0) }
         switch type {
         case .servings:
-            titleLabel.text = "Количество"
+            titleLabel.text = "Количество порции"
             subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
         case .cookTime:
             titleLabel.text = "Время готовки"

@@ -105,6 +105,7 @@ extension ResultListViewController: UITableViewDelegate {
             cell.configure(with: GeneralSearchRecipeViewModel(recipe: recipe))
         case let .community(community):
             guard let cell = cell as? GeneralSearchCommunityCell else { return }
+            cell.delegate = self
             cell.configure(with: GeneralSearchCommunityViewModel(community: community))
         default:
             break

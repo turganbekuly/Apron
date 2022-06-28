@@ -56,4 +56,8 @@ extension ResultListViewController {
     func saveRecipe(with id: Int) {
         interactor.saveRecipe(request: .init(id: id))
     }
+
+    func joinCommunity(with id: Int) {
+        interactor.joinCommunity(request: .init(id: id))
+    }
 }
