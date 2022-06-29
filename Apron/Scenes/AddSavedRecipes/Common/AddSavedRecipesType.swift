@@ -8,5 +8,6 @@
 import Foundation
 
 enum AddSavedRecipesType {
-    case community(Int)
+    case communityCreation(Int)
+    case community(Int, CommunityPageCreateRecipeProtocol)
 }

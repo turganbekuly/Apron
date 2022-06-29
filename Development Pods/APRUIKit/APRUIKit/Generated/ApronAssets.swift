@@ -73,6 +73,7 @@ public enum ApronAssets {
   public static let navMoreButton = ImageAsset(name: "nav_more_button")
   public static let navNotificationIcon = ImageAsset(name: "nav_notification_icon")
   public static let navSearchIcon = ImageAsset(name: "nav_search_icon")
+  public static let user = ImageAsset(name: "user")
   public static let creationPlusButton = ImageAsset(name: "creation_plus_button")
   public static let minusButtonIcon = ImageAsset(name: "minus_button_icon")
   public static let plusButtonIcon = ImageAsset(name: "plus_button_icon")

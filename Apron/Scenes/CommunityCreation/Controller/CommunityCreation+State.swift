@@ -25,7 +25,7 @@ extension CommunityCreationViewController {
             self.initialState = initialState
         case let .communityCreationSucceed(community):
             sendCommunityCreatedAnalytics(community: community)
-            let vc = AddSavedRecipesBuilder(state: .initial(.community(community.id))).build()
+            let vc = AddSavedRecipesBuilder(state: .initial(.communityCreation(community.id))).build()
             dismiss(animated: true) {
                 self.navigationController?.pushViewController(vc, animated: true)
             }

@@ -27,10 +27,7 @@ extension MainViewController: CreateActionFlowProtocol {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         case .aboutCommunities:
-            let vc = AddSavedRecipesBuilder(state: .initial(.community(0))).build()
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            break
         default:
             break
         }

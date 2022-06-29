@@ -32,7 +32,9 @@ final class AddSavedRecipesViewController: ViewController {
     }
     
     // MARK: - Properties
+
     let interactor: AddSavedRecipesBusinessLogic
+    weak var delegate: CommunityPageCreateRecipeProtocol?
     var sections: [Section] = [
         .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
     ]
@@ -59,8 +61,11 @@ final class AddSavedRecipesViewController: ViewController {
     var initialState: AddSavedRecipesType? {
         didSet {
             switch initialState {
-            case let .community(id):
+            case let .communityCreation(id):
                 self.communityID = id
+            case let .community(id, delegate):
+                self.communityID = id
+                self.delegate = delegate
             default:
                 break
             }
@@ -174,6 +179,7 @@ final class AddSavedRecipesViewController: ViewController {
     @objc
     private func refresh(_ sender: UIRefreshControl) {
         savedRecipes.removeAll()
+        selectedRecipes.removeAll()
         sections = [.init(section: .recipes, rows: Array(repeating: .loading, count: 10))]
         mainView.reloadData()
         currentPage = 1

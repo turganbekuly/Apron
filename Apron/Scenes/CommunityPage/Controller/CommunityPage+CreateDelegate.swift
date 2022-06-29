@@ -20,9 +20,16 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
             let vc = RecipeCreationBuilder(
                 state: .initial(
                     .create(
-                        RecipeCreation(), .community(id: community?.id ?? 1, from: self)
+                        RecipeCreation(), .community(id: community?.id ?? 0, from: self)
                     )
                 )
+            ).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: false)
+            }
+        case .savedRecipe:
+            let vc = AddSavedRecipesBuilder(
+                state: .initial(.community(community?.id ?? 0, self))
             ).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: false)

@@ -30,7 +30,7 @@ public struct ErrorMessageViewModel: MessageProtocol {
     }
 
     public var backgroundColor: UIColor {
-        ApronAssets.red.color
+        .black
     }
 
     public var titleColor: UIColor {

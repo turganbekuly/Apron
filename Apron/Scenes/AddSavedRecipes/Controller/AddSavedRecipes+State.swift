@@ -31,9 +31,17 @@ extension AddSavedRecipesViewController {
         case .getSavedRecipesFailed:
             endRefreshingIfNeeded()
         case .addRecipesToCommunitySucceed:
-            let vc = CommunityPageBuilder(state: .initial(.fromAddedRecipes(id: communityID))).build()
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
+            switch initialState {
+            case .communityCreation:
+                let vc = CommunityPageBuilder(state: .initial(.fromAddedRecipes(id: communityID))).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .community:
+                delegate?.didCreate()
+                self.navigationController?.popViewController(animated: true)
+            default:
+                break
             }
         case let .addRecipesToCommunityFailed(error):
             print(error)

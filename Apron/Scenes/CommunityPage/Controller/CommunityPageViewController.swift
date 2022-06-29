@@ -42,8 +42,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
                 self.id = id
                 self.communityPageViewedSourceType = .homepage
             case let .fromAddedRecipes(id):
-                getCommunities(by: id)
-                getRecipesByCommunity(id: id, currentPage: currentPage)
+                joinCommunity(with: id)
                 self.id = id
                 self.communityPageViewedSourceType = .unknown
             case let .fromDeeplink(id):
@@ -199,6 +198,8 @@ public final class CommunityPageViewController: ViewController, Messagable {
         moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
         backButton.onTouch = { [weak self] in
             switch self?.initialState {
+            case .fromAddedRecipes:
+                self?.navigationController?.popToRootViewController(animated: false)
             default:
                 self?.navigationController?.popViewController(animated: true)
             }
@@ -310,6 +311,11 @@ public final class CommunityPageViewController: ViewController, Messagable {
     @objc
     private func createButtonTapped() {
         guard AuthStorage.shared.isUserAuthorized else {
+            return
+        }
+
+        guard community?.joined == true else {
+            show(type: .error("Пожалуйста, вступите в сообщество чтобы добавлять рецепты"))
             return
         }
         navigateToCreateActionFlow(with: .communityPageRecipeCreation)
