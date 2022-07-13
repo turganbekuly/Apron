@@ -127,6 +127,7 @@ extension CommunityPageViewController: UITableViewDelegate {
             guard let view = view as? CommunityInfoHeaderView else { return }
             view.filterViewDelegate = self
             view.segmentDelegate = self
+            view.delegate = self
             view.configure(with: CommunityInfoCellViewModel(
                 community: community,
                 searchbarPlaceholder: community?.name ?? ""

@@ -20,6 +20,10 @@ extension RecipePageViewController: BottomStickyViewDelegate {
         guard let recipe = recipe else { return }
         saveRecipe(with: recipe.id)
     }
+
+    func madeItButtonTapped() {
+        //
+    }
 }
 
 extension RecipePageViewController: CreateActionFlowProtocol {
@@ -33,9 +37,9 @@ extension RecipePageViewController: CreateActionFlowProtocol {
                 cartManager.update(productName: $0.product?.name ?? "",
                                    productCategoryName: $0.product?.productCategoryName ?? "",
                                    amount: $0.amount ?? 0,
-                                   quantity: 1,
                                    measurement: $0.measurement ?? "",
-                                   recipeName: self.recipe?.recipeName ?? ""
+                                   recipeName: self.recipe?.recipeName ?? "",
+                                   bought: false
                 )
             }
             ApronAnalytics.shared.sendAmplitudeEvent(

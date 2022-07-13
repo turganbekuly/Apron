@@ -11,7 +11,19 @@ import M13Checkbox
 import HapticTouch
 import Storages
 
+protocol ShoppingListCellProtocol: AnyObject {
+    func onCheckboxTapped(with item: CartItem, value: M13Checkbox.CheckState)
+}
+
 final class ShoppingItemCell: UITableViewCell {
+    // MARK: - Properties
+
+    weak var delegate: ShoppingListCellProtocol?
+
+    // MARK: - Private properties
+
+    var cartItem: CartItem?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -21,18 +33,6 @@ final class ShoppingItemCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        if selected {
-            checkbox.setCheckState(.checked, animated: true)
-            HapticTouch.generateMedium()
-        } else {
-            checkbox.setCheckState(.unchecked, animated: true)
-            HapticTouch.generateError()
-        }
     }
 
     // MARK: - Views factory
@@ -80,6 +80,7 @@ final class ShoppingItemCell: UITableViewCell {
         checkbox.tintColor = ApronAssets.colorsYello.color
         checkbox.secondaryTintColor = .gray
         checkbox.secondaryCheckmarkTintColor = .black
+        checkbox.addTarget(self, action: #selector(checkboxValueChanged), for: .valueChanged)
         return checkbox
     }()
 
@@ -131,11 +132,39 @@ final class ShoppingItemCell: UITableViewCell {
         }
     }
 
+    // MARK: - User actions
+
+    @objc
+    private func checkboxValueChanged() {
+        guard let cartItem = cartItem else {
+            return
+        }
+
+        switch checkbox.checkState {
+        case .checked:
+            checkbox.setCheckState(.checked, animated: true)
+            alpha = 0.5
+            HapticTouch.generateSuccess()
+            delegate?.onCheckboxTapped(with: cartItem, value: .checked)
+        case .unchecked:
+            checkbox.setCheckState(.unchecked, animated: true)
+            alpha = 1
+            HapticTouch.generateError()
+            delegate?.onCheckboxTapped(with: cartItem, value: .unchecked)
+        default:
+            break
+        }
+    }
+
     // MARK: - Public methods
 
     func configure(item: CartItem) {
+        cartItem = item
         sourceRecipsButton.text = item.recipeName?.first ?? ""
         ingredientNameLabel.text = item.productName
         measurementLabel.text = "\(item.amount ?? 0) \(item.measurement ?? "")"
+        checkbox.setCheckState(item.bought ? .checked : .unchecked, animated: true)
+        alpha = item.bought ? 0.5 : 1
+
     }
 }

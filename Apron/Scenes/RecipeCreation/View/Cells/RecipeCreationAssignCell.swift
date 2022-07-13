@@ -120,14 +120,14 @@ final class RecipeCreationAssignCell: UITableViewCell {
             subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
         case let .prepTime(value):
             titleLabel.text = "Время приготовления"
-            assignButton.setTitle(value.isEmpty ? "Задать" : "\(value) минут", for: .normal)
+            assignButton.setTitle(value == "0" ? "Задать" : "\(value) минут", for: .normal)
             subtitlLabel.text = "Сколько времени нужно, что бы подготовить это блюдо?"
             if !value.isEmpty {
                 buttonWidth?.update(offset: 80)
             }
         case let .cookTime(value):
             titleLabel.text = "Время готовки"
-            assignButton.setTitle(value.isEmpty ? "Задать" : "\(value) минут", for: .normal)
+            assignButton.setTitle(value == "0" ? "Задать" : "\(value) минут", for: .normal)
             subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
             if !value.isEmpty {
                 buttonWidth?.update(offset: 80)

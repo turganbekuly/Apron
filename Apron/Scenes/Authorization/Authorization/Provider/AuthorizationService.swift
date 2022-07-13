@@ -9,7 +9,7 @@ import AKNetwork
 
 protocol AuthorizationServiceProtocol {
     func login(
-        request: AuthorizationDataFlow.Login.Request,
+        request: AuthorizationDataFlow.AuthorizationWithApple.Request,
         completion: @escaping ((AKResult) -> Void)
     )
 }
@@ -27,13 +27,10 @@ final class AuthorizationService: AuthorizationServiceProtocol {
     // MARK: - RecipeCreationServiceProtocol
 
     func login(
-        request: AuthorizationDataFlow.Login.Request,
+        request: AuthorizationDataFlow.AuthorizationWithApple.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .login(
-            email: request.email,
-            password: request.password
-        )) { result in
+        provider.send(target: .authByApple(code: request.code)) { result in
             completion(result)
         }
     }

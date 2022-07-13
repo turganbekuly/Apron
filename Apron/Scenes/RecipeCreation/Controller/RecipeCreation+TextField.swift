@@ -19,3 +19,9 @@ extension RecipeCreationViewController: DescriptionCellDelegate {
     }
 }
 
+extension RecipeCreationViewController: SourceURLDelegate {
+    func cell(_ cell: RecipeCreationSourceURLCell, didEnterSource source: String?) {
+        recipeCreation?.sourceLink = source
+    }
+}
+

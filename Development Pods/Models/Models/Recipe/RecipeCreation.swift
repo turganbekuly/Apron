@@ -32,8 +32,8 @@ public struct RecipeCreation: Codable {
     public var ingredients = [RecipeIngredient]()
     public var instructions = [String]()
     public var servings: Int?
-    public var prepTime: String?
-    public var cookTime: String?
+    public var prepTime: Int?
+    public var cookTime: Int?
     public var communityId: Int?
 
     // MARK: - Init

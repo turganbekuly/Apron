@@ -71,35 +71,32 @@ public final class CartManager {
     // MARK: - Public methods
 
     public func itemsCount() -> Int {
-        return fetchItemsFromStorage().map { $0.quantity }.reduce(0, +)
+        return fetchItemsFromStorage().count
     }
 
     public func update(
         productName: String,
         productCategoryName: String,
         amount: Double?,
-        quantity: Int?,
         measurement: String?,
-        recipeName: String?
+        recipeName: String?,
+        bought: Bool
     ){
         var currentItems = fetchItemsFromStorage()
 
         if let index = currentItems
-            .firstIndex(where: {
-                return ($0.productName == productName)
-                && $0.measurement == measurement
-            }) {
+            .firstIndex(where: { $0.productName == productName && $0.measurement == measurement }) {
             let item = currentItems[index]
 
-            if let quantity = quantity {
-                if quantity > 0 {
+            if let amount = amount {
+                if amount > 0 {
                     currentItems[index] = CartItem(
                         productName: item.productName,
                         productCategoryName: item.productCategoryName,
-                        amount: (item.amount ?? 0) + (amount ?? 0),
-                        quantity: item.quantity + quantity,
+                        amount: amount ?? 0,
                         measurement: measurement,
-                        recipeName: (item.recipeName ?? []) + [recipeName ?? ""]
+                        recipeName: (item.recipeName ?? []) + [recipeName ?? ""],
+                        bought: bought
                     )
 
                     setItemsToStorage(items: currentItems)
@@ -113,9 +110,9 @@ public final class CartManager {
                     productName: item.productName,
                     productCategoryName: item.productCategoryName,
                     amount: amount,
-                    quantity: item.quantity + 1,
                     measurement: measurement,
-                    recipeName: (item.recipeName ?? []) + [recipeName ?? ""]
+                    recipeName: (item.recipeName ?? []) + [recipeName ?? ""],
+                    bought: bought
                 )
 
                 setItemsToStorage(items: currentItems)
@@ -127,9 +124,9 @@ public final class CartManager {
                 productName: productName,
                 productCategoryName: productCategoryName,
                 amount: amount,
-                quantity: quantity ?? 1,
                 measurement: measurement,
-                recipeName: [recipeName ?? ""]
+                recipeName: [recipeName ?? ""],
+                bought: bought
             )
 
             addItemToStorage(item: item)
@@ -144,15 +141,16 @@ public final class CartManager {
         amount: Double?,
         quantity: Int?,
         measurement: String?,
-        recipeName: String?
+        recipeName: String?,
+        bought: Bool
     ) {
         let item = CartItem(
             productName: productName,
             productCategoryName: productCategoryName,
             amount: amount,
-            quantity: quantity ?? 1,
             measurement: measurement,
-            recipeName: [recipeName ?? ""]
+            recipeName: [recipeName ?? ""],
+            bought: bought
         )
 
         addItemToStorage(item: item)
@@ -188,7 +186,7 @@ public final class CartManager {
         sendChangeEvent()
     }
 
-    public func isContains(cartItem name: String) -> Bool {
+    public func isContains(product name: String) -> Bool {
         let items = fetchItemsFromStorage()
         return items.contains(where: {
             $0.productName.caseInsensitiveCompare(name) == .orderedSame
@@ -212,6 +210,14 @@ public final class CartManager {
         }
 
         return item.recipeName ?? []
+    }
+
+    public func getProductAmount(for productName: String) -> Double {
+        guard let item = fetchItemsFromStorage().first(where: { $0.productName == productName }) else {
+            return 0
+        }
+
+        return item.amount ?? 0
     }
 
     // MARK: - Private methods

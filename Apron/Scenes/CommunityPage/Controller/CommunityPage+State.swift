@@ -39,6 +39,7 @@ extension CommunityPageViewController {
             getCommunities(by: id)
             getRecipesByCommunity(id: id, currentPage: currentPage)
         case .joinedCommunityFailed:
+            mainView.reloadData()
             show(type: .error(L10n.Common.errorMessage))
         case let .displayRecipes(model):
             updateList(with: model)

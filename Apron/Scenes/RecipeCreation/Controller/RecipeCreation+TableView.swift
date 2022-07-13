@@ -20,6 +20,9 @@ extension RecipeCreationViewController: UITableViewDataSource {
         case .image:
             let cell: RecipeCreationImageCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .source:
+            let cell: RecipeCreationSourceURLCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         case .imagePlaceholder:
             let cell: RecipeCreationPlaceholderImageCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
@@ -55,6 +58,8 @@ extension RecipeCreationViewController:
         switch row {
         case .name:
             return 54
+        case .source:
+            return 100
         case .image:
             return 221
         case .imagePlaceholder:
@@ -80,6 +85,8 @@ extension RecipeCreationViewController:
         switch row {
         case .name:
             return 54
+        case .source:
+            return 100
         case .image:
             return 221
         case .imagePlaceholder:
@@ -108,6 +115,10 @@ extension RecipeCreationViewController:
             guard let cell = cell as? RecipeCreationNamingCell else { return }
             cell.delegate = self
             cell.configure(recipeName: recipeCreation?.recipeName)
+        case .source:
+            guard let cell = cell as? RecipeCreationSourceURLCell else { return }
+            cell.delegate = self
+            cell.configure(sourceName: recipeCreation?.sourceLink)
         case .image:
             guard let cell = cell as? RecipeCreationImageCell else { return }
             cell.delegate = self
@@ -134,11 +145,11 @@ extension RecipeCreationViewController:
         case .prepTime:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self
-            cell.configure(type: .prepTime(recipeCreation?.prepTime ?? ""))
+            cell.configure(type: .prepTime("\(recipeCreation?.prepTime ?? 0)"))
         case .cookTime:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self
-            cell.configure(type: .cookTime(recipeCreation?.cookTime ?? ""))
+            cell.configure(type: .cookTime("\(recipeCreation?.cookTime ?? 0)"))
         default: break
         }
     }

@@ -13,7 +13,7 @@ import SnapKit
 import AlertMessages
 
 protocol AuthorizationDisplayLogic: AnyObject {
-    func login(viewModel: AuthorizationDataFlow.Login.ViewModel)
+    func login(viewModel: AuthorizationDataFlow.AuthorizationWithApple.ViewModel)
 }
 
 final class AuthorizationViewController: ViewController, Messagable {

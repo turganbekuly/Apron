@@ -13,12 +13,18 @@ public enum AuthorizationStatus: String {
     case unauthorized = "false"
 }
 
+public enum GrantType: String {
+    case apple = "apple_login"
+    case native = "refresh_token"
+}
+
 public protocol AuthStorageProtocol {
     var accessToken: String? { get set }
     var phoneNumber: String? { get set }
     var refreshToken: String? { get set }
     var deviceToken: String? { get set }
     var isUserAuthorized: Bool { get set }
+    var grantType: String? { get set }
     var launchAuthorizationScreenShown: Bool { get set }
     func save(model: Auth)
     func clear()
@@ -33,6 +39,7 @@ public final class AuthStorage: AuthStorageProtocol {
         static let refreshToken = "refreshToken"
         static let deviceToken = "deviceToken"
         static let isUserAuthorized = "isUserAuthorized"
+        static let grantType = "grant_type"
         static let launchAuthorizationScreenShown = "launchAuthorizationScreenShown"
     }
 
@@ -64,6 +71,11 @@ public final class AuthStorage: AuthStorageProtocol {
     public var isUserAuthorized: Bool {
         get { AuthStorage.isUserAuthorized }
         set { AuthStorage.isUserAuthorized = newValue }
+    }
+
+    public var grantType: String? {
+        get { try? keychain.get(Constants.grantType) }
+        set { updateGrantType(grantType: grantType) }
     }
 
     public var launchAuthorizationScreenShown: Bool {
@@ -131,6 +143,14 @@ public final class AuthStorage: AuthStorageProtocol {
             try? keychain.set(isAuthorized, key: Constants.isUserAuthorized)
         } else {
             try? keychain.remove(Constants.isUserAuthorized)
+        }
+    }
+
+    private func updateGrantType(grantType: String?) {
+        if let grantType = grantType {
+            try? keychain.set(grantType, key: Constants.grantType)
+        } else {
+            try? keychain.remove(Constants.grantType)
         }
     }
 

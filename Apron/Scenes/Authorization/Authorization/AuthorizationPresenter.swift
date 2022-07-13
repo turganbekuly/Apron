@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AuthorizationPresentationLogic: AnyObject {
-    func login(response: AuthorizationDataFlow.Login.Response)
+    func login(response: AuthorizationDataFlow.AuthorizationWithApple.Response)
 }
 
 final class AuthorizationPresenter: AuthorizationPresentationLogic {
@@ -18,9 +18,9 @@ final class AuthorizationPresenter: AuthorizationPresentationLogic {
 
     // MARK: - RecipeCreationPresentationLogic
 
-    func login(response: AuthorizationDataFlow.Login.Response) {
+    func login(response: AuthorizationDataFlow.AuthorizationWithApple.Response) {
         DispatchQueue.main.async {
-            var viewModel: AuthorizationDataFlow.Login.ViewModel
+            var viewModel: AuthorizationDataFlow.AuthorizationWithApple.ViewModel
 
             defer { self.viewController?.login(viewModel: viewModel) }
 

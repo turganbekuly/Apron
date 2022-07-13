@@ -14,4 +14,8 @@ extension ShoppingListViewController {
         interactor.fetchCartItems(request: .init())
     }
 
+    func resetCartItems() {
+        interactor.clearCartItems(request: .init())
+    }
+
 }

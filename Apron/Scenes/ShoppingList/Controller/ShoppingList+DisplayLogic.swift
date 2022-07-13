@@ -15,4 +15,8 @@ extension ShoppingListViewController: ShoppingListDisplayLogic {
     func displayCartItems(viewModel: ShoppingListDataFlow.GetCartItems.ViewModel) {
         state = viewModel.state
     }
+
+    func displayClearCartItems(viewModel: ShoppingListDataFlow.ClearCartItems.ViewModel) {
+        state = viewModel.state
+    }
 }

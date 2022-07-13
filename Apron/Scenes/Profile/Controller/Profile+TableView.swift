@@ -22,8 +22,9 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .about, .logout:
+            let cell: SettingsAppCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
     
@@ -43,16 +44,16 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .logout, .about:
+            return 56
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .logout, .about:
+            return 56
         }
     }
     
@@ -63,37 +64,4 @@ extension ProfileViewController: UITableViewDelegate {
             break
         }
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let section = sections[section].section
-        switch section {
-        default:
-            break
-        }
-    }
-    
 }

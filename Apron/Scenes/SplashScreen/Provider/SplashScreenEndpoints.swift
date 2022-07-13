@@ -42,7 +42,10 @@ extension SplashScreenEndpoints: AKNetworkTargetType {
         switch self {
         case let .updateToken(refreshToken):
             return .requestParameters(
-                parameters: ["refreshToken": refreshToken],
+                parameters: [
+                    "refreshToken": refreshToken,
+                    "grantType": AuthStorage.shared.grantType ?? ""
+                ],
                 encoding: AKJSONEncoding.default
             )
         }

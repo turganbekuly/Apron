@@ -6,7 +6,7 @@
 //
 
 protocol AuthorizationBusinessLogic {
-    func login(request: AuthorizationDataFlow.Login.Request)
+    func login(request: AuthorizationDataFlow.AuthorizationWithApple.Request)
 }
 
 final class AuthorizationInteractor: AuthorizationBusinessLogic {
@@ -24,7 +24,7 @@ final class AuthorizationInteractor: AuthorizationBusinessLogic {
 
     // MARK: - RecipeCreationBusinessLogic
 
-    func login(request: AuthorizationDataFlow.Login.Request) {
+    func login(request: AuthorizationDataFlow.AuthorizationWithApple.Request) {
         provider.login(request: request) { [weak self] in
             switch $0 {
             case let .successful(model):

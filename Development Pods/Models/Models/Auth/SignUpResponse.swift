@@ -14,11 +14,13 @@ public struct SignUpResponse: Codable {
         case recipes
         case myRecipes
         case email
+        case username
     }
 
     // MARK: - Properties
 
     var email: String?
+    var username: String?
     var managedCommunities: [CommunityResponse]?
     var communities: [CommunityResponse]?
     var recipes: [RecipeResponse]?
@@ -26,6 +28,7 @@ public struct SignUpResponse: Codable {
 
     public init?(json: JSON) {
         self.email = json[CodingKeys.email.rawValue] as? String
+        self.username = json[CodingKeys.username.rawValue] as? String
         self.managedCommunities = (json[CodingKeys.managedCommunities.rawValue] as? [JSON])?
             .compactMap { CommunityResponse(json: $0) } ?? []
         self.communities = (json[CodingKeys.communities.rawValue] as? [JSON])?

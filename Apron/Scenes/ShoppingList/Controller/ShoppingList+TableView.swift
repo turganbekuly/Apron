@@ -8,6 +8,8 @@
 
 import UIKit
 import APRUIKit
+import Alamofire
+import Storages
 
 extension ShoppingListViewController: UITableViewDataSource {
     
@@ -40,6 +42,24 @@ extension ShoppingListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case let .ingredient(item):
+            guard let cartItem = cartItems.first(where: { $0.productName == item.productName }) else { return }
+            var bought = cartItem.bought
+            if cartItem.bought {
+                bought = false
+                tableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                bought = true
+            }
+
+            CartManager.shared.update(
+                productName: cartItem.productName,
+                productCategoryName: cartItem.productCategoryName,
+                amount: cartItem.amount,
+                measurement: cartItem.measurement,
+                recipeName: cartItem.recipeName?.first,
+                bought: bought
+            )
         default:
             break
         }
@@ -76,6 +96,7 @@ extension ShoppingListViewController: UITableViewDelegate {
             )
         case let .ingredient(item):
             guard let cell = cell as? ShoppingItemCell else { return }
+            cell.delegate = self
             cell.configure(item: item)
         }
     }

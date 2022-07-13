@@ -8,12 +8,15 @@
 
 import Models
 import UIKit
+import Storages
 
 extension AuthSignUpViewController {
     
     // MARK: - State
     public enum State {
         case initial
+        case signupSucceed(Auth)
+        case signupFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -21,6 +24,16 @@ extension AuthSignUpViewController {
         switch state {
         case .initial:
             break
+        case let .signupSucceed(profile):
+            hideLoader()
+            AuthStorage.shared.grantType = GrantType.native.rawValue
+            AuthStorage.shared.save(model: profile)
+            let viewController = TabBarBuilder(state: .initial(.normal)).build()
+            DispatchQueue.main.async {
+                UIApplication.shared.windows.first?.rootViewController = viewController
+            }
+        case .signupFailed:
+            print("asd")
         }
     }
     

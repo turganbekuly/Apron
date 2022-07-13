@@ -29,11 +29,13 @@ final class RecipeCreationView: UITableView {
 
     // MARK: - Methods
     private func configure() {
+        separatorStyle = .none
         keyboardDismissMode = .onDrag
         contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
 
         [
             RecipeCreationNamingCell.self,
+            RecipeCreationSourceURLCell.self,
             RecipeCreationImageCell.self,
             RecipeCreationPlaceholderImageCell.self,
             RecipeCreationDescriptionCell.self,

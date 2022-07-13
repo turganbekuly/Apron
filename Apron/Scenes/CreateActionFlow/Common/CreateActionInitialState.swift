@@ -14,4 +14,5 @@ enum CreateActionInitialState {
     case recipePageMore
     case recipePageAddTo
     case savedPageCreate
+    case shoppingListMore
 }

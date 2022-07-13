@@ -16,20 +16,24 @@ extension ShoppingListViewController {
     public enum State {
         case initial
         case cartItemsDidFetch([CartItem])
-        case cartItemsDidFail(AKNetworkError)
+        case cartItemsDidFail
+        case cartItemsDidClear([CartItem])
+        case cartItemsDidClearWithError
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
-            showLoader()
             self.fetchCartItems()
         case let .cartItemsDidFetch(items):
-            hideLoader()
             self.cartItems = items
-        case let .cartItemsDidFail(error):
-            print(error)
+        case .cartItemsDidFail:
+            show(type: .error("Не удалось загрузить корзину"))
+        case let .cartItemsDidClear(items):
+            self.cartItems = items
+        case .cartItemsDidClearWithError:
+            show(type: .error("Не удалось очистить корзину"))
         }
     }
 }

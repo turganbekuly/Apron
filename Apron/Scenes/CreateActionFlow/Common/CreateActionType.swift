@@ -23,6 +23,8 @@ enum CreateActionType {
     case reportCommunity
     case shoppingList
     case mealPlan
+    case shareIngredients
+    case clearIngredients
 }
 
 

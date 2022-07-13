@@ -30,6 +30,7 @@ final class ShoppingListView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
+        allowsMultipleSelection = true
         [
             EmptyCartCell.self,
             ShoppingItemCell.self

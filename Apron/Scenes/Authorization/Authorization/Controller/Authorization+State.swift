@@ -24,8 +24,10 @@ extension AuthorizationViewController {
     public func updateState() {
         switch state {
         case .initial:
-            AuthStorage.shared.clear()
+            break
         case let .loginSucceed(model):
+            hideLoader()
+            AuthStorage.shared.grantType = GrantType.apple.rawValue
             AuthStorage.shared.save(model: model)
             let viewController = TabBarBuilder(state: .initial(.normal)).build()
             DispatchQueue.main.async {

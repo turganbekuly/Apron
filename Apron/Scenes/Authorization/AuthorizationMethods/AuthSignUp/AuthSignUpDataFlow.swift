@@ -15,14 +15,10 @@ enum AuthSignUpDataFlow {
 extension AuthSignUpDataFlow {
     enum SignUp {
         struct Request {
-            let email: String
-            let password: String
-            let firstName: String
-            let lastName: String
-            let middleName: String
+            let body: SignUpRequest
         }
         struct Response {
-
+            let result: SignUpResult
         }
         struct ViewModel {
             var state: AuthSignUpViewController.State
@@ -30,7 +26,7 @@ extension AuthSignUpDataFlow {
     }
 
     enum SignUpResult {
-        case successful(model: SignUpResponse)
+        case successful(model: Auth)
         case failed(error: AKNetworkError)
     }
 }

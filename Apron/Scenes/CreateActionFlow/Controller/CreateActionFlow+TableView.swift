@@ -51,7 +51,9 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             let .shareCommunity(type),
             let .reportCommunity(type),
             let .shoppingList(type),
-            let .mealPlan(type):
+            let .mealPlan(type),
+            let .clearIngredients(type),
+            let .shareIngredients(type):
             dismiss(animated: true) {
                 self.delegate?.handleChosenAction(type: type)
             }
@@ -121,6 +123,18 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             cell.configure(with: CreateButtonCellViewModel(
                 image: ApronAssets.tabListIcon.image,
                 title: "Добавить в список покупок"
+            ))
+        case .shareIngredients:
+            guard let cell = cell as? CreateButtonCell else { return }
+            cell.configure(with: CreateButtonCellViewModel(
+                image: ApronAssets.recipeShareIcon.image,
+                title: "Поделиться"
+            ))
+        case .clearIngredients:
+            guard let cell = cell as? CreateButtonCell else { return }
+            cell.configure(with: CreateButtonCellViewModel(
+                image: ApronAssets.trashIcon.image,
+                title: "Очистить"
             ))
         default:
             break

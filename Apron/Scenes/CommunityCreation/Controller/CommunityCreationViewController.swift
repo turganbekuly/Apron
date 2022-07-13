@@ -34,7 +34,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
                         section: .info,
                         rows: [
                             .name, .imagePlaceholder, .description,
-                            .category, .privacy, .permission
+                            .category
                         ]
                     )
                 ]
@@ -46,7 +46,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
                         section: .info,
                         rows: [
                             .name, .imagePlaceholder, .description,
-                            .category, .privacy, .permission
+                            .category
                         ]
                     )
                 ]

@@ -26,6 +26,7 @@ extension AuthSignInViewController {
             AuthStorage.shared.clear()
         case let .loginSucceed(model):
             hideLoader()
+            AuthStorage.shared.grantType = GrantType.native.rawValue
             AuthStorage.shared.save(model: model)
             let viewController = TabBarBuilder(state: .initial(.normal)).build()
             DispatchQueue.main.async {

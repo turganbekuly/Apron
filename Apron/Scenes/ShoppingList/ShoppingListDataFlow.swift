@@ -31,3 +31,22 @@ extension ShoppingListDataFlow {
     case failed(AKNetworkError)
     }
 }
+
+extension ShoppingListDataFlow {
+    enum ClearCartItems {
+        struct Request {
+
+        }
+        struct Response {
+            let result: ClearCartItemsResponse
+        }
+        struct ViewModel {
+            var state: ShoppingListViewController.State
+        }
+    }
+
+    enum ClearCartItemsResponse {
+    case successful([CartItem])
+    case failed(AKNetworkError)
+    }
+}

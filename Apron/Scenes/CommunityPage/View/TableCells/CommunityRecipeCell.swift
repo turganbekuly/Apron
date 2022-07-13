@@ -219,7 +219,7 @@ final class CommunityRecipeCell: UITableViewCell {
     func configure(with viewModel: CommunityRecipesCellViewModelProtocol) {
         guard let recipe = viewModel.recipe else { return }
         self.recipeNameLabel.text = recipe.recipeName ?? ""
-        self.cookingTimeLabel.text = recipe.cookTime ?? ""
+        self.cookingTimeLabel.text = "\(recipe.cookTime ?? 0)"
         self.recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
             placeholder: ApronAssets.communityMockImage.image

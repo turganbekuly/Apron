@@ -12,20 +12,19 @@ enum AuthorizationDataFlow { }
 extension AuthorizationDataFlow {
     // MARK: - Login
 
-    enum Login {
+    enum AuthorizationWithApple {
         struct Request {
-            let email: String
-            let password: String
+            let code: String
         }
         struct Response {
-            let result: LoginResult
+            let result: AuthorizationWithAppleResult
         }
         struct ViewModel {
             var state: AuthorizationViewController.State
         }
     }
 
-    enum LoginResult {
+    enum AuthorizationWithAppleResult {
         case successful(model: Auth)
         case failed(error: AKNetworkError)
     }

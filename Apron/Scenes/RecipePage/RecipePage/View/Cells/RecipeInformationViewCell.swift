@@ -156,8 +156,13 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     func configure(with viewModel: IInformationCellViewModel) {
         titleLabel.text = viewModel.recipeName
-        recipeSourceURLButton.setTitle(viewModel.recipeSourceURL, for: .normal)
-        recipeSourceURLButton.sizeToFit()
+        if let url = viewModel.recipeSourceURL, !url.isEmpty {
+            recipeSourceURLButton.setTitle(viewModel.recipeSourceURL, for: .normal)
+            recipeSourceURLButton.sizeToFit()
+            recipeSourceURLButton.isHidden = false
+        } else {
+            recipeSourceURLButton.isHidden = true
+        }
         recipeImageView.image = ApronAssets.recipeSampleImage.image
     }
 }

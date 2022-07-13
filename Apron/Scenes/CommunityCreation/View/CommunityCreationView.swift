@@ -30,6 +30,7 @@ final class CommunityCreationView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
+        keyboardDismissMode = .onDrag
         [
             CommunityCreationNamingCell.self,
             RecipeCreationImageCell.self,

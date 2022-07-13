@@ -15,6 +15,7 @@ extension RecipeCreationViewController {
         }
         enum Row {
             case name
+            case source
             case image
             case imagePlaceholder
             case description

@@ -14,6 +14,7 @@ import Models
 
 protocol ShoppingListDisplayLogic: AnyObject {
     func displayCartItems(viewModel: ShoppingListDataFlow.GetCartItems.ViewModel)
+    func displayClearCartItems(viewModel: ShoppingListDataFlow.ClearCartItems.ViewModel)
 }
 
 final class ShoppingListViewController: ViewController, Messagable {
@@ -40,22 +41,32 @@ final class ShoppingListViewController: ViewController, Messagable {
         }
     }
 
+    var cartManager = CartManager.shared
+
     var itemsDictionary = [String: [CartItem]]()
 
-    var cartItems: [CartItem]? {
+    var ingredients = RecipeIngredient()
+
+    var cartItems: [CartItem] = [] {
         didSet {
-            guard let cartItems = cartItems,
-                  !cartItems.isEmpty
-            else {
+            guard !cartItems.isEmpty else {
                 sections = [.init(section: .ingredients, rows: [.empty])]
                 mainView.reloadTableViewWithoutAnimation()
                 return
             }
 
             sections = [
-                .init(section: .ingredients, rows: cartItems.compactMap { .ingredient($0) })
+                .init(section: .ingredients, rows: cartItems
+                    .sorted { $0.bought == false && $1.bought == true }
+                    .compactMap { .ingredient($0) })
             ]
-            mainView.reloadTableViewWithoutAnimation()
+            UIView.transition(
+                with: mainView,
+                duration: 0.5,
+                options: .transitionCrossDissolve,
+                animations: {self.mainView.reloadTableViewWithoutAnimation()},
+                completion: nil
+            )
         }
     }
     
@@ -67,13 +78,7 @@ final class ShoppingListViewController: ViewController, Messagable {
         return view
     }()
 
-    private lazy var navigationRightButton: NavigationButton = {
-        let button = NavigationButton()
-        button.backgroundType = .whiteBackground
-        button.setTitle("Поделиться", for: .normal)
-        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    private lazy var moreButton = NavigationIconFillButton()
 
     private lazy var backButton = NavigationBackButton()
 
@@ -132,13 +137,13 @@ final class ShoppingListViewController: ViewController, Messagable {
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
+        moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
+        moreButton.onTouch = { [weak self] in
+            self?.navigateToCreateActionFlow(with: .shoppingListMore)
+        }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navigationRightButton)
-        navigationRightButton.snp.makeConstraints {
-            $0.width.equalTo(100)
-            $0.height.equalTo(30)
-        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
     
     private func configureViews() {
@@ -161,6 +166,13 @@ final class ShoppingListViewController: ViewController, Messagable {
     
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
+    }
+
+    private func navigateToCreateActionFlow(with state: CreateActionInitialState) {
+        let vc = CreateActionFlowBuilder.init(state: .initial(state, self)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.presentPanModal(vc)
+        }
     }
     
     deinit {
@@ -185,13 +197,17 @@ final class ShoppingListViewController: ViewController, Messagable {
 
 extension ShoppingListViewController: IngredientSelectedProtocol {
     func onIngredientSelected(ingredient: RecipeIngredient) {
-        CartManager.shared.update(
+        var productAmount: Double = 0
+        if cartManager.isContains(product: ingredient.product?.name ?? "") {
+            productAmount = CartManager.shared.getProductAmount(for: ingredient.product?.name ?? "")
+        }
+        cartManager.update(
             productName: ingredient.product?.name ?? "",
             productCategoryName: ingredient.product?.productCategoryName ?? "",
-            amount: ingredient.amount ?? 0,
-            quantity: 1,
+            amount: (ingredient.amount ?? 0) + productAmount,
             measurement: ingredient.measurement ?? "",
-            recipeName: "Личный продукт"
+            recipeName: "Личный продукт",
+            bought: false
         )
         fetchCartItems()
     }

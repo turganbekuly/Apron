@@ -11,8 +11,8 @@ import Models
 
 protocol AuthorizationProviderProtocol {
     func login(
-        request: AuthorizationDataFlow.Login.Request,
-        compeletion: @escaping ((AuthorizationDataFlow.LoginResult) -> Void)
+        request: AuthorizationDataFlow.AuthorizationWithApple.Request,
+        compeletion: @escaping ((AuthorizationDataFlow.AuthorizationWithAppleResult) -> Void)
     )
 }
 
@@ -30,8 +30,8 @@ final class AuthorizationProvider: AuthorizationProviderProtocol {
     // MARK: - RecipeCreationProviderProtocol
 
     func login(
-        request: AuthorizationDataFlow.Login.Request,
-        compeletion: @escaping ((AuthorizationDataFlow.LoginResult) -> Void)
+        request: AuthorizationDataFlow.AuthorizationWithApple.Request,
+        compeletion: @escaping ((AuthorizationDataFlow.AuthorizationWithAppleResult) -> Void)
     ) {
         service.login(request: request) {
             switch $0 {

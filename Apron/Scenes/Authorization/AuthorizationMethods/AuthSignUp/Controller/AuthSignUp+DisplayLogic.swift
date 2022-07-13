@@ -11,5 +11,8 @@ import UIKit
 extension AuthSignUpViewController: AuthSignUpDisplayLogic {
     
     // MARK: - AuthSignUpDisplayLogic
-    
+
+    func displaySignUp(with viewModel: AuthSignUpDataFlow.SignUp.ViewModel) {
+        state = viewModel.state
+    }
 }

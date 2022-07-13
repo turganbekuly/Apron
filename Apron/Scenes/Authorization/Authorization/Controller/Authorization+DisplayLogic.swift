@@ -8,7 +8,7 @@
 import Foundation
 
 extension AuthorizationViewController: AuthorizationDisplayLogic {
-    func login(viewModel: AuthorizationDataFlow.Login.ViewModel) {
+    func login(viewModel: AuthorizationDataFlow.AuthorizationWithApple.ViewModel) {
         state = viewModel.state
     }
 }

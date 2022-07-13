@@ -84,9 +84,9 @@ final class RecipeCreationViewController: ViewController, Messagable {
                     .init(
                         section: .info,
                         rows: [
-                            .name, .imagePlaceholder, .description,
-                            .composition, .instruction, .servings,
-                            .prepTime, .cookTime
+                            .name, .imagePlaceholder,.source,
+                            .description, .composition, .instruction,
+                            .servings, .prepTime, .cookTime
                         ]
                     )
                 ]

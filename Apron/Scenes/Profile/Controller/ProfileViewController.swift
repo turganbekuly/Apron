@@ -17,10 +17,11 @@ final class ProfileViewController: ViewController {
     
     struct Section {
         enum Section {
-            
+            case app
         }
         enum Row {
-            
+            case about
+            case logout
         }
         
         let section: Section

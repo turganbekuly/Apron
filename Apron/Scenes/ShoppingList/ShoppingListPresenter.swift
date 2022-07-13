@@ -11,6 +11,7 @@ import UIKit
 
 protocol ShoppingListPresentationLogic: AnyObject {
     func fetchCartItems(response: ShoppingListDataFlow.GetCartItems.Response)
+    func clearCartItems(response: ShoppingListDataFlow.ClearCartItems.Response)
 }
 
 final class ShoppingListPresenter: ShoppingListPresentationLogic {
@@ -29,8 +30,23 @@ final class ShoppingListPresenter: ShoppingListPresentationLogic {
             switch response.result {
             case let .successful(model):
                 viewModel = .init(state: .cartItemsDidFetch(model))
-            case let .failed(error):
-                viewModel = .init(state: .cartItemsDidFail(error))
+            case .failed:
+                viewModel = .init(state: .cartItemsDidFail)
+            }
+        }
+    }
+
+    func clearCartItems(response: ShoppingListDataFlow.ClearCartItems.Response) {
+        DispatchQueue.main.async {
+            var viewModel: ShoppingListDataFlow.ClearCartItems.ViewModel
+
+            defer { self.viewController?.displayClearCartItems(viewModel: viewModel) }
+
+            switch response.result {
+            case let .successful(model):
+                viewModel = .init(state: .cartItemsDidClear(model))
+            case .failed:
+                viewModel = .init(state: .cartItemsDidClearWithError)
             }
         }
     }

@@ -11,7 +11,7 @@ import Storages
 import Models
 
 enum AuthorizationEndpoints {
-    case login(email: String, password: String)
+    case authByApple(code: String)
 }
 
 extension AuthorizationEndpoints: AKNetworkTargetType {
@@ -22,14 +22,14 @@ extension AuthorizationEndpoints: AKNetworkTargetType {
 
     var path: String {
         switch self {
-        case .login:
-            return "users/login"
+        case .authByApple:
+            return "apple/oauth2/redirect"
         }
     }
 
     var method: AKNetworkMethod {
         switch self {
-        case .login:
+        case .authByApple:
             return .post
         }
     }
@@ -40,10 +40,10 @@ extension AuthorizationEndpoints: AKNetworkTargetType {
 
     var task: AKNetworkTask {
         switch self {
-        case let .login(email, password):
+        case let .authByApple(code):
             return .requestParameters(
-                parameters: ["email": email, "password": password],
-                encoding: AKJSONEncoding.default
+                parameters: ["code": code],
+                encoding: AKURLEncoding.queryString
             )
         }
     }
@@ -53,9 +53,6 @@ extension AuthorizationEndpoints: AKNetworkTargetType {
             "Accept-Language": "ru",
             "Content-Type": "application/json"
         ]
-        if let token = AuthStorage.shared.accessToken {
-            headers["Authorization"] = "Bearer \(token)"
-        }
         return headers
     }
 

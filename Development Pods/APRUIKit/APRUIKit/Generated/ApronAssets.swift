@@ -89,6 +89,8 @@ public enum ApronAssets {
   public static let addedImagePlaceholder = ImageAsset(name: "added_image_placeholder")
   public static let cameraIcon = ImageAsset(name: "camera_icon")
   public static let searchRoundedView = ImageAsset(name: "search_rounded_view")
+  public static let aboutAppLogo = ImageAsset(name: "about_app_logo")
+  public static let exit = ImageAsset(name: "exit")
   public static let emptyCart = ImageAsset(name: "empty_cart")
   public static let tabFaveIcon = ImageAsset(name: "tab_fave_icon")
   public static let tabFaveSelectedIcon = ImageAsset(name: "tab_fave_selected_icon")

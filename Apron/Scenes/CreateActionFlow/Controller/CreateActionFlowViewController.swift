@@ -25,6 +25,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
             case communityPageMore
             case recipePageAdd
             case savedPageCreate
+            case shoppingListMore
         }
         enum Row {
             case privateCommunity(CreateActionType)
@@ -42,6 +43,8 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
             case reportCommunity(CreateActionType)
             case shoppingList(CreateActionType)
             case mealPlan(CreateActionType)
+            case clearIngredients(CreateActionType)
+            case shareIngredients(CreateActionType)
         }
         
         let section: Section
@@ -93,7 +96,13 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
                         rows: [.shareCommunity(.shareCommunity), .reportCommunity(.reportCommunity)]
                     )
                 ]
-
+            case .shoppingListMore:
+                sections = [
+                    .init(
+                        section: .shoppingListMore,
+                        rows: [.shareIngredients(.shareIngredients), .clearIngredients(.clearIngredients)]
+                    )
+                ]
             default:
                 break
             }
@@ -115,15 +124,17 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
         case .mainPageCommunityCreation:
             return .contentHeight(170)
         case .communityPageRecipeCreation:
-            return .contentHeight(90)
+            return .contentHeight(110)
         case .communityPageMore:
             return .contentHeight(30)
         case .recipePageMore:
             return .contentHeight(170)
         case .recipePageAddTo:
-            return .contentHeight(170)
+            return .contentHeight(30)
         case .savedPageCreate:
             return .contentHeight(170)
+        case .shoppingListMore:
+            return .contentHeight(110)
         }
     }
 

@@ -8,4 +8,9 @@
 import Protocols
 import UIKit
 
-open class ViewController: UIViewController, ViewControllerProtocol { }
+open class ViewController: UIViewController, ViewControllerProtocol {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+}

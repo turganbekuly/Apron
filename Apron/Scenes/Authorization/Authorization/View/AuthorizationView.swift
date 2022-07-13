@@ -17,6 +17,7 @@ public protocol IAuthorizationView: AnyObject {
 public enum AuthorizationType {
     case signin
     case signup
+    case apple
 }
 
 public final class AuthorizationView: UIView {
@@ -152,6 +153,6 @@ public final class AuthorizationView: UIView {
 
     @objc
     private func appleSigInTapped() {
-
+        delegate?.buttonPressed(type: .apple)
     }
 }

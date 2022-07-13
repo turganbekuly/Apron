@@ -10,7 +10,7 @@ import UIKit
 import APRUIKit
 
 protocol SignUpProtocol: AnyObject {
-    func signUpTapped()
+    func signUpTapped(username: String, email: String, password: String)
 }
 
 final class AuthSignUpView: UIView {
@@ -20,10 +20,8 @@ final class AuthSignUpView: UIView {
 
     // MARK: - Initialization
 
-    init(delegate: SignUpProtocol?) {
-        self.delegate = delegate
-        super.init(frame: .zero)
-
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
     }
 
@@ -34,7 +32,7 @@ final class AuthSignUpView: UIView {
     // MARK: - Views factory
 
     lazy var nicknameTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "displayName", title: "Display name")
+        let textField = LoginTextField(placeholder: "username", title: "Username")
         return textField
     }()
 
@@ -45,11 +43,13 @@ final class AuthSignUpView: UIView {
 
     lazy var passwordTextField: LoginTextField = {
         let textField = LoginTextField(placeholder: "***********", title: "Password")
+        textField.textField.addTarget(self, action: #selector(passwordChanged(_:)), for: .editingChanged)
         return textField
     }()
 
     lazy var confirmTextField: LoginTextField = {
         let textField = LoginTextField(placeholder: "***********", title: "Confirm Password")
+        textField.textField.addTarget(self, action: #selector(passwordChanged(_:)), for: .editingChanged)
         return textField
     }()
 
@@ -61,6 +61,7 @@ final class AuthSignUpView: UIView {
         button.titleLabel?.font = TypographyFonts.regular16
         button.setTitleColor(.black, for: .normal)
         button.setTitle("Регистрация", for: .normal)
+        button.isEnabled = false
         return button
     }()
 
@@ -105,6 +106,24 @@ final class AuthSignUpView: UIView {
         }
     }
 
+    private func isContinueButtonEnabled() {
+        let passTF = passwordTextField.textField.text
+        let conTF = confirmTextField.textField.text
+        let usernameTF = nicknameTextField.textField.text
+        let emailTF = emailTextField.textField.text
+
+        if passTF?.isEmpty == false,
+           conTF?.isEmpty == false,
+           usernameTF?.isEmpty == false,
+           emailTF?.isEmpty == false,
+           passTF == conTF
+        {
+            continueButton.isEnabled = true
+            return
+        }
+        continueButton.isEnabled = false
+    }
+
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
     }
@@ -113,6 +132,15 @@ final class AuthSignUpView: UIView {
 
     @objc
     private func continueButtonTapped() {
-        delegate?.signUpTapped()
+        delegate?.signUpTapped(
+            username: nicknameTextField.textField.text ?? "",
+            email: emailTextField.textField.text ?? "",
+            password: confirmTextField.textField.text ?? ""
+        )
+    }
+
+    @objc
+    private func passwordChanged(_ sender: UITextField) {
+        isContinueButtonEnabled()
     }
 }

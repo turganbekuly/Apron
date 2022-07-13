@@ -9,23 +9,30 @@
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
 enum AuthSignUpEndpoint {
-    
+    case signup(body: SignUpRequest)
 }
 
 extension AuthSignUpEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .signup:
+            return "users"
+        }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .signup:
+            return .post
+        }
     }
     
     var sampleData: Data {
@@ -33,18 +40,17 @@ extension AuthSignUpEndpoint: AKNetworkTargetType {
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case let .signup(body):
+            return .requestParameters(parameters: body.toJSON(), encoding: AKJSONEncoding.default)
+        }
     }
     
     var headers: [String: String]? {
-        var headers = [
+        return  [
             "Accept-Language": "ru",
             "Content-Type": "application/json"
         ]
-        if let token = AuthStorage.shared.accessToken {
-            headers["Authorization"] = "Bearer \(token)"
-        }
-        return headers
     }
     
 }

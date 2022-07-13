@@ -103,7 +103,7 @@ extension RecipePageViewController: UITableViewDelegate {
             guard let cell = cell as? IngredientDescriptionCell else { return }
             cell.configure(with: IngredientsDescriptionCellViewModel(
                 description: recipe?.description ?? "",
-                cookingTime: recipe?.cookTime ?? "30"
+                cookingTime: "\(recipe?.cookTime ?? 0)"
             ))
         case .ingredient:
             guard let cell = cell as? RecipeIngredientsViewCell else { return }

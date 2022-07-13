@@ -99,10 +99,7 @@ final class SavedRecipesViewController: ViewController {
     
     // MARK: - Methods
     private func configureNavigation() {
-        let avatarView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        avatarView.image = ApronAssets.navAvatarIcon.image
-        avatarView.layer.cornerRadius = 17
-        avatarView.backgroundColor = .green
+        let avatarView = AvatarView()
         let cartView = CartButtonView()
         cartView.onTap = { [weak self] in
             let viewController = ShoppingListBuilder(state: .initial).build()

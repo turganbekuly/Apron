@@ -39,16 +39,18 @@ final class CreateButtonCell: UITableViewCell {
 
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.regular12
-        label.numberOfLines = 0
+        label.font = TypographyFonts.regular11
+        label.numberOfLines = 2
         label.textColor = ApronAssets.lightGray.color
+        label.sizeToFit()
         return label
     }()
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .fill
         return stackView
     }()
 

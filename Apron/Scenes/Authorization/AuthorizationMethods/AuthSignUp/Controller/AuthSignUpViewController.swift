@@ -8,12 +8,13 @@
 
 import APRUIKit
 import UIKit
+import AlertMessages
 
 protocol AuthSignUpDisplayLogic: AnyObject {
-    
+    func displaySignUp(with viewModel: AuthSignUpDataFlow.SignUp.ViewModel)
 }
 
-final class AuthSignUpViewController: ViewController {
+final class AuthSignUpViewController: ViewController, Messagable {
     // MARK: - Properties
 
     let interactor: AuthSignUpBusinessLogic
@@ -26,7 +27,10 @@ final class AuthSignUpViewController: ViewController {
     
     // MARK: - Views
     lazy var mainView: AuthSignUpView = {
-        let view = AuthSignUpView(delegate: self)
+        let view = AuthSignUpView()
+        view.delegate = self
+        view.passwordTextField.textField.isSecureTextEntry = true
+        view.confirmTextField.textField.isSecureTextEntry = true
         return view
     }()
 
@@ -101,4 +105,12 @@ final class AuthSignUpViewController: ViewController {
         NSLog("deinit \(self)")
     }
     
+}
+
+extension AuthSignUpViewController: SignUpProtocol {
+    func signUpTapped(username: String, email: String, password: String) {
+        signupRequest(username: username, email: email, password: password)
+        view.endEditing(true)
+        showLoader()
+    }
 }
