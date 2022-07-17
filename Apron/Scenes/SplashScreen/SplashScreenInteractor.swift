@@ -34,7 +34,7 @@ final class SplashScreenInteractor: SplashScreenBusinessLogic {
         provider.updateToken(request: request) { [weak self] in
             switch $0 {
             case let .successful(model):
-                self?.presenter.updateToken(response: .init(result: .successful(token: model)))
+                self?.presenter.updateToken(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.updateToken(response: .init(result: .failed(error: error)))
             }

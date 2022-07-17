@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Storages
 
 extension ProfileViewController: UITableViewDataSource {
     
@@ -22,8 +23,11 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case .about, .logout:
-            let cell: SettingsAppCell = tableView.dequeueReusableCell(for: indexPath)
+        case .user:
+            let cell: ProfileUserCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
+        case .logout, .about:
+            let cell: ProfileItemsCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -36,6 +40,13 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .logout:
+            AuthStorage.shared.clear()
+            let vc = AuthorizationBuilder(state: .initial).build()
+            vc.hidesBottomBarWhenPushed = true
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         default:
             break
         }
@@ -44,6 +55,8 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .user:
+            return 131
         case .logout, .about:
             return 56
         }
@@ -52,6 +65,8 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .user:
+            return 131
         case .logout, .about:
             return 56
         }
@@ -60,8 +75,19 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .user:
+            guard let cell = cell as? ProfileUserCell else { return }
+            
+            cell.delegate = self
+            cell.configure(with: ProfileUserCellViewModel(user: userStorage.user))
+        case .about:
+            guard let cell = cell as? ProfileItemsCell else { return }
+
+            cell.configure(with: ProfileItemsCellViewModel(row: row, mode: .top))
+        case .logout:
+            guard let cell = cell as? ProfileItemsCell else { return }
+
+            cell.configure(with: ProfileItemsCellViewModel(row: row, mode: .bottom))
         }
     }
 }

@@ -8,18 +8,21 @@
 
 import APRUIKit
 import UIKit
+import Storages
+import AlertMessages
 
 protocol ProfileDisplayLogic: AnyObject {
-    
+    func displayProfile(with viewModel: ProfileDataFlow.GetProfile.ViewModel)
 }
 
-final class ProfileViewController: ViewController {
+final class ProfileViewController: ViewController, Messagable {
     
     struct Section {
         enum Section {
             case app
         }
         enum Row {
+            case user
             case about
             case logout
         }
@@ -36,6 +39,8 @@ final class ProfileViewController: ViewController {
             updateState()
         }
     }
+
+    public var userStorage: UserStorageProtocol = UserStorage()
     
     // MARK: - Views
     lazy var mainView: ProfileView = {
@@ -81,10 +86,21 @@ final class ProfileViewController: ViewController {
         
         configureColors()
     }
+
+    deinit {
+        NSLog("deinit \(self)")
+    }
     
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.title = ""
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: ApronAssets.navBackButton.image,
+            style: .plain,
+            target: self,
+            action: #selector(backButtonTapped)
+        )
+        navigationItem.leftBarButtonItem?.tintColor = .black
+        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
     }
     
     private func configureViews() {
@@ -101,11 +117,13 @@ final class ProfileViewController: ViewController {
     }
     
     private func configureColors() {
-        
+        view.backgroundColor = ApronAssets.secondary.color
     }
-    
-    deinit {
-        NSLog("deinit \(self)")
+
+    // MARK: - User actions
+
+    @objc
+    private func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
-    
 }

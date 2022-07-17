@@ -75,7 +75,7 @@ public final class AuthStorage: AuthStorageProtocol {
 
     public var grantType: String? {
         get { try? keychain.get(Constants.grantType) }
-        set { updateGrantType(grantType: grantType) }
+        set { updateGrantType(grantType: newValue) }
     }
 
     public var launchAuthorizationScreenShown: Bool {
@@ -102,7 +102,7 @@ public final class AuthStorage: AuthStorageProtocol {
         refreshToken = nil
         phoneNumber = nil
         isUserAuthorized = false
-
+        CartManager.shared.resetCart()
         UserStorage().clear()
     }
 

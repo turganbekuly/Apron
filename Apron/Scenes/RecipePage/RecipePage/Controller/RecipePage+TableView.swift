@@ -97,7 +97,9 @@ extension RecipePageViewController: UITableViewDelegate {
             }
             cell.configure(with: InformationCellViewModel(
                 recipeName: recipe?.recipeName ?? "",
-                recipeSourceURL: recipe?.sourceName
+                recipeSourceURL: recipe?.sourceName,
+                likeCount: recipe?.likesCount ?? 0,
+                dislikeCount: recipe?.likesCount ?? 0
             ))
         case .description:
             guard let cell = cell as? IngredientDescriptionCell else { return }

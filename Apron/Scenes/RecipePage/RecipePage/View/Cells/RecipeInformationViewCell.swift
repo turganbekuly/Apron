@@ -93,7 +93,7 @@ final class RecipeInformationViewCell: UITableViewCell {
             recipeImageView,
             likeButton,
             dislikeButton,
-            editButton,
+//            editButton,
             shareButton
         ].forEach { contentView.addSubview($0) }
 
@@ -137,12 +137,12 @@ final class RecipeInformationViewCell: UITableViewCell {
             $0.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(24)
         }
-
-        editButton.snp.makeConstraints {
-            $0.top.equalTo(shareButton.snp.top)
-            $0.trailing.equalTo(shareButton.snp.leading).offset(-16)
-            $0.height.equalTo(24)
-        }
+//
+//        editButton.snp.makeConstraints {
+//            $0.top.equalTo(shareButton.snp.top)
+//            $0.trailing.equalTo(shareButton.snp.leading).offset(-16)
+//            $0.height.equalTo(24)
+//        }
     }
 
     // MARK: - User actions
@@ -164,5 +164,7 @@ final class RecipeInformationViewCell: UITableViewCell {
             recipeSourceURLButton.isHidden = true
         }
         recipeImageView.image = ApronAssets.recipeSampleImage.image
+        likeButton.setTitle("\(viewModel.likeCount)", for: .normal)
+        dislikeButton.setTitle("\(viewModel.likeCount)", for: .normal)
     }
 }

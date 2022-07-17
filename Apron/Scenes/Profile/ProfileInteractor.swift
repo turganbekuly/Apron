@@ -7,7 +7,7 @@
 //
 
 protocol ProfileBusinessLogic {
-    
+    func getProfile(request: ProfileDataFlow.GetProfile.Request)
 }
 
 final class ProfileInteractor: ProfileBusinessLogic {
@@ -25,4 +25,14 @@ final class ProfileInteractor: ProfileBusinessLogic {
     
     // MARK: - ProfileBusinessLogic
 
+    func getProfile(request: ProfileDataFlow.GetProfile.Request) {
+        provider.getProfile(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.getProfile(response: .init(result: .successful(model)))
+            case let .failed(error):
+                self?.presenter.getProfile(response: .init(result: .failed(error)))
+            }
+        }
+    }
 }

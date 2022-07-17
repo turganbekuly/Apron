@@ -10,4 +10,7 @@ extension ProfileViewController {
     
     // MARK: - Network
 
+    func getProfile() {
+        interactor.getProfile(request: .init())
+    }
 }

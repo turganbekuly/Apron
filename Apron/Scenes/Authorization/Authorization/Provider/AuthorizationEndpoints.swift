@@ -49,7 +49,7 @@ extension AuthorizationEndpoints: AKNetworkTargetType {
     }
 
     var headers: [String: String]? {
-        var headers = [
+        let headers = [
             "Accept-Language": "ru",
             "Content-Type": "application/json"
         ]

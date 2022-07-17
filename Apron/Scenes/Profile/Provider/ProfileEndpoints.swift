@@ -11,17 +11,17 @@ import AKNetwork
 import Storages
 
 enum ProfileEndpoint {
-    
+    case getProfile
 }
 
 extension ProfileEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        return "users/myProfile"
     }
     
     var method: AKNetworkMethod {

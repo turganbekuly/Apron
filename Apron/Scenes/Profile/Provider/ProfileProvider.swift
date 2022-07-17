@@ -7,9 +7,13 @@
 //
 
 import AKNetwork
+import Models
 
 protocol ProfileProviderProtocol {
-    
+    func getProfile(
+        request: ProfileDataFlow.GetProfile.Request,
+        completion: @escaping ((ProfileDataFlow.GetProfileResult) -> Void)
+    )
 }
 
 final class ProfileProvider: ProfileProviderProtocol {
@@ -24,5 +28,23 @@ final class ProfileProvider: ProfileProviderProtocol {
     }
     
     // MARK: - ProfileProviderProtocol
+
+    func getProfile(
+        request: ProfileDataFlow.GetProfile.Request,
+        completion: @escaping ((ProfileDataFlow.GetProfileResult) -> Void)
+    ) {
+        service.getProfile(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let json = User(json: json) {
+                    completion(.successful(json))
+                } else {
+                    completion(.failed(.invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error))
+            }
+        }
+    }
 
 }

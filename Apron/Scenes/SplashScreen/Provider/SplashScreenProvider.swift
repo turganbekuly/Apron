@@ -36,8 +36,8 @@ final class SplashScreenProvider: SplashScreenProviderProtocol {
         service.updateToken(request: request) {
             switch $0 {
             case let .success(json):
-                if let jsons = json["token"] as? String {
-                    completion(.successful(token: jsons))
+                if let jsons = Auth(json: json) {
+                    completion(.successful(model: jsons))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

@@ -172,7 +172,9 @@ final class RecipePageViewController: ViewController, Messagable {
         cell.configure(
             with: InformationCellViewModel(
             recipeName: recipe?.recipeName ?? "",
-            recipeSourceURL: recipe?.sourceLink ?? ""
+            recipeSourceURL: recipe?.sourceLink ?? "",
+            likeCount: recipe?.likesCount ?? 0,
+            dislikeCount: recipe?.likesCount ?? 0
             )
         )
     }

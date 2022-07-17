@@ -21,6 +21,7 @@ final class AvatarView: View {
         imageView.backgroundColor = .clear
         imageView.image = ApronAssets.user.image
         imageView.tintColor = ApronAssets.lightGray.color
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
@@ -28,7 +29,8 @@ final class AvatarView: View {
 
     override func setupViews() {
         super.setupViews()
-
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(onProfileTapped))
+        imageView.addGestureRecognizer(tapGR)
         addSubview(imageView)
     }
 
@@ -42,5 +44,12 @@ final class AvatarView: View {
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func onProfileTapped() {
+        onTap?()
     }
 }

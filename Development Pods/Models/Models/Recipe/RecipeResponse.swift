@@ -22,6 +22,7 @@ public struct RecipeResponse: Codable {
         case cookTime = "cook_time"
         case isSaved = "added"
         case savedUserCount = "savedByUserCount"
+        case likesCount = "likesCount"
     }
 
     // MARK: - Properties
@@ -41,6 +42,7 @@ public struct RecipeResponse: Codable {
     public var cookTime: Int?
     public var isSaved: Bool?
     public var savedUserCount: Int?
+    public var likesCount: Int?
 
     // MARK: - Init
 
@@ -63,6 +65,7 @@ public struct RecipeResponse: Codable {
         self.cookTime = json[CodingKeys.cookTime.rawValue] as? Int
         self.isSaved = json[CodingKeys.isSaved.rawValue] as? Bool
         self.savedUserCount = json[CodingKeys.savedUserCount.rawValue] as? Int
+        self.likesCount = json[CodingKeys.likesCount.rawValue] as? Int
     }
 
     // MARK: - Methods

@@ -12,8 +12,8 @@ protocol IInformationCellViewModel: AnyObject {
     var recipeName: String { get }
 //    var recipeImage: String? { get }
     var recipeSourceURL: String? { get }
-//    var likeCount: String { get }
-//    var dislikeCount: String { get }
+    var likeCount: Int { get }
+    var dislikeCount: Int { get }
 }
 
 final class InformationCellViewModel: IInformationCellViewModel {
@@ -23,21 +23,21 @@ final class InformationCellViewModel: IInformationCellViewModel {
 
     var recipeSourceURL: String?
 
-//    var likeCount: String
+    var likeCount: Int
 
-//    var dislikeCount: String
+    var dislikeCount: Int
 
     init(
         recipeName: String,
 //        recipeImage: String?,
-        recipeSourceURL: String?
-//        likeCount: String,
-//        dislikeCount: String
+        recipeSourceURL: String?,
+        likeCount: Int,
+        dislikeCount: Int
     ) {
         self.recipeName = recipeName
 //        self.recipeImage = recipeImage
         self.recipeSourceURL = recipeSourceURL
-//        self.likeCount = likeCount
-//        self.dislikeCount = dislikeCount
+        self.likeCount = likeCount
+        self.dislikeCount = dislikeCount
     }
 }

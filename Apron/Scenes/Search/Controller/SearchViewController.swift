@@ -86,6 +86,16 @@ final class SearchViewController: ViewController {
     // MARK: - Methods
     private func configureNavigation() {
         let avatarView = AvatarView()
+        avatarView.onTap = { [weak self] in
+            guard let self = self else { return }
+            self.handleAuthorizationStatus {
+                let viewController = ProfileBuilder(state: .initial).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+            }
+        }
+        
         let cartView = CartButtonView()
         cartView.onTap = { [weak self] in
             let viewController = ShoppingListBuilder(state: .initial).build()

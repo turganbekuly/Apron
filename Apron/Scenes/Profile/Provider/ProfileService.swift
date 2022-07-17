@@ -9,7 +9,10 @@
 import AKNetwork
 
 protocol ProfileServiceProtocol {
-    
+    func getProfile(
+        request: ProfileDataFlow.GetProfile.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class ProfileService: ProfileServiceProtocol {
@@ -23,5 +26,13 @@ final class ProfileService: ProfileServiceProtocol {
     }
     
     // MARK: - ProfileServiceProtocol
-    
+
+    func getProfile(
+        request: ProfileDataFlow.GetProfile.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getProfile) { result in
+            completion(result)
+        }
+    }
 }
