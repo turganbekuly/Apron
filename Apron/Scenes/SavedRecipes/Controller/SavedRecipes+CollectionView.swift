@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import APRUIKit
 
 extension SavedRecipesViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -26,8 +27,8 @@ extension SavedRecipesViewController: UICollectionViewDataSource {
         case .loading:
             let cell: MainCommunityEmptyCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
-        default:
-            let cell: UICollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        case .empty:
+            let cell: EmptyListCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -52,8 +53,8 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         switch row {
         case .recipe, .loading:
             return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 218)
-        default:
-            return CGSize(width: 0, height: 0)
+        case .empty:
+            return CGSize(width: collectionView.bounds.width, height: 230)
         }
     }
 
@@ -63,6 +64,12 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         case let .recipe(recipe):
             guard let cell = cell as? SavedRecipeCell else { return }
             cell.configure(with: SavedRecipeCellViewModel(image: recipe.imageURL, name: recipe.recipeName))
+        case .empty:
+            guard let cell = cell as? EmptyListCollectionCell else { return }
+            cell.configure(
+                with: "Добавляйте свои любимые рецепты,\n чтобы быстрее их найти",
+                image: ApronAssets.savedRecipePlaceholder.image
+            )
         default:
             break
         }

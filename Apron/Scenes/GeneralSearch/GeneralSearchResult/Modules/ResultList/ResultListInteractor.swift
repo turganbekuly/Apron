@@ -6,6 +6,8 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
+import Storages
+
 protocol ResultListBusinessLogic {
     func getRecipesByCommunityID(
         request: ResultListDataFlow.GetRecipesByCommunityID.Request
@@ -24,6 +26,8 @@ protocol ResultListBusinessLogic {
     )
     func saveRecipe(request: ResultListDataFlow.SaveRecipe.Request)
     func joinCommunity(request: ResultListDataFlow.JoinCommunity.Request)
+    func addSearchQueryToHistory(_ query: String)
+    func searchQueries() -> [SearchHistoryItem]
 }
 
 final class ResultListInteractor: ResultListBusinessLogic {
@@ -116,5 +120,20 @@ final class ResultListInteractor: ResultListBusinessLogic {
                 self?.presenter.joinCommunity(response: .init(result: .failed(error: error)))
             }
         }
+    }
+
+    func addSearchQueryToHistory(_ query: String) {
+        guard !query.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+
+        let queries = searchQueries()
+        if let lastQuery = queries.first?.text, query == lastQuery {
+            return
+        }
+        let key = String(describing: "Apron.SearchInteractor")
+        SearchHistoryManager(key: "\(key)").addQuery(query)
+    }
+    func searchQueries() -> [SearchHistoryItem] {
+        let key = String(describing: "Apron.SearchInteractor")
+        return SearchHistoryManager(key: "\(key)").queries().reversed()
     }
 }

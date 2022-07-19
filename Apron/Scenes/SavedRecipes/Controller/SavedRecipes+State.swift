@@ -41,8 +41,12 @@ extension SavedRecipesViewController {
 
     private func configureRecipes() {
         guard let section = sections.firstIndex(where: { $0.section == .recipes }) else { return }
-        currentPage += 1
-        sections[section].rows = savedRecipes.compactMap { .recipe($0) }
+        if savedRecipes.isEmpty {
+            sections[section].rows = [.empty]
+        } else {
+            currentPage += 1
+            sections[section].rows = savedRecipes.compactMap { .recipe($0) }
+        }
         endRefreshingIfNeeded()
         mainView.finishInfiniteScroll()
         mainView.reloadData()

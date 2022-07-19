@@ -83,7 +83,7 @@ final class TabBarViewController: AppTabBarController, Messagable {
         switch type {
         case .main:
             navigationController.tabBarItem.title = L10n.TabBar.Home.title
-            navigationController.tabBarItem.image = ApronAssets.tabHomeSelectedIcon.image
+            navigationController.tabBarItem.image = ApronAssets.tabBarAppIcon.image.withRenderingMode(.alwaysOriginal)
         case .search:
             navigationController.tabBarItem.title = L10n.TabBar.Search.title
             navigationController.tabBarItem.image = ApronAssets.navSearchIcon.image

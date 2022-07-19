@@ -28,7 +28,7 @@ extension CommunityPageViewController: UITableViewDataSource {
             let cell: CommunityRecipeCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         case .emptyView:
-            let cell: EmptyCartCell = tableView.dequeueReusableCell(for: indexPath)
+            let cell: EmptyListTableCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -86,7 +86,7 @@ extension CommunityPageViewController: UITableViewDelegate {
             cell.delegate = self
             cell.configure(with: CommunityRecipesCellViewModel(recipe: recipe))
         case .emptyView:
-            guard let cell = cell as? EmptyCartCell else { return }
+            guard let cell = cell as? EmptyListTableCell else { return }
             cell.configure(
                 with: "Добавьте рецепты в сообщество",
                 image: ApronAssets.emptyRecipesIcon.image

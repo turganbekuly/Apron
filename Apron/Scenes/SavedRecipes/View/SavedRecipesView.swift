@@ -12,7 +12,7 @@ final class SavedRecipesView: UICollectionView {
     
     // MARK: - Init
 
-    public init() {
+    init() {
         let layout: UICollectionViewFlowLayout = {
             let layout = UICollectionViewFlowLayout()
             layout.minimumInteritemSpacing = 0
@@ -28,11 +28,11 @@ final class SavedRecipesView: UICollectionView {
         configure()
     }
 
-    public required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         nil
     }
 
-    override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
         configureColors()
@@ -53,7 +53,8 @@ final class SavedRecipesView: UICollectionView {
 
         [
             SavedRecipeCell.self,
-            MainCommunityEmptyCollectionCell.self
+            MainCommunityEmptyCollectionCell.self,
+            EmptyListCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }

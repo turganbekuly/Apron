@@ -34,8 +34,8 @@ public struct ProfileUserCellViewModel: ProfileUserCellProtocol {
 
     public var email: NSAttributedString? {
         var text = ""
-        if let name = user?.username, !name.isEmpty {
-            text += name
+        if let email = user?.email, !email.isEmpty {
+            text += email
         }
 
         return Typography.regular16(text: text).styled

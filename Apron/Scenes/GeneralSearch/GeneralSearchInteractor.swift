@@ -7,7 +7,7 @@
 //
 
 protocol GeneralSearchBusinessLogic {
-    
+
 }
 
 final class GeneralSearchInteractor: GeneralSearchBusinessLogic {
@@ -24,5 +24,4 @@ final class GeneralSearchInteractor: GeneralSearchBusinessLogic {
     }
     
     // MARK: - GeneralSearchBusinessLogic
-
 }

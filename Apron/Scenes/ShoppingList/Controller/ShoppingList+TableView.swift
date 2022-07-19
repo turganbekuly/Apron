@@ -26,7 +26,7 @@ extension ShoppingListViewController: UITableViewDataSource {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .empty:
-            let cell: EmptyCartCell = tableView.dequeueReusableCell(for: indexPath)
+            let cell: EmptyListTableCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         case .ingredient:
             let cell: ShoppingItemCell = tableView.dequeueReusableCell(for: indexPath)
@@ -89,7 +89,7 @@ extension ShoppingListViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .empty:
-            guard let cell = cell as? EmptyCartCell else { return }
+            guard let cell = cell as? EmptyListTableCell else { return }
             cell.configure(
                 with: "Добавьте товары в свой список покупок",
                 image: ApronAssets.emptyCart.image

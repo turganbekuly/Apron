@@ -48,13 +48,10 @@ extension AuthorizationViewController: ASAuthorizationControllerDelegate {
         }
 
         interactor.login(request: .init(code: String(data: code, encoding: .utf8) ?? ""))
-        dismiss(animated: false)
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        dismiss(animated: false) {
-            self.hideLoader()
-        }
+        hideLoader()
     }
 }
 

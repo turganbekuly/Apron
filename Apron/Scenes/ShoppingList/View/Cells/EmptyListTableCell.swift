@@ -1,5 +1,5 @@
 //
-//  EmptyCartCell.swift
+//  EmptyListTableCell.swift
 //  APRUIKit
 //
 //  Created by Akarys Turganbekuly on 05.05.2022.
@@ -8,7 +8,7 @@
 import UIKit
 import APRUIKit
 
-final class EmptyCartCell: UITableViewCell {
+final class EmptyListTableCell: UITableViewCell {
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

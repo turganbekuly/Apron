@@ -44,6 +44,7 @@ extension ResultListViewController {
         case let .fetchRecipesByCommunityIdFailed(error):
             print(error)
         case let .fetchEverything(model):
+            addQueryToHistory()
             self.recipesList = model.recipes?.compactMap { $0 } ?? []
             sections = [
                 .init(section: .everything, rows: recipesList.compactMap { .recipe($0) }),
@@ -57,10 +58,12 @@ extension ResultListViewController {
         case let .fetchSavedRecipesFailed(error):
             print(error)
         case let .fetchRecipes(model):
+            addQueryToHistory()
             updateRecipiesList(with: model)
         case let .fetchRecipesFailed(error):
             print(error)
         case let .fetchCommunities(model):
+            addQueryToHistory()
             updateCommunitiesList(with: model)
         case let .fetchCommunitiesFailed(error):
             print(error)
@@ -114,5 +117,16 @@ extension ResultListViewController {
         mainView.finishInfiniteScroll()
         mainView.reloadData()
     }
-    
+
+    private func addQueryToHistory() {
+        switch initialState {
+        case .main, .everything, .recipe, .community:
+            /// Checking if search not from saved recipes or recipes from community
+            if let query = query {
+                addQueryToHistory(with: query)
+            }
+        default:
+            break
+        }
+    }
 }

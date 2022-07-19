@@ -13,14 +13,15 @@ extension GeneralSearchViewController {
     
     // MARK: - State
     public enum State {
-        case initial(GeneralSearchInitialState)
+        case initial(GeneralSearchInitialState, String? = nil)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(initialState):
+        case let .initial(initialState, query):
             self.initialState = initialState
+            self.historySelectedQuery = query
         }
     }
     

@@ -44,9 +44,9 @@ final class SearchHeaderView: UITableViewHeaderFooterView {
 
     private func setupConstraints() {
         searchView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(8)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(38)
+            $0.height.equalTo(34)
         }
     }
 

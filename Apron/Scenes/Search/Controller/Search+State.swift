@@ -21,7 +21,8 @@ extension SearchViewController {
         switch state {
         case let .initial(types):
             self.searchTypes = types
-            sections = [.init(section: .searchField, rows: [.searchField])]
+            getSearchHistory()
+            sections = [.init(section: .search, rows: [.searchHistory])]
         }
     }
     

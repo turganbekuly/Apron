@@ -23,6 +23,10 @@ extension GeneralSearchViewController: UISearchResultsUpdating {
 
 extension GeneralSearchViewController: UISearchControllerDelegate {
     func didPresentSearchController(_ searchController: UISearchController) {
-        searchController.searchBar.becomeFirstResponder()
+        guard let query = historySelectedQuery, !query.isEmpty else {
+            searchController.searchBar.becomeFirstResponder()
+            return
+        }
+        searchController.searchBar.text = query
     }
 }

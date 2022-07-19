@@ -699,6 +699,8 @@
 		6D1CB77687448282852202DC82E45146 /* FIRCLSdSYM.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B551EA70E7A61AD87F667D82D20CBE9 /* FIRCLSdSYM.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6D466C24837D39B5A91E772D227A708B /* FBLPromise+Reduce.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCE149C1D49FFD37C66C2B0A0BAFB13 /* FBLPromise+Reduce.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6D4E490742F1D7B5724A9FEB23599BF4 /* FIRCoreDiagnosticsConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 19BB1E7F4711074F8324E1BA19C7F1AC /* FIRCoreDiagnosticsConnector.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6D7B49E428856A39009F0717 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B49E328856A39009F0717 /* SearchHistoryManager.swift */; };
+		6D7B49E728856B97009F0717 /* CollectionViewLeftAlignLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B49E628856B97009F0717 /* CollectionViewLeftAlignLayout.swift */; };
 		6D7E9F6885F51458592810C8AC51B278 /* FIRInstallationsItem+RegisterInstallationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E65B359C0198B974153E9EAE44B468 /* FIRInstallationsItem+RegisterInstallationAPI.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6DBD73294F86B6178158C86B66CDF91B /* FIRConfigValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6FF98C3BDC083091719773CD10A701 /* FIRConfigValue.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6DC923A12863097900A1790E /* NavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC923A02863097900A1790E /* NavigationBackButton.swift */; };
@@ -3011,6 +3013,8 @@
 		6D41CEAF16866E14D91201465DE04642 /* Disk.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Disk.h; path = Sources/Disk.h; sourceTree = "<group>"; };
 		6D5C4390EDC0DBCE4A14789502479595 /* FIRVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRVersion.h; path = FirebaseCore/Sources/Public/FirebaseCore/FIRVersion.h; sourceTree = "<group>"; };
 		6D66C5058E30B1D88A80D812C39FC7C3 /* WHNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WHNavigationController.swift; path = Sources/Subclasses/WHNavigationController.swift; sourceTree = "<group>"; };
+		6D7B49E328856A39009F0717 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
+		6D7B49E628856B97009F0717 /* CollectionViewLeftAlignLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLeftAlignLayout.swift; sourceTree = "<group>"; };
 		6D8B7724DC362D0FA83547D5D3B030BF /* SwiftEntryKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftEntryKit-Info.plist"; sourceTree = "<group>"; };
 		6DC923A02863097900A1790E /* NavigationBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBackButton.swift; sourceTree = "<group>"; };
 		6DC923B6286AC67500A1790E /* SearchByQueryRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchByQueryRequestBody.swift; sourceTree = "<group>"; };
@@ -5784,6 +5788,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6D7B49E228856A21009F0717 /* SearchHistoryManager */ = {
+			isa = PBXGroup;
+			children = (
+				6D7B49E328856A39009F0717 /* SearchHistoryManager.swift */,
+			);
+			path = SearchHistoryManager;
+			sourceTree = "<group>";
+		};
+		6D7B49E528856B6E009F0717 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				6D7B49E628856B97009F0717 /* CollectionViewLeftAlignLayout.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		6DE2DA3421B8DF979DE83E3BC5E74D31 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -5993,6 +6013,7 @@
 		7E7BE840A4DE14FF5F0FF6B131098A36 /* APRKit */ = {
 			isa = PBXGroup;
 			children = (
+				6D7B49E528856B6E009F0717 /* CollectionView */,
 				BF893B034B7F5F9BE882D2F39C81BE1A /* Button */,
 				A36199DDBDA55BB292A1BB5C136B46D5 /* Navigation */,
 				C25962F49001C14CBFF93DE24EF61FD9 /* RadioButton */,
@@ -6813,6 +6834,7 @@
 		BC0786D5BD42AEC9EB4B9C49C6496DB7 /* Storages */ = {
 			isa = PBXGroup;
 			children = (
+				6D7B49E228856A21009F0717 /* SearchHistoryManager */,
 				804725556A1CC612CC9FFAB4388E91E0 /* Storages.h */,
 				41EADD7C6CA5F38CF599A7769BE92369 /* Auth */,
 				2C7E592E46A12B13C86EFE67BCCB0341 /* CartManager */,
@@ -10723,6 +10745,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D7B49E428856A39009F0717 /* SearchHistoryManager.swift in Sources */,
 				36B91B495225DE93B748B14A0C992925 /* AuthStorage.swift in Sources */,
 				649D4651FB0BB2D979232FC1942355C8 /* CartItem.swift in Sources */,
 				5955D98738FC505319C9CD73594E60ED /* CartManager.swift in Sources */,
@@ -11174,6 +11197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B4D28B45661466ED2929E19443088C4 /* AKTabBar.swift in Sources */,
+				6D7B49E728856B97009F0717 /* CollectionViewLeftAlignLayout.swift in Sources */,
 				AE14CDB033B71B3A50E892EA1D1DD52C /* AKTabBarController.swift in Sources */,
 				1739D429868F57C7E3BB3B68A5D09BF4 /* AppTabBar.swift in Sources */,
 				BCFB34735AFADC3BE56F7D80574EC3D8 /* AppTabBarController.swift in Sources */,

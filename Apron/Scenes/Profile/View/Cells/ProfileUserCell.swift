@@ -38,7 +38,7 @@ public final class ProfileUserCell: UITableViewCell {
     private lazy var emailLabel: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         return label
     }()
 

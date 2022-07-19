@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "saved_recipe_placeholder.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

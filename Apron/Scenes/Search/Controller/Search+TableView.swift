@@ -22,8 +22,8 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            let cell: UITableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        case .searchHistory:
+            let cell: SearchHistoryCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -44,29 +44,36 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default: return 2000
+        case .searchHistory:
+            let searchItemsCount = ceil(CGFloat(searchHistoryItems.count / 2))
+            return searchItemsCount <= 1 ? 120 : searchItemsCount * 120
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default: return 2000
+        case .searchHistory:
+            let searchItemsCount = ceil(CGFloat(searchHistoryItems.count / 2))
+            return searchItemsCount <= 1 ? 120 : searchItemsCount * 120
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        default:
-            break
+        case .searchHistory:
+            guard let cell = cell as? SearchHistoryCell else { return }
+            cell.historyCollectionView.delegate = self
+            cell.historyCollectionView.dataSource = self
+            cell.configure(with: "История поиска")
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = sections[section].section
         switch section {
-        case .searchField:
+        case .search:
             let view: SearchHeaderView = tableView.dequeueReusableHeaderFooterView()
             return view
         }
@@ -75,23 +82,23 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         let section = sections[section].section
         switch section {
-        case .searchField:
-            return 54
+        case .search:
+            return 45
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let section = sections[section].section
         switch section {
-        case .searchField:
-            return 54
+        case .search:
+            return 45
         }
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let section = sections[section].section
         switch section {
-        case .searchField:
+        case .search:
             guard let view = view as? SearchHeaderView else { return }
             view.delegate = self
             view.configure()

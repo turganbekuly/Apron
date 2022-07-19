@@ -10,4 +10,17 @@ extension SearchViewController {
     
     // MARK: - Network
 
+    func getSearchHistory() {
+        searchHistoryItems = interactor.searchQueries()
+        historyCollectionCell = [
+            .init(section: .searchHistory, rows: searchHistoryItems.compactMap { .history($0) })
+        ]
+        sections = [.init(section: .search, rows: [.searchHistory])]
+        mainView.reloadData()
+    }
+
+    func removeSearchQuery(with id: Int) {
+        interactor.removeSearchQuery(id: id)
+        searchHistoryItems = interactor.searchQueries()
+    }
 }

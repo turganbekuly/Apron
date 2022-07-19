@@ -8,6 +8,7 @@
 
 import APRUIKit
 import UIKit
+import Storages
 
 protocol SearchDisplayLogic: AnyObject {
     
@@ -17,25 +18,41 @@ final class SearchViewController: ViewController {
     
     struct Section {
         enum Section {
-            case searchField
+            case search
         }
         enum Row {
-            case searchField
+            case searchHistory
         }
         
+        let section: Section
+        let rows: [Row]
+    }
+
+    struct SearchHistorySection {
+        enum Section {
+            case searchHistory
+        }
+        enum Row {
+            case history(SearchHistoryItem)
+        }
+
         let section: Section
         let rows: [Row]
     }
     
     // MARK: - Properties
     let interactor: SearchBusinessLogic
+
     var sections: [Section] = []
+    var historyCollectionCell: [SearchHistorySection] = []
+
     var state: State {
         didSet {
             updateState()
         }
     }
     var searchTypes: SearchTypes?
+    var searchHistoryItems: [SearchHistoryItem] = []
     
     // MARK: - Init
     init(interactor: SearchBusinessLogic, state: State) {
@@ -66,12 +83,18 @@ final class SearchViewController: ViewController {
         super.viewWillAppear(animated)
         
         configureNavigation()
+        getSearchHistory()
+        configureHistory()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         configureColors()
+    }
+
+    deinit {
+        NSLog("deinit \(self)")
     }
 
     // MARK: - Views factory
@@ -126,9 +149,17 @@ final class SearchViewController: ViewController {
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
-    deinit {
-        NSLog("deinit \(self)")
+
+    func configureHistory() {
+        guard
+            let section = sections.firstIndex(where: { $0.section == .search }),
+            let row = sections[section].rows.firstIndex(of: .searchHistory),
+            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? SearchHistoryCell
+        else { return }
+        historyCollectionCell = [
+            .init(section: .searchHistory, rows: searchHistoryItems.compactMap { .history($0) })
+        ]
+        cell.historyCollectionView.reloadData()
     }
     
 }

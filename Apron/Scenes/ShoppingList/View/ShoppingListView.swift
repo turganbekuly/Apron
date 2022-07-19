@@ -32,7 +32,7 @@ final class ShoppingListView: UITableView {
         separatorStyle = .none
         allowsMultipleSelection = true
         [
-            EmptyCartCell.self,
+            EmptyListTableCell.self,
             ShoppingItemCell.self
         ].forEach {
             register(cellClass: $0)

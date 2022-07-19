@@ -37,7 +37,7 @@ public final class CommunityPageView: UITableView {
 
         [
             CommunityRecipeCell.self,
-            EmptyCartCell.self
+            EmptyListTableCell.self
         ].forEach {
             register(cellClass: $0)
         }

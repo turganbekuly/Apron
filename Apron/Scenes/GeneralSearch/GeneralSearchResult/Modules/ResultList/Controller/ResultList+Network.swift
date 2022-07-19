@@ -60,4 +60,8 @@ extension ResultListViewController {
     func joinCommunity(with id: Int) {
         interactor.joinCommunity(request: .init(id: id))
     }
+
+    func addQueryToHistory(with query: String) {
+        interactor.addSearchQueryToHistory(query)
+    }
 }

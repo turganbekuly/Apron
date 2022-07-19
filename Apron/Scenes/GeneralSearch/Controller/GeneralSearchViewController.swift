@@ -47,6 +47,8 @@ final class GeneralSearchViewController: ViewController {
     private var isFirstAppear = true
 
     var initialState: GeneralSearchInitialState?
+
+    var historySelectedQuery: String?
     
     // MARK: - Views
 
