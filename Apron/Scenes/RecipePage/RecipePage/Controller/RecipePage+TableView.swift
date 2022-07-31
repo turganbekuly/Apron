@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Models
+import APRUIKit
 
 extension RecipePageViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,11 +36,32 @@ extension RecipePageViewController: UITableViewDataSource {
         case .instruction:
             let cell: RecipeInstructionsViewCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .review:
+            let cell: RecipeReviewsCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
 
 extension RecipePageViewController: UITableViewDelegate {
+
+    func textHeight(withWidth width: CGFloat, font: UIFont, text: String) -> CGFloat {
+        return textSize(font: font, text: text, width: width).height
+    }
+
+    func textWidth(font: UIFont, text: String) -> CGFloat {
+        return textSize(font: font, text: text).width
+    }
+
+    func textSize(font: UIFont, text: String, width: CGFloat = .greatestFiniteMagnitude, height: CGFloat = .greatestFiniteMagnitude) -> CGSize {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        label.numberOfLines = 0
+        label.font = font
+        label.text = text
+        label.sizeToFit()
+        return label.frame.size
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -61,6 +83,9 @@ extension RecipePageViewController: UITableViewDelegate {
             return 203
         case .instruction:
             return CGFloat(84 + (recipe?.instructions?.count ?? 1) * 95)
+        case let .review(comment):
+            let width = (UIScreen.main.bounds.width - 85)
+            return 45 + Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width) + (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,6 +101,9 @@ extension RecipePageViewController: UITableViewDelegate {
             return 203
         case .instruction:
             return CGFloat(84 + (recipe?.instructions?.count ?? 1) * 95)
+        case let .review(comment):
+            let width = (UIScreen.main.bounds.width - 85)
+            return 45 + Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width) + (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)
         }
     }
 
@@ -127,6 +155,51 @@ extension RecipePageViewController: UITableViewDelegate {
             cell.configure(with: InstructionCellViewModel(
                 instructions: recipe?.instructions ?? []
             ))
+        case let .review(comment):
+            guard let cell = cell as? RecipeReviewsCell else { return }
+            cell.configure(with: RecipePageReviewsViewModel(comment: comment))
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let section = sections[section].section
+        switch section {
+        case .reviews:
+            let view: RecipeReviewsHeaderView = tableView.dequeueReusableHeaderFooterView()
+            return view
+        default:
+            return nil
+        }
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        let section = sections[section].section
+        switch section {
+        case .reviews:
+            return 54
+        default:
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let section = sections[section].section
+        switch section {
+        case .reviews:
+            return 54
+        default:
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let section = sections[section].section
+        switch section {
+        case .reviews:
+            guard let view = view as? RecipeReviewsHeaderView else { return }
+            view.configure(title: "Отзывы")
+        default:
+            break
         }
     }
 }

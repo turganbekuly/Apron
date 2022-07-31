@@ -70,3 +70,22 @@ extension RecipePageDataFlow {
         case failed(error: AKNetworkError)
     }
 }
+
+extension RecipePageDataFlow {
+    enum GetComments {
+        struct Request {
+            let recipeId: Int
+        }
+        struct Response {
+            let result: GetCommentsResult
+        }
+        struct ViewModel {
+            var state: RecipePageViewController.State
+        }
+    }
+
+    enum GetCommentsResult {
+        case successful(model: [RecipeCommentResponse])
+        case failed(error: AKNetworkError)
+    }
+}

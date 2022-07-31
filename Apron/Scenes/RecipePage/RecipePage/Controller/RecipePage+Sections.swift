@@ -7,6 +7,7 @@
 
 import Foundation
 import Wormholy
+import Models
 
 extension RecipePageViewController {
     struct Section {
@@ -16,6 +17,7 @@ extension RecipePageViewController {
             case ingredients
             case nutritions
             case instructions
+            case reviews
         }
         enum Row {
             case topView
@@ -23,6 +25,7 @@ extension RecipePageViewController {
             case ingredient
             case nutrition
             case instruction
+            case review(RecipeCommentResponse)
 
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch(lhs, rhs) {
@@ -35,6 +38,8 @@ extension RecipePageViewController {
                 case (.nutrition, .nutrition):
                     return true
                 case (.instruction, .instruction):
+                    return true
+                case (.review, .review):
                     return true
                 default:
                     return false

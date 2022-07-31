@@ -103,10 +103,10 @@ final class RecipeCreationImageCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(image: UIImage?, imageURL: String?) {
-        if let image = image {
-            imagePlaceholder.image = image
-            return
-        }
+//        if let image = image {
+//            imagePlaceholder.image = image
+//            return
+//        }
 
         if let imageURL = imageURL {
             imagePlaceholder.kf.setImage(

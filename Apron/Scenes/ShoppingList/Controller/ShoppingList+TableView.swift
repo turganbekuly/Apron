@@ -39,6 +39,39 @@ extension ShoppingListViewController: UITableViewDataSource {
 extension ShoppingListViewController: UITableViewDelegate {
     
     // MARK: - UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        switch row {
+        case let .ingredient(item):
+            let action = UIContextualAction(
+                style: .normal,
+                title: "") { [weak self] action, view, completion in
+                    guard let self = self else { return }
+                    self.cartItems.remove(at: indexPath.row)
+                    self.removeCartItem(with: item.productName, measurement: item.measurement)
+                    completion(true)
+                }
+            action.image = ApronAssets.trashIcon.image
+            action.backgroundColor = ApronAssets.secondary.color
+            return UISwipeActionsConfiguration(actions: [action])
+        default:
+            return .none
+        }
+    }
+
+    func tableView(
+        _ tableView: UITableView,
+        editingStyleForRowAt indexPath: IndexPath
+    ) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -53,6 +86,7 @@ extension ShoppingListViewController: UITableViewDelegate {
             }
 
             CartManager.shared.update(
+                productId: cartItem.productId,
                 productName: cartItem.productName,
                 productCategoryName: cartItem.productCategoryName,
                 amount: cartItem.amount,
@@ -101,36 +135,40 @@ extension ShoppingListViewController: UITableViewDelegate {
         }
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let section = sections[section].section
-//        switch section {
-//        default:
-//            break
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-//        let section = sections[section].section
-//        switch section {
-//        default:
-//            break
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        let section = sections[section].section
-//        switch section {
-//        default:
-//            break
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        let section = sections[section].section
-//        switch section {
-//        default:
-//            break
-//        }
-//    }
-    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let section = sections[section].section
+        switch section {
+        case .ingredients, .checkedIngredients:
+            let view: ShoppingListHeaderView = tableView.dequeueReusableHeaderFooterView()
+            return view
+        }
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        let section = sections[section].section
+        switch section {
+        case .ingredients, .checkedIngredients:
+            return 30
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let section = sections[section].section
+        switch section {
+        case .ingredients, .checkedIngredients:
+            return 30
+        }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let section = sections[section].section
+        switch section {
+        case .ingredients:
+            guard let view = view as? ShoppingListHeaderView else { return }
+            view.configure(title: "Ингредиенты")
+        case .checkedIngredients:
+            guard let view = view as? ShoppingListHeaderView else { return }
+            view.configure(title: "Купленные ингредиенты")
+        }
+    }
 }

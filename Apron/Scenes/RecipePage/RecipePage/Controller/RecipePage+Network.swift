@@ -17,4 +17,8 @@ extension RecipePageViewController {
     func saveRecipe(with id: Int) {
         interactor.saveRecipe(request: .init(id: id))
     }
+
+    func getComments(by id: Int) {
+        interactor.getComments(request: .init(recipeId: id))
+    }
 }

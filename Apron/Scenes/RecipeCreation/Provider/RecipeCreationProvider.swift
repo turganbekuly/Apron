@@ -14,6 +14,10 @@ protocol RecipeCreationProviderProtocol {
         request: RecipeCreationDataFlow.CreateRecipe.Request,
         compeletion: @escaping ((RecipeCreationDataFlow.CreateRecipeResult) -> Void)
     )
+    func uploadImage(
+        request: RecipeCreationDataFlow.UploadImage.Request,
+        completion: @escaping ((RecipeCreationDataFlow.UploadImageResult) -> Void)
+    )
 }
 
 final class RecipeCreationProvider: RecipeCreationProviderProtocol {
@@ -43,6 +47,24 @@ final class RecipeCreationProvider: RecipeCreationProviderProtocol {
                 }
             case let .failure(error):
                 compeletion(.failed(error: error))
+            }
+        }
+    }
+
+    func uploadImage(
+        request: RecipeCreationDataFlow.UploadImage.Request,
+        completion: @escaping ((RecipeCreationDataFlow.UploadImageResult) -> Void)
+    ) {
+        service.uploadImage(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let json = json["path"] as? String {
+                    completion(.successful(imagePath: json))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
             }
         }
     }

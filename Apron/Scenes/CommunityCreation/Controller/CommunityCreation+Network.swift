@@ -7,6 +7,7 @@
 //
 
 import Models
+import UIKit
 
 extension CommunityCreationViewController {
     
@@ -18,5 +19,9 @@ extension CommunityCreationViewController {
         }
 
         interactor.createCommunity(request: .init(communityCreation: model))
+    }
+
+    func uploadImage(with image: UIImage) {
+        interactor.uploadImage(request: .init(image: image))
     }
 }

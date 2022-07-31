@@ -12,7 +12,9 @@ import UIKit
 
 extension ShoppingListViewController: ShoppingListCellProtocol {
     func onCheckboxTapped(with item: CartItem, value: M13Checkbox.CheckState) {
-        guard let cartItem = cartItems.first(where: { $0.productName == item.productName }) else { return }
+        guard let cartItem = cartItems
+            .first(where: { $0.productId == item.productId && $0.measurement == item.measurement })
+        else { return }
         var bought = cartItem.bought
         if cartItem.bought {
             bought = false
@@ -21,6 +23,7 @@ extension ShoppingListViewController: ShoppingListCellProtocol {
         }
 
         CartManager.shared.update(
+            productId: cartItem.productId,
             productName: cartItem.productName,
             productCategoryName: cartItem.productCategoryName,
             amount: cartItem.amount,

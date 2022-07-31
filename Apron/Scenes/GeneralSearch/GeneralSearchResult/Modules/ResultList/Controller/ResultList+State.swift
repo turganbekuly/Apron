@@ -59,12 +59,12 @@ extension ResultListViewController {
             print(error)
         case let .fetchRecipes(model):
             addQueryToHistory()
-            updateRecipiesList(with: model)
+            updateRecipiesList(with: model.filter { $0.isHidden == false })
         case let .fetchRecipesFailed(error):
             print(error)
         case let .fetchCommunities(model):
             addQueryToHistory()
-            updateCommunitiesList(with: model)
+            updateCommunitiesList(with: model.filter { $0.isHidden == false })
         case let .fetchCommunitiesFailed(error):
             print(error)
         case .saveRecipe:

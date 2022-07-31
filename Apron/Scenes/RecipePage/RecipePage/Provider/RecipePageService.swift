@@ -22,6 +22,10 @@ protocol RecipePageServiceProtocol {
         request: RecipePageDataFlow.SaveRecipe.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func getComments(
+        request: RecipePageDataFlow.GetComments.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class RecipePageService: RecipePageServiceProtocol {
@@ -59,6 +63,15 @@ final class RecipePageService: RecipePageServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .saveRecipe(id: request.id)) { result in
+            completion(result)
+        }
+    }
+
+    func getComments(
+        request: RecipePageDataFlow.GetComments.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getCommentsByRecipe(id: request.recipeId)) { result in
             completion(result)
         }
     }

@@ -11,6 +11,7 @@ import Storages
 protocol ShoppingListBusinessLogic {
     func fetchCartItems(request: ShoppingListDataFlow.GetCartItems.Request)
     func clearCartItems(request: ShoppingListDataFlow.ClearCartItems.Request)
+    func removeCartItem(with name: String, measurement: String?)
 }
 
 final class ShoppingListInteractor: ShoppingListBusinessLogic {
@@ -18,6 +19,7 @@ final class ShoppingListInteractor: ShoppingListBusinessLogic {
     // MARK: - Properties
     private let presenter: ShoppingListPresentationLogic
     private let provider: ShoppingListProviderProtocol
+    private let cartItems = CartManager.shared
     
     // MARK: - Initialization
     init(presenter: ShoppingListPresentationLogic,
@@ -29,14 +31,17 @@ final class ShoppingListInteractor: ShoppingListBusinessLogic {
     // MARK: - ShoppingListBusinessLogic
 
     func fetchCartItems(request: ShoppingListDataFlow.GetCartItems.Request) {
-        let cartItems = CartManager.shared.fetchItems()
+        let cartItems = cartItems.fetchItems()
         self.presenter.fetchCartItems(response: .init(result: .successful(cartItems)))
     }
 
     func clearCartItems(request: ShoppingListDataFlow.ClearCartItems.Request) {
-        let cartItems = CartManager.shared
         cartItems.resetCart()
         let items = cartItems.fetchItems()
         self.presenter.clearCartItems(response: .init(result: .successful(items)))
+    }
+
+    func removeCartItem(with name: String, measurement: String?) {
+        cartItems.removeItem(for: name, with: measurement)
     }
 }

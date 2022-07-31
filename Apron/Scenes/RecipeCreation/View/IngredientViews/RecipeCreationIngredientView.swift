@@ -111,10 +111,14 @@ final class RecipeCreationIngredientView: UIView {
     // MARK: - Public methods
 
     func configure(with viewModel: RecipeIngredient) {
+        var measurementText = ""
         ingredientLabel.text = viewModel.product?.name
-        if let amount = viewModel.amount,
-           let measure = viewModel.measurement {
-            measurementLabel.text = "\(amount.clean) \(measure)"
+        if let amount = viewModel.amount {
+            measurementText = "\(amount.clean)"
         }
+        if let measure = viewModel.measurement {
+            measurementText += measure
+        }
+        measurementLabel.text = measurementText
     }
 }

@@ -21,6 +21,8 @@ extension RecipePageViewController {
         case rateRecipeError(AKNetworkError)
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
+        case displayComments([RecipeCommentResponse])
+        case displayCommentsFailed
     }
     
     // MARK: - Methods
@@ -33,9 +35,9 @@ extension RecipePageViewController {
         case let .displayRecipe(recipe):
             hideLoader()
             self.recipe = recipe
-        case let .displayError(error):
+            getComments(by: recipe.id)
+        case .displayError:
             hideLoader()
-            print(error)
         case let .rateRecipe(rating):
             print(rating)
         case let .rateRecipeError(error):
@@ -44,6 +46,10 @@ extension RecipePageViewController {
             print(newCount)
         case .saveRecipeFailed:
             show(type: .error(L10n.Common.errorMessage))
+        case let .displayComments(comment):
+            self.recipeComments = comment
+        case .displayCommentsFailed:
+            break
         }
     }
     

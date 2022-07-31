@@ -15,7 +15,7 @@ extension SplashScreenViewController {
     // MARK: - State
     enum State {
         case initial
-        case updateTokenSucceed(Auth)
+        case updateTokenSucceed(String)
         case updateTokenFailed(AKNetworkError)
     }
     
@@ -24,8 +24,9 @@ extension SplashScreenViewController {
         switch state {
         case .initial:
             break
-        case let .updateTokenSucceed(model):
-            AuthStorage.shared.save(model: model)
+        case let .updateTokenSucceed(accessToken):
+            AuthStorage.shared.accessToken = accessToken
+            AuthStorage.shared.isUserAuthorized = true
             let vc = TabBarBuilder(state: .initial(.normal)).build()
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = vc

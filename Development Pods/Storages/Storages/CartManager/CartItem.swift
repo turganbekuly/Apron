@@ -8,7 +8,8 @@
 import Foundation
 import Models
 
-public struct CartItem: Codable {
+public struct CartItem: Codable, Equatable {
+    public let productId: Int
     public let productName: String
     public let productCategoryName: String
     public var recipeName: [String]?
@@ -17,6 +18,7 @@ public struct CartItem: Codable {
     public var bought: Bool
 
     public init(
+        productId: Int,
         productName: String,
         productCategoryName: String,
         amount: Double?,
@@ -24,6 +26,7 @@ public struct CartItem: Codable {
         recipeName: [String]?,
         bought: Bool
     ) {
+        self.productId = productId
         self.productName = productName
         self.productCategoryName = productCategoryName
         self.amount = amount

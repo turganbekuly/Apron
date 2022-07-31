@@ -71,8 +71,8 @@ extension Messagable where Self: UIViewController {
             messageView.configure(with: ForceUpdateMessageViewModel())
         case let .error(title):
             messageView.configure(with: ErrorMessageViewModel(title: title))
-        case let .regular(icon, title):
-            messageView.configure(with: RegularMessageViewModel(icon: icon, title: title))
+        case let .regular(title, firstButtonTitle):
+            messageView.configure(with: RegularMessageViewModel(title: title, firstButtonTitleText: firstButtonTitle))
         case .loader:
             messageView.configure(with: LoaderMessageViewModel())
         }
@@ -107,7 +107,7 @@ extension Messagable where Self: UIViewController {
             attributes.position = .bottom
             attributes.positionConstraints.verticalOffset = 64
         case .success, .regular:
-            attributes.displayDuration = 3
+            attributes.displayDuration = 5
             attributes.position = .bottom
             HapticTouch.generateSuccess()
         case .error:

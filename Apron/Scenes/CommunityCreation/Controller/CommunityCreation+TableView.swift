@@ -136,7 +136,7 @@ extension CommunityCreationViewController: UITableViewDelegate {
         case .privacy:
             guard let cell = cell as? CommunityCreationPrivacyCell else { return }
             cell.delegate = self
-            cell.configure()
+            cell.configure(isHidden: communityCreation?.isHidden ?? true)
         case .permission:
             guard let cell = cell as? CommunityCreationPermissionsCell else { return }
             cell.delegate = self

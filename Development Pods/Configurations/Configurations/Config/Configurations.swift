@@ -25,6 +25,10 @@ public final class Configurations {
         return url
     }
 
+    public static func downloadImageURL(imagePath: String) -> String {
+        return "\(getBaseURL())image/download?fileName=\(imagePath)"
+    }
+
     public static func getWebBaseHost() -> String {
         getValue(for: ConfigurationKeys.webBasedURL) ?? ""
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import APRUIKit
+import NVActivityIndicatorView
 
 final class PhotoPlaceholderView: UIView {
     // MARK: - Init

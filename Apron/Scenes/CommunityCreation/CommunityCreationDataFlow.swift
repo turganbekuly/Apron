@@ -7,6 +7,7 @@
 //
 
 import Models
+import UIKit
 
 enum CommunityCreationDataFlow {
     
@@ -28,5 +29,24 @@ extension CommunityCreationDataFlow {
     enum CommunityCreationResult {
     case successful(model: CommunityResponse)
     case failed(error: AKNetworkError)
+    }
+}
+
+extension CommunityCreationDataFlow {
+    enum UploadImage {
+        struct Request {
+            let image: UIImage
+        }
+        struct Response {
+            let result: UploadImageResult
+        }
+        struct ViewModel {
+            var state: CommunityCreationViewController.State
+        }
+    }
+
+    enum UploadImageResult {
+        case successful(imagePath: String)
+        case failed(error: AKNetworkError)
     }
 }

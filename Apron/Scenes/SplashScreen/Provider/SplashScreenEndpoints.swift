@@ -52,14 +52,10 @@ extension SplashScreenEndpoints: AKNetworkTargetType {
     }
 
     var headers: [String: String]? {
-        var headers = [
+        return [
             "Accept-Language": "ru",
             "Content-Type": "application/json"
         ]
-        if let token = AuthStorage.shared.accessToken {
-            headers["Authorization"] = "Bearer \(token)"
-        }
-        return headers
     }
 
 }

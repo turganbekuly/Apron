@@ -28,11 +28,18 @@ public final class RecipePageView: UITableView {
         tableFooterView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 64)))
 
         [
+            RecipeReviewsHeaderView.self
+        ].forEach {
+            register(aClass: $0)
+        }
+
+        [
             RecipeInformationViewCell.self,
             IngredientDescriptionCell.self,
             RecipeCaloriesViewCell.self,
             RecipeIngredientsViewCell.self,
-            RecipeInstructionsViewCell.self
+            RecipeInstructionsViewCell.self,
+            RecipeReviewsCell.self
         ].forEach {
             register(cellClass: $0)
         }

@@ -8,8 +8,8 @@
 import Foundation
 
 extension CommunityCreationViewController: CommunityPrivacyLevelProtocol {
-    func privacyLevelSelected(isPublic: Bool) {
-        self.communityCreation?.privateAdding = isPublic
+    func privacyLevelSelected(isHidden: Bool) {
+        self.communityCreation?.isHidden = isHidden
     }
 }
 

@@ -13,6 +13,7 @@ import AlertMessages
 
 protocol CommunityCreationDisplayLogic: AnyObject {
     func displayCreatedCommunity(with viewModel: CommunityCreationDataFlow.CreateCommunity.ViewModel)
+    func displayUploadedImage(with viewModel: CommunityCreationDataFlow.UploadImage.ViewModel)
 }
 
 final class CommunityCreationViewController: ViewController, Messagable {
@@ -34,7 +35,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
                         section: .info,
                         rows: [
                             .name, .imagePlaceholder, .description,
-                            .category
+                            .category, .privacy, .permission
                         ]
                     )
                 ]
@@ -67,8 +68,10 @@ final class CommunityCreationViewController: ViewController, Messagable {
 
     var selectedImage: UIImage? {
         didSet {
-            mainView.reloadTableViewWithoutAnimation()
-            replaceImageCell(type: .image)
+            if let selectedImage = selectedImage {
+                uploadImage(with: selectedImage)
+                configureImageCell(isLoaded: true)
+            }
         }
     }
     
@@ -178,15 +181,32 @@ final class CommunityCreationViewController: ViewController, Messagable {
         )
     }
 
+    // MARK: - Private methods
+
+    func configureImageCell(isLoaded: Bool) {
+        guard
+            let section = sections.firstIndex(where: { $0.section == .info }),
+            let row = sections[section].rows.firstIndex(of: .imagePlaceholder),
+            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? RecipeCreationPlaceholderImageCell
+        else { return }
+        if isLoaded {
+            cell.startAnimating()
+        } else {
+            cell.stopAnimating()
+        }
+        mainView.reloadTableViewWithoutAnimation()
+    }
+
     // MARK: - User actions
 
     @objc
     private func saveButtonTapped() {
         if let _ = communityCreation?.communityName,
-//           let _ = communityCreation?.imageURL,
+           let _ = communityCreation?.imageURL,
            let _ = communityCreation?.description,
            let _ = communityCreation?.category,
-           let _ = communityCreation?.privateAdding
+           let _ = communityCreation?.privateAdding,
+           let _ = communityCreation?.isHidden
         {
             self.createCommunity(with: communityCreation)
         } else {

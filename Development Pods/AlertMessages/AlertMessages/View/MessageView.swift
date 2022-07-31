@@ -97,8 +97,10 @@ public class MessageView: UIView {
         switch type {
         case .dialog:
             return [subtitleLabel, firstButton, secondButton]
-        case .error, .regular, .success:
+        case .error, .success:
             return [iconImageView]
+        case .regular:
+            return [firstButton]
         case .loader:
             return [animationView]
         case .forceUpdate:
@@ -145,8 +147,10 @@ public class MessageView: UIView {
             subtitleLabel.attributedText = viewModel.subtitle
             firstButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
             secondButton.setAttributedTitle(viewModel.secondButtonTitle, for: .normal)
-        case .error, .regular, .success:
+        case .error, .success:
             iconImageView.image = viewModel.icon
+        case .regular:
+            firstButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
         case .loader:
             addShadow(offset: .zero, radius: 50, opacity: 1)
         case .forceUpdate:
@@ -185,8 +189,10 @@ public class MessageView: UIView {
         switch type {
         case .dialog:
             makeDialogConstraints()
-        case .success, .regular, .error:
+        case .success, .error:
             makeSuccessConstraints()
+        case .regular:
+            makeRegularConstraints()
         case .loader:
             makeLoaderConstraints()
         case .forceUpdate:
@@ -240,6 +246,26 @@ public class MessageView: UIView {
             make.top.equalToSuperview().inset(16)
             make.leading.equalTo(iconImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(16)
+        }
+    }
+
+    private func makeRegularConstraints() {
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        headerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        firstButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalTo(firstButton.snp.leading).offset(-8)
             make.bottom.equalToSuperview().inset(16)
         }
     }

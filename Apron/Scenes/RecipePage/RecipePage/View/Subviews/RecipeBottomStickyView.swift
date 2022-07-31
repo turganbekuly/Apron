@@ -13,6 +13,7 @@ import Storages
 protocol BottomStickyViewDelegate: AnyObject {
     func addButtonTapped()
     func saveButtonTapped()
+    func textFieldTapped()
 }
 
 final class RecipeBottomStickyView: View {
@@ -33,7 +34,7 @@ final class RecipeBottomStickyView: View {
     }()
 
     private lazy var textField: RoundedTextField = {
-        let textField = RoundedTextField(placeholder: "Оставьте ваш комментарий")
+        let textField = RoundedTextField(placeholder: "Оставьте ваш отзыв")
         textField.textField.isUserInteractionEnabled = false
         return textField
     }()
@@ -63,7 +64,9 @@ final class RecipeBottomStickyView: View {
     override func setupViews() {
         super.setupViews()
         backgroundColor = .white
+        textField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(commentTFTapped)))
         addSubviews(
+            textField,
             addButton,
             saveButton
         )
@@ -72,14 +75,21 @@ final class RecipeBottomStickyView: View {
     override func setupConstraints() {
         super.setupConstraints()
 
+        textField.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(38)
+        }
+
         addButton.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(16)
+            $0.top.equalTo(textField.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(16)
             $0.height.equalTo(38)
             $0.trailing.equalTo(snp.centerX).offset(-5)
         }
 
         saveButton.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview().inset(16)
+            $0.top.equalTo(textField.snp.bottom).offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(38)
             $0.leading.equalTo(snp.centerX).offset(5)
         }
@@ -99,6 +109,11 @@ final class RecipeBottomStickyView: View {
         HapticTouch.generateSuccess()
         configureSavedButton()
         delegate?.saveButtonTapped()
+    }
+
+    @objc
+    private func commentTFTapped() {
+        delegate?.textFieldTapped()
     }
 
     // MARK: - Private methods

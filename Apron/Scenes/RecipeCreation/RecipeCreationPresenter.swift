@@ -10,6 +10,7 @@ import UIKit
 
 protocol RecipeCreationPresentationLogic: AnyObject {
     func createRecipe(response: RecipeCreationDataFlow.CreateRecipe.Response)
+    func uploadImage(response: RecipeCreationDataFlow.UploadImage.Response)
 }
 
 final class RecipeCreationPresenter: RecipeCreationPresentationLogic {
@@ -30,6 +31,21 @@ final class RecipeCreationPresenter: RecipeCreationPresentationLogic {
                 viewModel = .init(state: .recipeCreationSucceed(model))
             case let .failed(error):
                 viewModel = .init(state: .recipeCreationFailed(error))
+            }
+        }
+    }
+
+    func uploadImage(response: RecipeCreationDataFlow.UploadImage.Response) {
+        DispatchQueue.main.async {
+            var viewModel: RecipeCreationDataFlow.UploadImage.ViewModel
+
+            defer { self.viewController?.displayUploadedImage(with: viewModel) }
+
+            switch response.result {
+            case let .successful(imagePath):
+                viewModel = .init(state: .uploadImageSucceed(imagePath))
+            case let .failed(error):
+                viewModel = .init(state: .uploadImageFailed(error))
             }
         }
     }

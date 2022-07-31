@@ -13,6 +13,7 @@ import AlertMessages
 
 protocol RecipeCreationDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipeCreationDataFlow.CreateRecipe.ViewModel)
+    func displayUploadedImage(with viewModel: RecipeCreationDataFlow.UploadImage.ViewModel)
 }
 
 final class RecipeCreationViewController: ViewController, Messagable {
@@ -65,8 +66,10 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     var selectedImage: UIImage? {
         didSet {
-            mainView.reloadTableViewWithoutAnimation()
-            replaceImageCell(type: .image)
+            if let selectedImage = selectedImage {
+                uploadImage(with: selectedImage)
+                configureImageCell(isLoaded: true)
+            }
         }
     }
 
@@ -162,6 +165,20 @@ final class RecipeCreationViewController: ViewController, Messagable {
     
     // MARK: - Methods
 
+    func configureImageCell(isLoaded: Bool) {
+        guard
+            let section = sections.firstIndex(where: { $0.section == .info }),
+            let row = sections[section].rows.firstIndex(of: .imagePlaceholder),
+            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? RecipeCreationPlaceholderImageCell
+        else { return }
+        if isLoaded {
+            cell.startAnimating()
+        } else {
+            cell.stopAnimating()
+        }
+        mainView.reloadTableViewWithoutAnimation()
+    }
+
     private func configureNavigation() {
         backButton.configure(with: "Новый рецепт")
         backButton.onBackButtonTapped = { [weak self] in
@@ -201,9 +218,6 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     @objc
     private func saveButtonTapped() {
-        recipeCreation?.imageURL = "djfaksdjfkasdfklasdf"
-        recipeCreation?.sourceLink = "faskdfkasdfkasdf"
-        recipeCreation?.sourceName = "asdfaskdfkasdfk"
         if let _ = recipeCreation?.recipeName,
            let _ = recipeCreation?.description,
            let _ = recipeCreation?.ingredients,

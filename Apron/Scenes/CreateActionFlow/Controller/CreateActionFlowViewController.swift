@@ -130,7 +130,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
         case .recipePageMore:
             return .contentHeight(170)
         case .recipePageAddTo:
-            return .contentHeight(30)
+            return .contentHeight(50)
         case .savedPageCreate:
             return .contentHeight(170)
         case .shoppingListMore:

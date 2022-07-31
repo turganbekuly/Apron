@@ -15,4 +15,8 @@ extension RecipeCreationViewController: RecipeCreationDisplayLogic {
     func displayRecipe(viewModel: RecipeCreationDataFlow.CreateRecipe.ViewModel) {
         state = viewModel.state
     }
+
+    func displayUploadedImage(with viewModel: RecipeCreationDataFlow.UploadImage.ViewModel) {
+        state = viewModel.state
+    }
 }

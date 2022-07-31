@@ -10,7 +10,7 @@ import APRUIKit
 import M13Checkbox
 
 protocol CommunityPrivacyLevelProtocol: AnyObject {
-    func privacyLevelSelected(isPublic: Bool)
+    func privacyLevelSelected(isHidden: Bool)
 }
 
 final class CommunityCreationPrivacyCell: UITableViewCell {
@@ -28,17 +28,17 @@ final class CommunityCreationPrivacyCell: UITableViewCell {
 
     weak var delegate: CommunityPrivacyLevelProtocol?
 
-    private var isPublic = true {
+    private var isCommunityHidden = false {
         didSet {
-            delegate?.privacyLevelSelected(isPublic: isPublic)
-            if isPublic {
-                publicCheckbox.checkState = .checked
-                privateCheckbox.checkState = .unchecked
+            delegate?.privacyLevelSelected(isHidden: isCommunityHidden)
+            if isCommunityHidden {
+                publicCheckbox.checkState = .unchecked
+                privateCheckbox.checkState = .checked
                 return
             }
 
-            privateCheckbox.checkState = .checked
-            publicCheckbox.checkState = .unchecked
+            privateCheckbox.checkState = .unchecked
+            publicCheckbox.checkState = .checked
         }
     }
 
@@ -63,6 +63,9 @@ final class CommunityCreationPrivacyCell: UITableViewCell {
         label.text = "Конфиденциальность"
         return label
     }()
+
+    private lazy var publicViewContainer = UIView()
+    private lazy var privateViewContainer = UIView()
 
     private lazy var publicLabel: UILabel = {
         let label = UILabel()
@@ -95,8 +98,8 @@ final class CommunityCreationPrivacyCell: UITableViewCell {
         checkbox.stateChangeAnimation = .bounce(.stroke)
         checkbox.tintColor = .black
         checkbox.secondaryTintColor = .gray
-        checkbox.addTarget(self, action: #selector(publicCheckboxValueChanged(_:)), for: .valueChanged)
         checkbox.checkState = .checked
+        checkbox.isUserInteractionEnabled = false
         return checkbox
     }()
 
@@ -107,7 +110,7 @@ final class CommunityCreationPrivacyCell: UITableViewCell {
         checkbox.stateChangeAnimation = .bounce(.stroke)
         checkbox.tintColor = .black
         checkbox.secondaryTintColor = .gray
-        checkbox.addTarget(self, action: #selector(privateCheckboxValueChanged(_:)), for: .valueChanged)
+        checkbox.isUserInteractionEnabled = false
         return checkbox
     }()
 
@@ -116,15 +119,26 @@ final class CommunityCreationPrivacyCell: UITableViewCell {
     private func setupViews() {
         backgroundColor = .clear
         selectionStyle = .none
+
+        publicViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onPublicViewTapped)))
+        privateViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onPrivateViewTapped)))
+
         [
             sectionTitleLabel,
-            publicLabel,
-            publicCheckbox,
-            privateLabel,
-            privateCheckbox
+            publicViewContainer,
+            privateViewContainer
         ].forEach {
             contentView.addSubview($0)
         }
+
+        [publicCheckbox, publicLabel].forEach {
+            publicViewContainer.addSubview($0)
+        }
+
+        [privateCheckbox, privateLabel].forEach {
+            privateViewContainer.addSubview($0)
+        }
+
         setupConstraints()
     }
 
@@ -134,46 +148,58 @@ final class CommunityCreationPrivacyCell: UITableViewCell {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
 
-        publicCheckbox.snp.makeConstraints {
+        publicViewContainer.snp.makeConstraints {
             $0.top.equalTo(sectionTitleLabel.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(18)
+        }
+
+        publicCheckbox.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.size.equalTo(18)
         }
 
         publicLabel.snp.makeConstraints {
             $0.centerY.equalTo(publicCheckbox.snp.centerY)
             $0.leading.equalTo(publicCheckbox.snp.trailing).offset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview()
+        }
+
+        privateViewContainer.snp.makeConstraints {
+            $0.top.equalTo(publicViewContainer.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(18)
         }
 
         privateCheckbox.snp.makeConstraints {
-            $0.top.equalTo(publicCheckbox.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().offset(16)
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.size.equalTo(18)
         }
 
         privateLabel.snp.makeConstraints {
             $0.centerY.equalTo(privateCheckbox.snp.centerY)
             $0.leading.equalTo(privateCheckbox.snp.trailing).offset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview()
         }
     }
 
     // MARK: - User actions
 
     @objc
-    private func publicCheckboxValueChanged(_ sender: M13Checkbox) {
-        isPublic = true
+    private func onPublicViewTapped() {
+        isCommunityHidden = false
     }
 
     @objc
-    private func privateCheckboxValueChanged(_ sender: M13Checkbox) {
-        isPublic = false
+    private func onPrivateViewTapped() {
+        isCommunityHidden = true
     }
 
     // MARK: - Public methods
 
-    func configure(isPublic: Bool = true) {
-        self.isPublic = isPublic
+    func configure(isHidden: Bool) {
+        self.isCommunityHidden = isHidden
     }
 }

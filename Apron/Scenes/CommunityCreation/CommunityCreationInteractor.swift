@@ -8,6 +8,7 @@
 
 protocol CommunityCreationBusinessLogic {
     func createCommunity(request: CommunityCreationDataFlow.CreateCommunity.Request)
+    func uploadImage(request: CommunityCreationDataFlow.UploadImage.Request)
 }
 
 final class CommunityCreationInteractor: CommunityCreationBusinessLogic {
@@ -32,6 +33,17 @@ final class CommunityCreationInteractor: CommunityCreationBusinessLogic {
                 self?.presenter.createCommunity(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.createCommunity(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func uploadImage(request: CommunityCreationDataFlow.UploadImage.Request) {
+        provider.uploadImage(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(imagePath):
+                self?.presenter.uploadImage(response: .init(result: .successful(imagePath: imagePath)))
+            case let .failed(error):
+                self?.presenter.uploadImage(response: .init(result: .failed(error: error)))
             }
         }
     }

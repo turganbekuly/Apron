@@ -12,7 +12,7 @@ public enum MessageType {
     case dialog(String, String, String, String)
     case error(String)
     case success(String)
-    case regular(UIImage, String)
+    case regular(String, String)
     case forceUpdate
 
     public var name: String {

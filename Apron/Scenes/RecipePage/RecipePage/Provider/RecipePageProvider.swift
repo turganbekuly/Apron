@@ -22,6 +22,10 @@ protocol RecipePageProviderProtocol {
         request: RecipePageDataFlow.SaveRecipe.Request,
         completion: @escaping (RecipePageDataFlow.SaveRecipeResult) -> Void
     )
+    func getComments(
+        request: RecipePageDataFlow.GetComments.Request,
+        completion: @escaping ((RecipePageDataFlow.GetCommentsResult) -> Void)
+    )
 }
 
 final class RecipePageProvider: RecipePageProviderProtocol {
@@ -82,6 +86,24 @@ final class RecipePageProvider: RecipePageProviderProtocol {
             case let .success(json):
                 if let jsons = RecipeResponse(json: json) {
                     completion(.successful(model: jsons))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getComments(
+        request: RecipePageDataFlow.GetComments.Request,
+        completion: @escaping ((RecipePageDataFlow.GetCommentsResult) -> Void)
+    ) {
+        service.getComments(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { RecipeCommentResponse(json: $0) }))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

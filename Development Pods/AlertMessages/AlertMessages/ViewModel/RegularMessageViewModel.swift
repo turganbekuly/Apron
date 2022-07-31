@@ -6,10 +6,13 @@ public struct RegularMessageViewModel: MessageProtocol {
     // MARK: - Properties
 
     private let titleText: String
+    private let firstButtonTitleText: String
 
     // MARK: - MessageProtocol
 
-    public var icon: UIImage?
+    public var icon: UIImage? {
+        return nil
+    }
 
     public var title: NSAttributedString? {
         Typography.semibold14(text: titleText).styled
@@ -20,7 +23,7 @@ public struct RegularMessageViewModel: MessageProtocol {
     }
 
     public var firstButtonTitle: NSAttributedString? {
-        nil
+        Typography.semibold14(text: firstButtonTitleText, color: .white).styled
     }
 
     public var secondButtonTitle: NSAttributedString? {
@@ -28,11 +31,11 @@ public struct RegularMessageViewModel: MessageProtocol {
     }
 
     public var backgroundColor: UIColor {
-        ApronAssets.gray.color
+        .black
     }
 
     public var titleColor: UIColor {
-        .black
+        .white
     }
 
     public var subtitleColor: UIColor? {
@@ -45,9 +48,9 @@ public struct RegularMessageViewModel: MessageProtocol {
 
     // MARK: - Init
 
-    public init(icon: UIImage, title: String) {
-        self.icon = icon
-        titleText = title
+    public init(title: String, firstButtonTitleText: String) {
+        self.titleText = title
+        self.firstButtonTitleText = firstButtonTitleText
     }
 
 }

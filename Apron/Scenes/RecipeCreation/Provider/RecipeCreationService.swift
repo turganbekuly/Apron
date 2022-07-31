@@ -13,6 +13,10 @@ protocol RecipeCreationServiceProtocol {
         request: RecipeCreationDataFlow.CreateRecipe.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func uploadImage(
+        request: RecipeCreationDataFlow.UploadImage.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class RecipeCreationService: RecipeCreationServiceProtocol {
@@ -34,5 +38,19 @@ final class RecipeCreationService: RecipeCreationServiceProtocol {
                 target: .createRecipe(request.recipeCreation)) { result in
                     completion(result)
                 }
+        }
+
+    func uploadImage(
+        request: RecipeCreationDataFlow.UploadImage.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        guard let data = request.image.jpeg(.medium) else {
+            completion(.failure(.invalidData))
+            return
+        }
+
+        provider.send(target: .uploadImage(image: data)) { result in
+            completion(result)
+        }
     }
 }

@@ -123,8 +123,10 @@ final class DynamicCommunityCell: UITableViewCell {
 
     func configure(with viewModel: IDynamicCollectionDelegateCellViewModel) {
         title = viewModel.sectionHeaderTitle
-        seeAllButton.isHidden = viewModel.dynamicCommunities.count >= 10 ? false : true
-        dynamicCommunities = viewModel.dynamicCommunities
+        seeAllButton.isHidden = viewModel.dynamicCommunities
+            .filter { $0.isHidden == false }
+            .count >= 10 ? false : true
+        dynamicCommunities = viewModel.dynamicCommunities.filter { $0.isHidden == false }
         categoryID = viewModel.categoryID
     }
 }

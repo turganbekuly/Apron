@@ -699,6 +699,7 @@
 		6D1CB77687448282852202DC82E45146 /* FIRCLSdSYM.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B551EA70E7A61AD87F667D82D20CBE9 /* FIRCLSdSYM.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6D466C24837D39B5A91E772D227A708B /* FBLPromise+Reduce.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCE149C1D49FFD37C66C2B0A0BAFB13 /* FBLPromise+Reduce.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6D4E490742F1D7B5724A9FEB23599BF4 /* FIRCoreDiagnosticsConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 19BB1E7F4711074F8324E1BA19C7F1AC /* FIRCoreDiagnosticsConnector.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6D53415F288AC2570048DBB2 /* RecipeCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D53415E288AC2570048DBB2 /* RecipeCommentResponse.swift */; };
 		6D7B49E428856A39009F0717 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B49E328856A39009F0717 /* SearchHistoryManager.swift */; };
 		6D7B49E728856B97009F0717 /* CollectionViewLeftAlignLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B49E628856B97009F0717 /* CollectionViewLeftAlignLayout.swift */; };
 		6D7E9F6885F51458592810C8AC51B278 /* FIRInstallationsItem+RegisterInstallationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E65B359C0198B974153E9EAE44B468 /* FIRInstallationsItem+RegisterInstallationAPI.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3011,6 +3012,7 @@
 		6D25B0B2703F6474E4E266077F3A3CDF /* FillNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FillNode.swift; path = Sources/Private/NodeRenderSystem/Nodes/RenderNodes/FillNode.swift; sourceTree = "<group>"; };
 		6D409704E7D3754AA27CE99D36706D3C /* Protocols.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Protocols.h; path = Protocols/Protocols.h; sourceTree = "<group>"; };
 		6D41CEAF16866E14D91201465DE04642 /* Disk.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Disk.h; path = Sources/Disk.h; sourceTree = "<group>"; };
+		6D53415E288AC2570048DBB2 /* RecipeCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCommentResponse.swift; sourceTree = "<group>"; };
 		6D5C4390EDC0DBCE4A14789502479595 /* FIRVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRVersion.h; path = FirebaseCore/Sources/Public/FirebaseCore/FIRVersion.h; sourceTree = "<group>"; };
 		6D66C5058E30B1D88A80D812C39FC7C3 /* WHNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WHNavigationController.swift; path = Sources/Subclasses/WHNavigationController.swift; sourceTree = "<group>"; };
 		6D7B49E328856A39009F0717 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
@@ -7366,6 +7368,7 @@
 				991AFC9124BF967D034EEC3C3BADEBB4 /* RecipeIngredient.swift */,
 				3828765E0E9D0D1880F8791585FA1535 /* RecipeResponse.swift */,
 				E76FD83609EB080AB08871DCB9558774 /* RecipeSource.swift */,
+				6D53415E288AC2570048DBB2 /* RecipeCommentResponse.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -10784,6 +10787,7 @@
 				54696853D173D9D8D12D487BE76A0BA2 /* Models-dummy.m in Sources */,
 				77F1315A06ED1E886B5B9AD43CBC87ED /* Product.swift in Sources */,
 				C3B5EF8750323F27EC84B7BE057D11E8 /* RatingRequestBody.swift in Sources */,
+				6D53415F288AC2570048DBB2 /* RecipeCommentResponse.swift in Sources */,
 				0ED892689BA348B80FE4600CD92E547E /* RatingResponse.swift in Sources */,
 				E2B54A9FC6868602D67028075E9EFA4A /* RecipeCreation.swift in Sources */,
 				373F8ADEE8ED12CC87F3E05B75B95875 /* RecipeIngredient.swift in Sources */,

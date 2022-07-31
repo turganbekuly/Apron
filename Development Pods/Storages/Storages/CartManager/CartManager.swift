@@ -75,6 +75,7 @@ public final class CartManager {
     }
 
     public func update(
+        productId: Int,
         productName: String,
         productCategoryName: String,
         amount: Double?,
@@ -85,15 +86,16 @@ public final class CartManager {
         var currentItems = fetchItemsFromStorage()
 
         if let index = currentItems
-            .firstIndex(where: { $0.productName == productName && $0.measurement == measurement }) {
+            .firstIndex(where: { $0.productId == productId && $0.measurement == measurement }) {
             let item = currentItems[index]
 
             if let amount = amount {
                 if amount > 0 {
                     currentItems[index] = CartItem(
+                        productId: item.productId,
                         productName: item.productName,
                         productCategoryName: item.productCategoryName,
-                        amount: amount ?? 0,
+                        amount: amount + (item.amount ?? 0) ?? 0,
                         measurement: measurement,
                         recipeName: (item.recipeName ?? []) + [recipeName ?? ""],
                         bought: bought
@@ -103,14 +105,15 @@ public final class CartManager {
                     sendChangeEvent()
                     sendChangeEvent(productName: productName)
                 } else {
-                    removeItem(for: item.productName)
+                    removeItem(for: item.productName, with: item.measurement)
                 }
             } else {
                 currentItems[index] = CartItem(
+                    productId: item.productId,
                     productName: item.productName,
                     productCategoryName: item.productCategoryName,
-                    amount: amount,
-                    measurement: measurement,
+                    amount: item.amount,
+                    measurement: item.measurement,
                     recipeName: (item.recipeName ?? []) + [recipeName ?? ""],
                     bought: bought
                 )
@@ -121,6 +124,7 @@ public final class CartManager {
             }
         } else {
             let item = CartItem(
+                productId: productId,
                 productName: productName,
                 productCategoryName: productCategoryName,
                 amount: amount,
@@ -136,6 +140,7 @@ public final class CartManager {
     }
 
     public func forceAdd(
+        productId: Int,
         productName: String,
         productCategoryName: String,
         amount: Double?,
@@ -145,6 +150,7 @@ public final class CartManager {
         bought: Bool
     ) {
         let item = CartItem(
+            productId: productId,
             productName: productName,
             productCategoryName: productCategoryName,
             amount: amount,
@@ -169,16 +175,16 @@ public final class CartManager {
         sendChangeEvent(productName: productName)
     }
 
-    public func removeItem(for carItemProductName: String) {
+    public func removeItem(for carItemProductName: String, with measurement: String?) {
         var currentItems = fetchItemsFromStorage()
-        let productIds = currentItems.map { $0.productName }
+        let productNames = currentItems.map { $0.productName }
         currentItems.removeAll(where: {
-            $0.productName.caseInsensitiveCompare(carItemProductName) == .orderedSame
-
+            $0.productName.caseInsensitiveCompare(carItemProductName) == .orderedSame &&
+            $0.measurement == measurement
         })
         setItemsToStorage(items: currentItems)
         sendChangeEvent()
-        productIds.unique().forEach { sendChangeEvent(productName: $0) }
+        productNames.unique().forEach { sendChangeEvent(productName: $0) }
     }
 
     public func resetCart() {
@@ -247,16 +253,16 @@ public final class CartManager {
         return items
     }
 
-//    private func generateNewIdentifierForItem() -> Int {
-//        let items = fetchItemsFromStorage()
-//
-//        if items.isEmpty {
-//            return 0
-//        } else {
-//            guard let lastId = items.last?.id else { return 0 }
-//            return lastId + 1
-//        }
-//    }
+    private func generateNewIdentifierForItem() -> Int {
+        let items = fetchItemsFromStorage()
+
+        if items.isEmpty {
+            return 0
+        } else {
+            guard let lastId = items.last?.productId else { return 0 }
+            return lastId + 1
+        }
+    }
 
     private func setItemsToStorage(items: [CartItem]) {
         let encoder = JSONEncoder()

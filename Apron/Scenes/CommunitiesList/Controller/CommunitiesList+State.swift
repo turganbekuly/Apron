@@ -28,7 +28,7 @@ extension CommunitiesListViewController {
         case let .initial(initialState):
             self.initialState = initialState
         case let .fetchCommunities(model):
-            updateList(with: model)
+            updateList(with: model.filter { $0.isHidden == false })
         case let .fetchCommunitiesFailed(error):
             print(error)
         case .joinedCommunity:

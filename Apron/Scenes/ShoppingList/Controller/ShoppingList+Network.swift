@@ -18,4 +18,7 @@ extension ShoppingListViewController {
         interactor.clearCartItems(request: .init())
     }
 
+    func removeCartItem(with name: String, measurement: String?) {
+        interactor.removeCartItem(with: name, measurement: measurement)
+    }
 }

@@ -14,6 +14,11 @@ protocol CommunityCreationProviderProtocol {
         request: CommunityCreationDataFlow.CreateCommunity.Request,
         compeletion: @escaping ((CommunityCreationDataFlow.CommunityCreationResult) -> Void)
     )
+
+    func uploadImage(
+        request: CommunityCreationDataFlow.UploadImage.Request,
+        completion: @escaping ((CommunityCreationDataFlow.UploadImageResult) -> Void)
+    )
 }
 
 final class CommunityCreationProvider: CommunityCreationProviderProtocol {
@@ -43,6 +48,24 @@ final class CommunityCreationProvider: CommunityCreationProviderProtocol {
                 }
             case let .failure(error):
                 compeletion(.failed(error: error))
+            }
+        }
+    }
+
+    func uploadImage(
+        request: CommunityCreationDataFlow.UploadImage.Request,
+        completion: @escaping ((CommunityCreationDataFlow.UploadImageResult) -> Void)
+    ) {
+        service.uploadImage(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let json = json["path"] as? String {
+                    completion(.successful(imagePath: json))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
             }
         }
     }

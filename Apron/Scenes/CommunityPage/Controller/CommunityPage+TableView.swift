@@ -108,7 +108,7 @@ extension CommunityPageViewController: UITableViewDelegate {
         let section = sections[section].section
         switch section {
         case .topView:
-            return 248
+            return 214
         }
     }
 
@@ -116,7 +116,7 @@ extension CommunityPageViewController: UITableViewDelegate {
         let section = sections[section].section
         switch section {
         case .topView:
-            return 248
+            return 214
         }
     }
 

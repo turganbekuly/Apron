@@ -32,3 +32,22 @@ extension RecipeCreationDataFlow {
         case failed(error: AKNetworkError)
     }
 }
+
+extension RecipeCreationDataFlow {
+    enum UploadImage {
+        struct Request {
+            let image: UIImage
+        }
+        struct Response {
+            let result: UploadImageResult
+        }
+        struct ViewModel {
+            var state: RecipeCreationViewController.State
+        }
+    }
+
+    enum UploadImageResult {
+        case successful(imagePath: String)
+        case failed(error: AKNetworkError)
+    }
+}

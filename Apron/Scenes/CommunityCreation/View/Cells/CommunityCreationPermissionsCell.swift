@@ -54,7 +54,10 @@ final class CommunityCreationPermissionsCell: UITableViewCell {
         return label
     }()
 
-    private lazy var publicLabel: UILabel = {
+    private lazy var anyoneViewContainer = UIView()
+    private lazy var nooneViewContainer = UIView()
+
+    private lazy var anyoneLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
         label.textColor = .black
@@ -63,7 +66,7 @@ final class CommunityCreationPermissionsCell: UITableViewCell {
         return label
     }()
 
-    private lazy var privateLabel: UILabel = {
+    private lazy var nooneLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
         label.textColor = .black
@@ -79,7 +82,7 @@ final class CommunityCreationPermissionsCell: UITableViewCell {
         checkbox.stateChangeAnimation = .bounce(.stroke)
         checkbox.tintColor = .black
         checkbox.secondaryTintColor = .gray
-        checkbox.addTarget(self, action: #selector(anyoneCheckboxValueChanged(_:)), for: .valueChanged)
+        checkbox.isUserInteractionEnabled = false
         checkbox.checkState = .checked
         return checkbox
     }()
@@ -91,7 +94,7 @@ final class CommunityCreationPermissionsCell: UITableViewCell {
         checkbox.stateChangeAnimation = .bounce(.stroke)
         checkbox.tintColor = .black
         checkbox.secondaryTintColor = .gray
-        checkbox.addTarget(self, action: #selector(nooneCheckboxValueChanged(_:)), for: .valueChanged)
+        checkbox.isUserInteractionEnabled = false
         return checkbox
     }()
 
@@ -100,14 +103,23 @@ final class CommunityCreationPermissionsCell: UITableViewCell {
     private func setupViews() {
         backgroundColor = .clear
         selectionStyle = .none
+
+        anyoneViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAnyoneViewTapped)))
+        nooneViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onNooneViewTapped)))
         [
             sectionTitleLabel,
-            publicLabel,
-            anyoneCheckbox,
-            privateLabel,
-            nooneCheckbox
+            anyoneViewContainer,
+            nooneViewContainer
         ].forEach {
             contentView.addSubview($0)
+        }
+
+        [anyoneCheckbox, anyoneLabel].forEach {
+            anyoneViewContainer.addSubview($0)
+        }
+
+        [nooneCheckbox, nooneLabel].forEach {
+            nooneViewContainer.addSubview($0)
         }
         setupConstraints()
     }
@@ -118,41 +130,53 @@ final class CommunityCreationPermissionsCell: UITableViewCell {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
 
-        anyoneCheckbox.snp.makeConstraints {
+        anyoneViewContainer.snp.makeConstraints {
             $0.top.equalTo(sectionTitleLabel.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(18)
+        }
+
+        anyoneCheckbox.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.size.equalTo(18)
         }
 
-        publicLabel.snp.makeConstraints {
+        anyoneLabel.snp.makeConstraints {
             $0.centerY.equalTo(anyoneCheckbox.snp.centerY)
             $0.leading.equalTo(anyoneCheckbox.snp.trailing).offset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview()
+        }
+
+        nooneViewContainer.snp.makeConstraints {
+            $0.top.equalTo(anyoneViewContainer.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(18)
         }
 
         nooneCheckbox.snp.makeConstraints {
-            $0.top.equalTo(anyoneCheckbox.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().offset(16)
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.size.equalTo(18)
         }
 
-        privateLabel.snp.makeConstraints {
+        nooneLabel.snp.makeConstraints {
             $0.centerY.equalTo(nooneCheckbox.snp.centerY)
             $0.leading.equalTo(nooneCheckbox.snp.trailing).offset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview()
         }
     }
 
     // MARK: - User actions
 
     @objc
-    private func anyoneCheckboxValueChanged(_ sender: M13Checkbox) {
+    private func onAnyoneViewTapped() {
         isEditable = true
 
     }
 
     @objc
-    private func nooneCheckboxValueChanged(_ sender: M13Checkbox) {
+    private func onNooneViewTapped() {
         isEditable = false
     }
 

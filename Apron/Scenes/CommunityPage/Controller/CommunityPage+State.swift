@@ -32,12 +32,12 @@ extension CommunityPageViewController {
             self.initialState = initialState
         case let .displayCommunity(model):
             self.community = model
+            getRecipesByCommunity(id: id, currentPage: currentPage)
         case .displayCommunityError:
             show(type: .error(L10n.Common.errorMessage))
         case .joinedCommunity:
             joinedCommunityEvent()
             getCommunities(by: id)
-            getRecipesByCommunity(id: id, currentPage: currentPage)
         case .joinedCommunityFailed:
             mainView.reloadData()
             show(type: .error(L10n.Common.errorMessage))

@@ -9,6 +9,7 @@ import Foundation
 
 extension CommunityCreationViewController: CommunityNamingCellDelegate {
     func cell(_ cell: CommunityCreationNamingCell, didEnteredName name: String?) {
+        print(communityCreation)
         self.communityCreation?.communityName = name
     }
 }

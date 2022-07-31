@@ -14,6 +14,7 @@ public struct CommunityCreation: Codable {
         case description
         case communityCategoryId
         case privateAdding
+        case isHidden = "hidden"
         case category
     }
 
@@ -21,7 +22,8 @@ public struct CommunityCreation: Codable {
     public var imageURL: String?
     public var description: String?
     public var communityCategoryId: Int?
-    public var privateAdding: Bool?
+    public var privateAdding: Bool? = false
+    public var isHidden: Bool? = false
     public var category: CommunityCategory? {
         didSet {
             communityCategoryId = category?.id
@@ -36,7 +38,8 @@ public struct CommunityCreation: Codable {
         self.description = community.description
         // Add full category model, private adding, visiable flag
         self.communityCategoryId = 0
-        self.privateAdding = false
+        self.privateAdding = community.privateAdding
+        self.isHidden = community.isHidden
         self.category = nil
     }
 
@@ -58,6 +61,9 @@ public struct CommunityCreation: Codable {
         }
         if let privateAdding = privateAdding {
             params[CodingKeys.privateAdding.rawValue] = privateAdding
+        }
+        if let isHidden = isHidden {
+            params[CodingKeys.isHidden.rawValue] = isHidden
         }
         return params
     }

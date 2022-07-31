@@ -90,7 +90,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
 
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
-            $0.leading.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalTo(assignButton.snp.leading).offset(-16)
         }
 
@@ -118,6 +118,9 @@ final class RecipeCreationAssignCell: UITableViewCell {
             titleLabel.text = "Количество порции"
             assignButton.setTitle(value == "0" ? "Задать" : value, for: .normal)
             subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
+            if !value.isEmpty {
+                buttonWidth?.update(offset: 80)
+            }
         case let .prepTime(value):
             titleLabel.text = "Время приготовления"
             assignButton.setTitle(value == "0" ? "Задать" : "\(value) минут", for: .normal)

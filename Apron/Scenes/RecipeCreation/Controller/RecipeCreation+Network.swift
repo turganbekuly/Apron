@@ -19,4 +19,8 @@ extension RecipeCreationViewController {
 
         interactor.createRecipe(request: .init(recipeCreation: recipe))
     }
+
+    func uploadImage(with image: UIImage) {
+        interactor.uploadImage(request: .init(image: image))
+    }
 }

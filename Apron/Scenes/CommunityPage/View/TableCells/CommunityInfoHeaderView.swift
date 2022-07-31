@@ -156,8 +156,8 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
             recipeStackView,
             membersStackView,
             separatorView,
-            filterView,
-            segmentView
+            filterView
+//            segmentView
         ].forEach {
             containerView.addSubview($0)
         }
@@ -218,11 +218,11 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
             $0.height.equalTo(38)
         }
 
-        segmentView.snp.makeConstraints {
-            $0.top.equalTo(filterView.snp.bottom).offset(24)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(34)
-        }
+//        segmentView.snp.makeConstraints {
+//            $0.top.equalTo(filterView.snp.bottom).offset(24)
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(34)
+//        }
     }
 
     // MARK: - Private methods
@@ -245,13 +245,13 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
         guard let community = viewModel.community else { return }
         self.titleLabel.text = community.name ?? ""
         self.subtitleLabel.text = community.description ?? ""
-        self.recipeCountLabel.text = "\(community.recipes?.count ?? 0) рецептов"
-        self.membersCountLabel.text = "\(community.users?.count ?? 0) подписчиков"
+        self.recipeCountLabel.text = "\(community.recipesCount ?? 0) рецептов"
+        self.membersCountLabel.text = "\(community.usersCount ?? 0) подписчиков"
         self.isJoined = community.joined ?? false
         self.id = community.id
-        segmentView.configure(
-            with: CommunitySegmentedCellViewModel(filter: CommunitySegmentView.CommunitySegment.recipes)
-        )
+//        segmentView.configure(
+//            with: CommunitySegmentedCellViewModel(filter: CommunitySegmentView.CommunitySegment.recipes)
+//        )
         filterView.configure(with: CommunityFilterCellViewModel(searchbarPlaceholder: viewModel.searchbarPlaceholder))
     }
 

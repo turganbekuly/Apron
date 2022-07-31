@@ -37,24 +37,21 @@ public final class CommunityPageViewController: ViewController, Messagable {
         didSet {
             switch initialState {
             case let .fromMain(id):
-                getCommunities(by: id)
-                getRecipesByCommunity(id: id, currentPage: currentPage)
                 self.id = id
                 self.communityPageViewedSourceType = .homepage
+                getCommunities(by: id)
             case let .fromAddedRecipes(id):
-                joinCommunity(with: id)
                 self.id = id
                 self.communityPageViewedSourceType = .unknown
+                joinCommunity(with: id)
             case let .fromDeeplink(id):
-                getCommunities(by: id)
-                getRecipesByCommunity(id: id, currentPage: currentPage)
                 self.id = id
                 self.communityPageViewedSourceType = .deeplink
-            case let .fromSearch(id):
                 getCommunities(by: id)
-                getRecipesByCommunity(id: id, currentPage: currentPage)
+            case let .fromSearch(id):
                 self.id = id
                 self.communityPageViewedSourceType = .search
+                getCommunities(by: id)
             default:
                 break
             }
@@ -263,7 +260,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
     // MARK: - Analytics events
 
     func communityPageViewedEvent(community: CommunityResponse) {
-        ApronAnalytics.shared.sendAppsflyerEvent(
+        ApronAnalytics.shared.sendAmplitudeEvent(
             .communityPageViewed(
                 CommunityPageViewedModel(
                     communityID: community.id,

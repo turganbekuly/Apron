@@ -15,4 +15,8 @@ extension CommunityCreationViewController: CommunityCreationDisplayLogic {
     func displayCreatedCommunity(with viewModel: CommunityCreationDataFlow.CreateCommunity.ViewModel) {
         state = viewModel.state
     }
+
+    func displayUploadedImage(with viewModel: CommunityCreationDataFlow.UploadImage.ViewModel) {
+        state = viewModel.state
+    }
 }

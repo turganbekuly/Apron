@@ -8,6 +8,7 @@
 
 import Models
 import UIKit
+import Configurations
 
 extension CommunityCreationViewController {
     
@@ -16,6 +17,8 @@ extension CommunityCreationViewController {
         case initial(CommunityCreationInitialState)
         case communityCreationSucceed(CommunityResponse)
         case communityCreationFailed(AKNetworkError)
+        case uploadImageSucceed(String)
+        case uploadImageFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -31,6 +34,14 @@ extension CommunityCreationViewController {
             }
         case .communityCreationFailed:
             show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)
+        case let .uploadImageSucceed(path):
+            communityCreation?.imageURL = Configurations.downloadImageURL(imagePath: path)
+            configureImageCell(isLoaded: false)
+            mainView.reloadTableViewWithoutAnimation()
+            replaceImageCell(type: .image)
+        case .uploadImageFailed:
+            configureImageCell(isLoaded: false)
+            show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
         }
     }
     

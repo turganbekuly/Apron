@@ -24,6 +24,7 @@ public struct CommunityResponse: Codable, Equatable {
         case users
         case recipesCount
         case usersCount
+        case isHidden = "hidden"
     }
 
     // MARK: - Properties
@@ -43,6 +44,7 @@ public struct CommunityResponse: Codable, Equatable {
     public var joined: Bool?
     public var recipesCount: Int?
     public var usersCount: Int?
+    public var isHidden: Bool?
 
     // MARK: - Init
 
@@ -66,6 +68,7 @@ public struct CommunityResponse: Codable, Equatable {
         self.joined = json[CodingKeys.joined.rawValue] as? Bool
         self.recipesCount = json[CodingKeys.recipesCount.rawValue] as? Int
         self.usersCount = json[CodingKeys.usersCount.rawValue] as? Int
+        self.isHidden = json[CodingKeys.isHidden.rawValue] as? Bool
     }
 
     // MARK: - Methods

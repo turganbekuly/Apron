@@ -10,9 +10,11 @@ import Configurations
 import AKNetwork
 import Storages
 import Models
+import UIKit
 
 enum CommunityCreationEndpoint {
     case communityCreation(CommunityCreation)
+    case uploadImage(image: Data)
 }
 
 extension CommunityCreationEndpoint: AKNetworkTargetType {
@@ -25,12 +27,16 @@ extension CommunityCreationEndpoint: AKNetworkTargetType {
         switch self {
         case .communityCreation:
             return "communities"
+        case .uploadImage:
+            return "image/upload/1"
         }
     }
     
     var method: AKNetworkMethod {
         switch self {
         case .communityCreation:
+            return .post
+        case .uploadImage:
             return .post
         }
     }
@@ -45,6 +51,17 @@ extension CommunityCreationEndpoint: AKNetworkTargetType {
             return .requestParameters(
                 parameters: communityCreation.toJSON(),
                 encoding: AKJSONEncoding.default
+            )
+        case let .uploadImage(data):
+            return .uploadMultipart(
+                [
+                    .init(
+                        provider: .data(data),
+                        name: "file",
+                        fileName: "image.jpg",
+                        mimeType: "image/jpeg"
+                    )
+                ]
             )
         }
     }

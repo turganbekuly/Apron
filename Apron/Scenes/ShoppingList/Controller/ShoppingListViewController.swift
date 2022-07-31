@@ -22,6 +22,7 @@ final class ShoppingListViewController: ViewController, Messagable {
     struct Section {
         enum Section {
         case ingredients
+        case checkedIngredients
         }
         enum Row {
         case ingredient(CartItem)
@@ -43,10 +44,6 @@ final class ShoppingListViewController: ViewController, Messagable {
 
     var cartManager = CartManager.shared
 
-    var itemsDictionary = [String: [CartItem]]()
-
-    var ingredients = RecipeIngredient()
-
     var cartItems: [CartItem] = [] {
         didSet {
             guard !cartItems.isEmpty else {
@@ -54,12 +51,27 @@ final class ShoppingListViewController: ViewController, Messagable {
                 mainView.reloadTableViewWithoutAnimation()
                 return
             }
+            var sections = [Section]()
+            if (cartItems.firstIndex(where: { $0.bought == false }) != nil) {
+                sections.append(
+                    .init(
+                        section: .ingredients, rows: cartItems
+                            .filter { $0.bought == false }
+                            .compactMap { .ingredient($0) }
+                    )
+                )
+            }
 
-            sections = [
-                .init(section: .ingredients, rows: cartItems
-                    .sorted { $0.bought == false && $1.bought == true }
-                    .compactMap { .ingredient($0) })
-            ]
+            if (cartItems.firstIndex(where: { $0.bought == true }) != nil) {
+                sections.append(
+                    .init(
+                        section: .checkedIngredients, rows: cartItems
+                            .filter { $0.bought == true }
+                            .compactMap { .ingredient($0) }
+                    )
+                )
+            }
+            self.sections = sections
             UIView.transition(
                 with: mainView,
                 duration: 0.5,
@@ -202,6 +214,7 @@ extension ShoppingListViewController: IngredientSelectedProtocol {
             productAmount = CartManager.shared.getProductAmount(for: ingredient.product?.name ?? "")
         }
         cartManager.update(
+            productId: ingredient.product?.id ?? 0,
             productName: ingredient.product?.name ?? "",
             productCategoryName: ingredient.product?.productCategoryName ?? "",
             amount: (ingredient.amount ?? 0) + productAmount,

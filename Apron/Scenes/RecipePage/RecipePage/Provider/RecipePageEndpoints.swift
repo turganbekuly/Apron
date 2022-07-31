@@ -15,6 +15,7 @@ enum RecipePageEndpoint {
     case getRecipe(id: Int)
     case rateRecipe(body: RatingRequestBody)
     case saveRecipe(id: Int)
+    case getCommentsByRecipe(id: Int)
 }
 
 extension RecipePageEndpoint: AKNetworkTargetType {
@@ -31,6 +32,8 @@ extension RecipePageEndpoint: AKNetworkTargetType {
             return "likes/likeToRecipe"
         case let .saveRecipe(id):
             return "recipes/saveRecipe/\(id)"
+        case .getCommentsByRecipe:
+            return "comments/getCommentsByRecipeId"
         }
     }
     
@@ -42,6 +45,8 @@ extension RecipePageEndpoint: AKNetworkTargetType {
             return .post
         case .saveRecipe:
             return .put
+        case .getCommentsByRecipe:
+            return .get
         }
     }
     
@@ -50,9 +55,17 @@ extension RecipePageEndpoint: AKNetworkTargetType {
         case .getRecipe:
             return .requestPlain
         case let .rateRecipe(body):
-            return .requestParameters(parameters: body.toJSON(), encoding: AKJSONEncoding.default)
+            return .requestParameters(
+                parameters: body.toJSON(),
+                encoding: AKJSONEncoding.default
+            )
         case .saveRecipe:
             return .requestPlain
+        case let .getCommentsByRecipe(id):
+            return .requestParameters(
+                parameters: ["recipeId": id],
+                encoding: AKURLEncoding.queryString
+            )
         }
     }
     

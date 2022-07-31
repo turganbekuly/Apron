@@ -15,6 +15,7 @@ protocol RecipePageDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipePageDataFlow.GetRecipe.ViewModel)
     func displayRating(viewModel: RecipePageDataFlow.RateRecipe.ViewModel)
     func displaySaveRecipe(viewModel: RecipePageDataFlow.SaveRecipe.ViewModel)
+    func displayComments(viewModel: RecipePageDataFlow.GetComments.ViewModel)
 }
 
 final class RecipePageViewController: ViewController, Messagable {
@@ -57,6 +58,14 @@ final class RecipePageViewController: ViewController, Messagable {
                 .init(section: .nutritions, rows: [.nutrition]),
                 .init(section: .instructions, rows: [.instruction])
             ]
+            mainView.reloadData()
+        }
+    }
+
+    var recipeComments: [RecipeCommentResponse] = [] {
+        didSet {
+            guard let _ = recipe, !recipeComments.isEmpty else { return }
+            sections.append(.init(section: .reviews, rows: recipeComments.compactMap { .review($0) }))
             mainView.reloadData()
         }
     }
@@ -147,7 +156,7 @@ final class RecipePageViewController: ViewController, Messagable {
     private func makeConstraints() {
         bottomStickyView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalToSuperview()
-            $0.height.equalTo(100)
+            $0.height.equalTo(160)
         }
         mainView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
@@ -160,23 +169,6 @@ final class RecipePageViewController: ViewController, Messagable {
     
     deinit {
         NSLog("deinit \(self)")
-    }
-
-    // MARK: - Private methods
-
-    private func configureTopView() {
-        guard let section = sections.firstIndex(where: { $0.section == .topView }),
-              let row = sections[section].rows.firstIndex(where: { $0 == .topView }),
-              let cell = mainView.cellForRow(at: .init(row: row, section: section)) as? RecipeInformationViewCell else { return }
-
-        cell.configure(
-            with: InformationCellViewModel(
-            recipeName: recipe?.recipeName ?? "",
-            recipeSourceURL: recipe?.sourceLink ?? "",
-            likeCount: recipe?.likesCount ?? 0,
-            dislikeCount: recipe?.likesCount ?? 0
-            )
-        )
     }
 
     // MARK: - User actions
