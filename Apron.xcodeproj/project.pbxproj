@@ -1202,7 +1202,6 @@
 				92B4E408E11BB83CF0E16E68 /* AddCommentProvider.swift */,
 				35E185E4F256A4740FB223BB /* AddCommentService.swift */,
 			);
-			name = Provider;
 			path = Provider;
 			sourceTree = "<group>";
 		};
@@ -1363,7 +1362,6 @@
 			children = (
 				68077C6E3751C54F85A676D9 /* AddCommentView.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -2477,7 +2475,6 @@
 				DECFB9B4BCDA2CE48D25614F /* AddCommentInteractor.swift */,
 				7AC4E48A253B0057CD5443DE /* AddCommentPresenter.swift */,
 			);
-			name = AddComment;
 			path = AddComment;
 			sourceTree = "<group>";
 		};
@@ -2760,7 +2757,6 @@
 				9B2C98C7F7388CB50BB9AAA8 /* AddComment+State.swift */,
 				C864E8DAFAC6E9DA46216E0B /* AddComment+TableView.swift */,
 			);
-			name = Controller;
 			path = Controller;
 			sourceTree = "<group>";
 		};
@@ -3929,7 +3925,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
@@ -3967,7 +3963,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;

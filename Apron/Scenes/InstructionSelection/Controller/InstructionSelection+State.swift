@@ -21,7 +21,7 @@ extension InstructionSelectionViewController {
         switch state {
         case let .initial(delegate):
             self.delegate = delegate
-            sections = [.init(section: .instructions, rows: [.placeholder, .description])]
+            sections = [.init(section: .instructions, rows: [.description])]
         }
     }
     
