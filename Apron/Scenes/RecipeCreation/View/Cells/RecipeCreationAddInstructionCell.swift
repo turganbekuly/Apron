@@ -10,13 +10,35 @@ import APRUIKit
 
 protocol AddInstructionCellTappedDelegate: AnyObject {
     func onAddInstructionTapped()
-    func onRemoveInstructionTapped(index: Int)
 }
 
 final class RecipeCreationAddInstructionCell: UITableViewCell {
+    // MARK: - Public properties
+
+    struct InstructionsSection {
+        enum Section {
+            case instructions
+        }
+        enum Row {
+            case instruction(String)
+        }
+        var section: Section
+        var rows: [Row]
+    }
+
+    lazy var instructionsSections: [InstructionsSection] = [
+        .init(section: .instructions, rows: instructions.compactMap { .instruction($0) })
+    ]
+
     // MARK: - Private properties
 
     private weak var newInstructionDelegate: AddInstructionCellTappedDelegate?
+    private var instructions: [String] = [] {
+        didSet {
+            instructionsSections = [.init(section: .instructions, rows: instructions.compactMap { .instruction($0) })]
+            instructionsView.reloadData()
+        }
+    }
 
     // MARK: - Init
 
@@ -47,19 +69,18 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
         return textField
     }()
 
-    private lazy var instructionsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 8
-        return stackView
+    lazy var instructionsView: RecipeInstructionsView = {
+        let view = RecipeInstructionsView()
+        view.delegate = self
+        view.dataSource = self
+        return view
     }()
 
     // MARK: - Setup Views
 
     private func setupViews() {
         selectionStyle = .none
-        [titleLabel, roudedTextField, instructionsStackView].forEach { contentView.addSubview($0) }
+        [titleLabel, roudedTextField, instructionsView].forEach { contentView.addSubview($0) }
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(onAddInstructionTapped))
         roudedTextField.addGestureRecognizer(tapGR)
         setupConstraints()
@@ -72,15 +93,15 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
         }
 
         roudedTextField.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview().inset(8)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(38)
         }
 
-        instructionsStackView.snp.makeConstraints {
-            $0.top.equalTo(roudedTextField.snp.bottom).offset(8)
+        instructionsView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview().inset(8)
+            $0.bottom.equalTo(roudedTextField.snp.top).offset(-8)
         }
     }
 
@@ -99,22 +120,10 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
     ) {
         self.newInstructionDelegate = newInstructionDelegate
         titleLabel.text = "Инструкция"
-        instructionsStackView.removeAllArrangedSubviews()
-
-        guard let instructions = instructions else { return }
-        var step = 1
-        for instruction in instructions {
-            let view = RecipeCreationInstructionView()
-            view.configure(instruction: instruction, image: nil, stepCount: "\(step)")
-            view.onItemDelete = { [weak self] in
-                guard let self = self,
-                      let index = self.instructionsStackView.arrangedSubviews.firstIndex(of: view) else { return }
-                self.newInstructionDelegate?.onRemoveInstructionTapped(index: index)
-            }
-            step += 1
-            instructionsStackView.addArrangedSubview(view)
+        guard let instructions = instructions else {
+            return
         }
-        instructionsStackView.layoutIfNeeded()
+        self.instructions = instructions
     }
 }
 

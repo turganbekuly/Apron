@@ -11,6 +11,33 @@ import SnapKit
 import Extensions
 
 final class RecipeInstructionsViewCell: UITableViewCell {
+    // MARK: - Public properties
+
+    struct InstructionsSection {
+        enum Section {
+            case instructions
+        }
+        enum Row {
+            case instruction(String)
+        }
+        var section: Section
+        var rows: [Row]
+    }
+
+    lazy var instructionsSections: [InstructionsSection] = [
+        .init(section: .instructions, rows: instructions.compactMap { .instruction($0) })
+    ]
+
+    // MARK: - Private properties
+
+    private weak var newInstructionDelegate: AddInstructionCellTappedDelegate?
+    private var instructions: [String] = [] {
+        didSet {
+            instructionsSections = [.init(section: .instructions, rows: instructions.compactMap { .instruction($0) })]
+            instructionsView.reloadData()
+        }
+    }
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -32,12 +59,11 @@ final class RecipeInstructionsViewCell: UITableViewCell {
         return label
     }()
 
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 10
-        return stackView
+    lazy var instructionsView: RecipeInstructionsView = {
+        let view = RecipeInstructionsView()
+        view.delegate = self
+        view.dataSource = self
+        return view
     }()
 
     // MARK: - Setup Views
@@ -45,7 +71,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
     private func setupViews() {
         selectionStyle = .none
         backgroundColor = .clear
-        [instructionsTitleLabel, stackView].forEach { contentView.addSubviews($0) }
+        [instructionsTitleLabel, instructionsView].forEach { contentView.addSubviews($0) }
         setupConstraints()
     }
 
@@ -56,7 +82,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
             $0.height.equalTo(30)
         }
 
-        stackView.snp.makeConstraints {
+        instructionsView.snp.makeConstraints {
             $0.top.equalTo(instructionsTitleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
@@ -67,16 +93,6 @@ final class RecipeInstructionsViewCell: UITableViewCell {
 
     func configure(with viewModel: InstructionCellViewModel) {
         instructionsTitleLabel.text = "Инструкция"
-        stackView.removeAllArrangedSubviews()
-        var counter = 1
-        viewModel.instructions.forEach {
-            let view = InstructionView(
-                counter: counter,
-                description: $0
-            )
-            counter += 1
-            stackView.addArrangedSubview(view)
-        }
-        stackView.layoutIfNeeded()
+        self.instructions = viewModel.instructions
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Models
+import APRUIKit
 
 extension RecipeCreationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -17,6 +18,9 @@ extension RecipeCreationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .name:
+            let cell: RecipeCreationNamingCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         case .image:
             let cell: RecipeCreationImageCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
@@ -44,9 +48,6 @@ extension RecipeCreationViewController: UITableViewDataSource {
         case .cookTime:
             let cell: RecipeCreationAssignCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
-        default:
-            let cell: RecipeCreationNamingCell = tableView.dequeueReusableCell(for: indexPath)
-            return cell
         }
     }
 }
@@ -69,15 +70,17 @@ extension RecipeCreationViewController:
         case .composition:
             return 100 + CGFloat((recipeCreation?.ingredients.count ?? 0) * 46)
         case .instruction:
-            return 100 + CGFloat((recipeCreation?.instructions.count ?? 0) * 80)
+            let width = (UIScreen.main.bounds.width - 60)
+            return 100 + ((recipeCreation?.instructions
+                .reduce(0, {
+                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
+                }) ?? 56))
         case .servings:
             return 80
         case .prepTime:
             return 80
         case .cookTime:
             return 80
-        default:
-            return 600
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -96,15 +99,17 @@ extension RecipeCreationViewController:
         case .composition:
             return 100 + CGFloat((recipeCreation?.ingredients.count ?? 0) * 46)
         case .instruction:
-            return 100 + CGFloat((recipeCreation?.instructions.count ?? 0) * 80)
+            let width = (UIScreen.main.bounds.width - 60)
+            return 100 + ((recipeCreation?.instructions
+                .reduce(0, {
+                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
+                }) ?? 56))
         case .servings:
             return 100
         case .prepTime:
             return 100
         case .cookTime:
             return 100
-        default:
-            return 0
         }
     }
 
@@ -150,7 +155,18 @@ extension RecipeCreationViewController:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self
             cell.configure(type: .cookTime("\(recipeCreation?.cookTime ?? 0)"))
-        default: break
         }
+    }
+}
+extension String {
+    func height(constraintedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let label =  UILabel(frame: CGRect(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.text = self
+        label.font = font
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .left
+        label.sizeToFit()
+        return label.frame.height
     }
 }

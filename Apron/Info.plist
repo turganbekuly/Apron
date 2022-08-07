@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>Russia</string>
+	<string>ru-RU</string>
 	<key>CFBundleDisplayName</key>
 	<string>Apron</string>
 	<key>CFBundleExecutable</key>

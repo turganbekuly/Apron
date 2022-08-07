@@ -26,6 +26,7 @@ public final class RecipePageView: UITableView {
     private func configure() {
         separatorStyle = .none
         tableFooterView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 64)))
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 160, right: 0)
 
         [
             RecipeReviewsHeaderView.self

@@ -117,7 +117,7 @@ final class RecipeCreationIngredientView: UIView {
             measurementText = "\(amount.clean)"
         }
         if let measure = viewModel.measurement {
-            measurementText += measure
+            measurementText += " \(measure)"
         }
         measurementLabel.text = measurementText
     }

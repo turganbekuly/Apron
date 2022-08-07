@@ -35,6 +35,7 @@ extension RecipeCreationViewController: InstructionSelectedProtocol {
     func onInstructionSelected(image: UIImage?, description: String) {
         recipeCreation?.instructions.append(description)
         mainView.reloadTableViewWithoutAnimation()
+//        configureInstructions()
     }
 }
 
@@ -52,13 +53,17 @@ extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
     }
 }
 
+extension RecipeCreationViewController: RecipeCreationInstructionViewCellDelegate {
+    func onRemoveTapped(instruction: String?) {
+        guard let instruction = instruction else {
+            return
+        }
 
-extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
-    func onRemoveInstructionTapped(index: Int) {
-        recipeCreation?.instructions.remove(at: index)
+        recipeCreation?.instructions.removeAll(where: { $0 == instruction })
         mainView.reloadTableViewWithoutAnimation()
     }
-
+}
+extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
     func onAddInstructionTapped() {
         let viewController = InstructionSelectionBuilder(
             state: .initial(self)

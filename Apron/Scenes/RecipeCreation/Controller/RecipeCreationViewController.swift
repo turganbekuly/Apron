@@ -25,14 +25,8 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     var sections: [Section] = []
 
-    var instructions: [String] = [] {
-        didSet {
-            recipeCreation?.instructions = instructions
-            mainView.reloadTableViewWithoutAnimation()
-        }
-    }
-
     var recipeCreation: RecipeCreation?
+
     var recipeCommunityId = 0 {
         didSet {
             recipeCreation?.communityId = recipeCommunityId
@@ -208,6 +202,16 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
+    }
+
+    func configureInstructions() {
+        guard
+            let section = sections.firstIndex(where: { $0.section == .info }),
+            let row = sections[section].rows.firstIndex(where: { $0 == .instruction }),
+            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? RecipeCreationAddInstructionCell
+        else { return }
+        cell.instructionsView.reloadData()
+        mainView.reloadTableViewWithoutAnimation()
     }
     
     deinit {

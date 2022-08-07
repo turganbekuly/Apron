@@ -82,7 +82,11 @@ extension RecipePageViewController: UITableViewDelegate {
         case .nutrition:
             return 203
         case .instruction:
-            return CGFloat(84 + (recipe?.instructions?.count ?? 1) * 95)
+            let width = (UIScreen.main.bounds.width - 60)
+            return 60 + ((recipe?.instructions?
+                .reduce(0, {
+                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 60)
+                }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
             return 45 + Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width) + (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)
@@ -100,7 +104,11 @@ extension RecipePageViewController: UITableViewDelegate {
         case .nutrition:
             return 203
         case .instruction:
-            return CGFloat(84 + (recipe?.instructions?.count ?? 1) * 95)
+            let width = (UIScreen.main.bounds.width - 60)
+            return 60 + ((recipe?.instructions?
+                .reduce(0, {
+                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 60)
+                }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
             return 45 + Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width) + (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)

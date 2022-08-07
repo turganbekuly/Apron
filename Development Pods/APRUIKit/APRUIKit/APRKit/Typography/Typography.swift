@@ -96,6 +96,12 @@ public enum Typography {
         textAlignment: NSTextAlignment = .left,
         url: URL? = nil
     )
+    case semibold12(
+        text: String,
+        color: UIColor = .black,
+        textAlignment: NSTextAlignment = .left,
+        url: URL? = nil
+    )
 
     public var styled: NSAttributedString {
         switch self {
@@ -138,6 +144,9 @@ public enum Typography {
         case .semibold14(text: let text, color: let color, textAlignment: let textAlignment, url: let url):
             let font = TypographyFonts.semibold14
             return NSAttributedString(text, color, font, textAlignment, 0.025, 16, url)
+        case .semibold12(text: let text, color: let color, textAlignment: let textAlignment, url: let url):
+            let font = TypographyFonts.semibold12
+            return NSAttributedString(text, color, font, textAlignment, 0.025, 14, url)
         case let .semibold16(text, color, textAlignment, url):
             let font = TypographyFonts.semibold16
             return NSAttributedString(text, color, font, textAlignment, -0.012, 24, url)
