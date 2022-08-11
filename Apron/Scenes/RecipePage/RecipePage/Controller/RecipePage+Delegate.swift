@@ -7,6 +7,7 @@
 
 import UIKit
 import Storages
+import Models
 
 extension RecipePageViewController: BottomStickyViewDelegate {
     func addButtonTapped() {
@@ -26,7 +27,10 @@ extension RecipePageViewController: BottomStickyViewDelegate {
     }
 
     func textFieldTapped() {
-        let viewController = AddCommentBuilder(state: .initial).build()
+//        show(type: .error("Функция добавления отзыва скоро будет готова!"))
+        var body = AddCommentRequestBody()
+        body.recipeId = recipe?.id
+        let viewController = AddCommentBuilder(state: .initial(recipe?.id, body)).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(viewController, animated: true)
         }
@@ -43,6 +47,7 @@ extension RecipePageViewController: CreateActionFlowProtocol {
                     productId: $0.product?.id ?? 0,
                     productName: $0.product?.name ?? "",
                     productCategoryName: $0.product?.productCategoryName ?? "",
+                    productImage: $0.product?.image,
                     amount: $0.amount ?? 0,
                     measurement: $0.measurement ?? "",
                     recipeName: [self.recipe?.recipeName ?? ""],

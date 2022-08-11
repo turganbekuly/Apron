@@ -21,6 +21,7 @@ public struct RecipeCreation: Codable {
         case cookTime = "cook_time"
         case communityId = "communityId"
         case isHidden = "hidden"
+        case whenToCook = "whenToCook"
     }
 
     // MARK: - Properties
@@ -37,6 +38,7 @@ public struct RecipeCreation: Codable {
     public var cookTime: Int?
     public var communityId: Int?
     public var isHidden: Bool?
+    public var whenToCook: [Int]?
 
     // MARK: - Init
 
@@ -55,6 +57,7 @@ public struct RecipeCreation: Codable {
         self.cookTime = recipe.cookTime
         self.isHidden = recipe.isHidden
         self.communityId = nil
+        self.whenToCook = nil
     }
 
     // MARK: - Methods
@@ -95,6 +98,9 @@ public struct RecipeCreation: Codable {
         }
         if let isHidden = isHidden {
             params[CodingKeys.isHidden.rawValue] = isHidden
+        }
+        if let whenToCook = whenToCook {
+            params[CodingKeys.whenToCook.rawValue] = whenToCook
         }
         return params
     }

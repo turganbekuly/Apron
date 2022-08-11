@@ -21,6 +21,7 @@ extension RecipeCreationViewController {
             case description
             case composition
             case instruction
+            case whenToCook
             case servings
             case prepTime
             case cookTime

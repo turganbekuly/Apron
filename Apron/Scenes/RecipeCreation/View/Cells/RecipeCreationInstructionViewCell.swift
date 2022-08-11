@@ -75,7 +75,8 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
-//        contentView.addSubviews(containerView)
+        backgroundColor = .clear
+        
         [instructionLabel, stepLabel, separatorView].forEach {
             contentView.addSubview($0)
         }

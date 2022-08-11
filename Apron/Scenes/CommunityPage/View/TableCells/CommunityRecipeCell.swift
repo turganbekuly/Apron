@@ -55,6 +55,7 @@ final class CommunityRecipeCell: UITableViewCell {
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
@@ -72,6 +73,7 @@ final class CommunityRecipeCell: UITableViewCell {
     private lazy var cookingTimeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ApronAssets.recipeCookingTimeIcon.image
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
@@ -98,7 +100,7 @@ final class CommunityRecipeCell: UITableViewCell {
 
     private lazy var avaImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 15
+        imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -118,11 +120,7 @@ final class CommunityRecipeCell: UITableViewCell {
     }()
 
     private lazy var userInfoStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            avaImageView,
-            nameLabel,
-            postingTimeLabel
-        ])
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 10
         return stackView
@@ -147,15 +145,20 @@ final class CommunityRecipeCell: UITableViewCell {
     }
 
     private func setupConstraints() {
+        avaImageView.snp.makeConstraints {
+            $0.size.equalTo(16)
+        }
+
         recipeNameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalTo(snp.centerX)
+            $0.trailing.equalTo(cookingInfoStackView.snp.leading).offset(-4)
         }
 
         cookingInfoStackView.snp.makeConstraints {
             $0.centerY.equalTo(recipeNameLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(16)
+            $0.width.lessThanOrEqualTo(100)
         }
 
         recipeImageView.snp.makeConstraints {
@@ -222,14 +225,29 @@ final class CommunityRecipeCell: UITableViewCell {
         self.cookingTimeLabel.text = "\(recipe.cookTime ?? 0)"
         self.recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
-            placeholder: ApronAssets.communityMockImage.image
+            placeholder: ApronAssets.iconPlaceholderCard.image
         )
         self.id = recipe.id
         self.sourceURLLabel.text = recipe.sourceLink ?? ""
-        self.avaImageView.setNameTitleImage(string: recipe.authorName ?? "User")
-        self.nameLabel.text = recipe.authorName ?? ""
-        self.postingTimeLabel.text = recipe.createdAt ?? ""
         self.isSaved = recipe.isSaved ?? false
+
+        userInfoStackView.removeAllArrangedSubviews()
+        self.avaImageView.setNameTitleImage(
+            string: recipe.authorName ?? "User",
+            color: .random,
+            circular: true,
+            stroke: false,
+            textAttributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
+                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11)]
+        )
+        self.postingTimeLabel.text = recipe.createdAt ?? ""
+        self.nameLabel.text = recipe.authorName ?? ""
+        userInfoStackView.addArrangedSubviews(
+            avaImageView,
+            nameLabel,
+            postingTimeLabel
+        )
+        userInfoStackView.layoutIfNeeded()
 //        if viewModel.recipe?.savedUserCount != 0 {
 //            self.favoriteButton.setTitle("\(recipe.savedUserCount ?? 1)", for: .normal)
 //            faveButtonWidthConstraint?.update(offset: 70)

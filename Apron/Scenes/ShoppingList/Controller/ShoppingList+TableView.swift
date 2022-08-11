@@ -89,6 +89,7 @@ extension ShoppingListViewController: UITableViewDelegate {
                 productId: cartItem.productId,
                 productName: cartItem.productName,
                 productCategoryName: cartItem.productCategoryName,
+                productImage: cartItem.productImage,
                 amount: cartItem.amount,
                 measurement: cartItem.measurement,
                 recipeName: cartItem.recipeName?.first,

@@ -47,6 +47,7 @@ final class RecipeCreationPlaceholderImageCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(chooseImageTapped))
         imagePlaceholder.addGestureRecognizer(tapGR)
         contentView.addSubviews(

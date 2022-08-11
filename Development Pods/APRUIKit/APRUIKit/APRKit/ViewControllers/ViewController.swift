@@ -11,6 +11,7 @@ import UIKit
 open class ViewController: UIViewController, ViewControllerProtocol {
     open override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = ApronAssets.secondary.color
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
 }

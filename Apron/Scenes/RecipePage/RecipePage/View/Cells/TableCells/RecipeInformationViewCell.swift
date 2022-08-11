@@ -36,6 +36,8 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     private lazy var recipeImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -163,7 +165,11 @@ final class RecipeInformationViewCell: UITableViewCell {
         } else {
             recipeSourceURLButton.isHidden = true
         }
-        recipeImageView.image = ApronAssets.recipeSampleImage.image
+        recipeImageView.kf.setImage(
+            with: URL(string: viewModel.recipeImage ?? ""),
+            placeholder: ApronAssets.iconPlaceholderItem.image,
+            options: [.transition(.fade(0.4))]
+        )
         likeButton.setTitle("\(viewModel.likeCount)", for: .normal)
         dislikeButton.setTitle("\(viewModel.likeCount)", for: .normal)
     }

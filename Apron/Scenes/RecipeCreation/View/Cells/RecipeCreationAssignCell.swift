@@ -135,6 +135,14 @@ final class RecipeCreationAssignCell: UITableViewCell {
             if !value.isEmpty {
                 buttonWidth?.update(offset: 80)
             }
+        case let .whenToCook(value):
+            titleLabel.text = "Время суток"
+            let timeTitle = SuggestedCookingTime(rawValue: value)?.title
+            assignButton.setTitle(value == 0 ? "Задать" : "\(timeTitle ?? "Завтрак")", for: .normal)
+            subtitlLabel.text = "В какое время суток лучше всего готовить это блюдо ?"
+            if value != 0 {
+                buttonWidth?.update(offset: 100)
+            }
         }
     }
 }

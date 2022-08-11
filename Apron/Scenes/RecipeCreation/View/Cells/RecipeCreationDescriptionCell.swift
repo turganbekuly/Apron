@@ -19,7 +19,11 @@ final class RecipeCreationDescriptionCell: UITableViewCell {
 
     // MARK: - Private properties
 
-    var placeholder = ""
+    lazy var placeholder = "" {
+        didSet {
+            roudedTextView.textView.placeholder = placeholder
+        }
+    }
 
     // MARK: - Init
 
@@ -43,9 +47,7 @@ final class RecipeCreationDescriptionCell: UITableViewCell {
     }()
 
     private lazy var roudedTextView: RoundedTextView = {
-        let textView = RoundedTextView(
-            placeholder: "Напишете описание вашего блюда"
-        )
+        let textView = RoundedTextView()
         textView.textView.delegate = self
         return textView
     }()
@@ -75,7 +77,11 @@ final class RecipeCreationDescriptionCell: UITableViewCell {
 
     func configure(description: String?) {
         titleLabel.text = "Описание"
-        roudedTextView.textView.text = description ?? ""
+        guard let description = description else {
+            return
+        }
+
+        roudedTextView.textView.text = description
     }
 }
 

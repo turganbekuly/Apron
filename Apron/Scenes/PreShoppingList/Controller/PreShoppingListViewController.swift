@@ -152,6 +152,7 @@ final class PreShoppingListViewController: ViewController, Messagable {
                 productId: $0.productId,
                 productName: $0.productName,
                 productCategoryName: $0.productCategoryName,
+                productImage: $0.productImage,
                 amount: $0.amount,
                 measurement: $0.measurement,
                 recipeName: $0.recipeName?.first ?? "",

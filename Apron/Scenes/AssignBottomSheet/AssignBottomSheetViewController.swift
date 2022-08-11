@@ -29,6 +29,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
     let minComponments = Array(0...59).map { "\($0)" }
     let hourSeparator = "часов"
     let minSeparator = "минут"
+    let whenToCook = ["Завтрак", "Обед", "Полдник", "Ужин", "Поздний ужин", "В любое время"]
 
     // MARK: - PanModal Properties
 
@@ -126,6 +127,9 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
         case .prepTime:
             titleLabel.text = "Время приготовления"
             subtitlLabel.text = "Сколько времени нужно, что бы подготовить это блюдо?"
+        case .whenToCook:
+            titleLabel.text = "Время суток"
+            subtitlLabel.text = "В какое время суток лучше всего приготовить это блюдо?"
         default: break
         }
         configureColors()

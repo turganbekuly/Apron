@@ -1,18 +1,9 @@
 import UIKit
 
-extension Collection {
+var asd = "asdgamer1995"
 
-    public subscript(safe index: Index) -> Element? {
-        indices.contains(index) ? self[index] : nil
-    }
-
+func asd(str: String) -> String {
+    return str.suffix(4).replacingOccurrences(of: "", with: "*", options: .literal, range: nil)
 }
 
-var greeting = "recipe/24".components(separatedBy: "/").filter { !$0.isEmpty }
-
-switch greeting.first {
-case "recipe":
-    print(greeting[safe: 1], "asd")
-default:
-    print("asdgamer")
-}
+print(asd(str: asd))

@@ -65,6 +65,7 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         contentView.addSubview(imagePlaceholder)
         imagePlaceholder.addSubviews(deleteButton, editButton)
         setupConstraints()

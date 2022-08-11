@@ -30,7 +30,15 @@ final class AddCommentView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
-        
+        [
+            EmojiCell.self,
+            TagsCell.self,
+            RecipeCreationImageCell.self,
+            RecipeCreationPlaceholderImageCell.self,
+            RecipeCreationDescriptionCell.self
+        ].forEach {
+            register(cellClass: $0)
+        }
         configureColors()
     }
     

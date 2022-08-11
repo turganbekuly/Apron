@@ -48,6 +48,9 @@ extension RecipeCreationViewController: UITableViewDataSource {
         case .cookTime:
             let cell: RecipeCreationAssignCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .whenToCook:
+            let cell: RecipeCreationAssignCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -76,11 +79,13 @@ extension RecipeCreationViewController:
                     $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
                 }) ?? 56))
         case .servings:
-            return 80
+            return 100
         case .prepTime:
-            return 80
+            return 100
         case .cookTime:
-            return 80
+            return 100
+        case .whenToCook:
+            return 100
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -109,6 +114,8 @@ extension RecipeCreationViewController:
         case .prepTime:
             return 100
         case .cookTime:
+            return 100
+        case .whenToCook:
             return 100
         }
     }
@@ -155,6 +162,10 @@ extension RecipeCreationViewController:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self
             cell.configure(type: .cookTime("\(recipeCreation?.cookTime ?? 0)"))
+        case .whenToCook:
+            guard let cell = cell as? RecipeCreationAssignCell else { return }
+            cell.delegate = self
+            cell.configure(type: .whenToCook(recipeCreation?.whenToCook?.first ?? 0))
         }
     }
 }

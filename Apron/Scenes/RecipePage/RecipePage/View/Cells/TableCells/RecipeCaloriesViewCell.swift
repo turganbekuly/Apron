@@ -126,9 +126,9 @@ final class RecipeCaloriesViewCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: CaloriesCellViewModelProtocol) {
-        fatView.configure(type: "ЖИРЫ", measure: String(format: "%.1f", viewModel.fatCount ?? 0) + "g")
-        proteinView.configure(type: "БЕЛКИ", measure: String(format: "%.1f", viewModel.proteinCount ?? 0) + "g")
-        carbsView.configure(type: "УГЛЕВОДЫ", measure: String(format: "%.1f", viewModel.carbsCount ?? 0) + "g")
+        fatView.configure(type: "ЖИРЫ", measure: String(format: "%.1f", viewModel.fatCount ?? 0) + "г")
+        proteinView.configure(type: "БЕЛКИ", measure: String(format: "%.1f", viewModel.proteinCount ?? 0) + "г")
+        carbsView.configure(type: "УГЛЕВОДЫ", measure: String(format: "%.1f", viewModel.carbsCount ?? 0) + "г")
         attributedLabelSetup(firstString: "\(viewModel.ccalCount ?? 0) ", secondString: "Ккал на 100 гр")
     }
 }

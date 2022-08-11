@@ -76,9 +76,10 @@ extension RecipePageViewController: UITableViewDelegate {
         case .topView:
             return (view.bounds.width / 2) + 120
         case .description:
-            return 80
+            let width = (UIScreen.main.bounds.width - 32)
+            return 50 + (recipe?.description?.height(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
-            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 38))
+            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 45))
         case .nutrition:
             return 203
         case .instruction:
@@ -98,9 +99,10 @@ extension RecipePageViewController: UITableViewDelegate {
         case .topView:
             return (view.bounds.width / 2) + 120
         case .description:
-            return 80
+            let width = (UIScreen.main.bounds.width - 32)
+            return 50 + (recipe?.description?.height(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
-            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 38))
+            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 45))
         case .nutrition:
             return 203
         case .instruction:
@@ -133,6 +135,7 @@ extension RecipePageViewController: UITableViewDelegate {
             }
             cell.configure(with: InformationCellViewModel(
                 recipeName: recipe?.recipeName ?? "",
+                recipeImage: recipe?.imageURL ?? "",
                 recipeSourceURL: recipe?.sourceName,
                 likeCount: recipe?.likesCount ?? 0,
                 dislikeCount: recipe?.likesCount ?? 0

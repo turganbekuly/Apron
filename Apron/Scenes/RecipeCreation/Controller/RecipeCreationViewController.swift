@@ -83,7 +83,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
                         rows: [
                             .name, .imagePlaceholder,.source,
                             .description, .composition, .instruction,
-                            .servings, .prepTime, .cookTime
+                            .whenToCook, .servings, .prepTime, .cookTime
                         ]
                     )
                 ]

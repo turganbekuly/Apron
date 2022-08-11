@@ -48,6 +48,14 @@ final class ShoppingItemCell: UITableViewCell {
         return view
     }()
 
+    private lazy var productImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 30
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+
     private lazy var sourceRecipsButton: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
@@ -92,6 +100,7 @@ final class ShoppingItemCell: UITableViewCell {
 
         contentView.addSubview(containerView)
         containerView.addSubviews(
+            productImageView,
             sourceRecipsButton,
             ingredientNameLabel,
             measurementLabel,
@@ -106,6 +115,12 @@ final class ShoppingItemCell: UITableViewCell {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
 
+        productImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(8)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(60)
+        }
+
         checkbox.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalTo(ingredientNameLabel.snp.centerY)
@@ -114,19 +129,19 @@ final class ShoppingItemCell: UITableViewCell {
 
         sourceRecipsButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(4)
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.equalTo(productImageView.snp.trailing).offset(8)
             $0.trailing.equalTo(checkbox.snp.leading).offset(-4)
         }
 
         ingredientNameLabel.snp.makeConstraints {
             $0.top.equalTo(sourceRecipsButton.snp.bottom).offset(4)
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.equalTo(productImageView.snp.trailing).offset(8)
             $0.trailing.equalTo(checkbox.snp.leading).offset(-4)
         }
 
         measurementLabel.snp.makeConstraints {
             $0.top.equalTo(ingredientNameLabel.snp.bottom).offset(4)
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.equalTo(productImageView.snp.trailing).offset(8)
             $0.trailing.equalTo(checkbox.snp.leading).offset(-4)
             $0.bottom.equalToSuperview().inset(4)
         }
@@ -160,6 +175,10 @@ final class ShoppingItemCell: UITableViewCell {
 
     func configure(item: CartItem) {
         cartItem = item
+        productImageView.kf.setImage(
+            with: URL(string: cartItem?.productImage ?? ""),
+            placeholder: ApronAssets.iconPlaceholderItem.image
+        )
         sourceRecipsButton.text = item.recipeName?.first ?? ""
         ingredientNameLabel.text = item.productName
         measurementLabel.text = "\(item.amount ?? 0) \(item.measurement ?? "")"

@@ -18,6 +18,17 @@ public struct RatingRequestBody: Codable {
     var recipeID: Int
     var isLiked: Bool
 
+    // MARK: - Init
+
+    public init(
+        recipeID: Int,
+        isLiked: Bool
+    ) {
+        self.recipeID = recipeID
+        self.isLiked = isLiked
+
+    }
+
     // MARK: - Methods
 
     public func toJSON() -> JSON {

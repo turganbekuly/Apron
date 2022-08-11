@@ -9,23 +9,36 @@
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
 enum AddCommentEndpoint {
-    
+    case rateRecipe(body: RatingRequestBody)
+    case uploadImage(image: Data)
+    case addComment(body: AddCommentRequestBody)
 }
 
 extension AddCommentEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .rateRecipe:
+            return "likes/likeToRecipe"
+        case .uploadImage:
+            return "image/upload/4"
+        case .addComment:
+            return "comments/addCommentToRecipe"
+        }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .rateRecipe, .uploadImage, .addComment:
+            return .post
+        }
     }
     
     var sampleData: Data {
@@ -33,7 +46,29 @@ extension AddCommentEndpoint: AKNetworkTargetType {
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case let .rateRecipe(body):
+            return .requestParameters(
+                parameters: body.toJSON(),
+                encoding: AKJSONEncoding.default
+            )
+        case let .uploadImage(data):
+            return .uploadMultipart(
+                [
+                    .init(
+                        provider: .data(data),
+                        name: "file",
+                        fileName: "image.jpg",
+                        mimeType: "image/jpeg"
+                    )
+                ]
+            )
+        case let .addComment(body):
+            return .requestParameters(
+                parameters: body.toJSON(),
+                encoding: AKJSONEncoding.default
+            )
+        }
     }
     
     var headers: [String: String]? {
@@ -48,3 +83,22 @@ extension AddCommentEndpoint: AKNetworkTargetType {
     }
     
 }
+
+// MARK: - TYPES OF IMAGE UPLOAD
+
+//switch (entityType) {
+//    case 1:
+//        folder = "communities";
+//        break;
+//    case 2:
+//        folder = "product_categories";
+//        break;
+//    case 3:
+//        folder = "products";
+//        break;
+//    case 4:
+//        folder = "recipes";
+//        break;
+//    default:
+//        folder = "others";
+//}

@@ -22,7 +22,7 @@ final class IngredientView: UIView {
 
     private var amount: Double = 0 {
         didSet {
-            self.measureScopeLabel.text = "\(String(format: "%.1f", amount)) \(unit)"
+            self.measureScopeLabel.text = "\(amount.clean) \(unit)"
         }
     }
 
@@ -47,11 +47,20 @@ final class IngredientView: UIView {
 
     // MARK: - Views factory
 
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 19
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular16
         label.textColor = .black
         label.textAlignment = .left
+        label.numberOfLines = 2
         return label
     }()
 
@@ -67,19 +76,24 @@ final class IngredientView: UIView {
 
     private func setupViews() {
         backgroundColor = .clear
-        [nameLabel, measureScopeLabel].forEach { addSubviews($0) }
+        [nameLabel, measureScopeLabel, imageView].forEach { addSubviews($0) }
         setupConstraints()
     }
 
     private func setupConstraints() {
         snp.makeConstraints {
-            $0.height.equalTo(38)
+            $0.height.greaterThanOrEqualTo(45)
+        }
+
+        imageView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
+            $0.size.equalTo(38)
         }
 
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(4)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalTo(snp.centerX).offset(8)
+            $0.leading.equalTo(imageView.snp.trailing).offset(8)
+            $0.trailing.equalTo(measureScopeLabel.snp.leading).offset(-4)
             $0.bottom.equalToSuperview().inset(4)
         }
 
@@ -95,15 +109,27 @@ final class IngredientView: UIView {
     func configure(
         name: String,
         amount: Double,
-        unit: String
+        unit: String,
+        image: String?
     ) {
         self.nameLabel.text = name
         self.unit = unit
         self.initialAmount = amount
+        self.imageView.kf.setImage(
+            with: URL(string: image ?? ""),
+            placeholder: ApronAssets.iconPlaceholderItem.image
+        )
     }
 
     func changeServings(initialCount: Int, changedCount: Int) {
         self.initialServingsCount = initialCount
         self.changedServingsCount = changedCount
+    }
+}
+
+extension Double {
+    var clean: String {
+        return self.truncatingRemainder(dividingBy: 1) == 0 ?
+        String(format: "%.0f", self) : String(format: "%.1f", self)
     }
 }

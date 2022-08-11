@@ -164,7 +164,8 @@ final class RecipeIngredientsViewCell: UITableViewCell {
             view.configure(
                 name: $0.product?.name ?? "",
                 amount: $0.amount ?? 0,
-                unit: $0.measurement ?? ""
+                unit: $0.measurement ?? "",
+                image: $0.product?.image
             )
             ingredientsStackView.addArrangedSubview(view)
         }

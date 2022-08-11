@@ -14,14 +14,14 @@ public class RoundedTextView: UIView {
 
     // MARK: - Init
 
-    public init(
-        placeholder: String?
-    ) {
-        self.placeholder = placeholder
-
-        super.init(frame: .zero)
-
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
+    }
+
+    public init(placeholder: String) {
+        self.init()
+        self.placeholder = placeholder
     }
 
     required init?(coder: NSCoder) {

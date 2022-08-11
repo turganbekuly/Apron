@@ -44,9 +44,7 @@ final class CommunityCreationDescriptionCell: UITableViewCell {
     }()
 
     private lazy var roudedTextView: RoundedTextView = {
-        let textView = RoundedTextView(
-            placeholder: "О чем это сообщество?"
-        )
+        let textView = RoundedTextView(placeholder: "О чем это сообщество?")
         textView.textView.delegate = self
         return textView
     }()

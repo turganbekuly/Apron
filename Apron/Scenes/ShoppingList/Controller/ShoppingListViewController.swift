@@ -217,6 +217,7 @@ extension ShoppingListViewController: IngredientSelectedProtocol {
             productId: ingredient.product?.id ?? 0,
             productName: ingredient.product?.name ?? "",
             productCategoryName: ingredient.product?.productCategoryName ?? "",
+            productImage: ingredient.product?.image,
             amount: (ingredient.amount ?? 0) + productAmount,
             measurement: ingredient.measurement ?? "",
             recipeName: "Личный продукт",

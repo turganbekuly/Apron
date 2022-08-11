@@ -24,6 +24,8 @@ extension AssignBottomSheetViewController: UIPickerViewDelegate {
             let hourToMinInt = Int(hourComponents[hourIndex]) ?? 0
             let minInt = Int(minComponments[minIndex]) ?? 0
             type = .cookTime("\((hourToMinInt * 60) + minInt)")
+        case .whenToCook:
+            type = .whenToCook(row + 1)
         default:
             break
         }
@@ -33,7 +35,7 @@ extension AssignBottomSheetViewController: UIPickerViewDelegate {
 extension AssignBottomSheetViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         switch type {
-        case .servings:
+        case .servings, .whenToCook:
             return 1
         case .cookTime, .prepTime:
             return 4
@@ -54,7 +56,8 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
             } else {
                 return 1
             }
-
+        case .whenToCook:
+            return whenToCook.count
         default:
             return 0
         }
@@ -74,6 +77,8 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
             } else {
                 return minSeparator
             }
+        case .whenToCook:
+            return "\(whenToCook[row])"
         default:
             return ""
         }

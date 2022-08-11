@@ -185,7 +185,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
         navigationController?.navigationBar.backgroundColor = .clear
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.leftBarButtonItem =  UIBarButtonItem(customView: backButton)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
     
     private func configureViews() {
