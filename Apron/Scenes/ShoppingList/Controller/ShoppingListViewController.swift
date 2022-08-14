@@ -205,6 +205,23 @@ final class ShoppingListViewController: ViewController, Messagable {
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }
+
+    // MARK: - Private functions
+
+    func shareIngredients(cartItems: [CartItem]) {
+        let viewController = UIActivityViewController(
+            activityItems: cartItems.map { "\($0.productName) - \($0.amount?.clean ?? "") \($0.measurement ?? "")"},
+            applicationActivities: nil
+        )
+
+        if let popoover = viewController.popoverPresentationController {
+            popoover.sourceView = view
+            popoover.sourceRect = view.bounds
+            popoover.permittedArrowDirections = []
+        }
+
+        self.navigationController?.present(viewController, animated: true, completion: nil)
+    }
 }
 
 extension ShoppingListViewController: IngredientSelectedProtocol {

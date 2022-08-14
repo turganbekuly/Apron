@@ -9,6 +9,17 @@ import UIKit
 import Storages
 import Models
 
+protocol RecipePageCommentAdded: AnyObject {
+    func commentDidAdd()
+}
+
+extension RecipePageViewController: RecipePageCommentAdded {
+    func commentDidAdd() {
+        getRecipe(by: recipeId)
+        showLoader()
+    }
+}
+
 extension RecipePageViewController: BottomStickyViewDelegate {
     func addButtonTapped() {
         let vc = CreateActionFlowBuilder(state: .initial(.recipePageAddTo, self)).build()
@@ -27,10 +38,9 @@ extension RecipePageViewController: BottomStickyViewDelegate {
     }
 
     func textFieldTapped() {
-//        show(type: .error("Функция добавления отзыва скоро будет готова!"))
         var body = AddCommentRequestBody()
         body.recipeId = recipe?.id
-        let viewController = AddCommentBuilder(state: .initial(recipe?.id, body)).build()
+        let viewController = AddCommentBuilder(state: .initial(recipe?.id, body, self)).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(viewController, animated: true)
         }

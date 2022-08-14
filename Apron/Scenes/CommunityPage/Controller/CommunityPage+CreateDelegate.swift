@@ -34,6 +34,19 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: false)
             }
+        case .shareCommunity:
+            let viewController = UIActivityViewController(
+                activityItems: ["https://apron.ws/community/\(community?.id ?? 0)"],
+                applicationActivities: nil
+            )
+
+            if let popoover = viewController.popoverPresentationController {
+                popoover.sourceView = view
+                popoover.sourceRect = view.bounds
+                popoover.permittedArrowDirections = []
+            }
+
+            self.navigationController?.present(viewController, animated: true, completion: nil)
         default:
             break
         }

@@ -17,8 +17,6 @@ extension RecipePageViewController {
         case initial(id: Int, RecipeCreationSourceTypeModel)
         case displayRecipe(RecipeResponse)
         case displayError(AKNetworkError)
-        case rateRecipe(RatingResponse)
-        case rateRecipeError(AKNetworkError)
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
         case displayComments([RecipeCommentResponse])
@@ -30,7 +28,8 @@ extension RecipePageViewController {
         switch state {
         case let .initial(id, sourceType):
             self.initialState = sourceType
-            getRecipe(by: id)
+            self.recipeId = id
+            getRecipe(by: recipeId)
             showLoader()
         case let .displayRecipe(recipe):
             hideLoader()
@@ -38,10 +37,6 @@ extension RecipePageViewController {
             getComments(by: recipe.id)
         case .displayError:
             hideLoader()
-        case let .rateRecipe(rating):
-            print(rating)
-        case let .rateRecipeError(error):
-            print(error)
         case let .saveRecipe(newCount):
             print(newCount)
         case .saveRecipeFailed:

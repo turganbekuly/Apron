@@ -185,7 +185,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
         navigationController?.navigationBar.backgroundColor = .clear
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.leftBarButtonItem =  UIBarButtonItem(customView: backButton)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
     
     private func configureViews() {
@@ -201,6 +201,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
                 self?.navigationController?.popViewController(animated: true)
             }
         }
+
         [imageView, mainView, navigationBarView, createRecipeButton].forEach { view.addSubview($0) }
 
         mainView.addInfiniteScroll { [weak self] _ in

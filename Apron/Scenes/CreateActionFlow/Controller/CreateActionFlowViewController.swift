@@ -93,7 +93,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
                 sections = [
                     .init(
                         section: .communityPageMore,
-                        rows: [.shareCommunity(.shareCommunity), .reportCommunity(.reportCommunity)]
+                        rows: [.shareCommunity(.shareCommunity)]
                     )
                 ]
             case .shoppingListMore:
@@ -126,7 +126,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
         case .communityPageRecipeCreation:
             return .contentHeight(110)
         case .communityPageMore:
-            return .contentHeight(30)
+            return .contentHeight(50)
         case .recipePageMore:
             return .contentHeight(170)
         case .recipePageAddTo:

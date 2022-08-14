@@ -12,6 +12,7 @@ final class RecipeInformationViewCell: UITableViewCell {
     // MARK: - Properties
 
     var onEditButtonTapped: (() -> Void)?
+    var onShareButtonTapped: (() -> Void)?
 
     // MARK: - Init
 
@@ -70,6 +71,7 @@ final class RecipeInformationViewCell: UITableViewCell {
     private lazy var shareButton: UIButton = {
         let button = UIButton()
         button.setImage(ApronAssets.recipeShareIcon.image, for: .normal)
+        button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -154,6 +156,11 @@ final class RecipeInformationViewCell: UITableViewCell {
         onEditButtonTapped?()
     }
 
+    @objc
+    private func shareButtonTapped() {
+        onShareButtonTapped?()
+    }
+
     // MARK: - Methods
 
     func configure(with viewModel: IInformationCellViewModel) {
@@ -171,6 +178,6 @@ final class RecipeInformationViewCell: UITableViewCell {
             options: [.transition(.fade(0.4))]
         )
         likeButton.setTitle("\(viewModel.likeCount)", for: .normal)
-        dislikeButton.setTitle("\(viewModel.likeCount)", for: .normal)
+        dislikeButton.setTitle("\(viewModel.dislikeCount)", for: .normal)
     }
 }

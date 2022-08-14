@@ -133,6 +133,21 @@ extension RecipePageViewController: UITableViewDelegate {
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }
             }
+            cell.onShareButtonTapped = { [weak self] in
+                guard let self = self else { return }
+                let viewController = UIActivityViewController(
+                    activityItems: ["https://apron.ws/recipe/\(self.recipe?.id ?? 0)"],
+                    applicationActivities: nil
+                )
+
+                if let popoover = viewController.popoverPresentationController {
+                    popoover.sourceView = self.view
+                    popoover.sourceRect = self.view.bounds
+                    popoover.permittedArrowDirections = []
+                }
+
+                self.navigationController?.present(viewController, animated: true, completion: nil)
+            }
             cell.configure(with: InformationCellViewModel(
                 recipeName: recipe?.recipeName ?? "",
                 recipeImage: recipe?.imageURL ?? "",
@@ -207,7 +222,7 @@ extension RecipePageViewController: UITableViewDelegate {
         let section = sections[section].section
         switch section {
         case .reviews:
-            guard let view = view as? RecipeReviewsHeaderView else { return }
+            guard let view = view as? RecipeReviewsHeaderView, !recipeComments.isEmpty else { return }
             view.configure(title: "Отзывы")
         default:
             break

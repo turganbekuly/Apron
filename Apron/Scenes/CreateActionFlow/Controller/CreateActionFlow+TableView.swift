@@ -130,6 +130,12 @@ extension CreateActionFlowViewController: UITableViewDelegate {
                 image: ApronAssets.recipeShareIcon.image,
                 title: "Поделиться"
             ))
+        case .shareCommunity:
+            guard let cell = cell as? CreateButtonCell else { return }
+            cell.configure(with: CreateButtonCellViewModel(
+                image: ApronAssets.recipeShareIcon.image,
+                title: "Поделиться сообществом"
+            ))
         case .clearIngredients:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(

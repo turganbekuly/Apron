@@ -43,9 +43,12 @@ final class RecipeReviewsCell: UITableViewCell {
     var tags: [String]? {
         didSet {
             guard let tags = tags, !tags.isEmpty else {
+                sections = []
+                tagsCollectionView.reloadData()
                 return
             }
             sections = [.init(section: .chips, rows: tags.compactMap { .chip($0) })]
+            contentView.setNeedsLayout()
             contentView.layoutIfNeeded()
             tagsCollectionView.reloadData()
             tagsCollectionViewHeight?.update(offset: tagsCollectionView.collectionViewLayout.collectionViewContentSize.height)

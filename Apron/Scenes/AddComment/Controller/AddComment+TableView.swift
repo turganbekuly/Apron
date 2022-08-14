@@ -90,6 +90,7 @@ extension AddCommentViewController: UITableViewDelegate {
         switch row {
         case .rate:
             guard let cell = cell as? EmojiCell else { return }
+            cell.delegate = self
             cell.configure()
         case .placeholder:
             guard let cell = cell as? RecipeCreationPlaceholderImageCell else { return }
@@ -102,6 +103,7 @@ extension AddCommentViewController: UITableViewDelegate {
         case .note:
             guard let cell = cell as? RecipeCreationDescriptionCell else { return }
             cell.placeholder = "Расскажите о своем опыте. Любые советы по улучшению этого рецепта?"
+            cell.delegate = self
             cell.configure(description: "")
         case .tags:
             guard let cell = cell as? TagsCell else { return }

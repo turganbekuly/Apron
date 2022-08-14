@@ -31,6 +31,7 @@ final class ShoppingListView: UITableView {
     private func configure() {
         separatorStyle = .none
         allowsMultipleSelection = true
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         [
             ShoppingListHeaderView.self
         ].forEach {

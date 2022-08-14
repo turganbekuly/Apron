@@ -30,6 +30,7 @@ final class AddCommentView: UITableView {
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
+        keyboardDismissMode = .onDrag
         [
             EmojiCell.self,
             TagsCell.self,

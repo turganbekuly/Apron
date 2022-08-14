@@ -50,6 +50,8 @@ final class AddCommentViewController: ViewController, Messagable {
     }
     
     // MARK: - Properties
+
+    weak var delegate: RecipePageCommentAdded?
     let interactor: AddCommentBusinessLogic
     var sections: [Section] = []
     var tagsSections: [TagsSection] = [] {
@@ -64,7 +66,12 @@ final class AddCommentViewController: ViewController, Messagable {
             ]
         }
     }
-    public var selectedOptions = [String]()
+    var selectedOptions = [String]() {
+        didSet {
+            addCommentRequestBody?.tags = selectedOptions
+        }
+    }
+    var selectedRate: EmojiState?
 
     var state: State {
         didSet {
@@ -72,13 +79,7 @@ final class AddCommentViewController: ViewController, Messagable {
         }
     }
 
-    var addCommentRequestBody: AddCommentRequestBody? {
-        didSet {
-            tagsSections = []
-            sections = [.init(section: .comment, rows: [.rate, .placeholder, .note, .tags])]
-            mainView.reloadData()
-        }
-    }
+    var addCommentRequestBody: AddCommentRequestBody?
 
     var selectedImage: UIImage? {
         didSet {
@@ -89,7 +90,13 @@ final class AddCommentViewController: ViewController, Messagable {
         }
     }
 
-    var recipeId: Int?
+    var recipeId: Int? {
+        didSet {
+            tagsSections = []
+            sections = [.init(section: .comment, rows: [.rate, .placeholder, .note, .tags])]
+            mainView.reloadData()
+        }
+    }
     
     // MARK: - Views
 
@@ -201,7 +208,17 @@ final class AddCommentViewController: ViewController, Messagable {
 
     @objc
     private func saveButtonTapped() {
-        //
+        guard let _ = selectedRate else {
+            show(type: .error("Пожалуйста, выберите подходящий смайлик"))
+            return
+        }
+        
+        guard let comment = addCommentRequestBody, comment.comment != nil || comment.tags != nil else {
+            show(type: .error("Пожалуйста, заполните поля!"))
+            return
+        }
+        
+        addComment(body: comment)
     }
     
     deinit {

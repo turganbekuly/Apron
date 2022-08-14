@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
+        setupFirstRun()
         configurators.forEach { $0.configure(application, launchOptions: launchOptions) }
         
         return true
@@ -41,6 +42,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
         return true
+    }
+
+    private func setupFirstRun() {
+        let defaults = UserDefaults.standard
+        let isNotFirstRunKey = "isNotFirstRun"
+        let isFirstRunKey = "isFirstRun"
+        if defaults.bool(forKey: isNotFirstRunKey) == false && defaults.bool(forKey: isFirstRunKey) == false {
+            defaults.set(true, forKey: isNotFirstRunKey)
+            AuthStorage.shared.clear()
+        }
     }
 }
 

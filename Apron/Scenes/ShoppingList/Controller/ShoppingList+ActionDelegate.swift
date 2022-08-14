@@ -13,7 +13,7 @@ extension ShoppingListViewController: CreateActionFlowProtocol {
         case .clearIngredients:
             resetCartItems()
         case .shareIngredients:
-            break
+            shareIngredients(cartItems: cartItems)
         default:
             break
         }

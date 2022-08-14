@@ -14,7 +14,7 @@ extension AddCommentViewController {
     
     // MARK: - State
     public enum State {
-        case initial(Int?, AddCommentRequestBody)
+        case initial(Int?, AddCommentRequestBody, RecipePageCommentAdded?)
         case rateRecipe
         case rateRecipeError
         case commentAdded(AddCommentResultType)
@@ -26,15 +26,23 @@ extension AddCommentViewController {
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(recipeId, addCommentRequestBody):
+        case let .initial(recipeId, addCommentRequestBody, delegate):
             self.recipeId = recipeId
             self.addCommentRequestBody = addCommentRequestBody
+            self.delegate = delegate
         case .rateRecipe, .rateRecipeError:
-            break
+            delegate?.commentDidAdd()
+            navigationController?.popViewController(animated: true)
         case let .commentAdded(response):
             switch response {
             case .success:
-                break
+                if let selectedRate = selectedRate {
+                    rateRecipe(positive: selectedRate == .love ? true : false)
+                    return
+                }
+
+                delegate?.commentDidAdd()
+                navigationController?.popViewController(animated: true)
             case .failed:
                 show(type: .error("Произошла ошибка при отправке, пожалуйста, попробуйте позднее"))
             }

@@ -34,7 +34,7 @@ public struct RatingRequestBody: Codable {
     public func toJSON() -> JSON {
         var params = JSON()
         params[CodingKeys.recipeID.rawValue] = recipeID
-        params[CodingKeys.recipeID.rawValue] = isLiked
+        params[CodingKeys.isLiked.rawValue] = isLiked
         return params
     }
 }

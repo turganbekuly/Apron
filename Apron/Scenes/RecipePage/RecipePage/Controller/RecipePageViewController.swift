@@ -56,7 +56,8 @@ final class RecipePageViewController: ViewController, Messagable {
                 .init(section: .description, rows: [.description]),
                 .init(section: .ingredients, rows: [.ingredient]),
                 .init(section: .nutritions, rows: [.nutrition]),
-                .init(section: .instructions, rows: [.instruction])
+                .init(section: .instructions, rows: [.instruction]),
+                .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
             ]
             mainView.reloadData()
         }
@@ -65,10 +66,19 @@ final class RecipePageViewController: ViewController, Messagable {
     var recipeComments: [RecipeCommentResponse] = [] {
         didSet {
             guard let _ = recipe, !recipeComments.isEmpty else { return }
-            sections.append(.init(section: .reviews, rows: recipeComments.compactMap { .review($0) }))
+            sections = [
+                .init(section: .topView, rows: [.topView]),
+                .init(section: .description, rows: [.description]),
+                .init(section: .ingredients, rows: [.ingredient]),
+                .init(section: .nutritions, rows: [.nutrition]),
+                .init(section: .instructions, rows: [.instruction]),
+                .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
+            ]
             mainView.reloadData()
         }
     }
+
+    var recipeId = 0
     
     // MARK: - Views factory
 
@@ -170,7 +180,7 @@ final class RecipePageViewController: ViewController, Messagable {
     deinit {
         NSLog("deinit \(self)")
     }
-
+    
     // MARK: - User actions
 
     @objc
