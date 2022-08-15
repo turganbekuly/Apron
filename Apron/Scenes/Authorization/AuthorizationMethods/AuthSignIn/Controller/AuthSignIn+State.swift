@@ -32,9 +32,9 @@ extension AuthSignInViewController {
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = viewController
             }
-        case let .loginFailed(error):
+        case .loginFailed:
             hideLoader()
-            print(error)
+            show(type: .error("Не удалось войти. Пожалуйста, попробуйте еще раз!"))
         }
     }
     

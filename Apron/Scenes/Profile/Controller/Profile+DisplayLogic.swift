@@ -15,4 +15,8 @@ extension ProfileViewController: ProfileDisplayLogic {
     func displayProfile(with viewModel: ProfileDataFlow.GetProfile.ViewModel) {
         state = viewModel.state
     }
+
+    func displayDeleteAccount(with viewModel: ProfileDataFlow.DeleteAccount.ViewModel) {
+        state = viewModel.state
+    }
 }

@@ -83,6 +83,7 @@ public enum ApronAssets {
   public static let ad = ImageAsset(name: "ad")
   public static let appLogo = ImageAsset(name: "app_logo")
   public static let exit = ImageAsset(name: "exit")
+  public static let profileDeleteAccount = ImageAsset(name: "profile_delete_account")
   public static let user = ImageAsset(name: "user")
   public static let creationPlusButton = ImageAsset(name: "creation_plus_button")
   public static let minusButtonIcon = ImageAsset(name: "minus_button_icon")

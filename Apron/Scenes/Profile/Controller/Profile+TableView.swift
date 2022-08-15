@@ -26,7 +26,7 @@ extension ProfileViewController: UITableViewDataSource {
         case .user:
             let cell: ProfileUserCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
-        case .logout, .about:
+        case .logout, .about, .deleteAccount:
             let cell: ProfileItemsCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
@@ -47,6 +47,9 @@ extension ProfileViewController: UITableViewDelegate {
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
+        case .deleteAccount:
+            let id: Int = userStorage.user?.id ?? 0
+            deleteAccount(with: id)
         default:
             break
         }
@@ -57,7 +60,7 @@ extension ProfileViewController: UITableViewDelegate {
         switch row {
         case .user:
             return 131
-        case .logout, .about:
+        case .logout, .about, .deleteAccount:
             return 56
         }
     }
@@ -67,7 +70,7 @@ extension ProfileViewController: UITableViewDelegate {
         switch row {
         case .user:
             return 131
-        case .logout, .about:
+        case .logout, .about, .deleteAccount:
             return 56
         }
     }
@@ -84,6 +87,10 @@ extension ProfileViewController: UITableViewDelegate {
             guard let cell = cell as? ProfileItemsCell else { return }
 
             cell.configure(with: ProfileItemsCellViewModel(row: row, mode: .top))
+        case .deleteAccount:
+            guard let cell = cell as? ProfileItemsCell else { return }
+            
+            cell.configure(with: ProfileItemsCellViewModel(row: row, mode: .center))
         case .logout:
             guard let cell = cell as? ProfileItemsCell else { return }
 

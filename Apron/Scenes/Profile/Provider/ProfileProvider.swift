@@ -14,6 +14,10 @@ protocol ProfileProviderProtocol {
         request: ProfileDataFlow.GetProfile.Request,
         completion: @escaping ((ProfileDataFlow.GetProfileResult) -> Void)
     )
+    func deleteAccount(
+        request: ProfileDataFlow.DeleteAccount.Request,
+        completion: @escaping ((ProfileDataFlow.DeleteAccountResult) -> Void)
+    )
 }
 
 final class ProfileProvider: ProfileProviderProtocol {
@@ -41,6 +45,20 @@ final class ProfileProvider: ProfileProviderProtocol {
                 } else {
                     completion(.failed(.invalidData))
                 }
+            case let .failure(error):
+                completion(.failed(error))
+            }
+        }
+    }
+
+    func deleteAccount(
+        request: ProfileDataFlow.DeleteAccount.Request,
+        completion: @escaping ((ProfileDataFlow.DeleteAccountResult) -> Void)
+    ) {
+        service.deleteAccount(request: request) {
+            switch $0 {
+            case .success:
+                completion(.successful)
             case let .failure(error):
                 completion(.failed(error))
             }

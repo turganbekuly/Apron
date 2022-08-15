@@ -79,14 +79,14 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 32)
             return 50 + (recipe?.description?.height(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
-            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 45))
+            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
             return 203
         case .instruction:
             let width = (UIScreen.main.bounds.width - 60)
             return 60 + ((recipe?.instructions?
                 .reduce(0, {
-                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 60)
+                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 55)
                 }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
@@ -102,14 +102,14 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 32)
             return 50 + (recipe?.description?.height(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
-            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 45))
+            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
             return 203
         case .instruction:
             let width = (UIScreen.main.bounds.width - 60)
             return 60 + ((recipe?.instructions?
                 .reduce(0, {
-                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 60)
+                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 55)
                 }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)

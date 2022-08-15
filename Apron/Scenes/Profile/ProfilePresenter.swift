@@ -10,6 +10,7 @@ import UIKit
 
 protocol ProfilePresentationLogic: AnyObject {
     func getProfile(response: ProfileDataFlow.GetProfile.Response)
+    func deleteAccount(response: ProfileDataFlow.DeleteAccount.Response)
 }
 
 final class ProfilePresenter: ProfilePresentationLogic {
@@ -30,6 +31,21 @@ final class ProfilePresenter: ProfilePresentationLogic {
                 viewModel = .init(state: .fetchProfile(model))
             case let .failed(error):
                 viewModel = .init(state: .fetchProfileFailed(error))
+            }
+        }
+    }
+
+    func deleteAccount(response: ProfileDataFlow.DeleteAccount.Response) {
+        DispatchQueue.main.async {
+            var viewModel: ProfileDataFlow.DeleteAccount.ViewModel
+
+            defer { self.viewController?.displayDeleteAccount(with: viewModel) }
+
+            switch response.result {
+            case .successful:
+                viewModel = .init(state: .deleteAccount)
+            case .failed:
+                viewModel = .init(state: .deleteAccountFailed)
             }
         }
     }

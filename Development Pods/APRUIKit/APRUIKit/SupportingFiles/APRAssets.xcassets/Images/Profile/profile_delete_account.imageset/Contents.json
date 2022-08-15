@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "profile_delete_account.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

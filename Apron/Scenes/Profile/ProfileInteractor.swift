@@ -8,6 +8,7 @@
 
 protocol ProfileBusinessLogic {
     func getProfile(request: ProfileDataFlow.GetProfile.Request)
+    func deleteAccount(request: ProfileDataFlow.DeleteAccount.Request)
 }
 
 final class ProfileInteractor: ProfileBusinessLogic {
@@ -32,6 +33,17 @@ final class ProfileInteractor: ProfileBusinessLogic {
                 self?.presenter.getProfile(response: .init(result: .successful(model)))
             case let .failed(error):
                 self?.presenter.getProfile(response: .init(result: .failed(error)))
+            }
+        }
+    }
+
+    func deleteAccount(request: ProfileDataFlow.DeleteAccount.Request) {
+        provider.deleteAccount(request: request) { [weak self] in
+            switch $0 {
+            case .successful:
+                self?.presenter.deleteAccount(response: .init(result: .successful))
+            case let .failed(error):
+                self?.presenter.deleteAccount(response: .init(result: .failed(error)))
             }
         }
     }

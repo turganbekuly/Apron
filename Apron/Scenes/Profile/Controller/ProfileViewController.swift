@@ -13,6 +13,7 @@ import AlertMessages
 
 protocol ProfileDisplayLogic: AnyObject {
     func displayProfile(with viewModel: ProfileDataFlow.GetProfile.ViewModel)
+    func displayDeleteAccount(with viewModel: ProfileDataFlow.DeleteAccount.ViewModel)
 }
 
 final class ProfileViewController: ViewController, Messagable {
@@ -24,6 +25,7 @@ final class ProfileViewController: ViewController, Messagable {
         enum Row {
             case user
             case about
+            case deleteAccount
             case logout
         }
         

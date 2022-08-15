@@ -16,13 +16,20 @@ final class IngredientView: UIView {
 
     private var changedServingsCount = 0 {
         didSet {
-            amount = (initialAmount / Double(initialServingsCount)) * Double(changedServingsCount)
+            if initialAmount != 0 {
+                amount = (initialAmount / Double(initialServingsCount)) * Double(changedServingsCount)
+            }
         }
     }
 
     private var amount: Double = 0 {
         didSet {
-            self.measureScopeLabel.text = "\(amount.clean) \(unit)"
+            var value = ""
+            if amount != 0 {
+                value = "\(amount.clean)"
+            }
+            value += " \(unit)"
+            self.measureScopeLabel.text = value
         }
     }
 

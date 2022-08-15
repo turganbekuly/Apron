@@ -28,3 +28,22 @@ extension ProfileDataFlow {
         case failed(AKNetworkError)
     }
 }
+
+extension ProfileDataFlow {
+    struct DeleteAccount {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: DeleteAccountResult
+        }
+        struct ViewModel {
+            var state: ProfileViewController.State
+        }
+    }
+
+    enum DeleteAccountResult {
+    case successful
+    case failed(AKNetworkError)
+    }
+}

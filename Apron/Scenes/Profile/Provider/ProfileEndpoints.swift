@@ -12,6 +12,7 @@ import Storages
 
 enum ProfileEndpoint {
     case getProfile
+    case deleteprofile(Int)
 }
 
 extension ProfileEndpoint: AKNetworkTargetType {
@@ -21,11 +22,21 @@ extension ProfileEndpoint: AKNetworkTargetType {
     }
     
     var path: String {
-        return "users/myProfile"
+        switch self {
+        case .getProfile:
+            return "users/myProfile"
+        case let .deleteprofile(id):
+            return "users/\(id)"
+        }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .getProfile:
+            return .get
+        case .deleteprofile:
+            return .delete
+        }
     }
     
     var sampleData: Data {
@@ -33,7 +44,12 @@ extension ProfileEndpoint: AKNetworkTargetType {
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case .getProfile:
+            return .requestPlain
+        case .deleteprofile:
+            return .requestPlain
+        }
     }
     
     var headers: [String: String]? {

@@ -13,4 +13,8 @@ extension ProfileViewController {
     func getProfile() {
         interactor.getProfile(request: .init())
     }
+
+    func deleteAccount(with id: Int) {
+        interactor.deleteAccount(request: .init(id: id))
+    }
 }

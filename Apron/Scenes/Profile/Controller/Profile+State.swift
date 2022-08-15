@@ -18,6 +18,8 @@ extension ProfileViewController {
         case initial
         case fetchProfile(User)
         case fetchProfileFailed(AKNetworkError)
+        case deleteAccount
+        case deleteAccountFailed
     }
     
     // MARK: - Methods
@@ -27,10 +29,19 @@ extension ProfileViewController {
             getProfile()
         case let .fetchProfile(model):
             userStorage.user = model
-            sections = [.init(section: .app, rows: [.user, .about, .logout])]
+            sections = [.init(section: .app, rows: [.user, .deleteAccount, .logout])]
             mainView.reloadData()
         case .fetchProfileFailed:
             show(type: .error(L10n.Common.errorMessage))
+        case .deleteAccount:
+            AuthStorage.shared.clear()
+            let vc = AuthorizationBuilder(state: .initial).build()
+            vc.hidesBottomBarWhenPushed = true
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        case .deleteAccountFailed:
+            break
         }
     }
     

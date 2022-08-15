@@ -35,6 +35,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
         switch row {
         case .about:
             return ApronAssets.appLogo.image
+        case .deleteAccount:
+            return ApronAssets.profileDeleteAccount.image
         case .logout:
             return ApronAssets.exit.image
         case .user:
@@ -47,6 +49,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
         switch row {
         case .about:
             title = "О приложении"
+        case .deleteAccount:
+            title = "Удалить аккаунт"
         case .logout:
             title = "Выйти"
         case .user:

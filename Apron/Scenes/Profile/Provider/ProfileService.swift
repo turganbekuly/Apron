@@ -13,6 +13,10 @@ protocol ProfileServiceProtocol {
         request: ProfileDataFlow.GetProfile.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func deleteAccount(
+        request: ProfileDataFlow.DeleteAccount.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class ProfileService: ProfileServiceProtocol {
@@ -32,6 +36,15 @@ final class ProfileService: ProfileServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .getProfile) { result in
+            completion(result)
+        }
+    }
+
+    func deleteAccount(
+        request: ProfileDataFlow.DeleteAccount.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .deleteprofile(request.id)) { result in
             completion(result)
         }
     }

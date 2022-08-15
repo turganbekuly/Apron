@@ -11,6 +11,7 @@ import Decoders
 public struct User: Codable {
 
     private enum CodingKeys: String, CodingKey {
+        case id
         case email
         case username
         case myRecipes
@@ -19,6 +20,7 @@ public struct User: Codable {
 
     // MARK: - Properties
 
+    public var id: Int?
     public var email: String?
     public var username: String?
     public var myRecipes: [RecipeResponse]?
@@ -27,6 +29,10 @@ public struct User: Codable {
     // MARK: - Init
 
     public init?(json: JSON) {
+        guard let id = json[CodingKeys.id.rawValue] as? Int else {
+            return nil
+        }
+        self.id = id
         email = json[CodingKeys.email.rawValue] as? String
         username = json[CodingKeys.username.rawValue] as? String
         myRecipes = (json[CodingKeys.myRecipes.rawValue] as? [JSON])?
