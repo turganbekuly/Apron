@@ -83,7 +83,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
                         rows: [
                             .name, .imagePlaceholder,.source,
                             .description, .composition, .instruction,
-                            .whenToCook, .servings, .prepTime, .cookTime
+                            .whenToCook, .servings, .cookTime
                         ]
                     )
                 ]
@@ -227,7 +227,6 @@ final class RecipeCreationViewController: ViewController, Messagable {
            let _ = recipeCreation?.ingredients,
            let _ = recipeCreation?.instructions,
            let _ = recipeCreation?.servings,
-           let _ = recipeCreation?.prepTime,
            let _ = recipeCreation?.cookTime
         {
             self.createRecipe(recipe: recipeCreation)

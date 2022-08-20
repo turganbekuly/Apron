@@ -17,8 +17,7 @@ public struct RecipeCreation: Codable {
         case ingredients = "ingredients"
         case instructions = "instructions"
         case servings = "portions"
-        case prepTime = "prep_time"
-        case cookTime = "cook_time"
+        case cookTime = "cookTime"
         case communityId = "communityId"
         case isHidden = "hidden"
         case whenToCook = "whenToCook"
@@ -34,7 +33,6 @@ public struct RecipeCreation: Codable {
     public var ingredients = [RecipeIngredient]()
     public var instructions = [String]()
     public var servings: Int?
-    public var prepTime: Int?
     public var cookTime: Int?
     public var communityId: Int?
     public var isHidden: Bool?
@@ -53,7 +51,6 @@ public struct RecipeCreation: Codable {
         self.ingredients = recipe.ingredients ?? []
         self.instructions = recipe.instructions ?? []
         self.servings = recipe.servings
-        self.prepTime = recipe.prepTime
         self.cookTime = recipe.cookTime
         self.isHidden = recipe.isHidden
         self.communityId = nil
@@ -86,9 +83,6 @@ public struct RecipeCreation: Codable {
 
         if let servings = servings {
             params[CodingKeys.servings.rawValue] = servings
-        }
-        if let prepTime = prepTime {
-            params[CodingKeys.prepTime.rawValue] = prepTime
         }
         if let cookTime = cookTime {
             params[CodingKeys.cookTime.rawValue] = cookTime

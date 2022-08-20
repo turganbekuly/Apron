@@ -9,6 +9,28 @@ import Foundation
 import UIKit
 import Models
 import APRUIKit
+import Extensions
+
+extension RecipePageViewController {
+    enum CalculatorType {
+        case proteinCount(ingredient: RecipeIngredient)
+        case fatCount(ingredient: RecipeIngredient)
+        case carbsCount(ingredient: RecipeIngredient)
+        case ccalCount(ingredient: RecipeIngredient)
+    }
+    func calculateCalories(type: CalculatorType) -> Double {
+        switch type {
+        case .proteinCount(let ingredient):
+            return (((ingredient.product?.proteinMass ?? 0) * (ingredient.amount ?? 0)) / 100)
+        case .fatCount(let ingredient):
+            return (((ingredient.product?.fatMass ?? 0) * (ingredient.amount ?? 0)) / 100)
+        case .carbsCount(let ingredient):
+            return (((ingredient.product?.carbsMass ?? 0) * (ingredient.amount ?? 0)) / 100)
+        case .ccalCount(let ingredient):
+            return (((ingredient.product?.kilokalori ?? 0) * (ingredient.amount ?? 0)) / 100)
+        }
+    }
+}
 
 extension RecipePageViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,24 +66,6 @@ extension RecipePageViewController: UITableViewDataSource {
 }
 
 extension RecipePageViewController: UITableViewDelegate {
-
-    func textHeight(withWidth width: CGFloat, font: UIFont, text: String) -> CGFloat {
-        return textSize(font: font, text: text, width: width).height
-    }
-
-    func textWidth(font: UIFont, text: String) -> CGFloat {
-        return textSize(font: font, text: text).width
-    }
-
-    func textSize(font: UIFont, text: String, width: CGFloat = .greatestFiniteMagnitude, height: CGFloat = .greatestFiniteMagnitude) -> CGSize {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: height))
-        label.numberOfLines = 0
-        label.font = font
-        label.text = text
-        label.sizeToFit()
-        return label.frame.size
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -77,7 +81,7 @@ extension RecipePageViewController: UITableViewDelegate {
             return (view.bounds.width / 2) + 120
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
-            return 50 + (recipe?.description?.height(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
+            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
             return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
@@ -86,7 +90,7 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 60)
             return 60 + ((recipe?.instructions?
                 .reduce(0, {
-                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 55)
+                    $0 + ($1.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 55)
                 }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
@@ -100,7 +104,7 @@ extension RecipePageViewController: UITableViewDelegate {
             return (view.bounds.width / 2) + 120
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
-            return 50 + (recipe?.description?.height(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
+            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
             return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
@@ -109,7 +113,7 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 60)
             return 60 + ((recipe?.instructions?
                 .reduce(0, {
-                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 55)
+                    $0 + ($1.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 55)
                 }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
@@ -171,10 +175,10 @@ extension RecipePageViewController: UITableViewDelegate {
             guard let cell = cell as? RecipeCaloriesViewCell else { return }
             let ingredients = self.recipe?.ingredients
             cell.configure(with: CaloriesCellViewModel(
-                proteinCount: ingredients?.reduce(0, { $0 + ($1.product?.proteinMass ?? 0) }),
-                fatCount: ingredients?.reduce(0, { $0 + ($1.product?.fatMass ?? 0) }),
-                carbsCount: ingredients?.reduce(0, { $0 + ($1.product?.carbsMass ?? 0) }),
-                ccalCount: ingredients?.reduce(0, { $0 + ($1.product?.kilokalori ?? 0) })
+                proteinCount: ingredients?.reduce(0, { $0 + calculateCalories(type: .proteinCount(ingredient: $1)) }),
+                fatCount: ingredients?.reduce(0, { $0 + calculateCalories(type: .fatCount(ingredient: $1)) }),
+                carbsCount: ingredients?.reduce(0, { $0 + calculateCalories(type: .carbsCount(ingredient: $1)) }),
+                ccalCount: ingredients?.reduce(0, { $0 + calculateCalories(type: .ccalCount(ingredient: $1)) })
             ))
         case .instruction:
             guard let cell = cell as? RecipeInstructionsViewCell else { return }

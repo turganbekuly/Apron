@@ -28,8 +28,6 @@ extension RecipeCreationViewController: AssignTypesSelectedDelegate {
         switch type {
         case .servings(let string):
             recipeCreation?.servings = Int(string)
-        case .prepTime(let string):
-            recipeCreation?.prepTime = Int(string)
         case .cookTime(let string):
             recipeCreation?.cookTime = Int(string)
         case .whenToCook(let time):

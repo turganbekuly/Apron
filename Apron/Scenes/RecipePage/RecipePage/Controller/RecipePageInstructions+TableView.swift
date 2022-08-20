@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Models
 import APRUIKit
+import Extensions
 
 extension RecipeInstructionsViewCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,7 +33,7 @@ extension RecipeInstructionsViewCell:
         switch row {
         case let .instruction(instruction):
             let width = (UIScreen.main.bounds.width - 60)
-            return instruction.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
+            return instruction.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -40,7 +41,7 @@ extension RecipeInstructionsViewCell:
         switch row {
         case let .instruction(instruction):
             let width = (UIScreen.main.bounds.width - 60)
-            return instruction.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
+            return instruction.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
         }
     }
 

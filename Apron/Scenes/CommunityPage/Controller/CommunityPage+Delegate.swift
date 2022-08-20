@@ -9,10 +9,22 @@ import Foundation
 import UIKit
 import Storages
 import Models
+import HapticTouch
 
 extension CommunityPageViewController: ICommunityInfoCell {
     func inviteButtonTapped() {
-        //
+        let viewController = UIActivityViewController(
+            activityItems: ["https://apron.ws/community/\(community?.id ?? 0)"],
+            applicationActivities: nil
+        )
+
+        if let popoover = viewController.popoverPresentationController {
+            popoover.sourceView = view
+            popoover.sourceRect = view.bounds
+            popoover.permittedArrowDirections = []
+        }
+        HapticTouch.generateMedium()
+        self.navigationController?.present(viewController, animated: true, completion: nil)
     }
 
     func navigateToAuth() {

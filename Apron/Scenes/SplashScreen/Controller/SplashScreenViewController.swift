@@ -42,16 +42,12 @@ final class SplashScreenViewController: ViewController {
     }
     
     // MARK: - Life Cycle
-    override func loadView() {
-        super.loadView()
-        
-        configureViews()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
+        configureViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {

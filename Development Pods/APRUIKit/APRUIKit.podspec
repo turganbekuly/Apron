@@ -43,5 +43,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'SnapKit'
   spec.dependency 'M13Checkbox'
   spec.dependency 'NVActivityIndicatorView'
+  spec.dependency 'GrowingTextView'
 
 end

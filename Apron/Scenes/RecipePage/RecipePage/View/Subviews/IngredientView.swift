@@ -25,7 +25,7 @@ final class IngredientView: UIView {
     private var amount: Double = 0 {
         didSet {
             var value = ""
-            if amount != 0 {
+            if amount != 0.0 {
                 value = "\(amount.clean)"
             }
             value += " \(unit)"
@@ -33,7 +33,7 @@ final class IngredientView: UIView {
         }
     }
 
-    private var initialAmount: Double = 0 {
+    private var initialAmount: Double = 0.0 {
         didSet {
             amount = initialAmount
         }
@@ -115,13 +115,18 @@ final class IngredientView: UIView {
 
     func configure(
         name: String,
-        amount: Double,
-        unit: String,
+        amount: Double?,
+        unit: String?,
         image: String?
     ) {
         self.nameLabel.text = name
-        self.unit = unit
-        self.initialAmount = amount
+        if let amount = amount {
+            self.initialAmount = amount
+        }
+        if let measure = unit {
+            self.unit = measure
+        }
+
         self.imageView.kf.setImage(
             with: URL(string: image ?? ""),
             placeholder: ApronAssets.iconPlaceholderItem.image
@@ -136,7 +141,7 @@ final class IngredientView: UIView {
 
 extension Double {
     var clean: String {
-        return self.truncatingRemainder(dividingBy: 1) == 0 ?
+        return self.truncatingRemainder(dividingBy: 1) == 0.0 ?
         String(format: "%.0f", self) : String(format: "%.1f", self)
     }
 }

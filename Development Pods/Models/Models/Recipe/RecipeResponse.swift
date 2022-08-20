@@ -18,8 +18,7 @@ public struct RecipeResponse: Codable {
         case ingredients = "ingredients"
         case instructions = "instructions"
         case servings = "portions"
-        case prepTime = "prep_time"
-        case cookTime = "cook_time"
+        case cookTime = "cookTime"
         case isSaved = "added"
         case savedUserCount = "savedByUserCount"
         case likesCount = "likesCount"
@@ -40,7 +39,6 @@ public struct RecipeResponse: Codable {
     public var ingredients: [RecipeIngredient]?
     public var instructions: [String]?
     public var servings: Int?
-    public var prepTime: Int?
     public var cookTime: Int?
     public var isSaved: Bool?
     public var savedUserCount: Int?
@@ -65,7 +63,6 @@ public struct RecipeResponse: Codable {
         self.ingredients = (json[CodingKeys.ingredients.rawValue] as? [JSON])?.compactMap { RecipeIngredient(json: $0) } ?? []
         self.instructions = json[CodingKeys.instructions.rawValue] as? [String]
         self.servings = json[CodingKeys.servings.rawValue] as? Int
-        self.prepTime = json[CodingKeys.prepTime.rawValue] as? Int
         self.cookTime = json[CodingKeys.cookTime.rawValue] as? Int
         self.isSaved = json[CodingKeys.isSaved.rawValue] as? Bool
         self.savedUserCount = json[CodingKeys.savedUserCount.rawValue] as? Int
@@ -101,9 +98,6 @@ public struct RecipeResponse: Codable {
         }
         if let servings = servings {
             params[CodingKeys.servings.rawValue] = servings
-        }
-        if let prepTime = prepTime {
-            params[CodingKeys.prepTime.rawValue] = prepTime
         }
         if let cookTime = cookTime {
             params[CodingKeys.cookTime.rawValue] = cookTime

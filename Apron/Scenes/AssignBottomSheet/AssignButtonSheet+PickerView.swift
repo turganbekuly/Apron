@@ -12,12 +12,6 @@ extension AssignBottomSheetViewController: UIPickerViewDelegate {
         switch type {
         case .servings:
             type = .servings(servingComponents[row])
-        case .prepTime:
-            let hourIndex = pickerView.selectedRow(inComponent: 0)
-            let minIndex = pickerView.selectedRow(inComponent: 2)
-            let hourToMinInt = Int(hourComponents[hourIndex]) ?? 0
-            let minInt = Int(minComponments[minIndex]) ?? 0
-            type = .prepTime("\((hourToMinInt * 60) + minInt)")
         case .cookTime:
             let hourIndex = pickerView.selectedRow(inComponent: 0)
             let minIndex = pickerView.selectedRow(inComponent: 2)
@@ -37,7 +31,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
         switch type {
         case .servings, .whenToCook:
             return 1
-        case .cookTime, .prepTime:
+        case .cookTime:
             return 4
         default:
             return 0
@@ -48,7 +42,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
         switch type {
         case .servings:
             return servingComponents.count
-        case .prepTime, .cookTime:
+        case .cookTime:
             if component == 0 {
                 return hourComponents.count
             } else if component == 2 {
@@ -67,7 +61,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
         switch type {
         case .servings:
             return "\(servingComponents[row])"
-        case .prepTime, .cookTime:
+        case .cookTime:
             if component == 0 {
                 return "\(hourComponents[row])"
             } else if component == 1 {

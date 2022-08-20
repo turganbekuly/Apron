@@ -23,7 +23,6 @@ extension RecipeCreationViewController {
             case instruction
             case whenToCook
             case servings
-            case prepTime
             case cookTime
         }
         var section: Section

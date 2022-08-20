@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Models
 import APRUIKit
+import Extensions
 
 extension RecipeCreationAddInstructionCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,7 +33,7 @@ extension RecipeCreationAddInstructionCell:
         switch row {
         case let .instruction(instruction):
             let width = (UIScreen.main.bounds.width - 60)
-            return instruction.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
+            return instruction.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -40,7 +41,7 @@ extension RecipeCreationAddInstructionCell:
         switch row {
         case let .instruction(instruction):
             let width = (UIScreen.main.bounds.width - 60)
-            return instruction.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
+            return instruction.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
         }
     }
 
@@ -67,8 +68,7 @@ extension RecipeCreationAddInstructionCell:
                 style: .normal,
                 title: "") { [weak self] action, view, completion in
                     guard let self = self else { return }
-//                    self.cartItems.remove(at: indexPath.row)
-//                    self.removeCartItem(with: item.productName, measurement: item.measurement)
+                    
                     completion(true)
                 }
             action.image = ApronAssets.trashIcon.image

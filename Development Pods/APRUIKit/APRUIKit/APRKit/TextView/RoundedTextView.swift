@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GrowingTextView
 
 public class RoundedTextView: UIView {
     // MARK: - Private properties

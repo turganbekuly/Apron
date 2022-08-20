@@ -185,7 +185,11 @@ final class IngredientSelectionViewController: ViewController, Messagable {
             show(type: .error("Пожалуйста, выберите ингредиент из списка"))
             return
         }
-        recipeIgredient.amount = Double(measureTextField.amountTextField.text ?? "0")
+        guard let _ = measureTextField.measurementTyptextField.text else {
+            show(type: .error("Пожалуйтса, выберите измерение"))
+            return
+        }
+        recipeIgredient.amount = Double(measureTextField.amountTextField.text ?? "0.0")
         recipeIgredient.measurement = measureTextField.measurementTyptextField.text
         delegate?.onIngredientSelected(ingredient: recipeIgredient)
         navigationController?.popViewController(animated: true)

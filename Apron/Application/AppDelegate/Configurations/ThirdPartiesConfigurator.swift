@@ -13,6 +13,8 @@ import FirebaseAnalytics
 import OneSignal
 import RemoteConfig
 import FeatureToggle
+import Wormholy
+import Kingfisher
 
 final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     // MARK: - Private proeprties
@@ -25,6 +27,8 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
         configureAnalytics()
         configureOneSignal(launchOptions: launchOptions)
         prepareFirebaseRemoteConfig()
+        configureWormholy()
+        configureKingfisher()
     }
 
     private func configureFirebase() {
@@ -37,6 +41,11 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
             appsflyerDevKey: "",
             appleAppID: ""
         )
+    }
+
+    private func configureKingfisher() {
+        ImageCache.default.diskStorage.config.sizeLimit = 1000 * 1024 * 1024
+        ImageCache.default.cleanExpiredDiskCache()
     }
 
     private func configureOneSignal(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
@@ -63,5 +72,17 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
                 toggles.forEach { config[$0.key] = "\($0.value)" }
             }
         }
+    }
+
+    private func configureWormholy() {
+        #if DEBUG
+            Wormholy.ignoredHosts = [
+                "crashlytics.com",
+                "googleapis.com",
+                "sentry.io"
+            ]
+        #else
+            Wormholy.shakeEnabled = false
+        #endif
     }
 }

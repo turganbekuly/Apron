@@ -7,6 +7,7 @@
 
 import UIKit
 import APRUIKit
+import GrowingTextView
 
 protocol DescriptionCellDelegate: AnyObject {
     func cell(_ cell: RecipeCreationDescriptionCell, didEnteredDesc descr: String?)

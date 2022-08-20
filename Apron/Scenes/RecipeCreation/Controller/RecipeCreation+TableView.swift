@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Models
 import APRUIKit
+import Extensions
 
 extension RecipeCreationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,9 +43,6 @@ extension RecipeCreationViewController: UITableViewDataSource {
         case .servings:
             let cell: RecipeCreationAssignCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
-        case .prepTime:
-            let cell: RecipeCreationAssignCell = tableView.dequeueReusableCell(for: indexPath)
-            return cell
         case .cookTime:
             let cell: RecipeCreationAssignCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
@@ -69,18 +67,17 @@ extension RecipeCreationViewController:
         case .imagePlaceholder:
             return 167
         case .description:
-            return 125
+            let width = UIScreen.main.bounds.width - 64
+            return 28 + (recipeCreation?.description?.heightTextView(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .composition:
             return 100 + CGFloat((recipeCreation?.ingredients.count ?? 0) * 46)
         case .instruction:
             let width = (UIScreen.main.bounds.width - 60)
             return 100 + ((recipeCreation?.instructions
                 .reduce(0, {
-                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
+                    $0 + ($1.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
                 }) ?? 56))
         case .servings:
-            return 100
-        case .prepTime:
             return 100
         case .cookTime:
             return 100
@@ -100,18 +97,17 @@ extension RecipeCreationViewController:
         case .imagePlaceholder:
             return 167
         case .description:
-            return 125
+            let width = UIScreen.main.bounds.width - 32
+            return 28 + (recipeCreation?.description?.heightTextView(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .composition:
             return 100 + CGFloat((recipeCreation?.ingredients.count ?? 0) * 46)
         case .instruction:
             let width = (UIScreen.main.bounds.width - 60)
             return 100 + ((recipeCreation?.instructions
                 .reduce(0, {
-                    $0 + ($1.height(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
+                    $0 + ($1.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
                 }) ?? 56))
         case .servings:
-            return 100
-        case .prepTime:
             return 100
         case .cookTime:
             return 100
@@ -154,10 +150,6 @@ extension RecipeCreationViewController:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self
             cell.configure(type: .servings("\(recipeCreation?.servings ?? 0)"))
-        case .prepTime:
-            guard let cell = cell as? RecipeCreationAssignCell else { return }
-            cell.delegate = self
-            cell.configure(type: .prepTime("\(recipeCreation?.prepTime ?? 0)"))
         case .cookTime:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self
@@ -167,17 +159,5 @@ extension RecipeCreationViewController:
             cell.delegate = self
             cell.configure(type: .whenToCook(recipeCreation?.whenToCook?.first ?? 0))
         }
-    }
-}
-extension String {
-    func height(constraintedWidth width: CGFloat, font: UIFont) -> CGFloat {
-        let label =  UILabel(frame: CGRect(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
-        label.numberOfLines = 0
-        label.text = self
-        label.font = font
-        label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .left
-        label.sizeToFit()
-        return label.frame.height
     }
 }

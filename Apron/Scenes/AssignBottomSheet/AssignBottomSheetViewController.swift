@@ -122,11 +122,8 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
             titleLabel.text = "Количество порции"
             subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
         case .cookTime:
-            titleLabel.text = "Время готовки"
-            subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
-        case .prepTime:
             titleLabel.text = "Время приготовления"
-            subtitlLabel.text = "Сколько времени нужно, что бы подготовить это блюдо?"
+            subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
         case .whenToCook:
             titleLabel.text = "Время суток"
             subtitlLabel.text = "В какое время суток лучше всего приготовить это блюдо?"

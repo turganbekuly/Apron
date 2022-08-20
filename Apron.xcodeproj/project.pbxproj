@@ -52,6 +52,7 @@
 		1B6E6A6AB2AF02560FFC7246 /* RecipeCreation+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD60C41068BA5C71E96F27FC /* RecipeCreation+Network.swift */; };
 		1E4B414D5C5D870A5F3B3B4C /* AddSavedRecipesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE372457DFE48CB279E43368 /* AddSavedRecipesBuilder.swift */; };
 		1EC726FB9228981D31AABC75 /* RecipePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D08EBF0F47DD37AD9E09732 /* RecipePageService.swift */; };
+		1F42A8F36237E9CC6065EB65 /* Pods_Apron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 296593E8CF2821B04FC4D517 /* Pods_Apron.framework */; };
 		2056B1C9F4A3F6C99E2FDB56 /* ResultListEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA85673EFD4DED2384D1283 /* ResultListEndpoints.swift */; };
 		210BF0C04B2F72F6A377E24E /* CommunityPage+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F59647B97270F3342DDD5 /* CommunityPage+Network.swift */; };
 		2247161168417626E0A9E4A8 /* AddSavedRecipes+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D63674FA8CBCEA2E4DB1BFC /* AddSavedRecipes+Network.swift */; };
@@ -557,6 +558,7 @@
 
 /* Begin PBXFileReference section */
 		012431E092B46EC9D76EAB29 /* AddCommentDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddCommentDataFlow.swift; sourceTree = "<group>"; };
+		01545CDAF7B7FE3CE84B38DC /* Pods-Apron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.debug.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.debug.xcconfig"; sourceTree = "<group>"; };
 		016591C9C5B6CD6251702A91 /* GeneralSearchResult+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "GeneralSearchResult+Network.swift"; sourceTree = "<group>"; };
 		029A8C3919856A146BDEC2F9 /* CommunityCreation+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+DisplayLogic.swift"; sourceTree = "<group>"; };
 		060500EC2613FD0DB3E0C2FC /* AuthorizationProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
@@ -655,7 +657,6 @@
 		59B396542D0DF776B1BED62F /* CategorySelectionInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionInteractor.swift; sourceTree = "<group>"; };
 		59E989571108CDA2EDB8A7DC /* InstructionSelection+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "InstructionSelection+TableView.swift"; sourceTree = "<group>"; };
 		5DD0417BA7D098AFC62E57F3 /* SavedRecipes+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SavedRecipes+Network.swift"; sourceTree = "<group>"; };
-		5DF3A23AB0DE82F3F247E492 /* Pods-Apron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.debug.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.debug.xcconfig"; sourceTree = "<group>"; };
 		5E607C2E3764DC4491FFDCAD /* AuthSignUp+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AuthSignUp+DisplayLogic.swift"; sourceTree = "<group>"; };
 		60F9E14D59241B1C549A8E73 /* SearchService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		61138FD069C8CE399D421F93 /* CommunityCreationDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityCreationDataFlow.swift; sourceTree = "<group>"; };
@@ -1015,6 +1016,7 @@
 		B1788EAE4C7646A2370BF13C /* TasteOnboardingInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TasteOnboardingInteractor.swift; sourceTree = "<group>"; };
 		B46487091F1E45FDE156F288 /* SearchEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchEndpoints.swift; sourceTree = "<group>"; };
 		B50DB8F6C8621F0314246CBD /* Search+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Search+Network.swift"; sourceTree = "<group>"; };
+		B5A04F103D28EA603883C140 /* Pods-Apron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.release.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.release.xcconfig"; sourceTree = "<group>"; };
 		B80CE728A1A3EEB1A14E0C1E /* CategorySelectionDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionDataFlow.swift; sourceTree = "<group>"; };
 		B8462DAB041690FD56309291 /* RecipePageViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipePageViewController.swift; sourceTree = "<group>"; };
 		B8DF20ACBB4690DF7705221D /* CategorySelectionProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionProvider.swift; sourceTree = "<group>"; };
@@ -1071,7 +1073,6 @@
 		EAF3D2EB663AE8ADA61F244A /* CommunityPage+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityPage+State.swift"; sourceTree = "<group>"; };
 		EAFCD187DB6E3761A27CC49F /* CommunityCreationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityCreationView.swift; sourceTree = "<group>"; };
 		EB0887CA26D625261DE78882 /* ShoppingListProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShoppingListProvider.swift; sourceTree = "<group>"; };
-		EB439BE9740263A04E2D644D /* Pods-Apron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.release.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.release.xcconfig"; sourceTree = "<group>"; };
 		EB74F2F438C577CD2D52A5B6 /* TasteOnboardingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TasteOnboardingView.swift; sourceTree = "<group>"; };
 		ECAEDAE0A7C2526BA7088AB9 /* GeneralSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchView.swift; sourceTree = "<group>"; };
 		ED8C4E380C5D2DDDB559843C /* TabBarViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -1106,6 +1107,7 @@
 			files = (
 				6D8F5CFE284DDB5000EFE0E4 /* DropDown in Frameworks */,
 				519C46291315924EE1C31873 /* Pods_Apron.framework in Frameworks */,
+				1F42A8F36237E9CC6065EB65 /* Pods_Apron.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1556,10 +1558,10 @@
 		58DC78021841B3D410B7C859 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5DF3A23AB0DE82F3F247E492 /* Pods-Apron.debug.xcconfig */,
-				EB439BE9740263A04E2D644D /* Pods-Apron.release.xcconfig */,
 				E167A8404EA1F004A3ACD270 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
 				DA2B86440CF085D794758FCD /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
+				01545CDAF7B7FE3CE84B38DC /* Pods-Apron.debug.xcconfig */,
+				B5A04F103D28EA603883C140 /* Pods-Apron.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -3994,7 +3996,7 @@
 		};
 		6D0A71DD277A12EE0067E580 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5DF3A23AB0DE82F3F247E492 /* Pods-Apron.debug.xcconfig */;
+			baseConfigurationReference = 01545CDAF7B7FE3CE84B38DC /* Pods-Apron.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -4002,7 +4004,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
@@ -4032,7 +4034,7 @@
 		};
 		6D0A71DE277A12EE0067E580 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB439BE9740263A04E2D644D /* Pods-Apron.release.xcconfig */;
+			baseConfigurationReference = B5A04F103D28EA603883C140 /* Pods-Apron.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -4040,7 +4042,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
