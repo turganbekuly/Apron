@@ -37,7 +37,7 @@ public struct RecipeResponse: Codable {
     public var imageURL: String?
     public var description: String?
     public var ingredients: [RecipeIngredient]?
-    public var instructions: [String]?
+    public var instructions: [RecipeInstruction]?
     public var servings: Int?
     public var cookTime: Int?
     public var isSaved: Bool?
@@ -61,7 +61,7 @@ public struct RecipeResponse: Codable {
         self.imageURL = json[CodingKeys.imageURL.rawValue] as? String
         self.description = json[CodingKeys.description.rawValue] as? String
         self.ingredients = (json[CodingKeys.ingredients.rawValue] as? [JSON])?.compactMap { RecipeIngredient(json: $0) } ?? []
-        self.instructions = json[CodingKeys.instructions.rawValue] as? [String]
+        self.instructions = (json[CodingKeys.instructions.rawValue] as? [JSON])?.compactMap { RecipeInstruction(json: $0) } ?? []
         self.servings = json[CodingKeys.servings.rawValue] as? Int
         self.cookTime = json[CodingKeys.cookTime.rawValue] as? Int
         self.isSaved = json[CodingKeys.isSaved.rawValue] as? Bool

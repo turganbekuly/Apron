@@ -20,7 +20,7 @@ extension RecipeInstructionsViewCell: UITableViewDataSource {
         let row = instructionsSections[indexPath.section].rows[indexPath.row]
         switch row {
         case .instruction:
-            let cell: RecipeCreationInstructionViewCell = tableView.dequeueReusableCell(for: indexPath)
+            let cell: RecipeInstructionViewCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -33,7 +33,7 @@ extension RecipeInstructionsViewCell:
         switch row {
         case let .instruction(instruction):
             let width = (UIScreen.main.bounds.width - 60)
-            return instruction.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
+            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 40
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -41,7 +41,7 @@ extension RecipeInstructionsViewCell:
         switch row {
         case let .instruction(instruction):
             let width = (UIScreen.main.bounds.width - 60)
-            return instruction.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 40
+            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 40
         }
     }
 
@@ -49,7 +49,7 @@ extension RecipeInstructionsViewCell:
         let row = instructionsSections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .instruction(instruction):
-            guard let cell = cell as? RecipeCreationInstructionViewCell else { return }
+            guard let cell = cell as? RecipeInstructionViewCell else { return }
             cell.configure(instruction: instruction, stepCount:  "\(indexPath.row + 1)")
         }
     }

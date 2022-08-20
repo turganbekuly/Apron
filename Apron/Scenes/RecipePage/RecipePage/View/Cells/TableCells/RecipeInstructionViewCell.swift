@@ -1,22 +1,24 @@
 //
-//  RecipeCreationInstructionView.swift
+//  RecipeInstructionViewCell.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 23.04.2022.
+//  Created by Akarys Turganbekuly on 20.08.2022.
 //
 
 import UIKit
 import APRUIKit
 import Models
+import GrowingTextView
+import SnapKit
 
-protocol RecipeCreationInstructionViewCellDelegate: AnyObject {
+protocol RecipeInstructionViewCellCellDelegate: AnyObject {
     func onRemoveTapped(instruction: String?)
 }
 
-final class RecipeCreationInstructionViewCell: UITableViewCell {
+final class RecipeInstructionViewCell: UITableViewCell {
     // MARK: - Properties
 
-    weak var delegate: RecipeCreationInstructionViewCellDelegate?
+    weak var delegate: RecipeInstructionViewCellCellDelegate?
 
     // MARK: - Init
 
@@ -44,10 +46,9 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
         let label = UILabel()
         label.font = TypographyFonts.semibold12
         label.textColor = .black
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.sizeToFit()
         label.textAlignment = .left
+        label.numberOfLines = 0
+        label.sizeToFit()
         return label
     }()
 
@@ -62,13 +63,6 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
         return label
     }()
 
-    private lazy var removeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(ApronAssets.trashIcon.image, for: .normal)
-        button.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
     private lazy var separatorView = SeparatorView()
 
     // MARK: - Setup Views
@@ -76,7 +70,7 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
     private func setupViews() {
         selectionStyle = .none
         backgroundColor = .clear
-        
+
         [instructionLabel, stepLabel, separatorView].forEach {
             contentView.addSubview($0)
         }
@@ -100,15 +94,8 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
             $0.top.equalTo(stepLabel.snp.top)
             $0.trailing.equalToSuperview()
             $0.leading.equalTo(stepLabel.snp.trailing).offset(8)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(separatorView.snp.top).offset(-8)
         }
-    }
-
-    // MARK: - User actions
-
-    @objc
-    private func removeButtonTapped() {
-        delegate?.onRemoveTapped(instruction: instructionLabel.text)
     }
 
     // MARK: - Methods

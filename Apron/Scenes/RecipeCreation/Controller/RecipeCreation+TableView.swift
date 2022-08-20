@@ -75,7 +75,7 @@ extension RecipeCreationViewController:
             let width = (UIScreen.main.bounds.width - 60)
             return 100 + ((recipeCreation?.instructions
                 .reduce(0, {
-                    $0 + ($1.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
         case .servings:
             return 100
@@ -105,7 +105,7 @@ extension RecipeCreationViewController:
             let width = (UIScreen.main.bounds.width - 60)
             return 100 + ((recipeCreation?.instructions
                 .reduce(0, {
-                    $0 + ($1.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 48)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
         case .servings:
             return 100

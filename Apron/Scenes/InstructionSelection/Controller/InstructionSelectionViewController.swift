@@ -8,6 +8,7 @@
 
 import APRUIKit
 import UIKit
+import Models
 
 protocol InstructionSelectionDisplayLogic: AnyObject {
     
@@ -153,7 +154,10 @@ final class InstructionSelectionViewController: ViewController {
 
     @objc
     private func saveButtonTapped() {
-        delegate?.onInstructionSelected(image: selectedImage, description: instructionDesc ?? "")
+        var instruction = RecipeInstruction()
+        instruction.description = instructionDesc
+        instruction.image = "selectedImage"
+        delegate?.onInstructionSelected(instruction: instruction)
         navigationController?.popViewController(animated: true)
     }
     

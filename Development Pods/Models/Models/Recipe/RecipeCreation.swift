@@ -31,7 +31,7 @@ public struct RecipeCreation: Codable {
     public var imageURL: String?
     public var description: String?
     public var ingredients = [RecipeIngredient]()
-    public var instructions = [String]()
+    public var instructions = [RecipeInstruction]()
     public var servings: Int?
     public var cookTime: Int?
     public var communityId: Int?

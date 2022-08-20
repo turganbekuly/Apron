@@ -7,6 +7,7 @@
 
 import UIKit
 import APRUIKit
+import Models
 
 protocol AddInstructionCellTappedDelegate: AnyObject {
     func onAddInstructionTapped()
@@ -20,7 +21,7 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
             case instructions
         }
         enum Row {
-            case instruction(String)
+            case instruction(RecipeInstruction)
         }
         var section: Section
         var rows: [Row]
@@ -33,7 +34,7 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
     // MARK: - Private properties
 
     private weak var newInstructionDelegate: AddInstructionCellTappedDelegate?
-    private var instructions: [String] = [] {
+    private var instructions: [RecipeInstruction] = [] {
         didSet {
             instructionsSections = [.init(section: .instructions, rows: instructions.compactMap { .instruction($0) })]
             instructionsView.reloadData()
@@ -115,7 +116,7 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(
-        instructions: [String]?,
+        instructions: [RecipeInstruction]?,
         newInstructionDelegate: AddInstructionCellTappedDelegate?
     ) {
         self.newInstructionDelegate = newInstructionDelegate

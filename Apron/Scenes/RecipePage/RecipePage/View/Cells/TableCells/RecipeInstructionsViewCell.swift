@@ -9,6 +9,7 @@ import UIKit
 import APRUIKit
 import SnapKit
 import Extensions
+import Models
 
 final class RecipeInstructionsViewCell: UITableViewCell {
     // MARK: - Public properties
@@ -18,7 +19,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
             case instructions
         }
         enum Row {
-            case instruction(String)
+            case instruction(RecipeInstruction)
         }
         var section: Section
         var rows: [Row]
@@ -31,7 +32,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
     // MARK: - Private properties
 
     private weak var newInstructionDelegate: AddInstructionCellTappedDelegate?
-    private var instructions: [String] = [] {
+    private var instructions: [RecipeInstruction] = [] {
         didSet {
             instructionsSections = [.init(section: .instructions, rows: instructions.compactMap { .instruction($0) })]
             instructionsView.reloadData()
@@ -59,8 +60,8 @@ final class RecipeInstructionsViewCell: UITableViewCell {
         return label
     }()
 
-    lazy var instructionsView: RecipeInstructionsView = {
-        let view = RecipeInstructionsView()
+    lazy var instructionsView: RecipePageInstructionsView = {
+        let view = RecipePageInstructionsView()
         view.delegate = self
         view.dataSource = self
         return view

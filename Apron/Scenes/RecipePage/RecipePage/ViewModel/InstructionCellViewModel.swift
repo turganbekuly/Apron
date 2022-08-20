@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import Models
 
 final class InstructionCellViewModel {
     // MARK: - Properties
 
-    let instructions: [String]
+    let instructions: [RecipeInstruction]
 
     // MARK: - Init
 
-    init(instructions: [String]) {
+    init(instructions: [RecipeInstruction]) {
         self.instructions = instructions
     }
 }

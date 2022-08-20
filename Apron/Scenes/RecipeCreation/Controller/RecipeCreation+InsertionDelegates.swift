@@ -13,7 +13,7 @@ protocol IngredientSelectedProtocol {
 }
 
 protocol InstructionSelectedProtocol {
-    func onInstructionSelected(image: UIImage?, description: String)
+    func onInstructionSelected(instruction: RecipeInstruction)
 }
 
 extension RecipeCreationViewController: IngredientSelectedProtocol {
@@ -32,8 +32,8 @@ extension RecipeCreationViewController: IngredientSelectedProtocol {
 }
 
 extension RecipeCreationViewController: InstructionSelectedProtocol {
-    func onInstructionSelected(image: UIImage?, description: String) {
-        recipeCreation?.instructions.append(description)
+    func onInstructionSelected(instruction: RecipeInstruction) {
+        recipeCreation?.instructions.append(instruction)
         mainView.reloadTableViewWithoutAnimation()
 //        configureInstructions()
     }
@@ -59,7 +59,7 @@ extension RecipeCreationViewController: RecipeCreationInstructionViewCellDelegat
             return
         }
 
-        recipeCreation?.instructions.removeAll(where: { $0 == instruction })
+//        recipeCreation?.instructions.removeAll(where: { $0 == instruction })
         mainView.reloadTableViewWithoutAnimation()
     }
 }

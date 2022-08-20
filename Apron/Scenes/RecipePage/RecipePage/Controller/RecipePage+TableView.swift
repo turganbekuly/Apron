@@ -90,7 +90,7 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 60)
             return 60 + ((recipe?.instructions?
                 .reduce(0, {
-                    $0 + ($1.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 55)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 55)
                 }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
@@ -113,7 +113,7 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 60)
             return 60 + ((recipe?.instructions?
                 .reduce(0, {
-                    $0 + ($1.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) + 55)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 55)
                 }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
