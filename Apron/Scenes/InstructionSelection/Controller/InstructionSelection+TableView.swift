@@ -61,12 +61,46 @@ extension InstructionSelectionViewController: UITableViewDelegate {
         case .image:
             guard let cell = cell as? RecipeCreationImageCell else { return }
             cell.delegate = self
-            cell.configure(image: selectedImage, imageURL: "recipeCreation?.imageURL")
+            cell.configure(image: selectedImage, imageURL: instruction.image)
         case .description:
             guard let cell = cell as? RecipeCreationDescriptionCell else { return }
             cell.placeholder = "Введите инструкцию"
             cell.delegate = self
-            cell.configure(description: "")
+            cell.configure(description: instruction.description)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let section = sections[section].section
+        switch section {
+        case .instructions:
+            let view: InstructionSelectionHeaderView = tableView.dequeueReusableHeaderFooterView()
+            return view
+        }
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        let section = sections[section].section
+        switch section {
+        case .instructions:
+            return 54
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let section = sections[section].section
+        switch section {
+        case .instructions:
+            return 54
+        }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let section = sections[section].section
+        switch section {
+        case .instructions:
+            guard let view = view as? InstructionSelectionHeaderView else { return }
+            view.configure(title: "Шаг №\(stepCount)")
         }
     }
 }

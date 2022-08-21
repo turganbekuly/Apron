@@ -28,4 +28,16 @@ extension RecipeCreationViewController {
         var section: Section
         var rows: [Row]
     }
+
+    struct TagsSection {
+        enum Section {
+            case whenToCook
+        }
+        enum Row {
+            case option(SuggestedCookingTime)
+        }
+
+        var section: Section
+        var rows: [Row]
+    }
 }

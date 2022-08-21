@@ -1,14 +1,14 @@
 //
-//  RecipeReviewsHeaderView.swift
+//  InstructionSelectionHeaderView.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 29.07.2022.
+//  Created by Akarys Turganbekuly on 21.08.2022.
 //
 
 import UIKit
 import APRUIKit
 
-final class RecipeReviewsHeaderView: UITableViewHeaderFooterView {
+final class InstructionSelectionHeaderView: UITableViewHeaderFooterView {
     // MARK: - Init
 
     override init(reuseIdentifier: String?) {
@@ -26,7 +26,7 @@ final class RecipeReviewsHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.font = TypographyFonts.semibold20
         label.textColor = .black
-        label.textAlignment = .left
+        label.textAlignment = .center
         return label
     }()
 
@@ -52,4 +52,5 @@ final class RecipeReviewsHeaderView: UITableViewHeaderFooterView {
         sectionHeaderLabel.text = title
     }
 }
+
 

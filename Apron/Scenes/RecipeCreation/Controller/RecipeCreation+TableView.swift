@@ -47,7 +47,7 @@ extension RecipeCreationViewController: UITableViewDataSource {
             let cell: RecipeCreationAssignCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         case .whenToCook:
-            let cell: RecipeCreationAssignCell = tableView.dequeueReusableCell(for: indexPath)
+            let cell: RecipeCreationTagsCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -67,13 +67,18 @@ extension RecipeCreationViewController:
         case .imagePlaceholder:
             return 167
         case .description:
-            let width = UIScreen.main.bounds.width - 64
-            return 28 + (recipeCreation?.description?.heightTextView(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
+            return 125
         case .composition:
             return 100 + CGFloat((recipeCreation?.ingredients.count ?? 0) * 46)
         case .instruction:
+            var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
-            return 100 + ((recipeCreation?.instructions
+
+            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0
+            {
+                imageSize = CGFloat(images.count) * 220
+            }
+            return 100 + imageSize + ((recipeCreation?.instructions
                 .reduce(0, {
                     $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
@@ -82,7 +87,7 @@ extension RecipeCreationViewController:
         case .cookTime:
             return 100
         case .whenToCook:
-            return 100
+            return 150
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -97,13 +102,18 @@ extension RecipeCreationViewController:
         case .imagePlaceholder:
             return 167
         case .description:
-            let width = UIScreen.main.bounds.width - 32
-            return 28 + (recipeCreation?.description?.heightTextView(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
+            return 125
         case .composition:
             return 100 + CGFloat((recipeCreation?.ingredients.count ?? 0) * 46)
         case .instruction:
+            var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
-            return 100 + ((recipeCreation?.instructions
+
+            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0
+            {
+                imageSize = CGFloat(images.count) * 220
+            }
+            return 100 + imageSize + ((recipeCreation?.instructions
                 .reduce(0, {
                     $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
@@ -112,7 +122,7 @@ extension RecipeCreationViewController:
         case .cookTime:
             return 100
         case .whenToCook:
-            return 100
+            return 150
         }
     }
 
@@ -155,9 +165,10 @@ extension RecipeCreationViewController:
             cell.delegate = self
             cell.configure(type: .cookTime("\(recipeCreation?.cookTime ?? 0)"))
         case .whenToCook:
-            guard let cell = cell as? RecipeCreationAssignCell else { return }
-            cell.delegate = self
-            cell.configure(type: .whenToCook(recipeCreation?.whenToCook?.first ?? 0))
+            guard let cell = cell as? RecipeCreationTagsCell else { return }
+            cell.collectionView.delegate = self
+            cell.collectionView.dataSource = self
+            cell.configure()
         }
     }
 }

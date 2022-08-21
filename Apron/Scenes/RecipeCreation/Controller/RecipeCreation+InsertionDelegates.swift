@@ -8,11 +8,11 @@
 import UIKit
 import Models
 
-protocol IngredientSelectedProtocol {
+protocol IngredientSelectedProtocol: AnyObject {
     func onIngredientSelected(ingredient: RecipeIngredient)
 }
 
-protocol InstructionSelectedProtocol {
+protocol InstructionSelectedProtocol: AnyObject {
     func onInstructionSelected(instruction: RecipeInstruction)
 }
 
@@ -35,7 +35,6 @@ extension RecipeCreationViewController: InstructionSelectedProtocol {
     func onInstructionSelected(instruction: RecipeInstruction) {
         recipeCreation?.instructions.append(instruction)
         mainView.reloadTableViewWithoutAnimation()
-//        configureInstructions()
     }
 }
 
@@ -53,20 +52,10 @@ extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
     }
 }
 
-extension RecipeCreationViewController: RecipeCreationInstructionViewCellDelegate {
-    func onRemoveTapped(instruction: String?) {
-        guard let instruction = instruction else {
-            return
-        }
-
-//        recipeCreation?.instructions.removeAll(where: { $0 == instruction })
-        mainView.reloadTableViewWithoutAnimation()
-    }
-}
 extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
     func onAddInstructionTapped() {
         let viewController = InstructionSelectionBuilder(
-            state: .initial(self)
+            state: .initial((recipeCreation?.instructions.count ?? 0) + 1, self)
         ).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(viewController, animated: true)

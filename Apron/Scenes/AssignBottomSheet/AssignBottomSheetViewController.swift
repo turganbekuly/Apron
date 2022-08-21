@@ -124,9 +124,6 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
         case .cookTime:
             titleLabel.text = "Время приготовления"
             subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
-        case .whenToCook:
-            titleLabel.text = "Время суток"
-            subtitlLabel.text = "В какое время суток лучше всего приготовить это блюдо?"
         default: break
         }
         configureColors()

@@ -25,7 +25,19 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     var sections: [Section] = []
 
+    var tagsSections: [TagsSection] = [
+        .init(section: .whenToCook, rows: SuggestedCookingTime.allCases.compactMap { .option($0) })
+    ]
+
+    // Recipe creation model
+
     var recipeCreation: RecipeCreation?
+
+    var selectedOptions = [SuggestedCookingTime]() {
+        didSet {
+            recipeCreation?.whenToCook = selectedOptions.compactMap { $0.rawValue }
+        }
+    }
 
     var recipeCommunityId = 0 {
         didSet {
@@ -83,7 +95,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
                         rows: [
                             .name, .imagePlaceholder,.source,
                             .description, .composition, .instruction,
-                            .whenToCook, .servings, .cookTime
+                            .servings, .cookTime, .whenToCook
                         ]
                     )
                 ]

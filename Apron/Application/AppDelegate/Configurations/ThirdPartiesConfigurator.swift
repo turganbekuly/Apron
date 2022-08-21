@@ -75,14 +75,14 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     }
 
     private func configureWormholy() {
-        #if DEBUG
-            Wormholy.ignoredHosts = [
-                "crashlytics.com",
-                "googleapis.com",
-                "sentry.io"
-            ]
-        #else
-            Wormholy.shakeEnabled = false
-        #endif
+//        #if DEBUG
+//            Wormholy.ignoredHosts = [
+//                "crashlytics.com",
+//                "googleapis.com",
+//                "sentry.io"
+//            ]
+//        #else
+//            Wormholy.shakeEnabled = false
+//        #endif
     }
 }

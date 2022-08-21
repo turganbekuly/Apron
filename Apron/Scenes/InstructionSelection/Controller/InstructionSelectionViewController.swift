@@ -9,12 +9,13 @@
 import APRUIKit
 import UIKit
 import Models
+import AlertMessages
 
 protocol InstructionSelectionDisplayLogic: AnyObject {
-    
+    func displayUploadedImage(with viewModel: InstructionSelectionDataFlow.UploadImage.ViewModel)
 }
 
-final class InstructionSelectionViewController: ViewController {
+final class InstructionSelectionViewController: ViewController, Messagable {
     
     struct Section {
         enum Section {
@@ -42,18 +43,31 @@ final class InstructionSelectionViewController: ViewController {
 
     var selectedImage: UIImage? {
         didSet {
-            mainView.reloadTableViewWithoutAnimation()
-            replaceImageCell(type: .image)
+            if let selectedImage = selectedImage {
+                uploadImage(with: selectedImage)
+                configureImageCell(isLoaded: true)
+            }
         }
     }
 
     var instructionDesc: String? {
         didSet {
+            instruction.description = instructionDesc
             configureSaveButton()
         }
     }
 
-    var delegate: InstructionSelectedProtocol?
+    // Header step count
+
+    var stepCount: Int = 1
+
+    // Creation model
+
+    var instruction = RecipeInstruction()
+
+    // Apply and send delegate
+
+    weak var delegate: InstructionSelectedProtocol?
     
     // MARK: - Views
     lazy var mainView: InstructionSelectionView = {
@@ -150,13 +164,27 @@ final class InstructionSelectionViewController: ViewController {
         navigationRightButton.isEnabled = true
     }
 
+    // MARK: - Methods
+
+    func configureImageCell(isLoaded: Bool) {
+        guard
+            let section = sections.firstIndex(where: { $0.section == .instructions }),
+            let row = sections[section].rows.firstIndex(of: .placeholder),
+            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? RecipeCreationPlaceholderImageCell
+        else { return }
+        if isLoaded {
+            cell.startAnimating()
+        } else {
+            cell.stopAnimating()
+        }
+        mainView.reloadTableViewWithoutAnimation()
+    }
+
     // MARK: - User actions
 
     @objc
     private func saveButtonTapped() {
-        var instruction = RecipeInstruction()
         instruction.description = instructionDesc
-        instruction.image = "selectedImage"
         delegate?.onInstructionSelected(instruction: instruction)
         navigationController?.popViewController(animated: true)
     }

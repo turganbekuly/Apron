@@ -8,6 +8,7 @@
 import UIKit
 import APRUIKit
 import Models
+import Kingfisher
 
 protocol RecipeCreationInstructionViewCellDelegate: AnyObject {
     func onRemoveTapped(instruction: String?)
@@ -62,11 +63,12 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
         return label
     }()
 
-    private lazy var removeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(ApronAssets.trashIcon.image, for: .normal)
-        button.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
-        return button
+    private lazy var instructionImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 20
+        imageView.clipsToBounds = true
+        return imageView
     }()
 
     private lazy var separatorView = SeparatorView()
@@ -77,7 +79,7 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .clear
         
-        [instructionLabel, stepLabel, separatorView].forEach {
+        [instructionLabel, stepLabel, instructionImage, separatorView].forEach {
             contentView.addSubview($0)
         }
         setupConstraints()
@@ -100,15 +102,14 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
             $0.top.equalTo(stepLabel.snp.top)
             $0.trailing.equalToSuperview()
             $0.leading.equalTo(stepLabel.snp.trailing).offset(8)
-            $0.bottom.equalToSuperview()
         }
-    }
 
-    // MARK: - User actions
-
-    @objc
-    private func removeButtonTapped() {
-        delegate?.onRemoveTapped(instruction: instructionLabel.text)
+        instructionImage.snp.makeConstraints {
+            $0.top.equalTo(instructionLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(stepLabel.snp.trailing).offset(8)
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(220)
+        }
     }
 
     // MARK: - Methods
@@ -116,5 +117,10 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
     func configure(instruction: RecipeInstruction, stepCount: String) {
         instructionLabel.text = instruction.description
         stepLabel.text = "\(stepCount)"
+        guard let image = instruction.image else { return }
+        instructionImage.kf.setImage(
+            with: URL(string: image),
+            placeholder: ApronAssets.iconPlaceholderItem.image
+        )
     }
 }

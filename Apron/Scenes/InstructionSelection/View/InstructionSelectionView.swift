@@ -31,6 +31,12 @@ final class InstructionSelectionView: UITableView {
     private func configure() {
         separatorStyle = .none
         [
+            InstructionSelectionHeaderView.self
+        ].forEach {
+            register(aClass: $0)
+        }
+        
+        [
             RecipeCreationPlaceholderImageCell.self,
             RecipeCreationImageCell.self,
             RecipeCreationDescriptionCell.self

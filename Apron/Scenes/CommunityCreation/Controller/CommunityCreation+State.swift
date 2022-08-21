@@ -37,7 +37,6 @@ extension CommunityCreationViewController {
         case let .uploadImageSucceed(path):
             communityCreation?.imageURL = Configurations.downloadImageURL(imagePath: path)
             configureImageCell(isLoaded: false)
-            mainView.reloadTableViewWithoutAnimation()
             replaceImageCell(type: .image)
         case .uploadImageFailed:
             configureImageCell(isLoaded: false)

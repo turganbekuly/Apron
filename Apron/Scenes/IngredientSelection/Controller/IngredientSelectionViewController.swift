@@ -26,7 +26,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
         }
     }
 
-    var delegate: IngredientSelectedProtocol?
+    weak var delegate: IngredientSelectedProtocol?
 
     var measurementType: [String] = MeasureTypes.allCases.map { $0.rawValue }
 

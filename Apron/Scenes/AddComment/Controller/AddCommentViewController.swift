@@ -58,7 +58,7 @@ final class AddCommentViewController: ViewController, Messagable {
         didSet {
             let howDidItTasteOptions = ["Вкусный", "Сладкий", "Пряный", "Мягкий", "Влажный", "Сухой", "Хрустящий", "Свежий"]
             let whatWasGoodOptions = ["Легкий", "Подходит для детей", "Одна посуда", "До 30 минут"]
-            let makeItAgainOptions = ["Да", "Никогда" , "Особый случай"]
+            let makeItAgainOptions = ["Частый выбор", "Никогда" , "Особый случай"]
             tagsSections = [
                 .init(section: .howDidItTaste("Как это было на вкус?"), rows: howDidItTasteOptions.compactMap { .option($0) }),
                 .init(section: .whatWasGood("Что в нем было хорошего?"), rows: whatWasGoodOptions.compactMap { .option($0) }),

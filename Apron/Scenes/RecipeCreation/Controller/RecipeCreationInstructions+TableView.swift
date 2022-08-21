@@ -33,7 +33,11 @@ extension RecipeCreationAddInstructionCell:
         switch row {
         case let .instruction(instruction):
             let width = (UIScreen.main.bounds.width - 60)
-            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 40
+            var imageHeight: CGFloat = 0
+            if let _ = instruction.image {
+                imageHeight = 220
+            }
+            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 40 + imageHeight
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -41,7 +45,11 @@ extension RecipeCreationAddInstructionCell:
         switch row {
         case let .instruction(instruction):
             let width = (UIScreen.main.bounds.width - 60)
-            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 40
+            var imageHeight: CGFloat = 0
+            if let _ = instruction.image {
+                imageHeight = 220
+            }
+            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 40 + imageHeight
         }
     }
 
