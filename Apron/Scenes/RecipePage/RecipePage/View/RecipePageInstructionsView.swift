@@ -32,7 +32,7 @@ final class RecipePageInstructionsView: UITableView {
         isScrollEnabled = false
         showsVerticalScrollIndicator = false
         [
-            RecipeInstructionViewCell.self
+            RecipeCreationInstructionViewCell.self
         ].forEach {
             register(cellClass: $0)
         }

@@ -79,7 +79,7 @@ public struct RecipeCreation: Codable {
         
         params[CodingKeys.ingredients.rawValue] = ingredients.compactMap { $0.toJSON() }
 
-        params[CodingKeys.instructions.rawValue] = instructions
+        params[CodingKeys.instructions.rawValue] = instructions.compactMap { $0.toJSON() }
 
         if let servings = servings {
             params[CodingKeys.servings.rawValue] = servings

@@ -87,10 +87,17 @@ extension RecipePageViewController: UITableViewDelegate {
         case .nutrition:
             return 203
         case .instruction:
+            var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
-            return 60 + ((recipe?.instructions?
+
+            if let images = recipe?.instructions?.compactMap({ $0.image }), images.count != 0
+            {
+                imageSize = CGFloat(images.count) * 220
+            }
+
+            return 100 + imageSize + ((recipe?.instructions?
                 .reduce(0, {
-                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 55)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
@@ -110,10 +117,17 @@ extension RecipePageViewController: UITableViewDelegate {
         case .nutrition:
             return 203
         case .instruction:
+            var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
-            return 60 + ((recipe?.instructions?
+
+            if let images = recipe?.instructions?.compactMap({ $0.image }), images.count != 0
+            {
+                imageSize = CGFloat(images.count) * 220
+            }
+
+            return 100 + imageSize + ((recipe?.instructions?
                 .reduce(0, {
-                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 55)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
