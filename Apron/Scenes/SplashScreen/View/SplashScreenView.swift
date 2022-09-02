@@ -44,7 +44,7 @@ final class SplashScreenView: UIView {
         [animationView].forEach { addSubview($0) }
         setupConstraints()
         animationView.loopMode = .playOnce
-        animationView.animationSpeed = 0.75
+        animationView.animationSpeed = 1
         animationView.play() { [weak self] _ in
             self?.delegate?.animationDidFinished()
         }

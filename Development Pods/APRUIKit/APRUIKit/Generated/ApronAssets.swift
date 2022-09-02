@@ -91,6 +91,7 @@ public enum ApronAssets {
   public static let recipeDislikeSelected = ImageAsset(name: "recipe_dislike_selected")
   public static let recipeDislikeUnselected = ImageAsset(name: "recipe_dislike_unselected")
   public static let recipeEditIcon = ImageAsset(name: "recipe_edit_icon")
+  public static let recipeIngredientPlaceholder = ImageAsset(name: "recipe_ingredient_placeholder")
   public static let recipeLikeSelected = ImageAsset(name: "recipe_like_selected")
   public static let recipeLikeUnselected = ImageAsset(name: "recipe_like_unselected")
   public static let recipeSampleImage = ImageAsset(name: "recipe_sample_image")

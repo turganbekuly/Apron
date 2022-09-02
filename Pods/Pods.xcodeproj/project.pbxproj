@@ -677,6 +677,7 @@
 		6CEA5AA9EF63BDA4113651C89103634F /* FIRAnalyticsInteropListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 68F8AC45C07AC0A439CCBD69CC82DBF6 /* FIRAnalyticsInteropListener.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6CF2AA157AD0F79DC57E4F0B30A88CDE /* FirebaseCoreDiagnostics-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF73E739AFFAA8A1F8B14905223368 /* FirebaseCoreDiagnostics-dummy.m */; };
 		6D1CCF3B869901CC0D804FC446A20385 /* KeyframeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8111A3A2FB3191C92BE01790F9EA6A /* KeyframeExtensions.swift */; };
+		6D36BAA828BF1D7A0076E3F8 /* TimerScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36BAA728BF1D7A0076E3F8 /* TimerScheduleManager.swift */; };
 		6D5716A628B144F700163EAE /* RecipeInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5716A528B144F700163EAE /* RecipeInstruction.swift */; };
 		6D585A2ABBDF603F652BC216B0469A3D /* AKNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E4A7C2884A3FA31209D91DC4939BE0 /* AKNetworkError.swift */; };
 		6DA10E58B66FC64787436EF235EB4390 /* FIRExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88E246E8210E6A1B611EBD6A524198F /* FIRExperimentController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3063,6 +3064,7 @@
 		6C821601BDB3EAFC58642AF91FC04F2B /* FirebaseRemoteConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FirebaseRemoteConfig.h; path = FirebaseRemoteConfig/Sources/Public/FirebaseRemoteConfig/FirebaseRemoteConfig.h; sourceTree = "<group>"; };
 		6CE10EF7B182DD224D6E58752C56386B /* FIRInteropParameterNames.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInteropParameterNames.h; path = Interop/Analytics/Public/FIRInteropParameterNames.h; sourceTree = "<group>"; };
 		6D2831B869955459A8BBF510521B0904 /* FIRBundleUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRBundleUtil.m; path = FirebaseCore/Sources/FIRBundleUtil.m; sourceTree = "<group>"; };
+		6D36BAA728BF1D7A0076E3F8 /* TimerScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerScheduleManager.swift; sourceTree = "<group>"; };
 		6D47960BC3887F3F3F1C8ABF494BC48A /* FIRCLSDemangleOperation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = FIRCLSDemangleOperation.mm; path = Crashlytics/Crashlytics/Operations/Symbolication/FIRCLSDemangleOperation.mm; sourceTree = "<group>"; };
 		6D5694958FFB454F65916A7838885022 /* SwiftEntryKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftEntryKit.swift; path = Source/SwiftEntryKit.swift; sourceTree = "<group>"; };
 		6D5716A528B144F700163EAE /* RecipeInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInstruction.swift; sourceTree = "<group>"; };
@@ -5464,9 +5466,10 @@
 		6007D7D11437E81415022FEA3EE1C8D8 /* Storages */ = {
 			isa = PBXGroup;
 			children = (
+				C8B76FD260509BC04B50594843A126A9 /* CartManager */,
+				6D36BAA628BF1D560076E3F8 /* TimerScheduleManager */,
 				D797BB09B21E67ED8D969441760EDA2F /* Storages.h */,
 				2E09D5DB8391DE5DBD1E1719B9FBD6E4 /* Auth */,
-				C8B76FD260509BC04B50594843A126A9 /* CartManager */,
 				347374347AEF047ECD9BDA1EFBB8EA5B /* TasteOnboardingStorage */,
 				996986FC0797CF265E0BC8FBB2798749 /* UserDefaults */,
 				D33F64206FD9E9DCBA196174FD57E16F /* UserStorage */,
@@ -5634,6 +5637,14 @@
 			);
 			name = Modules;
 			path = Protocols/Modules;
+			sourceTree = "<group>";
+		};
+		6D36BAA628BF1D560076E3F8 /* TimerScheduleManager */ = {
+			isa = PBXGroup;
+			children = (
+				6D36BAA728BF1D7A0076E3F8 /* TimerScheduleManager.swift */,
+			);
+			path = TimerScheduleManager;
 			sourceTree = "<group>";
 		};
 		6D3B4DBF1D6E6DA382DF3DA2744AA7D2 /* HapticTouch */ = {
@@ -10485,6 +10496,7 @@
 				CE2ACC1F438CE14CDF5CB4E160750C53 /* CartItem.swift in Sources */,
 				ED393FD30E91ABFCC65C4410544E671B /* CartManager.swift in Sources */,
 				A4309BA21C7295910B58F9F6BBFDD0F5 /* SearchHistoryManager.swift in Sources */,
+				6D36BAA828BF1D7A0076E3F8 /* TimerScheduleManager.swift in Sources */,
 				735F06EE0B6383E62086BCE3549751CE /* Storages-dummy.m in Sources */,
 				FD9B325BFBE559D9120957C3DFD78AD6 /* TasteOnboardingStorage.swift in Sources */,
 				FB610B4985A0333E72641D150F177E32 /* UserDefaultsStorage.swift in Sources */,

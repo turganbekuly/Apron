@@ -129,7 +129,7 @@ final class IngredientView: UIView {
 
         self.imageView.kf.setImage(
             with: URL(string: image ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image
+            placeholder: ApronAssets.recipeIngredientPlaceholder.image
         )
     }
 

@@ -1,0 +1,144 @@
+//
+//  StepByStepModeViewController.swift
+//  Apron
+//
+//  Created by Akarys Turganbekuly on 24/08/2022.
+//  Copyright © 2022 Apron. All rights reserved.
+//
+
+import APRUIKit
+import UIKit
+import Models
+
+protocol StepByStepModeDisplayLogic: AnyObject {
+    
+}
+
+final class StepByStepModeViewController: ViewController {
+    
+    struct Section {
+        enum Section {
+            case instructions
+        }
+        enum Row {
+            case instruction(RecipeInstruction)
+        }
+        
+        let section: Section
+        let rows: [Row]
+    }
+
+    struct StepperSection {
+        enum Section {
+            case steps
+        }
+        enum Row {
+            case step
+        }
+        let section: Section
+        let rows: [Row]
+    }
+    
+    // MARK: - Properties
+    let interactor: StepByStepModeBusinessLogic
+    var sections: [Section] = []
+    var stepperSections: [StepperSection] = []
+    var onStepperSelected = false
+    var state: State {
+        didSet {
+            updateState()
+        }
+    }
+
+    var instructions: [RecipeInstruction] = [] {
+        didSet {
+            sections = [.init(section: .instructions, rows: instructions.compactMap { .instruction($0) })]
+            stepperSections = [.init(section: .steps, rows: Array(repeating: .step, count: instructions.count))]
+        }
+    }
+    
+    // MARK: - Views
+    lazy var mainView: StepByStepModeView = {
+        let view = StepByStepModeView()
+        view.dataSource = self
+        view.delegate = self
+        return view
+    }()
+
+    lazy var stepperView: StepByStepPagerView = {
+        let view = StepByStepPagerView()
+        view.dataSource = self
+        view.delegate = self
+        return view
+    }()
+    
+    // MARK: - Init
+    init(interactor: StepByStepModeBusinessLogic, state: State) {
+        self.interactor = interactor
+        self.state = state
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        return nil
+    }
+    
+    // MARK: - Life Cycle
+    override func loadView() {
+        super.loadView()
+        
+        configureViews()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        state = { state }()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureNavigation()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        configureColors()
+    }
+    
+    // MARK: - Methods
+    private func configureNavigation() {
+        navigationItem.title = "Режим готовки"
+    }
+    
+    private func configureViews() {
+        [mainView, stepperView].forEach { view.addSubview($0) }
+        
+        configureColors()
+        makeConstraints()
+    }
+    
+    private func makeConstraints() {
+        stepperView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+
+        mainView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(stepperView.snp.top)
+        }
+    }
+    
+    private func configureColors() {
+        view.backgroundColor = ApronAssets.secondary.color
+    }
+    
+    deinit {
+        NSLog("deinit \(self)")
+    }
+    
+}

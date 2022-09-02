@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RecipeInstruction: Codable {
+public struct RecipeInstruction: Codable, Equatable {
     // MARK: - Coding keys
 
     private enum CodingKeys: String, CodingKey {

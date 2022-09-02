@@ -11,6 +11,7 @@ import Models
 
 protocol AddInstructionCellTappedDelegate: AnyObject {
     func onAddInstructionTapped()
+    func remove(instruction: RecipeInstruction)
 }
 
 final class RecipeCreationAddInstructionCell: UITableViewCell {
@@ -33,8 +34,8 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
 
     // MARK: - Private properties
 
-    private weak var newInstructionDelegate: AddInstructionCellTappedDelegate?
-    private var instructions: [RecipeInstruction] = [] {
+    weak var newInstructionDelegate: AddInstructionCellTappedDelegate?
+    var instructions: [RecipeInstruction] = [] {
         didSet {
             instructionsSections = [.init(section: .instructions, rows: instructions.compactMap { .instruction($0) })]
             instructionsView.reloadData()
@@ -115,11 +116,7 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func configure(
-        instructions: [RecipeInstruction]?,
-        newInstructionDelegate: AddInstructionCellTappedDelegate?
-    ) {
-        self.newInstructionDelegate = newInstructionDelegate
+    func configure(instructions: [RecipeInstruction]?) {
         titleLabel.text = "Инструкция"
         guard let instructions = instructions else {
             return

@@ -61,4 +61,9 @@ extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
+
+    func remove(instruction: RecipeInstruction) {
+        recipeCreation?.instructions.removeAll(where: { $0 == instruction })
+        mainView.reloadTableViewWithoutAnimation()
+    }
 }

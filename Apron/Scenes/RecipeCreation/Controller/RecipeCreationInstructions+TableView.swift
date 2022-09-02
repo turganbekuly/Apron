@@ -77,7 +77,7 @@ extension RecipeCreationAddInstructionCell:
                 title: ""
             ) { [weak self] action, view, completion in
                     guard let self = self else { return }
-                    
+                self.newInstructionDelegate?.remove(instruction: instruction)
                     completion(true)
                 }
             action.image = ApronAssets.trashIcon.image

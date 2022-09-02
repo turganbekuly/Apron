@@ -10,15 +10,8 @@ import APRUIKit
 import Models
 import Kingfisher
 
-protocol RecipeCreationInstructionViewCellDelegate: AnyObject {
-    func onRemoveTapped(instruction: String?)
-}
 
 final class RecipeCreationInstructionViewCell: UITableViewCell {
-    // MARK: - Properties
-
-    weak var delegate: RecipeCreationInstructionViewCellDelegate?
-
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

@@ -155,7 +155,8 @@ extension RecipeCreationViewController:
             cell.configure(ingredients: recipeCreation?.ingredients, newIngredientDelegate: self)
         case .instruction:
             guard let cell = cell as? RecipeCreationAddInstructionCell else { return }
-            cell.configure(instructions: recipeCreation?.instructions, newInstructionDelegate: self)
+            cell.newInstructionDelegate = self
+            cell.configure(instructions: recipeCreation?.instructions)
         case .servings:
             guard let cell = cell as? RecipeCreationAssignCell else { return }
             cell.delegate = self

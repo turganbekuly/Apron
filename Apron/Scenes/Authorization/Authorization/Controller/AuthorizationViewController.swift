@@ -81,8 +81,10 @@ final class AuthorizationViewController: ViewController, Messagable {
     private func configureNavigation() {
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: skipButton)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
         skipButton.snp.makeConstraints {
             $0.height.equalTo(30)
             $0.width.equalTo(100)

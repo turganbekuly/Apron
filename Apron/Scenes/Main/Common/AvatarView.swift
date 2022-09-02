@@ -7,8 +7,13 @@
 
 import UIKit
 import APRUIKit
+import Storages
 
 final class AvatarView: View {
+    // MARK: - Private properties
+
+    private var userStorage: UserStorageProtocol = UserStorage()
+
     // MARK: - Public properties
 
     var onTap: (() -> Void)?
@@ -32,6 +37,16 @@ final class AvatarView: View {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(onProfileTapped))
         imageView.addGestureRecognizer(tapGR)
         addSubview(imageView)
+
+        guard userStorage.user != nil else { return }
+        self.imageView.setNameTitleImage(
+            string: userStorage.user?.username ?? "User",
+            color: .random,
+            circular: true,
+            stroke: false,
+            textAttributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
+                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11)]
+        )
     }
 
     override func setupConstraints() {
