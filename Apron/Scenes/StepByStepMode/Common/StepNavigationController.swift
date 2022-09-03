@@ -24,7 +24,7 @@ public final class StepNavigationController: UINavigationController {
 
     private lazy var closeButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
-            image: ApronAssets.closeIcon.image,
+            image: ApronAssets.iconNavigationClose.image,
             style: .plain,
             target: self,
             action: #selector(didTappedClose(_:))

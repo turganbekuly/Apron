@@ -8,27 +8,40 @@
 import APRUIKit
 import UIKit
 
-public protocol StepPagerCellViewModelProtocol {
+protocol StepPagerCellViewModelProtocol {
     var title: NSAttributedString? { get }
+    var image: UIImage? { get }
 }
 
-public struct StepPagerCellViewModel: StepPagerCellViewModelProtocol {
+struct StepPagerCellViewModel: StepPagerCellViewModelProtocol {
+    // MARK: - Properties
+
+    enum StepPagerType {
+        case regular(title: String)
+        case image(image: UIImage)
+    }
 
     // MARK: - Init
 
-    public let name: String
+    var name: String?
 
-    public var title: NSAttributedString? {
+    var title: NSAttributedString? {
         Typography.semibold14(
-            text: name.uppercased(),
+            text: name?.uppercased() ?? "",
             textAlignment: .center
         ).styled
     }
 
+    var image: UIImage?
+
     // MARK: - Init
 
-    public init(name: String) {
-        self.name = name
+    init(pagerType: StepPagerType) {
+        switch pagerType {
+        case .regular(let title):
+            self.name = title
+        case .image(let image):
+            self.image = image
+        }
     }
-
 }

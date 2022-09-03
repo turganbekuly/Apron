@@ -14,6 +14,7 @@ final class StepStickyBottomButton: View {
     enum StepStickyButtonState {
         case timer(counter: String)
         case ingredient
+        case addComment
     }
 
     // MARK: - Views factory
@@ -21,7 +22,7 @@ final class StepStickyBottomButton: View {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
-        view.layer.cornerRadius = 17
+        view.layer.cornerRadius = 19
         view.clipsToBounds = true
         return view
     }()
@@ -37,6 +38,9 @@ final class StepStickyBottomButton: View {
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "timer")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .white
         return imageView
     }()
 
@@ -72,12 +76,14 @@ final class StepStickyBottomButton: View {
         switch state {
         case .timer(let counter):
             counterLabel.text = counter
-            imageView.image = UIImage(systemName: "timer")
-            imageView.tintColor = .white
         case .ingredient:
             counterLabel.text = "Игредиенты"
-            imageView.image = ApronAssets.recipeIngredientPlaceholder.image
-            imageView.tintColor = .gray
+            imageView.image = ApronAssets.recipeIngredientPlaceholder.image.withRenderingMode(.alwaysTemplate)
+            imageView.tintColor = .white
+        case .addComment:
+            counterLabel.text = "Оставить отзыв"
+            imageView.image = ApronAssets.cameraIcon.image.withRenderingMode(.alwaysTemplate)
+            imageView.tintColor = .white
         }
     }
 }

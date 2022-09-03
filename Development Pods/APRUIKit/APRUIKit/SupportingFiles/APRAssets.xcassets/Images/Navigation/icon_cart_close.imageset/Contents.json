@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon_cart_close.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

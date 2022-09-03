@@ -138,7 +138,6 @@ final class StepDescriptionCell: UICollectionViewCell {
                 action: #selector(startTimerTapped)
             )
         )
-        timerView.isHidden = true
         return timerView
     }()
 
@@ -193,14 +192,14 @@ final class StepDescriptionCell: UICollectionViewCell {
             $0.leading.equalTo(snp.centerX).offset(8)
             $0.bottom.equalToSuperview().inset(16)
             timerButtonWidth = $0.width.greaterThanOrEqualTo(150).constraint
-            $0.height.equalTo(34)
+            $0.height.equalTo(38)
         }
 
         ingredientsButton.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalTo(snp.centerX).offset(-8)
             $0.bottom.equalToSuperview().inset(16)
-            $0.height.equalTo(34)
+            $0.height.equalTo(38)
         }
     }
 

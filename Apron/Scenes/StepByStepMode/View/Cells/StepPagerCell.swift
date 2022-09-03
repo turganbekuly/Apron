@@ -8,7 +8,7 @@
 import APRUIKit
 import UIKit
 
-public final class StepPagerCell: UICollectionViewCell {
+final class StepPagerCell: UICollectionViewCell {
 
     // MARK: - Properties
 
@@ -33,6 +33,14 @@ public final class StepPagerCell: UICollectionViewCell {
         return label
     }()
 
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
+    private lazy var stackView = UIStackView()
+
     // MARK: - Init
 
     override public init(frame: CGRect) {
@@ -55,17 +63,11 @@ public final class StepPagerCell: UICollectionViewCell {
 
     // MARK: - Methods
 
-    public func configure(with viewModel: StepPagerCellViewModelProtocol) {
-        titleLabel.attributedText = viewModel.title
-
-        configureColors()
-    }
-
     private func configureViews() {
         [titleBackgroundView].forEach {
             contentView.addSubview($0)
         }
-        [titleLabel].forEach {
+        [stackView].forEach {
             titleBackgroundView.addSubview($0)
         }
 
@@ -77,7 +79,7 @@ public final class StepPagerCell: UICollectionViewCell {
         titleBackgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        titleLabel.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
@@ -88,6 +90,21 @@ public final class StepPagerCell: UICollectionViewCell {
         backgroundColor = .clear
         titleBackgroundView.backgroundColor = isSelected ? .black : ApronAssets.lightGray2.color
         titleLabel.textColor = .white
+    }
+
+    // MARK: - Methods
+
+    func configure(with viewModel: StepPagerCellViewModelProtocol) {
+        stackView.removeAllArrangedSubviews()
+        configureColors()
+        if let title = viewModel.title, title.length != 0 {
+            titleLabel.attributedText = title
+            stackView.addArrangedSubview(titleLabel)
+            return
+        }
+
+        imageView.image = viewModel.image
+        stackView.addArrangedSubview(imageView)
     }
 
 }

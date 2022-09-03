@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import APRUIKit
 
 extension StepByStepModeViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -37,7 +38,7 @@ extension StepByStepModeViewController: UICollectionViewDataSource {
         case is StepByStepPagerView:
             let row = stepperSections[indexPath.section].rows[indexPath.row]
             switch row {
-            case .step:
+            case .step, .review:
                 let cell: StepPagerCell = collectionView.dequeueReusableCell(for: indexPath)
                 return cell
             }
@@ -46,6 +47,9 @@ extension StepByStepModeViewController: UICollectionViewDataSource {
             switch row {
             case .instruction:
                 let cell: StepDescriptionCell = collectionView.dequeueReusableCell(for: indexPath)
+                return cell
+            case .review:
+                let cell: StepFinalStepCell = collectionView.dequeueReusableCell(for: indexPath)
                 return cell
             }
         default:
@@ -61,9 +65,9 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
         case is StepByStepPagerView:
             let row = stepperSections[indexPath.section].rows[indexPath.row]
             switch row {
-            case .step:
+            case .step, .review:
                 onStepperSelected = true
-                mainView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                mainView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
                 stepperView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             }
         case is StepByStepModeView:
@@ -82,13 +86,13 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
         case is StepByStepPagerView:
             let row = stepperSections[indexPath.section].rows[indexPath.row]
             switch row {
-            case .step:
+            case .step, .review:
                 return CGSize(width: 50, height: 60)
             }
         case is StepByStepModeView:
             let row = sections[indexPath.section].rows[indexPath.row]
             switch row {
-            case .instruction:
+            case .instruction, .review:
                 return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
             }
         default:
@@ -103,7 +107,10 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
             switch row {
             case .step:
                 guard let cell = cell as? StepPagerCell else { return }
-                cell.configure(with: StepPagerCellViewModel(name: "\(indexPath.row + 1)"))
+                cell.configure(with: StepPagerCellViewModel(pagerType: .regular(title: "\(indexPath.row + 1)")))
+            case .review:
+                guard let cell = cell as? StepPagerCell else { return }
+                cell.configure(with: StepPagerCellViewModel(pagerType: .image(image: ApronAssets.iconKnifeFork.image)))
             }
         case is StepByStepModeView:
             let row = sections[indexPath.section].rows[indexPath.row]
@@ -117,6 +124,13 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
                         recipeInstruction: instruction
                     )
                 )
+                if !onStepperSelected {
+                    stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                }
+                onStepperSelected = false
+            case .review:
+                guard let cell = cell as? StepFinalStepCell else { return }
+                cell.configure(with: "")
                 if !onStepperSelected {
                     stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
                 }

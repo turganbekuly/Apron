@@ -2378,8 +2378,8 @@
 			isa = PBXGroup;
 			children = (
 				6DCF4F5028B691A200A29DA9 /* StepDescriptionCell.swift */,
-				6DCF4F5228B691BB00A29DA9 /* StepFinalStepCell.swift */,
 				6DAED95D28C26C1900CBCA20 /* StepPagerCell.swift */,
+				6DCF4F5228B691BB00A29DA9 /* StepFinalStepCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

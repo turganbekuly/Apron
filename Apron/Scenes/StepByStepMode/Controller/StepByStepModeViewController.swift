@@ -19,9 +19,11 @@ final class StepByStepModeViewController: ViewController {
     struct Section {
         enum Section {
             case instructions
+            case review
         }
         enum Row {
             case instruction(RecipeInstruction)
+            case review
         }
         
         let section: Section
@@ -31,9 +33,11 @@ final class StepByStepModeViewController: ViewController {
     struct StepperSection {
         enum Section {
             case steps
+            case review
         }
         enum Row {
             case step
+            case review
         }
         let section: Section
         let rows: [Row]
@@ -52,8 +56,14 @@ final class StepByStepModeViewController: ViewController {
 
     var instructions: [RecipeInstruction] = [] {
         didSet {
-            sections = [.init(section: .instructions, rows: instructions.compactMap { .instruction($0) })]
-            stepperSections = [.init(section: .steps, rows: Array(repeating: .step, count: instructions.count))]
+            sections = [
+                .init(section: .instructions, rows: instructions.compactMap { .instruction($0) }),
+                .init(section: .review, rows: [.review])
+            ]
+            stepperSections = [
+                .init(section: .steps, rows: Array(repeating: .step, count: instructions.count)),
+                .init(section: .review, rows: [.review])
+            ]
         }
     }
     
