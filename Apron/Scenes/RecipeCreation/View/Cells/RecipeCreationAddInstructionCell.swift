@@ -12,6 +12,7 @@ import Models
 protocol AddInstructionCellTappedDelegate: AnyObject {
     func onAddInstructionTapped()
     func remove(instruction: RecipeInstruction)
+    func onInstructionTapped(instruction: RecipeInstruction, step: Int)
 }
 
 final class RecipeCreationAddInstructionCell: UITableViewCell {

@@ -23,6 +23,7 @@ def commonPods
   pod 'Firebase/Crashlytics'
   pod 'Firebase/RemoteConfig'
   pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
+  pod 'ZCycleView'
 end
 
 def developmentPods

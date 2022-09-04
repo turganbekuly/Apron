@@ -9,12 +9,14 @@
 import APRUIKit
 import UIKit
 import Models
+import AlertMessages
+import AVFoundation
 
 protocol StepByStepModeDisplayLogic: AnyObject {
     
 }
 
-final class StepByStepModeViewController: ViewController {
+final class StepByStepModeViewController: ViewController, Messagable {
     
     struct Section {
         enum Section {
@@ -44,6 +46,7 @@ final class StepByStepModeViewController: ViewController {
     }
     
     // MARK: - Properties
+    var player: AVAudioPlayer?
     let interactor: StepByStepModeBusinessLogic
     var sections: [Section] = []
     var stepperSections: [StepperSection] = []
@@ -80,6 +83,14 @@ final class StepByStepModeViewController: ViewController {
         view.dataSource = self
         view.delegate = self
         return view
+    }()
+
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 4
+        stackView.backgroundColor = .clear
+        return stackView
     }()
     
     // MARK: - Init
@@ -125,7 +136,7 @@ final class StepByStepModeViewController: ViewController {
     }
     
     private func configureViews() {
-        [mainView, stepperView].forEach { view.addSubview($0) }
+        [mainView, stepperView, stackView].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
@@ -140,6 +151,12 @@ final class StepByStepModeViewController: ViewController {
         mainView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(stepperView.snp.top)
+        }
+
+        stackView.snp.makeConstraints {
+            $0.bottom.equalTo(stepperView.snp.top).offset(-8)
+            $0.trailing.equalToSuperview()
+            $0.width.equalTo(120)
         }
     }
     

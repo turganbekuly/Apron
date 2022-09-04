@@ -103,18 +103,11 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func configure(image: UIImage?, imageURL: String?) {
-//        if let image = image {
-//            imagePlaceholder.image = image
-//            return
-//        }
-
-        if let imageURL = imageURL {
-            imagePlaceholder.kf.setImage(
-                with: URL(string: imageURL),
-                placeholder: ApronAssets.addedImagePlaceholder.image,
-                options: [.transition(.fade(0.25))]
-            )
-        }
+    func configure(imageURL: String?) {
+        imagePlaceholder.kf.setImage(
+            with: URL(string: imageURL ?? ""),
+            placeholder: ApronAssets.addedImagePlaceholder.image,
+            options: [.transition(.fade(0.25))]
+        )
     }
 }

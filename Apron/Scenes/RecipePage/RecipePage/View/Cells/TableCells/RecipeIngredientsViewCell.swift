@@ -161,7 +161,6 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         ingredientsStackView.removeAllArrangedSubviews()
         viewModel.ingredients.forEach {
             let view = IngredientView()
-            print($0.amount, "clean", $0.amount?.clean)
             view.configure(
                 name: $0.product?.name ?? "",
                 amount: $0.amount,

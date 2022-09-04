@@ -12,6 +12,7 @@ import UIKit
 
 public protocol Messagable: AnyObject {
     func show(type: MessageType, firstAction: (() -> Void)?, secondAction: (() -> Void)?)
+    func showAlert(_ title: String, message: String, actions: [AlertActionInfo])
     func showLoader()
     func hideLoader()
 }
@@ -54,6 +55,34 @@ extension Messagable where Self: UIViewController {
 
     public func hideLoader() {
         SwiftEntryKit.dismiss()
+    }
+
+    public func showAlert(_ title: String, message: String, actions: [AlertActionInfo]) {
+        let alertVC = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+
+        if actions.isEmpty {
+            var defaultCancelAction: UIAlertAction {
+                let dismissActionTitle = "Закрыть"
+                return UIAlertAction(title: dismissActionTitle, style: .cancel) { _ in }
+            }
+            alertVC.addAction(defaultCancelAction)
+        } else {
+            for item in actions {
+                let action = UIAlertAction(
+                    title: item.title,
+                    style: item.type.actionStyle
+                ) { _ in
+                    item.action()
+                }
+                action.titleTextColor = UIColor.black
+                alertVC.addAction(action)
+            }
+        }
+        present(alertVC, animated: true, completion: nil)
     }
 
     private func configure(messageView: MessageView, with type: MessageType) {

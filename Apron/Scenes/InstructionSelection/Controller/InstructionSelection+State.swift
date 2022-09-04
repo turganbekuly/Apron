@@ -14,7 +14,7 @@ extension InstructionSelectionViewController {
     
     // MARK: - State
     public enum State {
-        case initial(Int, InstructionSelectedProtocol)
+        case initial(Int, InstructionSelectedProtocol, RecipeInstruction?)
         case uploadImageSucceed(String)
         case uploadImageFailed(AKNetworkError)
     }
@@ -22,7 +22,11 @@ extension InstructionSelectionViewController {
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(stepCount, delegate):
+        case let .initial(stepCount, delegate, instruction):
+            if let instruction = instruction {
+                self.instruction = instruction
+                instructionToEdit = true
+            }
             self.stepCount = stepCount
             self.delegate = delegate
             sections = [.init(section: .instructions, rows: [.placeholder, .description])]

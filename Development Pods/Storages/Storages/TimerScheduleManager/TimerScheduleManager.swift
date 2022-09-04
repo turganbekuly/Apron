@@ -38,13 +38,24 @@ public class TimerScheduleManager {
         var progress: CGFloat?
     }
 
+    private class Duration {
+        init(duration: Double, displayLink: CADisplayLink) {
+            self.duration = duration
+            self.displayLink = displayLink
+        }
+
+        let displayLink: CADisplayLink
+        let duration: Double
+    }
+
     public static let shared = TimerScheduleManager()
 
     private var tasksInProgress: [Task] = []
-    private(set) var duration: Double = 0
+    private var durations: [Duration] = []
 
     public func startTimer(
         instruction: RecipeInstruction,
+        duration: Double,
         block: @escaping ProgressBlock
     ) {
         guard let task = tasksInProgress.first(where: { $0.instruction.description == instruction.description }) else {
@@ -53,7 +64,10 @@ public class TimerScheduleManager {
                 selector: #selector(updateDisplayLink)
             )
             let newTask = Task(instruction: instruction, displayLink: displayLink)
+            let newDuration = Duration(duration: duration, displayLink: displayLink)
+            durations.append(newDuration)
             newTask.progressBlock = block
+            tasksInProgress.append(newTask)
             displayLink.add(to: .main, forMode: .common)
             return
         }
@@ -103,27 +117,28 @@ public class TimerScheduleManager {
         return tasksInProgress.map { $0.instruction }
     }
 
-    public func setDuration(_ value: Double) {
-        duration = value
-    }
-
-    public func getDuration() -> Double {
-        return duration
-    }
+//    public func setDuration(_ value: Double) {
+//        duration = value
+//    }
+//
+//    public func getDuration() -> Double {
+//        return duration
+//    }
 
     @objc
     private func updateDisplayLink(displayLink: CADisplayLink) {
         guard
-            let task = tasksInProgress.first(where: { $0.displayLink == displayLink })
+            let task = tasksInProgress.first(where: { $0.displayLink == displayLink }),
+            let timer = durations.first(where: { $0.displayLink == displayLink })
         else { return }
         var elapsedTime = CACurrentMediaTime() - task.startTime
         var isFinished: Bool
-        task.progress = elapsedTime / duration
-        if elapsedTime >= duration {
-            elapsedTime = duration
+        task.progress = elapsedTime / timer.duration
+        if elapsedTime >= timer.duration {
+            elapsedTime = timer.duration
             isFinished = true
             task.progressBlock?(
-                elapsedTime / duration,
+                elapsedTime / timer.duration,
                 elapsedTime,
                 isFinished,
                 task.instruction
@@ -132,7 +147,7 @@ public class TimerScheduleManager {
         } else {
             isFinished = false
             task.progressBlock?(
-                elapsedTime / duration,
+                elapsedTime / timer.duration,
                 elapsedTime,
                 isFinished,
                 task.instruction

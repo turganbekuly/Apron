@@ -297,6 +297,9 @@
 		6DAED95C28C2370300CBCA20 /* StepByStepPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAED95B28C2370200CBCA20 /* StepByStepPagerView.swift */; };
 		6DAED95E28C26C1900CBCA20 /* StepPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAED95D28C26C1900CBCA20 /* StepPagerCell.swift */; };
 		6DAED96028C26D5800CBCA20 /* StepPagerCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAED95F28C26D5800CBCA20 /* StepPagerCellViewModel.swift */; };
+		6DAED96228C3A9CB00CBCA20 /* StepByStepTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAED96128C3A9CB00CBCA20 /* StepByStepTimerView.swift */; };
+		6DAED96428C49BEC00CBCA20 /* timer_alarm_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DAED96328C49BEC00CBCA20 /* timer_alarm_sound.mp3 */; };
+		6DAED96628C49CE000CBCA20 /* timer_alarm_sound_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6DAED96528C49CE000CBCA20 /* timer_alarm_sound_2.wav */; };
 		6DAFD66F279EC15A006CF12D /* RecipeInformationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAFD66E279EC15A006CF12D /* RecipeInformationViewCell.swift */; };
 		6DAFD67C27A06F2E006CF12D /* RecipeInitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAFD67B27A06F2E006CF12D /* RecipeInitialState.swift */; };
 		6DAFD67F27A0718E006CF12D /* InformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAFD67E27A0718E006CF12D /* InformationCellViewModel.swift */; };
@@ -879,6 +882,9 @@
 		6DAED95B28C2370200CBCA20 /* StepByStepPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepByStepPagerView.swift; sourceTree = "<group>"; };
 		6DAED95D28C26C1900CBCA20 /* StepPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPagerCell.swift; sourceTree = "<group>"; };
 		6DAED95F28C26D5800CBCA20 /* StepPagerCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPagerCellViewModel.swift; sourceTree = "<group>"; };
+		6DAED96128C3A9CB00CBCA20 /* StepByStepTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepByStepTimerView.swift; sourceTree = "<group>"; };
+		6DAED96328C49BEC00CBCA20 /* timer_alarm_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = timer_alarm_sound.mp3; sourceTree = "<group>"; };
+		6DAED96528C49CE000CBCA20 /* timer_alarm_sound_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = timer_alarm_sound_2.wav; sourceTree = "<group>"; };
 		6DAFD66E279EC15A006CF12D /* RecipeInformationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInformationViewCell.swift; sourceTree = "<group>"; };
 		6DAFD67B27A06F2E006CF12D /* RecipeInitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInitialState.swift; sourceTree = "<group>"; };
 		6DAFD67E27A0718E006CF12D /* InformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellViewModel.swift; sourceTree = "<group>"; };
@@ -2301,6 +2307,8 @@
 			isa = PBXGroup;
 			children = (
 				6D40954B282BC50A007207A7 /* Supporting Files */,
+				6DAED96328C49BEC00CBCA20 /* timer_alarm_sound.mp3 */,
+				6DAED96528C49CE000CBCA20 /* timer_alarm_sound_2.wav */,
 				6DA4239E27988B8A00CA183D /* splash_lottie_animation.json */,
 			);
 			path = Resources;
@@ -2624,6 +2632,7 @@
 			isa = PBXGroup;
 			children = (
 				6DE71D6328BE050B00B9CE5F /* StepStickyBottomButton.swift */,
+				6DAED96128C3A9CB00CBCA20 /* StepByStepTimerView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -3431,8 +3440,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DAED96428C49BEC00CBCA20 /* timer_alarm_sound.mp3 in Resources */,
 				6D0A71D8277A12EE0067E580 /* LaunchScreen.storyboard in Resources */,
 				6D0A71D5277A12EE0067E580 /* Assets.xcassets in Resources */,
+				6DAED96628C49CE000CBCA20 /* timer_alarm_sound_2.wav in Resources */,
 				6D40954E282BC54D007207A7 /* GoogleService-Info.plist in Resources */,
 				6DA4239F27988B8A00CA183D /* splash_lottie_animation.json in Resources */,
 			);
@@ -3789,6 +3800,7 @@
 				6DBF80222882E74B00F2738A /* ProfileUserCell.swift in Sources */,
 				6DCF4F4C28B68D1F00A29DA9 /* StepNavigationController.swift in Sources */,
 				2702B184C2FD416A7DAC2AB4 /* InstructionSelection+DisplayLogic.swift in Sources */,
+				6DAED96228C3A9CB00CBCA20 /* StepByStepTimerView.swift in Sources */,
 				48C5F67B08CE0B9DD73F1099 /* InstructionSelection+Network.swift in Sources */,
 				B8ED9EE6B3B1990A3D716B18 /* InstructionSelection+State.swift in Sources */,
 				B167274C667B9E5242A478FF /* InstructionSelection+TableView.swift in Sources */,
@@ -4208,7 +4220,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
@@ -4246,7 +4258,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;

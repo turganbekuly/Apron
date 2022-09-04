@@ -185,6 +185,7 @@ PODS:
   - SwiftGen (6.5.1)
   - UIScrollView-InfiniteScroll (1.1.0)
   - Wormholy (1.6.4)
+  - ZCycleView (1.0.4)
 
 DEPENDENCIES:
   - AKNetwork (from `./Development Pods/AKNetwork`)
@@ -209,6 +210,7 @@ DEPENDENCIES:
   - Storages (from `./Development Pods/Storages`)
   - SwiftGen (~> 6.0)
   - UIScrollView-InfiniteScroll
+  - ZCycleView
 
 SPEC REPOS:
   trunk:
@@ -247,6 +249,7 @@ SPEC REPOS:
     - SwiftGen
     - UIScrollView-InfiniteScroll
     - Wormholy
+    - ZCycleView
 
 EXTERNAL SOURCES:
   AKNetwork:
@@ -325,7 +328,8 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
+  ZCycleView: 7826fb8439486339ed099b0979d9b564a2937ab0
 
-PODFILE CHECKSUM: d15d18af4fbf4adbca116e12c9becfbf74158c77
+PODFILE CHECKSUM: b31da564fde6854e8b9793897dca4eeed242fdd7
 
 COCOAPODS: 1.11.3

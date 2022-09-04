@@ -28,6 +28,14 @@ extension RecipeCreationAddInstructionCell: UITableViewDataSource {
 
 extension RecipeCreationAddInstructionCell:
     UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = instructionsSections[indexPath.section].rows[indexPath.row]
+        switch row {
+        case let .instruction(instruction):
+            newInstructionDelegate?.onInstructionTapped(instruction: instruction, step: indexPath.row + 1)
+        }
+    }
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = instructionsSections[indexPath.section].rows[indexPath.row]
         switch row {

@@ -129,7 +129,7 @@ extension CommunityCreationViewController: UITableViewDelegate {
         case .image:
             guard let cell = cell as? RecipeCreationImageCell else { return }
             cell.delegate = self
-            cell.configure(image: selectedImage, imageURL: communityCreation?.imageURL)
+            cell.configure(imageURL: communityCreation?.imageURL)
         case .category:
             guard let cell = cell as? CommunityCreationCategoryCell else { return }
             cell.configure(with: communityCreation?.category)

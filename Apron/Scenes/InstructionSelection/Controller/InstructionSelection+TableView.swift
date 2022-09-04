@@ -61,7 +61,7 @@ extension InstructionSelectionViewController: UITableViewDelegate {
         case .image:
             guard let cell = cell as? RecipeCreationImageCell else { return }
             cell.delegate = self
-            cell.configure(image: selectedImage, imageURL: instruction.image)
+            cell.configure(imageURL: instruction.image)
         case .description:
             guard let cell = cell as? RecipeCreationDescriptionCell else { return }
             cell.placeholder = "Введите инструкцию"

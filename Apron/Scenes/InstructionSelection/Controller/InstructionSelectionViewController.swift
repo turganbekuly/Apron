@@ -57,6 +57,8 @@ final class InstructionSelectionViewController: ViewController, Messagable {
         }
     }
 
+    var instructionToEdit = false
+
     // Header step count
 
     var stepCount: Int = 1
@@ -185,7 +187,11 @@ final class InstructionSelectionViewController: ViewController, Messagable {
     @objc
     private func saveButtonTapped() {
         instruction.description = instructionDesc
-        delegate?.onInstructionSelected(instruction: instruction)
+        if instructionToEdit {
+            delegate?.onInstructionSelected(instruction: instruction, from: stepCount)
+        } else {
+            delegate?.onInstructionSelected(instruction: instruction, from: nil)
+        }
         navigationController?.popViewController(animated: true)
     }
     

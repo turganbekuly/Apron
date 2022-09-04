@@ -9,6 +9,7 @@
 import APRUIKit
 import UIKit
 import Models
+import Storages
 import AlertMessages
 
 protocol RecipeCreationDisplayLogic: AnyObject {
@@ -31,7 +32,12 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     // Recipe creation model
 
-    var recipeCreation: RecipeCreation?
+    var recipeCreationStorage: RecipeCreationStorageProtocol = RecipeCreationStorage()
+    var recipeCreation: RecipeCreation? {
+        didSet {
+            recipeCreationStorage.recipeCreation = recipeCreation
+        }
+    }
 
     var selectedOptions = [SuggestedCookingTime]() {
         didSet {
@@ -86,7 +92,11 @@ final class RecipeCreationViewController: ViewController, Messagable {
             switch initialState {
             case let .create(recipeCreation, sourceType),
                 let .edit(recipeCreation, sourceType):
-                self.recipeCreation = recipeCreation
+                if let storeRecipeCreation = recipeCreationStorage.recipeCreation {
+                    show(with: storeRecipeCreation)
+                } else {
+                    self.recipeCreation = recipeCreation
+                }
                 self.recipeCreationSourceType = sourceType
 
                 sections = [
@@ -230,17 +240,47 @@ final class RecipeCreationViewController: ViewController, Messagable {
         NSLog("deinit \(self)")
     }
 
+    private func show(with recipe: RecipeCreation) {
+        let confirm = AlertActionInfo(
+            title: "Да",
+            type: .normal,
+            action: {
+                self.recipeCreation = recipe
+                self.mainView.reloadData()
+            }
+        )
+        let cancel = AlertActionInfo(
+            title: "Нет",
+            type: .cancel,
+            action: {
+                self.recipeCreationStorage.recipeCreation = nil
+                self.recipeCreation = RecipeCreation()
+                self.mainView.reloadData()
+            }
+        )
+        self.showAlert(
+            "Продолжить создание рецепта?",
+            message: "Вы недавно были в процессе создания рецепта. Вы хотите продолжить с того места, на котором остановились?",
+            actions: [confirm, cancel]
+        )
+    }
+
     // MARK: - User actions
 
     @objc
     private func saveButtonTapped() {
         if let _ = recipeCreation?.recipeName,
-           let _ = recipeCreation?.description,
            let _ = recipeCreation?.ingredients,
            let _ = recipeCreation?.instructions,
            let _ = recipeCreation?.servings,
            let _ = recipeCreation?.cookTime
         {
+            guard let instructions = recipeCreation?.instructions else { return }
+            for (index, item) in instructions.enumerated() {
+                guard let itemIndex = recipeCreation?.instructions.firstIndex(where: { $0.description == item.description }) else { return }
+                recipeCreation?.instructions[itemIndex].orderNo = index + 1
+            }
+
             self.createRecipe(recipe: recipeCreation)
         } else {
             show(

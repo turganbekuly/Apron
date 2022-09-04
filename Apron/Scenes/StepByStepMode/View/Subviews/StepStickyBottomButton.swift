@@ -12,7 +12,7 @@ final class StepStickyBottomButton: View {
     // MARK: - Button State
 
     enum StepStickyButtonState {
-        case timer(counter: String)
+        case timer
         case ingredient
         case addComment
     }
@@ -74,8 +74,8 @@ final class StepStickyBottomButton: View {
 
     func configure(with state: StepStickyButtonState) {
         switch state {
-        case .timer(let counter):
-            counterLabel.text = counter
+        case .timer:
+            counterLabel.text = "Начать таймер"
         case .ingredient:
             counterLabel.text = "Игредиенты"
             imageView.image = ApronAssets.recipeIngredientPlaceholder.image.withRenderingMode(.alwaysTemplate)

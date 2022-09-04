@@ -27,6 +27,7 @@ extension RecipeCreationViewController {
         case let .initial(state):
             self.initialState = state
         case let .recipeCreationSucceed(recipe):
+            recipeCreationStorage.recipeCreation = nil
             ApronAnalytics.shared.sendAmplitudeEvent(
                 .recipeCreated(
                     RecipeCreatedModel(

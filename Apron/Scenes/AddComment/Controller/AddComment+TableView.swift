@@ -99,7 +99,7 @@ extension AddCommentViewController: UITableViewDelegate {
         case .image:
             guard let cell = cell as? RecipeCreationImageCell else { return }
             cell.delegate = self
-            cell.configure(image: selectedImage, imageURL: addCommentRequestBody?.image)
+            cell.configure(imageURL: addCommentRequestBody?.image)
         case .note:
             guard let cell = cell as? RecipeCreationDescriptionCell else { return }
             cell.placeholder = "Расскажите о своем опыте. Любые советы по улучшению этого рецепта?"

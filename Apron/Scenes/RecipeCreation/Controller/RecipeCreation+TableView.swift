@@ -140,7 +140,7 @@ extension RecipeCreationViewController:
         case .image:
             guard let cell = cell as? RecipeCreationImageCell else { return }
             cell.delegate = self
-            cell.configure(image: selectedImage, imageURL: recipeCreation?.imageURL)
+            cell.configure(imageURL: recipeCreation?.imageURL)
         case .imagePlaceholder:
             guard let cell = cell as? RecipeCreationPlaceholderImageCell else { return }
             cell.delegate = self

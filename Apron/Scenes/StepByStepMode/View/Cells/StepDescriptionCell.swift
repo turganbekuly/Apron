@@ -12,8 +12,8 @@ import Storages
 import Models
 
 protocol StepDescriptionCellProtocol: AnyObject {
-    func timerDidFinish(stepNumber: Int)
     func ingredientsTapped()
+    func startTimer(with stepCount: Int, with instruction: RecipeInstruction)
 }
 
 final class StepDescriptionCell: UICollectionViewCell {
@@ -32,38 +32,6 @@ final class StepDescriptionCell: UICollectionViewCell {
     private var counter = 120
     private var stepCount = 0
     private var instruction = RecipeInstruction()
-    private var timer = TimerScheduleManager.shared
-    private var buttonState: ButtonState = .initial {
-        didSet {
-            switch buttonState {
-            case .initial:
-                timerButton.configure(with: .timer(counter: "Начать таймер"))
-                timer.stopTimer(instruction: self.instruction)
-            case .ongoing:
-                timer.startTimer(instruction: self.instruction) { progress, seconds, isFinished, instr in
-                    guard instr == self.instruction else {
-                        self.buttonState = .initial
-                        return
-                    }
-                    self.observeTimer(progress: progress, seconds: seconds, isFinished: isFinished)
-                    if isFinished {
-                        self.delegate?.timerDidFinish(stepNumber: self.stepCount)
-                    }
-                }
-
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.timerButtonWidth?.update(offset: 100)
-                    self.layoutIfNeeded()
-                }, completion: nil)
-            case .stopped:
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.timerButtonWidth?.update(offset: 100)
-                    self.layoutIfNeeded()
-                }, completion: nil)
-                timerButton.configure(with: .timer(counter: String(format: "%02d:%02d:%02d", 0, 0, 0)))
-            }
-        }
-    }
 
     // MARK: - Init
 
@@ -130,17 +98,6 @@ final class StepDescriptionCell: UICollectionViewCell {
 
     private lazy var scrollContentView = UIView()
 
-    private lazy var timerButton: StepStickyBottomButton = {
-        let timerView = StepStickyBottomButton()
-        timerView.addGestureRecognizer(
-            UITapGestureRecognizer(
-                target: self,
-                action: #selector(startTimerTapped)
-            )
-        )
-        return timerView
-    }()
-
     private lazy var ingredientsButton: StepStickyBottomButton = {
         let ingredientsView = StepStickyBottomButton()
         ingredientsView.addGestureRecognizer(
@@ -152,14 +109,25 @@ final class StepDescriptionCell: UICollectionViewCell {
         return ingredientsView
     }()
 
+    private lazy var timerButton: StepStickyBottomButton = {
+        let timerView = StepStickyBottomButton()
+        timerView.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(timerButtonTapped)
+            )
+        )
+        return timerView
+    }()
+
     // MARK: - Setup Views
 
     private func setupViews() {
-        contentView.addSubviews(scrollView, timerButton, ingredientsButton)
+        contentView.addSubviews(scrollView)
         scrollView.addSubview(scrollContentView)
-        scrollContentView.addSubview(stackView)
+        scrollContentView.addSubviews(stackView, timerButton, ingredientsButton)
         makeContraints()
-        timer.setDuration(Double(counter))
+        timerButton.configure(with: .timer)
         ingredientsButton.configure(with: .ingredient)
     }
 
@@ -174,7 +142,7 @@ final class StepDescriptionCell: UICollectionViewCell {
         }
 
         stackView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
         }
 
         imageView.snp.makeConstraints {
@@ -188,14 +156,15 @@ final class StepDescriptionCell: UICollectionViewCell {
         }
 
         timerButton.snp.makeConstraints {
+            $0.top.equalTo(stackView.snp.bottom).offset(8)
             $0.trailing.equalToSuperview().inset(16)
             $0.leading.equalTo(snp.centerX).offset(8)
             $0.bottom.equalToSuperview().inset(16)
-            timerButtonWidth = $0.width.greaterThanOrEqualTo(150).constraint
             $0.height.equalTo(38)
         }
 
         ingredientsButton.snp.makeConstraints {
+            $0.top.equalTo(stackView.snp.bottom).offset(8)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalTo(snp.centerX).offset(-8)
             $0.bottom.equalToSuperview().inset(16)
@@ -211,32 +180,8 @@ final class StepDescriptionCell: UICollectionViewCell {
     }
 
     @objc
-    private func startTimerTapped() {
-        switch buttonState {
-        case .initial:
-            buttonState = .ongoing
-        case .ongoing:
-            buttonState = .stopped
-        case .stopped:
-            buttonState = .ongoing
-        }
-    }
-
-    private func observeTimer(progress: CGFloat, seconds: TimeInterval, isFinished: Bool) {
-        guard timer.isTaskRunning(instruction: instruction) else {
-            buttonState = .initial
-            return
-        }
-        let duration = timer.getDuration()
-        var h: Int
-        var m: Int
-        var s: Int
-
-        let counter = (Int(duration) - Int(seconds))
-        h = counter / 3600
-        m = (counter % 3600) / 60
-        s = (counter % 3600) % 60
-        timerButton.configure(with: .timer(counter: String(format: "%02d:%02d:%02d", h, m, s)))
+    private func timerButtonTapped() {
+        delegate?.startTimer(with: stepCount, with: instruction)
     }
 
     // MARK: - Methods
@@ -253,16 +198,5 @@ final class StepDescriptionCell: UICollectionViewCell {
         recipeDescriptionLabel.text = instruction.description
         stackView.addArrangedSubview(recipeDescriptionLabel)
         stackView.layoutIfNeeded()
-
-        timer.observe(instruction: instruction) { progress, seconds, isFinished, instr in
-//            guard let task = self.timer.taskProgress(instruction: self.instruction) else {
-//                self.buttonState = .initial
-//                return
-//            }
-            self.observeTimer(progress: progress, seconds: seconds, isFinished: isFinished)
-            if isFinished {
-                self.delegate?.timerDidFinish(stepNumber: self.stepCount)
-            }
-        }
     }
 }

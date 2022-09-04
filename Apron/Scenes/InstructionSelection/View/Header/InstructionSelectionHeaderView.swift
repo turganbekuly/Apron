@@ -33,6 +33,7 @@ final class InstructionSelectionHeaderView: UITableViewHeaderFooterView {
     // MARK: - Setup Views
 
     private func setupViews() {
+        contentView.backgroundColor = .clear
         [sectionHeaderLabel].forEach {
             contentView.addSubview($0)
         }

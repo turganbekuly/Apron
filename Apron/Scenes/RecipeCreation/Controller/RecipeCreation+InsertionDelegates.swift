@@ -13,7 +13,7 @@ protocol IngredientSelectedProtocol: AnyObject {
 }
 
 protocol InstructionSelectedProtocol: AnyObject {
-    func onInstructionSelected(instruction: RecipeInstruction)
+    func onInstructionSelected(instruction: RecipeInstruction, from step: Int?)
 }
 
 extension RecipeCreationViewController: IngredientSelectedProtocol {
@@ -32,7 +32,12 @@ extension RecipeCreationViewController: IngredientSelectedProtocol {
 }
 
 extension RecipeCreationViewController: InstructionSelectedProtocol {
-    func onInstructionSelected(instruction: RecipeInstruction) {
+    func onInstructionSelected(instruction: RecipeInstruction, from step: Int?) {
+        if let step = step {
+            recipeCreation?.instructions[step - 1] = instruction
+            mainView.reloadTableViewWithoutAnimation()
+            return
+        }
         recipeCreation?.instructions.append(instruction)
         mainView.reloadTableViewWithoutAnimation()
     }
@@ -55,7 +60,7 @@ extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
 extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
     func onAddInstructionTapped() {
         let viewController = InstructionSelectionBuilder(
-            state: .initial((recipeCreation?.instructions.count ?? 0) + 1, self)
+            state: .initial((recipeCreation?.instructions.count ?? 0) + 1, self, nil)
         ).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(viewController, animated: true)
@@ -65,5 +70,14 @@ extension RecipeCreationViewController: AddInstructionCellTappedDelegate {
     func remove(instruction: RecipeInstruction) {
         recipeCreation?.instructions.removeAll(where: { $0 == instruction })
         mainView.reloadTableViewWithoutAnimation()
+    }
+
+    func onInstructionTapped(instruction: RecipeInstruction, step: Int) {
+        let viewController = InstructionSelectionBuilder(
+            state: .initial(step, self, instruction)
+        ).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }
