@@ -9,17 +9,18 @@
 import UIKit
 
 final class StepByStepModeView: UICollectionView {
+
+    let layout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        layout.scrollDirection = .horizontal
+        return layout
+    }()
     
     // MARK: - Init
 
     init() {
-        let layout: UICollectionViewFlowLayout = {
-            let layout = UICollectionViewFlowLayout()
-            layout.minimumInteritemSpacing = 0
-            layout.minimumLineSpacing = 0
-            layout.scrollDirection = .horizontal
-            return layout
-        }()
 
         super.init(frame: .zero, collectionViewLayout: layout)
 

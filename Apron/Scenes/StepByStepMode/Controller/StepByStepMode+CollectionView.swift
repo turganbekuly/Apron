@@ -124,20 +124,26 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
                         recipeInstruction: instruction
                     )
                 )
-                if !onStepperSelected {
-                    stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                }
-                onStepperSelected = false
             case .review:
                 guard let cell = cell as? StepFinalStepCell else { return }
                 cell.configure(with: "")
-                if !onStepperSelected {
-                    stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                }
-                onStepperSelected = false
+//                if !onStepperSelected {
+//                    stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+//                }
+//                onStepperSelected = false
             }
         default:
             break
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        for cell in mainView.visibleCells {
+            let indexPath = mainView.indexPath(for: cell)
+            if !onStepperSelected {
+                stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            }
+            onStepperSelected = false
         }
     }
 }
