@@ -89,7 +89,7 @@ final class IngredientView: UIView {
 
     private func setupConstraints() {
         snp.makeConstraints {
-            $0.height.greaterThanOrEqualTo(45)
+            $0.height.greaterThanOrEqualTo(55)
         }
 
         imageView.snp.makeConstraints {

@@ -47,26 +47,30 @@ extension RecipePageViewController: CreateActionFlowProtocol {
     func handleChosenAction(type: CreateActionType) {
         switch type {
         case .shoppingList:
-            guard let ingredients = recipe?.ingredients else { return }
-            let cartItems: [CartItem] = ingredients.map {
-                CartItem(
-                    productId: $0.product?.id ?? 0,
-                    productName: $0.product?.name ?? "",
-                    productCategoryName: $0.product?.productCategoryName ?? "",
-                    productImage: $0.product?.image,
-                    amount: $0.amount ?? 0,
-                    measurement: $0.measurement ?? "",
-                    recipeName: [self.recipe?.recipeName ?? ""],
-                    bought: false
-                )
-            }
-
-            let viewController = PreShoppingListBuilder(state: .initial(cartItems, self)).build()
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(viewController, animated: true)
-            }
+            handleAddToCart(ingredients: recipe?.ingredients)
         default:
             break
+        }
+    }
+
+    func handleAddToCart(ingredients: [RecipeIngredient]?) {
+        guard let ingredients = recipe?.ingredients else { return }
+        let cartItems: [CartItem] = ingredients.map {
+            CartItem(
+                productId: $0.product?.id ?? 0,
+                productName: $0.product?.name ?? "",
+                productCategoryName: $0.product?.productCategoryName ?? "",
+                productImage: $0.product?.image,
+                amount: $0.amount ?? 0,
+                measurement: $0.measurement ?? "",
+                recipeName: [self.recipe?.recipeName ?? ""],
+                bought: false
+            )
+        }
+
+        let viewController = PreShoppingListBuilder(state: .initial(cartItems, self)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }

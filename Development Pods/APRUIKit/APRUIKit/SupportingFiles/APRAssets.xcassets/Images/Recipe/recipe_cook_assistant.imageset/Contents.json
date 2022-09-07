@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "recipe_cook_assistant.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

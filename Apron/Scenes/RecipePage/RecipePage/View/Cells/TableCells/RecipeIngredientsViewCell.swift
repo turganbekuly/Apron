@@ -29,6 +29,8 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         }
     }
 
+    var onAddToCartTapped: (() -> Void)?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -94,6 +96,18 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         return stackView
     }()
 
+    private lazy var addToCartButton: NavigationButton = {
+        let button = NavigationButton()
+        button.backgroundType = .blackBackground
+        button.isImageVisible = false
+        button.showShadow = true
+        button.setTitle("Добавить в корзину".uppercased(), for: .normal)
+        button.addTarget(self, action: #selector(addToCartTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 22
+        button.layer.masksToBounds = true
+        return button
+    }()
+
     private lazy var separatorView: UIView = {
         let view = UIView()
         view.backgroundColor = ApronAssets.lightGray2.color
@@ -109,6 +123,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
             ingredientsTitleLabel,
             serveStackView,
             ingredientsStackView,
+            addToCartButton,
             separatorView
         ].forEach { contentView.addSubviews($0) }
         setupConstraints()
@@ -136,7 +151,13 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         ingredientsStackView.snp.makeConstraints {
             $0.top.equalTo(serveStackView.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalTo(separatorView.snp.top).offset(-16)
+            $0.bottom.equalTo(addToCartButton.snp.top).offset(-16)
+        }
+
+        addToCartButton.snp.makeConstraints {
+            $0.top.equalTo(ingredientsStackView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(44)
         }
     }
 
@@ -153,6 +174,12 @@ final class RecipeIngredientsViewCell: UITableViewCell {
     private func plusButtonTapped() {
         servingCount += 1
         HapticTouch.generateMedium()
+    }
+
+    @objc
+    private func addToCartTapped() {
+        HapticTouch.generateSuccess()
+        onAddToCartTapped?()
     }
 
     // MARK: - Public methods

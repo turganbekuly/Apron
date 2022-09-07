@@ -38,7 +38,8 @@ final class ProfileView: UITableView {
 
         [
             ProfileUserCell.self,
-            ProfileItemsCell.self
+            ProfileItemsCell.self,
+            ProfileAssistantCell.self
         ].forEach {
             register(cellClass: $0)
         }

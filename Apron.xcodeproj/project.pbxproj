@@ -157,6 +157,7 @@
 		6D328D2A282E30BB001DF3BE /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D328D29282E30BB001DF3BE /* SearchHeaderView.swift */; };
 		6D3332A5287EF243003BCD0B /* RecipeCreationSourceURLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3332A4287EF243003BCD0B /* RecipeCreationSourceURLCell.swift */; };
 		6D369A15281185E000F80B4E /* IngredientSelection+PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D369A14281185E000F80B4E /* IngredientSelection+PickerView.swift */; };
+		6D3AA97928C8C18000967F3A /* ProfileAssistantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3AA97828C8C18000967F3A /* ProfileAssistantCell.swift */; };
 		6D3DD886283508AD00E0C06D /* DynamicCollectionDelegateCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DD885283508AD00E0C06D /* DynamicCollectionDelegateCellViewModel.swift */; };
 		6D3DD88A283627DB00E0C06D /* CommunitiesListRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DD889283627DB00E0C06D /* CommunitiesListRequestBody.swift */; };
 		6D3DFCE028A2267500A5DEB1 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DFCDF28A2267500A5DEB1 /* EmojiCell.swift */; };
@@ -742,6 +743,7 @@
 		6D328D29282E30BB001DF3BE /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		6D3332A4287EF243003BCD0B /* RecipeCreationSourceURLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCreationSourceURLCell.swift; sourceTree = "<group>"; };
 		6D369A14281185E000F80B4E /* IngredientSelection+PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IngredientSelection+PickerView.swift"; sourceTree = "<group>"; };
+		6D3AA97828C8C18000967F3A /* ProfileAssistantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssistantCell.swift; sourceTree = "<group>"; };
 		6D3DD885283508AD00E0C06D /* DynamicCollectionDelegateCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCollectionDelegateCellViewModel.swift; sourceTree = "<group>"; };
 		6D3DD889283627DB00E0C06D /* CommunitiesListRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesListRequestBody.swift; sourceTree = "<group>"; };
 		6D3DFCDF28A2267500A5DEB1 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
@@ -2182,6 +2184,7 @@
 			children = (
 				6DBF80212882E74B00F2738A /* ProfileUserCell.swift */,
 				6DBF80252882EC5800F2738A /* ProfileItemsCell.swift */,
+				6D3AA97828C8C18000967F3A /* ProfileAssistantCell.swift */,
 				6DBF802B288434EC00F2738A /* ProfileShimmerCell.swift */,
 			);
 			path = Cells;
@@ -3548,6 +3551,7 @@
 				6D78DA7C281D516E009E383E /* RecipeCreation+TextField.swift in Sources */,
 				F10574718C1441653D9CA41B /* AuthorizationBuilder.swift in Sources */,
 				6D534150288A8FF20048DBB2 /* RecipeReviewsCell.swift in Sources */,
+				6D3AA97928C8C18000967F3A /* ProfileAssistantCell.swift in Sources */,
 				6D9D5E3F28002BB00087527B /* RecipeCreationDescriptionCell.swift in Sources */,
 				6D5716A228B0B83A00163EAE /* RecipePageInstructionsView.swift in Sources */,
 				6D84303A2795D25F004E27E5 /* Community+Sections.swift in Sources */,
@@ -4220,7 +4224,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
@@ -4258,7 +4262,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;

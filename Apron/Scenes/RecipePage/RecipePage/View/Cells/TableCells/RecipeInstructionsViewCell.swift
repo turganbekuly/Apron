@@ -10,6 +10,7 @@ import APRUIKit
 import SnapKit
 import Extensions
 import Models
+import HapticTouch
 
 final class RecipeInstructionsViewCell: UITableViewCell {
     // MARK: - Public properties
@@ -70,13 +71,15 @@ final class RecipeInstructionsViewCell: UITableViewCell {
     }()
 
     private lazy var cookModeButton: NavigationButton = {
-        let button = NavigationButton(image: ApronAssets.recipeCookMode.image)
-        button.backgroundType = .blackBackground
+        let button = NavigationButton(image: ApronAssets.recipeCookMode.image.withTintColor(.black))
+        button.backgroundType = .whiteBackground
         button.isImageVisible = true
         button.showShadow = true
+        button.layer.borderWidth = 0.5
+        button.layer.borderColor = UIColor.black.cgColor
         button.setTitle("Режим готовки".uppercased(), for: .normal)
         button.addTarget(self, action: #selector(cookModeTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 17
+        button.layer.cornerRadius = 22
         button.layer.masksToBounds = true
         return button
     }()
@@ -100,7 +103,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
         cookModeButton.snp.makeConstraints {
             $0.top.equalTo(instructionsTitleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(34)
+            $0.height.equalTo(44)
         }
 
         instructionsView.snp.makeConstraints {
@@ -114,6 +117,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
 
     @objc
     private func cookModeTapped() {
+        HapticTouch.generateSuccess()
         onCookModeTapped?()
     }
 

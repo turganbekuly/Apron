@@ -29,7 +29,7 @@ extension ProfileViewController {
             getProfile()
         case let .fetchProfile(model):
             userStorage.user = model
-            sections = [.init(section: .app, rows: [.user, .deleteAccount, .logout])]
+            sections = [.init(section: .app, rows: [.user, .assistant, .deleteAccount, .logout])]
             mainView.reloadData()
         case .fetchProfileFailed:
             show(type: .error(L10n.Common.errorMessage))

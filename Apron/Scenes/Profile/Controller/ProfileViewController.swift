@@ -24,7 +24,7 @@ final class ProfileViewController: ViewController, Messagable {
         }
         enum Row {
             case user
-            case about
+            case assistant
             case deleteAccount
             case logout
         }

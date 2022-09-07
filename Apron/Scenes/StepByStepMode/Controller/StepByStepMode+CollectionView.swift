@@ -147,6 +147,7 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
 
         guard let description = instructions[currentPage - 1].description else { return }
         if RemoteConfigManager.shared.remoteConfig.isCookAssistantEnabled {
+            guard RecipeCreationStorage().isCookAssistEnabled else { return }
             TTSMAnager.shared.startTTS(with: description)
         }
     }

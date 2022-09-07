@@ -83,7 +83,7 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 32)
             return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
-            return CGFloat(119 + ((recipe?.ingredients?.count ?? 1) * 55))
+            return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
             return 203
         case .instruction:
@@ -95,7 +95,7 @@ extension RecipePageViewController: UITableViewDelegate {
                 imageSize = CGFloat(images.count) * 220
             }
 
-            return 154 + imageSize + ((recipe?.instructions?
+            return 160 + imageSize + ((recipe?.instructions?
                 .reduce(0, {
                     $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
@@ -113,7 +113,7 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 32)
             return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
-            return CGFloat(119 + ((recipe?.ingredients?.count ?? 1) * 55))
+            return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
             return 203
         case .instruction:
@@ -125,7 +125,7 @@ extension RecipePageViewController: UITableViewDelegate {
                 imageSize = CGFloat(images.count) * 220
             }
 
-            return 154 + imageSize + ((recipe?.instructions?
+            return 160 + imageSize + ((recipe?.instructions?
                 .reduce(0, {
                     $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
@@ -181,6 +181,10 @@ extension RecipePageViewController: UITableViewDelegate {
             ))
         case .ingredient:
             guard let cell = cell as? RecipeIngredientsViewCell else { return }
+            cell.onAddToCartTapped = { [weak self] in
+                guard let self = self else { return }
+                self.handleAddToCart(ingredients: self.recipe?.ingredients)
+            }
             cell.configure(with: IngredientsListCellViewModel(
                 serveCount: recipe?.servings ?? 1,
                 ingredients: recipe?.ingredients ?? []

@@ -33,8 +33,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
 
     public var icon: UIImage? {
         switch row {
-        case .about:
-            return ApronAssets.appLogo.image
+        case .assistant:
+            return ApronAssets.cookAssistant.image
         case .deleteAccount:
             return ApronAssets.profileDeleteAccount.image
         case .logout:
@@ -47,8 +47,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
     public var title: NSAttributedString? {
         var title = ""
         switch row {
-        case .about:
-            title = "О приложении"
+        case .assistant:
+            title = "Ассистент готовки"
         case .deleteAccount:
             title = "Удалить аккаунт"
         case .logout:
