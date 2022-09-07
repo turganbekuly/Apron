@@ -122,6 +122,5 @@ public final class AKNetworkProvider<T: AKNetworkTargetType>: MoyaProvider<T> {
             return nil
         }
     }
-
 }
 

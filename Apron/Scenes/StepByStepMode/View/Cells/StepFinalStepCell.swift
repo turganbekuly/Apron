@@ -33,6 +33,8 @@ final class StepFinalStepCell: UICollectionViewCell {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 16
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -58,8 +60,9 @@ final class StepFinalStepCell: UICollectionViewCell {
 
     private func setupConstraints() {
         imageView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(contentView.bounds.width)
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(8)
+            $0.height.equalTo(contentView.bounds.width - 16)
         }
 
         addCommentButtom.snp.makeConstraints {
@@ -79,9 +82,9 @@ final class StepFinalStepCell: UICollectionViewCell {
 
     // MARK: - Methods
 
-    func configure(with image: String) {
+    func configure(with image: String?) {
         imageView.kf.setImage(
-            with: URL(string: image),
+            with: URL(string: image ?? ""),
             placeholder: ApronAssets.iconPlaceholderCard.image
         )
     }

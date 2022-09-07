@@ -120,17 +120,15 @@ final class IngredientView: UIView {
         image: String?
     ) {
         self.nameLabel.text = name
-        if let amount = amount {
-            self.initialAmount = amount
-        }
-        if let measure = unit {
-            self.unit = measure
-        }
+        self.unit = unit ?? ""
+        self.initialAmount = amount ?? 0.0
 
         self.imageView.kf.setImage(
             with: URL(string: image ?? ""),
-            placeholder: ApronAssets.recipeIngredientPlaceholder.image
+            placeholder: ApronAssets.recipeIngredientPlaceholder.image.withRenderingMode(.alwaysTemplate)
         )
+        self.imageView.tintColor = .gray
+        self.imageView.backgroundColor = .white
     }
 
     func changeServings(initialCount: Int, changedCount: Int) {

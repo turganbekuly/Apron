@@ -34,9 +34,9 @@ public final class NavigationButton: Button {
         }
     }
 
-    public var isVisibleArrow = false {
+    public var isImageVisible = false {
         didSet {
-            arrowImageView.isHidden = !isVisibleArrow
+            customImageView.isHidden = !isImageVisible
         }
     }
 
@@ -55,7 +55,7 @@ public final class NavigationButton: Button {
         padding: nil
     )
 
-    private lazy var arrowImageView = UIImageView(image: ApronAssets.arrowForward.image)
+    private lazy var customImageView = UIImageView(image: ApronAssets.arrowForward.image)
 
     // MARK: - Private properties
 
@@ -64,9 +64,12 @@ public final class NavigationButton: Button {
 
     // MARK: - Init
 
-    public init() {
+    public init(image: UIImage? = nil) {
         super.init(frame: .zero)
         applyStyle(PrimaryButtonBlackStyle.self)
+        if let image = image {
+            customImageView.image = image
+        }
         setupViews()
         setupConstraints()
     }
@@ -94,8 +97,8 @@ public final class NavigationButton: Button {
         layer.shadowOffset = CGSize(width: 0, height: 8)
         layer.shadowOpacity = 1
         layer.shadowRadius = 24
-        addSubviews(arrowImageView, activityIndicator)
-        arrowImageView.isHidden = !isVisibleArrow
+        addSubviews(customImageView, activityIndicator)
+        customImageView.isHidden = !isImageVisible
         activityIndicator.isHidden = true
         activityIndicator.alpha = 0.0
     }
@@ -105,10 +108,18 @@ public final class NavigationButton: Button {
     }
 
     func setupConstraints() {
-        arrowImageView.snp.makeConstraints {
-            $0.trailing.equalTo(snp.trailing).offset(-17)
-            $0.centerY.equalTo(snp.centerY)
-            $0.size.equalTo(24)
+        if let label = titleLabel {
+            customImageView.snp.makeConstraints {
+                $0.trailing.equalTo(label.snp.leading).offset(-8)
+                $0.centerY.equalTo(snp.centerY)
+                $0.size.equalTo(24)
+            }
+        } else {
+            customImageView.snp.makeConstraints {
+                $0.trailing.equalTo(snp.trailing).offset(-8)
+                $0.centerY.equalTo(snp.centerY)
+                $0.size.equalTo(24)
+            }
         }
 
         activityIndicator.snp.makeConstraints {
@@ -132,7 +143,7 @@ public final class NavigationButton: Button {
         UIView.animate(withDuration: 0.25) {
             self.setImage(nil, for: .init())
             self.titleLabel?.alpha = 0.0
-            self.arrowImageView.alpha = 0.0
+            self.customImageView.alpha = 0.0
             self.activityIndicator.alpha = 1.0
         }
     }
@@ -150,7 +161,7 @@ public final class NavigationButton: Button {
         self.activityIndicator.alpha = 0.0
         self.setImage(self.image ?? self.imageView?.image, for: .init())
         self.titleLabel?.alpha = 1.0
-        self.arrowImageView.alpha = 1.0
+        self.customImageView.alpha = 1.0
         self.activityIndicator.stopAnimating()
         self.activityIndicator.isHidden = false
 

@@ -7,8 +7,8 @@ public protocol RemoteConfigServiceProtocol: AnyObject {
 
 public protocol RemoteConfigFieldValues: AnyObject {
     var isForceUpdateEnabled: Bool { get }
-    var isMerchantListingPageFiltersEnabled: Bool { get }
     var appVersion: String { get }
+    var isCookAssistantEnabled: Bool { get }
 }
 
 public final class RemoteConfig: RemoteConfigServiceProtocol, RemoteConfigFieldValues {
@@ -52,20 +52,11 @@ extension RemoteConfig {
         return remoteConfigHolder[bool: Key.isForceUpdateEnabled.rawValue]
     }
 
-    public var isMerchantListingPageFiltersEnabled: Bool {
-        let toggleValue = FeatureToggle.value(forToggle: MerchantListingPageFilters.self)
-
-        switch toggleValue {
-        case .disabled:
-            return false
-        case .enabled:
-            return true
-        case .remote:
-            return remoteConfigHolder[bool: Key.isMerchantListingPageFiltersEnabled.rawValue]
-        }
-    }
-
     public var appVersion: String {
         return remoteConfigHolder[string: Key.appVersion.rawValue]
+    }
+
+    public var isCookAssistantEnabled: Bool {
+        return remoteConfigHolder[bool: Key.isCookAssistantEnabled.rawValue]
     }
 }

@@ -30,6 +30,7 @@ final class StepPagerCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
+        label.textColor = .white
         return label
     }()
 

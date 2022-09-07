@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import APRUIKit
+import Storages
+import RemoteConfig
 
 extension StepByStepModeViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -126,11 +128,8 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
                 )
             case .review:
                 guard let cell = cell as? StepFinalStepCell else { return }
-                cell.configure(with: "")
-//                if !onStepperSelected {
-//                    stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-//                }
-//                onStepperSelected = false
+                cell.delegate = self
+                cell.configure(with: finalImage)
             }
         default:
             break
@@ -138,12 +137,17 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        for cell in mainView.visibleCells {
-            let indexPath = mainView.indexPath(for: cell)
-            if !onStepperSelected {
-                stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            }
-            onStepperSelected = false
+        let width = scrollView.frame.width
+        let currentPage = (Int(scrollView.contentOffset.x / width) + 1)
+        let progress = Double(currentPage) / Double(instructions.count + 1)
+        progressBar.setProgress(Float(progress), animated: true)
+        guard instructions.indices.contains(currentPage - 1) else {
+            return
+        }
+
+        guard let description = instructions[currentPage - 1].description else { return }
+        if RemoteConfigManager.shared.remoteConfig.isCookAssistantEnabled {
+            TTSMAnager.shared.startTTS(with: description)
         }
     }
 }

@@ -9,18 +9,24 @@
 import Models
 import UIKit
 
+protocol StepByStepFinalStepProtocol: AnyObject {
+    func reviewButtonTapped()
+}
+
 extension StepByStepModeViewController {
     
     // MARK: - State
     public enum State {
-        case initial([RecipeInstruction])
+        case initial([RecipeInstruction], String?, StepByStepFinalStepProtocol?)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(instructions):
+        case let .initial(instructions, finalImage, delegate):
             self.instructions = instructions
+            self.finalImage = finalImage
+            self.delegate = delegate
         }
     }
     

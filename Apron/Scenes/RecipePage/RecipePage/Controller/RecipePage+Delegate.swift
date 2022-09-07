@@ -22,26 +22,15 @@ extension RecipePageViewController: RecipePageCommentAdded {
 
 extension RecipePageViewController: BottomStickyViewDelegate {
     func addButtonTapped() {
-//        let vc = CreateActionFlowBuilder(state: .initial(.recipePageAddTo, self)).build()
-//        DispatchQueue.main.async {
-//            self.navigationController?.presentPanModal(vc)
-//        }
-        guard let instructions = recipe?.instructions, !instructions.isEmpty else { return }
-        let vc = StepByStepModeBuilder(state: .initial(instructions)).build()
-        let navController = StepNavigationController(rootViewController: vc)
-        navController.modalPresentationStyle = .fullScreen
+        let vc = CreateActionFlowBuilder(state: .initial(.recipePageAddTo, self)).build()
         DispatchQueue.main.async {
-            self.navigationController?.present(navController, animated: true)
+            self.navigationController?.presentPanModal(vc)
         }
     }
 
     func saveButtonTapped() {
         guard let recipe = recipe else { return }
         saveRecipe(with: recipe.id)
-    }
-
-    func madeItButtonTapped() {
-        //
     }
 
     func textFieldTapped() {
@@ -97,5 +86,16 @@ extension RecipePageViewController: PreShoppingListDismissedDelegate {
 
     func dismissed() {
         //
+    }
+}
+
+extension RecipePageViewController: StepByStepFinalStepProtocol{
+    func reviewButtonTapped() {
+        var body = AddCommentRequestBody()
+        body.recipeId = recipe?.id
+        let viewController = AddCommentBuilder(state: .initial(recipe?.id, body, self)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }

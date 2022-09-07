@@ -128,6 +128,8 @@ final class RecipeCreationAssignCell: UITableViewCell {
             if !value.isEmpty {
                 buttonWidth?.update(offset: 80)
             }
+        default:
+            break
         }
     }
 }

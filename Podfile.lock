@@ -11,6 +11,7 @@ PODS:
     - Protocols
     - SwiftEntryKit
   - AlignedCollectionViewFlowLayout (1.1.2)
+  - ALProgressView (2.0.0)
   - Amplitude (8.10.0):
     - AnalyticsConnector (~> 1.0.0)
   - AnalyticsConnector (1.0.0)
@@ -189,6 +190,7 @@ PODS:
 DEPENDENCIES:
   - AKNetwork (from `./Development Pods/AKNetwork`)
   - AlertMessages (from `./Development pods/AlertMessages`)
+  - ALProgressView
   - Amplitude
   - APRUIKit (from `./Development Pods/APRUIKit`)
   - Configurations (from `./Development Pods/Configurations`)
@@ -214,6 +216,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlignedCollectionViewFlowLayout
+    - ALProgressView
     - Amplitude
     - AnalyticsConnector
     - Disk
@@ -281,6 +284,7 @@ SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   AlertMessages: 8ee9d8c7c0ea2295fea1eda9c3a09e45e8183cb3
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
+  ALProgressView: 547883405970e932d8f1f12b605aa4f6df08f155
   Amplitude: 2904f346250510b9e19a4e2262017bcf1d4368f9
   AnalyticsConnector: 4c386d5972ac9da86e22d668564dbbac97558754
   APRUIKit: 4ae607553e947f635e277ef56831567c044b5dd4
@@ -326,6 +330,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: d15d18af4fbf4adbca116e12c9becfbf74158c77
+PODFILE CHECKSUM: f7f25d292739bf2974ba4c6bead8f4d53bb559a6
 
 COCOAPODS: 1.11.3

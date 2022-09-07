@@ -9,6 +9,7 @@ import UIKit
 import Protocols
 import Amplitude
 import Storages
+import AKNetwork
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         setupFirstRun()
         configurators.forEach { $0.configure(application, launchOptions: launchOptions) }
-        
+
         return true
     }
 
@@ -52,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.set(true, forKey: isNotFirstRunKey)
             AuthStorage.shared.clear()
         }
+    }
+
+    @objc
+    private func shouldUnauthorizeUser() {
+        print("Handled")
     }
 }
 

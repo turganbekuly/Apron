@@ -30,6 +30,8 @@ extension RecipeCreationViewController: AssignTypesSelectedDelegate {
             recipeCreation?.servings = Int(string)
         case .cookTime(let string):
             recipeCreation?.cookTime = Int(string)
+        default:
+            break
         }
         mainView.reloadTableViewWithoutAnimation()
     }

@@ -11,6 +11,7 @@ import UIKit
 import Models
 import AlertMessages
 import AVFoundation
+import ALProgressView
 
 protocol StepByStepModeDisplayLogic: AnyObject {
     
@@ -51,6 +52,7 @@ final class StepByStepModeViewController: ViewController, Messagable {
     var sections: [Section] = []
     var stepperSections: [StepperSection] = []
     var onStepperSelected = false
+    var finalImage: String?
     var state: State {
         didSet {
             updateState()
@@ -69,6 +71,11 @@ final class StepByStepModeViewController: ViewController, Messagable {
             ]
         }
     }
+
+    weak var delegate: StepByStepFinalStepProtocol?
+
+    var cellStepCount = 0
+    var cellInstruction = RecipeInstruction()
     
     // MARK: - Views
     lazy var mainView: StepByStepModeView = {
@@ -91,6 +98,15 @@ final class StepByStepModeViewController: ViewController, Messagable {
         stackView.spacing = 4
         stackView.backgroundColor = .clear
         return stackView
+    }()
+
+    lazy var progressBar: ALProgressBar = {
+        let view = ALProgressBar()
+        view.startColor = ApronAssets.gray.color
+        view.endColor = .black
+        view.duration = 2
+        view.timingFunction = .easeOutExpo
+        return view
     }()
     
     // MARK: - Init
@@ -123,6 +139,11 @@ final class StepByStepModeViewController: ViewController, Messagable {
         
         configureNavigation()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollViewDidEndDecelerating(mainView)
+    }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
@@ -136,27 +157,29 @@ final class StepByStepModeViewController: ViewController, Messagable {
     }
     
     private func configureViews() {
-        [mainView, stepperView, stackView].forEach { view.addSubview($0) }
+        [mainView, stackView, progressBar].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
     }
     
     private func makeConstraints() {
-        stepperView.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalToSuperview()
-            $0.height.equalTo(60)
+        progressBar.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(8)
+            $0.top.equalToSuperview()
+            $0.height.equalTo(10)
         }
 
         mainView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(stepperView.snp.top)
+            $0.top.equalTo(progressBar.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
 
         stackView.snp.makeConstraints {
-            $0.bottom.equalTo(stepperView.snp.top).offset(-8)
             $0.trailing.equalToSuperview()
             $0.width.equalTo(120)
+            $0.bottom.equalTo(mainView.snp.bottom).offset(-24)
         }
     }
     
@@ -167,5 +190,4 @@ final class StepByStepModeViewController: ViewController, Messagable {
     deinit {
         NSLog("deinit \(self)")
     }
-    
 }

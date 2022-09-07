@@ -7,6 +7,7 @@
 
 import APRUIKit
 import UIKit
+import Storages
 
 public final class StepNavigationController: UINavigationController {
 
@@ -82,7 +83,7 @@ public final class StepNavigationController: UINavigationController {
         let yesAction = UIAlertAction(title: "Да", style: .default) { [weak self] _ in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-
+                TTSMAnager.shared.stopTTS()
                 if self.presentingViewController != nil {
                     self.dismiss(animated: true, completion: nil)
                 } else {

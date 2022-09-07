@@ -85,6 +85,7 @@ final class StepDescriptionCell: UICollectionViewCell {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 16
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -125,10 +126,10 @@ final class StepDescriptionCell: UICollectionViewCell {
     private func setupViews() {
         contentView.addSubviews(scrollView)
         scrollView.addSubview(scrollContentView)
-        scrollContentView.addSubviews(stackView, timerButton, ingredientsButton)
+        scrollContentView.addSubviews(stackView, timerButton)
         makeContraints()
         timerButton.configure(with: .timer)
-        ingredientsButton.configure(with: .ingredient)
+//        ingredientsButton.configure(with: .ingredient)
     }
 
     private func makeContraints() {
@@ -142,11 +143,12 @@ final class StepDescriptionCell: UICollectionViewCell {
         }
 
         stackView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(8)
         }
 
         imageView.snp.makeConstraints {
-            $0.height.equalTo(UIScreen.main.bounds.width)
+            $0.height.equalTo(UIScreen.main.bounds.width - 16)
         }
 
         for view in stackView.arrangedSubviews {
@@ -157,19 +159,18 @@ final class StepDescriptionCell: UICollectionViewCell {
 
         timerButton.snp.makeConstraints {
             $0.top.equalTo(stackView.snp.bottom).offset(8)
-            $0.trailing.equalToSuperview().inset(16)
-            $0.leading.equalTo(snp.centerX).offset(8)
+            $0.leading.equalToSuperview().offset(8)
             $0.bottom.equalToSuperview().inset(16)
             $0.height.equalTo(38)
         }
 
-        ingredientsButton.snp.makeConstraints {
-            $0.top.equalTo(stackView.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalTo(snp.centerX).offset(-8)
-            $0.bottom.equalToSuperview().inset(16)
-            $0.height.equalTo(38)
-        }
+//        ingredientsButton.snp.makeConstraints {
+//            $0.top.equalTo(stackView.snp.bottom).offset(8)
+//            $0.leading.equalToSuperview().offset(16)
+//            $0.trailing.equalTo(snp.centerX).offset(-8)
+//            $0.bottom.equalToSuperview().inset(16)
+//            $0.height.equalTo(38)
+//        }
     }
 
     // MARK: - User actions

@@ -123,12 +123,14 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         ingredientsTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(30)
         }
 
         serveStackView.snp.makeConstraints {
             $0.top.equalTo(ingredientsTitleLabel.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(150)
+            $0.height.equalTo(24)
         }
 
         ingredientsStackView.snp.makeConstraints {

@@ -177,6 +177,7 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AKNetwork/AKNetwork.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ALProgressView/ALProgressView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/APRUIKit/APRUIKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlertMessages/AlertMessages.framework"
@@ -226,6 +227,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AKNetwork/AKNetwork.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ALProgressView/ALProgressView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/APRUIKit/APRUIKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlertMessages/AlertMessages.framework"

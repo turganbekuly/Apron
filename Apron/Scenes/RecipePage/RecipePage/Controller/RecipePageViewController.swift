@@ -55,7 +55,7 @@ final class RecipePageViewController: ViewController, Messagable {
                 .init(section: .topView, rows: [.topView]),
                 .init(section: .description, rows: [.description]),
                 .init(section: .ingredients, rows: [.ingredient]),
-                .init(section: .nutritions, rows: [.nutrition]),
+//                .init(section: .nutritions, rows: [.nutrition]),
                 .init(section: .instructions, rows: [.instruction]),
                 .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
             ]
@@ -70,7 +70,7 @@ final class RecipePageViewController: ViewController, Messagable {
                 .init(section: .topView, rows: [.topView]),
                 .init(section: .description, rows: [.description]),
                 .init(section: .ingredients, rows: [.ingredient]),
-                .init(section: .nutritions, rows: [.nutrition]),
+//                .init(section: .nutritions, rows: [.nutrition]),
                 .init(section: .instructions, rows: [.instruction]),
                 .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
             ]

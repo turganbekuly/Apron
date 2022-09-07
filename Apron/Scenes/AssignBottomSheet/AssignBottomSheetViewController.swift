@@ -27,8 +27,10 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
     let servingComponents = ["-"] + Array(1...99).map { "\($0)"}
     let hourComponents = Array(0...23).map { "\($0)" }
     let minComponments = Array(0...59).map { "\($0)" }
+    let secComponents = Array(0...59).map { "\($0)" }
     let hourSeparator = "часов"
-    let minSeparator = "минут"
+    let minSeparator = "мин"
+    let secSeparator = "сек"
     let whenToCook = ["Завтрак", "Обед", "Полдник", "Ужин", "Поздний ужин", "В любое время"]
 
     // MARK: - PanModal Properties
@@ -124,6 +126,9 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
         case .cookTime:
             titleLabel.text = "Время приготовления"
             subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
+        case let .timer(step):
+            titleLabel.text = "Таймер"
+            subtitlLabel.text = "Шаг №\(step)"
         default: break
         }
         configureColors()

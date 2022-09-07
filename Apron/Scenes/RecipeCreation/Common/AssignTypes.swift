@@ -10,4 +10,5 @@ import Foundation
 enum AssignTypes {
     case servings(String)
     case cookTime(String)
+    case timer(String)
 }

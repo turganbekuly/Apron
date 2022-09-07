@@ -83,7 +83,7 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 32)
             return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
-            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 55))
+            return CGFloat(119 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
             return 203
         case .instruction:
@@ -95,7 +95,7 @@ extension RecipePageViewController: UITableViewDelegate {
                 imageSize = CGFloat(images.count) * 220
             }
 
-            return 100 + imageSize + ((recipe?.instructions?
+            return 154 + imageSize + ((recipe?.instructions?
                 .reduce(0, {
                     $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
@@ -113,7 +113,7 @@ extension RecipePageViewController: UITableViewDelegate {
             let width = (UIScreen.main.bounds.width - 32)
             return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
         case .ingredient:
-            return CGFloat(133 + ((recipe?.ingredients?.count ?? 1) * 55))
+            return CGFloat(119 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
             return 203
         case .instruction:
@@ -125,7 +125,7 @@ extension RecipePageViewController: UITableViewDelegate {
                 imageSize = CGFloat(images.count) * 220
             }
 
-            return 100 + imageSize + ((recipe?.instructions?
+            return 154 + imageSize + ((recipe?.instructions?
                 .reduce(0, {
                     $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
                 }) ?? 56))
@@ -199,6 +199,18 @@ extension RecipePageViewController: UITableViewDelegate {
             cell.configure(with: InstructionCellViewModel(
                 instructions: recipe?.instructions ?? []
             ))
+            cell.onCookModeTapped = { [weak self] in
+                guard let self = self,
+                      let instructions = self.recipe?.instructions,
+                      !instructions.isEmpty
+                else { return }
+                let vc = StepByStepModeBuilder(state: .initial(instructions, self.recipe?.imageURL, self)).build()
+                let navController = StepNavigationController(rootViewController: vc)
+                navController.modalPresentationStyle = .fullScreen
+                DispatchQueue.main.async {
+                    self.navigationController?.present(navController, animated: true)
+                }
+            }
         case let .review(comment):
             guard let cell = cell as? RecipeReviewsCell else { return }
             cell.configure(with: RecipePageReviewsViewModel(comment: comment))

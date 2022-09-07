@@ -39,6 +39,8 @@ final class RecipeInstructionsViewCell: UITableViewCell {
         }
     }
 
+    var onCookModeTapped: (() -> Void)?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -67,12 +69,24 @@ final class RecipeInstructionsViewCell: UITableViewCell {
         return view
     }()
 
+    private lazy var cookModeButton: NavigationButton = {
+        let button = NavigationButton(image: ApronAssets.recipeCookMode.image)
+        button.backgroundType = .blackBackground
+        button.isImageVisible = true
+        button.showShadow = true
+        button.setTitle("Режим готовки".uppercased(), for: .normal)
+        button.addTarget(self, action: #selector(cookModeTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 17
+        button.layer.masksToBounds = true
+        return button
+    }()
+
     // MARK: - Setup Views
 
     private func setupViews() {
         selectionStyle = .none
         backgroundColor = .clear
-        [instructionsTitleLabel, instructionsView].forEach { contentView.addSubviews($0) }
+        [instructionsTitleLabel, instructionsView, cookModeButton].forEach { contentView.addSubviews($0) }
         setupConstraints()
     }
 
@@ -83,11 +97,24 @@ final class RecipeInstructionsViewCell: UITableViewCell {
             $0.height.equalTo(30)
         }
 
-        instructionsView.snp.makeConstraints {
+        cookModeButton.snp.makeConstraints {
             $0.top.equalTo(instructionsTitleLabel.snp.bottom).offset(24)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(34)
+        }
+
+        instructionsView.snp.makeConstraints {
+            $0.top.equalTo(cookModeButton.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
         }
+    }
+
+    // MARK: - User actions
+
+    @objc
+    private func cookModeTapped() {
+        onCookModeTapped?()
     }
 
     // MARK: - Public methods

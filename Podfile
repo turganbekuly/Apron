@@ -8,21 +8,22 @@ workspace 'Apron'
 def commonPods
   # Pods for Apron
 
-  pod 'PanModal'
-  pod 'Kingfisher'
-  pod 'UIScrollView-InfiniteScroll'
+  pod 'PanModal', :inhibit_warnings => true
+  pod 'Kingfisher', :inhibit_warnings => true
+  pod 'UIScrollView-InfiniteScroll', :inhibit_warnings => true
+  pod 'ALProgressView', :inhibit_warnings => true
 
   # Dev Tools
 
-  pod 'SwiftGen', '~> 6.0'
+  pod 'SwiftGen', '~> 6.0', :inhibit_warnings => true
 
   #Analytics & User interaction
 
-  pod 'Amplitude'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Crashlytics'
-  pod 'Firebase/RemoteConfig'
-  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
+  pod 'Amplitude', :inhibit_warnings => true
+  pod 'Firebase/Analytics', :inhibit_warnings => true
+  pod 'Firebase/Crashlytics', :inhibit_warnings => true
+  pod 'Firebase/RemoteConfig', :inhibit_warnings => true
+  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0', :inhibit_warnings => true
 end
 
 def developmentPods
