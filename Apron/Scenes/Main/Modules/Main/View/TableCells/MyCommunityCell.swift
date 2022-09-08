@@ -54,7 +54,7 @@ public final class MyCommunityCell: UITableViewCell {
         label.font = TypographyFonts.semibold18
         label.textColor = .black
         label.textAlignment = .left
-        label.text = "Мое сообщество"
+        label.text = "Мои сообщества"
         return label
     }()
 
