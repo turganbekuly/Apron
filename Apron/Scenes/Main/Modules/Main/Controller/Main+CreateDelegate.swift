@@ -8,6 +8,7 @@
 import UIKit
 import APRUIKit
 import Models
+import RemoteConfig
 
 extension MainViewController: CreateActionFlowProtocol {
     func handleChosenAction(type: CreateActionType) {
@@ -30,7 +31,10 @@ extension MainViewController: CreateActionFlowProtocol {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         case .aboutCommunities:
-            break
+            let link = RemoteConfigManager.shared.remoteConfig.aboutCommunitiesLink
+            guard !link.isEmpty else { return }
+            let webViewController = WebViewHandler(urlString: link)
+            present(webViewController, animated: true)
         default:
             break
         }

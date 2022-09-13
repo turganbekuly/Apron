@@ -26,11 +26,16 @@ public class TTSMAnager {
 
     public func startTTS(with text: String) {
         avSpeechSynthesizer.stopSpeaking(at: .immediate)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        } catch let error {
+            print("This error message from SpeechSynthesizer \(error.localizedDescription)")
+        }
+
         let utterance = AVSpeechUtterance(string: text)
         utterance.volume = 0.8
         utterance.pitchMultiplier = 1
         utterance.voice = AVSpeechSynthesisVoice(language: "ru-RU")
-        utterance.voice
         avSpeechSynthesizer.speak(utterance)
     }
 

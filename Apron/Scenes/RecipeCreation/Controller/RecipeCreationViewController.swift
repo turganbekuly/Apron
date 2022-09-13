@@ -45,12 +45,6 @@ final class RecipeCreationViewController: ViewController, Messagable {
         }
     }
 
-    var recipeCommunityId = 0 {
-        didSet {
-            recipeCreation?.communityId = recipeCommunityId
-        }
-    }
-
     var analyticsSourceType: RecipeCreationSourceTypeModel? {
         didSet {
             ApronAnalytics.shared.sendAmplitudeEvent(
@@ -62,9 +56,8 @@ final class RecipeCreationViewController: ViewController, Messagable {
     var recipeCreationSourceType: RecipeCreationSourceType? {
         didSet {
             switch recipeCreationSourceType {
-            case let .community(id, delegate):
+            case let .community(delegate):
                 self.delegate = delegate
-                self.recipeCommunityId = id
                 analyticsSourceType = .community
             case .saved:
                 analyticsSourceType = .saved
@@ -92,13 +85,13 @@ final class RecipeCreationViewController: ViewController, Messagable {
             switch initialState {
             case let .create(recipeCreation, sourceType),
                 let .edit(recipeCreation, sourceType):
-                if let storeRecipeCreation = recipeCreationStorage.recipeCreation {
+                if let storeRecipeCreation = recipeCreationStorage.recipeCreation,
+                    storeRecipeCreation.communityId == recipeCreation.communityId {
                     show(with: storeRecipeCreation)
                 } else {
                     self.recipeCreation = recipeCreation
                 }
                 self.recipeCreationSourceType = sourceType
-
                 sections = [
                     .init(
                         section: .info,
@@ -247,6 +240,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
             action: {
                 self.recipeCreation = recipe
                 self.mainView.reloadData()
+                self.recipeCreationStorage.recipeCreation = nil
             }
         )
         let cancel = AlertActionInfo(
@@ -254,7 +248,6 @@ final class RecipeCreationViewController: ViewController, Messagable {
             type: .cancel,
             action: {
                 self.recipeCreationStorage.recipeCreation = nil
-                self.recipeCreation = RecipeCreation()
                 self.mainView.reloadData()
             }
         )

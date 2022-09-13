@@ -44,6 +44,7 @@ enum AnalyticsEvents {
     case recipeIngredientsAddedToShoppingList([String])
     case shoppingListViewed
     case ingredientAdded(IngredientAddedModel)
+    case stepByStepViewed
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -77,6 +78,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "shopping_list_viewed"
         case .ingredientAdded:
             return "ingredient_added"
+        case .stepByStepViewed:
+            return "step_by_step_viewed"
         }
     }
 
@@ -110,6 +113,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return [:]
         case let .ingredientAdded(model):
             return model.toJSON()
+        case .stepByStepViewed:
+            return [:]
         }
     }
 }

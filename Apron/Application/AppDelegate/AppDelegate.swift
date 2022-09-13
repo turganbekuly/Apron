@@ -32,6 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     internal func application(
+        _ app: UIApplication,
+        open url: URL,
+        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+    ) -> Bool {
+        
+        DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
+        return true
+    }
+
+    internal func application(
         _ application: UIApplication,
         continue userActivity: NSUserActivity,
         restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
@@ -53,11 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.set(true, forKey: isNotFirstRunKey)
             AuthStorage.shared.clear()
         }
-    }
-
-    @objc
-    private func shouldUnauthorizeUser() {
-        print("Handled")
     }
 }
 

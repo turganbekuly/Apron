@@ -173,8 +173,16 @@ final class IngredientSelectionViewController: ViewController, Messagable {
     }
     
     
+    
     deinit {
         NSLog("deinit \(self)")
+    }
+
+    // MARK: - Private methods
+
+    private func converter(text: String) -> String {
+        let conversion = Double(text.replacingOccurrences(of: ",", with: ".")) ?? 0.0
+        return String(format: "%.2f", conversion)
     }
 
     // MARK: - User actions
@@ -189,7 +197,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
             show(type: .error("Пожалуйтса, выберите измерение"))
             return
         }
-        recipeIgredient.amount = Double(measureTextField.amountTextField.text ?? "0.0")
+        recipeIgredient.amount = Double(converter(text: measureTextField.amountTextField.text ?? "0.0"))
         recipeIgredient.measurement = measureTextField.measurementTyptextField.text
         delegate?.onIngredientSelected(ingredient: recipeIgredient)
         navigationController?.popViewController(animated: true)

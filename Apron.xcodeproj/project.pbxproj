@@ -249,6 +249,7 @@
 		6D8B4FFD286F14FF00F150A0 /* ShoppingList+CheckDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8B4FFC286F14FF00F150A0 /* ShoppingList+CheckDelegate.swift */; };
 		6D8B4FFF286F2AE200F150A0 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8B4FFE286F2AE200F150A0 /* AvatarView.swift */; };
 		6D8B5001286F2F5B00F150A0 /* ShoppingList+ActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8B5000286F2F5B00F150A0 /* ShoppingList+ActionDelegate.swift */; };
+		6D8BB70228CE4CC4005A659C /* WebViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BB70128CE4CC4005A659C /* WebViewHandler.swift */; };
 		6D8EBCF1283CAE6400F77EBF /* RecipeBottomStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EBCF0283CAE6400F77EBF /* RecipeBottomStickyView.swift */; };
 		6D8F5CFE284DDB5000EFE0E4 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 6D8F5CFD284DDB5000EFE0E4 /* DropDown */; };
 		6D9301EB282ED74C0018EF14 /* GeneralSearchReulst+Pager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9301EA282ED74C0018EF14 /* GeneralSearchReulst+Pager.swift */; };
@@ -836,6 +837,7 @@
 		6D8B4FFC286F14FF00F150A0 /* ShoppingList+CheckDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+CheckDelegate.swift"; sourceTree = "<group>"; };
 		6D8B4FFE286F2AE200F150A0 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		6D8B5000286F2F5B00F150A0 /* ShoppingList+ActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+ActionDelegate.swift"; sourceTree = "<group>"; };
+		6D8BB70128CE4CC4005A659C /* WebViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewHandler.swift; sourceTree = "<group>"; };
 		6D8EBCF0283CAE6400F77EBF /* RecipeBottomStickyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBottomStickyView.swift; sourceTree = "<group>"; };
 		6D9301EA282ED74C0018EF14 /* GeneralSearchReulst+Pager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralSearchReulst+Pager.swift"; sourceTree = "<group>"; };
 		6D9301EC282ED9100018EF14 /* GeneralSearchResult+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralSearchResult+CollectionView.swift"; sourceTree = "<group>"; };
@@ -2479,6 +2481,7 @@
 				6DAD563427C508360022842E /* CartButtonView.swift */,
 				6DD16A09278CB1C600026EBC /* MainInitialState.swift */,
 				6DDBBB492793396400BFE1C2 /* MainSectionType.swift */,
+				6D8BB70128CE4CC4005A659C /* WebViewHandler.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -3860,6 +3863,7 @@
 				6DF18D6A289ECD85000208CA /* RecipePageInstructions+TableView.swift in Sources */,
 				CEEF694017A980FFC8FEB0FA /* CommunityCreationService.swift in Sources */,
 				6DC4EB50283E09C4008D3F57 /* AuthorizationPresenter.swift in Sources */,
+				6D8BB70228CE4CC4005A659C /* WebViewHandler.swift in Sources */,
 				BAE493D8A1379F5C666AF579 /* CommunityCreationView.swift in Sources */,
 				E825212680547819C469C25A /* CommunityCreationBuilder.swift in Sources */,
 				6DD6733D282E7CB400C2AB4C /* GeneralSearch+SearchDelegate.swift in Sources */,
@@ -4224,7 +4228,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
@@ -4242,7 +4246,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4262,7 +4266,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
@@ -4280,7 +4284,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

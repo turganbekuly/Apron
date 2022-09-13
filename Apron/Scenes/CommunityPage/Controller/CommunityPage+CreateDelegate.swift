@@ -17,10 +17,12 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
     func handleChosenAction(type: CreateActionType) {
         switch type {
         case .newRecipe:
+            var recipeCreation = RecipeCreation()
+            recipeCreation.communityId = community?.id
             let vc = RecipeCreationBuilder(
                 state: .initial(
                     .create(
-                        RecipeCreation(), .community(id: community?.id ?? 0, from: self)
+                        recipeCreation, .community(from: self)
                     )
                 )
             ).build()

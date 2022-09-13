@@ -203,7 +203,6 @@ final class CommunityCreationViewController: ViewController, Messagable {
     private func saveButtonTapped() {
         if let _ = communityCreation?.communityName,
            let _ = communityCreation?.imageURL,
-           let _ = communityCreation?.description,
            let _ = communityCreation?.category,
            let _ = communityCreation?.privateAdding,
            let _ = communityCreation?.isHidden

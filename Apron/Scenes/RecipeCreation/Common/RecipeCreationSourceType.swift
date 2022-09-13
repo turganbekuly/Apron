@@ -8,7 +8,7 @@
 import Foundation
 
 enum RecipeCreationSourceType: Equatable {
-    case community(id: Int, from: CommunityPageCreateRecipeProtocol)
+    case community(from: CommunityPageCreateRecipeProtocol)
     case saved
     case planner
     case recipe

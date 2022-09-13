@@ -9,9 +9,14 @@ import UIKit
 import APRUIKit
 import Models
 import Kingfisher
+import SnapKit
 
 
 final class RecipeCreationInstructionViewCell: UITableViewCell {
+    // MARK: - Properties
+
+    private var imageViewHeight: Constraint?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -101,7 +106,7 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
             $0.top.equalTo(instructionLabel.snp.bottom).offset(8)
             $0.leading.equalTo(stepLabel.snp.trailing).offset(8)
             $0.trailing.equalToSuperview()
-            $0.height.equalTo(220)
+            imageViewHeight = $0.height.equalTo(220).constraint
         }
     }
 
@@ -110,7 +115,10 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
     func configure(instruction: RecipeInstruction, stepCount: String) {
         instructionLabel.text = instruction.description
         stepLabel.text = "\(stepCount)"
-        guard let image = instruction.image else { return }
+        guard let image = instruction.image else {
+            imageViewHeight?.update(offset: 0)
+            return
+        }
         instructionImage.kf.setImage(
             with: URL(string: image),
             placeholder: ApronAssets.iconPlaceholderItem.image

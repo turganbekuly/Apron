@@ -7,6 +7,7 @@
 
 import Amplitude
 import Foundation
+import FirebaseAnalytics
 
 protocol AnalyticsProtocol {
     func configure(
@@ -39,6 +40,7 @@ final class ApronAnalytics: AnalyticsProtocol {
 
     func sendAmplitudeEvent(_ event: AnalyticsEvents) {
         Amplitude.instance().logEvent(event.name, withEventProperties: event.eventProperties)
+        Analytics.logEvent(event.name, parameters: event.eventProperties)
     }
 
     func sendAppsflyerEvent(_ event: AnalyticsEvents) {
@@ -53,7 +55,8 @@ final class ApronAnalytics: AnalyticsProtocol {
                 "user_email": email ?? ""
             ]
         )
-//        AppsFlyerLib.shared().customerUserID = userID
+        Analytics.setUserProperty(name, forName: "user_name")
+        Analytics.setUserProperty(email, forName: "user_email")
     }
 
     func start() {

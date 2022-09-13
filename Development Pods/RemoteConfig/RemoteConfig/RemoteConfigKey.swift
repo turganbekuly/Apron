@@ -5,4 +5,5 @@ public enum RemoteConfigKey: String, CaseIterable {
     case isMerchantListingPageFiltersEnabled = "is_filtersEnabled"
     case appVersion = "app_version"
     case isCookAssistantEnabled = "ios_is_cook_assistant_enabled"
+    case aboutCommunitiesLink = "about_communities_link"
 }

@@ -96,9 +96,16 @@ extension RecipePageViewController: UITableViewDelegate {
             }
 
             return 160 + imageSize + ((recipe?.instructions?
-                .reduce(0, {
-                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
-                }) ?? 56))
+                .reduce(
+                    0,
+                    {
+                        $0 + (
+                            (
+                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10
+                            ) + 37
+                        )
+                    }
+                ) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
             return 45 + Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width) + (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)
@@ -126,9 +133,16 @@ extension RecipePageViewController: UITableViewDelegate {
             }
 
             return 160 + imageSize + ((recipe?.instructions?
-                .reduce(0, {
-                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
-                }) ?? 56))
+                .reduce(
+                    0,
+                    {
+                        $0 + (
+                            (
+                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10
+                            ) + 35
+                        )
+                    }
+                ) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
             return 45 + Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width) + (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)

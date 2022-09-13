@@ -29,6 +29,7 @@ extension ProfileViewController {
             getProfile()
         case let .fetchProfile(model):
             userStorage.user = model
+            ApronAnalytics.shared.setupUserInfo(name: model.username, email: model.email)
             sections = [.init(section: .app, rows: [.user, .assistant, .deleteAccount, .logout])]
             mainView.reloadData()
         case .fetchProfileFailed:
