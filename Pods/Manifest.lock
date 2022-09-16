@@ -40,6 +40,9 @@ PODS:
   - Firebase/Crashlytics (9.1.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 9.1.0)
+  - Firebase/DynamicLinks (9.1.0):
+    - Firebase/CoreOnly
+    - FirebaseDynamicLinks (~> 9.1.0)
   - Firebase/RemoteConfig (9.1.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 9.1.0)
@@ -82,6 +85,8 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (~> 2.1)
+  - FirebaseDynamicLinks (9.1.0):
+    - FirebaseCore (~> 9.0)
   - FirebaseInstallations (9.1.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -199,6 +204,7 @@ DEPENDENCIES:
   - FeatureToggle (from `./Development pods/FeatureToggle`)
   - Firebase/Analytics
   - Firebase/Crashlytics
+  - Firebase/DynamicLinks
   - Firebase/RemoteConfig
   - HapticTouch (from `./Development Pods/HapticTouch`)
   - Kingfisher
@@ -227,6 +233,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseCoreInternal
     - FirebaseCrashlytics
+    - FirebaseDynamicLinks
     - FirebaseInstallations
     - FirebaseRemoteConfig
     - GoogleAppMeasurement
@@ -300,6 +307,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 2dabba3412b23b524823325739f45e520f67d1e7
   FirebaseCoreInternal: f3c838ae0b41cd840bbf34f90debfede78d352e5
   FirebaseCrashlytics: 8e21736dcf15d814b79229eb7e79ba3a5eec5f30
+  FirebaseDynamicLinks: d2cc5fe0378fd2a191becfaadd112c07227b32e4
   FirebaseInstallations: a91c74276b544524ce144c8315d8cdbce2dbe30b
   FirebaseRemoteConfig: ebd0eb74b9a0593ab2a3f0788a5be5595b46a05c
   GoogleAppMeasurement: 8ecc717f2abe3f9ee95a5d38db08827852894acc
@@ -330,6 +338,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: f7f25d292739bf2974ba4c6bead8f4d53bb559a6
+PODFILE CHECKSUM: 8239962d6e23f9340229214765c6b1757249f1ec
 
 COCOAPODS: 1.11.3

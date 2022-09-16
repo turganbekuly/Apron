@@ -65,6 +65,7 @@ extension CommunityPageViewController {
     func configureRecipes() {
         guard !recipes.isEmpty else {
             sections = [.init(section: .topView, rows: [.emptyView])]
+            mainView.finishInfiniteScroll()
             mainView.reloadData()
             return
         }

@@ -50,6 +50,8 @@ final class EmojiCell: UITableViewCell {
 
     // MARK: - Views factory
 
+    let containerView = UIView()
+
     private lazy var hStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [loveButton, sadButton])
         stackView.axis = .horizontal
@@ -78,16 +80,16 @@ final class EmojiCell: UITableViewCell {
         buttons.forEach {
             $0.addTarget(self, action: #selector(emojiSelected), for: .touchUpInside)
         }
-        contentView.addSubview(hStackView)
+        contentView.addSubview(containerView)
+        containerView.addSubview(hStackView)
 
         setupConstraints()
         configureCell()
     }
 
     private func setupConstraints() {
-        snp.makeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.width)
-            $0.height.equalTo(100)
+        containerView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
 
         hStackView.snp.makeConstraints {

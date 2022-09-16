@@ -14,7 +14,9 @@ import HapticTouch
 extension CommunityPageViewController: ICommunityInfoCell {
     func inviteButtonTapped() {
         let viewController = UIActivityViewController(
-            activityItems: ["https://apron.ws/community/\(community?.id ?? 0)"],
+            activityItems: [
+                "Зацените сообщество \"\(community?.name ?? "")\" на Apron👀\n https://apron.ws/community/\(community?.id ?? 0)"
+            ],
             applicationActivities: nil
         )
 

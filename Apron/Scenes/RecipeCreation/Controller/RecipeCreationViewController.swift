@@ -87,7 +87,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
                 let .edit(recipeCreation, sourceType):
                 if let storeRecipeCreation = recipeCreationStorage.recipeCreation,
                     storeRecipeCreation.communityId == recipeCreation.communityId {
-                    show(with: storeRecipeCreation)
+                    show(with: storeRecipeCreation, initialRecipe: recipeCreation)
                 } else {
                     self.recipeCreation = recipeCreation
                 }
@@ -233,12 +233,12 @@ final class RecipeCreationViewController: ViewController, Messagable {
         NSLog("deinit \(self)")
     }
 
-    private func show(with recipe: RecipeCreation) {
+    private func show(with storageRecipe: RecipeCreation, initialRecipe: RecipeCreation) {
         let confirm = AlertActionInfo(
             title: "Да",
             type: .normal,
             action: {
-                self.recipeCreation = recipe
+                self.recipeCreation = storageRecipe
                 self.mainView.reloadData()
                 self.recipeCreationStorage.recipeCreation = nil
             }
@@ -247,6 +247,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
             title: "Нет",
             type: .cancel,
             action: {
+                self.recipeCreation = initialRecipe
                 self.recipeCreationStorage.recipeCreation = nil
                 self.mainView.reloadData()
             }

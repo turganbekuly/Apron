@@ -168,7 +168,9 @@ extension RecipePageViewController: UITableViewDelegate {
             cell.onShareButtonTapped = { [weak self] in
                 guard let self = self else { return }
                 let viewController = UIActivityViewController(
-                    activityItems: ["https://apron.ws/recipe/\(self.recipe?.id ?? 0)"],
+                    activityItems: [
+                        "Зацените рецепт \"\(self.recipe?.recipeName ?? "")\" на Apron  👀\nhttps://apron.ws/recipe/\(self.recipe?.id ?? 0)"
+                    ],
                     applicationActivities: nil
                 )
 

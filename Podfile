@@ -23,6 +23,7 @@ def commonPods
   pod 'Firebase/Analytics', :inhibit_warnings => true
   pod 'Firebase/Crashlytics', :inhibit_warnings => true
   pod 'Firebase/RemoteConfig', :inhibit_warnings => true
+  pod 'Firebase/DynamicLinks', :inhibit_warnings => true
   pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0', :inhibit_warnings => true
 end
 

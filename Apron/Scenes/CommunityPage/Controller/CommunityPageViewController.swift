@@ -112,6 +112,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
         let view = CommunityPageView()
         view.dataSource = self
         view.delegate = self
+        view.refreshControl = refreshControl
         return view
     }()
 
@@ -126,7 +127,11 @@ public final class CommunityPageViewController: ViewController, Messagable {
         return button
     }()
 
-    private lazy var refreshControl = UIRefreshControl()
+    private lazy var refreshControl: UIRefreshControl = {
+        let view = UIRefreshControl()
+        view.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        return view
+    }()
     
     // MARK: - Init
     init(interactor: CommunityPageBusinessLogic, state: State) {
@@ -189,8 +194,6 @@ public final class CommunityPageViewController: ViewController, Messagable {
     }
     
     private func configureViews() {
-        mainView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
         backButton.icon = ApronAssets.navBackButton.image.withTintColor(.black)
         moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
         backButton.onTouch = { [weak self] in
@@ -300,7 +303,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
     // MARK: - User actions
 
     @objc
-    private func refreshControlActivated() {
+    private func refresh(_ sender: UIRefreshControl) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.refreshControl.endRefreshing()
         }

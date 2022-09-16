@@ -38,7 +38,9 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
             }
         case .shareCommunity:
             let viewController = UIActivityViewController(
-                activityItems: ["https://apron.ws/community/\(community?.id ?? 0)"],
+                activityItems: [
+                    "Зацените сообщество \"\(community?.name ?? "")\" на Apron👀\n https://apron.ws/community/\(community?.id ?? 0)"
+                ],
                 applicationActivities: nil
             )
 

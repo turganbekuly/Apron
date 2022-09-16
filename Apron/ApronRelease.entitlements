@@ -11,7 +11,7 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:apron.ws</string>
-		<string>applinks:apron.onelink.me</string>
+		<string>applinks:apronapp.page.link</string>
 	</array>
 </dict>
 </plist>

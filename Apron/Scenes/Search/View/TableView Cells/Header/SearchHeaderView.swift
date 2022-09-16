@@ -34,7 +34,8 @@ final class SearchHeaderView: UITableViewHeaderFooterView {
     // MARK: - Setup Views
 
     private func setupViews() {
-        contentView.backgroundColor = .clear
+        backgroundView = UIView(frame: self.bounds)
+        backgroundView?.backgroundColor = ApronAssets.secondary.color
         contentView.addSubviews(
             searchView
         )

@@ -10,6 +10,7 @@ import Protocols
 import Amplitude
 import Storages
 import AKNetwork
+import FirebaseDynamicLinks
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,7 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         open url: URL,
         options: [UIApplication.OpenURLOptionsKey : Any] = [:]
     ) -> Bool {
-        
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url),
+           let dynamicURL = dynamicLink.url
+        {
+            DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: dynamicURL)
+            return true
+        }
         DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
         return true
     }
@@ -50,8 +56,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL
         else { return false }
+        let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
+            guard error == nil else { return }
+
+            if let dynamicLink = dynamicLink,
+               let dynamicURL = dynamicLink.url {
+                DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: dynamicURL)
+            }
+        }
+        if linkHandled { return true }
 
         DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
+
         return true
     }
 

@@ -252,6 +252,7 @@
 		6D8BB70228CE4CC4005A659C /* WebViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BB70128CE4CC4005A659C /* WebViewHandler.swift */; };
 		6D8EBCF1283CAE6400F77EBF /* RecipeBottomStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EBCF0283CAE6400F77EBF /* RecipeBottomStickyView.swift */; };
 		6D8F5CFE284DDB5000EFE0E4 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 6D8F5CFD284DDB5000EFE0E4 /* DropDown */; };
+		6D9225AF28D493A200B07470 /* StretchyTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9225AE28D493A200B07470 /* StretchyTableViewHeaderView.swift */; };
 		6D9301EB282ED74C0018EF14 /* GeneralSearchReulst+Pager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9301EA282ED74C0018EF14 /* GeneralSearchReulst+Pager.swift */; };
 		6D9301ED282ED9100018EF14 /* GeneralSearchResult+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9301EC282ED9100018EF14 /* GeneralSearchResult+CollectionView.swift */; };
 		6D9301F0282ED98B0018EF14 /* SegmentItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9301EF282ED98B0018EF14 /* SegmentItemCell.swift */; };
@@ -839,6 +840,7 @@
 		6D8B5000286F2F5B00F150A0 /* ShoppingList+ActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+ActionDelegate.swift"; sourceTree = "<group>"; };
 		6D8BB70128CE4CC4005A659C /* WebViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewHandler.swift; sourceTree = "<group>"; };
 		6D8EBCF0283CAE6400F77EBF /* RecipeBottomStickyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBottomStickyView.swift; sourceTree = "<group>"; };
+		6D9225AE28D493A200B07470 /* StretchyTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyTableViewHeaderView.swift; sourceTree = "<group>"; };
 		6D9301EA282ED74C0018EF14 /* GeneralSearchReulst+Pager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralSearchReulst+Pager.swift"; sourceTree = "<group>"; };
 		6D9301EC282ED9100018EF14 /* GeneralSearchResult+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralSearchResult+CollectionView.swift"; sourceTree = "<group>"; };
 		6D9301EF282ED98B0018EF14 /* SegmentItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentItemCell.swift; sourceTree = "<group>"; };
@@ -2177,6 +2179,7 @@
 			isa = PBXGroup;
 			children = (
 				6D84303F2795E264004E27E5 /* ImageHeaderView.swift */,
+				6D9225AE28D493A200B07470 /* StretchyTableViewHeaderView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -4069,6 +4072,7 @@
 				9C33191583C292E3B4D61207 /* AddCommentBuilder.swift in Sources */,
 				8BE26272315E94F322E5A338 /* AddCommentDataFlow.swift in Sources */,
 				39E14F7C60D7AA39DE63DB80 /* AddCommentInteractor.swift in Sources */,
+				6D9225AF28D493A200B07470 /* StretchyTableViewHeaderView.swift in Sources */,
 				E2A70F815B174DC31DE0C4EB /* AddCommentPresenter.swift in Sources */,
 				8EC8CD85BDE92A3B3DBEA4D6 /* StepByStepModeViewController.swift in Sources */,
 				19543101C043D0729B08DA2E /* StepByStepMode+DisplayLogic.swift in Sources */,
