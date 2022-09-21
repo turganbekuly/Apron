@@ -27,6 +27,7 @@ extension RecipeCreationViewController {
         case let .initial(state):
             self.initialState = state
         case let .recipeCreationSucceed(recipe):
+            saveButtonLoader(isLoading: false)
             recipeCreationStorage.recipeCreation = nil
             ApronAnalytics.shared.sendAmplitudeEvent(
                 .recipeCreated(
@@ -43,6 +44,7 @@ extension RecipeCreationViewController {
             delegate?.didCreate()
             self.navigationController?.popViewController(animated: true)
         case .recipeCreationFailed:
+            saveButtonLoader(isLoading: false)
             show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)
         case let .uploadImageSucceed(path):
             recipeCreation?.imageURL = Configurations.downloadImageURL(imagePath: path)

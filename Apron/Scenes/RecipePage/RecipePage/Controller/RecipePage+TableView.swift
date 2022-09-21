@@ -81,7 +81,7 @@ extension RecipePageViewController: UITableViewDelegate {
             return (view.bounds.width / 2) + 120
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
-            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
+            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 0)
         case .ingredient:
             return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
@@ -118,7 +118,7 @@ extension RecipePageViewController: UITableViewDelegate {
             return (view.bounds.width / 2) + 120
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
-            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 50)
+            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 0)
         case .ingredient:
             return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:

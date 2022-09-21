@@ -259,6 +259,14 @@ final class RecipeCreationViewController: ViewController, Messagable {
         )
     }
 
+    func saveButtonLoader(isLoading: Bool) {
+        if isLoading {
+            saveButton.startAnimating()
+            return
+        }
+        saveButton.stopAnimating()
+    }
+
     // MARK: - User actions
 
     @objc
@@ -276,6 +284,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
             }
 
             self.createRecipe(recipe: recipeCreation)
+            saveButtonLoader(isLoading: true)
         } else {
             show(
                 type: .dialog(
