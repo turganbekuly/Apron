@@ -74,7 +74,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
         let button = NavigationButton(image: ApronAssets.recipeCookMode.image.withTintColor(.black))
         button.backgroundType = .yelloBackground
         button.isImageVisible = true
-        button.setTitle("Режим готовки".uppercased(), for: .normal)
+        button.setTitle("Начать \"Режим готовки\"".uppercased(), for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(cookModeTapped), for: .touchUpInside)
         button.layer.cornerRadius = 22

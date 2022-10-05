@@ -27,7 +27,10 @@ final class RecipeCreationViewController: ViewController, Messagable {
     var sections: [Section] = []
 
     var tagsSections: [TagsSection] = [
-        .init(section: .whenToCook, rows: SuggestedCookingTime.allCases.compactMap { .option($0) })
+        .init(section: .whenToCook, rows: SuggestedCookingTime.allCases.compactMap { .whenToCook($0) }),
+        .init(section: .dishType, rows: SuggestedDishType.allCases.compactMap { .dishType($0) }),
+        .init(section: .lifeStyleType, rows: SuggestedLifestyleType.allCases.compactMap { .lifeStyleType($0) }),
+        .init(section: .eventType, rows: SuggestedEventType.allCases.compactMap { .eventType($0) })
     ]
 
     // Recipe creation model
@@ -39,9 +42,36 @@ final class RecipeCreationViewController: ViewController, Messagable {
         }
     }
 
-    var selectedOptions = [SuggestedCookingTime]() {
+    var selectedCookingTime = [SuggestedCookingTime]() {
         didSet {
-            recipeCreation?.whenToCook = selectedOptions.compactMap { $0.rawValue }
+            selectedOptions.append(contentsOf: selectedCookingTime.compactMap { $0.rawValue })
+        }
+    }
+    var selectedDishTypes = [SuggestedDishType]() {
+        didSet {
+            print(selectedDishTypes)
+            selectedOptions.append(contentsOf: selectedDishTypes.compactMap { $0.rawValue })
+        }
+    }
+    var selectedLifestyleTypes = [SuggestedLifestyleType]() {
+        didSet {
+            selectedOptions.append(contentsOf: selectedLifestyleTypes.compactMap { $0.rawValue })
+        }
+    }
+    var selectedEventTypes = [SuggestedEventType]() {
+        didSet {
+            selectedOptions.append(contentsOf: selectedEventTypes.compactMap { $0.rawValue })
+        }
+    }
+
+    lazy var selectedOptions = [Int]() {
+        didSet {
+            let cookTime = selectedCookingTime.compactMap { $0.rawValue }
+            let dishType = selectedDishTypes.compactMap { $0.rawValue }
+            let lifestyleType = selectedLifestyleTypes.compactMap { $0.rawValue }
+            let eventType = selectedEventTypes.compactMap { $0.rawValue }
+
+            recipeCreation?.whenToCook = (cookTime + dishType + lifestyleType + eventType).unique()
         }
     }
 
@@ -233,13 +263,23 @@ final class RecipeCreationViewController: ViewController, Messagable {
         NSLog("deinit \(self)")
     }
 
+    func saveButtonLoader(isLoading: Bool) {
+        if isLoading {
+            saveButton.startAnimating()
+            return
+        }
+        saveButton.stopAnimating()
+    }
+
+    // MARK: - Private methods
+
     private func show(with storageRecipe: RecipeCreation, initialRecipe: RecipeCreation) {
         let confirm = AlertActionInfo(
             title: "Да",
             type: .normal,
             action: {
                 self.recipeCreation = storageRecipe
-                self.mainView.reloadData()
+                self.handleSections(with: storageRecipe.imageURL)
                 self.recipeCreationStorage.recipeCreation = nil
             }
         )
@@ -248,8 +288,8 @@ final class RecipeCreationViewController: ViewController, Messagable {
             type: .cancel,
             action: {
                 self.recipeCreation = initialRecipe
+                self.handleSections(with: nil)
                 self.recipeCreationStorage.recipeCreation = nil
-                self.mainView.reloadData()
             }
         )
         self.showAlert(
@@ -259,12 +299,32 @@ final class RecipeCreationViewController: ViewController, Messagable {
         )
     }
 
-    func saveButtonLoader(isLoading: Bool) {
-        if isLoading {
-            saveButton.startAnimating()
-            return
+    private func handleSections(with image: String?) {
+        if let image = image, !image.isEmpty {
+            self.sections = [
+                .init(
+                    section: .info,
+                    rows: [
+                        .name, .image, .source,
+                        .description, .composition, .instruction,
+                        .servings, .cookTime, .whenToCook
+                    ]
+                )
+            ]
+        } else {
+            self.sections = [
+                .init(
+                    section: .info,
+                    rows: [
+                        .name, .imagePlaceholder,.source,
+                        .description, .composition, .instruction,
+                        .servings, .cookTime, .whenToCook
+                    ]
+                )
+            ]
         }
-        saveButton.stopAnimating()
+
+        self.mainView.reloadData()
     }
 
     // MARK: - User actions

@@ -13,4 +13,5 @@ public enum ConfigurationKeys {
     public static let amplitudeApiKey = "Configuration.AMPLITUDE_API_KEY"
     public static let webBasedURL = "Configuration.WEB_BASED_URL"
     public static let oneSignalAppID = "Configuration.ONE_SIGNAL_APP_ID"
+    public static let deeplinkBasedURL = "Configuration.DEEPLINK_BASED_URL"
 }

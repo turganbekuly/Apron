@@ -44,6 +44,7 @@ public final class AddCommentCollectionView: UICollectionView {
         contentInsetAdjustmentBehavior = .never
         showsVerticalScrollIndicator = false
         allowsMultipleSelection = true
+        isScrollEnabled = false
         [
             TagHeader.self
         ].forEach {

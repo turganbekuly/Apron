@@ -22,34 +22,21 @@ final class RecipeCreationTagsCell: UITableViewCell {
 
     // MARK: - Views factory
 
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = TypographyFonts.semibold17
-        label.textColor = .black
-        label.textAlignment = .left
-        return label
-    }()
-
     lazy var collectionView = AddCommentCollectionView()
 
     // MARK: - Setup Views
 
     private func setupViews() {
-        contentView.addSubviews(titleLabel, collectionView)
+        contentView.addSubview(collectionView)
         setupConstraints()
         configureCell()
     }
 
     private func setupConstraints() {
-        titleLabel.snp.makeConstraints {
+        collectionView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
-        }
-
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
 
@@ -61,7 +48,6 @@ final class RecipeCreationTagsCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure() {
-        titleLabel.text = "Когда готовить это блюдо?"
         collectionView.reloadData()
     }
 }

@@ -33,6 +33,14 @@ public final class Configurations {
         getValue(for: ConfigurationKeys.webBasedURL) ?? ""
     }
 
+    public static func getDeeplinkBaseURL() -> String {
+        guard let http = getValue(for: ConfigurationKeys.http),
+              let urlString = getValue(for: ConfigurationKeys.deeplinkBasedURL) else {
+            fatalError("Cannot get base url")
+        }
+        return "\(http)\(urlString)"
+    }
+
     public static func getOneSignalAppID() -> String {
         getValue(for: ConfigurationKeys.oneSignalAppID) ?? ""
     }

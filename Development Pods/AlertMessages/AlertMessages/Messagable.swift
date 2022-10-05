@@ -89,7 +89,8 @@ extension Messagable where Self: UIViewController {
         switch type {
         case let .success(title):
             messageView.configure(with: SuccessMessageViewModel(title: title))
-        case let .dialog(title, subtitle, firstButtonTitle, secondButtonTitle):
+        case let .dialog(title, subtitle, firstButtonTitle, secondButtonTitle),
+            let .completeAppleSignin(title, subtitle, firstButtonTitle, secondButtonTitle):
             messageView.configure(with: DialogMessageViewModel(
                 title: title,
                 subtitle: subtitle,
@@ -135,6 +136,12 @@ extension Messagable where Self: UIViewController {
             attributes.entryInteraction = .absorbTouches
             attributes.position = .bottom
             attributes.positionConstraints.verticalOffset = 64
+        case .completeAppleSignin:
+            attributes.displayDuration = .infinity
+            attributes.entryInteraction = .absorbTouches
+            attributes.position = .center
+            attributes.positionConstraints.verticalOffset = 64
+            HapticTouch.generateLight()
         case .success, .regular:
             attributes.displayDuration = 5
             attributes.position = .bottom

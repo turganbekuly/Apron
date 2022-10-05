@@ -53,8 +53,8 @@ final class GeneralSearchResultViewController: ViewController {
         didSet {
             switch initialState {
             case .main:
-                pages = [.everything, .recipe, .community]
-                pagerInitialState = .everything
+                pages = [.recipe, .community]
+                pagerInitialState = .recipe
             case .recipe:
                 pages = [.recipe]
                 pagerInitialState = .recipe
@@ -72,7 +72,7 @@ final class GeneralSearchResultViewController: ViewController {
 
     public var selectedIndexPath = IndexPath(row: .zero, section: .zero)
 
-    public var pagerInitialState: GeneralSearchInitialState = .everything {
+    public var pagerInitialState: GeneralSearchInitialState = .recipe {
         didSet {
             selectedIndexPath = IndexPath(row: pages.firstIndex(of: pagerInitialState) ?? .zero, section: .zero)
         }
@@ -82,7 +82,7 @@ final class GeneralSearchResultViewController: ViewController {
         guard let viewController = GeneralSearchResultPagerBuilder(
             state: .initial(pages, pagerInitialState, delegate)
         ).build() as? GeneralSearchResultPagerViewController else {
-            return GeneralSearchResultPagerViewController(state: .initial([], .everything, delegate))
+            return GeneralSearchResultPagerViewController(state: .initial([], .recipe, delegate))
         }
         viewController.pagerDelegate = self
         return viewController

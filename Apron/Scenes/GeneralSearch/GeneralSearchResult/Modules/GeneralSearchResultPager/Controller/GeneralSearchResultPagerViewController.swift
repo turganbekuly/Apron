@@ -42,7 +42,7 @@ final class GeneralSearchResultPagerViewController: PageViewController {
             }
         }
     }
-    var currentPage: GeneralSearchInitialState = .everything
+    var currentPage: GeneralSearchInitialState = .recipe
     var allViewControllers = [UIViewController]() {
         didSet {
             setInitialViewController()

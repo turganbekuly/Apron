@@ -55,6 +55,11 @@ public class MessageView: UIView {
         return animationView
     }()
 
+    private lazy var roundedTextField: RoundedTextField = {
+        let textField = RoundedTextField(placeholder: "Имя")
+        return textField
+    }()
+
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let loadingIndicator = UIActivityIndicatorView()
         loadingIndicator.hidesWhenStopped = true
@@ -105,6 +110,8 @@ public class MessageView: UIView {
             return [animationView]
         case .forceUpdate:
             return [subtitleLabel, firstButton, iconImageView]
+        case .completeAppleSignin:
+            return [subtitleLabel, roundedTextField, firstButton, secondButton]
         }
     }()
 
@@ -143,7 +150,7 @@ public class MessageView: UIView {
     public func configure(with viewModel: MessageProtocol) {
         titleLabel.attributedText = viewModel.title
         switch type {
-        case .dialog:
+        case .dialog, .completeAppleSignin:
             subtitleLabel.attributedText = viewModel.subtitle
             firstButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
             secondButton.setAttributedTitle(viewModel.secondButtonTitle, for: .normal)
@@ -197,6 +204,8 @@ public class MessageView: UIView {
             makeLoaderConstraints()
         case .forceUpdate:
             makeForceUpdateConstraints()
+        case .completeAppleSignin:
+            makeCompleteAppleSignInConstraints()
         }
     }
 
@@ -219,6 +228,42 @@ public class MessageView: UIView {
         }
         firstButton.snp.makeConstraints { make in
             make.top.equalTo(subtitleLabel.snp.bottom).offset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(8)
+            make.height.equalTo(40)
+        }
+        secondButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(16)
+            make.centerY.equalTo(firstButton.snp.centerY)
+            make.height.equalTo(firstButton.snp.height)
+        }
+    }
+
+    private func makeCompleteAppleSignInConstraints() {
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        headerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
+        }
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
+        }
+
+        roundedTextField.snp.makeConstraints {
+            $0.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+
+        firstButton.snp.makeConstraints { make in
+            make.top.equalTo(roundedTextField.snp.bottom).offset(16)
             make.leading.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(8)
             make.height.equalTo(40)
@@ -307,7 +352,7 @@ public class MessageView: UIView {
         headerView.backgroundColor = colorBackground
         titleLabel.textColor = colorTitle
         switch type {
-        case .dialog, .forceUpdate:
+        case .dialog, .forceUpdate, .completeAppleSignin:
             subtitleLabel.textColor = colorSubtitle
         case .error, .regular, .success:
             iconImageView.tintColor = colorIcon

@@ -73,6 +73,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         contentView.addSubviews(
             titleLabel,
             subtitlLabel,

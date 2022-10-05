@@ -22,10 +22,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>kz.turganbekuly.apron.ios.deeplink</string>
+			<string>kz.turganbekuly.apron.ios</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>apron</string>
+				<string>apron.ws</string>
 			</array>
 		</dict>
 	</array>
@@ -41,6 +41,8 @@
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
 	<key>Configuration.WEB_BASED_URL</key>
 	<string>apron.ws</string>
+	<key>Configuration.DEEPLINK_BASED_URL</key>
+	<string>apron</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>

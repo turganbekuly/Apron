@@ -9,11 +9,11 @@ import Foundation
 
 enum SuggestedCookingTime: Int, CaseIterable {
     case zavtrak = 1
-    case obed = 2
-    case poldnik = 3
-    case uzhin = 4
-    case pozdniiUzhin = 5
-    case anytime = 6
+    case obed
+    case poldnik
+    case uzhin
+    case pozdniiUzhin
+    case perekus
 
     var title: String {
         switch self {
@@ -27,8 +27,8 @@ enum SuggestedCookingTime: Int, CaseIterable {
             return "Ужин"
         case .pozdniiUzhin:
             return "Поздний ужин"
-        case .anytime:
-            return "В любое время"
+        case .perekus:
+            return "Перекус"
         }
     }
 }

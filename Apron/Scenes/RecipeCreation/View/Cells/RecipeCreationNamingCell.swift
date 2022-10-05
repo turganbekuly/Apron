@@ -42,6 +42,7 @@ final class RecipeCreationNamingCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         [roudedTextField].forEach { contentView.addSubview($0) }
         setupConstraints()
     }

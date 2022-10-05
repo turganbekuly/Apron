@@ -60,6 +60,7 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         [titleLabel, roudedTextField, ingredientsStackView].forEach { contentView.addSubview($0) }
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(onAddIngredientTapped))
         roudedTextField.addGestureRecognizer(tapGR)

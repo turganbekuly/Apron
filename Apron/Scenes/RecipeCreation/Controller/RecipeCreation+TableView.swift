@@ -87,7 +87,7 @@ extension RecipeCreationViewController:
         case .cookTime:
             return 100
         case .whenToCook:
-            return 150
+            return 800
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -122,7 +122,7 @@ extension RecipeCreationViewController:
         case .cookTime:
             return 100
         case .whenToCook:
-            return 150
+            return 800
         }
     }
 

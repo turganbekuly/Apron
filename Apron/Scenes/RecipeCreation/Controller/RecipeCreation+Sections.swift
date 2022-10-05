@@ -32,9 +32,15 @@ extension RecipeCreationViewController {
     struct TagsSection {
         enum Section {
             case whenToCook
+            case dishType
+            case lifeStyleType
+            case eventType
         }
         enum Row {
-            case option(SuggestedCookingTime)
+            case whenToCook(SuggestedCookingTime)
+            case dishType(SuggestedDishType)
+            case lifeStyleType(SuggestedLifestyleType)
+            case eventType(SuggestedEventType)
         }
 
         var section: Section
