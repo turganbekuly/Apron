@@ -25,6 +25,9 @@ def commonPods
   pod 'Firebase/RemoteConfig', :inhibit_warnings => true
   pod 'Firebase/DynamicLinks', :inhibit_warnings => true
   pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0', :inhibit_warnings => true
+  pod 'YandexMobileMetrica/Dynamic', '4.4.0', :inhibit_warnings => true
+  pod 'Mixpanel-swift', :inhibit_warnings => true
+
 end
 
 def developmentPods

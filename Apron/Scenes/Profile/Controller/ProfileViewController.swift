@@ -79,7 +79,7 @@ final class ProfileViewController: ViewController, Messagable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
     

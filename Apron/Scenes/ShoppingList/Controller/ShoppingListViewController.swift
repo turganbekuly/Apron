@@ -42,6 +42,8 @@ final class ShoppingListViewController: ViewController, Messagable {
         }
     }
 
+    var initialState: ShoppingListEntryPoint?
+
     var cartManager = CartManager.shared
 
     var cartItems: [CartItem] = [] {
@@ -94,15 +96,7 @@ final class ShoppingListViewController: ViewController, Messagable {
 
     private lazy var backButton = NavigationBackButton()
 
-    private lazy var addProductButton: BlackOpButton = {
-        let button = BlackOpButton(backgroundType: .yelloBackground)
-        button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 25
-        button.layer.masksToBounds = true
-        button.setImage(ApronAssets.creationPlusButton.image, for: .normal)
-        button.clipsToBounds = true
-        return button
-    }()
+    private lazy var avatarView = AvatarView()
     
     // MARK: - Init
     init(interactor: ShoppingListBusinessLogic, state: State) {
@@ -128,7 +122,7 @@ final class ShoppingListViewController: ViewController, Messagable {
         
         state = { state }()
 
-        ApronAnalytics.shared.sendAmplitudeEvent(.shoppingListViewed)
+        ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListViewed)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,17 +143,33 @@ final class ShoppingListViewController: ViewController, Messagable {
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
+        avatarView.onTap = { [weak self] in
+            guard let self = self else { return }
+            self.handleAuthorizationStatus {
+                let viewController = ProfileBuilder(state: .initial).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+            }
+        }
         moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
         moreButton.onTouch = { [weak self] in
             self?.navigateToCreateActionFlow(with: .shoppingListMore)
         }
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        switch initialState {
+        case .tab:
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
+        case .regular:
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        default:
+            break
+        }
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
     
     private func configureViews() {
-        [mainView, addProductButton].forEach { view.addSubview($0) }
+        [mainView].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
@@ -168,11 +178,6 @@ final class ShoppingListViewController: ViewController, Messagable {
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-
-        addProductButton.snp.makeConstraints {
-            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
-            $0.size.equalTo(50)
         }
     }
     
@@ -196,14 +201,6 @@ final class ShoppingListViewController: ViewController, Messagable {
     @objc
     private func saveButtonTapped() {
         //
-    }
-
-    @objc
-    private func createButtonTapped() {
-        let vc = IngredientSelectionBuilder(state: .initial(self)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(vc, animated: false)
-        }
     }
 
     // MARK: - Private functions

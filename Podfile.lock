@@ -150,6 +150,9 @@ PODS:
   - Kingfisher (7.2.3)
   - lottie-ios (3.3.0)
   - M13Checkbox (3.4.0)
+  - Mixpanel-swift (4.0.2):
+    - Mixpanel-swift/Complete (= 4.0.2)
+  - Mixpanel-swift/Complete (4.0.2)
   - Models (0.0.1):
     - APRUIKit
     - Decoders
@@ -193,6 +196,12 @@ PODS:
   - SwiftGen (6.5.1)
   - UIScrollView-InfiniteScroll (1.1.0)
   - Wormholy (1.6.4)
+  - YandexMobileMetrica/Dynamic (4.4.0):
+    - YandexMobileMetrica/Dynamic/Core (= 4.4.0)
+    - YandexMobileMetrica/Dynamic/Crashes (= 4.4.0)
+  - YandexMobileMetrica/Dynamic/Core (4.4.0)
+  - YandexMobileMetrica/Dynamic/Crashes (4.4.0):
+    - YandexMobileMetrica/Dynamic/Core
 
 DEPENDENCIES:
   - AKNetwork (from `./Development Pods/AKNetwork`)
@@ -210,6 +219,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - HapticTouch (from `./Development Pods/HapticTouch`)
   - Kingfisher
+  - Mixpanel-swift
   - Models (from `./Development Pods/Models`)
   - Onboarding (from `./Development Pods/Onboarding`)
   - OneSignalXCFramework (< 4.0, >= 3.0.0)
@@ -219,6 +229,7 @@ DEPENDENCIES:
   - Storages (from `./Development Pods/Storages`)
   - SwiftGen (~> 6.0)
   - UIScrollView-InfiniteScroll
+  - YandexMobileMetrica/Dynamic (= 4.4.0)
 
 SPEC REPOS:
   trunk:
@@ -247,6 +258,7 @@ SPEC REPOS:
     - Kingfisher
     - lottie-ios
     - M13Checkbox
+    - Mixpanel-swift
     - Moya
     - nanopb
     - NVActivityIndicatorView
@@ -260,6 +272,7 @@ SPEC REPOS:
     - SwiftGen
     - UIScrollView-InfiniteScroll
     - Wormholy
+    - YandexMobileMetrica
 
 EXTERNAL SOURCES:
   AKNetwork:
@@ -323,6 +336,7 @@ SPEC CHECKSUMS:
   Kingfisher: 8c2cbe0c11ea4d481542895112682a99e058468e
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
+  Mixpanel-swift: 91fc28834402720682f4cce760e95571fbb388c3
   Models: a7fbee4374677bbf44a75e78335690af7d949c2c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
@@ -341,7 +355,8 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
+  YandexMobileMetrica: baf7cea47cb87fc9af963c4f747ce8dd7df3d7c0
 
-PODFILE CHECKSUM: 8239962d6e23f9340229214765c6b1757249f1ec
+PODFILE CHECKSUM: adf2a92ee941b7674ef46f055447b7c3f8428427
 
 COCOAPODS: 1.11.3

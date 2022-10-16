@@ -12,8 +12,8 @@ import Storages
 extension SearchViewController: SearchHeaderViewDelegate {
     func onSearchDidTap() {
         let viewController = UINavigationController(
-            rootViewController: GeneralSearchBuilder(
-                state: .initial(.main)).build()
+            rootViewController: RecipeSearchBuilder(
+                state: .initial).build()
         )
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical

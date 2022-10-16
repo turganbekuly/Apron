@@ -27,12 +27,6 @@ extension MainViewController {
     public func updateState() {
         switch state {
         case .initial:
-            show(type: .completeAppleSignin(
-                "Здравствуйте!",
-                "Напишите ваше имя для профиля",
-                "Сохранить",
-                "Позже"
-            ))
             getMyCommunities()
             getCommunitiesByCategory()
         case .joinedCommunity:

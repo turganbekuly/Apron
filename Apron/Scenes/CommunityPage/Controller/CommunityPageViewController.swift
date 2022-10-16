@@ -264,7 +264,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
     // MARK: - Analytics events
 
     func communityPageViewedEvent(community: CommunityResponse) {
-        ApronAnalytics.shared.sendAmplitudeEvent(
+        ApronAnalytics.shared.sendAnalyticsEvent(
             .communityPageViewed(
                 CommunityPageViewedModel(
                     communityID: community.id,
@@ -276,7 +276,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
     }
 
     func joinedCommunityEvent() {
-        ApronAnalytics.shared.sendAmplitudeEvent(
+        ApronAnalytics.shared.sendAnalyticsEvent(
             .joinedCommunity(
                 JoinedCommunityModel(
                     communityID: community?.id ?? 0,

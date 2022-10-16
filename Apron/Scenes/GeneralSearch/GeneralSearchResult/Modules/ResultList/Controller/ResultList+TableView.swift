@@ -43,7 +43,7 @@ extension ResultListViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .community(community):
-            ApronAnalytics.shared.sendAmplitudeEvent(
+            ApronAnalytics.shared.sendAnalyticsEvent(
                 .searchMade(
                     SearchMadeModel(
                     searchTerm: query ?? "",
@@ -56,7 +56,7 @@ extension ResultListViewController: UITableViewDelegate {
 
             delegate?.controller(self, didSelect: community)
         case let .recipe(recipe):
-            ApronAnalytics.shared.sendAmplitudeEvent(
+            ApronAnalytics.shared.sendAnalyticsEvent(
                 .searchMade(
                     SearchMadeModel(
                     searchTerm: query ?? "",

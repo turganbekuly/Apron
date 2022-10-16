@@ -81,6 +81,10 @@ public enum L10n {
       /// Главная
       public static let title = L10n.tr("APRLocalizable", "TabBar.Home.Title")
     }
+    public enum Profile {
+      /// Профиль
+      public static let title = L10n.tr("APRLocalizable", "TabBar.Profile.Title")
+    }
     public enum Saved {
       /// Избранное
       public static let title = L10n.tr("APRLocalizable", "TabBar.Saved.Title")
@@ -88,6 +92,10 @@ public enum L10n {
     public enum Search {
       /// Поиск
       public static let title = L10n.tr("APRLocalizable", "TabBar.Search.Title")
+    }
+    public enum ShoppingList {
+      /// Список
+      public static let title = L10n.tr("APRLocalizable", "TabBar.ShoppingList.Title")
     }
   }
 }

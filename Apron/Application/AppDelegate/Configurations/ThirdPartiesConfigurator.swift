@@ -15,6 +15,8 @@ import RemoteConfig
 import FeatureToggle
 import Wormholy
 import Kingfisher
+import YandexMobileMetrica
+import Mixpanel
 
 final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     // MARK: - Private proeprties
@@ -23,6 +25,7 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     // MARK: - Methods
 
     func configure(_ application: UIApplication?, launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
+        configureAppMetrica()
         configureFirebase()
         configureAnalytics()
         configureOneSignal(launchOptions: launchOptions)
@@ -38,8 +41,7 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     private func configureAnalytics() {
         ApronAnalytics.shared.configure(
             amplitudeKey: Configurations.getAmplitudeAPIKey(),
-            appsflyerDevKey: "",
-            appleAppID: ""
+            mixpanelKey: Configurations.getMixpanelAPIKey()
         )
     }
 
@@ -72,6 +74,12 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
                 toggles.forEach { config[$0.key] = "\($0.value)" }
             }
         }
+    }
+
+    private func configureAppMetrica() {
+        guard let configuration = YMMYandexMetricaConfiguration(apiKey: Configurations.getAppMetricaAPIKey()) else { return }
+
+        YMMYandexMetrica.activate(with: configuration)
     }
 
     private func configureWormholy() {

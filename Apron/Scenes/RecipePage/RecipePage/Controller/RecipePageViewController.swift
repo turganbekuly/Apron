@@ -39,7 +39,7 @@ final class RecipePageViewController: ViewController, Messagable {
     var recipe: RecipeResponse? {
         didSet {
             if let recipe = recipe {
-                ApronAnalytics.shared.sendAmplitudeEvent(
+                ApronAnalytics.shared.sendAnalyticsEvent(
                     .recipePageViewed(
                         RecipePageViewedModel(
                             recipeID: recipe.id,

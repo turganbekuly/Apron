@@ -45,6 +45,7 @@ extension ProfileViewController: UITableViewDelegate {
         switch row {
         case .logout:
             AuthStorage.shared.clear()
+            ApronAnalytics.shared.resetAnalytics()
             let vc = AuthorizationBuilder(state: .initial).build()
             vc.hidesBottomBarWhenPushed = true
             DispatchQueue.main.async {

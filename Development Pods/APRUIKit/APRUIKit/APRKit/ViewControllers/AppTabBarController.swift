@@ -18,12 +18,12 @@ open class AppTabBarController: UITabBarController, ViewControllerProtocol {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-//        let tabBar = AppTabBar()
-//        setValue(tabBar, forKey: "tabBar")
-//        tabBar.centerButtonColor = Assets.colorsYello.color
-//        tabBar.buttonImage = Assets.tabbarAddIcon.image
-        tabBar.tintColor = .black
-        self.tabBar.backgroundColor = .white
+        let tabBar = AppTabBar()
+        setValue(tabBar, forKey: "tabBar")
+        tabBar.centerButtonColor = ApronAssets.colorsYello.color
+        tabBar.buttonImage = ApronAssets.tabbarAddIcon.image
+//        tabBar.tintColor = .black
+//        self.tabBar.backgroundColor = .white
     }
 }
 

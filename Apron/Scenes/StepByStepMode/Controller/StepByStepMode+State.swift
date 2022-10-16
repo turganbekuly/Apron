@@ -27,7 +27,7 @@ extension StepByStepModeViewController {
             self.instructions = instructions
             self.finalImage = finalImage
             self.delegate = delegate
-            ApronAnalytics.shared.sendAmplitudeEvent(.stepByStepViewed)
+            ApronAnalytics.shared.sendAnalyticsEvent(.stepByStepViewed)
         }
     }
     

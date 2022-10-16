@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ru-RU</string>
 	<key>CFBundleDisplayName</key>
-	<string>Apron</string>
+	<string>Moca</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -33,16 +33,20 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>Configuration.AMPLITUDE_API_KEY</key>
 	<string>becfe5fdb6479d4df85b98227683bc97</string>
+	<key>Configuration.APPMETRICA_API_KEY</key>
+	<string>f7e85fd4-4794-4b7b-a47c-ddc4c3f7f0ea</string>
 	<key>Configuration.BASE_URL</key>
 	<string>104.248.249.70/receipts/</string>
+	<key>Configuration.DEEPLINK_BASED_URL</key>
+	<string>apron</string>
 	<key>Configuration.HTTP</key>
 	<string>http://</string>
+	<key>Configuration.MIXPANEL_API_KEY</key>
+	<string>9909fda9ea3b836b747832479b34a9e3</string>
 	<key>Configuration.ONE_SIGNAL_APP_ID</key>
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
 	<key>Configuration.WEB_BASED_URL</key>
 	<string>apron.ws</string>
-	<key>Configuration.DEEPLINK_BASED_URL</key>
-	<string>apron</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>

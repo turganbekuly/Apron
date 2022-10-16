@@ -8,11 +8,21 @@
 
 import UIKit
 
-final class RecipeSearchView: UITableView {
+final class RecipeSearchView: UICollectionView {
     
     // MARK: - Initialization
     init() {
-        super.init(frame: .zero, style: .plain)
+        let layout: UICollectionViewFlowLayout = {
+            let layout = UICollectionViewFlowLayout()
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 13
+            layout.scrollDirection = .vertical
+            layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+            layout.sectionHeadersPinToVisibleBounds = true
+            return layout
+        }()
+
+        super.init(frame: .zero, collectionViewLayout: layout)
         
         configure()
     }
@@ -29,7 +39,24 @@ final class RecipeSearchView: UITableView {
     
     // MARK: - Methods
     private func configure() {
-        separatorStyle = .none
+        allowsMultipleSelection = false
+        showsVerticalScrollIndicator = false
+//        [
+//
+//        ].forEach {
+//            register(
+//                viewClass: $0,
+//                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader
+//            )
+//        }
+
+        [
+            RecipeSearchSuggestionsCell.self,
+            RecipeSearchResultCell.self,
+            RecipeSearchSkeletonCell.self
+        ].forEach {
+            register(cellClass: $0)
+        }
         
         configureColors()
     }

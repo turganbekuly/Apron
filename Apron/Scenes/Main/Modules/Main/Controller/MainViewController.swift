@@ -60,16 +60,6 @@ final class MainViewController: ViewController, Messagable {
         view.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         return view
     }()
-
-    private lazy var createCommunityButton: BlackOpButton = {
-        let button = BlackOpButton(backgroundType: .yelloBackground)
-        button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 25
-        button.layer.masksToBounds = true
-        button.setImage(ApronAssets.creationPlusButton.image, for: .normal)
-        button.clipsToBounds = true
-        return button
-    }()
     
     // MARK: - Init
     init(interactor: MainBusinessLogic, state: State) {
@@ -100,11 +90,11 @@ final class MainViewController: ViewController, Messagable {
         super.viewWillAppear(animated)
         configureNavigation()
         if AuthStorage.shared.isUserAuthorized {
-            ApronAnalytics.shared.sendAmplitudeEvent(
+            ApronAnalytics.shared.sendAnalyticsEvent(
                 .homePageViewed(.loggedIn)
             )
         } else {
-            ApronAnalytics.shared.sendAmplitudeEvent(
+            ApronAnalytics.shared.sendAnalyticsEvent(
                 .homePageViewed(.guest)
             )
         }
@@ -132,7 +122,7 @@ final class MainViewController: ViewController, Messagable {
         let cartView = CartButtonView()
         cartView.onTap = { [weak self] in
             guard let self = self else { return }
-            let viewController = ShoppingListBuilder(state: .initial).build()
+            let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
 
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(viewController, animated: true)
@@ -141,10 +131,24 @@ final class MainViewController: ViewController, Messagable {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
         navigationController?.navigationBar.barTintColor = ApronAssets.secondary.color
+
+        if let myTabBar = tabBarController?.tabBar as? AppTabBar {
+            myTabBar.centerButtonActionHandler = {
+                self.handleAuthorizationStatus {
+                    let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .saved))).build()
+                    let navController = RecipeCreationNavigationController(rootViewController: vc)
+                    navController.modalPresentationStyle = .fullScreen
+                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.present(navController, animated: true)
+                    }
+                }
+            }
+        }
     }
     
     private func configureViews() {
-        [mainView, createCommunityButton].forEach { view.addSubview($0) }
+        [mainView].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
@@ -154,27 +158,10 @@ final class MainViewController: ViewController, Messagable {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
-        createCommunityButton.snp.makeConstraints {
-            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
-            $0.size.equalTo(50)
-        }
     }
     
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
-    }
-
-    // MARK: - User actions
-
-    @objc
-    private func createButtonTapped() {
-        handleAuthorizationStatus {
-            let vc = CreateActionFlowBuilder.init(state: .initial(.mainPageCommunityCreation, self)).build()
-            DispatchQueue.main.async {
-                self.navigationController?.presentPanModal(vc)
-            }
-        }
     }
 
     // MARK: - Methods
@@ -187,14 +174,7 @@ final class MainViewController: ViewController, Messagable {
                     section: .myCommunity, rows: [.myCommunities(myCommunities)]
                 )
             )
-        } else {
-            sections.append(
-                .init(
-                    section: .myCommunity, rows: [.myCommunities([])]
-                )
-            )
         }
-
 
         if !dynamicCommunities.isEmpty {
             let _ = dynamicCommunities.compactMap { com in

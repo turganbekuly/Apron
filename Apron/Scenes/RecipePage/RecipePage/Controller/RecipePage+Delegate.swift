@@ -80,7 +80,7 @@ extension RecipePageViewController: PreShoppingListDismissedDelegate {
         show(
             type: .regular("Ингредиенты добавлены в корзину", "Посмотреть"),
             firstAction:  {
-                let viewController = ShoppingListBuilder(state: .initial).build()
+                let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }

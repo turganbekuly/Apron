@@ -8,17 +8,16 @@
 import Amplitude
 import Foundation
 import FirebaseAnalytics
+import Mixpanel
 
 protocol AnalyticsProtocol {
     func configure(
         amplitudeKey: String,
-        appsflyerDevKey: String,
-        appleAppID: String
+        mixpanelKey: String
     )
-    func sendAmplitudeEvent(_ event: AnalyticsEvents)
-    func sendAppsflyerEvent(_ event: AnalyticsEvents)
-    func setupUserInfo(name: String?, email: String?)
-    func start()
+    func sendAnalyticsEvent(_ event: AnalyticsEvents)
+    func setupUserInfo(id: Int?, name: String?, email: String?)
+    func resetAnalytics()
 }
 
 final class ApronAnalytics: AnalyticsProtocol {
@@ -32,22 +31,29 @@ final class ApronAnalytics: AnalyticsProtocol {
 
     // MARK: - Methods
 
-    func configure(amplitudeKey: String, appsflyerDevKey: String, appleAppID: String) {
+    func configure(amplitudeKey: String, mixpanelKey: String) {
         Amplitude.instance().initializeApiKey(amplitudeKey)
-//        AppsFlyerLib.shared().appsFlyerDevKey = appsflyerDevKey
-//        AppsFlyerLib.shared().appleAppID = appleAppID
+        Mixpanel.initialize(token: mixpanelKey, trackAutomaticEvents: true)
+
     }
 
-    func sendAmplitudeEvent(_ event: AnalyticsEvents) {
+    func sendAnalyticsEvent(_ event: AnalyticsEvents) {
         Amplitude.instance().logEvent(event.name, withEventProperties: event.eventProperties)
         Analytics.logEvent(event.name, parameters: event.eventProperties)
+
+        var mixpanelAttributes: [String: MixpanelType] = [:]
+        for property in event.eventProperties {
+            mixpanelAttributes[property.key] = "\(property.value)"
+        }
+
+        Mixpanel.mainInstance().track(
+            event: event.name,
+            properties: mixpanelAttributes
+        )
+
     }
 
-    func sendAppsflyerEvent(_ event: AnalyticsEvents) {
-//        AppsFlyerLib.shared().logEvent(event.name, withValues: event.eventProperties)
-    }
-
-    func setupUserInfo(name: String?, email: String?) {
+    func setupUserInfo(id: Int?, name: String?, email: String?) {
         Amplitude.instance().setUserId(name)
         Amplitude.instance().setUserProperties(
             [
@@ -57,9 +63,15 @@ final class ApronAnalytics: AnalyticsProtocol {
         )
         Analytics.setUserProperty(name, forName: "user_name")
         Analytics.setUserProperty(email, forName: "user_email")
+        Mixpanel.mainInstance().identify(distinctId: "\(id ?? 0)")
+        Mixpanel.mainInstance().people.set(property: "user_name", to: name)
+        Mixpanel.mainInstance().people.set(property: "user_email", to: email)
+
     }
 
-    func start() {
-//        AppsFlyerLib.shared().start()
+    func resetAnalytics() {
+        DispatchQueue.global(qos: .background).async {
+            Mixpanel.mainInstance().reset()
+        }
     }
 }

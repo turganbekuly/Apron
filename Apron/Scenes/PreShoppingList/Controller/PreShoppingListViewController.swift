@@ -160,7 +160,7 @@ final class PreShoppingListViewController: ViewController, Messagable {
             )
         }
 
-        ApronAnalytics.shared.sendAmplitudeEvent(
+        ApronAnalytics.shared.sendAnalyticsEvent(
             .recipeIngredientsAddedToShoppingList(selectedItems.map { $0.productName})
         )
 

@@ -35,9 +35,9 @@ extension MainViewController: UITableViewDelegate {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .myCommunities:
-            return myCommunities.isEmpty ? 100 : 210
+            return myCommunities.isEmpty ? 0 : 210
         case .communities:
-            return 305
+            return dynamicCommunities.isEmpty ? 0 : 305
         }
     }
     
@@ -45,9 +45,9 @@ extension MainViewController: UITableViewDelegate {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .myCommunities:
-            return myCommunities.isEmpty ? 100 : 210
+            return myCommunities.isEmpty ? 0 : 210
         case .communities:
-            return 305
+            return dynamicCommunities.isEmpty ? 0 : 305
         }
     }
 

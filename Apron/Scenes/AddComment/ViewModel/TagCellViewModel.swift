@@ -26,7 +26,6 @@ public struct TagCellViewModel: TagCellViewModelProtocol {
     }
 
     public var title: NSAttributedString? {
-//        let color = .black
         return Typography.regular14(
             text: tag,
             color: .black,

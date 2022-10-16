@@ -18,7 +18,7 @@ protocol InstructionSelectedProtocol: AnyObject {
 
 extension RecipeCreationViewController: IngredientSelectedProtocol {
     func onIngredientSelected(ingredient: RecipeIngredient) {
-        ApronAnalytics.shared.sendAmplitudeEvent(
+        ApronAnalytics.shared.sendAnalyticsEvent(
             .ingredientAdded(
                 IngredientAddedModel(
                     id: ingredient.product?.id ?? 0,

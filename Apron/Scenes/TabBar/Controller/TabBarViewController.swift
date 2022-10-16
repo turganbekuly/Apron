@@ -11,6 +11,8 @@ import UIKit
 import Protocols
 import RemoteConfig
 import AlertMessages
+import Models
+import Storages
 
 protocol TabBarDisplayLogic: AnyObject {
     
@@ -31,11 +33,13 @@ final class TabBarViewController: AppTabBarController, Messagable {
         case main
         case search
         case saved
+        case shoppingList
     }
 
     private lazy var mainModule = MainBuilder(state: .initial).build()
     private lazy var searchModule = SearchBuilder(state: .initial(.general)).build()
     private lazy var favouriteModule = SavedRecipesBuilder(state: .initial).build()
+    private lazy var shoppingListModule = ShoppingListBuilder(state: .initial(.tab)).build()
 
     // MARK: - Init
     
@@ -74,7 +78,8 @@ final class TabBarViewController: AppTabBarController, Messagable {
         viewControllers = [
             configureViewController(viewController: mainModule, type: .main),
             configureViewController(viewController: searchModule, type: .search),
-            configureViewController(viewController: favouriteModule, type: .saved)
+            configureViewController(viewController: favouriteModule, type: .saved),
+            configureViewController(viewController: shoppingListModule, type: .shoppingList)
         ]
     }
 
@@ -83,13 +88,16 @@ final class TabBarViewController: AppTabBarController, Messagable {
         switch type {
         case .main:
             navigationController.tabBarItem.title = L10n.TabBar.Home.title
-            navigationController.tabBarItem.image = ApronAssets.tabBarAppIcon.image.withRenderingMode(.alwaysOriginal)
+            navigationController.tabBarItem.image = ApronAssets.tabHomeSelectedIcon.image
         case .search:
             navigationController.tabBarItem.title = L10n.TabBar.Search.title
             navigationController.tabBarItem.image = ApronAssets.navSearchIcon.image
         case .saved:
             navigationController.tabBarItem.title = L10n.TabBar.Saved.title
             navigationController.tabBarItem.image = ApronAssets.tabFaveSelectedIcon.image
+        case .shoppingList:
+            navigationController.tabBarItem.title = L10n.TabBar.ShoppingList.title
+            navigationController.tabBarItem.image = ApronAssets.tabListSelectedIcon.image
         }
         return navigationController
     }

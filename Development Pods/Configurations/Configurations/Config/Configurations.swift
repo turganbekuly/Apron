@@ -53,6 +53,22 @@ public final class Configurations {
         return apiKey
     }
 
+    public static func getAppMetricaAPIKey() -> String {
+        guard let apiKey = getValue(for: ConfigurationKeys.appMetricaApiKey) else {
+            fatalError("Cannot get api key")
+        }
+
+        return apiKey
+    }
+
+    public static func getMixpanelAPIKey() -> String {
+        guard let apiKey = getValue(for: ConfigurationKeys.mixpanelApiKey) else {
+            fatalError("Cannot get api key")
+        }
+
+        return apiKey
+    }
+
     private static func getValue(for key: String) -> String? {
         return Bundle.main.object(forInfoDictionaryKey: key) as? String
     }

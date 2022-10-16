@@ -48,6 +48,7 @@ final class SplashScreenViewController: ViewController {
 
         state = { state }()
         configureViews()
+        mainView.configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +87,7 @@ final class SplashScreenViewController: ViewController {
     }
     
     private func configureColors() {
-        view.backgroundColor = ApronAssets.colorsYello.color
+        view.backgroundColor = ApronAssets.whiteSmoke.color
     }
     
     deinit {

@@ -77,7 +77,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
 
     var analyticsSourceType: RecipeCreationSourceTypeModel? {
         didSet {
-            ApronAnalytics.shared.sendAmplitudeEvent(
+            ApronAnalytics.shared.sendAnalyticsEvent(
                 .recipeCreationPageViewed(analyticsSourceType ?? .community)
             )
         }
@@ -223,7 +223,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
         saveButton.snp.makeConstraints {

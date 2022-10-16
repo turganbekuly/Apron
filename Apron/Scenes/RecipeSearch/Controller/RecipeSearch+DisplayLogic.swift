@@ -11,5 +11,12 @@ import UIKit
 extension RecipeSearchViewController: RecipeSearchDisplayLogic {
     
     // MARK: - RecipeSearchDisplayLogic
-    
+
+    func displayRecipes(with viewModel: RecipeSearchDataFlow.GetRecipes.ViewModel) {
+        state = viewModel.state
+    }
+
+    func displaySaveRecipe(viewModel: RecipeSearchDataFlow.SaveRecipe.ViewModel) {
+        state = viewModel.state
+    }
 }

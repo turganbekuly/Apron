@@ -9,7 +9,7 @@ import UIKit
 import APRUIKit
 import SnapKit
 
-public protocol SearchBarDelegate: AnyObject {
+public protocol APSearchBarDelegate: AnyObject {
     func searchBar(_ searchBar: APSearchBar, textDidChange text: String)
 }
 
@@ -64,7 +64,7 @@ public final class APSearchBar: UIView {
         }
     }
 
-    public weak var delegate: SearchBarDelegate?
+    public weak var delegate: APSearchBarDelegate?
 
     // MARK: - UI Elements
 
@@ -79,7 +79,7 @@ public final class APSearchBar: UIView {
     private lazy var textField: CustomClearTextField = {
         let textField = CustomClearTextField()
         textField.tintColor = ApronAssets.gray.color
-//        textField.textColor = .colorFromKit(.textColorText)
+        textField.textColor = ApronAssets.gray.color
         textField.backgroundColor = .clear
         textField.font = TypographyFonts.regular12
         textField.defaultTextAttributes.updateValue(0.15, forKey: NSAttributedString.Key.kern)
@@ -90,7 +90,7 @@ public final class APSearchBar: UIView {
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(
-            ApronAssets.colorsYello.color,
+            ApronAssets.gray.color,
             for: .normal
         )
 
@@ -172,7 +172,7 @@ public final class APSearchBar: UIView {
         rightItemsStackView.isHidden = true
         rightItemsStackView.alpha = 0.0
 
-        setPlaceholder("Localizable.SearchBar.placeholder.localized()")
+        setPlaceholder("Поиск")
 
         cancelButton.setContentHuggingPriority(.required, for: .horizontal)
         cancelButton.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -186,7 +186,7 @@ public final class APSearchBar: UIView {
 
             contentViewToCancelTrailingConstraint = make.trailing
                 .equalTo(cancelButton.snp.leading)
-                .offset(-26)
+                .offset(-16)
                 .constraint
 
             contentViewToItemsTrailingConstraint = make.trailing
@@ -218,7 +218,7 @@ public final class APSearchBar: UIView {
 
         cancelButton.snp.makeConstraints { make in
             make.centerY.equalTo(contentView.snp.centerY)
-            make.trailing.equalToSuperview().offset(-14)
+            make.trailing.equalToSuperview().offset(-16)
         }
 
         rightItemsStackView.snp.makeConstraints { make in
@@ -242,6 +242,16 @@ public final class APSearchBar: UIView {
     @discardableResult
     public override func resignFirstResponder() -> Bool {
         return textField.resignFirstResponder()
+    }
+
+    public func setDisabled(_ isDisabled: Bool) {
+        if isDisabled {
+            textField.alpha = 0.6
+            textField.isUserInteractionEnabled = false
+        } else {
+            textField.alpha = 1
+            textField.isUserInteractionEnabled = true
+        }
     }
 }
 

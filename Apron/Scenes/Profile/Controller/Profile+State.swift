@@ -26,10 +26,16 @@ extension ProfileViewController {
     public func updateState() {
         switch state {
         case .initial:
-            getProfile()
+            handleAuthorizationStatus {
+                self.getProfile()
+            }
         case let .fetchProfile(model):
             userStorage.user = model
-            ApronAnalytics.shared.setupUserInfo(name: model.username, email: model.email)
+            ApronAnalytics.shared.setupUserInfo(
+                id: model.id,
+                name: model.username,
+                email: model.email
+            )
             sections = [.init(section: .app, rows: [.user, .assistant, .deleteAccount, .logout])]
             mainView.reloadData()
         case .fetchProfileFailed:

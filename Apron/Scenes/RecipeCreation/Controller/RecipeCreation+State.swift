@@ -29,7 +29,7 @@ extension RecipeCreationViewController {
         case let .recipeCreationSucceed(recipe):
             saveButtonLoader(isLoading: false)
             recipeCreationStorage.recipeCreation = nil
-            ApronAnalytics.shared.sendAmplitudeEvent(
+            ApronAnalytics.shared.sendAnalyticsEvent(
                 .recipeCreated(
                     RecipeCreatedModel(
                         recipeID: recipe.id,

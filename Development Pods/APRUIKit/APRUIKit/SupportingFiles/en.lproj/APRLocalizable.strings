@@ -11,6 +11,8 @@
 "TabBar.Home.Title" = "Главная";
 "TabBar.Search.Title" = "Поиск";
 "TabBar.Saved.Title" = "Избранное";
+"TabBar.Profile.Title" = "Профиль";
+"TabBar.ShoppingList.Title" = "Список";
 
 // MARK: - Common
 

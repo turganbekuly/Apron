@@ -26,13 +26,10 @@ public final class MyCommunityCell: UITableViewCell {
 
     var myCommunities: [CommunityResponse] = [] {
         didSet {
-            if !myCommunities.isEmpty {
+            guard !myCommunities.isEmpty else { return }
                 myCommunitiesSection = [
                     .init(section: .myCommunities, rows: myCommunities.compactMap { .myCommunity($0) })
                 ]
-            } else {
-                myCommunitiesSection = [.init(section: .myCommunities, rows: [.emptyView])]
-            }
         }
     }
 
@@ -118,7 +115,7 @@ public final class MyCommunityCell: UITableViewCell {
     // MARK: - Methods
 
     func configure(with viewModel: IMyCollectionDelegateCellViewModel) {
-        seeAllButton.isHidden = true //viewModel.myCommunities.count >= 10 ? false : true
+        seeAllButton.isHidden = viewModel.myCommunities.count >= 10 ? false : true
         myCommunities = viewModel.myCommunities
     }
 }

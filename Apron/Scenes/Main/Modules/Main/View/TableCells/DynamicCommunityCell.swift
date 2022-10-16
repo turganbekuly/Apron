@@ -32,13 +32,10 @@ final class DynamicCommunityCell: UITableViewCell {
     }
     var dynamicCommunities: [CommunityResponse] = [] {
         didSet {
-            if !dynamicCommunities.isEmpty {
-                dynamicCommunitiesSection = [
-                    .init(section: .communities, rows: dynamicCommunities.compactMap { .community($0) })
-                ]
-            } else {
-                dynamicCommunitiesSection = [.init(section: .communities, rows: Array(repeating: .loader, count: 10))]
-            }
+            guard !dynamicCommunities.isEmpty else { return }
+            dynamicCommunitiesSection = [
+                .init(section: .communities, rows: dynamicCommunities.compactMap { .community($0) })
+            ]
         }
     }
 

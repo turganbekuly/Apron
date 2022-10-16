@@ -26,7 +26,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
         didSet {
             switch initialState {
             case let .create(communityCreation, sourceType):
-                ApronAnalytics.shared.sendAmplitudeEvent(
+                ApronAnalytics.shared.sendAnalyticsEvent(
                     .communityCreationPageViewed(sourceType)
                 )
                 self.communityCreation = communityCreation
@@ -169,7 +169,7 @@ final class CommunityCreationViewController: ViewController, Messagable {
     // MARK: - Analytics
 
     func sendCommunityCreatedAnalytics(community: CommunityResponse) {
-        ApronAnalytics.shared.sendAmplitudeEvent(
+        ApronAnalytics.shared.sendAnalyticsEvent(
             .communityCreated(
                 CommunityCreatedModel(
                     categoryID: community.id,

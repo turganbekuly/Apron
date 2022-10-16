@@ -32,6 +32,7 @@ final class AuthorizationViewController: ViewController, Messagable {
         let button = NavigationButton()
         button.setTitle(L10n.Common.Skip.title, for: .normal)
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+        button.alpha = 0.8
         return button
     }()
 
@@ -124,7 +125,9 @@ final class AuthorizationViewController: ViewController, Messagable {
                 guard let `self` = self else { return }
 
                 if self.presentingViewController != nil {
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true) {
+                        self.tabBarController?.selectedIndex = 0
+                    }
                 } else {
                     let viewController = TabBarBuilder(state: .initial(.normal)).build()
                     DispatchQueue.main.async {

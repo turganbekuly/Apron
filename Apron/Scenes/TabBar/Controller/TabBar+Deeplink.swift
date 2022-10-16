@@ -48,7 +48,7 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
                 navigationController.pushViewController(vc, animated: true)
             }
         case .openShoppingList:
-            let vc = ShoppingListBuilder(state: .initial).build()
+            let vc = ShoppingListBuilder(state: .initial(.regular)).build()
             DispatchQueue.main.async {
                 navigationController.pushViewController(vc, animated: true)
             }

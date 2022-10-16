@@ -112,7 +112,7 @@ final class SavedRecipesViewController: ViewController {
 
         let cartView = CartButtonView()
         cartView.onTap = { [weak self] in
-            let viewController = ShoppingListBuilder(state: .initial).build()
+            let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
 
             DispatchQueue.main.async {
                 self?.navigationController?.pushViewController(viewController, animated: true)

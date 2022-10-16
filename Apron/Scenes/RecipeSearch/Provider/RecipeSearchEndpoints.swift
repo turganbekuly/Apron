@@ -8,24 +8,36 @@
 
 import Configurations
 import AKNetwork
+import Models
 import Storages
 
 enum RecipeSearchEndpoint {
-    
+    case getRecipes(SearchByQueryRequestBody)
+    case saveRecipe(id: Int)
 }
 
 extension RecipeSearchEndpoint: AKNetworkTargetType {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return Configurations.getBaseURL()
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .getRecipes:
+            return "recipes"
+        case .saveRecipe(let id):
+            return "recipes/saveRecipe/\(id)"
+        }
     }
     
     var method: AKNetworkMethod {
-        return .get
+        switch self {
+        case .getRecipes:
+            return .get
+        case .saveRecipe:
+            return .put
+        }
     }
     
     var sampleData: Data {
@@ -33,7 +45,15 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
     }
     
     var task: AKNetworkTask {
-        return .requestPlain
+        switch self {
+        case .getRecipes(let body):
+            return .requestParameters(
+                parameters: body.toJSON(),
+                encoding: AKURLEncoding.queryString
+            )
+        case .saveRecipe:
+            return .requestPlain
+        }
     }
     
     var headers: [String: String]? {
