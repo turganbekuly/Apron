@@ -33,20 +33,20 @@ extension MainDataFlow {
 }
 
 extension MainDataFlow {
-    enum GetMyCommunities {
+    enum GetCookNowRecipes {
         struct Request {
-
+            let body: SearchFilterRequestBody
         }
         struct Response {
-            let result: GetMyCommunitiesResult
+            let result: GetCookNowRecipesResult
         }
         struct ViewModel {
             var state: MainViewController.State
         }
     }
 
-    enum GetMyCommunitiesResult {
-        case successful(model: [CommunityResponse])
+    enum GetCookNowRecipesResult {
+        case successful(model: [RecipeResponse])
         case failed(error: AKNetworkError)
     }
 }

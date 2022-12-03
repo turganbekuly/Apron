@@ -17,10 +17,14 @@ protocol MainServiceProtocol {
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
     )
-    func getMyCommunities(
-        request: MainDataFlow.GetMyCommunities.Request,
+    func getCookNowRecipes(
+        request: MainDataFlow.GetCookNowRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+//    func getMyCommunities(
+//        request: MainDataFlow.GetMyCommunities.Request,
+//        completion: @escaping ((AKResult) -> Void)
+//    )
 }
 
 final class MainService: MainServiceProtocol {
@@ -53,12 +57,21 @@ final class MainService: MainServiceProtocol {
         }
     }
 
-    func getMyCommunities(
-        request: MainDataFlow.GetMyCommunities.Request,
+    func getCookNowRecipes(
+        request: MainDataFlow.GetCookNowRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .getMyCommunities) { result in
+        provider.send(target: .getCookNowRecipes(body: request.body)) { result in
             completion(result)
         }
     }
+
+//    func getMyCommunities(
+//        request: MainDataFlow.GetMyCommunities.Request,
+//        completion: @escaping ((AKResult) -> Void)
+//    ) {
+//        provider.send(target: .getMyCommunities) { result in
+//            completion(result)
+//        }
+//    }
 }

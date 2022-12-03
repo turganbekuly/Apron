@@ -41,8 +41,9 @@ extension RecipeCreationViewController {
                 )
             )
             show(type: .success("Рецепт создался успешно"), firstAction: nil, secondAction: nil)
-            delegate?.didCreate()
-            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true) {
+                self.delegate?.didCreate()
+            }
         case .recipeCreationFailed:
             saveButtonLoader(isLoading: false)
             show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)

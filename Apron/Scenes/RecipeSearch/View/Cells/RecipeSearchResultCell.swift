@@ -63,7 +63,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
         button.setBackgroundColor(.black, for: .normal)
         button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
         button.clipsToBounds = true
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 18
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
@@ -132,7 +132,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
         favoriteButton.snp.makeConstraints {
             $0.top.trailing.equalToSuperview().inset(8)
-            $0.size.equalTo(24)
+            $0.size.equalTo(36)
         }
 
         avatarOverlayView.snp.makeConstraints {

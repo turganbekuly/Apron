@@ -119,9 +119,9 @@ final class RecipeBottomStickyView: View {
     // MARK: - Private methods
 
     private func configureSavedButton() {
-        saveButton.backgroundType = .yelloBackground
+        saveButton.backgroundType = .greenBackground
         saveButton.setTitle("Сохранен", for: .normal)
-        saveButton.setImage(ApronAssets.recipeFavoriteIcon.image.withTintColor(.black), for: .normal)
+        saveButton.setImage(ApronAssets.recipeFavoriteIcon.image.withTintColor(.white), for: .normal)
 
         // For made it flow
 //        saveButton.setTitle("Приготовил/а", for: .normal)

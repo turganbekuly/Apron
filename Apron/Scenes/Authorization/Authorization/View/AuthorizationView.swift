@@ -41,7 +41,7 @@ public final class AuthorizationView: UIView {
 
     lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.loginBackgroundImage.image
+        imageView.image = UIImage(named: "moca-2")
         imageView.isUserInteractionEnabled = true
         return imageView
     }()

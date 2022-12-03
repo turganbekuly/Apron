@@ -71,11 +71,11 @@ final class RecipeInstructionsViewCell: UITableViewCell {
     }()
 
     private lazy var cookModeButton: NavigationButton = {
-        let button = NavigationButton(image: ApronAssets.recipeCookMode.image.withTintColor(.black))
-        button.backgroundType = .yelloBackground
+        let button = NavigationButton(image: ApronAssets.recipeCookMode.image.withTintColor(.white))
+        button.backgroundType = .greenBackground
         button.isImageVisible = true
         button.setTitle("Начать \"Режим готовки\"".uppercased(), for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(cookModeTapped), for: .touchUpInside)
         button.layer.cornerRadius = 22
         button.layer.masksToBounds = true

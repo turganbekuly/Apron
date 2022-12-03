@@ -117,7 +117,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
     }()
 
     private lazy var createRecipeButton: BlackOpButton = {
-        let button = BlackOpButton(backgroundType: .yelloBackground)
+        let button = BlackOpButton(backgroundType: .greenBackground)
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true

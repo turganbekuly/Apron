@@ -20,6 +20,8 @@ extension RecipeCreationViewController {
             case imagePlaceholder
             case description
             case composition
+            case paidRecipe
+            case paidRecipeInfo
             case instruction
             case whenToCook
             case servings
@@ -37,7 +39,7 @@ extension RecipeCreationViewController {
             case eventType
         }
         enum Row {
-            case whenToCook(SuggestedCookingTime)
+            case whenToCook(SuggestedDayTimeType)
             case dishType(SuggestedDishType)
             case lifeStyleType(SuggestedLifestyleType)
             case eventType(SuggestedEventType)

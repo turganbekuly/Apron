@@ -51,9 +51,9 @@ struct PrimaryButtonYellowStyle: ButtonStyleProtocol {
             textColor: .init(normalColor: .black),
             font: TypographyFonts.regular14,
             background: .init(
-                normalColor: ApronAssets.colorsYello.color,
-                disabledColor: ApronAssets.colorsYello.color.withAlphaComponent(0.5),
-                highlightedColor: ApronAssets.colorsYello.color.withAlphaComponent(0.8)
+                normalColor: ApronAssets.mainAppColor.color,
+                disabledColor: ApronAssets.mainAppColor.color.withAlphaComponent(0.5),
+                highlightedColor: ApronAssets.mainAppColor.color.withAlphaComponent(0.8)
             ),
             image: nil,
             cornerRadius: .exact(15)

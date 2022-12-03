@@ -16,18 +16,20 @@ extension FiltersViewController {
 
     public func isSelected(type: FilterOptionType) -> Bool {
         switch type {
-        case .cookingTime(let suggestedCookingTime):
-            return selectedFilters.cookingTime.contains(suggestedCookingTime)
+        case .cookingTimeType(let suggestedCookingTimeType):
+            return selectedFilters.time.contains(suggestedCookingTimeType.rawValue)
+        case .dayTimeType(let suggestedDayTime):
+            return selectedFilters.dayTimeType.contains(suggestedDayTime.rawValue)
         case .cuisine(let recipeCuisine):
-            return selectedFilters.cuisines.contains(recipeCuisine)
+            return selectedFilters.cuisines.contains(recipeCuisine.id)
         case .dishType(let suggestedDishType):
-            return selectedFilters.dishTypes.contains(suggestedDishType)
+            return selectedFilters.dishTypes.contains(suggestedDishType.rawValue)
         case .ingredient(let recipeIngredient):
-            return selectedFilters.ingredients.contains(recipeIngredient)
+            return selectedFilters.ingredients.contains(recipeIngredient.id ?? 0)
         case .eventType(let suggestedEventType):
-            return selectedFilters.eventTypes.contains(suggestedEventType)
+            return selectedFilters.eventTypes.contains(suggestedEventType.rawValue)
         case .lifestyleType(let suggestedLifestyleType):
-            return selectedFilters.lifestyleTypes.contains(suggestedLifestyleType)
+            return selectedFilters.lifestyleTypes.contains(suggestedLifestyleType.rawValue)
         }
     }
 
@@ -70,46 +72,58 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .cookingTime(option):
-            if selectedFilters.cookingTime.contains(option) {
+            if selectedFilters.time.contains(option.rawValue) {
                 collectionView.deselectItem(at: indexPath, animated: false)
                 collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
             } else {
-                selectedFilters.cookingTime.append(option)
+                selectedFilters.time.append(option.rawValue)
+                if let index = cookingTimePreviousIndex {
+                    collectionView.deselectItem(at: index, animated: false)
+                    collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: index)
+                }
+                cookingTimePreviousIndex = indexPath
+            }
+        case let .dayTimeType(option):
+            if selectedFilters.dayTimeType.contains(option.rawValue) {
+                collectionView.deselectItem(at: indexPath, animated: false)
+                collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
+            } else {
+                selectedFilters.dayTimeType.append(option.rawValue)
             }
         case let .cuisine(option):
-            if selectedFilters.cuisines.contains(option) {
+            if selectedFilters.cuisines.contains(option.id) {
                 collectionView.deselectItem(at: indexPath, animated: false)
                 collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
             } else {
-                selectedFilters.cuisines.append(option)
+                selectedFilters.cuisines.append(option.id)
             }
         case let .dishType(option):
-            if selectedFilters.dishTypes.contains(option) {
+            if selectedFilters.dishTypes.contains(option.rawValue) {
                 collectionView.deselectItem(at: indexPath, animated: false)
                 collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
             } else {
-                selectedFilters.dishTypes.append(option)
+                selectedFilters.dishTypes.append(option.rawValue)
             }
         case let .ingredient(option):
-            if selectedFilters.ingredients.contains(option) {
+            if selectedFilters.ingredients.contains(option.id ?? 0) {
                 collectionView.deselectItem(at: indexPath, animated: false)
                 collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
             } else {
-                selectedFilters.ingredients.append(option)
+                selectedFilters.ingredients.append(option.id ?? 0)
             }
         case let .eventType(option):
-            if selectedFilters.eventTypes.contains(option) {
+            if selectedFilters.eventTypes.contains(option.rawValue) {
                 collectionView.deselectItem(at: indexPath, animated: false)
                 collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
             } else {
-                selectedFilters.eventTypes.append(option)
+                selectedFilters.eventTypes.append(option.rawValue)
             }
         case let .lifestyleType(option):
-            if selectedFilters.lifestyleTypes.contains(option) {
+            if selectedFilters.lifestyleTypes.contains(option.rawValue) {
                 collectionView.deselectItem(at: indexPath, animated: false)
                 collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
             } else {
-                selectedFilters.lifestyleTypes.append(option)
+                selectedFilters.lifestyleTypes.append(option.rawValue)
             }
         default:
             break
@@ -120,17 +134,20 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .cookingTime(option):
-            selectedFilters.cookingTime.removeAll(where: { $0 == option })
+            cookingTimePreviousIndex = nil
+            selectedFilters.time.removeAll(where: { $0 == option.rawValue })
+        case let .dayTimeType(option):
+            selectedFilters.dayTimeType.removeAll(where: { $0 == option.rawValue })
         case let .cuisine(option):
-            selectedFilters.cuisines.removeAll(where: { $0 == option })
+            selectedFilters.cuisines.removeAll(where: { $0 == option.id })
         case let .dishType(option):
-            selectedFilters.dishTypes.removeAll(where: { $0 == option })
+            selectedFilters.dishTypes.removeAll(where: { $0 == option.rawValue })
         case let .ingredient(option):
-            selectedFilters.ingredients.removeAll(where: { $0 == option })
+            selectedFilters.ingredients.removeAll(where: { $0 == option.id })
         case let .eventType(option):
-            selectedFilters.eventTypes.removeAll(where: { $0 == option })
+            selectedFilters.eventTypes.removeAll(where: { $0 == option.rawValue })
         case let .lifestyleType(option):
-            selectedFilters.lifestyleTypes.removeAll(where: { $0 == option })
+            selectedFilters.lifestyleTypes.removeAll(where: { $0 == option.rawValue })
         default:
             break
         }
@@ -144,6 +161,9 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .cookingTime(option):
+            let width = min(Typography.regular14(text: option.title).styled.size().width + 24, collectionView.bounds.width)
+            return CGSize(width: width, height: 40)
+        case let .dayTimeType(option):
             let width = min(Typography.regular14(text: option.title).styled.size().width + 24, collectionView.bounds.width)
             return CGSize(width: width, height: 40)
         case let .cuisine(option):
@@ -172,8 +192,14 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
         case let .cookingTime(option):
             guard let cell = cell as? FilterOptionCell else { return }
             cell.configure(with: FilterOptionCellViewModel(
-                type: .cookingTime(option),
-                isSelected: isSelected(type: .cookingTime(option))
+                type: .cookingTimeType(option),
+                isSelected: isSelected(type: .cookingTimeType(option))
+            ))
+        case let .dayTimeType(option):
+            guard let cell = cell as? FilterOptionCell else { return }
+            cell.configure(with: FilterOptionCellViewModel(
+                type: .dayTimeType(option),
+                isSelected: isSelected(type: .dayTimeType(option))
             ))
         case let .cuisine(option):
             guard let cell = cell as? FilterOptionCell else { return }
@@ -207,9 +233,11 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
             ))
         case .addIngredient:
             guard let cell = cell as? FilterActionButton else { return }
+            cell.delegate = self
             cell.configure(with: .ingredients)
         case .addCuisine:
             guard let cell = cell as? FilterActionButton else { return }
+            cell.delegate = self
             cell.configure(with: .cuisines)
         }
     }
@@ -253,6 +281,9 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
         let section = sections[indexPath.section].section
         switch section {
         case .cookingTime:
+            guard let view = view as? FiltersHeaderView else { return }
+            view.configure(with: FilterHeaderViewModel(text: "Время на кухне"))
+        case .dayTimeType:
             guard let view = view as? FiltersHeaderView else { return }
             view.configure(with: FilterHeaderViewModel(text: "Тип приема пищи"))
         case .cuisines:

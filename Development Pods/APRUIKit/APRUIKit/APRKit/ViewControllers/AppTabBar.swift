@@ -44,7 +44,7 @@ public final class AppTabBar: UITabBar {
             self.layer.insertSublayer(shapeLayer, at: 0)
         }
         self.shapeLayer = shapeLayer
-        self.tintColor = .black
+        self.tintColor = ApronAssets.mainAppColor.color
         self.unselectedItemTintColor = unselectedItemColor
         self.setupMiddleButton()
     }

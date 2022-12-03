@@ -57,7 +57,6 @@ extension DynamicCommunityCell: UICollectionViewDelegateFlowLayout {
         switch row {
         case let .community(community):
             guard let cell = cell as? MainCommunityCollectionCell else { return }
-            cell.delegate = cellActionsDelegate
             cell.configure(
                 with: CommunityCollectionCellViewModel(community: community)
             )

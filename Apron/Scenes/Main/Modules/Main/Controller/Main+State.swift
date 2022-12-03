@@ -15,37 +15,28 @@ extension MainViewController {
     // MARK: - State
     public enum State {
         case initial
-        case joinedCommunity
-        case joinedCommunityFailed
         case fetchCommunitiesByCategory([CommunityCategory])
         case fetchCommunitiesByCategoryFailed(AKNetworkError)
-        case fetchMyCommunities([CommunityResponse])
-        case fetchMyCommunititesFailed(AKNetworkError)
+        case fetchCookNowRecipes([RecipeResponse])
+        case fetchCookNowRecipesFailed(AKNetworkError)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
-            getMyCommunities()
-            getCommunitiesByCategory()
-        case .joinedCommunity:
-            getMyCommunities()
-            getCommunitiesByCategory()
-        case .joinedCommunityFailed:
-            show(type: .error(L10n.Common.errorMessage))
+//            getCommunitiesByCategory()
+            getCookNowRecipes()
         case let .fetchCommunitiesByCategory(model):
             self.dynamicCommunities = model
             endRefreshingIfNeeded()
         case .fetchCommunitiesByCategoryFailed:
             show(type: .error(L10n.Common.errorMessage))
             endRefreshingIfNeeded()
-        case let .fetchMyCommunities(model):
-            myCommunities = model
-            endRefreshingIfNeeded()
-        case .fetchMyCommunititesFailed:
-            show(type: .error(L10n.Common.errorMessage))
-            endRefreshingIfNeeded()
+        case let .fetchCookNowRecipes(recipes):
+            print(recipes)
+        case let .fetchCookNowRecipesFailed(error):
+            print(error)
         }
     }
 

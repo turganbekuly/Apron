@@ -40,6 +40,12 @@ final class IngredientSelectionViewController: ViewController, Messagable {
             }
         }
     }
+
+    var initialState: IngredientSelectionInitialState? {
+        didSet {
+
+        }
+    }
     
     // MARK: - Views
 
@@ -103,6 +109,11 @@ final class IngredientSelectionViewController: ViewController, Messagable {
         
         configureNavigation()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupDropdown()
+    }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
@@ -127,15 +138,17 @@ final class IngredientSelectionViewController: ViewController, Messagable {
     }
     
     private func configureViews() {
-        [recipeTextField, measureTextField].forEach { view.addSubview($0) }
+        view.addSubview(recipeTextField)
 
-        measureTextField.measurementTyptextField.inputView = picker
-        picker.delegate = self
-        picker.dataSource = self
+        if initialState == .fullItem {
+            view.addSubview(measureTextField)
+            measureTextField.measurementTyptextField.inputView = picker
+            picker.delegate = self
+            picker.dataSource = self
+        }
 
         configureColors()
         makeConstraints()
-        setupDropdown()
     }
     
     private func makeConstraints() {
@@ -145,15 +158,18 @@ final class IngredientSelectionViewController: ViewController, Messagable {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
 
-        measureTextField.snp.makeConstraints {
-            $0.top.equalTo(recipeTextField.snp.bottom).offset(16)
-            $0.height.equalTo(38)
-            $0.leading.trailing.equalToSuperview().inset(16)
+        if initialState == .fullItem {
+            measureTextField.snp.makeConstraints {
+                $0.top.equalTo(recipeTextField.snp.bottom).offset(16)
+                $0.height.equalTo(38)
+                $0.leading.trailing.equalToSuperview().inset(16)
+            }
         }
     }
 
     private func setupDropdown() {
-        dropDown.anchorView = measureTextField
+        dropDown.anchorView = recipeTextField
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
         dropDown.direction = .bottom
         dropDown.selectionAction = { [weak self] (index, product) in
             guard let self = self,
@@ -193,12 +209,17 @@ final class IngredientSelectionViewController: ViewController, Messagable {
             show(type: .error("Пожалуйста, выберите ингредиент из списка"))
             return
         }
-        guard let _ = measureTextField.measurementTyptextField.text else {
-            show(type: .error("Пожалуйтса, выберите измерение"))
-            return
+
+        if initialState == .fullItem {
+            guard let _ = measureTextField.measurementTyptextField.text else {
+                show(type: .error("Пожалуйтса, выберите измерение"))
+                return
+            }
+
+            recipeIgredient.amount = Double(converter(text: measureTextField.amountTextField.text ?? "0.0"))
+            recipeIgredient.measurement = measureTextField.measurementTyptextField.text
         }
-        recipeIgredient.amount = Double(converter(text: measureTextField.amountTextField.text ?? "0.0"))
-        recipeIgredient.measurement = measureTextField.measurementTyptextField.text
+
         delegate?.onIngredientSelected(ingredient: recipeIgredient)
         navigationController?.popViewController(animated: true)
     }

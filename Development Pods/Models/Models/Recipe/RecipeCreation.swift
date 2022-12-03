@@ -21,6 +21,12 @@ public struct RecipeCreation: Codable {
         case communityId = "communityId"
         case isHidden = "hidden"
         case whenToCook = "whenToCook"
+        case dishType
+        case occasion
+        case lifestyleType
+        case cuisineId
+        case email = "authorEmail"
+        case promo = "promoCode"
     }
 
     // MARK: - Properties
@@ -37,6 +43,12 @@ public struct RecipeCreation: Codable {
     public var communityId: Int?
     public var isHidden: Bool?
     public var whenToCook: [Int]?
+    public var dishType: [Int]?
+    public var occasion: [Int]?
+    public var lifestyleType: [Int]?
+    public var cuisineId: Int?
+    public var email: String?
+    public var promo: String?
 
     // MARK: - Init
 
@@ -53,8 +65,14 @@ public struct RecipeCreation: Codable {
         self.servings = recipe.servings
         self.cookTime = recipe.cookTime
         self.isHidden = recipe.isHidden
+        self.cuisineId = nil
         self.communityId = nil
-        self.whenToCook = nil
+        self.whenToCook = []
+        self.dishType = []
+        self.occasion = []
+        self.lifestyleType = []
+        self.email = nil
+        self.promo = nil
     }
 
     // MARK: - Methods
@@ -93,8 +111,25 @@ public struct RecipeCreation: Codable {
         if let isHidden = isHidden {
             params[CodingKeys.isHidden.rawValue] = isHidden
         }
-        if let whenToCook = whenToCook {
-            params[CodingKeys.whenToCook.rawValue] = whenToCook
+
+        if let cuisineId = cuisineId {
+            params[CodingKeys.cuisineId.rawValue] = cuisineId
+        }
+
+        params[CodingKeys.whenToCook.rawValue] = whenToCook
+
+        params[CodingKeys.dishType.rawValue] = dishType
+
+        params[CodingKeys.occasion.rawValue] = occasion
+
+        params[CodingKeys.lifestyleType.rawValue] = lifestyleType
+
+        if let email = email {
+            params[CodingKeys.email.rawValue] = email
+        }
+
+        if let promo = promo {
+            params[CodingKeys.promo.rawValue] = promo
         }
         return params
     }

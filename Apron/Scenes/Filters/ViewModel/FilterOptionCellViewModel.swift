@@ -16,7 +16,8 @@ protocol FilterOptionCellViewModelProtocol {
 }
 
 enum FilterOptionType {
-    case cookingTime(SuggestedCookingTime)
+    case cookingTimeType(SuggestedCookingTimeType)
+    case dayTimeType(SuggestedDayTimeType)
     case cuisine(RecipeCuisine)
     case dishType(SuggestedDishType)
     case ingredient(RecipeIngredient)
@@ -41,8 +42,10 @@ struct FilterOptionCellViewModel: FilterOptionCellViewModelProtocol {
     var title: NSAttributedString? {
         var title = ""
         switch type {
-        case .cookingTime(let suggestedCookingTime):
-            title = suggestedCookingTime.title
+        case .cookingTimeType(let suggestedCookingTimeType):
+            title = suggestedCookingTimeType.title
+        case .dayTimeType(let suggestedDayTimeType):
+            title = suggestedDayTimeType.title
         case .cuisine(let recipeCuisine):
             title = recipeCuisine.name ?? ""
         case .dishType(let suggestedDishType):

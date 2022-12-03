@@ -46,10 +46,12 @@ extension ProfileViewController: UITableViewDelegate {
         case .logout:
             AuthStorage.shared.clear()
             ApronAnalytics.shared.resetAnalytics()
+            self.navigationController?.popToRootViewController(animated: true)
             let vc = AuthorizationBuilder(state: .initial).build()
-            vc.hidesBottomBarWhenPushed = true
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.present(navVC, animated: true)
             }
         case .deleteAccount:
             let id: Int = userStorage.user?.id ?? 0

@@ -18,7 +18,6 @@ final class DynamicCommunityCell: UITableViewCell {
     // MARK: - Properties
 
     weak var delegate: DynamicCommunityCellProtocol?
-    weak var cellActionsDelegate: JoinCommunityProtocol?
     lazy var dynamicCommunitiesSection: [DynamicCommunitySection] = [] {
         didSet {
             communityCollectionView.reloadData()

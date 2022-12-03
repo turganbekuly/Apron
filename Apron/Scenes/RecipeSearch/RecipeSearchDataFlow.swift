@@ -14,7 +14,7 @@ enum RecipeSearchDataFlow {}
 extension RecipeSearchDataFlow {
     enum GetRecipes {
         struct Request {
-            let body: SearchByQueryRequestBody
+            let body: SearchFilterRequestBody
         }
         struct Response {
             let result: GetRecipesResult

@@ -27,7 +27,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
     var sections: [Section] = []
 
     var tagsSections: [TagsSection] = [
-        .init(section: .whenToCook, rows: SuggestedCookingTime.allCases.compactMap { .whenToCook($0) }),
+        .init(section: .whenToCook, rows: SuggestedDayTimeType.allCases.compactMap { .whenToCook($0) }),
         .init(section: .dishType, rows: SuggestedDishType.allCases.compactMap { .dishType($0) }),
         .init(section: .lifeStyleType, rows: SuggestedLifestyleType.allCases.compactMap { .lifeStyleType($0) }),
         .init(section: .eventType, rows: SuggestedEventType.allCases.compactMap { .eventType($0) })
@@ -42,36 +42,25 @@ final class RecipeCreationViewController: ViewController, Messagable {
         }
     }
 
-    var selectedCookingTime = [SuggestedCookingTime]() {
+    var selectedCookingTime = [SuggestedDayTimeType]() {
         didSet {
-            selectedOptions.append(contentsOf: selectedCookingTime.compactMap { $0.rawValue })
+            recipeCreation?.cuisineId = 1
+            recipeCreation?.whenToCook = selectedCookingTime.compactMap { $0.rawValue }
         }
     }
     var selectedDishTypes = [SuggestedDishType]() {
         didSet {
-            print(selectedDishTypes)
-            selectedOptions.append(contentsOf: selectedDishTypes.compactMap { $0.rawValue })
+            recipeCreation?.dishType = selectedDishTypes.compactMap { $0.rawValue }
         }
     }
     var selectedLifestyleTypes = [SuggestedLifestyleType]() {
         didSet {
-            selectedOptions.append(contentsOf: selectedLifestyleTypes.compactMap { $0.rawValue })
+            recipeCreation?.lifestyleType = selectedLifestyleTypes.compactMap { $0.rawValue }
         }
     }
     var selectedEventTypes = [SuggestedEventType]() {
         didSet {
-            selectedOptions.append(contentsOf: selectedEventTypes.compactMap { $0.rawValue })
-        }
-    }
-
-    lazy var selectedOptions = [Int]() {
-        didSet {
-            let cookTime = selectedCookingTime.compactMap { $0.rawValue }
-            let dishType = selectedDishTypes.compactMap { $0.rawValue }
-            let lifestyleType = selectedLifestyleTypes.compactMap { $0.rawValue }
-            let eventType = selectedEventTypes.compactMap { $0.rawValue }
-
-            recipeCreation?.whenToCook = (cookTime + dishType + lifestyleType + eventType).unique()
+            recipeCreation?.occasion = selectedEventTypes.compactMap { $0.rawValue }
         }
     }
 
@@ -115,20 +104,21 @@ final class RecipeCreationViewController: ViewController, Messagable {
             switch initialState {
             case let .create(recipeCreation, sourceType),
                 let .edit(recipeCreation, sourceType):
-                if let storeRecipeCreation = recipeCreationStorage.recipeCreation,
-                    storeRecipeCreation.communityId == recipeCreation.communityId {
+                if let storeRecipeCreation = recipeCreationStorage.recipeCreation {
                     show(with: storeRecipeCreation, initialRecipe: recipeCreation)
                 } else {
                     self.recipeCreation = recipeCreation
                 }
+
                 self.recipeCreationSourceType = sourceType
                 sections = [
                     .init(
                         section: .info,
                         rows: [
                             .name, .imagePlaceholder,.source,
-                            .description, .composition, .instruction,
-                            .servings, .cookTime, .whenToCook
+                            .description, .composition, .paidRecipe,
+                            .instruction, .servings, .cookTime,
+                            .whenToCook
                         ]
                     )
                 ]
@@ -223,7 +213,6 @@ final class RecipeCreationViewController: ViewController, Messagable {
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
         saveButton.snp.makeConstraints {
@@ -279,7 +268,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
             type: .normal,
             action: {
                 self.recipeCreation = storageRecipe
-                self.handleSections(with: storageRecipe.imageURL)
+                self.handleSections(with: storageRecipe)
                 self.recipeCreationStorage.recipeCreation = nil
             }
         )
@@ -299,31 +288,22 @@ final class RecipeCreationViewController: ViewController, Messagable {
         )
     }
 
-    private func handleSections(with image: String?) {
-        if let image = image, !image.isEmpty {
-            self.sections = [
-                .init(
-                    section: .info,
-                    rows: [
-                        .name, .image, .source,
-                        .description, .composition, .instruction,
-                        .servings, .cookTime, .whenToCook
-                    ]
-                )
-            ]
+    private func handleSections(with recipe: RecipeCreation?) {
+        var rows = [RecipeCreationViewController.Section.Row]()
+        sections.append(.init(section: .info, rows: [.name]))
+        rows.append(.name)
+
+        if let image = recipe?.imageURL, !image.isEmpty {
+            rows.append(.image)
         } else {
-            self.sections = [
-                .init(
-                    section: .info,
-                    rows: [
-                        .name, .imagePlaceholder,.source,
-                        .description, .composition, .instruction,
-                        .servings, .cookTime, .whenToCook
-                    ]
-                )
-            ]
+            rows.append(.imagePlaceholder)
         }
 
+        rows.append(contentsOf: [.description, .composition, .paidRecipe])
+
+        rows.append(contentsOf: [.instruction, .servings, .cookTime, .whenToCook])
+
+        sections = [.init(section: .info, rows: rows)]
         self.mainView.reloadData()
     }
 
@@ -335,7 +315,12 @@ final class RecipeCreationViewController: ViewController, Messagable {
            let _ = recipeCreation?.ingredients,
            let _ = recipeCreation?.instructions,
            let _ = recipeCreation?.servings,
-           let _ = recipeCreation?.cookTime
+           let _ = recipeCreation?.cookTime,
+           let _ = recipeCreation?.whenToCook,
+           let _ = recipeCreation?.dishType,
+           let _ = recipeCreation?.lifestyleType,
+           let _ = recipeCreation?.occasion
+
         {
             guard let instructions = recipeCreation?.instructions else { return }
             for (index, item) in instructions.enumerated() {

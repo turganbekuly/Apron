@@ -9,11 +9,15 @@
 import Models
 import UIKit
 
+enum IngredientSelectionInitialState {
+    case onlyItem
+    case fullItem
+}
 extension IngredientSelectionViewController {
     
     // MARK: - State
     public enum State {
-        case initial(IngredientSelectedProtocol)
+        case initial(IngredientSelectedProtocol, IngredientSelectionInitialState)
         case fetchProducts([Product])
         case fetchProductsFailed(AKNetworkError)
     }
@@ -21,7 +25,8 @@ extension IngredientSelectionViewController {
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(delegate):
+        case let .initial(delegate, initialState):
+            self.initialState = initialState
             self.delegate = delegate
         case let .fetchProducts(model):
             self.products = model

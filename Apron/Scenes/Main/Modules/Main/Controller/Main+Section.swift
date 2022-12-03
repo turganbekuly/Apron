@@ -11,20 +11,28 @@ extension MainViewController {
     
     struct Section {
         enum Section {
-            case myCommunity
             case communities
+            case whatToCook
+//            case cookNow
+//            case createRecipe
         }
         
         enum Row: Equatable {
-            case myCommunities([CommunityResponse])
             case communities(String, [CommunityResponse], Int)
+            case whatToCook(String)
+//            case cookNow
+//            case createRecipe
             
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch (lhs, rhs) {
-                case (.myCommunities, myCommunities):
-                    return true
                 case (.communities, communities):
                     return true
+                case (.whatToCook, .whatToCook):
+                    return true
+//                case (.cookNow, .cookNow):
+//                    return true
+//                case (.createRecipe, .createRecipe):
+//                    return true
                 default:
                     return false
                 }
@@ -52,15 +60,14 @@ extension DynamicCommunityCell {
     }
 }
 
-extension MyCommunityCell {
-    struct MyCommunitiesSection {
-        enum Section {
-            case myCommunities
+extension WhatToCookCell {
+    struct WhatToCookSection {
+        public enum Section {
+            case categories
         }
 
         enum Row {
-            case myCommunity(CommunityResponse)
-            case emptyView
+            case category(WhatToCookCategoryTypes)
         }
 
         var section: Section

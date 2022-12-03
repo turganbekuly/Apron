@@ -15,7 +15,7 @@ import Models
 protocol MainDisplayLogic: AnyObject {
     func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel)
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel)
-    func displayMyCommunities(viewModel: MainDataFlow.GetMyCommunities.ViewModel)
+    func displayCookNowRecipes(viewModel: MainDataFlow.GetCookNowRecipes.ViewModel)
 }
 
 final class MainViewController: ViewController, Messagable {
@@ -29,17 +29,10 @@ final class MainViewController: ViewController, Messagable {
     }
 
     lazy var sections: [Section] = [
-        .init(section: .myCommunity, rows: [.myCommunities([])]),
-        .init(section: .communities, rows: [.communities("Сообщество", [], 0)])
+        .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
     ]
 
     var dynamicCommunities: [CommunityCategory] = [] {
-        didSet {
-            configureCommunities()
-        }
-    }
-
-    var myCommunities: [CommunityResponse] = [] {
         didSet {
             configureCommunities()
         }
@@ -168,14 +161,6 @@ final class MainViewController: ViewController, Messagable {
 
     private func configureCommunities() {
         var sections = [Section]()
-        if !myCommunities.isEmpty {
-            sections.append(
-                .init(
-                    section: .myCommunity, rows: [.myCommunities(myCommunities)]
-                )
-            )
-        }
-
         if !dynamicCommunities.isEmpty {
             let _ = dynamicCommunities.compactMap { com in
                 if let communities = com.communities, !communities.isEmpty {
@@ -195,6 +180,9 @@ final class MainViewController: ViewController, Messagable {
             }
         }
 
+        sections.append(
+            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
+        )
         self.sections = sections
         mainView.reloadTableViewWithoutAnimation()
     }
@@ -204,12 +192,9 @@ final class MainViewController: ViewController, Messagable {
     @objc
     private func refresh(_ sender: UIRefreshControl) {
         sections = [
-            .init(section: .myCommunity, rows: [.myCommunities([])]),
-            .init(section: .communities, rows: [.communities("Сообщество", [], 0)])
+            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
         ]
         mainView.reloadData()
-        getMyCommunities()
-        getCommunitiesByCategory()
     }
 
     deinit {

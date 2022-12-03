@@ -8,7 +8,7 @@
 import Foundation
 
 public enum SuggestedLifestyleType: Int, CaseIterable, Codable {
-    case halal = 33
+    case halal = 1
     case vegan
     case vegetarian
     case pescatarian

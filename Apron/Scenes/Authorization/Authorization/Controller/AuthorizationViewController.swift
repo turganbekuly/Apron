@@ -11,6 +11,7 @@ import Protocols
 import UIKit
 import SnapKit
 import AlertMessages
+import Alamofire
 
 protocol AuthorizationDisplayLogic: AnyObject {
     func login(viewModel: AuthorizationDataFlow.AuthorizationWithApple.ViewModel)

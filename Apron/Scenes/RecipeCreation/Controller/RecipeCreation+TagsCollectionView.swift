@@ -12,7 +12,7 @@ import UIKit
 extension RecipeCreationViewController {
 
     enum SelectSuggestedType {
-        case whenToCook(SuggestedCookingTime)
+        case whenToCook(SuggestedDayTimeType)
         case dishType(SuggestedDishType)
         case lifeStyleType(SuggestedLifestyleType)
         case eventType(SuggestedEventType)

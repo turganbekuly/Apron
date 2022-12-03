@@ -8,11 +8,13 @@
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
 enum MainEndpoint {
     case joinCommunity(id: Int)
     case getCommuntiesByCategories
     case getMyCommunities
+    case getCookNowRecipes(body: SearchFilterRequestBody)
 }
 
 extension MainEndpoint: AKNetworkTargetType {
@@ -28,6 +30,8 @@ extension MainEndpoint: AKNetworkTargetType {
             return "communities/main"
         case .getMyCommunities:
             return "communities/getMyCreatedCommunities/true"
+        case .getCookNowRecipes:
+            return "recipes/mainSearch"
         }
     }
 
@@ -39,6 +43,8 @@ extension MainEndpoint: AKNetworkTargetType {
             return .get
         case .getMyCommunities:
             return .get
+        case .getCookNowRecipes:
+            return .post
         }
     }
 
@@ -50,6 +56,11 @@ extension MainEndpoint: AKNetworkTargetType {
             return .requestPlain
         case .getMyCommunities:
             return .requestPlain
+        case let .getCookNowRecipes(body):
+            return .requestParameters(
+                parameters: body.toJSON(),
+                encoding: AKJSONEncoding.default
+            )
         }
     }
 

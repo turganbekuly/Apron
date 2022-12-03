@@ -12,6 +12,7 @@ extension FiltersViewController {
     struct Section {
         enum Section {
             case cookingTime
+            case dayTimeType
             case cuisines
             case dishTypes
             case ingredients
@@ -21,7 +22,8 @@ extension FiltersViewController {
             case addCuisine
         }
         enum Row {
-            case cookingTime(SuggestedCookingTime)
+            case cookingTime(SuggestedCookingTimeType)
+            case dayTimeType(SuggestedDayTimeType)
             case cuisine(RecipeCuisine)
             case dishType(SuggestedDishType)
             case ingredient(RecipeIngredient)

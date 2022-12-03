@@ -18,7 +18,8 @@ final class FiltersViewController: ViewController {
     // MARK: - Properties
     let interactor: FiltersBusinessLogic
     lazy var sections: [Section] = [
-        .init(section: .cookingTime, rows: SuggestedCookingTime.allCases.compactMap { .cookingTime($0) }),
+        .init(section: .cookingTime, rows: SuggestedCookingTimeType.allCases.compactMap { .cookingTime($0) }),
+        .init(section: .dayTimeType, rows: SuggestedDayTimeType.allCases.compactMap { .dayTimeType($0) }),
         .init(section: .cuisines, rows: cuisines.compactMap { .cuisine($0) }),
         .init(section: .addCuisine, rows: [.addCuisine]),
         .init(section: .dishTypes, rows: SuggestedDishType.allCases.compactMap { .dishType($0) }),
@@ -33,14 +34,7 @@ final class FiltersViewController: ViewController {
         }
     }
 
-    var selectedFilters = SearchFilterRequestBody(
-        cookingTime: [],
-        cuisines: [],
-        dishTypes: [],
-        ingredients: [],
-        eventTypes: [],
-        lifestyleTypes: []
-    )
+    var selectedFilters = SearchFilterRequestBody()
 
     var cuisines = [
         RecipeCuisine(id: 1, name: "ASD"),
@@ -53,6 +47,8 @@ final class FiltersViewController: ViewController {
     ]
 
     var ingredients: [RecipeIngredient] = []
+
+    var cookingTimePreviousIndex: IndexPath?
     
     // MARK: - Views
     lazy var mainView: FiltersView = {

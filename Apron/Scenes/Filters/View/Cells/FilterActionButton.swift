@@ -14,8 +14,7 @@ enum FilterAddButtonType {
 }
 
 protocol FilterActionButtonProtocol: AnyObject {
-    func addIngredientTapped()
-    func addCuisineTapped()
+    func actionButtonTapped(with type: FilterAddButtonType)
 }
 
 final class FilterActionButton: UICollectionViewCell {
@@ -69,9 +68,9 @@ final class FilterActionButton: UICollectionViewCell {
     private func addButtonTapped() {
         switch type {
         case .ingredients:
-            delegate?.addIngredientTapped()
+            delegate?.actionButtonTapped(with: .ingredients)
         case .cuisines:
-            delegate?.addCuisineTapped()
+            delegate?.actionButtonTapped(with: .cuisines)
         }
     }
 

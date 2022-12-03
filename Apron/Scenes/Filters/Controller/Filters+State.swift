@@ -13,14 +13,14 @@ extension FiltersViewController {
     
     // MARK: - State
     public enum State {
-        case initial
+        case initial(SearchFilterRequestBody)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case .initial:
-            break
+        case let .initial(filters):
+            self.selectedFilters = filters
         }
     }
     

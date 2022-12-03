@@ -18,7 +18,7 @@ public final class BlackOpButton: DefaultButton {
     public enum ButtonType {
         case blackBackground
         case whiteBackground
-        case yelloBackground
+        case greenBackground
     }
 
     private let arrowState: ArrowState
@@ -129,15 +129,15 @@ public final class BlackOpButton: DefaultButton {
             tintColor = isEnabled ? .white : .white.withAlphaComponent(0.5)
             layer.borderWidth = 1
             layer.borderColor = UIColor.black.cgColor
-        case .yelloBackground:
-            setBackgroundColor(ApronAssets.colorsYello.color.withAlphaComponent(0.5), for: .disabled)
-            setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-            setBackgroundColor(ApronAssets.colorsYello.color.highlighted, for: .highlighted)
-            setTitleColor(.black, for: .disabled)
-            setTitleColor(.black, for: .normal)
-            tintColor = isEnabled ? ApronAssets.colorsYello.color : ApronAssets.colorsYello.color.withAlphaComponent(0.5)
+        case .greenBackground:
+            setBackgroundColor(ApronAssets.mainAppColor.color.withAlphaComponent(0.5), for: .disabled)
+            setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+            setBackgroundColor(ApronAssets.mainAppColor.color.highlighted, for: .highlighted)
+            setTitleColor(.white, for: .disabled)
+            setTitleColor(.white, for: .normal)
+            tintColor = isEnabled ? ApronAssets.mainAppColor.color : ApronAssets.mainAppColor.color.withAlphaComponent(0.5)
             layer.borderWidth = 1
-            layer.borderColor = ApronAssets.colorsYello.color.cgColor
+            layer.borderColor = ApronAssets.mainAppColor.color.cgColor
         }
     }
 }

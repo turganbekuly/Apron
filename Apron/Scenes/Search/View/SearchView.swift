@@ -34,7 +34,7 @@ final class SearchView: UITableView {
             register(aClass: $0)
         }
 
-        [SearchHistoryCell.self].forEach {
+        [SearchSuggestionCategoriesCell.self].forEach {
             register(cellClass: $0)
         }
         

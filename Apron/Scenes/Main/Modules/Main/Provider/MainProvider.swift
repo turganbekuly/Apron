@@ -19,10 +19,15 @@ protocol MainProviderProtocol {
         completion: @escaping (MainDataFlow.GetCommunitiesResult) -> Void
     )
 
-    func getMyCommunities(
-        request: MainDataFlow.GetMyCommunities.Request,
-        completion: @escaping (MainDataFlow.GetMyCommunitiesResult) -> Void
+    func getCookNowRecipes(
+        request: MainDataFlow.GetCookNowRecipes.Request,
+        completion: @escaping (MainDataFlow.GetCookNowRecipesResult) -> Void
     )
+
+//    func getMyCommunities(
+//        request: MainDataFlow.GetMyCommunities.Request,
+//        completion: @escaping (MainDataFlow.GetMyCommunitiesResult) -> Void
+//    )
 }
 
 final class MainProvider: MainProviderProtocol {
@@ -70,15 +75,15 @@ final class MainProvider: MainProviderProtocol {
         }
     }
 
-    func getMyCommunities(
-        request: MainDataFlow.GetMyCommunities.Request,
-        completion: @escaping (MainDataFlow.GetMyCommunitiesResult) -> Void
+    func getCookNowRecipes(
+        request: MainDataFlow.GetCookNowRecipes.Request,
+        completion: @escaping (MainDataFlow.GetCookNowRecipesResult) -> Void
     ) {
-        service.getMyCommunities(request: request) {
+        service.getCookNowRecipes(request: request) {
             switch $0 {
             case let .success(json):
                 if let jsons = json["data"] as? [JSON] {
-                    completion(.successful(model: jsons.compactMap { CommunityResponse(json: $0) }))
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
                 } else {
                     completion(.failed(error: .invalidData))
                 }
@@ -87,4 +92,22 @@ final class MainProvider: MainProviderProtocol {
             }
         }
     }
+
+//    func getMyCommunities(
+//        request: MainDataFlow.GetMyCommunities.Request,
+//        completion: @escaping (MainDataFlow.GetMyCommunitiesResult) -> Void
+//    ) {
+//        service.getMyCommunities(request: request) {
+//            switch $0 {
+//            case let .success(json):
+//                if let jsons = json["data"] as? [JSON] {
+//                    completion(.successful(model: jsons.compactMap { CommunityResponse(json: $0) }))
+//                } else {
+//                    completion(.failed(error: .invalidData))
+//                }
+//            case let .failure(error):
+//                completion(.failed(error: error))
+//            }
+//        }
+//    }
 }

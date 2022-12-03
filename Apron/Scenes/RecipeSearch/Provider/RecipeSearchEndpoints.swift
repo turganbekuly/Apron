@@ -12,7 +12,7 @@ import Models
 import Storages
 
 enum RecipeSearchEndpoint {
-    case getRecipes(SearchByQueryRequestBody)
+    case getRecipes(SearchFilterRequestBody)
     case saveRecipe(id: Int)
 }
 
@@ -25,7 +25,7 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
     var path: String {
         switch self {
         case .getRecipes:
-            return "recipes"
+            return "recipes/mainSearch"
         case .saveRecipe(let id):
             return "recipes/saveRecipe/\(id)"
         }
@@ -34,7 +34,7 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
     var method: AKNetworkMethod {
         switch self {
         case .getRecipes:
-            return .get
+            return .post
         case .saveRecipe:
             return .put
         }
@@ -49,7 +49,7 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
         case .getRecipes(let body):
             return .requestParameters(
                 parameters: body.toJSON(),
-                encoding: AKURLEncoding.queryString
+                encoding: AKJSONEncoding.default
             )
         case .saveRecipe:
             return .requestPlain

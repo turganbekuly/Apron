@@ -8,7 +8,16 @@
 import UIKit
 import APRUIKit
 
+protocol RecipeCreationPaidInfoCellProtocol: AnyObject {
+    func cell(didEnteredEmail email: String?)
+    func cell(didEnteredPromo promo: String?)
+}
+
 final class RecipeCreationPaidInfoCell: UITableViewCell {
+    // MARK: - Properties
+
+    weak var delegate: RecipeCreationPaidInfoCellProtocol?
+
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -22,15 +31,105 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
 
     // MARK: - Views factory
 
+    private lazy var emailTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.semibold16
+        label.textColor = .black
+        label.numberOfLines = 1
+        label.text = "Адрес электронной почты *"
+        return label
+    }()
+
+    private lazy var emailDescrLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.regular12
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.text = "Подарок будет отправлен на указанный адрес электронной почты"
+        return label
+    }()
+
+    private lazy var emailTextField: RoundedTextField = {
+        let textField = RoundedTextField(
+            placeholder: "Напишите эл.почту"
+        )
+        textField.textField.keyboardType = .emailAddress
+        textField.textField.addTarget(self, action: #selector(didEnterEmail(_:)), for: .editingChanged)
+        return textField
+    }()
+
+    private lazy var promoTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.semibold16
+        label.textColor = .black
+        label.numberOfLines = 1
+        label.text = "Введите промокод *"
+        return label
+    }()
+
+    private lazy var promoDescrLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.regular12
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.text = "Укажите правильный промокод для получения подарка"
+        return label
+    }()
+
+    private lazy var promoTextField: RoundedTextField = {
+        let textField = RoundedTextField(
+            placeholder: "Напишите промо код"
+        )
+        textField.textField.addTarget(self, action: #selector(didEnterPromo(_:)), for: .editingChanged)
+        return textField
+    }()
+
     // MARK: - Setup Views
 
     private func setupViews() {
+        contentView.addSubviews(
+            emailTitleLabel,
+            emailDescrLabel,
+            emailTextField,
+            promoTitleLabel,
+            promoDescrLabel,
+            promoTextField
+        )
         setupConstraints()
         configureCell()
     }
 
     private func setupConstraints() {
+        emailTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
 
+        emailDescrLabel.snp.makeConstraints {
+            $0.top.equalTo(emailTitleLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+
+        emailTextField.snp.makeConstraints {
+            $0.top.equalTo(emailDescrLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(38)
+        }
+
+        promoTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(emailTextField.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+
+        promoDescrLabel.snp.makeConstraints {
+            $0.top.equalTo(promoTitleLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+
+        promoTextField.snp.makeConstraints {
+            $0.top.equalTo(promoDescrLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
     }
 
     private func configureCell() {
@@ -38,9 +137,28 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
         selectionStyle = .none
     }
 
+    // MARK: - User actions
+
+    @objc
+    private func didEnterEmail(_ sender: UITextField) {
+        delegate?.cell(didEnteredEmail: sender.text)
+    }
+
+    @objc
+    private func didEnterPromo(_ sender: UITextField) {
+        delegate?.cell(didEnteredPromo: sender.text)
+    }
+
+
     // MARK: - Public methods
 
-    func configure() {
+    func configure(email: String?, promo: String?) {
+        if let email = email {
+            emailTextField.textField.text = email
+        }
 
+        if let promo = promo {
+            promoTextField.textField.text = promo
+        }
     }
 }

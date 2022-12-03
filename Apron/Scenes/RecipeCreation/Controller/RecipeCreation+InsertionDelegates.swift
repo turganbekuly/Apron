@@ -45,7 +45,7 @@ extension RecipeCreationViewController: InstructionSelectedProtocol {
 
 extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
     func onAddIngredientTapped() {
-        let viewController = IngredientSelectionBuilder(state: .initial(self)).build()
+        let viewController = IngredientSelectionBuilder(state: .initial(self, .fullItem)).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(viewController, animated: true)
         }

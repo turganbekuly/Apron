@@ -17,6 +17,8 @@ import Wormholy
 import Kingfisher
 import YandexMobileMetrica
 import Mixpanel
+import IQKeyboardManagerSwift
+import APRUIKit
 
 final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     // MARK: - Private proeprties
@@ -32,6 +34,7 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
         prepareFirebaseRemoteConfig()
         configureWormholy()
         configureKingfisher()
+        configureIQKeyboardManager()
     }
 
     private func configureFirebase() {
@@ -92,5 +95,11 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
         #else
             Wormholy.shakeEnabled = false
         #endif
+    }
+
+    private func configureIQKeyboardManager() {
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.toolbarTintColor = ApronAssets.mainAppColor.color
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Скрыть клавиатуру"
     }
 }

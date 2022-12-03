@@ -7,9 +7,9 @@
 //
 
 protocol MainBusinessLogic {
-    func joinCommunity(request: MainDataFlow.JoinCommunity.Request)
     func getCommunitiesByCategory(request: MainDataFlow.GetCommunities.Request)
-    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request)
+    func getCookNowRecipes(request: MainDataFlow.GetCookNowRecipes.Request)
+//    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request)
 }
 
 final class MainInteractor: MainBusinessLogic {
@@ -29,17 +29,6 @@ final class MainInteractor: MainBusinessLogic {
     
     // MARK: - MainBusinessLogic
 
-    func joinCommunity(request: MainDataFlow.JoinCommunity.Request) {
-        provider.joinCommunity(request: request) { [weak self] in
-            switch $0 {
-            case .successfull:
-                self?.presenter.joinCommunity(response: .init(result: .successfull))
-            case let .failed(error):
-                self?.presenter.joinCommunity(response: .init(result: .failed(error: error)))
-            }
-        }
-    }
-
     func getCommunitiesByCategory(request: MainDataFlow.GetCommunities.Request) {
         provider.getCommunitiesByCategory(request: request) { [weak self] in
             switch $0 {
@@ -55,18 +44,29 @@ final class MainInteractor: MainBusinessLogic {
         }
     }
 
-    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request) {
-        provider.getMyCommunities(request: request) { [weak self] in
+    func getCookNowRecipes(request: MainDataFlow.GetCookNowRecipes.Request) {
+        provider.getCookNowRecipes(request: request) { [weak self] in
             switch $0 {
             case let .successful(model):
-                self?.presenter.getMyCommunities(
-                    response: .init(result: .successful(model: model))
-                )
+                self?.presenter.getCookNowRecipes(response: .init(result: .successful(model: model)))
             case let .failed(error):
-                self?.presenter.getMyCommunities(
-                    response: .init(result: .failed(error: error))
-                )
+                self?.presenter.getCookNowRecipes(response: .init(result: .failed(error: error)))
             }
         }
     }
+
+//    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request) {
+//        provider.getMyCommunities(request: request) { [weak self] in
+//            switch $0 {
+//            case let .successful(model):
+//                self?.presenter.getMyCommunities(
+//                    response: .init(result: .successful(model: model))
+//                )
+//            case let .failed(error):
+//                self?.presenter.getMyCommunities(
+//                    response: .init(result: .failed(error: error))
+//                )
+//            }
+//        }
+//    }
 }

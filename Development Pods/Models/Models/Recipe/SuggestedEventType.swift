@@ -8,7 +8,7 @@
 import Foundation
 
 public enum SuggestedEventType: Int, CaseIterable, Codable {
-    case ramadan = 38
+    case ramadan = 1
     case helloween
     case noviiGod
     case svidanie

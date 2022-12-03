@@ -12,6 +12,7 @@ def commonPods
   pod 'Kingfisher', :inhibit_warnings => true
   pod 'UIScrollView-InfiniteScroll', :inhibit_warnings => true
   pod 'ALProgressView', :inhibit_warnings => true
+  pod 'IQKeyboardManagerSwift'
 
   # Dev Tools
 

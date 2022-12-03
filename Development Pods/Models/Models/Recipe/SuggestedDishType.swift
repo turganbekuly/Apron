@@ -8,7 +8,7 @@
 import Foundation
 
 public enum SuggestedDishType: Int, CaseIterable, Codable {
-    case zakuski = 6
+    case zakuski = 1
     case salati
     case deserti
     case perekus

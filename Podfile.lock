@@ -146,6 +146,7 @@ PODS:
   - Haptica (3.0.2)
   - HapticTouch (0.0.1):
     - Haptica (= 3.0.2)
+  - IQKeyboardManagerSwift (6.5.10)
   - KeychainAccess (4.2.2)
   - Kingfisher (7.2.3)
   - lottie-ios (3.3.0)
@@ -218,6 +219,7 @@ DEPENDENCIES:
   - Firebase/DynamicLinks
   - Firebase/RemoteConfig
   - HapticTouch (from `./Development Pods/HapticTouch`)
+  - IQKeyboardManagerSwift
   - Kingfisher
   - Mixpanel-swift
   - Models (from `./Development Pods/Models`)
@@ -254,6 +256,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GrowingTextView
     - Haptica
+    - IQKeyboardManagerSwift
     - KeychainAccess
     - Kingfisher
     - lottie-ios
@@ -332,6 +335,7 @@ SPEC CHECKSUMS:
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
   Haptica: dc206651beeca25ab4744c633fbf0ae4d1e86baf
   HapticTouch: 03da243d7f1c055766916006b2f4688e18cf1a42
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 8c2cbe0c11ea4d481542895112682a99e058468e
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
@@ -357,6 +361,6 @@ SPEC CHECKSUMS:
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
   YandexMobileMetrica: baf7cea47cb87fc9af963c4f747ce8dd7df3d7c0
 
-PODFILE CHECKSUM: adf2a92ee941b7674ef46f055447b7c3f8428427
+PODFILE CHECKSUM: c5f19feea3fe03830093b6e09d45e6d1e068ceed
 
 COCOAPODS: 1.11.3

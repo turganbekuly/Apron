@@ -18,22 +18,22 @@ final class SearchViewController: ViewController {
     
     struct Section {
         enum Section {
-            case search
+            case categories
         }
         enum Row {
-            case searchHistory
+            case category
         }
         
         let section: Section
         let rows: [Row]
     }
 
-    struct SearchHistorySection {
+    struct CategoriesSection {
         enum Section {
-            case searchHistory
+            case categories
         }
         enum Row {
-            case history(SearchHistoryItem)
+            case category(SearchSuggestionCategoriesTypes)
         }
 
         let section: Section
@@ -44,7 +44,9 @@ final class SearchViewController: ViewController {
     let interactor: SearchBusinessLogic
 
     var sections: [Section] = []
-    var historyCollectionCell: [SearchHistorySection] = []
+    var categoryCollectionCell: [CategoriesSection] = [
+        .init(section: .categories, rows: SearchSuggestionCategoriesTypes.allCases.compactMap { .category($0) })
+    ]
 
     var state: State {
         didSet {
@@ -83,8 +85,6 @@ final class SearchViewController: ViewController {
         super.viewWillAppear(animated)
         
         configureNavigation()
-        getSearchHistory()
-        configureHistory()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -150,16 +150,16 @@ final class SearchViewController: ViewController {
         view.backgroundColor = ApronAssets.secondary.color
     }
 
-    func configureHistory() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .search }),
-            let row = sections[section].rows.firstIndex(of: .searchHistory),
-            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? SearchHistoryCell
-        else { return }
-        historyCollectionCell = [
-            .init(section: .searchHistory, rows: searchHistoryItems.compactMap { .history($0) })
-        ]
-        cell.historyCollectionView.reloadData()
-    }
+//    func configureCategories() {
+//        guard
+//            let section = sections.firstIndex(where: { $0.section == .categories }),
+//            let row = sections[section].rows.firstIndex(of: .category),
+//            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? SearchSuggestionCategoriesCell
+//        else { return }
+//        historyCollectionCell = [
+//            .init(section: .searchHistory, rows: searchHistoryItems.compactMap { .history($0) })
+//        ]
+//        cell.historyCollectionView.reloadData()
+//    }
     
 }

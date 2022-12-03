@@ -37,7 +37,7 @@ final class SplashScreenView: UIView {
 
     private lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "splash_image_background")
+        imageView.image = UIImage(named: "moca-5")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -66,7 +66,7 @@ final class SplashScreenView: UIView {
         }
 
         logoImage.snp.makeConstraints {
-            $0.size.equalTo(160)
+            $0.size.equalTo(135)
             $0.centerX.equalToSuperview()
             $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(45)
         }

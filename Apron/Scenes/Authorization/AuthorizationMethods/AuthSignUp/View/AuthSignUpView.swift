@@ -57,9 +57,9 @@ final class AuthSignUpView: UIView {
         let button = UIButton()
         button.clipsToBounds = true
         button.layer.cornerRadius = 22
-        button.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        button.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("Регистрация", for: .normal)
         button.isEnabled = false
         return button

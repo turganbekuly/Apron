@@ -20,10 +20,12 @@ open class AppTabBarController: UITabBarController, ViewControllerProtocol {
         super.viewDidLoad()
         let tabBar = AppTabBar()
         setValue(tabBar, forKey: "tabBar")
-        tabBar.centerButtonColor = ApronAssets.colorsYello.color
-        tabBar.buttonImage = ApronAssets.tabbarAddIcon.image
-//        tabBar.tintColor = .black
-//        self.tabBar.backgroundColor = .white
+        tabBar.centerButtonColor = ApronAssets.mainAppColor.color
+        if #available(iOS 13.0, *) {
+            tabBar.buttonImage = ApronAssets.tabbarAddIcon.image.withTintColor(.white, renderingMode: .alwaysTemplate)
+        } else {
+            tabBar.buttonImage = ApronAssets.tabbarAddIcon.image
+        }
     }
 }
 

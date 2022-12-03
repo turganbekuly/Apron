@@ -49,6 +49,12 @@ extension RecipeCreationViewController: UITableViewDataSource {
         case .whenToCook:
             let cell: RecipeCreationTagsCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .paidRecipe:
+            let cell: RecipeCreationPaidCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
+        case .paidRecipeInfo:
+            let cell: RecipeCreationPaidInfoCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -88,6 +94,10 @@ extension RecipeCreationViewController:
             return 100
         case .whenToCook:
             return 800
+        case .paidRecipe:
+            return 144
+        case .paidRecipeInfo:
+            return 236
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -123,6 +133,10 @@ extension RecipeCreationViewController:
             return 100
         case .whenToCook:
             return 800
+        case .paidRecipe:
+            return 144
+        case .paidRecipeInfo:
+            return 236
         }
     }
 
@@ -170,6 +184,13 @@ extension RecipeCreationViewController:
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
             cell.configure()
+        case .paidRecipe:
+            guard let cell = cell as? RecipeCreationPaidCell else { return }
+            cell.delegate = self
+        case .paidRecipeInfo:
+            guard let cell = cell as? RecipeCreationPaidInfoCell else { return }
+            cell.delegate = self
+            cell.configure(email: recipeCreation?.email, promo: recipeCreation?.promo)
         }
     }
 }

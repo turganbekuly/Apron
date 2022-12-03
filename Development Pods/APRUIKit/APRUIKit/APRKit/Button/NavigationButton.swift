@@ -15,7 +15,7 @@ public final class NavigationButton: Button {
     public enum ButtonType {
         case blackBackground
         case whiteBackground
-        case yelloBackground
+        case greenBackground
     }
 
     public var backgroundType: ButtonType = .blackBackground {
@@ -27,7 +27,7 @@ public final class NavigationButton: Button {
             case .whiteBackground:
                 applyStyle(PrimaryButtonWhiteStyle.self)
                 activityIndicator.color = .black
-            case .yelloBackground:
+            case .greenBackground:
                 applyStyle(PrimaryButtonYellowStyle.self)
                 activityIndicator.color = .black
             }

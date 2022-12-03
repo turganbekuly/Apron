@@ -9,9 +9,9 @@
 import UIKit
 
 protocol MainPresentationLogic: AnyObject {
-    func joinCommunity(response: MainDataFlow.JoinCommunity.Response)
     func getCommunitiesByCategory(response: MainDataFlow.GetCommunities.Response)
-    func getMyCommunities(response: MainDataFlow.GetMyCommunities.Response)
+    func getCookNowRecipes(response: MainDataFlow.GetCookNowRecipes.Response)
+//    func getMyCommunities(response: MainDataFlow.GetMyCommunities.Response)
 }
 
 final class MainPresenter: MainPresentationLogic {
@@ -20,21 +20,6 @@ final class MainPresenter: MainPresentationLogic {
     weak var viewController: MainDisplayLogic?
     
     // MARK: - MainPresentationLogic
-
-    func joinCommunity(response: MainDataFlow.JoinCommunity.Response) {
-        DispatchQueue.main.async {
-            var viewModel: MainDataFlow.JoinCommunity.ViewModel
-
-            defer { self.viewController?.displayJoinCommunity(viewModel: viewModel) }
-
-            switch response.result {
-            case .successfull:
-                viewModel = .init(state: .joinedCommunity)
-            case .failed:
-                viewModel = .init(state: .joinedCommunityFailed)
-            }
-        }
-    }
 
     func getCommunitiesByCategory(response: MainDataFlow.GetCommunities.Response) {
         DispatchQueue.main.async {
@@ -51,18 +36,33 @@ final class MainPresenter: MainPresentationLogic {
         }
     }
 
-    func getMyCommunities(response: MainDataFlow.GetMyCommunities.Response) {
+    func getCookNowRecipes(response: MainDataFlow.GetCookNowRecipes.Response) {
         DispatchQueue.main.async {
-            var viewModel: MainDataFlow.GetMyCommunities.ViewModel
+            var viewModel: MainDataFlow.GetCookNowRecipes.ViewModel
 
-            defer { self.viewController?.displayMyCommunities(viewModel: viewModel) }
+            defer { self.viewController?.displayCookNowRecipes(viewModel: viewModel) }
 
             switch response.result {
             case let .successful(model):
-                viewModel = .init(state: .fetchMyCommunities(model))
+                viewModel = .init(state: .fetchCookNowRecipes(model))
             case let .failed(error):
-                viewModel = .init(state: .fetchMyCommunititesFailed(error))
+                viewModel = .init(state: .fetchCookNowRecipesFailed(error))
             }
         }
     }
+
+//    func getMyCommunities(response: MainDataFlow.GetMyCommunities.Response) {
+//        DispatchQueue.main.async {
+//            var viewModel: MainDataFlow.GetMyCommunities.ViewModel
+//
+//            defer { self.viewController?.displayMyCommunities(viewModel: viewModel) }
+//
+//            switch response.result {
+//            case let .successful(model):
+//                viewModel = .init(state: .fetchMyCommunities(model))
+//            case let .failed(error):
+//                viewModel = .init(state: .fetchMyCommunititesFailed(error))
+//            }
+//        }
+//    }
 }
