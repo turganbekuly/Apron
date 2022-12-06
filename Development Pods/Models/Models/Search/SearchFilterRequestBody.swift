@@ -29,10 +29,10 @@ public struct SearchFilterRequestBody: Codable {
     public var ingredients: [Int] = []
     public var eventTypes: [Int] = []
     public var lifestyleTypes: [Int] = []
-    public var page: Int?
-    public var limit: Int?
+    public var page: Int = 1
+    public var limit: Int = 20
     public var currentTime: Int?
-    public var query: String?
+    public var query: String = ""
 
     // MARK: - Init
 
@@ -42,18 +42,12 @@ public struct SearchFilterRequestBody: Codable {
 
     public func toJSON() -> JSON {
         var params = JSON()
-        if let query = query {
-            params[CodingKeys.query.rawValue] = query
-        }
         if let currentTime = currentTime {
             params[CodingKeys.currentTime.rawValue] = currentTime
         }
-        if let limit = limit {
-            params[CodingKeys.limit.rawValue] = limit
-        }
-        if let page = page {
-            params[CodingKeys.page.rawValue] = page
-        }
+        params[CodingKeys.query.rawValue] = query
+        params[CodingKeys.limit.rawValue] = limit
+        params[CodingKeys.page.rawValue] = page
         params[CodingKeys.lifestyleTypes.rawValue] = lifestyleTypes
         params[CodingKeys.eventTypes.rawValue] = eventTypes
         params[CodingKeys.dishTypes.rawValue] = dishTypes

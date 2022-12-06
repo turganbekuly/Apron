@@ -13,14 +13,14 @@ extension MainViewController {
         enum Section {
             case communities
             case whatToCook
-//            case cookNow
+            case cookNow
 //            case createRecipe
         }
         
         enum Row: Equatable {
             case communities(String, [CommunityResponse], Int)
             case whatToCook(String)
-//            case cookNow
+            case cookNow(String, [RecipeResponse])
 //            case createRecipe
             
             static func == (lhs: Row, rhs: Row) -> Bool {
@@ -29,8 +29,8 @@ extension MainViewController {
                     return true
                 case (.whatToCook, .whatToCook):
                     return true
-//                case (.cookNow, .cookNow):
-//                    return true
+                case (.cookNow, .cookNow):
+                    return true
 //                case (.createRecipe, .createRecipe):
 //                    return true
                 default:
@@ -62,12 +62,28 @@ extension DynamicCommunityCell {
 
 extension WhatToCookCell {
     struct WhatToCookSection {
-        public enum Section {
+        enum Section {
             case categories
         }
 
         enum Row {
             case category(WhatToCookCategoryTypes)
+        }
+
+        var section: Section
+        var rows: [Row]
+    }
+}
+
+extension CookNowCell {
+    struct CookNowSection {
+        enum Section {
+            case shimmer
+            case recipes
+        }
+        enum Row {
+            case shimmer
+            case recipe(RecipeResponse)
         }
 
         var section: Section

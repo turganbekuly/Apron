@@ -26,6 +26,9 @@ extension MainViewController: UITableViewDataSource {
         case .whatToCook:
             let cell: WhatToCookCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .cookNow:
+            let cell: CookNowCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -39,6 +42,8 @@ extension MainViewController: UITableViewDelegate {
         case .whatToCook:
             let rawCount = WhatToCookCategoryTypes.allCases.count / 2
             return CGFloat(rawCount * 170)
+        case .cookNow:
+            return 350
         }
     }
     
@@ -50,6 +55,8 @@ extension MainViewController: UITableViewDelegate {
         case .whatToCook:
             let rawCount = WhatToCookCategoryTypes.allCases.count / 2
             return CGFloat(rawCount * 170)
+        case .cookNow:
+            return 350
         }
     }
 
@@ -59,17 +66,29 @@ extension MainViewController: UITableViewDelegate {
         case let .communities(title, communities, categoryID):
             guard let cell = cell as? DynamicCommunityCell else { return }
             cell.delegate = self
-            cell.configure(with: DynamicCollectionDelegateCellViewModel(
-                sectionHeaderTitle: title,
-                categoryID: categoryID,
-                dynamicCommunities: communities
-            ))
+            cell.configure(
+                with: DynamicCollectionDelegateCellViewModel(
+                    sectionHeaderTitle: title,
+                    categoryID: categoryID,
+                    dynamicCommunities: communities
+                )
+            )
         case let .whatToCook(sectionTitle):
             guard let cell = cell as? WhatToCookCell else { return }
-            cell.configure(with: WhatToCookCellViewModel(
-                sectionHeaderTitle: sectionTitle,
-                categories: WhatToCookCategoryTypes.allCases
-            ))
+            cell.configure(
+                with: WhatToCookCellViewModel(
+                    sectionHeaderTitle: sectionTitle,
+                    categories: WhatToCookCategoryTypes.allCases
+                )
+            )
+        case let .cookNow(sectionTitle, recipes):
+            guard let cell = cell as? CookNowCell else { return }
+            cell.configure(
+                with: CookNowCellViewModel(
+                    sectionTitle: sectionTitle,
+                    recipes: recipes
+                )
+            )
         }
     }
 }

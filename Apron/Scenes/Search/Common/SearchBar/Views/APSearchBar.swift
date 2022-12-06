@@ -73,6 +73,7 @@ public final class APSearchBar: UIView {
         view.image = ApronAssets.searchRoundedView.image.withRenderingMode(.alwaysOriginal)
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
+        view.isUserInteractionEnabled = true
         return view
     }()
     private lazy var hContentStackView = UIStackView()

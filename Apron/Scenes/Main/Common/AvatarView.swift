@@ -39,14 +39,7 @@ final class AvatarView: View {
         addSubview(imageView)
 
         guard userStorage.user != nil else { return }
-        self.imageView.setNameTitleImage(
-            string: userStorage.user?.username ?? "User",
-            color: .random,
-            circular: true,
-            stroke: false,
-            textAttributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
-                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11)]
-        )
+        self.imageView.setImage(string: userStorage.user?.username ?? "User")
     }
 
     override func setupConstraints() {

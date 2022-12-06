@@ -28,13 +28,21 @@ final class MainViewController: ViewController, Messagable {
         }
     }
 
-    lazy var sections: [Section] = [
-        .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
-    ]
+    lazy var sections: [Section] = [] {
+        didSet {
+            mainView.reloadData()
+        }
+    }
 
     var dynamicCommunities: [CommunityCategory] = [] {
         didSet {
             configureCommunities()
+        }
+    }
+
+    var cookNowRecipes: [RecipeResponse] = [] {
+        didSet {
+            configureCookNow(with: cookNowRecipes)
         }
     }
     
@@ -187,14 +195,22 @@ final class MainViewController: ViewController, Messagable {
         mainView.reloadTableViewWithoutAnimation()
     }
 
+    private func configureCookNow(with recipes: [RecipeResponse]) {
+        var sections = [Section]()
+        if !recipes.isEmpty {
+            sections.append(.init(section: .cookNow, rows: [.cookNow("", recipes)]))
+        }
+        sections.append(
+            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
+        )
+        self.sections = sections
+    }
+
     // MARK: - User actions
 
     @objc
     private func refresh(_ sender: UIRefreshControl) {
-        sections = [
-            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
-        ]
-        mainView.reloadData()
+        getCookNowRecipes()
     }
 
     deinit {

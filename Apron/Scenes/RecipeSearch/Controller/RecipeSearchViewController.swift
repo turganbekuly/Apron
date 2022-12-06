@@ -22,14 +22,12 @@ final class RecipeSearchViewController: ViewController, Messagable {
     
     struct Section {
         enum Section {
+            case filter
             case trendings
-//            case filter
-            case shimmer
-            case results
         }
         enum Row {
+            //            case filter
             case trending(String)
-//            case filter
             case shimmer
             case result(RecipeResponse)
         }
@@ -51,12 +49,18 @@ final class RecipeSearchViewController: ViewController, Messagable {
         }
     }
 
+    var filters = SearchFilterRequestBody()
+
+    var filtersCount: Int = 0
+
     var recipesList: [RecipeResponse] = []
     
     let interactor: RecipeSearchBusinessLogic
+
     lazy var sections: [Section] = [
         .init(section: .trendings, rows: trends.compactMap { .trending($0) })
     ]
+
     var state: State {
         didSet {
             updateState()
@@ -84,8 +88,6 @@ final class RecipeSearchViewController: ViewController, Messagable {
         view.delegate = self
         return view
     }()
-
-    
     
     // MARK: - Init
     init(interactor: RecipeSearchBusinessLogic, state: State) {
@@ -141,10 +143,9 @@ final class RecipeSearchViewController: ViewController, Messagable {
         searchBar.placeholder = "Поиск по рецептам"
         mainView.addInfiniteScroll { [weak self] _ in
             guard let self = self else { return }
-            self.getRecipes(
-                currentPage: self.currentPage,
-                query: self.query ?? ""
-            )
+            self.filters.query = self.query ?? ""
+            self.filters.page = self.currentPage
+            self.getRecipes(filters: self.filters)
         }
 
         searchBar.onTouchedCancelButton = { [weak self] in
@@ -162,7 +163,7 @@ final class RecipeSearchViewController: ViewController, Messagable {
         }
 
         mainView.snp.makeConstraints {
-            $0.top.equalTo(searchBar.snp.bottom).offset(24)
+            $0.top.equalTo(searchBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -178,20 +179,19 @@ final class RecipeSearchViewController: ViewController, Messagable {
     // MARK: - Private methods
 
     private func handleNewQuery(query: String?) {
-        guard let query = query, !query.isEmpty else { return }
+        guard let query = query else { return }
         recipesList.removeAll()
         currentPage = 1
         sections = [
-            .init(section: .shimmer, rows: [.shimmer])
+            .init(section: .filter, rows: [.shimmer])
         ]
         mainView.reloadData()
 
+        filters.query = query
+        filters.page = currentPage
         throttler.throttle { [weak self] in
             guard let self = self else { return }
-            self.getRecipes(
-                currentPage: self.currentPage,
-                query: query
-            )
+            self.getRecipes(filters: self.filters)
         }
     }
 }

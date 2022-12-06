@@ -20,13 +20,13 @@ final class FiltersViewController: ViewController {
     lazy var sections: [Section] = [
         .init(section: .cookingTime, rows: SuggestedCookingTimeType.allCases.compactMap { .cookingTime($0) }),
         .init(section: .dayTimeType, rows: SuggestedDayTimeType.allCases.compactMap { .dayTimeType($0) }),
-        .init(section: .cuisines, rows: cuisines.compactMap { .cuisine($0) }),
-        .init(section: .addCuisine, rows: [.addCuisine]),
+//        .init(section: .cuisines, rows: cuisines.compactMap { .cuisine($0) }),
+//        .init(section: .addCuisine, rows: [.addCuisine]),
         .init(section: .dishTypes, rows: SuggestedDishType.allCases.compactMap { .dishType($0) }),
-        .init(section: .ingredients, rows: ingredients.compactMap { .ingredient($0) }),
-        .init(section: .addIngredient, rows: [.addIngredient]),
-        .init(section: .eventTypes, rows: SuggestedEventType.allCases.compactMap { .eventType($0) }),
-        .init(section: .lifestyleTypes, rows: SuggestedLifestyleType.allCases.compactMap { .lifestyleType($0) })
+//        .init(section: .ingredients, rows: ingredients.compactMap { .ingredient($0) }),
+//        .init(section: .addIngredient, rows: [.addIngredient]),
+        .init(section: .eventTypes, rows: SuggestedEventType.allCases.compactMap { .eventType($0) })
+//        .init(section: .lifestyleTypes, rows: SuggestedLifestyleType.allCases.compactMap { .lifestyleType($0) })
     ]
     var state: State {
         didSet {
@@ -34,7 +34,13 @@ final class FiltersViewController: ViewController {
         }
     }
 
-    var selectedFilters = SearchFilterRequestBody()
+    var selectedFilters = SearchFilterRequestBody() {
+        didSet {
+            mainView.reloadData()
+        }
+    }
+
+    weak var delegate: ApplyFiltersProtocol?
 
     var cuisines = [
         RecipeCuisine(id: 1, name: "ASD"),
@@ -51,11 +57,56 @@ final class FiltersViewController: ViewController {
     var cookingTimePreviousIndex: IndexPath?
     
     // MARK: - Views
+
     lazy var mainView: FiltersView = {
         let view = FiltersView()
         view.dataSource = self
         view.delegate = self
         return view
+    }()
+
+    private lazy var applyButton: BlackOpButton = {
+        let button = BlackOpButton()
+        button.backgroundType = .greenBackground
+        button.setTitle("Применить", for: .normal)
+        button.addTarget(self, action: #selector(applyButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
+        return button
+    }()
+
+    private lazy var resetFilters: UIBarButtonItem = {
+        let item = UIBarButtonItem(
+            title: "Сбросить все",
+            style: .done,
+            target: self,
+            action: #selector(clearAllFilters)
+        )
+        item.setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: ApronAssets.gray.color,
+                NSAttributedString.Key.font: TypographyFonts.regular14
+            ],
+            for: .normal
+        )
+
+        item.setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: ApronAssets.gray.color,
+                NSAttributedString.Key.font: TypographyFonts.regular14
+            ],
+            for: .highlighted
+        )
+
+        item.setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: ApronAssets.gray.color,
+                NSAttributedString.Key.font: TypographyFonts.regular14
+            ],
+            for: .selected
+        )
+
+        return item
     }()
     
     // MARK: - Init
@@ -98,19 +149,29 @@ final class FiltersViewController: ViewController {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.title = "Фильтры"
+        navigationItem.rightBarButtonItem = resetFilters
     }
     
     private func configureViews() {
-        [mainView].forEach { view.addSubview($0) }
+        [
+            mainView,
+            applyButton
+        ].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
     }
     
     private func makeConstraints() {
+        applyButton.snp.makeConstraints {
+            $0.height.equalTo(40)
+            $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+        }
+
         mainView.snp.makeConstraints { make in
+            make.bottom.equalTo(applyButton.snp.top).offset(-16)
             make.leading.trailing.equalToSuperview()
-            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -121,5 +182,18 @@ final class FiltersViewController: ViewController {
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
+    // MARK: - User actions
+
+    @objc
+    private func clearAllFilters() {
+        selectedFilters = SearchFilterRequestBody()
+    }
+
+    @objc
+    private func applyButtonTapped() {
+        dismiss(animated: true) {
+            self.delegate?.filtersApplied(filters: self.selectedFilters)
+        }
+    }
 }

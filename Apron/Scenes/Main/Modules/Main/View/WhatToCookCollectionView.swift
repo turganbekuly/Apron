@@ -1,5 +1,5 @@
 //
-//  WhatToCookView.swift
+//  WhatToCookCollectionView.swift
 //  Apron
 //
 //  Created by Akarys Turganbekuly on 16.10.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WhatToCookView: UICollectionView {
+final class WhatToCookCollectionView: UICollectionView {
     // MARK: - Init
 
     public init() {
@@ -52,7 +52,7 @@ final class WhatToCookView: UICollectionView {
         }
 
         [
-            WhatToCookCollectionView.self
+            WhatToCookCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }

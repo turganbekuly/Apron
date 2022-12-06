@@ -56,7 +56,7 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
         case .shimmer:
             return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
         case .result:
-            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 300)
+            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 280)
         }
     }
 
@@ -75,40 +75,45 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 
-//    public func collectionView(_ collectionView: UICollectionView,
-//                               viewForSupplementaryElementOfKind kind: String,
-//                               at indexPath: IndexPath) -> UICollectionReusableView {
-//        let section = sections[indexPath.section].section
-//        switch section {
-//        case .recipes:
-//            let view: SavedRecipeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
-//            return view
-//        }
-//    }
-//
-//    public func collectionView(_ collectionView: UICollectionView,
-//                               layout collectionViewLayout: UICollectionViewLayout,
-//                               referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        let section = sections[section].section
-//        switch section {
-//        case .recipes:
-//            return CGSize(width: collectionView.bounds.width - 32, height: 65)
-//        }
-//    }
-//
-//    public func collectionView(_ collectionView: UICollectionView,
-//                               willDisplaySupplementaryView view: UICollectionReusableView,
-//                               forElementKind elementKind: String,
-//                               at indexPath: IndexPath) {
-//        let section = sections[indexPath.section].section
-//        switch section {
-//        case .recipes:
-//            guard let view = view as? SavedRecipeHeaderView else { return }
-//            view.delegate = self
-//            view.configure(
-//                with: CommunityFilterCellViewModel(searchbarPlaceholder: "Поиск рецептов в избранном")
-//            )
-//        }
-//    }
+    public func collectionView(_ collectionView: UICollectionView,
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
+        let section = sections[indexPath.section].section
+        switch section {
+        case .filter:
+            let view: RecipeSearchFilterHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
+            return view
+        default:
+            let view: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
+            return view
+        }
+    }
+
+    public func collectionView(_ collectionView: UICollectionView,
+                               layout collectionViewLayout: UICollectionViewLayout,
+                               referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let section = sections[section].section
+        switch section {
+        case .filter:
+            return CGSize(width: collectionView.bounds.width, height: 60)
+        case .trendings:
+            return CGSize(width: 0, height: 24)
+        }
+    }
+
+    public func collectionView(_ collectionView: UICollectionView,
+                               willDisplaySupplementaryView view: UICollectionReusableView,
+                               forElementKind elementKind: String,
+                               at indexPath: IndexPath) {
+        let section = sections[indexPath.section].section
+        switch section {
+        case .filter:
+            guard let view = view as? RecipeSearchFilterHeaderView else { return }
+            view.delegate = self
+            view.configure(type: .filters, filters: filtersCount)
+        default:
+            break
+        }
+    }
 }
 

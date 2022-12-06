@@ -1,5 +1,5 @@
 //
-//  WhatToCookCollectionView.swift
+//  WhatToCookCollectionCell.swift
 //  Apron
 //
 //  Created by Akarys Turganbekuly on 17.10.2022.
@@ -8,7 +8,7 @@
 import UIKit
 import APRUIKit
 
-final class WhatToCookCollectionView: UICollectionViewCell {
+final class WhatToCookCollectionCell: UICollectionViewCell {
     // MARK: - Init
 
     override init(frame: CGRect) {

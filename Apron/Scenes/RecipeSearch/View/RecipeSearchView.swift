@@ -41,14 +41,15 @@ final class RecipeSearchView: UICollectionView {
     private func configure() {
         allowsMultipleSelection = false
         showsVerticalScrollIndicator = false
-//        [
-//
-//        ].forEach {
-//            register(
-//                viewClass: $0,
-//                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader
-//            )
-//        }
+        [
+            RecipeSearchFilterHeaderView.self,
+            UICollectionReusableView.self
+        ].forEach {
+            register(
+                viewClass: $0,
+                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader
+            )
+        }
 
         [
             RecipeSearchSuggestionsCell.self,

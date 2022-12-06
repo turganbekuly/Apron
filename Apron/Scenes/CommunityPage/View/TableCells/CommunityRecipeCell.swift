@@ -232,14 +232,15 @@ final class CommunityRecipeCell: UITableViewCell {
         self.isSaved = recipe.isSaved ?? false
 
         userInfoStackView.removeAllArrangedSubviews()
-        self.avaImageView.setNameTitleImage(
-            string: recipe.authorName ?? "User",
-            color: .random,
-            circular: true,
-            stroke: false,
-            textAttributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
-                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11)]
-        )
+        self.avaImageView.setImage(string: recipe.authorName ?? "User")
+//        self.avaImageView.setNameTitleImage(
+//            string: recipe.authorName ?? "User",
+//            color: .random,
+//            circular: true,
+//            stroke: false,
+//            textAttributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
+//                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11)]
+//        )
         self.postingTimeLabel.text = recipe.createdAt ?? ""
         self.nameLabel.text = recipe.authorName ?? ""
         userInfoStackView.addArrangedSubviews(

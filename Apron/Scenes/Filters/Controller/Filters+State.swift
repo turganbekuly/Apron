@@ -9,18 +9,23 @@
 import Models
 import UIKit
 
+protocol ApplyFiltersProtocol: AnyObject {
+    func filtersApplied(filters: SearchFilterRequestBody)
+}
+
 extension FiltersViewController {
     
     // MARK: - State
     public enum State {
-        case initial(SearchFilterRequestBody)
+        case initial(SearchFilterRequestBody, ApplyFiltersProtocol)
     }
     
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(filters):
+        case let .initial(filters, delegate):
             self.selectedFilters = filters
+            self.delegate = delegate
         }
     }
     

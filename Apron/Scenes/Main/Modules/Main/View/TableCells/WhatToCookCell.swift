@@ -50,7 +50,7 @@ final class WhatToCookCell: UITableViewCell {
         return label
     }()
 
-    lazy var whatToCookCollectionView = WhatToCookView()
+    lazy var whatToCookCollectionView = WhatToCookCollectionView()
 
     // MARK: - Setup Views
 

@@ -99,7 +99,7 @@ public final class BlackOpButton: DefaultButton {
     }
 
     private func configure() {
-        titleLabel?.font = TypographyFonts.regular14
+        titleLabel?.font = TypographyFonts.semibold14
         switch arrowState {
         case .left:
             semanticContentAttribute = .forceLeftToRight

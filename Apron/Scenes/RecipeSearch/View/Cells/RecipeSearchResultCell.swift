@@ -203,16 +203,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
             )
         )
 
-        avatarImageView.setNameTitleImage(
-            string: recipe.authorName ?? "User",
-            color: .random,
-            circular: true,
-            stroke: false,
-            textAttributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.white,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11)
-            ]
-        )
+        avatarImageView.setImage(string: recipe.authorName ?? "User")
         contentView.layoutIfNeeded()
         recipeNameLabel.text = recipe.recipeName
         ingredientsCountLabel.text = "\(recipe.ingredients?.count ?? 0) ингредиентов"

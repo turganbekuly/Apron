@@ -12,12 +12,8 @@ extension RecipeSearchViewController {
     
     // MARK: - Network
 
-    func getRecipes(currentPage: Int, query: String) {
-        var filter = SearchFilterRequestBody()
-        filter.page = currentPage
-        filter.query = query
-        filter.limit = 20
-        interactor.getRecipes(request: .init(body: filter))
+    func getRecipes(filters: SearchFilterRequestBody) {
+        interactor.getRecipes(request: .init(body: filters))
     }
 
     func saveRecipe(with id: Int) {

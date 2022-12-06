@@ -20,7 +20,7 @@ extension WhatToCookCell: UICollectionViewDataSource {
         let row = categoriesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case .category:
-            let cell: WhatToCookCollectionView = collectionView.dequeueReusableCell(for: indexPath)
+            let cell: WhatToCookCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -52,7 +52,7 @@ extension WhatToCookCell: UICollectionViewDelegateFlowLayout {
         let row = categoriesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case let .category(category):
-            guard let cell = cell as? WhatToCookCollectionView else { return }
+            guard let cell = cell as? WhatToCookCollectionCell else { return }
             cell.configure(with: category)
         }
     }

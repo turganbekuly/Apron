@@ -34,7 +34,7 @@ extension MainViewController {
             show(type: .error(L10n.Common.errorMessage))
             endRefreshingIfNeeded()
         case let .fetchCookNowRecipes(recipes):
-            print(recipes)
+            self.cookNowRecipes = recipes
         case let .fetchCookNowRecipesFailed(error):
             print(error)
         }

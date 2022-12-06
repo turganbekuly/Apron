@@ -50,7 +50,7 @@ extension RecipeSearchViewController {
     }
 
     private func configureRecipes() {
-        guard let section = sections.firstIndex(where: { $0.section == .results }) else { return }
+        guard let section = sections.firstIndex(where: { $0.section == .filter }) else { return }
         currentPage += 1
         sections[section].rows = recipesList.compactMap { .result($0) }
         mainView.finishInfiniteScroll()
@@ -58,7 +58,7 @@ extension RecipeSearchViewController {
     }
 
     private func cofigureEmptyRecipes() {
-        guard let section = sections.firstIndex(where: { $0.section == .shimmer }) else { return }
+        guard let section = sections.firstIndex(where: { $0.section == .filter }) else { return }
         currentPage += 1
         sections[section].rows = recipesList.compactMap { .result($0) }
         mainView.finishInfiniteScroll()
