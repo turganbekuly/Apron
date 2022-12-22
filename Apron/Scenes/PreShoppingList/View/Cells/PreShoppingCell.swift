@@ -70,9 +70,9 @@ final class PreShoppingCell: UITableViewCell {
         checkbox.boxType = .square
         checkbox.cornerRadius = 8
         checkbox.stateChangeAnimation = .fill
-        checkbox.tintColor = ApronAssets.colorsYello.color
+        checkbox.tintColor = ApronAssets.mainAppColor.color
         checkbox.secondaryTintColor = .gray
-        checkbox.secondaryCheckmarkTintColor = .black
+        checkbox.secondaryCheckmarkTintColor = .white
         checkbox.isUserInteractionEnabled = false
         return checkbox
     }()

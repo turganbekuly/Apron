@@ -11,6 +11,7 @@ import UIKit
 import Storages
 import AlertMessages
 import Models
+import RemoteConfig
 
 protocol ShoppingListDisplayLogic: AnyObject {
     func displayCartItems(viewModel: ShoppingListDataFlow.GetCartItems.ViewModel)
@@ -85,6 +86,7 @@ final class ShoppingListViewController: ViewController, Messagable {
     }
     
     // MARK: - Views
+
     lazy var mainView: ShoppingListView = {
         let view = ShoppingListView()
         view.dataSource = self
@@ -97,6 +99,16 @@ final class ShoppingListViewController: ViewController, Messagable {
     private lazy var backButton = NavigationBackButton()
 
     private lazy var avatarView = AvatarView()
+
+    private lazy var orderButton: BlackOpButton = {
+        let button = BlackOpButton()
+        button.backgroundType = .greenBackground
+        button.setTitle("Заказать", for: .normal)
+        button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
+        return button
+    }()
     
     // MARK: - Init
     init(interactor: ShoppingListBusinessLogic, state: State) {
@@ -129,6 +141,13 @@ final class ShoppingListViewController: ViewController, Messagable {
         super.viewWillAppear(animated)
         
         configureNavigation()
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -169,15 +188,23 @@ final class ShoppingListViewController: ViewController, Messagable {
     }
     
     private func configureViews() {
-        [mainView].forEach { view.addSubview($0) }
+        [mainView, orderButton].forEach { view.addSubview($0) }
         
         configureColors()
         makeConstraints()
     }
     
     private func makeConstraints() {
-        mainView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        orderButton.snp.makeConstraints {
+            $0.height.equalTo(40)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
+        }
+
+        mainView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(orderButton.snp.top).offset(-16)
         }
     }
     
@@ -199,8 +226,11 @@ final class ShoppingListViewController: ViewController, Messagable {
     // MARK: - User actions
 
     @objc
-    private func saveButtonTapped() {
-        //
+    private func orderButtonTapped() {
+        let link = RemoteConfigManager.shared.remoteConfig.orderFromStoreLink
+        guard !link.isEmpty else { return }
+        let webViewController = WebViewHandler(urlString: link)
+        present(webViewController, animated: true)
     }
 
     // MARK: - Private functions
@@ -223,6 +253,15 @@ final class ShoppingListViewController: ViewController, Messagable {
 
 extension ShoppingListViewController: IngredientSelectedProtocol {
     func onIngredientSelected(ingredient: RecipeIngredient) {
+        ApronAnalytics.shared.sendAnalyticsEvent(
+            .ingredientAdded(
+                IngredientAddedModel(
+                    id: ingredient.product?.id ?? 0,
+                    name: ingredient.product?.name ?? "",
+                    sourceType: .selectionFromShoppingList
+                )
+            )
+        )
         var productAmount: Double = 0
         if cartManager.isContains(product: ingredient.product?.name ?? "") {
             productAmount = CartManager.shared.getProductAmount(for: ingredient.product?.name ?? "")

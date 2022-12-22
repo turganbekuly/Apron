@@ -145,7 +145,10 @@ extension RecipePageViewController: UITableViewDelegate {
                 ) ?? 56))
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
-            return 45 + Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width) + (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)
+            let imageHeight: CGFloat = comment.image != nil && comment.image?.isEmpty == false ? 100 : 0
+            let descriptionHeight = Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width)
+            let tagsHeight = (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)
+            return 45 + descriptionHeight + tagsHeight + imageHeight
         }
     }
 

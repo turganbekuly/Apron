@@ -48,7 +48,7 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
         var title = ""
         switch row {
         case .assistant:
-            title = "Ассистент готовки"
+            title = "Голосовой ассистент"
         case .deleteAccount:
             title = "Удалить аккаунт"
         case .logout:

@@ -15,7 +15,7 @@ extension RecipeSearchViewController {
     
     // MARK: - State
     public enum State {
-        case initial
+        case initial(SearchFilterRequestBody)
         case fetchRecipes([RecipeResponse])
         case fetchRecipesFailed(AKNetworkError)
         case saveRecipe(RecipeResponse)
@@ -25,8 +25,18 @@ extension RecipeSearchViewController {
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case .initial:
-            break
+        case let .initial(incomingFilters):
+            filters = incomingFilters
+            guard filters.ifAnyArrayContainsValue() else { return }
+            recipesList.removeAll()
+            currentPage = 1
+            sections = [
+                .init(section: .filter, rows: [.shimmer])
+            ]
+            mainView.reloadData()
+
+            filters.page = currentPage
+            getRecipes(filters: filters)
         case let .fetchRecipes(model):
             updateRecipiesList(with: model.filter { $0.isHidden == false })
         case let .fetchRecipesFailed(error):
@@ -35,6 +45,7 @@ extension RecipeSearchViewController {
             HapticTouch.generateSuccess()
         case .saveRecipeFailed:
             show(type: .error(L10n.Common.errorMessage))
+            mainView.reloadData()
         }
     }
 

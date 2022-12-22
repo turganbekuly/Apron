@@ -16,6 +16,7 @@ protocol MainDisplayLogic: AnyObject {
     func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel)
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel)
     func displayCookNowRecipes(viewModel: MainDataFlow.GetCookNowRecipes.ViewModel)
+    func displaySavedRecipe(viewModel: MainDataFlow.SaveRecipe.ViewModel)
 }
 
 final class MainViewController: ViewController, Messagable {
@@ -30,6 +31,7 @@ final class MainViewController: ViewController, Messagable {
 
     lazy var sections: [Section] = [] {
         didSet {
+            endRefreshingIfNeeded()
             mainView.reloadData()
         }
     }
@@ -126,7 +128,7 @@ final class MainViewController: ViewController, Messagable {
             let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
 
             DispatchQueue.main.async {
-                self.navigationController?.pushViewController(viewController, animated: true)
+                self.navigationController?.pushViewController(viewController, animated: false)
             }
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)

@@ -25,7 +25,7 @@ extension MainViewController {
             
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch (lhs, rhs) {
-                case (.communities, communities):
+                case (.communities, .communities):
                     return true
                 case (.whatToCook, .whatToCook):
                     return true

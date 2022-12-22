@@ -9,6 +9,7 @@
 import Models
 import UIKit
 import APRUIKit
+import HapticTouch
 
 extension MainViewController {
     
@@ -19,6 +20,8 @@ extension MainViewController {
         case fetchCommunitiesByCategoryFailed(AKNetworkError)
         case fetchCookNowRecipes([RecipeResponse])
         case fetchCookNowRecipesFailed(AKNetworkError)
+        case saveRecipe(RecipeResponse)
+        case saveRecipeFailed(AKNetworkError)
     }
     
     // MARK: - Methods
@@ -37,6 +40,11 @@ extension MainViewController {
             self.cookNowRecipes = recipes
         case let .fetchCookNowRecipesFailed(error):
             print(error)
+        case .saveRecipe:
+            HapticTouch.generateSuccess()
+        case .saveRecipeFailed:
+            show(type: .error(L10n.Common.errorMessage))
+            mainView.reloadData()
         }
     }
 

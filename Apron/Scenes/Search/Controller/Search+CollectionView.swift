@@ -14,15 +14,15 @@ extension SearchViewController: UICollectionViewDataSource {
 
     // MARK: - UICollectionViewDataSource
 
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         categoryCollectionCell.count
     }
 
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         categoryCollectionCell[section].rows.count
     }
 
-    public func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
@@ -38,7 +38,15 @@ extension SearchViewController: UICollectionViewDataSource {
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
 
-    public func collectionView(
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let row = categoryCollectionCell[indexPath.section].rows[indexPath.row]
+        switch row {
+        case let .category(type):
+            select(block: type)
+        }
+    }
+
+    func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
@@ -50,7 +58,7 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let row = categoryCollectionCell[indexPath.section].rows[indexPath.row]
         switch row {
         case let .category(category):

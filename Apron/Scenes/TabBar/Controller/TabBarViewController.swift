@@ -33,7 +33,7 @@ final class TabBarViewController: AppTabBarController, Messagable {
         case main
         case search
         case saved
-        case shoppingList
+//        case shoppingList
     }
 
     private lazy var mainModule = MainBuilder(state: .initial).build()
@@ -78,8 +78,8 @@ final class TabBarViewController: AppTabBarController, Messagable {
         viewControllers = [
             configureViewController(viewController: mainModule, type: .main),
             configureViewController(viewController: searchModule, type: .search),
-            configureViewController(viewController: favouriteModule, type: .saved),
-            configureViewController(viewController: shoppingListModule, type: .shoppingList)
+            configureViewController(viewController: favouriteModule, type: .saved)
+//            configureViewController(viewController: shoppingListModule, type: .shoppingList)
         ]
     }
 
@@ -95,9 +95,9 @@ final class TabBarViewController: AppTabBarController, Messagable {
         case .saved:
             navigationController.tabBarItem.title = L10n.TabBar.Saved.title
             navigationController.tabBarItem.image = ApronAssets.tabFaveSelectedIcon.image
-        case .shoppingList:
-            navigationController.tabBarItem.title = L10n.TabBar.ShoppingList.title
-            navigationController.tabBarItem.image = ApronAssets.tabListSelectedIcon.image
+//        case .shoppingList:
+//            navigationController.tabBarItem.title = L10n.TabBar.ShoppingList.title
+//            navigationController.tabBarItem.image = ApronAssets.tabListSelectedIcon.image
         }
         return navigationController
     }

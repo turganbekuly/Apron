@@ -32,7 +32,9 @@ final class SavedRecipesViewController: ViewController {
     }
     
     // MARK: - Properties
+
     let interactor: SavedRecipesBusinessLogic
+
     lazy var sections: [Section] = [
         .init(section: .recipes, rows: Array(repeating: .loading, count: 10))
     ]
@@ -115,7 +117,7 @@ final class SavedRecipesViewController: ViewController {
             let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
 
             DispatchQueue.main.async {
-                self?.navigationController?.pushViewController(viewController, animated: true)
+                self?.navigationController?.pushViewController(viewController, animated: false)
             }
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)

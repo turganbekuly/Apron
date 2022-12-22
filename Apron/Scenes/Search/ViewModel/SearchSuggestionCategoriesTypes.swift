@@ -20,9 +20,6 @@ enum SearchSuggestionCategoriesTypes: CaseIterable {
     case zagotovki
     case napitki
     case garniri
-    case do30min
-    case detskoeMenu
-    case veg
 
     var title: String {
         switch self {
@@ -46,12 +43,6 @@ enum SearchSuggestionCategoriesTypes: CaseIterable {
             return "Напитки"
         case .garniri:
             return "Гарниры"
-        case .do30min:
-            return "До 30 мин"
-        case .detskoeMenu:
-            return "Детское меню"
-        case .veg:
-            return "Вегетарианское"
         }
     }
 
@@ -77,12 +68,6 @@ enum SearchSuggestionCategoriesTypes: CaseIterable {
             return ApronAssets.napitki.image
         case .garniri:
             return ApronAssets.sideDish.image
-        case .do30min:
-            return ApronAssets.under30Min.image
-        case .detskoeMenu:
-            return ApronAssets.kidsMenu.image
-        case .veg:
-            return ApronAssets.vegDish.image
         }
     }
 

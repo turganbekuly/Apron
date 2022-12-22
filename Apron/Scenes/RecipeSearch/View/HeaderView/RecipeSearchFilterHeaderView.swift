@@ -50,6 +50,7 @@ final class RecipeSearchFilterHeaderView: UICollectionReusableView {
         containerView.addSubview(scrollView)
         scrollView.addSubview(allFiltersView)
         setupConstraints()
+        setupColors()
     }
 
     private func setupConstraints() {
@@ -71,6 +72,10 @@ final class RecipeSearchFilterHeaderView: UICollectionReusableView {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
         }
+    }
+
+    private func setupColors() {
+        backgroundColor = ApronAssets.secondary.color
     }
 
     // MARK: - User actions

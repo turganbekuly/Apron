@@ -41,6 +41,7 @@ final class RecipeSearchView: UICollectionView {
     private func configure() {
         allowsMultipleSelection = false
         showsVerticalScrollIndicator = false
+        keyboardDismissMode = .onDrag
         [
             RecipeSearchFilterHeaderView.self,
             UICollectionReusableView.self
@@ -54,6 +55,7 @@ final class RecipeSearchView: UICollectionView {
         [
             RecipeSearchSuggestionsCell.self,
             RecipeSearchResultCell.self,
+            RecipeSearchResultCellv2.self,
             RecipeSearchSkeletonCell.self
         ].forEach {
             register(cellClass: $0)

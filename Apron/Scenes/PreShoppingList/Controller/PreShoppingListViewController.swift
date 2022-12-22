@@ -160,9 +160,17 @@ final class PreShoppingListViewController: ViewController, Messagable {
             )
         }
 
-        ApronAnalytics.shared.sendAnalyticsEvent(
-            .recipeIngredientsAddedToShoppingList(selectedItems.map { $0.productName})
-        )
+        selectedItems.forEach {
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .ingredientAdded(
+                    IngredientAddedModel(
+                        id: $0.productId,
+                        name: $0.productName,
+                        sourceType: .recipePage
+                    )
+                )
+            )
+        }
 
         delegate?.dismissedWithIngredients()
         self.navigationController?.popViewController(animated: true)

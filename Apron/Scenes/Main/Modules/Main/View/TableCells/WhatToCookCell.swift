@@ -9,14 +9,14 @@ import UIKit
 import APRUIKit
 import Models
 
-protocol WhatToCookCellProtocol: AnyObject {
-    func navigateToCategory(with id: Int)
+protocol WhatToCookCellDelegate: AnyObject {
+    func navigateToCategoryRecipes(with type: WhatToCookCategoryTypes)
 }
 
 final class WhatToCookCell: UITableViewCell {
     // MARK: - Proeprties
 
-    weak var delegate: WhatToCookCellProtocol?
+    weak var delegate: WhatToCookCellDelegate?
     lazy var categoriesSection: [WhatToCookSection] = [] {
         didSet {
             whatToCookCollectionView.reloadData()
@@ -45,7 +45,7 @@ final class WhatToCookCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold18
-        label.textColor = .black
+        label.textColor = ApronAssets.primaryTextMain.color
         label.textAlignment = .left
         return label
     }()
@@ -64,7 +64,8 @@ final class WhatToCookCell: UITableViewCell {
 
     private func setupConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(16)
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
 
         whatToCookCollectionView.snp.makeConstraints {

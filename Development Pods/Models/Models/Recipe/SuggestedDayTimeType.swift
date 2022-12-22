@@ -12,7 +12,7 @@ public enum SuggestedDayTimeType: Int, CaseIterable, Codable {
     case obed
     case poldnik
     case uzhin
-    case pozdniiUzhin
+    case perekus
 
     public var title: String {
         switch self {
@@ -24,8 +24,8 @@ public enum SuggestedDayTimeType: Int, CaseIterable, Codable {
             return "Полдник"
         case .uzhin:
             return "Ужин"
-        case .pozdniiUzhin:
-            return "Поздний ужин"
+        case .perekus:
+            return "Перекус"
         }
     }
 }

@@ -51,6 +51,7 @@ final class ApronAnalytics: AnalyticsProtocol {
             properties: mixpanelAttributes
         )
 
+        Analytics.logEvent(event.name, parameters: event.eventProperties)
     }
 
     func setupUserInfo(id: Int?, name: String?, email: String?) {

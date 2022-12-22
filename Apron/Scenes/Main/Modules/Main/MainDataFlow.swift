@@ -69,3 +69,22 @@ extension MainDataFlow {
         case failed(error: AKNetworkError)
     }
 }
+
+extension MainDataFlow {
+    enum SaveRecipe {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: SaveRecipeResult
+        }
+        struct ViewModel {
+            var state: MainViewController.State
+        }
+    }
+
+    enum SaveRecipeResult {
+        case successful(model: RecipeResponse)
+        case failed(error: AKNetworkError)
+    }
+}

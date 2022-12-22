@@ -24,8 +24,8 @@ extension FiltersViewController {
             return selectedFilters.cuisines.contains(recipeCuisine.id)
         case .dishType(let suggestedDishType):
             return selectedFilters.dishTypes.contains(suggestedDishType.rawValue)
-        case .ingredient(let recipeIngredient):
-            return selectedFilters.ingredients.contains(recipeIngredient.id ?? 0)
+        case .ingredient(let product):
+            return selectedFilters.ingredients.contains(product)
         case .eventType(let suggestedEventType):
             return selectedFilters.eventTypes.contains(suggestedEventType.rawValue)
         case .lifestyleType(let suggestedLifestyleType):
@@ -105,11 +105,11 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
                 selectedFilters.dishTypes.append(option.rawValue)
             }
         case let .ingredient(option):
-            if selectedFilters.ingredients.contains(option.id ?? 0) {
+            if selectedFilters.ingredients.contains(option) {
                 collectionView.deselectItem(at: indexPath, animated: false)
                 collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
             } else {
-                selectedFilters.ingredients.append(option.id ?? 0)
+                selectedFilters.ingredients.append(option)
             }
         case let .eventType(option):
             if selectedFilters.eventTypes.contains(option.rawValue) {
@@ -143,7 +143,7 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
         case let .dishType(option):
             selectedFilters.dishTypes.removeAll(where: { $0 == option.rawValue })
         case let .ingredient(option):
-            selectedFilters.ingredients.removeAll(where: { $0 == option.id })
+            selectedFilters.ingredients.removeAll(where: { $0 == option })
         case let .eventType(option):
             selectedFilters.eventTypes.removeAll(where: { $0 == option.rawValue })
         case let .lifestyleType(option):
@@ -173,7 +173,7 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
             let width = min(Typography.regular14(text: option.title).styled.size().width + 24, collectionView.bounds.width)
             return CGSize(width: width, height: 40)
         case let .ingredient(option):
-            let width = min(Typography.regular14(text: option.product?.name ?? "").styled.size().width + 24, collectionView.bounds.width)
+            let width = min(Typography.regular14(text: option.name ?? "").styled.size().width + 24, collectionView.bounds.width)
             return CGSize(width: width, height: 40)
         case let .eventType(option):
             let width = min(Typography.regular14(text: option.title).styled.size().width + 24, collectionView.bounds.width)

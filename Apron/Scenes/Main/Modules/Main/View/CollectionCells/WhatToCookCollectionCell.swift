@@ -33,7 +33,7 @@ final class WhatToCookCollectionCell: UICollectionViewCell {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular16
-        label.textColor = .black
+        label.textColor = ApronAssets.primaryTextMain.color
         label.textAlignment = .center
         return label
     }()

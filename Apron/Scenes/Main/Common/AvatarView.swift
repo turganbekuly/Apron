@@ -25,7 +25,7 @@ final class AvatarView: View {
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .clear
         imageView.image = ApronAssets.user.image
-        imageView.tintColor = ApronAssets.lightGray.color
+        imageView.tintColor = ApronAssets.primaryTextMain.color
         imageView.isUserInteractionEnabled = true
         return imageView
     }()

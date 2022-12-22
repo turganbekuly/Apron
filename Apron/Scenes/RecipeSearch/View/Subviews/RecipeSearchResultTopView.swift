@@ -14,7 +14,6 @@ final class RecipeSearchResultTopView: View {
     private lazy var recipeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -27,7 +26,7 @@ final class RecipeSearchResultTopView: View {
 
     private lazy var cookTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.regular14
+        label.font = TypographyFonts.medium14
         label.textColor = .white
         return label
     }()
@@ -49,13 +48,11 @@ final class RecipeSearchResultTopView: View {
         }
 
         cookTimeOverlayView.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalToSuperview()
-            $0.height.equalTo(30)
+            $0.top.bottom.leading.trailing.equalToSuperview()
         }
 
         cookTimeLabel.snp.makeConstraints {
-            $0.centerY.equalTo(cookTimeOverlayView.snp.centerY)
-            $0.leading.equalToSuperview().offset(16)
+            $0.bottom.leading.trailing.equalToSuperview().inset(8)
         }
     }
 

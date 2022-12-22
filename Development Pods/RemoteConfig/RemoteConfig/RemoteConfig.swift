@@ -10,6 +10,7 @@ public protocol RemoteConfigFieldValues: AnyObject {
     var appVersion: String { get }
     var isCookAssistantEnabled: Bool { get }
     var aboutCommunitiesLink: String { get }
+    var orderFromStoreLink: String { get }
 }
 
 public final class RemoteConfig: RemoteConfigServiceProtocol, RemoteConfigFieldValues {
@@ -63,5 +64,9 @@ extension RemoteConfig {
 
     public var aboutCommunitiesLink: String {
         return remoteConfigHolder[string: Key.aboutCommunitiesLink.rawValue]
+    }
+
+    public var orderFromStoreLink: String {
+        return remoteConfigHolder[string: Key.orderFromStoreLink.rawValue]
     }
 }

@@ -28,6 +28,7 @@ extension AuthSignInViewController {
             hideLoader()
             AuthStorage.shared.grantType = GrantType.native.rawValue
             AuthStorage.shared.save(model: model)
+            ApronAnalytics.shared.setupUserInfo(id: 0, name: model.username, email: model.email)
             let viewController = TabBarBuilder(state: .initial(.normal)).build()
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = viewController

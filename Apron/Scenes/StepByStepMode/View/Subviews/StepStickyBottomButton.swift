@@ -22,7 +22,7 @@ final class StepStickyBottomButton: View {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
-        view.layer.cornerRadius = 19
+        view.layer.cornerRadius = 17
         view.clipsToBounds = true
         return view
     }()

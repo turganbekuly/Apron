@@ -18,7 +18,7 @@ final class SavedRecipesView: UICollectionView {
             layout.minimumInteritemSpacing = 0
             layout.minimumLineSpacing = 13
             layout.scrollDirection = .vertical
-            layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+            layout.sectionInset = .init(top: 16, left: 16, bottom: 0, right: 16)
             layout.sectionHeadersPinToVisibleBounds = true
             return layout
         }()
@@ -43,7 +43,7 @@ final class SavedRecipesView: UICollectionView {
     private func configure() {
         showsHorizontalScrollIndicator = false
         [
-            SavedRecipeHeaderView.self,
+//            SavedRecipeHeaderView.self,
         ].forEach {
             register(
                 viewClass: $0,
@@ -52,7 +52,7 @@ final class SavedRecipesView: UICollectionView {
         }
 
         [
-            SavedRecipeCell.self,
+            RecipeSearchResultCellv2.self,
             MainCommunityEmptyCollectionCell.self,
             EmptyListCollectionCell.self
         ].forEach {

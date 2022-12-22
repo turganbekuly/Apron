@@ -10,7 +10,9 @@ import APRUIKit
 import Models
 
 protocol CookNowCellProtocol: AnyObject {
-    func navigateToRecipe(with id: Int)
+    func saveRecipeTappedv2(with id: Int)
+    func navigateToAuthFromRecipev2()
+    func navigateToRecipev2(with id: Int)
 }
 
 final class CookNowCell: UITableViewCell {
@@ -39,7 +41,7 @@ final class CookNowCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold18
-        label.textColor = .black
+        label.textColor = ApronAssets.primaryTextMain.color
         label.textAlignment = .left
         return label
     }()
@@ -72,7 +74,8 @@ final class CookNowCell: UITableViewCell {
 
     private func setupConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(16)
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
             $0.trailing.equalTo(seeAllButton.snp.leading).offset(-8)
         }
 
@@ -82,7 +85,7 @@ final class CookNowCell: UITableViewCell {
         }
 
         cookNowCollectionView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.top.equalTo(titleLabel.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -106,5 +109,19 @@ final class CookNowCell: UITableViewCell {
         recipesSection = [
             .init(section: .recipes, rows: viewModel.recipes.compactMap { .recipe($0) })
         ]
+    }
+}
+
+extension CookNowCell: RecipeSearchCellV2Protocol {
+    func saveRecipeTappedv2(with id: Int) {
+        delegate?.saveRecipeTappedv2(with: id)
+    }
+
+    func navigateToAuthFromRecipev2() {
+        delegate?.navigateToAuthFromRecipev2()
+    }
+
+    func navigateToRecipev2(with id: Int) {
+        delegate?.navigateToRecipev2(with: id)
     }
 }

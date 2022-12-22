@@ -23,7 +23,7 @@ extension CookNowCell: UICollectionViewDataSource {
             let cell: RecipeSearchSkeletonCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         case .recipe:
-            let cell: RecipeSearchResultCell = collectionView.dequeueReusableCell(for: indexPath)
+            let cell: RecipeSearchResultCellv2 = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -33,12 +33,8 @@ extension CookNowCell: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = recipesSection[indexPath.section].rows[indexPath.row]
         switch row {
-//        case let .recipe(recipe):
-//            if selectedRecipes.contains(recipe.id) {
-//                collectionView.deselectItem(at: indexPath, animated: false)
-//            } else {
-//                selectedRecipes.append(recipe.id)
-//            }
+        case let .recipe(recipe):
+            delegate?.navigateToRecipev2(with: recipe.id)
         default:
             break
         }
@@ -50,7 +46,7 @@ extension CookNowCell: UICollectionViewDelegateFlowLayout {
         case .shimmer:
             return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
         case .recipe:
-            return CGSize(width: 170, height: 280)
+            return CGSize(width: 300, height: 160)
         }
     }
 
@@ -58,7 +54,8 @@ extension CookNowCell: UICollectionViewDelegateFlowLayout {
         let row = recipesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case let .recipe(recipe):
-            guard let cell = cell as? RecipeSearchResultCell else { return }
+            guard let cell = cell as? RecipeSearchResultCellv2 else { return }
+            cell.delegate = self
             cell.configure(with: recipe)
         case .shimmer:
             guard let cell = cell as? RecipeSearchSkeletonCell else { return }

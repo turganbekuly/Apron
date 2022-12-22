@@ -26,7 +26,7 @@ public struct SearchFilterRequestBody: Codable {
     public var dayTimeType: [Int] = []
     public var cuisines: [Int] = []
     public var dishTypes: [Int] = []
-    public var ingredients: [Int] = []
+    public var ingredients: [Product] = []
     public var eventTypes: [Int] = []
     public var lifestyleTypes: [Int] = []
     public var page: Int = 1
@@ -53,11 +53,20 @@ public struct SearchFilterRequestBody: Codable {
         params[CodingKeys.dishTypes.rawValue] = dishTypes
         params[CodingKeys.dayTimeType.rawValue] = dayTimeType
         params[CodingKeys.cuisines.rawValue] = cuisines
-        params[CodingKeys.ingredients.rawValue] = ingredients
+        params[CodingKeys.ingredients.rawValue] = ingredients.compactMap { $0.id }
 
         if let time = time.first {
             params[CodingKeys.time.rawValue] = time
         }
         return params
+    }
+
+    public func ifAnyArrayContainsValue() -> Bool {
+        return !time.isEmpty ||
+        !dayTimeType.isEmpty ||
+        !cuisines.isEmpty ||
+        !dishTypes.isEmpty ||
+        !eventTypes.isEmpty ||
+        !lifestyleTypes.isEmpty
     }
 }

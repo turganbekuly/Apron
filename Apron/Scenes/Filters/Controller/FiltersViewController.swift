@@ -52,7 +52,7 @@ final class FiltersViewController: ViewController {
         RecipeCuisine(id: 7, name: "dfasd k sdfk")
     ]
 
-    var ingredients: [RecipeIngredient] = []
+    var ingredients: [Product] = []
 
     var cookingTimePreviousIndex: IndexPath?
     
@@ -165,7 +165,8 @@ final class FiltersViewController: ViewController {
     private func makeConstraints() {
         applyButton.snp.makeConstraints {
             $0.height.equalTo(40)
-            $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
 
         mainView.snp.makeConstraints { make in
@@ -192,6 +193,7 @@ final class FiltersViewController: ViewController {
 
     @objc
     private func applyButtonTapped() {
+        ApronAnalytics.shared.sendAnalyticsEvent(.filtersApplied(selectedFilters))
         dismiss(animated: true) {
             self.delegate?.filtersApplied(filters: self.selectedFilters)
         }

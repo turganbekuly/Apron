@@ -70,7 +70,7 @@ extension RecipePageViewController: CreateActionFlowProtocol {
 
         let viewController = PreShoppingListBuilder(state: .initial(cartItems, self)).build()
         DispatchQueue.main.async {
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.navigationController?.pushViewController(viewController, animated: false)
         }
     }
 }

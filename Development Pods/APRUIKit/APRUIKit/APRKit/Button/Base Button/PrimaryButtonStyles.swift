@@ -60,3 +60,31 @@ struct PrimaryButtonYellowStyle: ButtonStyleProtocol {
         )
     }
 }
+
+struct PrimaryButtonClearStyle: ButtonStyleProtocol {
+    let button: NavigationButton
+
+    func style() -> ButtonStyle {
+        return .init(
+            textColor: Button.TextColorConfig(
+                normalColor: ApronAssets.primaryTextMain.color,
+                disabledColor: ApronAssets.primaryTextMain.color.withAlphaComponent(0.4),
+                highlightedColor: ApronAssets.primaryTextMain.color.withAlphaComponent(0.6)
+            ),
+            font: TypographyFonts.regular14,
+            background: .init(
+                normalColor: .clear,
+                disabledColor: .clear,
+                highlightedColor: .clear
+            ),
+            image: nil,
+            cornerRadius: .exact(15),
+            borders: Button.BorderConfig(
+                width: 1,
+                normalColor: ApronAssets.primaryTextMain.color.cgColor,
+                disabledColor: ApronAssets.primaryTextMain.color.withAlphaComponent(0.4).cgColor,
+                highlightedColor: ApronAssets.primaryTextMain.color.withAlphaComponent(0.6).cgColor
+            )
+        )
+    }
+}

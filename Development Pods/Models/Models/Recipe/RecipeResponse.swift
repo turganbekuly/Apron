@@ -9,7 +9,8 @@ import Foundation
 
 public struct RecipeResponse: Codable {
     private enum CodingKeys: String, CodingKey {
-        case id, authorName, createdAt
+        case id, createdAt
+        case authorName = "author"
         case recipeName = "name"
         case sourceLink = "link"
         case sourceName = "linkName"
@@ -30,7 +31,7 @@ public struct RecipeResponse: Codable {
 
     public var id: Int
     public var recipeName: String?
-    public var authorName: String?
+    public var authorName: RecipeAuthorResponse?
     public var createdAt: String?
     public var sourceLink: String?
     public var sourceName: String?
@@ -54,7 +55,7 @@ public struct RecipeResponse: Codable {
         }
         self.id = id
         self.recipeName = json[CodingKeys.recipeName.rawValue] as? String
-        self.authorName = json[CodingKeys.authorName.rawValue] as? String
+        self.authorName = RecipeAuthorResponse(json: json[CodingKeys.authorName.rawValue] as? JSON ?? [:])
         self.createdAt = json[CodingKeys.createdAt.rawValue] as? String
         self.sourceLink = json[CodingKeys.sourceLink.rawValue] as? String
         self.sourceName = json[CodingKeys.sourceName.rawValue] as? String

@@ -27,7 +27,7 @@ extension RecipeSearchViewController: UICollectionViewDataSource {
             let cell: RecipeSearchSkeletonCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         case .result:
-            let cell: RecipeSearchResultCell = collectionView.dequeueReusableCell(for: indexPath)
+            let cell: RecipeSearchResultCellv2 = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -37,12 +37,22 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-//        case let .recipe(recipe):
-//            if selectedRecipes.contains(recipe.id) {
-//                collectionView.deselectItem(at: indexPath, animated: false)
-//            } else {
-//                selectedRecipes.append(recipe.id)
-//            }
+        case let .result(recipe):
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .searchMade(
+                    SearchMadeModel(
+                        searchTerm: query ?? "",
+                        sourceType: .searchTab,
+                        selectedItemTab: "default_search",
+                        selectedItemName: recipe.recipeName ?? ""
+                    )
+                )
+            )
+
+            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: false)
+            }
         default:
             break
         }
@@ -56,7 +66,7 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
         case .shimmer:
             return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
         case .result:
-            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 280)
+            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 240)
         }
     }
 
@@ -64,7 +74,8 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .result(recipe):
-            guard let cell = cell as? RecipeSearchResultCell else { return }
+            guard let cell = cell as? RecipeSearchResultCellv2 else { return }
+            cell.delegate = self
             cell.configure(with: recipe)
         case let .trending(trend):
             guard let cell = cell as? RecipeSearchSuggestionsCell else { return }

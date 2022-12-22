@@ -27,7 +27,7 @@ final class WebViewHandler: ViewController {
     private lazy var activityIndicator = NVActivityIndicatorView(
         frame: .zero,
         type: .ballClipRotatePulse,
-        color: ApronAssets.colorsYello.color,
+        color: ApronAssets.mainAppColor.color,
         padding: nil
     )
 

@@ -9,7 +9,7 @@ import UIKit
 import APRUIKit
 import Models
 
-final class SearchSuggestionCategoriesCell: UITableViewCell {
+final class SearchSuggestionCategoriesCell: UITableViewCell {    
     // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

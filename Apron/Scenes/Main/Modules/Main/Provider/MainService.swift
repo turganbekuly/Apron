@@ -21,10 +21,10 @@ protocol MainServiceProtocol {
         request: MainDataFlow.GetCookNowRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     )
-//    func getMyCommunities(
-//        request: MainDataFlow.GetMyCommunities.Request,
-//        completion: @escaping ((AKResult) -> Void)
-//    )
+    func saveRecipe(
+        request: MainDataFlow.SaveRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
 }
 
 final class MainService: MainServiceProtocol {
@@ -66,12 +66,9 @@ final class MainService: MainServiceProtocol {
         }
     }
 
-//    func getMyCommunities(
-//        request: MainDataFlow.GetMyCommunities.Request,
-//        completion: @escaping ((AKResult) -> Void)
-//    ) {
-//        provider.send(target: .getMyCommunities) { result in
-//            completion(result)
-//        }
-//    }
+    func saveRecipe(request: MainDataFlow.SaveRecipe.Request, completion: @escaping ((AKResult) -> Void)) {
+        provider.send(target: .saveRecipe(id: request.id)) { result in
+            completion(result)
+        }
+    }
 }

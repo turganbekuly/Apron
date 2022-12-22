@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 import Storages
+import Models
 
 extension SearchViewController: SearchHeaderViewDelegate {
     func onSearchDidTap() {
         let viewController = UINavigationController(
-            rootViewController: RecipeSearchBuilder(
-                state: .initial).build()
+            rootViewController: RecipeSearchBuilder(state: .initial(SearchFilterRequestBody())).build()
         )
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical

@@ -39,8 +39,8 @@ final class WhatToCookCollectionView: UICollectionView {
     // MARK: - Methods
 
     private func configure() {
-        allowsMultipleSelection = true
         showsVerticalScrollIndicator = false
+        isScrollEnabled = false
 
         [
             SavedRecipeHeaderView.self,

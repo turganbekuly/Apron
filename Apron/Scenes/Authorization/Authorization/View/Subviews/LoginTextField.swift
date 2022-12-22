@@ -33,7 +33,7 @@ final class LoginTextField: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold12
-        label.textColor = .black
+        label.textColor = ApronAssets.primaryTextMain.color
         label.text = title
         return label
     }()
@@ -42,7 +42,7 @@ final class LoginTextField: UIView {
         let view = UIView()
         view.clipsToBounds = true
         view.layer.cornerRadius = 22
-        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderColor = ApronAssets.primaryTextMain.color.cgColor
         view.layer.borderWidth = 1
         return view
     }()

@@ -22,7 +22,8 @@ extension RecipeCreationViewController: IngredientSelectedProtocol {
             .ingredientAdded(
                 IngredientAddedModel(
                     id: ingredient.product?.id ?? 0,
-                    name: ingredient.product?.name ?? ""
+                    name: ingredient.product?.name ?? "",
+                    sourceType: .selectionFromCreation
                 )
             )
         )

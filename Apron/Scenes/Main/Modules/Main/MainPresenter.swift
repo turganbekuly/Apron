@@ -11,7 +11,7 @@ import UIKit
 protocol MainPresentationLogic: AnyObject {
     func getCommunitiesByCategory(response: MainDataFlow.GetCommunities.Response)
     func getCookNowRecipes(response: MainDataFlow.GetCookNowRecipes.Response)
-//    func getMyCommunities(response: MainDataFlow.GetMyCommunities.Response)
+    func saveRecipe(response: MainDataFlow.SaveRecipe.Response)
 }
 
 final class MainPresenter: MainPresentationLogic {
@@ -51,18 +51,18 @@ final class MainPresenter: MainPresentationLogic {
         }
     }
 
-//    func getMyCommunities(response: MainDataFlow.GetMyCommunities.Response) {
-//        DispatchQueue.main.async {
-//            var viewModel: MainDataFlow.GetMyCommunities.ViewModel
-//
-//            defer { self.viewController?.displayMyCommunities(viewModel: viewModel) }
-//
-//            switch response.result {
-//            case let .successful(model):
-//                viewModel = .init(state: .fetchMyCommunities(model))
-//            case let .failed(error):
-//                viewModel = .init(state: .fetchMyCommunititesFailed(error))
-//            }
-//        }
-//    }
+    func saveRecipe(response: MainDataFlow.SaveRecipe.Response) {
+        DispatchQueue.main.async {
+            var viewModel: MainDataFlow.SaveRecipe.ViewModel
+
+            defer { self.viewController?.displaySavedRecipe(viewModel: viewModel) }
+
+            switch response.result {
+            case let .successful(recipe):
+                viewModel = .init(state: .saveRecipe(recipe))
+            case let .failed(error):
+                viewModel = .init(state: .saveRecipeFailed(error))
+            }
+        }
+    }
 }

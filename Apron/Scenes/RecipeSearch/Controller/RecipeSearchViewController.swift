@@ -26,7 +26,6 @@ final class RecipeSearchViewController: ViewController, Messagable {
             case trendings
         }
         enum Row {
-            //            case filter
             case trending(String)
             case shimmer
             case result(RecipeResponse)
@@ -118,6 +117,11 @@ final class RecipeSearchViewController: ViewController, Messagable {
         super.viewWillAppear(animated)
         
         configureNavigation()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

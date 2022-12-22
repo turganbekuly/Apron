@@ -11,6 +11,7 @@ enum SearchMadeSourceType: String, Codable {
     case communityPage = "community_page"
     case searchTab = "search_tab"
     case savedTab = "saved_tab"
+    case searchByIngredients = "search_by_ingredients"
 }
 
 struct SearchMadeModel: Codable {

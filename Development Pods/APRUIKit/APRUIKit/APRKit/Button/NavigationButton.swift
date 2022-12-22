@@ -16,6 +16,7 @@ public final class NavigationButton: Button {
         case blackBackground
         case whiteBackground
         case greenBackground
+        case clearBackground
     }
 
     public var backgroundType: ButtonType = .blackBackground {
@@ -26,10 +27,13 @@ public final class NavigationButton: Button {
                 activityIndicator.color = .white
             case .whiteBackground:
                 applyStyle(PrimaryButtonWhiteStyle.self)
-                activityIndicator.color = .black
+                activityIndicator.color = ApronAssets.primaryTextMain.color
             case .greenBackground:
                 applyStyle(PrimaryButtonYellowStyle.self)
-                activityIndicator.color = .black
+                activityIndicator.color = ApronAssets.primaryTextMain.color
+            case .clearBackground:
+                applyStyle(PrimaryButtonClearStyle.self)
+                activityIndicator.color = ApronAssets.primaryTextMain.color
             }
         }
     }
@@ -55,7 +59,7 @@ public final class NavigationButton: Button {
         padding: nil
     )
 
-    private lazy var customImageView = UIImageView(image: ApronAssets.arrowForward.image)
+    private lazy var customImageView = UIImageView()
 
     // MARK: - Private properties
 
@@ -112,13 +116,13 @@ public final class NavigationButton: Button {
             customImageView.snp.makeConstraints {
                 $0.trailing.equalTo(label.snp.leading).offset(-8)
                 $0.centerY.equalTo(snp.centerY)
-                $0.size.equalTo(24)
+                $0.size.equalTo(20)
             }
         } else {
             customImageView.snp.makeConstraints {
                 $0.trailing.equalTo(snp.trailing).offset(-8)
                 $0.centerY.equalTo(snp.centerY)
-                $0.size.equalTo(24)
+                $0.size.equalTo(20)
             }
         }
 

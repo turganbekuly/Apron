@@ -24,7 +24,7 @@ extension MainViewController: MainDisplayLogic {
         state = viewModel.state
     }
 
-//    func displayMyCommunities(viewModel: MainDataFlow.GetMyCommunities.ViewModel) {
-//        state = viewModel.state
-//    }
+    func displaySavedRecipe(viewModel: MainDataFlow.SaveRecipe.ViewModel) {
+        state = viewModel.state
+    }
 }

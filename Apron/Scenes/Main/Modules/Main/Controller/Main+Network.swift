@@ -18,10 +18,11 @@ extension MainViewController {
     }
 
     func getCookNowRecipes() {
-        let today = Date()
-        let hours = Calendar.current.component(.hour, from: today)
         var searchFilter = SearchFilterRequestBody()
-        searchFilter.currentTime = hours
         interactor.getCookNowRecipes(request: .init(body: searchFilter))
+    }
+
+    func saveRecipe(with id: Int) {
+        interactor.saveRecipe(request: .init(id: id))
     }
 }

@@ -25,6 +25,17 @@ extension FiltersViewController: FilterActionButtonProtocol {
 
 extension FiltersViewController: IngredientSelectedProtocol {
     func onIngredientSelected(ingredient: RecipeIngredient) {
-        print(ingredient)
+        guard let product = ingredient.product, !selectedFilters.ingredients.contains(product) else {
+            return
+        }
+
+        selectedFilters.ingredients.append(product)
+        guard
+            let section = sections.firstIndex(where: { $0.section == .ingredients }),
+            let row = sections[section].rows.firstIndex(where: { $0 == .ingredient(product) })
+        else { return }
+
+        mainView.selectItem(at: IndexPath(row: row, section: section), animated: false, scrollPosition: .centeredHorizontally)
+        mainView.reloadData()
     }
 }

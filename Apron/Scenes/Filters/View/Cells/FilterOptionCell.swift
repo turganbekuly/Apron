@@ -94,8 +94,8 @@ final class FilterOptionCell: UICollectionViewCell {
     private func configureColors() {
         backgroundColor = .clear
         titleBackgroundView.backgroundColor = isSelected
-        ? ApronAssets.colorsYello.color : .white
-        titleLabel.textColor = .black
+        ? ApronAssets.mainAppColor.color : .white
+        titleLabel.textColor = isSelected ? .white : .black
     }
 
     // MARK: - Methods

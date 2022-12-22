@@ -7,6 +7,7 @@
 
 import UIKit
 import APRUIKit
+import Models
 
 final class SearchSuggestionCategoryCollectionCell: UICollectionViewCell {
     // MARK: - Init

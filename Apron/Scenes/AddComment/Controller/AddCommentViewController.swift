@@ -112,6 +112,7 @@ final class AddCommentViewController: ViewController, Messagable {
     private lazy var saveButton: BlackOpButton = {
         let button = BlackOpButton()
         button.setTitle("Сохранить", for: .normal)
+        button.backgroundType = .greenBackground
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 17
         button.layer.masksToBounds = true
@@ -147,6 +148,14 @@ final class AddCommentViewController: ViewController, Messagable {
         super.viewWillAppear(animated)
         
         configureNavigation()
+
+        tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

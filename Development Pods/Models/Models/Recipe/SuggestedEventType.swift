@@ -8,39 +8,30 @@
 import Foundation
 
 public enum SuggestedEventType: Int, CaseIterable, Codable {
-    case ramadan = 1
-    case helloween
-    case noviiGod
-    case svidanie
-    case mothersday
+    case noviiGod = 1
     case xmas
+    case svidanie
+    case mensDay
     case womensday
     case paskha
-    case nauriz
-    case bday
+    case masslenica
 
     public var title: String {
         switch self {
-        case .ramadan:
-            return "Рамадан"
-        case .helloween:
-            return "Хэллоуин"
         case .noviiGod:
             return "Новый год"
         case .svidanie:
             return "Свидание"
-        case .mothersday:
-            return "День мамы"
+        case .mensDay:
+            return "День защитника отечества"
         case .xmas:
             return "Рождество"
         case .womensday:
             return "8 марта"
         case .paskha:
             return "Пасха"
-        case .nauriz:
-            return "Наурыз"
-        case .bday:
-            return "День рождения"
+        case .masslenica:
+            return "Массленица"
         }
     }
 }

@@ -8,44 +8,24 @@
 import Foundation
 
 public enum SuggestedDishType: Int, CaseIterable, Codable {
-    case zakuski = 1
-    case salati
-    case deserti
-    case perekus
-    case pervoeBluda
+    case pervoeBluda = 1
     case vtoroeBluda
-    case gorBluda
-    case vipechka
-    case napitki
-    case supi
+    case salati
+    case zakuski
+    case vipechka = 5
+    case soucesAndMarinades
     case zagotovki
-    case varenie
-    case povidlo
-    case djemi
-    case marinadi
-    case solenya
-    case bliniOladi
-    case souces
-    case garniri
-    case PP
-    case testo
-    case hleb
-    case torti
-    case pirogi
-    case pechene
-    case kremi
-    case detskoeMenu
+    case napitki
+    case deserti
+    case garniri = 10
+
 
     public var title: String {
         switch self {
-        case .perekus:
-            return "Перекус"
         case .pervoeBluda:
             return "Первые блюда"
         case .vtoroeBluda:
             return "Вторые блюда"
-        case .gorBluda:
-            return "Горячие блюда"
         case .salati:
             return "Салаты"
         case .vipechka:
@@ -54,44 +34,14 @@ public enum SuggestedDishType: Int, CaseIterable, Codable {
             return "Десерты"
         case .napitki:
             return "Напитки"
-        case .supi:
-            return "Супы"
         case .zakuski:
             return "Закуски"
         case .zagotovki:
             return "Заготовки"
-        case .varenie:
-            return "Варенье"
-        case .povidlo:
-            return "Повидло"
-        case .djemi:
-            return "Джемы"
-        case .marinadi:
-            return "Маринады"
-        case .solenya:
-            return "Соленья"
-        case .bliniOladi:
-            return "Блины/Оладьи"
-        case .souces:
-            return "Соусы"
+        case .soucesAndMarinades:
+            return "Соусы и маринады"
         case .garniri:
             return "Гарниры"
-        case .PP:
-            return "ПП"
-        case .testo:
-            return "Тесто"
-        case .hleb:
-            return "Хлеб"
-        case .torti:
-            return "Торты"
-        case .pirogi:
-            return "Пироги"
-        case .pechene:
-            return "Печенье"
-        case .kremi:
-            return "Кремы"
-        case .detskoeMenu:
-            return "Детское меню"
         }
     }
 }

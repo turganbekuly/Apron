@@ -29,7 +29,7 @@ public final class NavigationBackButton: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold20
-        label.textColor = .black
+        label.textColor = ApronAssets.primaryTextMain.color
         label.textAlignment = .left
         return label
     }()
@@ -37,7 +37,7 @@ public final class NavigationBackButton: UIView {
     private lazy var backButton: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ApronAssets.navBackButton.image
-            .withTintColor(.black)
+            .withTintColor(ApronAssets.primaryTextMain.color)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

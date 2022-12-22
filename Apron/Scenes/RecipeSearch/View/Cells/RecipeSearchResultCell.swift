@@ -13,9 +13,10 @@ import SnapKit
 import Models
 
 protocol RecipeSearchCellProtocol: AnyObject {
-    func didTapSaveRecipe(with id: Int)
+    func saveRecipeTapped(with id: Int)
     func navigateToAuthFromRecipe()
     func navigateToRecipe(with id: Int)
+    func cartItemsAdded()
 }
 
 final class RecipeSearchResultCell: UICollectionViewCell {
@@ -28,6 +29,8 @@ final class RecipeSearchResultCell: UICollectionViewCell {
         }
     }
     private var id = 0
+    private var ingredients: [RecipeIngredient] = []
+    private var recipeName = ""
 
     // MARK: - Init
 
@@ -42,28 +45,35 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
     // MARK: - Views factory
 
-    private lazy var recipeView = RecipeSearchResultTopView()
+    private lazy var recipeView: RecipeSearchResultTopView = {
+        let view = RecipeSearchResultTopView()
+        view.layer.cornerRadius = 15
+        view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        view.clipsToBounds = true
+        return view
+    }()
 
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 10
         view.backgroundColor = .white
+        view.clipsToBounds = false
+        view.layer.masksToBounds = false
         view.layer.cornerRadius = 15
         view.layer.backgroundColor = UIColor.white.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 8)
-        view.layer.shadowOpacity = 1
-        view.layer.shadowRadius = 10
-        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 3
+        view.layer.shadowColor = ApronAssets.primaryTextMain.color.cgColor
         return view
     }()
 
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundColor(.black, for: .normal)
-        button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
+        button.setBackgroundColor(ApronAssets.primaryTextMain.color, for: .normal)
+        button.setImage(ApronAssets.favoriteIcon.image, for: .normal)
         button.clipsToBounds = true
-        button.layer.cornerRadius = 18
+        button.layer.cornerRadius = 14
+        button.imageView?.contentMode = .scaleAspectFit
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
@@ -85,24 +95,23 @@ final class RecipeSearchResultCell: UICollectionViewCell {
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 14
+        imageView.tintColor = ApronAssets.gray.color
         return imageView
     }()
 
     private lazy var recipeNameLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.medium16
-        label.textColor = .black
+        label.textColor = ApronAssets.primaryTextMain.color
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
         return label
     }()
 
-    private lazy var ingredientsCountLabel: UILabel = {
-        let label = UILabel()
-        label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
-        return label
-    }()
+    let cartView = RecipeCartView()
+
 
     // MARK: - Setup Views
 
@@ -112,12 +121,14 @@ final class RecipeSearchResultCell: UICollectionViewCell {
             recipeView,
             avatarOverlayView,
             recipeNameLabel,
-            ingredientsCountLabel
+            cartView
         )
         recipeView.addSubview(favoriteButton)
         avatarOverlayView.addSubview(avatarImageView)
         setupConstraints()
         configureCell()
+
+        cartView.delegate = self
     }
 
     private func setupConstraints() {
@@ -132,7 +143,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
         favoriteButton.snp.makeConstraints {
             $0.top.trailing.equalToSuperview().inset(8)
-            $0.size.equalTo(36)
+            $0.size.equalTo(28)
         }
 
         avatarOverlayView.snp.makeConstraints {
@@ -143,7 +154,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
         avatarImageView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
-            $0.size.equalTo(24)
+            $0.size.equalTo(28)
         }
 
         recipeNameLabel.snp.makeConstraints {
@@ -151,8 +162,10 @@ final class RecipeSearchResultCell: UICollectionViewCell {
             $0.leading.trailing.equalToSuperview().inset(8)
         }
 
-        ingredientsCountLabel.snp.makeConstraints {
-            $0.bottom.trailing.leading.equalToSuperview().inset(8)
+        cartView.snp.makeConstraints {
+            $0.height.equalTo(24)
+            $0.leading.trailing.equalToSuperview().inset(8)
+            $0.bottom.trailing.equalToSuperview().inset(8)
         }
     }
 
@@ -164,13 +177,11 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
     private func configureButton(isSaved: Bool) {
         guard isSaved else {
-            favoriteButton.setBackgroundColor(.black, for: .normal)
-            favoriteButton.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
+            favoriteButton.setImage(ApronAssets.favoriteIcon.image, for: .normal)
             return
         }
 
-        favoriteButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-        favoriteButton.setImage(ApronAssets.tabFaveSelectedIcon.image, for: .normal)
+        favoriteButton.setImage(ApronAssets.favoriteFilledIcon.image, for: .normal)
     }
 
     // MARK: - User actions
@@ -187,10 +198,9 @@ final class RecipeSearchResultCell: UICollectionViewCell {
             return
         }
 
+        delegate?.saveRecipeTapped(with: id)
         HapticTouch.generateSuccess()
-        favoriteButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-        favoriteButton.setImage(ApronAssets.tabFaveSelectedIcon.image, for: .normal)
-        delegate?.didTapSaveRecipe(with: id)
+        favoriteButton.setImage(ApronAssets.favoriteFilledIcon.image, for: .normal)
     }
 
     // MARK: - Public methods
@@ -202,10 +212,44 @@ final class RecipeSearchResultCell: UICollectionViewCell {
                 cookTime: "\(recipe.cookTime ?? 0) мин"
             )
         )
-
-        avatarImageView.setImage(string: recipe.authorName ?? "User")
+        isSaved = recipe.isSaved ?? false
+        id = recipe.id
+        avatarImageView.image = ApronAssets.user.image
         contentView.layoutIfNeeded()
         recipeNameLabel.text = recipe.recipeName
-        ingredientsCountLabel.text = "\(recipe.ingredients?.count ?? 0) ингредиентов"
+        cartView.configure(ingredients: recipe.ingredients?.count ?? 0)
+        ingredients = recipe.ingredients ?? []
+        recipeName = recipe.recipeName ?? ""
+    }
+}
+
+extension RecipeSearchResultCell: RecipeCartViewDelegate {
+    func cartViewTapped() {
+        let cartItems: [CartItem] = self.ingredients.compactMap {
+            CartItem(
+                productId: $0.product?.id ?? 0,
+                productName: $0.product?.name ?? "",
+                productCategoryName: $0.product?.productCategoryName ?? "",
+                productImage: $0.product?.image,
+                amount: $0.amount ?? 0,
+                measurement: $0.measurement ?? "",
+                recipeName: [self.recipeName],
+                bought: false
+            )
+        }
+        cartItems.forEach {
+            CartManager.shared.update(
+                productId: $0.productId,
+                productName: $0.productName,
+                productCategoryName: $0.productCategoryName,
+                productImage: $0.productImage,
+                amount: $0.amount,
+                measurement: $0.measurement,
+                recipeName: $0.recipeName?.first ?? "",
+                bought: $0.bought
+            )
+        }
+        HapticTouch.generateSuccess()
+        delegate?.cartItemsAdded()
     }
 }

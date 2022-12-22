@@ -18,7 +18,7 @@ extension UIImageView {
     ///   - textAttributes: This dictionary allows you to specify font, text color, shadow properties, etc.
     open func setImage(string: String?,
                        color: UIColor? = nil,
-                       circular: Bool = false,
+                       circular: Bool = true,
                        textAttributes: [NSAttributedString.Key: Any]? = nil) {
 
         let image = imageSnap(text: string != nil ? string?.initials : "",
