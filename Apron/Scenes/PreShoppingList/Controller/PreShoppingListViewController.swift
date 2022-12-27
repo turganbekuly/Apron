@@ -10,6 +10,7 @@ import APRUIKit
 import UIKit
 import Storages
 import AlertMessages
+import OneSignal
 
 final class PreShoppingListViewController: ViewController, Messagable {
     
@@ -172,6 +173,8 @@ final class PreShoppingListViewController: ViewController, Messagable {
                 )
             )
         }
+
+        OneSignal.sendTag("ingredients_added", value: "recipe_page")
 
         delegate?.dismissedWithIngredients()
         self.navigationController?.popViewController(animated: true)

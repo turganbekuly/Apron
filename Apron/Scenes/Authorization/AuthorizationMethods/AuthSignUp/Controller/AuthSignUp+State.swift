@@ -9,6 +9,7 @@
 import Models
 import UIKit
 import Storages
+import OneSignal
 
 extension AuthSignUpViewController {
     
@@ -29,6 +30,7 @@ extension AuthSignUpViewController {
             AuthStorage.shared.grantType = GrantType.native.rawValue
             AuthStorage.shared.save(model: model)
             ApronAnalytics.shared.setupUserInfo(id: 0, name: model.username, email: model.email)
+            OneSignal.sendTag("authorization_page", value: "signed_up")
             let viewController = TabBarBuilder(state: .initial(.normal)).build()
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = viewController

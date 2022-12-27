@@ -12,6 +12,7 @@ import UIKit
 import SnapKit
 import AlertMessages
 import Alamofire
+import OneSignal
 
 protocol AuthorizationDisplayLogic: AnyObject {
     func login(viewModel: AuthorizationDataFlow.AuthorizationWithApple.ViewModel)
@@ -122,6 +123,7 @@ final class AuthorizationViewController: ViewController, Messagable {
             title: L10n.Common.yes,
             style: .default
         ) { [weak self] _ in
+            OneSignal.sendTag("authorization_page", value: "skipped")
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
 

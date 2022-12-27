@@ -8,6 +8,7 @@
 
 import Models
 import UIKit
+import OneSignal
 
 protocol StepByStepFinalStepProtocol: AnyObject {
     func reviewButtonTapped()
@@ -28,6 +29,7 @@ extension StepByStepModeViewController {
             self.finalImage = finalImage
             self.delegate = delegate
             ApronAnalytics.shared.sendAnalyticsEvent(.stepByStepViewed)
+            OneSignal.sendTag("step_by_step_mode", value: "recipe_page")
         }
     }
     

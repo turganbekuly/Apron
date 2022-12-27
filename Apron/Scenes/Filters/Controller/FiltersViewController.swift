@@ -9,6 +9,7 @@
 import APRUIKit
 import UIKit
 import Models
+import OneSignal
 
 protocol FiltersDisplayLogic: AnyObject {
     
@@ -194,6 +195,7 @@ final class FiltersViewController: ViewController {
     @objc
     private func applyButtonTapped() {
         ApronAnalytics.shared.sendAnalyticsEvent(.filtersApplied(selectedFilters))
+        OneSignal.sendTag("filters_page", value: "applied")
         dismiss(animated: true) {
             self.delegate?.filtersApplied(filters: self.selectedFilters)
         }

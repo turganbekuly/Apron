@@ -12,6 +12,7 @@ import Storages
 import AlertMessages
 import Models
 import RemoteConfig
+import OneSignal
 
 protocol ShoppingListDisplayLogic: AnyObject {
     func displayCartItems(viewModel: ShoppingListDataFlow.GetCartItems.ViewModel)
@@ -135,6 +136,7 @@ final class ShoppingListViewController: ViewController, Messagable {
         state = { state }()
 
         ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListViewed)
+        OneSignal.sendTag("shopping_list_page_viewed", value: "\(initialState)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -230,6 +232,8 @@ final class ShoppingListViewController: ViewController, Messagable {
         let link = RemoteConfigManager.shared.remoteConfig.orderFromStoreLink
         guard !link.isEmpty else { return }
         let webViewController = WebViewHandler(urlString: link)
+        ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListCheckoutTapped(cartItems.map { $0.productName }))
+        OneSignal.sendTag("shopping_list_checkout_tapped", value: "order_button_tapped")
         present(webViewController, animated: true)
     }
 
@@ -262,6 +266,7 @@ extension ShoppingListViewController: IngredientSelectedProtocol {
                 )
             )
         )
+        OneSignal.sendTag("ingredients_added", value: "shopping_list")
         var productAmount: Double = 0
         if cartManager.isContains(product: ingredient.product?.name ?? "") {
             productAmount = CartManager.shared.getProductAmount(for: ingredient.product?.name ?? "")

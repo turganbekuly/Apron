@@ -10,6 +10,7 @@ import APRUIKit
 import UIKit
 import Models
 import AlertMessages
+import OneSignal
 
 protocol RecipePageDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipePageDataFlow.GetRecipe.ViewModel)
@@ -49,6 +50,7 @@ final class RecipePageViewController: ViewController, Messagable {
                         )
                     )
                 )
+                OneSignal.sendTag("recipe_page_viewed", value: recipe.recipeName ?? "")
                 bottomStickyView.configure(isSaved: recipe.isSaved ?? false)
             }
             sections = [
