@@ -78,7 +78,6 @@ extension WhatToCookCell {
 extension CookNowCell {
     struct CookNowSection {
         enum Section {
-            case shimmer
             case recipes
         }
         enum Row {

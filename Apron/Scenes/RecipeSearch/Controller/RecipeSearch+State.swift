@@ -29,6 +29,7 @@ extension RecipeSearchViewController {
             filters = incomingFilters
             guard filters.ifAnyArrayContainsValue() else { return }
             recipesList.removeAll()
+            self.filtersCount = filters.dayTimeType.count + filters.cuisines.count + filters.eventTypes.count + filters.time.count + filters.dishTypes.count
             currentPage = 1
             sections = [
                 .init(section: .filter, rows: [.shimmer])

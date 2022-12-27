@@ -29,6 +29,7 @@ extension MainViewController {
         switch state {
         case .initial:
 //            getCommunitiesByCategory()
+            configureCookNow(with: [])
             getCookNowRecipes()
         case let .fetchCommunitiesByCategory(model):
             self.dynamicCommunities = model

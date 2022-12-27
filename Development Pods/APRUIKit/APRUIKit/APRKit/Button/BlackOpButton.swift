@@ -124,11 +124,11 @@ public final class BlackOpButton: DefaultButton {
             setBackgroundColor(.white.withAlphaComponent(0.5), for: .disabled)
             setBackgroundColor(.white, for: .normal)
             setBackgroundColor(.white.highlighted, for: .highlighted)
-            setTitleColor(.black, for: .disabled)
-            setTitleColor(.black, for: .normal)
+            setTitleColor(ApronAssets.primaryTextMain.color, for: .disabled)
+            setTitleColor(ApronAssets.primaryTextMain.color, for: .normal)
             tintColor = isEnabled ? .white : .white.withAlphaComponent(0.5)
             layer.borderWidth = 1
-            layer.borderColor = UIColor.black.cgColor
+            layer.borderColor = ApronAssets.lightGray2.color.cgColor
         case .greenBackground:
             setBackgroundColor(ApronAssets.mainAppColor.color.withAlphaComponent(0.5), for: .disabled)
             setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)

@@ -43,12 +43,12 @@ struct PrimaryButtonWhiteStyle: ButtonStyleProtocol {
     }
 }
 
-struct PrimaryButtonYellowStyle: ButtonStyleProtocol {
+struct PrimaryButtonGreenStyle: ButtonStyleProtocol {
     let button: NavigationButton
 
     func style() -> ButtonStyle {
         return .init(
-            textColor: .init(normalColor: .black),
+            textColor: .init(normalColor: .white),
             font: TypographyFonts.regular14,
             background: .init(
                 normalColor: ApronAssets.mainAppColor.color,

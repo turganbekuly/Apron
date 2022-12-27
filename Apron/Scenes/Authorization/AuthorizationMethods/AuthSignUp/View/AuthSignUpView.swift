@@ -32,23 +32,23 @@ final class AuthSignUpView: UIView {
     // MARK: - Views factory
 
     lazy var nicknameTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "username", title: "Username")
+        let textField = LoginTextField(placeholder: "Имя пользователя", title: "Имя пользователя")
         return textField
     }()
 
     lazy var emailTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "mymail@gmail.com", title: "E-mail")
+        let textField = LoginTextField(placeholder: "mymail@gmail.com", title: "Эл.почта")
         return textField
     }()
 
     lazy var passwordTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "***********", title: "Password")
+        let textField = LoginTextField(placeholder: "***********", title: "Пароль")
         textField.textField.addTarget(self, action: #selector(passwordChanged(_:)), for: .editingChanged)
         return textField
     }()
 
     lazy var confirmTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "***********", title: "Confirm Password")
+        let textField = LoginTextField(placeholder: "***********", title: "Подтвердите пароль")
         textField.textField.addTarget(self, action: #selector(passwordChanged(_:)), for: .editingChanged)
         return textField
     }()

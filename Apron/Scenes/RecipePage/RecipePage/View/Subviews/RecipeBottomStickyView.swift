@@ -14,6 +14,7 @@ protocol BottomStickyViewDelegate: AnyObject {
     func addButtonTapped()
     func saveButtonTapped()
     func textFieldTapped()
+    func navigateToStepByStepMode()
 }
 
 final class RecipeBottomStickyView: View {
@@ -28,11 +29,6 @@ final class RecipeBottomStickyView: View {
 
     // MARK: - Views factory
 
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-
     private lazy var textField: RoundedTextField = {
         let textField = RoundedTextField(placeholder: "Оставьте ваш отзыв")
         textField.textField.isUserInteractionEnabled = false
@@ -41,6 +37,7 @@ final class RecipeBottomStickyView: View {
 
     private lazy var addButton: BlackOpButton = {
         let button = BlackOpButton()
+        button.backgroundType = .whiteBackground
         button.setTitle("Добавить в корзину", for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
@@ -50,6 +47,7 @@ final class RecipeBottomStickyView: View {
 
     private lazy var saveButton: BlackOpButton = {
         let button = BlackOpButton()
+        button.backgroundType = .greenBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
@@ -105,9 +103,12 @@ final class RecipeBottomStickyView: View {
 
     @objc
     private func saveButtonTapped() {
-        guard !isSaved else { return }
+        guard !isSaved else {
+            delegate?.navigateToStepByStepMode()
+            return
+        }
         HapticTouch.generateSuccess()
-        configureSavedButton()
+        isSaved = true
         delegate?.saveButtonTapped()
     }
 
@@ -119,13 +120,15 @@ final class RecipeBottomStickyView: View {
     // MARK: - Private methods
 
     private func configureSavedButton() {
-        saveButton.backgroundType = .greenBackground
-        saveButton.setTitle("Сохранен", for: .normal)
-        saveButton.setImage(ApronAssets.recipeFavoriteIcon.image.withTintColor(.white), for: .normal)
-
-        // For made it flow
-//        saveButton.setTitle("Приготовил/а", for: .normal)
-//        saveButton.setImage(ApronAssets.checkOvalOutline.image.withTintColor(.black), for: .normal)
+        guard !isSaved else {
+            saveButton.setTitle("Режим готовки", for: .normal)
+            saveButton.setImage(nil, for: .normal)
+            saveButton.setImage(nil, for: .highlighted)
+            return
+        }
+        // MARK: - TODO SAVED/UNSAVED FLOW
+        saveButton.setTitle("Сохранить", for: .normal)
+        saveButton.setImage(ApronAssets.favoriteIcon24.image.withTintColor(.white), for: .normal)
     }
 
     // MARK: - Public methods

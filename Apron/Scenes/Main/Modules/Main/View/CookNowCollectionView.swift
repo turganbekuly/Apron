@@ -42,9 +42,8 @@ public final class CookNowCollectionView: UICollectionView {
         showsHorizontalScrollIndicator = false
 
         [
-            RecipeSearchResultCell.self,
             RecipeSearchResultCellv2.self,
-            RecipeSearchSkeletonCell.self
+            CookNowEmptyCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }

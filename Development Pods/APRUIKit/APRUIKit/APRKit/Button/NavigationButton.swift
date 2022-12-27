@@ -29,7 +29,7 @@ public final class NavigationButton: Button {
                 applyStyle(PrimaryButtonWhiteStyle.self)
                 activityIndicator.color = ApronAssets.primaryTextMain.color
             case .greenBackground:
-                applyStyle(PrimaryButtonYellowStyle.self)
+                applyStyle(PrimaryButtonGreenStyle.self)
                 activityIndicator.color = ApronAssets.primaryTextMain.color
             case .clearBackground:
                 applyStyle(PrimaryButtonClearStyle.self)

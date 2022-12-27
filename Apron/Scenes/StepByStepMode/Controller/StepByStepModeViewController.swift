@@ -102,9 +102,9 @@ final class StepByStepModeViewController: ViewController, Messagable {
 
     lazy var progressBar: ALProgressBar = {
         let view = ALProgressBar()
-        view.startColor = ApronAssets.gray.color
-        view.endColor = .black
-        view.duration = 2
+        view.startColor = ApronAssets.mainAppColor.color.withAlphaComponent(0.8)
+        view.endColor = ApronAssets.mainAppColor.color
+        view.duration = 1.5
         view.timingFunction = .easeOutExpo
         return view
     }()

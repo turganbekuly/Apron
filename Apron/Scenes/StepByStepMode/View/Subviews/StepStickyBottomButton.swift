@@ -21,7 +21,9 @@ final class StepStickyBottomButton: View {
 
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
+        view.layer.borderWidth = 1
+        view.layer.borderColor = ApronAssets.lightGray2.color.cgColor
         view.layer.cornerRadius = 17
         view.clipsToBounds = true
         return view
@@ -29,8 +31,8 @@ final class StepStickyBottomButton: View {
 
     private lazy var counterLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
-        label.font = TypographyFonts.regular14
+        label.textColor = ApronAssets.primaryTextMain.color
+        label.font = TypographyFonts.semibold14
         label.textAlignment = .left
         label.text = "Начать таймер"
         return label
@@ -40,7 +42,7 @@ final class StepStickyBottomButton: View {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(systemName: "timer")?.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = .white
+        imageView.tintColor = ApronAssets.mainAppColor.color
         return imageView
     }()
 
@@ -60,7 +62,7 @@ final class StepStickyBottomButton: View {
         imageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(8)
             $0.centerY.equalToSuperview()
-            $0.size.equalTo(24)
+            $0.size.equalTo(16)
         }
 
         counterLabel.snp.makeConstraints {

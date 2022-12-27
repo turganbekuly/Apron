@@ -19,7 +19,13 @@ extension MainViewController {
 
     func getCookNowRecipes() {
         var searchFilter = SearchFilterRequestBody()
-        interactor.getCookNowRecipes(request: .init(body: searchFilter))
+        searchFilter.dishTypes = [3]
+        searchFilter.eventTypes = [1]
+        searchFilter.limit = 10
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.interactor.getCookNowRecipes(request: .init(body: searchFilter))
+        }
+
     }
 
     func saveRecipe(with id: Int) {

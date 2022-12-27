@@ -21,11 +21,25 @@ extension RecipePageViewController: RecipePageCommentAdded {
 }
 
 extension RecipePageViewController: BottomStickyViewDelegate {
-    func addButtonTapped() {
-        let vc = CreateActionFlowBuilder(state: .initial(.recipePageAddTo, self)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.presentPanModal(vc)
+    func navigateToStepByStepMode() {
+        guard let instructions = recipe?.instructions else {
+            show(type: .error("В рецепте нету инструкции"))
+            return
         }
+        let vc = StepByStepModeBuilder(state: .initial(instructions, self.recipe?.imageURL, self)).build()
+        let navController = StepNavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        DispatchQueue.main.async {
+            self.navigationController?.present(navController, animated: true)
+        }
+    }
+
+    func addButtonTapped() {
+//        let vc = CreateActionFlowBuilder(state: .initial(.recipePageAddTo, self)).build()
+//        DispatchQueue.main.async {
+//            self.navigationController?.presentPanModal(vc)
+//        }
+        handleAddToCart(ingredients: recipe?.ingredients)
     }
 
     func saveButtonTapped() {

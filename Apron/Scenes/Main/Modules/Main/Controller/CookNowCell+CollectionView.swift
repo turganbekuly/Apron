@@ -20,7 +20,7 @@ extension CookNowCell: UICollectionViewDataSource {
         let row = recipesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case .shimmer:
-            let cell: RecipeSearchSkeletonCell = collectionView.dequeueReusableCell(for: indexPath)
+            let cell: CookNowEmptyCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         case .recipe:
             let cell: RecipeSearchResultCellv2 = collectionView.dequeueReusableCell(for: indexPath)
@@ -44,7 +44,7 @@ extension CookNowCell: UICollectionViewDelegateFlowLayout {
         let row = recipesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case .shimmer:
-            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+            return CGSize(width: 300, height: 160)
         case .recipe:
             return CGSize(width: 300, height: 160)
         }
@@ -58,7 +58,7 @@ extension CookNowCell: UICollectionViewDelegateFlowLayout {
             cell.delegate = self
             cell.configure(with: recipe)
         case .shimmer:
-            guard let cell = cell as? RecipeSearchSkeletonCell else { return }
+            guard let cell = cell as? CookNowEmptyCollectionCell else { return }
             cell.configure()
         }
     }

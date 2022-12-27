@@ -1,14 +1,14 @@
 //
-//  RecipeSearchSkeletonCell.swift
+//  CookNowEmptyCollectionCell.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 07.10.2022.
+//  Created by Akarys Turganbekuly on 25.12.2022.
 //
 
 import UIKit
 import APRUIKit
 
-final class RecipeSearchSkeletonCell: UICollectionViewCell {
+final class CookNowEmptyCollectionCell: UICollectionViewCell {
     // MARK: - Init
 
     override init(frame: CGRect) {
@@ -27,10 +27,10 @@ final class RecipeSearchSkeletonCell: UICollectionViewCell {
     // MARK: - Views factory
 
     private lazy var skeletonView = SkeletonPlaceholderView(
-        numberOfColumns: 2,
-        numberOfRows: 3,
-        itemWidth: (bounds.width / 2) - 24,
-        itemHeight: 300,
+        numberOfColumns: 1,
+        numberOfRows: 1,
+        itemWidth: bounds.width,
+        itemHeight: 160,
         cellCornerRadius: 20
     )
 
@@ -44,8 +44,7 @@ final class RecipeSearchSkeletonCell: UICollectionViewCell {
 
     private func setupConstraints() {
         skeletonView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.edges.equalToSuperview()
         }
     }
 

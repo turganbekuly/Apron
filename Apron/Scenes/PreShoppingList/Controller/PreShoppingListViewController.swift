@@ -53,6 +53,7 @@ final class PreShoppingListViewController: ViewController, Messagable {
 
     private lazy var addButton: NavigationButton = {
         let button = NavigationButton()
+        button.backgroundType = .greenBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button

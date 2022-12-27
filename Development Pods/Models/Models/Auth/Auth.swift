@@ -20,7 +20,7 @@ public struct Auth: Codable {
 
     public let accessToken: String
     public let refreshToken: String
-    public let username: String
+    public var username: String?
     public let email: String
 
     // MARK: - Init
@@ -29,16 +29,19 @@ public struct Auth: Codable {
         guard
             let accessToken = json[CodingKeys.accessToken.rawValue] as? String,
             let refreshToken = json[CodingKeys.refreshToken.rawValue] as? String,
-            let username = json[CodingKeys.username.rawValue] as? String,
             let email = json[CodingKeys.email.rawValue] as? String
         else {
             return nil
         }
 
+        if let username = json[CodingKeys.username.rawValue] as? String {
+            self.username = username
+        }
+
         self.accessToken = accessToken
         self.refreshToken = refreshToken
-        self.username = username
         self.email = email
+        self.username = (json[CodingKeys.username.rawValue] as? String) ?? "Пользователь"
     }
 
 }

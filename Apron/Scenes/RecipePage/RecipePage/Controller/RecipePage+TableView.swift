@@ -190,7 +190,7 @@ extension RecipePageViewController: UITableViewDelegate {
                 recipeImage: recipe?.imageURL ?? "",
                 recipeSourceURL: recipe?.sourceName,
                 likeCount: recipe?.likesCount ?? 0,
-                dislikeCount: recipe?.likesCount ?? 0
+                dislikeCount: recipe?.dislikesCount ?? 0
             ))
         case .description:
             guard let cell = cell as? IngredientDescriptionCell else { return }

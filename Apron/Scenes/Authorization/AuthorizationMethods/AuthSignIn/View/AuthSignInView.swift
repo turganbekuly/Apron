@@ -34,12 +34,12 @@ final class AuthSignInView: UIView {
     // MARK: - Views factory
 
     lazy var emailTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "mymail@gmail.com", title: "E-mail")
+        let textField = LoginTextField(placeholder: "mymail@gmail.com", title: "Эл.почта")
         return textField
     }()
 
     lazy var passwordTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "***********", title: "Password")
+        let textField = LoginTextField(placeholder: "***********", title: "Пароль")
         textField.textField.isSecureTextEntry = true
         return textField
     }()

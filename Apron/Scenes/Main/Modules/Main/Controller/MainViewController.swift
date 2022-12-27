@@ -197,11 +197,9 @@ final class MainViewController: ViewController, Messagable {
         mainView.reloadTableViewWithoutAnimation()
     }
 
-    private func configureCookNow(with recipes: [RecipeResponse]) {
+    func configureCookNow(with recipes: [RecipeResponse]) {
         var sections = [Section]()
-        if !recipes.isEmpty {
-            sections.append(.init(section: .cookNow, rows: [.cookNow("", recipes)]))
-        }
+        sections.append(.init(section: .cookNow, rows: [.cookNow("", recipes)]))
         sections.append(
             .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
         )
@@ -212,6 +210,7 @@ final class MainViewController: ViewController, Messagable {
 
     @objc
     private func refresh(_ sender: UIRefreshControl) {
+        configureCookNow(with: [])
         getCookNowRecipes()
     }
 

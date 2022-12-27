@@ -30,7 +30,7 @@ public struct SearchFilterRequestBody: Codable {
     public var eventTypes: [Int] = []
     public var lifestyleTypes: [Int] = []
     public var page: Int = 1
-    public var limit: Int = 20
+    public var limit: Int = 10
     public var currentTime: Int?
     public var query: String = ""
 

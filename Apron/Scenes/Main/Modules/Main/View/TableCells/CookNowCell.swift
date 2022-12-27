@@ -13,6 +13,7 @@ protocol CookNowCellProtocol: AnyObject {
     func saveRecipeTappedv2(with id: Int)
     func navigateToAuthFromRecipev2()
     func navigateToRecipev2(with id: Int)
+    func navigateToSeeAll()
 }
 
 final class CookNowCell: UITableViewCell {
@@ -99,13 +100,19 @@ final class CookNowCell: UITableViewCell {
 
     @objc
     private func seeAllButtonTapped() {
-
+        delegate?.navigateToSeeAll()
     }
 
     // MARK: - Public methods
 
     func configure(with viewModel: CookNowCellViewModelProtocol) {
-        titleLabel.text = "Приготовить сейчас"
+        titleLabel.text = "Салаты на новый год"
+        guard !viewModel.recipes.isEmpty else {
+            recipesSection = [
+                .init(section: .recipes, rows: Array(repeating: .shimmer, count: 2))
+            ]
+            return
+        }
         recipesSection = [
             .init(section: .recipes, rows: viewModel.recipes.compactMap { .recipe($0) })
         ]

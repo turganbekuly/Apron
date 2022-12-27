@@ -63,7 +63,6 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         switch row {
         case let .recipe(recipe):
             guard let cell = cell as? RecipeSearchResultCellv2 else { return }
-//            cell.configure(with: SavedRecipeCellViewModel(image: recipe.imageURL, name: recipe.recipeName))
             cell.configure(with: recipe)
         case .empty:
             guard let cell = cell as? EmptyListCollectionCell else { return }

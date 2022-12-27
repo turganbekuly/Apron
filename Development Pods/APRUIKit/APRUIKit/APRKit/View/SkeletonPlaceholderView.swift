@@ -132,8 +132,8 @@ public final class SkeletonPlaceholderView: View {
 
         contentView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.height.equalToSuperview()
         }
 
