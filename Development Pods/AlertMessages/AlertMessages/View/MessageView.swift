@@ -164,8 +164,8 @@ public class MessageView: UIView {
             subtitleLabel.attributedText = viewModel.subtitle
             iconImageView.image = viewModel.icon
             firstButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
-            firstButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-            firstButton.layer.cornerRadius = 28
+            firstButton.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+            firstButton.layer.cornerRadius = 19
             firstButton.clipsToBounds = true
         }
         colorBackground = viewModel.backgroundColor
@@ -344,7 +344,7 @@ public class MessageView: UIView {
             make.top.equalTo(subtitleLabel.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(8)
-            make.height.equalTo(56)
+            make.height.equalTo(38)
         }
     }
 

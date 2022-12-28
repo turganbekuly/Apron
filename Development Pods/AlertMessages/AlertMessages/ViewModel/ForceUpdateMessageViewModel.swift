@@ -36,7 +36,7 @@ public struct ForceUpdateMessageViewModel: MessageProtocol {
     public var firstButtonTitle: NSAttributedString? {
         Typography.semibold16(
             text: "Обновить",
-            color: .black
+            color: .white
         ).styled
     }
 

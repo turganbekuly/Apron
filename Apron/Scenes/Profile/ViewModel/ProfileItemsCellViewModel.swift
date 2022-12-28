@@ -39,6 +39,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
             return ApronAssets.profileDeleteAccount.image
         case .logout:
             return ApronAssets.exit.image
+        case .contactWithDevelopers:
+            return ApronAssets.chat.image
         case .user:
             return nil
         }
@@ -53,6 +55,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
             title = "Удалить аккаунт"
         case .logout:
             title = "Выйти"
+        case .contactWithDevelopers:
+            title = "Сообщить о проблеме"
         case .user:
             return nil
         }

@@ -37,7 +37,7 @@ extension ProfileViewController {
                 name: model.username,
                 email: model.email
             )
-            sections = [.init(section: .app, rows: [.user, .assistant, .deleteAccount, .logout])]
+            sections = [.init(section: .app, rows: [.user, .assistant, .deleteAccount, .contactWithDevelopers, .logout])]
             mainView.reloadData()
         case .fetchProfileFailed:
             show(type: .error(L10n.Common.errorMessage))

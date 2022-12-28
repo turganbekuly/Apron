@@ -12,7 +12,7 @@ import Extensions
 extension TabBarViewController {
     func handleRemoteConfig() {
         let remoteConfigManager = RemoteConfigManager.shared.remoteConfig
-        if remoteConfigManager.isForceUpdateEnabled && Bundle.main.buildVersion < remoteConfigManager.appVersion {
+        if remoteConfigManager.isForceUpdateEnabled && Bundle.main.appVersion < remoteConfigManager.appVersion {
             showForceUpdate() {
                 if let url = URL(string: "itms-apps://itunes.apple.com/app/id1626436370"),
                    UIApplication.shared.canOpenURL(url) {

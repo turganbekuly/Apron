@@ -8,6 +8,7 @@
 
 import UIKit
 import Storages
+import RemoteConfig
 
 extension ProfileViewController: UITableViewDataSource {
     
@@ -26,7 +27,7 @@ extension ProfileViewController: UITableViewDataSource {
         case .user:
             let cell: ProfileUserCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
-        case .logout, .deleteAccount:
+        case .logout, .deleteAccount, .contactWithDevelopers:
             let cell: ProfileItemsCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         case .assistant:
@@ -56,6 +57,11 @@ extension ProfileViewController: UITableViewDelegate {
         case .deleteAccount:
             let id: Int = userStorage.user?.id ?? 0
             deleteAccount(with: id)
+        case .contactWithDevelopers:
+            let link = RemoteConfigManager.shared.remoteConfig.contactWithDevelopersLink
+            guard !link.isEmpty else { return }
+            let webViewController = WebViewHandler(urlString: link)
+            present(webViewController, animated: true)
         default:
             break
         }
@@ -66,7 +72,7 @@ extension ProfileViewController: UITableViewDelegate {
         switch row {
         case .user:
             return 131
-        case .logout, .assistant, .deleteAccount:
+        case .logout, .assistant, .deleteAccount, .contactWithDevelopers:
             return 56
         }
     }
@@ -76,7 +82,7 @@ extension ProfileViewController: UITableViewDelegate {
         switch row {
         case .user:
             return 131
-        case .logout, .assistant, .deleteAccount:
+        case .logout, .assistant, .deleteAccount, .contactWithDevelopers:
             return 56
         }
     }
@@ -96,6 +102,9 @@ extension ProfileViewController: UITableViewDelegate {
         case .deleteAccount:
             guard let cell = cell as? ProfileItemsCell else { return }
             
+            cell.configure(with: ProfileItemsCellViewModel(row: row, mode: .center))
+        case .contactWithDevelopers:
+            guard let cell = cell as? ProfileItemsCell else { return }
             cell.configure(with: ProfileItemsCellViewModel(row: row, mode: .center))
         case .logout:
             guard let cell = cell as? ProfileItemsCell else { return }

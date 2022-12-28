@@ -26,6 +26,7 @@ final class ProfileViewController: ViewController, Messagable {
             case user
             case assistant
             case deleteAccount
+            case contactWithDevelopers
             case logout
         }
         
