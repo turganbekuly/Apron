@@ -264,7 +264,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
             ratingLabel.text = "\(percentRatio)"
             ratingImageView.isHidden = false
             ratingImageView.image = ApronAssets.recipeDislikeSelected.image.withTintColor(.white)
-        } else if likesCount < 0 && dislikesCount < 0 {
+        } else if likesCount <= 0 && dislikesCount <= 0 {
             ratingLabel.text = ""
             ratingImageView.isHidden = true
         }

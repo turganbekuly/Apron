@@ -22,9 +22,7 @@ extension MainViewController {
         searchFilter.dishTypes = [3]
         searchFilter.eventTypes = [1]
         searchFilter.limit = 10
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.interactor.getCookNowRecipes(request: .init(body: searchFilter))
-        }
+        interactor.getCookNowRecipes(request: .init(body: searchFilter))
 
     }
 

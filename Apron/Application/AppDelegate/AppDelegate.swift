@@ -11,6 +11,7 @@ import Amplitude
 import Storages
 import AKNetwork
 import FirebaseDynamicLinks
+import AppTrackingTransparency
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         setupFirstRun()
+        requestTrackingAuthorization()
         configurators.forEach { $0.configure(application, launchOptions: launchOptions) }
 
         return true
@@ -69,6 +71,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
 
         return true
+    }
+
+    @objc func requestTrackingAuthorization() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { (status) in
+                switch status {
+                case .denied:
+                    print("AuthorizationSatus is denied")
+                case .notDetermined:
+                    print("AuthorizationSatus is notDetermined")
+                case .restricted:
+                    print("AuthorizationSatus is restricted")
+                case .authorized:
+                    print("AuthorizationSatus is authorized")
+                @unknown default:
+                    fatalError("Invalid authorization status")
+                }
+            }
+        }
     }
 
     private func setupFirstRun() {

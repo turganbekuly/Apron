@@ -66,13 +66,7 @@ final class RecipeSearchViewController: ViewController, Messagable {
         }
     }
 
-    var trends = [
-        "ASDasda",
-        "asdasd",
-        "asdasd",
-        "asdasd",
-        "asdasdasd",
-    ]
+    var trends = [String]()
     
     // MARK: - Views
     lazy var searchBar: APSearchBar = {
