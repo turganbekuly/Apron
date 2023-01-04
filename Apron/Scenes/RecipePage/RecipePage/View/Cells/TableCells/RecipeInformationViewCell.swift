@@ -115,7 +115,7 @@ final class RecipeInformationViewCell: UITableViewCell {
         recipeImageView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo((bounds.width / 1.5))
+            $0.height.equalTo((contentView.bounds.width / 1.5))
         }
 
         recipeSourceURLButton.snp.makeConstraints {
@@ -125,7 +125,7 @@ final class RecipeInformationViewCell: UITableViewCell {
         }
 
         likeButton.snp.makeConstraints {
-            $0.top.equalTo(recipeImageView.snp.bottom).offset(15)
+            $0.top.equalTo(recipeImageView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(16)
             $0.height.equalTo(24)
         }

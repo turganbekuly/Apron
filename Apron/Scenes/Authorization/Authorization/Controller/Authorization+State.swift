@@ -30,6 +30,15 @@ extension AuthorizationViewController {
             AuthStorage.shared.grantType = GrantType.apple.rawValue
             AuthStorage.shared.save(model: model)
             ApronAnalytics.shared.setupUserInfo(id: 0, name: model.username, email: model.email)
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .authorization(
+                    AuthorizationModel(
+                        email: model.email,
+                        name: model.username ?? "",
+                        sourceType: .apple
+                    )
+                )
+            )
             let viewController = TabBarBuilder(state: .initial(.normal)).build()
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = viewController

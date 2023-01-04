@@ -106,7 +106,7 @@ final class CookNowCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: CookNowCellViewModelProtocol) {
-        titleLabel.text = "Салаты на новый год"
+        titleLabel.text = viewModel.sectionTitle
         guard !viewModel.recipes.isEmpty else {
             recipesSection = [
                 .init(section: .recipes, rows: Array(repeating: .shimmer, count: 2))

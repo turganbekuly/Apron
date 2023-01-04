@@ -20,6 +20,8 @@ extension MainViewController {
         case fetchCommunitiesByCategoryFailed(AKNetworkError)
         case fetchCookNowRecipes([RecipeResponse])
         case fetchCookNowRecipesFailed(AKNetworkError)
+        case fetchEventRecipes([RecipeResponse])
+        case fetchEventRecipesFailed(AKNetworkError)
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
     }
@@ -28,8 +30,8 @@ extension MainViewController {
     public func updateState() {
         switch state {
         case .initial:
-//            getCommunitiesByCategory()
-            configureCookNow(with: [])
+            configureMainPageCells()
+//            getEventRecipes()
             getCookNowRecipes()
         case let .fetchCommunitiesByCategory(model):
             self.dynamicCommunities = model
@@ -40,6 +42,10 @@ extension MainViewController {
         case let .fetchCookNowRecipes(recipes):
             self.cookNowRecipes = recipes
         case let .fetchCookNowRecipesFailed(error):
+            print(error)
+        case let .fetchEventRecipes(recipes):
+            self.eventRecipes = recipes
+        case let .fetchEventRecipesFailed(error):
             print(error)
         case .saveRecipe:
             HapticTouch.generateSuccess()

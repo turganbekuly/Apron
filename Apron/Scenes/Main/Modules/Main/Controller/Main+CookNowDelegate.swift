@@ -26,9 +26,10 @@ extension MainViewController: CookNowCellProtocol {
 
     func navigateToSeeAll() {
         var searchFilter = SearchFilterRequestBody()
-        searchFilter.dishTypes = [3]
-        searchFilter.eventTypes = [1]
-        searchFilter.limit = 10
+//        searchFilter.dishTypes = [3]
+//        searchFilter.eventTypes = [1]
+//        searchFilter.limit = 10
+        searchFilter.dayTimeType = [defineRecipeDayTime().rawValue]
         let viewController = UINavigationController(
             rootViewController: RecipeSearchBuilder(state: .initial(searchFilter)).build()
         )

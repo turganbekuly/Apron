@@ -26,8 +26,10 @@ final class IngredientDescriptionCell: UITableViewCell {
         let label = UILabel()
         label.font = TypographyFonts.regular12
         label.textColor = .black
+        label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.sizeToFit()
         return label
     }()
 
@@ -81,10 +83,9 @@ final class IngredientDescriptionCell: UITableViewCell {
         }
 
         timingLabel.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(8.5)
+            $0.centerY.equalTo(timingImageView.snp.centerY)
             $0.leading.equalTo(timingImageView.snp.trailing).offset(5)
             $0.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalTo(separatorView.snp.top).offset(-13)
         }
     }
 

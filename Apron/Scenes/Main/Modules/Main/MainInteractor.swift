@@ -9,6 +9,7 @@
 protocol MainBusinessLogic {
     func getCommunitiesByCategory(request: MainDataFlow.GetCommunities.Request)
     func getCookNowRecipes(request: MainDataFlow.GetCookNowRecipes.Request)
+    func getEventRecipes(request: MainDataFlow.GetEventRecipes.Request)
 //    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request)
     func saveRecipe(request: MainDataFlow.SaveRecipe.Request)
 }
@@ -52,6 +53,17 @@ final class MainInteractor: MainBusinessLogic {
                 self?.presenter.getCookNowRecipes(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.getCookNowRecipes(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func getEventRecipes(request: MainDataFlow.GetEventRecipes.Request) {
+        provider.getEventRecipes(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.getEventRecipes(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getEventRecipes(response: .init(result: .failed(error: error)))
             }
         }
     }

@@ -30,6 +30,15 @@ extension AuthSignInViewController {
             AuthStorage.shared.grantType = GrantType.native.rawValue
             AuthStorage.shared.save(model: model)
             ApronAnalytics.shared.setupUserInfo(id: 0, name: model.username, email: model.email)
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .authorization(
+                    AuthorizationModel(
+                        email: model.email,
+                        name: model.username ?? "",
+                        sourceType: .signIn
+                    )
+                )
+            )
             OneSignal.sendTag("authorization_page", value: "signed_in")
             let viewController = TabBarBuilder(state: .initial(.normal)).build()
             DispatchQueue.main.async {

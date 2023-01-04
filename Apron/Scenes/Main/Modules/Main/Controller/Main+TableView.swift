@@ -27,7 +27,7 @@ extension MainViewController: UITableViewDataSource {
             let cell: WhatToCookCell = tableView.dequeueReusableCell(for: indexPath)
             cell.delegate = self
             return cell
-        case .cookNow:
+        case .cookNow, .eventRecipes:
             let cell: CookNowCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
@@ -44,7 +44,7 @@ extension MainViewController: UITableViewDelegate {
             let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
             return rawCount * categoryCellHeight
-        case .cookNow:
+        case .cookNow, .eventRecipes:
             return 205
         }
     }
@@ -58,7 +58,7 @@ extension MainViewController: UITableViewDelegate {
             let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
             return rawCount * categoryCellHeight
-        case .cookNow:
+        case .cookNow, .eventRecipes:
             return 205
         }
     }
@@ -84,7 +84,8 @@ extension MainViewController: UITableViewDelegate {
                     categories: WhatToCookCategoryTypes.allCases
                 )
             )
-        case let .cookNow(sectionTitle, recipes):
+        case let .cookNow(sectionTitle, recipes),
+            let .eventRecipes(sectionTitle, recipes):
             guard let cell = cell as? CookNowCell else { return }
             cell.delegate = self
             cell.configure(

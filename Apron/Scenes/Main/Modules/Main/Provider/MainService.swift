@@ -9,16 +9,16 @@ import AKNetwork
 import Models
 
 protocol MainServiceProtocol {
-    func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping ((AKResult) -> Void)
-    )
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
     )
     func getCookNowRecipes(
         request: MainDataFlow.GetCookNowRecipes.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
+    func getEventRecipes(
+        request: MainDataFlow.GetEventRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     )
     func saveRecipe(
@@ -39,15 +39,6 @@ final class MainService: MainServiceProtocol {
 
     // MARK: - RecipePageServiceProtocol
 
-    func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping ((AKResult) -> Void)
-    ) {
-        provider.send(target: .joinCommunity(id: request.id)) { result in
-            completion(result)
-        }
-    }
-
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
@@ -62,6 +53,15 @@ final class MainService: MainServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .getCookNowRecipes(body: request.body)) { result in
+            completion(result)
+        }
+    }
+
+    func getEventRecipes(
+        request: MainDataFlow.GetEventRecipes.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getEventRecipes(body: request.body)) { result in
             completion(result)
         }
     }

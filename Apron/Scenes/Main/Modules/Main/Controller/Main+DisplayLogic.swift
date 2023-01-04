@@ -12,15 +12,15 @@ extension MainViewController: MainDisplayLogic {
     
     // MARK: - MainDisplayLogic
 
-    func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel) {
-        state = viewModel.state
-    }
-
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel) {
         state = viewModel.state
     }
 
     func displayCookNowRecipes(viewModel: MainDataFlow.GetCookNowRecipes.ViewModel) {
+        state = viewModel.state
+    }
+
+    func displayEventRecipes(viewModel: MainDataFlow.GetEventRecipes.ViewModel) {
         state = viewModel.state
     }
 

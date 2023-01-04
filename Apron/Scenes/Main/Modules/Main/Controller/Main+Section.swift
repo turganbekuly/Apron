@@ -14,6 +14,7 @@ extension MainViewController {
             case communities
             case whatToCook
             case cookNow
+            case eventRecipes
 //            case createRecipe
         }
         
@@ -21,6 +22,7 @@ extension MainViewController {
             case communities(String, [CommunityResponse], Int)
             case whatToCook(String)
             case cookNow(String, [RecipeResponse])
+            case eventRecipes(String, [RecipeResponse])
 //            case createRecipe
             
             static func == (lhs: Row, rhs: Row) -> Bool {
@@ -30,6 +32,8 @@ extension MainViewController {
                 case (.whatToCook, .whatToCook):
                     return true
                 case (.cookNow, .cookNow):
+                    return true
+                case (.eventRecipes, .eventRecipes):
                     return true
 //                case (.createRecipe, .createRecipe):
 //                    return true

@@ -78,7 +78,7 @@ extension RecipePageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .topView:
-            return (view.bounds.width / 2) + 120
+            return (view.bounds.width / 1.5) + 90
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
             return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 0)
@@ -115,7 +115,7 @@ extension RecipePageViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .topView:
-            return (view.bounds.width / 2) + 120
+            return (view.bounds.width / 1.5) + 90
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
             return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 0)

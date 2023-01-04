@@ -19,11 +19,16 @@ extension MainViewController {
 
     func getCookNowRecipes() {
         var searchFilter = SearchFilterRequestBody()
+        searchFilter.dayTimeType = [defineRecipeDayTime().rawValue]
+        interactor.getCookNowRecipes(request: .init(body: searchFilter))
+    }
+
+    func getEventRecipes() {
+        var searchFilter = SearchFilterRequestBody()
         searchFilter.dishTypes = [3]
         searchFilter.eventTypes = [1]
         searchFilter.limit = 10
-        interactor.getCookNowRecipes(request: .init(body: searchFilter))
-
+        interactor.getEventRecipes(request: .init(body: searchFilter))
     }
 
     func saveRecipe(with id: Int) {

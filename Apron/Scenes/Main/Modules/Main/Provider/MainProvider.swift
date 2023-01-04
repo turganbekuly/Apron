@@ -9,11 +9,6 @@ import AKNetwork
 import Models
 
 protocol MainProviderProtocol {
-    func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
-    )
-
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping (MainDataFlow.GetCommunitiesResult) -> Void
@@ -22,6 +17,11 @@ protocol MainProviderProtocol {
     func getCookNowRecipes(
         request: MainDataFlow.GetCookNowRecipes.Request,
         completion: @escaping (MainDataFlow.GetCookNowRecipesResult) -> Void
+    )
+
+    func getEventRecipes(
+        request: MainDataFlow.GetEventRecipes.Request,
+        completion: @escaping (MainDataFlow.GetEventRecipesResult) -> Void
     )
 
     func saveRecipe(
@@ -42,20 +42,6 @@ final class MainProvider: MainProviderProtocol {
     }
 
     // MARK: - RecipePageProviderProtocol
-
-    func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
-    ) {
-        service.joinCommunity(request: request) {
-            switch $0 {
-            case .success(_):
-                completion(.successfull)
-            case let .failure(error):
-                completion(.failed(error: error))
-            }
-        }
-    }
 
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
@@ -80,6 +66,24 @@ final class MainProvider: MainProviderProtocol {
         completion: @escaping (MainDataFlow.GetCookNowRecipesResult) -> Void
     ) {
         service.getCookNowRecipes(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getEventRecipes(
+        request: MainDataFlow.GetEventRecipes.Request,
+        completion: @escaping (MainDataFlow.GetEventRecipesResult) -> Void
+    ) {
+        service.getEventRecipes(request: request) {
             switch $0 {
             case let .success(json):
                 if let jsons = json["data"] as? [JSON] {

@@ -15,6 +15,7 @@ enum MainEndpoint {
     case getCommuntiesByCategories
     case getMyCommunities
     case getCookNowRecipes(body: SearchFilterRequestBody)
+    case getEventRecipes(body: SearchFilterRequestBody)
     case saveRecipe(id: Int)
 }
 
@@ -31,7 +32,7 @@ extension MainEndpoint: AKNetworkTargetType {
             return "communities/main"
         case .getMyCommunities:
             return "communities/getMyCreatedCommunities/true"
-        case .getCookNowRecipes:
+        case .getCookNowRecipes, .getEventRecipes:
             return "recipes/mainSearch"
         case .saveRecipe(let id):
             return "recipes/saveRecipe/\(id)"
@@ -46,7 +47,7 @@ extension MainEndpoint: AKNetworkTargetType {
             return .get
         case .getMyCommunities:
             return .get
-        case .getCookNowRecipes:
+        case .getCookNowRecipes, .getEventRecipes:
             return .post
         case .saveRecipe:
             return .put
@@ -61,7 +62,8 @@ extension MainEndpoint: AKNetworkTargetType {
             return .requestPlain
         case .getMyCommunities:
             return .requestPlain
-        case let .getCookNowRecipes(body):
+        case let .getCookNowRecipes(body),
+            let .getEventRecipes(body):
             return .requestParameters(
                 parameters: body.toJSON(),
                 encoding: AKJSONEncoding.default

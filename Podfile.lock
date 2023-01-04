@@ -197,12 +197,6 @@ PODS:
   - SwiftGen (6.5.1)
   - UIScrollView-InfiniteScroll (1.1.0)
   - Wormholy (1.6.4)
-  - YandexMobileMetrica/Dynamic (4.4.0):
-    - YandexMobileMetrica/Dynamic/Core (= 4.4.0)
-    - YandexMobileMetrica/Dynamic/Crashes (= 4.4.0)
-  - YandexMobileMetrica/Dynamic/Core (4.4.0)
-  - YandexMobileMetrica/Dynamic/Crashes (4.4.0):
-    - YandexMobileMetrica/Dynamic/Core
 
 DEPENDENCIES:
   - AKNetwork (from `./Development Pods/AKNetwork`)
@@ -231,7 +225,6 @@ DEPENDENCIES:
   - Storages (from `./Development Pods/Storages`)
   - SwiftGen (~> 6.0)
   - UIScrollView-InfiniteScroll
-  - YandexMobileMetrica/Dynamic (= 4.4.0)
 
 SPEC REPOS:
   trunk:
@@ -275,7 +268,6 @@ SPEC REPOS:
     - SwiftGen
     - UIScrollView-InfiniteScroll
     - Wormholy
-    - YandexMobileMetrica
 
 EXTERNAL SOURCES:
   AKNetwork:
@@ -359,8 +351,7 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
-  YandexMobileMetrica: baf7cea47cb87fc9af963c4f747ce8dd7df3d7c0
 
-PODFILE CHECKSUM: c5f19feea3fe03830093b6e09d45e6d1e068ceed
+PODFILE CHECKSUM: 7646ffd51f728a3074cdbe16f2daaf382e328d93
 
 COCOAPODS: 1.11.3

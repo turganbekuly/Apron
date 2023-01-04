@@ -15,7 +15,6 @@ import RemoteConfig
 import FeatureToggle
 import Wormholy
 import Kingfisher
-import YandexMobileMetrica
 import Mixpanel
 import IQKeyboardManagerSwift
 import APRUIKit
@@ -27,7 +26,6 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     // MARK: - Methods
 
     func configure(_ application: UIApplication?, launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
-        configureAppMetrica()
         configureFirebase()
         configureAnalytics()
         configureOneSignal(launchOptions: launchOptions)
@@ -77,12 +75,6 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
                 toggles.forEach { config[$0.key] = "\($0.value)" }
             }
         }
-    }
-
-    private func configureAppMetrica() {
-        guard let configuration = YMMYandexMetricaConfiguration(apiKey: Configurations.getAppMetricaAPIKey()) else { return }
-
-        YMMYandexMetrica.activate(with: configuration)
     }
 
     private func configureWormholy() {

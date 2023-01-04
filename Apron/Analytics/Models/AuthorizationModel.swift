@@ -11,6 +11,7 @@ public enum AuthorizationModelTypes: String, Codable {
     case signUp
     case signIn
     case skipped
+    case apple
 }
 
 public struct AuthorizationModel: Codable {

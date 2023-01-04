@@ -13,9 +13,9 @@ import Storages
 import Models
 
 protocol MainDisplayLogic: AnyObject {
-    func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel)
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel)
     func displayCookNowRecipes(viewModel: MainDataFlow.GetCookNowRecipes.ViewModel)
+    func displayEventRecipes(viewModel: MainDataFlow.GetEventRecipes.ViewModel)
     func displaySavedRecipe(viewModel: MainDataFlow.SaveRecipe.ViewModel)
 }
 
@@ -42,9 +42,15 @@ final class MainViewController: ViewController, Messagable {
         }
     }
 
+    var eventRecipes: [RecipeResponse] = [] {
+        didSet {
+            configureMainPageCells()
+        }
+    }
+
     var cookNowRecipes: [RecipeResponse] = [] {
         didSet {
-            configureCookNow(with: cookNowRecipes)
+            configureMainPageCells()
         }
     }
     
@@ -197,9 +203,31 @@ final class MainViewController: ViewController, Messagable {
         mainView.reloadTableViewWithoutAnimation()
     }
 
-    func configureCookNow(with recipes: [RecipeResponse]) {
+    func defineRecipeDayTime() -> SuggestedDayTimeType {
+        let today = Date()
+        let hour = Calendar.current.component(.hour, from: today)
+        if (7...13).contains(hour) {
+            return .zavtrak
+        }
+        if (13...16).contains(hour) {
+            return .obed
+        }
+        if (16...19).contains(hour) {
+            return .poldnik
+        }
+        if (19...23).contains(hour) {
+            return .uzhin
+        }
+        if (0...6).contains(hour) {
+            return .uzhin
+        }
+        return .obed
+    }
+
+    func configureMainPageCells() {
         var sections = [Section]()
-        sections.append(.init(section: .cookNow, rows: [.cookNow("", recipes)]))
+        sections.append(.init(section: .cookNow, rows: [.cookNow("Приготовить на \(defineRecipeDayTime().title.lowercased())", cookNowRecipes)]))
+//        sections.append(.init(section: .eventRecipes, rows: [.eventRecipes("Салаты на новый год", eventRecipes)]))
         sections.append(
             .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
         )
@@ -210,8 +238,11 @@ final class MainViewController: ViewController, Messagable {
 
     @objc
     private func refresh(_ sender: UIRefreshControl) {
-        configureCookNow(with: [])
+//        eventRecipes.removeAll()
+        cookNowRecipes.removeAll()
+        configureMainPageCells()
         getCookNowRecipes()
+//        getEventRecipes()
     }
 
     deinit {

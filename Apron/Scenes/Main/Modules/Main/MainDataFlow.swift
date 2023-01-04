@@ -52,20 +52,20 @@ extension MainDataFlow {
 }
 
 extension MainDataFlow {
-    enum JoinCommunity {
+    enum GetEventRecipes {
         struct Request {
-            let id: Int
+            let body: SearchFilterRequestBody
         }
         struct Response {
-            let result: JoinCommunityResult
+            let result: GetEventRecipesResult
         }
         struct ViewModel {
             var state: MainViewController.State
         }
     }
 
-    enum JoinCommunityResult {
-        case successfull
+    enum GetEventRecipesResult {
+        case successful(model: [RecipeResponse])
         case failed(error: AKNetworkError)
     }
 }
