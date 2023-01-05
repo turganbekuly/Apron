@@ -35,10 +35,14 @@
 	<string>becfe5fdb6479d4df85b98227683bc97</string>
 	<key>Configuration.APPMETRICA_API_KEY</key>
 	<string>f7e85fd4-4794-4b7b-a47c-ddc4c3f7f0ea</string>
+	<key>Configuration.APPSFLYER_DEV_KEY</key>
+	<string>Qq2h88bEK2xFLpte8YBKUo</string>
+	<key>Configuration.APP_ID</key>
+	<string>1626436370</string>
 	<key>Configuration.BASE_URL</key>
 	<string>104.248.249.70/receipts/</string>
 	<key>Configuration.DEEPLINK_BASED_URL</key>
-	<string>apron</string>
+	<string>moca</string>
 	<key>Configuration.HTTP</key>
 	<string>http://</string>
 	<key>Configuration.MIXPANEL_API_KEY</key>
@@ -47,6 +51,10 @@
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
 	<key>Configuration.WEB_BASED_URL</key>
 	<string>apron.ws</string>
+	<key>FacebookAppID</key>
+	<string>534377055292946</string>
+	<key>FacebookDisplayName</key>
+	<string>Moca</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>
@@ -54,6 +62,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAdvertisingAttributionReportEndpoint</key>
+	<string>https://appsflyer-skadnetwork.com/</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Разрешите приложению доступ к камере телефона для создания снимков.</string>
 	<key>NSFaceIDUsageDescription</key>
@@ -62,6 +72,8 @@
 	<string>Разрешите приложению доступ к геолокации.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Разрешите приложению доступ к галерее для загрузки фото и видео.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Разрешите приложению доступ для предоставления вам персонализированных рецептов</string>
 	<key>OneSignal_suppress_launch_urls</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -86,18 +98,5 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb534377055292946</string>
-      </array>
-      </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>534377055292946</string>
-    <key>FacebookDisplayName</key>
-    <string>Moca</string>
 </dict>
 </plist>

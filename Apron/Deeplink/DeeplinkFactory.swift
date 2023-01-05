@@ -7,12 +7,27 @@
 
 import Foundation
 import Configurations
+import AppsFlyerLib
 
  final class DeeplinkFactory {
 
     // MARK: - Make Deeplink
 
-     func makeDeeplink(from url: URL) -> Deeplink {
+     func makeAppsflyerDeeplink(with deeplink: DeepLink) -> CustomDeepLink {
+         let dict = deeplink.clickEvent
+         if let _ = dict["saved_recipes"] as? String {
+             return .openSavedRecipes
+         }
+         if let _ = dict["shopping_list"] as? String {
+             return .openShoppingList
+         }
+         if let receipeId = dict["recipe_id"] as? String {
+             return .openRecipe(id: Int(receipeId) ?? 1)
+         }
+         return .unknown
+     }
+
+     func makeDeeplink(from url: URL) -> CustomDeepLink {
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         guard
             let urlHost = urlComponents?.host,
@@ -21,14 +36,14 @@ import Configurations
 
         let components = urlPath.components(separatedBy: "/").filter { !$0.isEmpty }
         switch urlHost {
-        case Configurations.getWebBaseHost():
+        case Configurations.getDeeplinkBaseURL():
             return getBaseDeeplink(from: components)
         default:
             return .unknown
         }
     }
 
-    private func getBaseDeeplink(from components: [String]) -> Deeplink {
+    private func getBaseDeeplink(from components: [String]) -> CustomDeepLink {
         switch components.count {
         case 1:
             switch components.first {

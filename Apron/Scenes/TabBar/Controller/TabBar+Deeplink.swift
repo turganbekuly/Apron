@@ -8,7 +8,7 @@
 import UIKit
 
 extension TabBarViewController: PendingDeeplinkProviderDelegate {
-    func pendingDeeplinkProvider(_ provider: PendingDeeplinkProvider, didChangePendingDeeplink deeplink: Deeplink?) {
+    func pendingDeeplinkProvider(_ provider: PendingDeeplinkProvider, didChangePendingDeeplink deeplink: CustomDeepLink?) {
         performDeeplink()
     }
 
@@ -22,7 +22,7 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
     }
 
     // swiftlint:disable:next function_body_length
-    private func process(_ deeplink: Deeplink) {
+    private func process(_ deeplink: CustomDeepLink) {
         changeTab(for: deeplink)
         guard let navigationController = children[safe: selectedIndex] as? UINavigationController else { return }
 
@@ -59,7 +59,7 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
         }
     }
 
-    private func changeTab(for deeplink: Deeplink) {
+    private func changeTab(for deeplink: CustomDeepLink) {
         switch deeplink {
         case .openCommunity, .openRecipe, .openShoppingList:
             selectedIndex = 0

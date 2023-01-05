@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "appsflyerframework",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AppsFlyerSDK/AppsFlyerFramework",
+      "state" : {
+        "branch" : "master",
+        "revision" : "09eaba9c8d9a82d2fb57ada402a89821e8d43c5e"
+      }
+    },
+    {
       "identity" : "dropdown",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AssistoLab/DropDown",

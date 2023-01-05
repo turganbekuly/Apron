@@ -5,15 +5,18 @@
 //  Created by Akarys Turganbekuly on 11.05.2022.
 //
 
-import Amplitude
 import Foundation
+import Amplitude
 import FirebaseAnalytics
 import Mixpanel
+import AppsFlyerLib
 
 protocol AnalyticsProtocol {
     func configure(
         amplitudeKey: String,
-        mixpanelKey: String
+        mixpanelKey: String,
+        appsFlyerKey: String,
+        appsFlyerAppId: String
     )
     func sendAnalyticsEvent(_ event: AnalyticsEvents)
     func setupUserInfo(id: Int?, name: String?, email: String?)
@@ -31,10 +34,17 @@ final class ApronAnalytics: AnalyticsProtocol {
 
     // MARK: - Methods
 
-    func configure(amplitudeKey: String, mixpanelKey: String) {
+    func configure(
+        amplitudeKey: String,
+        mixpanelKey: String,
+        appsFlyerKey: String,
+        appsFlyerAppId: String
+    ) {
         Amplitude.instance().initializeApiKey(amplitudeKey)
         Mixpanel.initialize(token: mixpanelKey, trackAutomaticEvents: true)
-
+        AppsFlyerLib.shared().appsFlyerDevKey = appsFlyerKey
+        AppsFlyerLib.shared().appleAppID = appsFlyerAppId
+        AppsFlyerLib.shared().resolveDeepLinkURLs = ["clicks.moca.kz"]
     }
 
     func sendAnalyticsEvent(_ event: AnalyticsEvents) {
@@ -52,6 +62,7 @@ final class ApronAnalytics: AnalyticsProtocol {
         )
 
         Analytics.logEvent(event.name, parameters: event.eventProperties)
+        AppsFlyerLib.shared().logEvent(event.name, withValues: event.eventProperties)
     }
 
     func setupUserInfo(id: Int?, name: String?, email: String?) {
@@ -67,7 +78,7 @@ final class ApronAnalytics: AnalyticsProtocol {
         Mixpanel.mainInstance().identify(distinctId: "\(id ?? 0)")
         Mixpanel.mainInstance().people.set(property: "user_name", to: name)
         Mixpanel.mainInstance().people.set(property: "user_email", to: email)
-
+        AppsFlyerLib.shared().customData = ["id": id ?? 0, "name": name ?? "", "email": email ?? ""]
     }
 
     func resetAnalytics() {

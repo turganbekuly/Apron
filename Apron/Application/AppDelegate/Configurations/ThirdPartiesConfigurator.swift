@@ -42,7 +42,9 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     private func configureAnalytics() {
         ApronAnalytics.shared.configure(
             amplitudeKey: Configurations.getAmplitudeAPIKey(),
-            mixpanelKey: Configurations.getMixpanelAPIKey()
+            mixpanelKey: Configurations.getMixpanelAPIKey(),
+            appsFlyerKey: Configurations.getAppsflyerDevKey(),
+            appsFlyerAppId: Configurations.getAppId()
         )
     }
 

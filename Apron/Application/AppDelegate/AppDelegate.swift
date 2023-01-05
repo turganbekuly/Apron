@@ -12,11 +12,12 @@ import Storages
 import AKNetwork
 import FirebaseDynamicLinks
 import AppTrackingTransparency
+import AppsFlyerLib
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    internal var window: UIWindow?
+    var window: UIWindow?
 
     private lazy var configurators: [ApplicationConfiguratorProtocol] = {
         [
@@ -25,16 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
     }()
 
-    internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         setupFirstRun()
-        requestTrackingAuthorization()
+        AppsFlyerLib.shared().deepLinkDelegate = self
         configurators.forEach { $0.configure(application, launchOptions: launchOptions) }
 
         return true
     }
 
-    internal func application(
+    func application(
         _ app: UIApplication,
         open url: URL,
         options: [UIApplication.OpenURLOptionsKey : Any] = [:]
@@ -49,7 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    internal func application(
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        let user = AuthStorage.shared
+        AppsFlyerLib.shared().start()
+        AppsFlyerLib.shared().waitForATTUserAuthorization(timeoutInterval: 120)
+        AppsFlyerLib.shared().customData = ["id": 0, "name": user.username ?? "", "email": user.email ?? ""]
+        requestTrackingAuthorization()
+    }
+
+    func application(
         _ application: UIApplication,
         continue userActivity: NSUserActivity,
         restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
@@ -58,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL
         else { return false }
+        AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
         let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
             guard error == nil else { return }
 
@@ -69,8 +79,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if linkHandled { return true }
 
         DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
-
         return true
+    }
+
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        #if DEBUG
+        AppsFlyerLib.shared().useUninstallSandbox = true
+        #endif
+
+        AppsFlyerLib.shared().registerUninstall(deviceToken)
     }
 
     @objc func requestTrackingAuthorization() {
@@ -103,3 +123,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate: DeepLinkDelegate {
+    func didResolveDeepLink(_ result: DeepLinkResult) {
+        switch result.status {
+        case .notFound:
+            print("Deeplink not found")
+        case .found:
+            guard let deeplink = result.deepLink else { return }
+            if deeplink.isDeferred == true {
+                DeeplinkServicesContainer.shared.deeplinkHandler.handleAFDeeplink(with: deeplink)
+            } else {
+                DeeplinkServicesContainer.shared.deeplinkHandler.handleAFDeeplink(with: deeplink)
+            }
+        case .failure:
+            print("Failed")
+        }
+    }
+}
+
+extension AppDelegate: AppsFlyerLibDelegate {
+    func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]) {
+        if let status = conversionInfo["af_status"] as? String {
+            if (status == "Non-organic") {
+                // Business logic for Non-organic install scenario is invoked
+                if let sourceID = conversionInfo["media_source"],
+                   let campaign = conversionInfo["campaign"] {
+                    print("This is a Non-organic install. Media source: \(sourceID)  Campaign: \(campaign)")
+                }
+            }
+            else {
+                // Business logic for organic install scenario is invoked
+            }
+        }
+    }
+
+    func onConversionDataFail(_ error: Error) {
+        print(error)
+    }
+}

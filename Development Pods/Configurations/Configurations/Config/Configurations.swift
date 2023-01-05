@@ -36,9 +36,14 @@ public final class Configurations {
     public static func getDeeplinkBaseURL() -> String {
         guard let http = getValue(for: ConfigurationKeys.http),
               let urlString = getValue(for: ConfigurationKeys.deeplinkBasedURL) else {
-            fatalError("Cannot get base url")
+            print("Cannot get base url")
+            return ""
         }
         return "\(http)\(urlString)"
+    }
+
+    public static func getAppId() -> String {
+        getValue(for: ConfigurationKeys.app_id) ?? ""
     }
 
     public static func getOneSignalAppID() -> String {
@@ -47,7 +52,8 @@ public final class Configurations {
 
     public static func getAmplitudeAPIKey() -> String {
         guard let apiKey = getValue(for: ConfigurationKeys.amplitudeApiKey) else {
-            fatalError("Cannot get api key")
+            print("Cannot get api key")
+            return ""
         }
 
         return apiKey
@@ -55,10 +61,20 @@ public final class Configurations {
 
     public static func getMixpanelAPIKey() -> String {
         guard let apiKey = getValue(for: ConfigurationKeys.mixpanelApiKey) else {
-            fatalError("Cannot get api key")
+            print("Cannot get api key")
+            return ""
         }
 
         return apiKey
+    }
+
+    public static func getAppsflyerDevKey() -> String {
+        guard let devKey = getValue(for: ConfigurationKeys.appsflyerDevKey) else {
+            print("Cannot get dev key")
+            return ""
+        }
+
+        return devKey
     }
 
     private static func getValue(for key: String) -> String? {

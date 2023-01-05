@@ -27,6 +27,7 @@ def commonPods
   pod 'Firebase/DynamicLinks', :inhibit_warnings => true
   pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0', :inhibit_warnings => true
   pod 'Mixpanel-swift', :inhibit_warnings => true
+#  pod 'AppsFlyerFramework', :inhibit_warnings => true
 
 end
 
