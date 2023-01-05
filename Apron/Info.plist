@@ -57,13 +57,13 @@
 	<string>Moca</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSAdvertisingAttributionReportEndpoint</key>
+	<string>https://appsflyer-skadnetwork.com/</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSAdvertisingAttributionReportEndpoint</key>
-	<string>https://appsflyer-skadnetwork.com/</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Разрешите приложению доступ к камере телефона для создания снимков.</string>
 	<key>NSFaceIDUsageDescription</key>
