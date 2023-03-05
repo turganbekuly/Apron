@@ -7,7 +7,7 @@
 //
 
 extension CategorySelectionViewController {
-    
+
     // MARK: - Network
 
     func getCategories() {

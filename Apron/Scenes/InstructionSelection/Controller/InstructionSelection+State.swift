@@ -11,14 +11,14 @@ import UIKit
 import Configurations
 
 extension InstructionSelectionViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(Int, InstructionSelectedProtocol, RecipeInstruction?)
         case uploadImageSucceed(String)
         case uploadImageFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -39,5 +39,5 @@ extension InstructionSelectionViewController {
             show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
         }
     }
-    
+
 }

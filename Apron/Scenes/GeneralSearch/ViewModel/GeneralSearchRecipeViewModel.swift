@@ -14,4 +14,3 @@ protocol GeneralSearchRecipeViewModelProtocol {
 struct GeneralSearchRecipeViewModel: GeneralSearchRecipeViewModelProtocol {
     var recipe: RecipeResponse?
 }
-

@@ -12,6 +12,11 @@ public protocol RemoteConfigFieldValues: AnyObject {
     var aboutCommunitiesLink: String { get }
     var orderFromStoreLink: String { get }
     var contactWithDevelopersLink: String { get }
+    var mainOccaisionNumber: String { get }
+    var isGallerySourceEnabled: Bool { get }
+    var isRecipeCreationEnabled: Bool { get }
+    var isPaidRecipeEnabled: Bool { get }
+    var adBannerLink: String { get }
 }
 
 public final class RemoteConfig: RemoteConfigServiceProtocol, RemoteConfigFieldValues {
@@ -21,7 +26,7 @@ public final class RemoteConfig: RemoteConfigServiceProtocol, RemoteConfigFieldV
     private let remoteConfigHolder: RemoteConfigHolderProtocol
 
     // MARK: - Init
-    
+
     public init(
         remoteConfigProvider: RemoteConfigProviderProtocol = FirebaseRemoteConfigProvider(),
         remoteConfigHolder: RemoteConfigHolderProtocol = RemoteConfigHolder(persistentStorage: UserDefaultsRemoteConfigStorage())
@@ -29,7 +34,7 @@ public final class RemoteConfig: RemoteConfigServiceProtocol, RemoteConfigFieldV
         self.remoteConfigProvider = remoteConfigProvider
         self.remoteConfigHolder = remoteConfigHolder
     }
-    
+
     // MARK: - RemoteConfigServiceProtocol
 
     public func updateConfig(completion: @escaping ([String: Any]) -> Void = { _ in }) {
@@ -41,7 +46,7 @@ public final class RemoteConfig: RemoteConfigServiceProtocol, RemoteConfigFieldV
 
     // MARK: - Helpers
 
-    private func saveNewRemoteConfig(_ config: [String: Any]){
+    private func saveNewRemoteConfig(_ config: [String: Any]) {
         remoteConfigHolder.save(remoteConfigDictionary: config)
     }
 }
@@ -73,5 +78,25 @@ extension RemoteConfig {
 
     public var contactWithDevelopersLink: String {
         return remoteConfigHolder[string: Key.contactWithDevelopersLink.rawValue]
+    }
+
+    public var mainOccaisionNumber: String {
+        return remoteConfigHolder[string: Key.occasionNumber.rawValue]
+    }
+
+    public var isGallerySourceEnabled: Bool {
+        return remoteConfigHolder[bool: Key.isGallerySourceEnabled.rawValue]
+    }
+
+    public var isRecipeCreationEnabled: Bool {
+        return remoteConfigHolder[bool: Key.isRecipeCreationEnabled.rawValue]
+    }
+
+    public var isPaidRecipeEnabled: Bool {
+        return remoteConfigHolder[bool: Key.isPaidRecipeEnabled.rawValue]
+    }
+
+    public var adBannerLink: String {
+        return remoteConfigHolder[string: Key.adBannerLink.rawValue]
     }
 }

@@ -32,9 +32,10 @@ public final class MainView: UITableView {
 
         tableHeaderView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 0)))
         [
-         DynamicCommunityCell.self,
-         WhatToCookCell.self,
-         CookNowCell.self
+            AdBannerCell.self,
+            DynamicCommunityCell.self,
+            WhatToCookCell.self,
+            CookNowCell.self
         ].forEach {
             register(cellClass: $0)
         }

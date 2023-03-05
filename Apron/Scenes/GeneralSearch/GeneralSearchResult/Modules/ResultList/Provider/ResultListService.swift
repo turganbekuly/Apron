@@ -40,7 +40,7 @@ protocol ResultListServiceProtocol {
 }
 
 final class ResultListService: ResultListServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<ResultListEndpoint>
 
@@ -48,7 +48,7 @@ final class ResultListService: ResultListServiceProtocol {
     init(provider: AKNetworkProvider<ResultListEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - ResultListServiceProtocol
 
     func getRecipesByCommunityID(
@@ -73,8 +73,7 @@ final class ResultListService: ResultListServiceProtocol {
         request: ResultListDataFlow.GetSavedRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .getSavedRecipes(request.body))
-        { result in
+        provider.send(target: .getSavedRecipes(request.body)) { result in
             completion(result)
         }
     }
@@ -83,8 +82,7 @@ final class ResultListService: ResultListServiceProtocol {
         request: ResultListDataFlow.GetRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .getRecipes(request.body))
-        { result in
+        provider.send(target: .getRecipes(request.body)) { result in
             completion(result)
         }
     }
@@ -93,8 +91,7 @@ final class ResultListService: ResultListServiceProtocol {
         request: ResultListDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .getCommunities(request.body))
-        { result in
+        provider.send(target: .getCommunities(request.body)) { result in
             completion(result)
         }
     }

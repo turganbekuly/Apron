@@ -13,11 +13,11 @@ import Models
 import Storages
 
 public protocol TasteOnboardingDisplayLogic: AnyObject {
-    
+
 }
 
 public final class TasteOnboardingViewController: ViewController, ISkipButtonActionHander {
-    
+
     public struct Section {
         enum Section {
             case options(String)
@@ -25,11 +25,11 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
         enum Row {
             case option(String)
         }
-        
+
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
     public let interactor: TasteOnboardingBusinessLogic
     public var sections: [Section] = [] {
@@ -62,7 +62,7 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
             tasteOnboardingStorage.model = tasteOnboardingModel
         }
     }
-    
+
     // MARK: - Views
     public lazy var mainView: TasteOnboardingView = {
         let view = TasteOnboardingView()
@@ -79,44 +79,44 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     // MARK: - Init
     public init(interactor: TasteOnboardingBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     public required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override public func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         var counterPage: String = ""
@@ -130,14 +130,14 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: SkipButtonNavigationView(delegate: self))
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: ScreenCounterNavigationView(currectPage: counterPage))
     }
-    
+
     private func configureViews() {
         [mainView, nextButton].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
@@ -150,7 +150,7 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
             $0.bottom.equalTo(nextButton.snp.top).offset(-8)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
@@ -176,7 +176,7 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
     @objc func skipButtonTapped() {
         nextScreenAction()
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }

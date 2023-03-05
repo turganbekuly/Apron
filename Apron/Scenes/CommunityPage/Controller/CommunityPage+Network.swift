@@ -7,7 +7,7 @@
 //
 
 extension CommunityPageViewController {
-    
+
     // MARK: - Network
 
     func getCommunities(by id: Int) {

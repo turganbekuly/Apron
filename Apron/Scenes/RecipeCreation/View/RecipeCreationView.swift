@@ -9,7 +9,7 @@
 import UIKit
 
 final class RecipeCreationView: UITableView {
-    
+
     // MARK: - Init
     init() {
         super.init(frame: .zero, style: .plain)

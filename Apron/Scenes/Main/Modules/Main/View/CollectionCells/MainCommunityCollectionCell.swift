@@ -13,7 +13,7 @@ import Storages
 
 final class MainCommunityCollectionCell: UICollectionViewCell {
     // MARK: - Properties
-    
+
     var id = 0
 
     // MARK: - Init
@@ -27,13 +27,13 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override var isHighlighted: Bool{
-        didSet{
-            if isHighlighted{
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
                 UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
                     self.transform = self.transform.scaledBy(x: 0.9, y: 0.9)
                 }, completion: nil)
-            }else{
+            } else {
                 UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
                     self.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
                 }, completion: nil)

@@ -122,4 +122,3 @@ open class DefaultButton: UIButton {
     }
 
 }
-

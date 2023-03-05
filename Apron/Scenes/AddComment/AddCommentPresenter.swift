@@ -17,7 +17,7 @@ protocol AddCommentPresentationLogic: AnyObject {
 final class AddCommentPresenter: AddCommentPresentationLogic {
     // MARK: - Properties
     weak var viewController: AddCommentDisplayLogic?
-    
+
     // MARK: - AddCommentPresentationLogic
 
     func addComment(response: AddCommentDataFlow.AddComment.Response) {

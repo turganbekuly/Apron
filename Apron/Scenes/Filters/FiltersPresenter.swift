@@ -7,14 +7,14 @@
 //
 
 protocol FiltersPresentationLogic: AnyObject {
-    
+
 }
 
 final class FiltersPresenter: FiltersPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: FiltersDisplayLogic?
-    
+
     // MARK: - FiltersPresentationLogic
-    
+
 }

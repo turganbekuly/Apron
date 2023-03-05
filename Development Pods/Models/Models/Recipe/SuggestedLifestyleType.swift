@@ -29,4 +29,3 @@ public enum SuggestedLifestyleType: Int, CaseIterable, Codable {
         }
     }
 }
-

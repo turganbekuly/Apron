@@ -25,23 +25,23 @@ public struct DialogMessageViewModel: MessageProtocol {
     }
 
     public var firstButtonTitle: NSAttributedString? {
-        Typography.semibold14(text: firstButtonTitleText, color: .black).styled
+        Typography.semibold14(text: firstButtonTitleText, color: .white).styled
     }
 
     public var secondButtonTitle: NSAttributedString? {
-        Typography.semibold14(text: secondButtonTitleText, color: .black).styled
+        Typography.semibold14(text: secondButtonTitleText, color: .white).styled
     }
 
     public var backgroundColor: UIColor {
-        ApronAssets.colorsYello.color
+        ApronAssets.mainAppColor.color
     }
 
     public var titleColor: UIColor {
-        .black
+        .white
     }
 
     public var subtitleColor: UIColor? {
-        .black
+        .white
     }
 
     public var iconColor: UIColor? {

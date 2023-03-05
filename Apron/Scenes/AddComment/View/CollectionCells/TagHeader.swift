@@ -56,4 +56,3 @@ final class TagHeader: UICollectionReusableView {
         sectionHeaderLabel.text = title
     }
 }
-

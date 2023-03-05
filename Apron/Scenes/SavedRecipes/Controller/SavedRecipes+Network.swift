@@ -7,7 +7,7 @@
 //
 
 extension SavedRecipesViewController {
-    
+
     // MARK: - Network
 
     func getSavedRecipes(page: Int) {

@@ -14,7 +14,7 @@ protocol AuthSignUpDisplayLogic: AnyObject {
     func displaySignUp(with viewModel: AuthSignUpDataFlow.SignUp.ViewModel)
 }
 
-final class AuthSignUpViewController: ViewController, Messagable {
+final class AuthSignUpViewController: ViewController {
     // MARK: - Properties
 
     let interactor: AuthSignUpBusinessLogic
@@ -24,7 +24,7 @@ final class AuthSignUpViewController: ViewController, Messagable {
             updateState()
         }
     }
-    
+
     // MARK: - Views
     lazy var mainView: AuthSignUpView = {
         let view = AuthSignUpView()
@@ -35,44 +35,44 @@ final class AuthSignUpViewController: ViewController, Messagable {
     }()
 
     private lazy var backButton = NavigationBackButton()
-    
+
     // MARK: - Init
     init(interactor: AuthSignUpBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         backButton.configure(with: "Регистрация")
@@ -82,29 +82,29 @@ final class AuthSignUpViewController: ViewController, Messagable {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = .clear
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.bottom.leading.trailing.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
 }
 
 extension AuthSignUpViewController: SignUpProtocol {

@@ -10,11 +10,11 @@ import APRUIKit
 import UIKit
 
 protocol GeneralSearchResultDisplayLogic: AnyObject {
-    
+
 }
 
 final class GeneralSearchResultViewController: ViewController {
-    
+
     struct Section {
         enum Section {
             case results
@@ -22,11 +22,11 @@ final class GeneralSearchResultViewController: ViewController {
         enum Row {
             case result(GeneralSearchInitialState)
         }
-        
+
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
     weak var delegate: ResultListViewControllerDelegate?
     let interactor: GeneralSearchResultBusinessLogic
@@ -87,7 +87,7 @@ final class GeneralSearchResultViewController: ViewController {
         viewController.pagerDelegate = self
         return viewController
     }()
-    
+
     // MARK: - Views
     lazy var mainView: GeneralSearchResultView = {
         let view = GeneralSearchResultView()
@@ -95,19 +95,19 @@ final class GeneralSearchResultViewController: ViewController {
         view.delegate = self
         return view
     }()
-    
+
     // MARK: - Init
     init(interactor: GeneralSearchResultBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
@@ -115,36 +115,36 @@ final class GeneralSearchResultViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
         configureViews()
         configurePager()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.title = ""
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -153,13 +153,13 @@ final class GeneralSearchResultViewController: ViewController {
             make.height.equalTo(59)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
 }

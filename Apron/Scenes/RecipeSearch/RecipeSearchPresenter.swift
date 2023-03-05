@@ -18,7 +18,7 @@ protocol RecipeSearchPresentationLogic: AnyObject {
 final class RecipeSearchPresenter: RecipeSearchPresentationLogic {
     // MARK: - Properties
     weak var viewController: RecipeSearchDisplayLogic?
-    
+
     // MARK: - RecipeSearchPresentationLogic
 
     func getRecipes(response: RecipeSearchDataFlow.GetRecipes.Response) {

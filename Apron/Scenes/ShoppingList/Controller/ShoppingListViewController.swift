@@ -19,8 +19,8 @@ protocol ShoppingListDisplayLogic: AnyObject {
     func displayClearCartItems(viewModel: ShoppingListDataFlow.ClearCartItems.ViewModel)
 }
 
-final class ShoppingListViewController: ViewController, Messagable {
-    
+final class ShoppingListViewController: ViewController {
+
     struct Section {
         enum Section {
         case ingredients
@@ -30,11 +30,11 @@ final class ShoppingListViewController: ViewController, Messagable {
         case ingredient(CartItem)
         case empty
         }
-        
+
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
     let interactor: ShoppingListBusinessLogic
     var sections: [Section] = []
@@ -85,7 +85,7 @@ final class ShoppingListViewController: ViewController, Messagable {
             )
         }
     }
-    
+
     // MARK: - Views
 
     lazy var mainView: ShoppingListView = {
@@ -110,38 +110,38 @@ final class ShoppingListViewController: ViewController, Messagable {
         button.layer.masksToBounds = true
         return button
     }()
-    
+
     // MARK: - Init
     init(interactor: ShoppingListBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
 
         ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListViewed)
         OneSignal.sendTag("shopping_list_page_viewed", value: "\(initialState)")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
         self.tabBarController?.tabBar.isHidden = true
     }
@@ -151,13 +151,13 @@ final class ShoppingListViewController: ViewController, Messagable {
 
         self.tabBarController?.tabBar.isHidden = false
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         backButton.configure(with: "Список покупок")
@@ -169,7 +169,7 @@ final class ShoppingListViewController: ViewController, Messagable {
             self.handleAuthorizationStatus {
                 let viewController = ProfileBuilder(state: .initial).build()
                 DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(viewController, animated: true)
+                    self.navigationController?.pushViewController(viewController, animated: false)
                 }
             }
         }
@@ -188,14 +188,14 @@ final class ShoppingListViewController: ViewController, Messagable {
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
-    
+
     private func configureViews() {
         [mainView, orderButton].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         orderButton.snp.makeConstraints {
             $0.height.equalTo(40)
@@ -209,7 +209,7 @@ final class ShoppingListViewController: ViewController, Messagable {
             $0.bottom.equalTo(orderButton.snp.top).offset(-16)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
@@ -220,7 +220,7 @@ final class ShoppingListViewController: ViewController, Messagable {
             self.navigationController?.presentPanModal(vc)
         }
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }

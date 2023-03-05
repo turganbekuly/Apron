@@ -43,4 +43,3 @@ public struct IngredientAddedModel: Codable {
         return json
     }
 }
-

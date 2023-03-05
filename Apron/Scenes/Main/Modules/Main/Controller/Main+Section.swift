@@ -6,27 +6,32 @@
 //
 
 import Models
+import RemoteConfig
 
 extension MainViewController {
-    
+
     struct Section {
         enum Section {
+            case adBanner
             case communities
             case whatToCook
             case cookNow
             case eventRecipes
 //            case createRecipe
         }
-        
+
         enum Row: Equatable {
+            case adBanner([AdBannerObject])
             case communities(String, [CommunityResponse], Int)
             case whatToCook(String)
             case cookNow(String, [RecipeResponse])
             case eventRecipes(String, [RecipeResponse])
 //            case createRecipe
-            
+
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch (lhs, rhs) {
+                case (.adBanner, .adBanner):
+                    return true
                 case (.communities, .communities):
                     return true
                 case (.whatToCook, .whatToCook):
@@ -42,7 +47,7 @@ extension MainViewController {
                 }
             }
         }
-        
+
         let section: Section
         var rows: [Row]
     }

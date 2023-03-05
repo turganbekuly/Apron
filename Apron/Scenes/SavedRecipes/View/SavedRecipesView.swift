@@ -9,7 +9,7 @@
 import UIKit
 
 final class SavedRecipesView: UICollectionView {
-    
+
     // MARK: - Init
 
     init() {

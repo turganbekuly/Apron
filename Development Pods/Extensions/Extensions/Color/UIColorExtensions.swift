@@ -49,9 +49,9 @@ extension UIColor {
 extension UIColor {
     static func randomColor() -> UIColor {
         return UIColor(
-           red:   .random(),
+           red: .random(),
            green: .random(),
-           blue:  .random(),
+           blue: .random(),
            alpha: 1.0
         )
     }

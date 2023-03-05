@@ -43,7 +43,7 @@ final class SearchSuggestionCategoriesView: UICollectionView {
         showsVerticalScrollIndicator = false
 
         [
-            SavedRecipeHeaderView.self,
+            SavedRecipeHeaderView.self
         ].forEach {
             register(
                 viewClass: $0,
@@ -63,4 +63,3 @@ final class SearchSuggestionCategoriesView: UICollectionView {
         backgroundColor = .clear
     }
 }
-

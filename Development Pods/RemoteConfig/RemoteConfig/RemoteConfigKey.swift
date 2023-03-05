@@ -8,4 +8,9 @@ public enum RemoteConfigKey: String, CaseIterable {
     case aboutCommunitiesLink = "about_communities_link"
     case orderFromStoreLink = "order_from_store_link"
     case contactWithDevelopersLink = "contact_with_developers_link"
+    case isGallerySourceEnabled = "is_gallery_source_for_creation_enabled"
+    case occasionNumber = "main_occaision_number"
+    case isRecipeCreationEnabled = "ios_recipe_creation_enabled"
+    case isPaidRecipeEnabled = "ios_paid_recipe_creation"
+    case adBannerLink = "ios_ad_banner_link"
 }

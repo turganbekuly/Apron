@@ -106,8 +106,7 @@ open class PlaceholderTextView: UITextView {
             if let newValue = newValue as String? {
 
                 self.attributedPlaceholder = NSAttributedString(string: newValue, attributes: self.placeholderAttributes)
-            }
-            else {
+            } else {
 
                 self.attributedPlaceholder = nil
             }
@@ -209,8 +208,7 @@ open class PlaceholderTextView: UITextView {
         if #available(iOS 10.0, *) {
 
             userInterfaceLayoutDirection = self.effectiveUserInterfaceLayoutDirection
-        }
-        else {
+        } else {
 
             userInterfaceLayoutDirection = UIView.userInterfaceLayoutDirection(for: self.semanticContentAttribute)
         }
@@ -278,8 +276,7 @@ open class PlaceholderTextView: UITextView {
                 height: ceil(placeholderInsets.top + placeholderUsedRect.maxY + placeholderInsets.bottom)
             )
             return size
-        }
-        else {
+        } else {
 
             return super.sizeThatFits(size)
         }
@@ -303,8 +300,7 @@ open class PlaceholderTextView: UITextView {
                 width: ceil(placeholderInsets.left + placeholderUsedRect.maxX + placeholderInsets.right),
                 height: ceil(placeholderInsets.top + placeholderUsedRect.maxY + placeholderInsets.bottom)
             )
-        }
-        else {
+        } else {
 
             return super.sizeToFit()
         }

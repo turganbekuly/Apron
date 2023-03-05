@@ -9,7 +9,7 @@
 import Models
 
 extension AddCommentViewController {
-    
+
     // MARK: - Network
 
     func rateRecipe(positive: Bool) {

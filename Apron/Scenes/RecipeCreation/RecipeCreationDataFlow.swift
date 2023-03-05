@@ -9,7 +9,7 @@
 import Models
 
 enum RecipeCreationDataFlow {
-    
+
 }
 
 extension RecipeCreationDataFlow {

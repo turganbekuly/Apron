@@ -37,4 +37,3 @@ public enum TypographyFonts {
     public static let semibold10 = FontFamily.Poppins.semiBold.font(size: 10)
     public static let regular10 = FontFamily.Poppins.regular.font(size: 10)
 }
-

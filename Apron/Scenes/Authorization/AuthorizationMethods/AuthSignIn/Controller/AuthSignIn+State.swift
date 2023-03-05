@@ -12,14 +12,14 @@ import Storages
 import OneSignal
 
 extension AuthSignInViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial
         case loginSucceed(Auth)
         case loginFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -40,14 +40,15 @@ extension AuthSignInViewController {
                 )
             )
             OneSignal.sendTag("authorization_page", value: "signed_in")
-            let viewController = TabBarBuilder(state: .initial(.normal)).build()
+            let vc = TabBarBuilder(state: .initial(.normal)).build()
+            let navigationVC = UINavigationController(rootViewController: vc)
             DispatchQueue.main.async {
-                UIApplication.shared.windows.first?.rootViewController = viewController
+                UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .loginFailed:
             hideLoader()
             show(type: .error("Не удалось войти. Пожалуйста, попробуйте еще раз!"))
         }
     }
-    
+
 }

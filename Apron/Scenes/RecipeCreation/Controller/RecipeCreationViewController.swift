@@ -11,13 +11,14 @@ import UIKit
 import Models
 import Storages
 import AlertMessages
+import RemoteConfig
 
 protocol RecipeCreationDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipeCreationDataFlow.CreateRecipe.ViewModel)
     func displayUploadedImage(with viewModel: RecipeCreationDataFlow.UploadImage.ViewModel)
 }
 
-final class RecipeCreationViewController: ViewController, Messagable {
+final class RecipeCreationViewController: ViewController {
     // MARK: - Properties
 
     let interactor: RecipeCreationBusinessLogic
@@ -111,18 +112,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
                 }
 
                 self.recipeCreationSourceType = sourceType
-                sections = [
-                    .init(
-                        section: .info,
-                        rows: [
-                            .name, .imagePlaceholder,.source,
-                            .description, .composition, .paidRecipe,
-                            .instruction, .servings, .cookTime,
-                            .whenToCook
-                        ]
-                    )
-                ]
-                mainView.reloadData()
+                handleSections(with: recipeCreation)
             default:
                 break
             }
@@ -134,11 +124,12 @@ final class RecipeCreationViewController: ViewController, Messagable {
             updateState()
         }
     }
-    
+
     // MARK: - Views factory
 
     private lazy var saveButton: NavigationButton = {
         let button = NavigationButton()
+        button.backgroundType = .greenBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
@@ -152,46 +143,46 @@ final class RecipeCreationViewController: ViewController, Messagable {
         view.delegate = self
         return view
     }()
-    
+
     // MARK: - Init
 
     init(interactor: RecipeCreationBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
 
     func configureImageCell(isLoaded: Bool) {
@@ -220,14 +211,14 @@ final class RecipeCreationViewController: ViewController, Messagable {
             $0.height.equalTo(30)
         }
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
 
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -247,7 +238,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
         cell.instructionsView.reloadData()
         mainView.reloadTableViewWithoutAnimation()
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
@@ -289,6 +280,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
     }
 
     private func handleSections(with recipe: RecipeCreation?) {
+        let remoteConfigManager = RemoteConfigManager.shared
         var rows = [RecipeCreationViewController.Section.Row]()
         sections.append(.init(section: .info, rows: [.name]))
         rows.append(.name)
@@ -299,7 +291,11 @@ final class RecipeCreationViewController: ViewController, Messagable {
             rows.append(.imagePlaceholder)
         }
 
-        rows.append(contentsOf: [.description, .composition, .paidRecipe])
+        rows.append(contentsOf: [.description, .composition])
+
+        if remoteConfigManager.remoteConfig.isPaidRecipeEnabled {
+            rows.append(.paidRecipe)
+        }
 
         rows.append(contentsOf: [.instruction, .servings, .cookTime, .whenToCook])
 
@@ -319,15 +315,13 @@ final class RecipeCreationViewController: ViewController, Messagable {
            let _ = recipeCreation?.whenToCook,
            let _ = recipeCreation?.dishType,
            let _ = recipeCreation?.lifestyleType,
-           let _ = recipeCreation?.occasion
-
-        {
+           let _ = recipeCreation?.occasion {
             guard let instructions = recipeCreation?.instructions else { return }
             for (index, item) in instructions.enumerated() {
                 guard let itemIndex = recipeCreation?.instructions.firstIndex(where: { $0.description == item.description }) else { return }
                 recipeCreation?.instructions[itemIndex].orderNo = index + 1
             }
-
+            recipeCreation?.isHidden = false
             self.createRecipe(recipe: recipeCreation)
             saveButtonLoader(isLoading: true)
         } else {

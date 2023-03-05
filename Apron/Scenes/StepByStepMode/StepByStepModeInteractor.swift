@@ -7,22 +7,22 @@
 //
 
 protocol StepByStepModeBusinessLogic {
-    
+
 }
 
 final class StepByStepModeInteractor: StepByStepModeBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: StepByStepModePresentationLogic
     private let provider: StepByStepModeProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: StepByStepModePresentationLogic,
          provider: StepByStepModeProviderProtocol = StepByStepModeProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - StepByStepModeBusinessLogic
 
 }

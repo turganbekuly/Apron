@@ -97,7 +97,7 @@ final class RecipeInformationViewCell: UITableViewCell {
             recipeImageView,
             likeButton,
             dislikeButton,
-//            editButton,
+            editButton,
             shareButton
         ].forEach { contentView.addSubview($0) }
 

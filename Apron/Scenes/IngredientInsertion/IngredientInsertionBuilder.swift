@@ -10,24 +10,24 @@ import Protocols
 import UIKit
 
 final class IngredientInsertionBuilder: ModuleBuilderProtocol {
-    
+
     // MARK: Properties
     private let state: IngredientInsertionViewController.State
-    
+
     // MARK: Initialization
     init(state: IngredientInsertionViewController.State) {
         self.state = state
     }
-    
+
     // MARK: - ModuleBuilder
     func build() -> ViewControllerProtocol {
         let presenter = IngredientInsertionPresenter()
         let interactor = IngredientInsertionInteractor(presenter: presenter)
         let viewController = IngredientInsertionViewController(interactor: interactor, state: state)
-        
+
         presenter.viewController = viewController
-        
+
         return viewController
     }
-    
+
 }

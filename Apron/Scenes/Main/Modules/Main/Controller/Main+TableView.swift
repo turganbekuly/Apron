@@ -30,6 +30,9 @@ extension MainViewController: UITableViewDataSource {
         case .cookNow, .eventRecipes:
             let cell: CookNowCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .adBanner:
+            let cell: AdBannerCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -44,11 +47,11 @@ extension MainViewController: UITableViewDelegate {
             let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
             return rawCount * categoryCellHeight
-        case .cookNow, .eventRecipes:
+        case .cookNow, .eventRecipes, .adBanner:
             return 205
         }
     }
-    
+
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -58,7 +61,7 @@ extension MainViewController: UITableViewDelegate {
             let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
             return rawCount * categoryCellHeight
-        case .cookNow, .eventRecipes:
+        case .cookNow, .eventRecipes, .adBanner:
             return 205
         }
     }
@@ -84,16 +87,28 @@ extension MainViewController: UITableViewDelegate {
                     categories: WhatToCookCategoryTypes.allCases
                 )
             )
-        case let .cookNow(sectionTitle, recipes),
-            let .eventRecipes(sectionTitle, recipes):
+        case let .cookNow(sectionTitle, _):
             guard let cell = cell as? CookNowCell else { return }
             cell.delegate = self
             cell.configure(
                 with: CookNowCellViewModel(
                     sectionTitle: sectionTitle,
-                    recipes: recipes
+                    state: cookNowRecipesState
                 )
             )
+        case let .eventRecipes(sectionTitle, _):
+            guard let cell = cell as? CookNowCell else { return }
+            cell.delegate = self
+            cell.configure(
+                with: CookNowCellViewModel(
+                    sectionTitle: sectionTitle,
+                    state: eventRecipesState
+                )
+            )
+        case let .adBanner(banners):
+            guard let cell = cell as? AdBannerCell else { return }
+            cell.delegate = self
+            cell.configure(viewModel: banners)
         }
     }
 }

@@ -29,23 +29,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         setupFirstRun()
-        AppsFlyerLib.shared().deepLinkDelegate = self
         configurators.forEach { $0.configure(application, launchOptions: launchOptions) }
-
         return true
     }
 
     func application(
         _ app: UIApplication,
         open url: URL,
-        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+        options: [UIApplication.OpenURLOptionsKey: Any] = [:]
     ) -> Bool {
         if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url),
-           let dynamicURL = dynamicLink.url
-        {
+           let dynamicURL = dynamicLink.url {
             DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: dynamicURL)
             return true
         }
+        AppsFlyerLib.shared().handleOpen(url, options: options)
         DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
         return true
     }
@@ -67,6 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL
         else { return false }
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: userActivity.webpageURL)
+        }
         AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
         let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
             guard error == nil else { return }
@@ -78,7 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         if linkHandled { return true }
 
-        DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
         return true
     }
 
@@ -120,44 +120,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.set(true, forKey: isNotFirstRunKey)
             AuthStorage.shared.clear()
         }
-    }
-}
-
-extension AppDelegate: DeepLinkDelegate {
-    func didResolveDeepLink(_ result: DeepLinkResult) {
-        switch result.status {
-        case .notFound:
-            print("Deeplink not found")
-        case .found:
-            guard let deeplink = result.deepLink else { return }
-            if deeplink.isDeferred == true {
-                DeeplinkServicesContainer.shared.deeplinkHandler.handleAFDeeplink(with: deeplink)
-            } else {
-                DeeplinkServicesContainer.shared.deeplinkHandler.handleAFDeeplink(with: deeplink)
-            }
-        case .failure:
-            print("Failed")
-        }
-    }
-}
-
-extension AppDelegate: AppsFlyerLibDelegate {
-    func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]) {
-        if let status = conversionInfo["af_status"] as? String {
-            if (status == "Non-organic") {
-                // Business logic for Non-organic install scenario is invoked
-                if let sourceID = conversionInfo["media_source"],
-                   let campaign = conversionInfo["campaign"] {
-                    print("This is a Non-organic install. Media source: \(sourceID)  Campaign: \(campaign)")
-                }
-            }
-            else {
-                // Business logic for organic install scenario is invoked
-            }
-        }
-    }
-
-    func onConversionDataFail(_ error: Error) {
-        print(error)
     }
 }

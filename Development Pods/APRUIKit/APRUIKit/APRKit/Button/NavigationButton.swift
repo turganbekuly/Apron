@@ -17,6 +17,7 @@ public final class NavigationButton: Button {
         case whiteBackground
         case greenBackground
         case clearBackground
+        case grayBackground
     }
 
     public var backgroundType: ButtonType = .blackBackground {
@@ -33,6 +34,9 @@ public final class NavigationButton: Button {
                 activityIndicator.color = ApronAssets.primaryTextMain.color
             case .clearBackground:
                 applyStyle(PrimaryButtonClearStyle.self)
+                activityIndicator.color = ApronAssets.primaryTextMain.color
+            case .grayBackground:
+                applyStyle(PrimaryButtonGrayStyle.self)
                 activityIndicator.color = ApronAssets.primaryTextMain.color
             }
         }
@@ -172,4 +176,3 @@ public final class NavigationButton: Button {
         CATransaction.commit()
     }
 }
-

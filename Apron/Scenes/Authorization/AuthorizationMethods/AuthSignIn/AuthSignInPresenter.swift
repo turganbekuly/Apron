@@ -13,10 +13,10 @@ protocol AuthSignInPresentationLogic: AnyObject {
 }
 
 final class AuthSignInPresenter: AuthSignInPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: AuthSignInDisplayLogic?
-    
+
     // MARK: - AuthSignInPresentationLogic
 
     func login(response: AuthSignInDataFlow.Login.Response) {

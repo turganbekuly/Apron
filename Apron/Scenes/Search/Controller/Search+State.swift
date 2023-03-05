@@ -10,12 +10,12 @@ import Models
 import UIKit
 
 extension SearchViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(SearchTypes)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -24,5 +24,5 @@ extension SearchViewController {
             sections = [.init(section: .categories, rows: [.category])]
         }
     }
-    
+
 }

@@ -10,12 +10,12 @@ import Models
 import UIKit
 
 extension AssignBottomSheetViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(AssignTypes, AssignTypesSelectedDelegate)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -24,5 +24,5 @@ extension AssignBottomSheetViewController {
             self.delegate = delegate
         }
     }
-    
+
 }

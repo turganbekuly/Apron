@@ -18,33 +18,33 @@ enum AddCommentEndpoint {
 }
 
 extension AddCommentEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .rateRecipe:
             return "likes/likeToRecipe"
         case .uploadImage:
-            return "image/upload/4"
+            return "file/upload/image/4"
         case .addComment:
             return "comments/addCommentToRecipe"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .rateRecipe, .uploadImage, .addComment:
             return .post
         }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
         case let .rateRecipe(body):
@@ -70,7 +70,7 @@ extension AddCommentEndpoint: AKNetworkTargetType {
             )
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -81,12 +81,12 @@ extension AddCommentEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }
 
 // MARK: - TYPES OF IMAGE UPLOAD
 
-//switch (entityType) {
+// switch (entityType) {
 //    case 1:
 //        folder = "communities";
 //        break;
@@ -101,4 +101,4 @@ extension AddCommentEndpoint: AKNetworkTargetType {
 //        break;
 //    default:
 //        folder = "others";
-//}
+// }

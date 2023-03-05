@@ -11,31 +11,31 @@ import AKNetwork
 import Storages
 
 enum FiltersEndpoint {
-    
+
 }
 
 extension FiltersEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return URL(string: "")!
     }
-    
+
     var path: String {
         return ""
     }
-    
+
     var method: AKNetworkMethod {
         return .get
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         return .requestPlain
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -46,5 +46,5 @@ extension FiltersEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

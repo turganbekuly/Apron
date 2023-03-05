@@ -82,4 +82,3 @@ extension CommunityCreationDescriptionCell: UITextViewDelegate {
         self.delegate?.cell(self, didEnteredDesc: textView.text)
     }
 }
-

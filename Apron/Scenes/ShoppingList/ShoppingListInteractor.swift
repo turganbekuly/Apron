@@ -15,19 +15,19 @@ protocol ShoppingListBusinessLogic {
 }
 
 final class ShoppingListInteractor: ShoppingListBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: ShoppingListPresentationLogic
     private let provider: ShoppingListProviderProtocol
     private let cartItems = CartManager.shared
-    
+
     // MARK: - Initialization
     init(presenter: ShoppingListPresentationLogic,
          provider: ShoppingListProviderProtocol = ShoppingListProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - ShoppingListBusinessLogic
 
     func fetchCartItems(request: ShoppingListDataFlow.GetCartItems.Request) {

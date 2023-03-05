@@ -152,4 +152,3 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-

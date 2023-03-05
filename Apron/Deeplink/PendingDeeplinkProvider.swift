@@ -9,8 +9,9 @@ import Foundation
 import AppsFlyerLib
 
 protocol DeeplinkHandler: AnyObject {
-    func handleDeeplink(with url: URL)
+    func handleDeeplink(with url: URL?)
     func handleAFDeeplink(with deeplink: DeepLink)
+    func handleAFConversionDeeplink(with deeplink: [AnyHashable: Any])
 }
 
 protocol PendingDeeplinkProvider: AnyObject {
@@ -45,7 +46,15 @@ extension PendingDeeplinkProviderImpl: DeeplinkHandler {
         pendingDeeplink = DeeplinkFactory().makeAppsflyerDeeplink(with: deeplink)
     }
 
-    func handleDeeplink(with url: URL) {
+    func handleAFConversionDeeplink(with deeplink: [AnyHashable: Any]) {
+        pendingDeeplink = DeeplinkFactory().makeAppsFlyerConversionDeepLink(with: deeplink)
+    }
+
+    func handleDeeplink(with url: URL?) {
+        guard let url = url else {
+            return
+        }
+
         pendingDeeplink = DeeplinkFactory().makeDeeplink(from: url)
     }
 }

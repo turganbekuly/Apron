@@ -16,7 +16,7 @@ protocol AddIngredientCellTappedDelegate: AnyObject {
 
 final class RecipeCreationAddIngredientCell: UITableViewCell {
     // MARK: - Private properties
-    
+
     private weak var newIngredientDelegate: AddIngredientCellTappedDelegate?
 
     // MARK: - Init

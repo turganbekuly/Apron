@@ -10,12 +10,12 @@ import Models
 import UIKit
 
 extension GeneralSearchResultViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(GeneralSearchInitialState, ResultListViewControllerDelegate?)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -24,5 +24,5 @@ extension GeneralSearchResultViewController {
             self.initialState = initialState
         }
     }
-    
+
 }

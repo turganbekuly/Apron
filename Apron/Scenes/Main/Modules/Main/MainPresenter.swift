@@ -16,10 +16,10 @@ protocol MainPresentationLogic: AnyObject {
 }
 
 final class MainPresenter: MainPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: MainDisplayLogic?
-    
+
     // MARK: - MainPresentationLogic
 
     func getCommunitiesByCategory(response: MainDataFlow.GetCommunities.Response) {

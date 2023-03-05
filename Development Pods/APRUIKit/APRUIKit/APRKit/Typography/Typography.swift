@@ -33,7 +33,7 @@ public enum Typography {
     case semibold18(
         text: String,
         color: UIColor = .black,
-        textAlignment: NSTextAlignment = .left,
+        textAlignment: NSTextAlignment = .center,
         url: URL? = nil
     )
     case bold16(
@@ -45,7 +45,7 @@ public enum Typography {
     case medium16(
         text: String,
         color: UIColor = .black,
-        textAlignment: NSTextAlignment = .left,
+        textAlignment: NSTextAlignment = .center,
         url: URL? = nil
     )
     case regular20(
@@ -154,4 +154,3 @@ public enum Typography {
     }
 
 }
-

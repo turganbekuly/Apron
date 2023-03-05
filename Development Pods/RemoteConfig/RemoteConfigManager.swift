@@ -16,6 +16,21 @@ public class RemoteConfigManager {
 
     public var remoteConfig = RemoteConfig()
 
+    public var configManager = ConfigurationManager(
+        firebaseRemoteConfig: AppRemoteConfig(
+            provider: FirebaseConfigProvider(),
+            holder: RemoteConfigHolder(
+                persistentStorage: UserDefaultsRemoteConfigStorage()
+            )
+        )//,
+//        abRemoteConfig: AppRemoteConfig(
+//            provider: ABSnoonuConfigProvider(),
+//            holder: ABConfigHolder(
+//                persistentStorage: UserDefaultsABConfigStorage()
+//            )
+//        )
+    )
+
     // MARK: - Init
 
     private init() { }

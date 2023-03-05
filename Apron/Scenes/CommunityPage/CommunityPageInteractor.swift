@@ -14,18 +14,18 @@ protocol CommunityPageBusinessLogic {
 }
 
 final class CommunityPageInteractor: CommunityPageBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: CommunityPagePresentationLogic
     private let provider: CommunityPageProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: CommunityPagePresentationLogic,
          provider: CommunityPageProviderProtocol = CommunityPageProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - CommunityPageBusinessLogic
 
     func getCommunity(request: CommunityPageDataFlow.GetCommunity.Request) {

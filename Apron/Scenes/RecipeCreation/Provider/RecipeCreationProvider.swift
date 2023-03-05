@@ -24,13 +24,13 @@ final class RecipeCreationProvider: RecipeCreationProviderProtocol {
 
     // MARK: - Properties
     private let service: RecipeCreationServiceProtocol
-    
+
     // MARK: - Init
     init(service: RecipeCreationServiceProtocol =
                     RecipeCreationService(provider: AKNetworkProvider<RecipeCreationEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - RecipeCreationProviderProtocol
 
     func createRecipe(

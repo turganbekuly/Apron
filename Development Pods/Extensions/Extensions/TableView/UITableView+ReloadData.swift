@@ -15,4 +15,3 @@ extension UITableView {
         self.setContentOffset(contentOffset, animated: false)
     }
 }
-

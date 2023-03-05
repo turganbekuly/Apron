@@ -9,7 +9,7 @@
 import UIKit
 
 extension FiltersViewController: FiltersDisplayLogic {
-    
+
     // MARK: - FiltersDisplayLogic
-    
+
 }

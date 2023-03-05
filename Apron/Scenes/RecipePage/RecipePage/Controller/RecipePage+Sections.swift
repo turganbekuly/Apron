@@ -12,6 +12,7 @@ import Models
 extension RecipePageViewController {
     struct Section {
         enum Section {
+            case reworkInfo
             case topView
             case description
             case ingredients
@@ -20,6 +21,7 @@ extension RecipePageViewController {
             case reviews
         }
         enum Row {
+            case reworkInfo
             case topView
             case description
             case ingredient
@@ -29,6 +31,8 @@ extension RecipePageViewController {
 
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch(lhs, rhs) {
+                case (.reworkInfo, .reworkInfo):
+                    return true
                 case (.topView, .topView):
                     return true
                 case (.description, .description):

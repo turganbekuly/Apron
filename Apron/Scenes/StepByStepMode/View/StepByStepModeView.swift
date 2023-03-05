@@ -17,7 +17,7 @@ final class StepByStepModeView: UICollectionView {
         layout.scrollDirection = .horizontal
         return layout
     }()
-    
+
     // MARK: - Init
 
     init() {

@@ -11,7 +11,7 @@ import UIKit
 import Configurations
 
 extension CommunityCreationViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(CommunityCreationInitialState)
@@ -20,7 +20,7 @@ extension CommunityCreationViewController {
         case uploadImageSucceed(String)
         case uploadImageFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -43,5 +43,5 @@ extension CommunityCreationViewController {
             show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
         }
     }
-    
+
 }

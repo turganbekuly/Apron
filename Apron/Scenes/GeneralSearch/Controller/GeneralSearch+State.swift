@@ -10,12 +10,12 @@ import Models
 import UIKit
 
 extension GeneralSearchViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(GeneralSearchInitialState, String? = nil)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -24,5 +24,5 @@ extension GeneralSearchViewController {
             self.historySelectedQuery = query
         }
     }
-    
+
 }

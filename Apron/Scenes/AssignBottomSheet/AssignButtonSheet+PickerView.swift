@@ -47,7 +47,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
             return 0
         }
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch type {
         case .servings:
@@ -119,19 +119,16 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
         case .timer, .cookTime:
             if component == 0 {
                 var label: UILabel
-                if let view = view as? UILabel { label = view }
-                else { label = UILabel() }
+                if let view = view as? UILabel { label = view } else { label = UILabel() }
                 label.textAlignment = .center
                 label.text = hourComponents[row]
                 label.font = TypographyFonts.regular20
                 label.adjustsFontSizeToFitWidth = true
                 label.minimumScaleFactor = 0.5
                 return label
-            }
-            else if component == 1 {
+            } else if component == 1 {
                 var label: UILabel
-                if let view = view as? UILabel { label = view }
-                else { label = UILabel() }
+                if let view = view as? UILabel { label = view } else { label = UILabel() }
 
                 label.text = hourSeparator
                 label.textAlignment = .center
@@ -141,8 +138,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
                 return label
             } else if component == 2 {
                 var label: UILabel
-                if let view = view as? UILabel { label = view }
-                else { label = UILabel() }
+                if let view = view as? UILabel { label = view } else { label = UILabel() }
                 label.textAlignment = .center
                 label.text = minComponments[row]
                 label.font = TypographyFonts.regular20
@@ -151,8 +147,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
                 return label
             } else if component == 3 {
                 var label: UILabel
-                if let view = view as? UILabel { label = view }
-                else { label = UILabel() }
+                if let view = view as? UILabel { label = view } else { label = UILabel() }
 
                 label.text = minSeparator
                 label.textAlignment = .center
@@ -162,8 +157,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
                 return label
             } else if component == 4 {
                 var label: UILabel
-                if let view = view as? UILabel { label = view }
-                else { label = UILabel() }
+                if let view = view as? UILabel { label = view } else { label = UILabel() }
                 label.textAlignment = .center
                 label.font = TypographyFonts.regular20
                 label.text = secComponents[row]
@@ -172,8 +166,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
                 return label
             } else {
                 var label: UILabel
-                if let view = view as? UILabel { label = view }
-                else { label = UILabel() }
+                if let view = view as? UILabel { label = view } else { label = UILabel() }
 
                 label.text = secSeparator
                 label.textAlignment = .center
@@ -184,8 +177,7 @@ extension AssignBottomSheetViewController: UIPickerViewDataSource {
             }
         case .servings:
             var label: UILabel
-            if let view = view as? UILabel { label = view }
-            else { label = UILabel() }
+            if let view = view as? UILabel { label = view } else { label = UILabel() }
             label.textAlignment = .center
             label.font = TypographyFonts.regular20
             label.adjustsFontSizeToFitWidth = true

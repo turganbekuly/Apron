@@ -26,8 +26,7 @@ extension RecipeCreationAddInstructionCell: UITableViewDataSource {
     }
 }
 
-extension RecipeCreationAddInstructionCell:
-    UITableViewDelegate {
+extension RecipeCreationAddInstructionCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = instructionsSections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -66,7 +65,7 @@ extension RecipeCreationAddInstructionCell:
         switch row {
         case let .instruction(instruction):
             guard let cell = cell as? RecipeCreationInstructionViewCell else { return }
-            cell.configure(instruction: instruction, stepCount:  "\(indexPath.row + 1)")
+            cell.configure(instruction: instruction, stepCount: "\(indexPath.row + 1)")
         }
     }
 
@@ -83,7 +82,7 @@ extension RecipeCreationAddInstructionCell:
             let action = UIContextualAction(
                 style: .normal,
                 title: ""
-            ) { [weak self] action, view, completion in
+            ) { [weak self] _, _, completion in
                     guard let self = self else { return }
                 self.newInstructionDelegate?.remove(instruction: instruction)
                     completion(true)
@@ -94,4 +93,3 @@ extension RecipeCreationAddInstructionCell:
         }
     }
 }
-

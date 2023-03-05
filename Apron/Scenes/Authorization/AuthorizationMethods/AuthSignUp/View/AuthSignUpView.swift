@@ -116,8 +116,7 @@ final class AuthSignUpView: UIView {
            conTF?.isEmpty == false,
            usernameTF?.isEmpty == false,
            emailTF?.isEmpty == false,
-           passTF == conTF
-        {
+           passTF == conTF {
             continueButton.isEnabled = true
             return
         }

@@ -20,7 +20,7 @@ protocol ProfileServiceProtocol {
 }
 
 final class ProfileService: ProfileServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<ProfileEndpoint>
 
@@ -28,7 +28,7 @@ final class ProfileService: ProfileServiceProtocol {
     init(provider: AKNetworkProvider<ProfileEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - ProfileServiceProtocol
 
     func getProfile(

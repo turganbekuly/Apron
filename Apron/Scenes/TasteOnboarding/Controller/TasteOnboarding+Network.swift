@@ -7,7 +7,7 @@
 //
 
 extension TasteOnboardingViewController {
-    
+
     // MARK: - Network
 
 }

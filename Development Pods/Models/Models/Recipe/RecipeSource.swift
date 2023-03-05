@@ -25,4 +25,3 @@ public struct RecipeSource: Codable {
     }
 
 }
-

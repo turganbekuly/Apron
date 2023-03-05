@@ -22,7 +22,7 @@ protocol CommunityCreationServiceProtocol {
 }
 
 final class CommunityCreationService: CommunityCreationServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<CommunityCreationEndpoint>
 
@@ -30,7 +30,7 @@ final class CommunityCreationService: CommunityCreationServiceProtocol {
     init(provider: AKNetworkProvider<CommunityCreationEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - CommunityCreationServiceProtocol
 
     func createCommunity(

@@ -18,20 +18,20 @@ enum CommunityCreationEndpoint {
 }
 
 extension CommunityCreationEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .communityCreation:
             return "communities"
         case .uploadImage:
-            return "image/upload/1"
+            return "file/upload/image/1"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .communityCreation:
@@ -40,11 +40,11 @@ extension CommunityCreationEndpoint: AKNetworkTargetType {
             return .post
         }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
         case .communityCreation(let communityCreation):
@@ -65,7 +65,7 @@ extension CommunityCreationEndpoint: AKNetworkTargetType {
             )
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -76,5 +76,5 @@ extension CommunityCreationEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

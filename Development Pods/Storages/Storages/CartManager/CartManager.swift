@@ -83,7 +83,7 @@ public final class CartManager {
         measurement: String?,
         recipeName: String?,
         bought: Bool
-    ){
+    ) {
         var currentItems = fetchItemsFromStorage()
 
         if let index = currentItems

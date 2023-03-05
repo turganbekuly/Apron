@@ -10,24 +10,24 @@ import Protocols
 import UIKit
 
 final class ShoppingListBuilder: ModuleBuilderProtocol {
-    
+
     // MARK: Properties
     private let state: ShoppingListViewController.State
-    
+
     // MARK: Initialization
     init(state: ShoppingListViewController.State) {
         self.state = state
     }
-    
+
     // MARK: - ModuleBuilder
     func build() -> ViewControllerProtocol {
         let presenter = ShoppingListPresenter()
         let interactor = ShoppingListInteractor(presenter: presenter)
         let viewController = ShoppingListViewController(interactor: interactor, state: state)
-        
+
         presenter.viewController = viewController
-        
+
         return viewController
     }
-    
+
 }

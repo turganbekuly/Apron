@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 16.07.2022.
 //
 
-//import MCFormatters
+// import MCFormatters
 import Models
 import APRUIKit
 import UIKit
@@ -48,4 +48,3 @@ public struct ProfileUserCellViewModel: ProfileUserCellProtocol {
     }
 
 }
-

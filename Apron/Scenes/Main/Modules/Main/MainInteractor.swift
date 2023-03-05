@@ -15,11 +15,11 @@ protocol MainBusinessLogic {
 }
 
 final class MainInteractor: MainBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: MainPresentationLogic
     private let provider: MainProviderProtocol
-    
+
     // MARK: - Initialization
     init(
         presenter: MainPresentationLogic,
@@ -28,7 +28,7 @@ final class MainInteractor: MainBusinessLogic {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - MainBusinessLogic
 
     func getCommunitiesByCategory(request: MainDataFlow.GetCommunities.Request) {

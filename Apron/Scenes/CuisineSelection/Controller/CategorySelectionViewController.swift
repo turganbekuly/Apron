@@ -16,8 +16,8 @@ protocol CategorySelectionDisplayLogic: AnyObject {
     func displayCategories(viewModel: CategorySelectionDataFlow.GetCategories.ViewModel)
 }
 
-final class CategorySelectionViewController: ViewController, PanModalPresentable, Messagable {
-    
+final class CategorySelectionViewController: ViewController, PanModalPresentable {
+
     struct Section {
         enum Section {
             case options(String)
@@ -25,11 +25,11 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
         enum Row {
             case option(CommunityCategory)
         }
-        
+
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
     let interactor: CategorySelectionBusinessLogic
     var sections: [Section] = [] {
@@ -45,7 +45,7 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
 
     var hasLoaded = false
 
-    var delegate: CategorySelectionProtocol?
+    weak var delegate: CategorySelectionProtocol?
 
     var selectedCategory: CommunityCategory?
 
@@ -88,7 +88,7 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
     var transitionDuration: Double {
         return 0.4
     }
-    
+
     // MARK: - Views
     lazy var mainView: CategorySelectionView = {
         let view = CategorySelectionView()
@@ -105,56 +105,56 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
         button.layer.masksToBounds = true
         return button
     }()
-    
+
     // MARK: - Init
     init(interactor: CategorySelectionBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.title = ""
     }
-    
+
     private func configureViews() {
         [mainView, doneButton].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         doneButton.snp.makeConstraints {
             $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -166,7 +166,7 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
             $0.bottom.equalTo(doneButton.snp.top)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
@@ -183,9 +183,9 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
             self.delegate?.selectedCategory(category: selectedCategory)
         }
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
 }

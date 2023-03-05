@@ -10,7 +10,7 @@ import Models
 import UIKit
 
 enum CommunityCreationDataFlow {
-    
+
 }
 
 extension CommunityCreationDataFlow {

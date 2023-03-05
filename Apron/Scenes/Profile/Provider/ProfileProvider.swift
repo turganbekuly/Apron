@@ -24,13 +24,13 @@ final class ProfileProvider: ProfileProviderProtocol {
 
     // MARK: - Properties
     private let service: ProfileServiceProtocol
-    
+
     // MARK: - Init
     init(service: ProfileServiceProtocol =
                     ProfileService(provider: AKNetworkProvider<ProfileEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - ProfileProviderProtocol
 
     func getProfile(

@@ -51,4 +51,3 @@ final class RecipeCreationTagsCell: UITableViewCell {
         collectionView.reloadData()
     }
 }
-

@@ -15,10 +15,10 @@ protocol RecipePagePresentationLogic: AnyObject {
 }
 
 final class RecipePagePresenter: RecipePagePresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: RecipePageDisplayLogic?
-    
+
     // MARK: - RecipePagePresentationLogic
 
     func getRecipe(response: RecipePageDataFlow.GetRecipe.Response) {

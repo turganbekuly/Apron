@@ -26,7 +26,7 @@ extension RecipeSearchViewController: RecipeSearchCellProtocol {
     func cartItemsAdded() {
         show(
             type: .regular("Ингредиенты добавлены в корзину", "Посмотреть"),
-            firstAction:  {
+            firstAction: {
                 let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(viewController, animated: false)
@@ -52,4 +52,3 @@ extension RecipeSearchViewController: RecipeSearchCellV2Protocol {
         }
     }
 }
-

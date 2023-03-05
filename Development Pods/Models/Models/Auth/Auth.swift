@@ -41,8 +41,7 @@ public struct Auth: Codable {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
         self.email = email
-        self.username = (json[CodingKeys.username.rawValue] as? String) ?? "Пользователь"
+        self.username = (json[CodingKeys.username.rawValue] as? String) ?? nil
     }
 
 }
-

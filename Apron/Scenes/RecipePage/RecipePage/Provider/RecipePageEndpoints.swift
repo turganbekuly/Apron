@@ -19,11 +19,11 @@ enum RecipePageEndpoint {
 }
 
 extension RecipePageEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .getRecipe(let id):
@@ -36,7 +36,7 @@ extension RecipePageEndpoint: AKNetworkTargetType {
             return "comments/getCommentsByRecipeId"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .getRecipe:
@@ -49,7 +49,7 @@ extension RecipePageEndpoint: AKNetworkTargetType {
             return .get
         }
     }
-    
+
     var task: AKNetworkTask {
         switch self {
         case .getRecipe:
@@ -68,7 +68,7 @@ extension RecipePageEndpoint: AKNetworkTargetType {
             )
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -79,5 +79,5 @@ extension RecipePageEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

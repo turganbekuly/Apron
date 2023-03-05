@@ -11,11 +11,11 @@ import UIKit
 import PanModal
 
 protocol CreateActionFlowDisplayLogic: AnyObject {
-    
+
 }
 
 final class CreateActionFlowViewController: ViewController, PanModalPresentable {
-    
+
     struct Section {
         enum Section {
             case mainPageCreation
@@ -46,11 +46,11 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
             case clearIngredients(CreateActionType)
             case shareIngredients(CreateActionType)
         }
-        
+
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
 
     var sections: [Section] = []
@@ -145,7 +145,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
     var transitionDuration: Double {
         return 0.4
     }
-    
+
     // MARK: - Views
     lazy var mainView: CreateActionFlowView = {
         let view = CreateActionFlowView()
@@ -153,34 +153,34 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
         view.delegate = self
         return view
     }()
-    
+
     // MARK: - Init
     init(state: State) {
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
 
@@ -189,37 +189,37 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
         panModalSetNeedsLayoutUpdate()
         panModalTransition(to: .longForm)
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.title = ""
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
 }

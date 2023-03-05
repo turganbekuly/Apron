@@ -307,4 +307,3 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
     }
 
 }
-

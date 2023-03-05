@@ -14,14 +14,14 @@ enum IngredientSelectionInitialState {
     case fullItem
 }
 extension IngredientSelectionViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(IngredientSelectedProtocol, IngredientSelectionInitialState)
         case fetchProducts([Product])
         case fetchProductsFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -34,5 +34,5 @@ extension IngredientSelectionViewController {
             print(error)
         }
     }
-    
+
 }

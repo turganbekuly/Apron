@@ -83,4 +83,3 @@ final class RecipeCreationSourceURLCell: UITableViewCell {
         roudedTextField.textField.text = sourceName ?? ""
     }
 }
-

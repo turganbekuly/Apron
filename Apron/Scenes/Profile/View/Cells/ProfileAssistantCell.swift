@@ -128,4 +128,3 @@ final class ProfileAssistantCell: UITableViewCell {
     }
 
 }
-

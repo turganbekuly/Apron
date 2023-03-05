@@ -19,10 +19,10 @@ protocol AddSavedRecipesPresentationLogic: AnyObject {
 }
 
 final class AddSavedRecipesPresenter: AddSavedRecipesPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: AddSavedRecipesDisplayLogic?
-    
+
     // MARK: - AddSavedRecipesPresentationLogic
 
     func getSavedRecipes(response: AddSavedRecipesDataFlow.GetSavedRecipe.Response) {

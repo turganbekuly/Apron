@@ -9,7 +9,6 @@ import Models
 import APRUIKit
 import UIKit
 
-
 extension SearchViewController: UICollectionViewDataSource {
 
     // MARK: - UICollectionViewDataSource
@@ -67,4 +66,3 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-

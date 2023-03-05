@@ -28,7 +28,7 @@ protocol CommunityPageServiceProtocol {
 }
 
 final class CommunityPageService: CommunityPageServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<CommunityPageEndpoint>
 
@@ -36,7 +36,7 @@ final class CommunityPageService: CommunityPageServiceProtocol {
     init(provider: AKNetworkProvider<CommunityPageEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - CommunityPageServiceProtocol
 
     func getCommunity(

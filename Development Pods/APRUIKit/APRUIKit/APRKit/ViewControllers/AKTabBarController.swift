@@ -10,7 +10,7 @@ import Protocols
 
 open class AKTabBarController: UITabBarController, ViewControllerProtocol {
 
-    private var circleView : UIView!
+    private var circleView: UIView!
     private var circleImageView: UIImageView!
 
     public override var selectedViewController: UIViewController? {
@@ -160,4 +160,3 @@ extension AKTabBarController {
         } else { return 0 }
     }
 }
-

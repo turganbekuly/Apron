@@ -59,8 +59,7 @@ extension RecipeCreationViewController: UITableViewDataSource {
     }
 }
 
-extension RecipeCreationViewController:
-    UITableViewDelegate {
+extension RecipeCreationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -80,13 +79,12 @@ extension RecipeCreationViewController:
             var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
 
-            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0
-            {
+            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0 {
                 imageSize = CGFloat(images.count) * 220
             }
             return 100 + imageSize + ((recipeCreation?.instructions
                 .reduce(0, {
-                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10) + 48)
                 }) ?? 56))
         case .servings:
             return 100
@@ -119,13 +117,12 @@ extension RecipeCreationViewController:
             var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
 
-            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0
-            {
+            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0 {
                 imageSize = CGFloat(images.count) * 220
             }
             return 100 + imageSize + ((recipeCreation?.instructions
                 .reduce(0, {
-                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10) + 48)
                 }) ?? 56))
         case .servings:
             return 100
@@ -160,7 +157,7 @@ extension RecipeCreationViewController:
             cell.delegate = self
             cell.configure()
         case .description:
-            guard let cell = cell as? RecipeCreationDescriptionCell else  { return }
+            guard let cell = cell as? RecipeCreationDescriptionCell else { return }
             cell.delegate = self
             cell.placeholder = "Напишете описание вашего блюда"
             cell.configure(description: recipeCreation?.description)

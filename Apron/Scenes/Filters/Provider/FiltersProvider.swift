@@ -9,20 +9,20 @@
 import AKNetwork
 
 protocol FiltersProviderProtocol {
-    
+
 }
 
 final class FiltersProvider: FiltersProviderProtocol {
 
     // MARK: - Properties
     private let service: FiltersServiceProtocol
-    
+
     // MARK: - Init
     init(service: FiltersServiceProtocol =
                     FiltersService(provider: AKNetworkProvider<FiltersEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - FiltersProviderProtocol
 
 }

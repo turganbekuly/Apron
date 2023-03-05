@@ -7,14 +7,14 @@
 //
 
 public protocol TasteOnboardingPresentationLogic: AnyObject {
-    
+
 }
 
 public final class TasteOnboardingPresenter: TasteOnboardingPresentationLogic {
-    
+
     // MARK: - Properties
     public weak var viewController: TasteOnboardingDisplayLogic?
-    
+
     // MARK: - TasteOnboardingPresentationLogic
-    
+
 }

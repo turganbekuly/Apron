@@ -358,4 +358,3 @@ private extension APSearchBar {
         onTouchedCancelButton?()
     }
 }
-

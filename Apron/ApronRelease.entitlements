@@ -10,7 +10,7 @@
 	</array>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:moca</string>
+		<string>applinks:moca.kz</string>
 		<string>applinks:apronapp.page.link</string>
 		<string>applinks:apron.onelink.me</string>
 	</array>

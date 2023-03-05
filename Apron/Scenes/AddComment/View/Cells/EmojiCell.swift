@@ -32,7 +32,7 @@ final class EmojiCell: UITableViewCell {
 
     private var inactiveEmojies = [
         ApronAssets.ratingLoveInactive.image,
-        ApronAssets.ratingSadInactive.image,
+        ApronAssets.ratingSadInactive.image
     ]
 
     private lazy var buttons = [loveButton, sadButton]

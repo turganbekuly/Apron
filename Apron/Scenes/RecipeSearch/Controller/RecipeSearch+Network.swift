@@ -9,7 +9,7 @@
 import Models
 
 extension RecipeSearchViewController {
-    
+
     // MARK: - Network
 
     func getRecipes(filters: SearchFilterRequestBody) {

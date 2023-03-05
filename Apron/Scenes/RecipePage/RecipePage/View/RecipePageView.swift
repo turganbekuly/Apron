@@ -35,6 +35,7 @@ public final class RecipePageView: UITableView {
         }
 
         [
+            RecipeReworkInfoViewCell.self,
             RecipeInformationViewCell.self,
             IngredientDescriptionCell.self,
             RecipeCaloriesViewCell.self,
@@ -52,4 +53,3 @@ public final class RecipePageView: UITableView {
     }
 
 }
-

@@ -9,7 +9,6 @@ import Models
 import APRUIKit
 import UIKit
 
-
 extension RecipeReviewsCell: UICollectionViewDataSource {
 
     // MARK: - UICollectionViewDataSource
@@ -61,5 +60,3 @@ extension RecipeReviewsCell: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-
-

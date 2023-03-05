@@ -44,13 +44,13 @@ final class ResultListProvider: ResultListProviderProtocol {
 
     // MARK: - Properties
     private let service: ResultListServiceProtocol
-    
+
     // MARK: - Init
     init(service: ResultListServiceProtocol =
                     ResultListService(provider: AKNetworkProvider<ResultListEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - ResultListProviderProtocol
 
     func getRecipesByCommunityID(

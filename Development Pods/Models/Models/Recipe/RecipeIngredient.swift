@@ -41,7 +41,7 @@ public struct RecipeIngredient: Codable, Equatable {
     public static func ==(lhs: RecipeIngredient, rhs: RecipeIngredient) -> Bool {
         return lhs.id == rhs.id
     }
-    
+
     // MARK: - Methods
 
     public func toJSON() -> JSON {
@@ -60,4 +60,3 @@ public struct RecipeIngredient: Codable, Equatable {
         return params
     }
 }
-

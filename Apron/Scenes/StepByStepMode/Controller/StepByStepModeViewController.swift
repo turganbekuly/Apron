@@ -14,11 +14,11 @@ import AVFoundation
 import ALProgressView
 
 protocol StepByStepModeDisplayLogic: AnyObject {
-    
+
 }
 
-final class StepByStepModeViewController: ViewController, Messagable {
-    
+final class StepByStepModeViewController: ViewController {
+
     struct Section {
         enum Section {
             case instructions
@@ -28,7 +28,7 @@ final class StepByStepModeViewController: ViewController, Messagable {
             case instruction(RecipeInstruction)
             case review
         }
-        
+
         let section: Section
         let rows: [Row]
     }
@@ -45,7 +45,7 @@ final class StepByStepModeViewController: ViewController, Messagable {
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
     var player: AVAudioPlayer?
     let interactor: StepByStepModeBusinessLogic
@@ -76,7 +76,7 @@ final class StepByStepModeViewController: ViewController, Messagable {
 
     var cellStepCount = 0
     var cellInstruction = RecipeInstruction()
-    
+
     // MARK: - Views
     lazy var mainView: StepByStepModeView = {
         let view = StepByStepModeView()
@@ -108,35 +108,35 @@ final class StepByStepModeViewController: ViewController, Messagable {
         view.timingFunction = .easeOutExpo
         return view
     }()
-    
+
     // MARK: - Init
     init(interactor: StepByStepModeBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
 
@@ -144,25 +144,25 @@ final class StepByStepModeViewController: ViewController, Messagable {
         super.viewDidAppear(animated)
         scrollViewDidEndDecelerating(mainView)
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.title = "Режим готовки"
     }
-    
+
     private func configureViews() {
         [mainView, stackView, progressBar].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         progressBar.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(8)
@@ -182,11 +182,11 @@ final class StepByStepModeViewController: ViewController, Messagable {
             $0.bottom.equalTo(mainView.snp.bottom).offset(-24)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 extension AuthSignInViewController: AuthSignInDisplayLogic {
-    
+
     // MARK: - AuthSignInDisplayLogic
 
     func login(viewModel: AuthSignInDataFlow.Login.ViewModel) {

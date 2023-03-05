@@ -35,7 +35,7 @@ final class RecipeReviewsHeaderView: UITableViewHeaderFooterView {
     private func setupViews() {
         backgroundView = UIView(frame: self.bounds)
         backgroundView?.backgroundColor = ApronAssets.secondary.color
-        
+
         [sectionHeaderLabel].forEach {
             contentView.addSubview($0)
         }
@@ -55,4 +55,3 @@ final class RecipeReviewsHeaderView: UITableViewHeaderFooterView {
         sectionHeaderLabel.text = title
     }
 }
-

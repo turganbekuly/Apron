@@ -15,12 +15,12 @@ protocol StepByStepFinalStepProtocol: AnyObject {
 }
 
 extension StepByStepModeViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial([RecipeInstruction], String?, StepByStepFinalStepProtocol?)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -32,5 +32,5 @@ extension StepByStepModeViewController {
             OneSignal.sendTag("step_by_step_mode", value: "recipe_page")
         }
     }
-    
+
 }

@@ -31,7 +31,6 @@ final class WebViewHandler: ViewController {
         padding: nil
     )
 
-
     init(urlString: String) {
         self.urlString = urlString
         super.init(nibName: nil, bundle: nil)

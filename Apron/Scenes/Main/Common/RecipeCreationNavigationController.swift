@@ -124,5 +124,3 @@ public final class RecipeCreationNavigationController: UINavigationController {
     }
 
 }
-
-

@@ -9,24 +9,24 @@
 import UIKit
 
 public final class TasteOnboardingView: UITableView {
-    
+
     // MARK: - Initialization
     public init() {
         super.init(frame: .zero, style: .plain)
-        
+
         configure()
     }
-    
+
     public required init?(coder: NSCoder) {
         return nil
     }
-    
+
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
@@ -38,7 +38,7 @@ public final class TasteOnboardingView: UITableView {
         }
         configureColors()
     }
-    
+
     private func configureColors() {
         backgroundColor = .clear
     }

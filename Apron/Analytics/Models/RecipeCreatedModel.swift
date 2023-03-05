@@ -14,6 +14,7 @@ public struct RecipeCreatedModel: Codable {
         case sourceType = "source_type"
         case imageAdded = "image_added"
         case ingredients = "ingredients"
+        case isPaidRecipe = "is_paid_recipe"
     }
 
     var recipeID: Int = 0
@@ -21,19 +22,22 @@ public struct RecipeCreatedModel: Codable {
     var sourceType: String = ""
     var imageAdded: String = ""
     var ingredients: [String] = []
+    var isPaidRecipe: Bool = false
 
     init(
         recipeID: Int,
         recipeName: String,
         sourceType: RecipeCreationSourceTypeModel,
         imageAdded: Bool,
-        ingredients: [String]
+        ingredients: [String],
+        isPaidRecipe: Bool
     ) {
         self.recipeID = recipeID
         self.recipeName = recipeName
         self.sourceType = sourceType.rawValue
         self.imageAdded = "\(imageAdded)"
         self.ingredients = ingredients
+        self.isPaidRecipe = isPaidRecipe
     }
 
     func toJSON() -> [String: Any] {
@@ -45,7 +49,3 @@ public struct RecipeCreatedModel: Codable {
         return json
     }
 }
-
-
-
-

@@ -24,7 +24,7 @@ public final class AuthorizationView: UIView {
     // MARK: - Properties
 
     weak var delegate: IAuthorizationView?
-    
+
     // MARK: - Initialization
     public init(delegate: IAuthorizationView?) {
         self.delegate = delegate

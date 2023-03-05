@@ -9,7 +9,7 @@
 import UIKit
 
 extension RecipeSearchViewController: RecipeSearchDisplayLogic {
-    
+
     // MARK: - RecipeSearchDisplayLogic
 
     func displayRecipes(with viewModel: RecipeSearchDataFlow.GetRecipes.ViewModel) {

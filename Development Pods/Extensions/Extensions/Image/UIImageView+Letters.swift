@@ -24,7 +24,7 @@ extension UIImageView {
         let image = imageSnap(text: string != nil ? string?.initials : "",
                               color: color ?? .random,
                               circular: circular,
-                              textAttributes:textAttributes)
+                              textAttributes: textAttributes)
 
         if let newImage = image {
             self.image = newImage
@@ -82,17 +82,17 @@ extension UIColor {
         srandom(arc4random())
         var red: Double = 0
 
-        while (red < 0.1 || red > 0.84) {
+        while red < 0.1 || red > 0.84 {
             red = drand48()
         }
 
         var green: Double = 0
-        while (green < 0.1 || green > 0.84) {
+        while green < 0.1 || green > 0.84 {
             green = drand48()
         }
 
         var blue: Double = 0
-        while (blue < 0.1 || blue > 0.84) {
+        while blue < 0.1 || blue > 0.84 {
             blue = drand48()
         }
 

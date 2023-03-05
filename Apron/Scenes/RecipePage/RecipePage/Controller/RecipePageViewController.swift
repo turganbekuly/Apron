@@ -19,7 +19,7 @@ protocol RecipePageDisplayLogic: AnyObject {
     func displayComments(viewModel: RecipePageDataFlow.GetComments.ViewModel)
 }
 
-final class RecipePageViewController: ViewController, Messagable {
+final class RecipePageViewController: ViewController {
     // MARK: - Properties
 
     let interactor: RecipePageBusinessLogic
@@ -39,6 +39,7 @@ final class RecipePageViewController: ViewController, Messagable {
 
     var recipe: RecipeResponse? {
         didSet {
+            var localSections = [Section]()
             if let recipe = recipe {
                 ApronAnalytics.shared.sendAnalyticsEvent(
                     .recipePageViewed(
@@ -53,35 +54,50 @@ final class RecipePageViewController: ViewController, Messagable {
                 OneSignal.sendTag("recipe_page_viewed", value: recipe.recipeName ?? "")
                 bottomStickyView.configure(isSaved: recipe.isSaved ?? false)
             }
-            sections = [
-                .init(section: .topView, rows: [.topView]),
-                .init(section: .description, rows: [.description]),
-                .init(section: .ingredients, rows: [.ingredient]),
-//                .init(section: .nutritions, rows: [.nutrition]),
-                .init(section: .instructions, rows: [.instruction]),
-                .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
-            ]
+            if recipe?.status == .declined {
+                localSections.append(.init(section: .reworkInfo, rows: [.reworkInfo]))
+            }
+            localSections.append(
+                contentsOf:
+                    [
+                        .init(section: .topView, rows: [.topView]),
+                        .init(section: .description, rows: [.description]),
+                        .init(section: .ingredients, rows: [.ingredient]),
+                        //                .init(section: .nutritions, rows: [.nutrition]),
+                        .init(section: .instructions, rows: [.instruction]),
+                        .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
+                    ]
+            )
+            self.sections = localSections
             mainView.reloadData()
         }
     }
 
     var recipeComments: [RecipeCommentResponse] = [] {
         didSet {
-            guard let _ = recipe, !recipeComments.isEmpty else { return }
-            sections = [
-                .init(section: .topView, rows: [.topView]),
-                .init(section: .description, rows: [.description]),
-                .init(section: .ingredients, rows: [.ingredient]),
-//                .init(section: .nutritions, rows: [.nutrition]),
-                .init(section: .instructions, rows: [.instruction]),
-                .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
-            ]
+            var localSections = [Section]()
+            guard let recipe = recipe, !recipeComments.isEmpty else { return }
+            if recipe.status == .declined {
+                localSections.append(.init(section: .reworkInfo, rows: [.reworkInfo]))
+            }
+            localSections.append(
+                contentsOf:
+                    [
+                        .init(section: .topView, rows: [.topView]),
+                        .init(section: .description, rows: [.description]),
+                        .init(section: .ingredients, rows: [.ingredient]),
+                        //                .init(section: .nutritions, rows: [.nutrition]),
+                        .init(section: .instructions, rows: [.instruction]),
+                        .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
+                    ]
+            )
+            self.sections = localSections
             mainView.reloadData()
         }
     }
 
     var recipeId = 0
-    
+
     // MARK: - Views factory
 
     lazy var mainView: RecipePageView = {
@@ -91,7 +107,7 @@ final class RecipePageViewController: ViewController, Messagable {
         return view
     }()
 
-    private lazy var bottomStickyView: RecipeBottomStickyView = {
+    lazy var bottomStickyView: RecipeBottomStickyView = {
         $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         $0.layer.cornerRadius = 15
         $0.delegate = self
@@ -101,35 +117,35 @@ final class RecipePageViewController: ViewController, Messagable {
         $0.layer.shadowRadius = 15
         return $0
     }(RecipeBottomStickyView())
-    
+
     // MARK: - Init
     init(interactor: RecipePageBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
         self.tabBarController?.tabBar.isHidden = true
     }
@@ -138,13 +154,13 @@ final class RecipePageViewController: ViewController, Messagable {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Setup Views
 
     private func configureNavigation() {
@@ -157,14 +173,14 @@ final class RecipePageViewController: ViewController, Messagable {
         navigationItem.leftBarButtonItem?.tintColor = .black
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     private func configureViews() {
         [mainView, bottomStickyView].forEach { view.addSubview($0) }
         mainView.contentInset.bottom += 100
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         bottomStickyView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalToSuperview()
@@ -174,15 +190,15 @@ final class RecipePageViewController: ViewController, Messagable {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
     // MARK: - User actions
 
     @objc

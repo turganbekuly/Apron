@@ -13,7 +13,7 @@ import APRUIKit
 import OneSignal
 
 extension ProfileViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial
@@ -22,24 +22,27 @@ extension ProfileViewController {
         case deleteAccount
         case deleteAccountFailed
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
+            isLoading(true)
             handleAuthorizationStatus {
                 self.getProfile()
             }
         case let .fetchProfile(model):
+            isLoading(false)
             userStorage.user = model
             ApronAnalytics.shared.setupUserInfo(
                 id: model.id,
                 name: model.username,
                 email: model.email
             )
-            sections = [.init(section: .app, rows: [.user, .assistant, .deleteAccount, .contactWithDevelopers, .logout])]
+            sections = [.init(section: .app, rows: [.user, .assistant, .myRecipes, .deleteAccount, .contactWithDevelopers, .logout])]
             mainView.reloadData()
         case .fetchProfileFailed:
+            isLoading(false)
             show(type: .error(L10n.Common.errorMessage))
         case .deleteAccount:
             AuthStorage.shared.clear()
@@ -53,5 +56,5 @@ extension ProfileViewController {
             break
         }
     }
-    
+
 }

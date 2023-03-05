@@ -44,7 +44,10 @@ extension RecipePageViewController: BottomStickyViewDelegate {
 
     func saveButtonTapped() {
         guard let recipe = recipe else { return }
-        saveRecipe(with: recipe.id)
+        handleAuthorizationStatus { [weak self] in
+            guard let self = self else { return }
+            self.saveRecipe(with: recipe.id)
+        }
     }
 
     func textFieldTapped() {
@@ -93,7 +96,7 @@ extension RecipePageViewController: PreShoppingListDismissedDelegate {
     func dismissedWithIngredients() {
         show(
             type: .regular("Ингредиенты добавлены в корзину", "Посмотреть"),
-            firstAction:  {
+            firstAction: {
                 let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(viewController, animated: true)
@@ -107,7 +110,7 @@ extension RecipePageViewController: PreShoppingListDismissedDelegate {
     }
 }
 
-extension RecipePageViewController: StepByStepFinalStepProtocol{
+extension RecipePageViewController: StepByStepFinalStepProtocol {
     func reviewButtonTapped() {
         var body = AddCommentRequestBody()
         body.recipeId = recipe?.id

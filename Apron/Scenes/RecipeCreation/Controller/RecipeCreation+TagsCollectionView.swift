@@ -120,17 +120,17 @@ extension RecipeCreationViewController: UICollectionViewDelegateFlowLayout {
         let row = tagsSections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .whenToCook(option):
-            let width = min(Typography.regular14(text: option.title).styled.size().width + 16, collectionView.bounds.width)
-            return CGSize(width: width, height: 24)
+            let width = min(Typography.regular16(text: option.title).styled.size().width + 16, collectionView.bounds.width)
+            return CGSize(width: width, height: 36)
         case let .dishType(option):
-            let width = min(Typography.regular14(text: option.title).styled.size().width + 16, collectionView.bounds.width)
-            return CGSize(width: width, height: 24)
+            let width = min(Typography.regular16(text: option.title).styled.size().width + 16, collectionView.bounds.width)
+            return CGSize(width: width, height: 36)
         case let .lifeStyleType(option):
-            let width = min(Typography.regular14(text: option.title).styled.size().width + 16, collectionView.bounds.width)
-            return CGSize(width: width, height: 24)
+            let width = min(Typography.regular16(text: option.title).styled.size().width + 16, collectionView.bounds.width)
+            return CGSize(width: width, height: 36)
         case let .eventType(option):
-            let width = min(Typography.regular14(text: option.title).styled.size().width + 16, collectionView.bounds.width)
-            return CGSize(width: width, height: 24)
+            let width = min(Typography.regular16(text: option.title).styled.size().width + 16, collectionView.bounds.width)
+            return CGSize(width: width, height: 36)
         }
     }
 
@@ -226,4 +226,3 @@ extension RecipeCreationViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-

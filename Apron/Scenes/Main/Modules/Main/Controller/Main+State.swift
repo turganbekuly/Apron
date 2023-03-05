@@ -10,9 +10,10 @@ import Models
 import UIKit
 import APRUIKit
 import HapticTouch
+import RemoteConfig
 
 extension MainViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial
@@ -25,13 +26,14 @@ extension MainViewController {
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
+            cookNowRecipesState = .loading
             configureMainPageCells()
-//            getEventRecipes()
+            fetchRemoteConfigFeatures()
             getCookNowRecipes()
         case let .fetchCommunitiesByCategory(model):
             self.dynamicCommunities = model
@@ -40,18 +42,36 @@ extension MainViewController {
             show(type: .error(L10n.Common.errorMessage))
             endRefreshingIfNeeded()
         case let .fetchCookNowRecipes(recipes):
-            self.cookNowRecipes = recipes
-        case let .fetchCookNowRecipesFailed(error):
-            print(error)
+            fetchRemoteConfigFeatures()
+            cookNowRecipesState = .loaded(recipes)
+        case .fetchCookNowRecipesFailed:
+            fetchRemoteConfigFeatures()
+            cookNowRecipesState = .loaded([])
         case let .fetchEventRecipes(recipes):
-            self.eventRecipes = recipes
-        case let .fetchEventRecipesFailed(error):
-            print(error)
+            fetchRemoteConfigFeatures()
+            eventRecipesState = .loaded(recipes)
+        case .fetchEventRecipesFailed:
+            fetchRemoteConfigFeatures()
+            eventRecipesState = .loaded([])
         case .saveRecipe:
             HapticTouch.generateSuccess()
         case .saveRecipeFailed:
             show(type: .error(L10n.Common.errorMessage))
             mainView.reloadData()
+        }
+    }
+
+    func fetchRemoteConfigFeatures() {
+        let eventValue = remoteConfigManager.mainOccaisionNumber
+        let adBanners = configManager.config(for: RemoteConfigKeys.adBannerObject)
+        if !adBanners.isEmpty {
+            self.adBanners = adBanners
+            configureMainPageCells()
+        }
+        if !eventValue.isEmpty, let eventType = Int(eventValue) {
+            self.eventType = eventType
+            eventRecipesState = .loading
+            getEventRecipes(eventType: eventType)
         }
     }
 

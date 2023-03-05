@@ -11,18 +11,18 @@ protocol AuthSignUpBusinessLogic {
 }
 
 final class AuthSignUpInteractor: AuthSignUpBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: AuthSignUpPresentationLogic
     private let provider: AuthSignUpProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: AuthSignUpPresentationLogic,
          provider: AuthSignUpProviderProtocol = AuthSignUpProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - AuthSignUpBusinessLogic
 
     func signup(request: AuthSignUpDataFlow.SignUp.Request) {

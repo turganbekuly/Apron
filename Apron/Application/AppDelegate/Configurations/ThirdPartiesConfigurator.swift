@@ -18,14 +18,15 @@ import Kingfisher
 import Mixpanel
 import IQKeyboardManagerSwift
 import APRUIKit
+import AppsFlyerLib
 
-final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
+final class ThirdPartiesConfigurator: NSObject, ApplicationConfiguratorProtocol {
     // MARK: - Private proeprties
 
     var remoteConfigManager = RemoteConfigManager.shared.remoteConfig
     // MARK: - Methods
 
-    func configure(_ application: UIApplication?, launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
+    func configure(_ application: UIApplication?, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         configureFirebase()
         configureAnalytics()
         configureOneSignal(launchOptions: launchOptions)
@@ -40,12 +41,16 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
     }
 
     private func configureAnalytics() {
+        AppsFlyerLib.shared().isDebug = true
         ApronAnalytics.shared.configure(
             amplitudeKey: Configurations.getAmplitudeAPIKey(),
             mixpanelKey: Configurations.getMixpanelAPIKey(),
             appsFlyerKey: Configurations.getAppsflyerDevKey(),
             appsFlyerAppId: Configurations.getAppId()
         )
+
+        AppsFlyerLib.shared().delegate = self
+        AppsFlyerLib.shared().deepLinkDelegate = self
     }
 
     private func configureKingfisher() {
@@ -72,10 +77,15 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
         settings.minimumFetchInterval = 0
         remoteConfig.configSettings = settings
         remoteConfig.fetchAndActivate { [weak self] _, _ in
-            self?.remoteConfigManager.updateConfig { toggles in
-                var config: [String: String] = [:]
-                toggles.forEach { config[$0.key] = "\($0.value)" }
-            }
+            self?.fetchFeatureToggles()
+        }
+    }
+
+    private func fetchFeatureToggles() {
+        let configManager = RemoteConfigManager.shared.configManager
+        configManager.forceSync {
+            let test = configManager.config(for: RemoteConfigKeys.adBannerObject)
+            print(test)
         }
     }
 
@@ -95,5 +105,37 @@ final class ThirdPartiesConfigurator: ApplicationConfiguratorProtocol {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.toolbarTintColor = ApronAssets.mainAppColor.color
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Скрыть клавиатуру"
+    }
+}
+
+// MARK: - Appsflyer Deeplink
+
+extension ThirdPartiesConfigurator: DeepLinkDelegate {
+    func didResolveDeepLink(_ result: DeepLinkResult) {
+        switch result.status {
+        case .notFound:
+            print("Deeplink not found")
+        case .found:
+            guard let deeplink = result.deepLink else { return }
+            if deeplink.isDeferred == true {
+                DeeplinkServicesContainer.shared.deeplinkHandler.handleAFDeeplink(with: deeplink)
+            } else {
+                DeeplinkServicesContainer.shared.deeplinkHandler.handleAFDeeplink(with: deeplink)
+            }
+        case .failure:
+            print("Failed")
+        }
+    }
+}
+
+// MARK: - Appsflyer Deeplink
+
+extension ThirdPartiesConfigurator: AppsFlyerLibDelegate {
+    func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
+        DeeplinkServicesContainer.shared.deeplinkHandler.handleAFConversionDeeplink(with: conversionInfo)
+    }
+
+    func onConversionDataFail(_ error: Error) {
+        print(error)
     }
 }

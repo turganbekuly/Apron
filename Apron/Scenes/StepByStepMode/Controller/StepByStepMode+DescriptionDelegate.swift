@@ -83,7 +83,7 @@ extension StepByStepModeViewController: StepDescriptionCellProtocol {
     }
 
     private func playSound() {
-        guard let path = Bundle.main.path(forResource: "timer_alarm_sound_2", ofType:"wav") else {
+        guard let path = Bundle.main.path(forResource: "timer_alarm_sound_2", ofType: "wav") else {
             return }
         let url = URL(fileURLWithPath: path)
 

@@ -9,24 +9,24 @@
 import UIKit
 
 final class InstructionSelectionView: UITableView {
-    
+
     // MARK: - Initialization
     init() {
         super.init(frame: .zero, style: .plain)
-        
+
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configure() {
         separatorStyle = .none
@@ -35,7 +35,7 @@ final class InstructionSelectionView: UITableView {
         ].forEach {
             register(aClass: $0)
         }
-        
+
         [
             RecipeCreationPlaceholderImageCell.self,
             RecipeCreationImageCell.self,
@@ -45,7 +45,7 @@ final class InstructionSelectionView: UITableView {
         }
         configureColors()
     }
-    
+
     private func configureColors() {
         backgroundColor = .clear
     }

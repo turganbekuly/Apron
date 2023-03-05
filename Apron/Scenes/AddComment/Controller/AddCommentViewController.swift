@@ -17,8 +17,8 @@ protocol AddCommentDisplayLogic: AnyObject {
     func displayUploadImage(viewModel: AddCommentDataFlow.UploadImage.ViewModel)
 }
 
-final class AddCommentViewController: ViewController, Messagable {
-    
+final class AddCommentViewController: ViewController {
+
     struct Section {
         enum Section {
             case comment
@@ -30,7 +30,7 @@ final class AddCommentViewController: ViewController, Messagable {
             case note
             case tags
         }
-        
+
         var section: Section
         var rows: [Row]
     }
@@ -48,7 +48,7 @@ final class AddCommentViewController: ViewController, Messagable {
         var section: Section
         var rows: [Row]
     }
-    
+
     // MARK: - Properties
 
     weak var delegate: RecipePageCommentAdded?
@@ -58,7 +58,7 @@ final class AddCommentViewController: ViewController, Messagable {
         didSet {
             let howDidItTasteOptions = ["Вкусный", "Сладкий", "Пряный", "Мягкий", "Влажный", "Сухой", "Хрустящий", "Свежий"]
             let whatWasGoodOptions = ["Легкий", "Подходит для детей", "Одна посуда", "До 30 минут"]
-            let makeItAgainOptions = ["Частый выбор", "Никогда" , "Особый случай"]
+            let makeItAgainOptions = ["Частый выбор", "Никогда", "Особый случай"]
             tagsSections = [
                 .init(section: .howDidItTaste("Как это было на вкус?"), rows: howDidItTasteOptions.compactMap { .option($0) }),
                 .init(section: .whatWasGood("Что в нем было хорошего?"), rows: whatWasGoodOptions.compactMap { .option($0) }),
@@ -93,11 +93,11 @@ final class AddCommentViewController: ViewController, Messagable {
     var recipeId: Int? {
         didSet {
             tagsSections = []
-            sections = [.init(section: .comment, rows: [.rate, .placeholder, .note, .tags])]
+            sections = [.init(section: .comment, rows: [.rate, .placeholder, .note])]
             mainView.reloadData()
         }
     }
-    
+
     // MARK: - Views
 
     private lazy var backButton = NavigationBackButton()
@@ -118,35 +118,35 @@ final class AddCommentViewController: ViewController, Messagable {
         button.layer.masksToBounds = true
         return button
     }()
-    
+
     // MARK: - Init
     init(interactor: AddCommentBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
 
         tabBarController?.tabBar.isHidden = true
@@ -157,10 +157,10 @@ final class AddCommentViewController: ViewController, Messagable {
 
         tabBarController?.tabBar.isHidden = false
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
 
@@ -179,7 +179,7 @@ final class AddCommentViewController: ViewController, Messagable {
         }
         mainView.reloadTableViewWithoutAnimation()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         backButton.configure(with: "Добавить отзыв")
@@ -189,14 +189,14 @@ final class AddCommentViewController: ViewController, Messagable {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     private func configureViews() {
         [mainView, saveButton].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         saveButton.snp.makeConstraints {
             $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -208,7 +208,7 @@ final class AddCommentViewController: ViewController, Messagable {
             make.bottom.equalTo(saveButton.snp.top)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
@@ -221,17 +221,17 @@ final class AddCommentViewController: ViewController, Messagable {
             show(type: .error("Пожалуйста, выберите подходящий смайлик"))
             return
         }
-        
+
         guard let comment = addCommentRequestBody, comment.comment != nil || comment.tags != nil else {
             show(type: .error("Пожалуйста, заполните поля!"))
             return
         }
-        
+
         addComment(body: comment)
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
 }

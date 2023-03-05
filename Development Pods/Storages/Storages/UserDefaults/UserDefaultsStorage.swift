@@ -50,4 +50,3 @@ public struct UserDefaultsEntry<T> {
 }
 
 public struct UserDefaultsStorage {}
-

@@ -29,10 +29,10 @@ protocol ResultListPresentationLogic: AnyObject {
 }
 
 final class ResultListPresenter: ResultListPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: ResultListDisplayLogic?
-    
+
     // MARK: - ResultListPresentationLogic
 
     func getRecipesByCommunityID(response: ResultListDataFlow.GetRecipesByCommunityID.Response) {

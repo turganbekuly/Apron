@@ -9,20 +9,20 @@
 import AKNetwork
 
 protocol IngredientInsertionProviderProtocol {
-    
+
 }
 
 final class IngredientInsertionProvider: IngredientInsertionProviderProtocol {
 
     // MARK: - Properties
     private let service: IngredientInsertionServiceProtocol
-    
+
     // MARK: - Init
     init(service: IngredientInsertionServiceProtocol =
                     IngredientInsertionService(provider: AKNetworkProvider<IngredientInsertionEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - IngredientInsertionProviderProtocol
 
 }

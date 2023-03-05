@@ -7,7 +7,7 @@
 //
 
 extension ProfileViewController {
-    
+
     // MARK: - Network
 
     func getProfile() {

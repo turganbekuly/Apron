@@ -7,14 +7,14 @@
 //
 
 protocol GeneralSearchResultPresentationLogic: AnyObject {
-    
+
 }
 
 final class GeneralSearchResultPresenter: GeneralSearchResultPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: GeneralSearchResultDisplayLogic?
-    
+
     // MARK: - GeneralSearchResultPresentationLogic
-    
+
 }

@@ -12,7 +12,7 @@ import APRUIKit
 import HapticTouch
 
 extension RecipeSearchViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(SearchFilterRequestBody)
@@ -21,7 +21,7 @@ extension RecipeSearchViewController {
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {

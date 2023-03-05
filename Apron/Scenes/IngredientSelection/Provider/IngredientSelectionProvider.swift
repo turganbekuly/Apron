@@ -21,13 +21,13 @@ final class IngredientSelectionProvider: IngredientSelectionProviderProtocol {
 
     // MARK: - Properties
     private let service: IngredientSelectionServiceProtocol
-    
+
     // MARK: - Init
     init(service: IngredientSelectionServiceProtocol =
                     IngredientSelectionService(provider: AKNetworkProvider<IngredientSelectionEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - IngredientSelectionProviderProtocol
 
     func getProducts(

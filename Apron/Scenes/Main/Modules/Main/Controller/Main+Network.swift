@@ -10,7 +10,7 @@ import Foundation
 import Models
 
 extension MainViewController {
-    
+
     // MARK: - Network
 
     func getCommunitiesByCategory() {
@@ -23,11 +23,9 @@ extension MainViewController {
         interactor.getCookNowRecipes(request: .init(body: searchFilter))
     }
 
-    func getEventRecipes() {
+    func getEventRecipes(eventType: Int) {
         var searchFilter = SearchFilterRequestBody()
-        searchFilter.dishTypes = [3]
-        searchFilter.eventTypes = [1]
-        searchFilter.limit = 10
+        searchFilter.eventTypes = [eventType]
         interactor.getEventRecipes(request: .init(body: searchFilter))
     }
 

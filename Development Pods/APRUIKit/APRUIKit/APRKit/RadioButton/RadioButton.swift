@@ -78,7 +78,6 @@ public class RadioButton: UIView {
         }
     }
 
-
     // MARK: - Callbacks
 
     /// Sets a closure that will be called when the control is selected.
@@ -96,7 +95,6 @@ public class RadioButton: UIView {
     public func onDeselect(execute closure: @escaping () -> Void) {
         didDeselect = closure
     }
-
 
     // MARK: - Select animations
 
@@ -230,7 +228,6 @@ public class RadioButton: UIView {
         return borderWidth
     }
 
-
     // MARK: - Deselect animations
 
     /// Initializes and returns the animation group for emptying the inner circle.
@@ -265,7 +262,6 @@ public class RadioButton: UIView {
 
         return borderColor
     }
-
 
     // MARK: - Actions
 
@@ -341,7 +337,6 @@ public class RadioButton: UIView {
 
         addGestureRecognizer(tapGesture)
     }
-
 
     // MARK: - Init
 

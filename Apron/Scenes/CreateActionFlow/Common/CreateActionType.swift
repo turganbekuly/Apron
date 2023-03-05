@@ -26,5 +26,3 @@ enum CreateActionType {
     case shareIngredients
     case clearIngredients
 }
-
-

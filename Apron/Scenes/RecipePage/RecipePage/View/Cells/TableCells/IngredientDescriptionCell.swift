@@ -24,7 +24,7 @@ final class IngredientDescriptionCell: UITableViewCell {
 
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.regular12
+        label.font = TypographyFonts.regular14
         label.textColor = .black
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left

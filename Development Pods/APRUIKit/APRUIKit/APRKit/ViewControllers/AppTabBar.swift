@@ -11,8 +11,8 @@ import UIKit
 @IBDesignable
 public final class AppTabBar: UITabBar {
 
-    // MARK:- Variables -
-    @objc public var centerButtonActionHandler: ()-> () = {}
+    // MARK: - Variables -
+    @objc public var centerButtonActionHandler: ()-> Void = {}
 
     @IBInspectable public var centerButtonColor: UIColor?
     @IBInspectable public var centerButtonHeight: CGFloat = 50.0
@@ -32,8 +32,8 @@ public final class AppTabBar: UITabBar {
         shapeLayer.fillColor = tabbarColor.cgColor
         shapeLayer.lineWidth = 0
 
-        //The below 4 lines are for shadow above the bar. you can skip them if you do not want a shadow
-        shapeLayer.shadowOffset = CGSize(width:0, height:0)
+        // The below 4 lines are for shadow above the bar. you can skip them if you do not want a shadow
+        shapeLayer.shadowOffset = CGSize(width: 0, height: 0)
         shapeLayer.shadowRadius = 10
         shapeLayer.shadowColor = UIColor.gray.cgColor
         shapeLayer.shadowOpacity = 0.3
@@ -71,7 +71,7 @@ public final class AppTabBar: UITabBar {
         let height: CGFloat = 37.0
         let path = UIBezierPath()
         let centerWidth = self.frame.width / 2
-        
+
         path.move(to: CGPoint(x: 0, y: 0)) // start top left
         path.addLine(to: CGPoint(x: (centerWidth - height * 2), y: 0)) // the beginning of the trough
         // first curve down
@@ -100,7 +100,7 @@ public final class AppTabBar: UITabBar {
         centerButton.backgroundColor = centerButtonColor
         centerButton.tintColor = UIColor.white
 
-        //add to the tabbar and add click event
+        // add to the tabbar and add click event
         self.addSubview(centerButton)
         centerButton.addTarget(self, action: #selector(self.centerButtonAction), for: .touchUpInside)
     }

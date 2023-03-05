@@ -92,6 +92,8 @@ public enum ApronAssets {
   public static let forceUpdateImage = ImageAsset(name: "force_update_image")
   public static let iconPlaceholderCard = ImageAsset(name: "icon_placeholder_card")
   public static let iconPlaceholderItem = ImageAsset(name: "icon_placeholder_item")
+  public static let mealPlannerLeftArrow = ImageAsset(name: "meal_planner_left_arrow")
+  public static let mealPlannerRightArrow = ImageAsset(name: "meal_planner_right_arrow")
   public static let closeIcon = ImageAsset(name: "close_icon")
   public static let iconCartClose = ImageAsset(name: "icon_cart_close")
   public static let iconNavigationClose = ImageAsset(name: "icon_navigation_close")

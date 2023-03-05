@@ -10,12 +10,12 @@ import UIKit
 import Models
 
 extension TasteOnboardingViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(TasteOnboardingScreenType, TasteOnboardingModel)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -24,5 +24,5 @@ extension TasteOnboardingViewController {
             self.tasteOnboardingModel = model
         }
     }
-    
+
 }

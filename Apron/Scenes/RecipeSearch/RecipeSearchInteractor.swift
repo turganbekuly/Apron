@@ -17,14 +17,14 @@ final class RecipeSearchInteractor: RecipeSearchBusinessLogic {
     // MARK: - Properties
     private let presenter: RecipeSearchPresentationLogic
     private let provider: RecipeSearchProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: RecipeSearchPresentationLogic,
          provider: RecipeSearchProviderProtocol = RecipeSearchProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - RecipeSearchBusinessLogic
 
     func getRecipes(request: RecipeSearchDataFlow.GetRecipes.Request) {

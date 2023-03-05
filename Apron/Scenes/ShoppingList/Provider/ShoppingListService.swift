@@ -9,11 +9,11 @@
 import AKNetwork
 
 protocol ShoppingListServiceProtocol {
-    
+
 }
 
 final class ShoppingListService: ShoppingListServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<ShoppingListEndpoint>
 
@@ -21,7 +21,7 @@ final class ShoppingListService: ShoppingListServiceProtocol {
     init(provider: AKNetworkProvider<ShoppingListEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - ShoppingListServiceProtocol
-    
+
 }

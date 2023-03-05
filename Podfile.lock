@@ -22,6 +22,7 @@ PODS:
     - M13Checkbox
     - NVActivityIndicatorView
     - Protocols
+    - RemoteConfig
     - SkeletonView
     - SnapKit
   - Configurations (0.0.1)
@@ -305,7 +306,7 @@ SPEC CHECKSUMS:
   ALProgressView: 547883405970e932d8f1f12b605aa4f6df08f155
   Amplitude: 2904f346250510b9e19a4e2262017bcf1d4368f9
   AnalyticsConnector: 4c386d5972ac9da86e22d668564dbbac97558754
-  APRUIKit: 88d8f3f755e5ffee4a66705956d97fad7a0df75d
+  APRUIKit: c7b815e8de303f3be75b6e793d738ab10d84aebc
   Configurations: 2c6d946ac020900a1efcdcecaaedb476e27363f1
   Decoders: 4cb97a705767a209973d74401515ef061921184b
   Disk: dcee5c2e98fb72f9a924cde8da8435b08244a80e

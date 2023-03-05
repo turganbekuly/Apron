@@ -11,18 +11,18 @@ protocol CategorySelectionBusinessLogic {
 }
 
 final class CategorySelectionInteractor: CategorySelectionBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: CategorySelectionPresentationLogic
     private let provider: CategorySelectionProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: CategorySelectionPresentationLogic,
          provider: CategorySelectionProviderProtocol = CategorySelectionProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - CategorySelectionBusinessLogic
 
     func getCategories(request: CategorySelectionDataFlow.GetCategories.Request) {

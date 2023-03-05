@@ -11,7 +11,6 @@ import Models
 import Kingfisher
 import SnapKit
 
-
 final class RecipeCreationInstructionViewCell: UITableViewCell {
     // MARK: - Properties
 
@@ -41,7 +40,7 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
 
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.semibold12
+        label.font = TypographyFonts.semibold14
         label.textColor = .black
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -76,7 +75,7 @@ final class RecipeCreationInstructionViewCell: UITableViewCell {
     private func setupViews() {
         selectionStyle = .none
         backgroundColor = .clear
-        
+
         [instructionLabel, stepLabel, instructionImage, separatorView].forEach {
             contentView.addSubview($0)
         }

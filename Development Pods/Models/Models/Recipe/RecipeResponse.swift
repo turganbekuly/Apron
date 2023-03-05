@@ -7,6 +7,38 @@
 
 import Foundation
 
+public enum RecipeStatusType: String, Codable, Comparable {
+    case active = "Active"
+    case pending = "Pending"
+    case declined = "Rework"
+
+    public var title: String? {
+        switch self {
+        case .active:
+            return "Опубликовано"
+        case .pending:
+            return "На проверке"
+        case .declined:
+            return "Отклонено"
+        }
+    }
+
+    private var sortOrder: Int {
+        switch self {
+        case .declined:
+            return 0
+        case .pending:
+            return 1
+        case .active:
+            return 2
+        }
+    }
+
+    public static func <(lhs: RecipeStatusType, rhs: RecipeStatusType) -> Bool {
+        return lhs.sortOrder < rhs.sortOrder
+    }
+}
+
 public struct RecipeResponse: Codable {
     private enum CodingKeys: String, CodingKey {
         case id, createdAt
@@ -25,6 +57,8 @@ public struct RecipeResponse: Codable {
         case likesCount = "likesCount"
         case dislikesCount = "dislikesCount"
         case isHidden = "hidden"
+        case status
+        case reworkInfo
     }
 
     // MARK: - Properties
@@ -46,6 +80,8 @@ public struct RecipeResponse: Codable {
     public var likesCount: Int?
     public var dislikesCount: Int?
     public var isHidden: Bool?
+    public var status: RecipeStatusType?
+    public var reworkInfo: [String]?
 
     // MARK: - Init
 
@@ -70,6 +106,8 @@ public struct RecipeResponse: Codable {
         self.likesCount = json[CodingKeys.likesCount.rawValue] as? Int
         self.dislikesCount = json[CodingKeys.dislikesCount.rawValue] as? Int
         self.isHidden = json[CodingKeys.isHidden.rawValue] as? Bool
+        self.status = RecipeStatusType(rawValue: json[CodingKeys.status.rawValue] as? String ?? "Active")
+        self.reworkInfo = json[CodingKeys.reworkInfo.rawValue] as? [String]
     }
 
     // MARK: - Methods
@@ -106,4 +144,3 @@ public struct RecipeResponse: Codable {
         return params
     }
 }
-

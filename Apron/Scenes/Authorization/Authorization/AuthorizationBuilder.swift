@@ -10,15 +10,15 @@ import Protocols
 import UIKit
 
 final class AuthorizationBuilder: ModuleBuilderProtocol {
-    
+
     // MARK: Properties
     private let state: AuthorizationViewController.State
-    
+
     // MARK: Initialization
     init(state: AuthorizationViewController.State) {
         self.state = state
     }
-    
+
     // MARK: - ModuleBuilder
     func build() -> ViewControllerProtocol {
         let presenter = AuthorizationPresenter()
@@ -26,8 +26,8 @@ final class AuthorizationBuilder: ModuleBuilderProtocol {
         let viewController = AuthorizationViewController(interactor: interactor, state: state)
 
         presenter.viewController = viewController
-        
+
         return viewController
     }
-    
+
 }

@@ -52,4 +52,3 @@ final class CategorSelectionHeader: UITableViewHeaderFooterView {
         titleLabel.text = text
     }
 }
-

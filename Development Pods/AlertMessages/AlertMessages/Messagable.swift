@@ -43,6 +43,25 @@ extension Messagable where Self: UIViewController {
         let messageView = MessageView(type: type)
         messageView.didTappedFirstButton = { [weak self] in
             updateButton?()
+            self?.hideLoader()
+        }
+
+        configure(messageView: messageView, with: type)
+        show(messageView: messageView, for: type)
+    }
+
+    public func showUsernameUpdate(
+        type: MessageType,
+        updateButton: ((String) -> Void)? = nil,
+        skipButton: (() -> Void)? = nil
+    ) {
+        guard !SwiftEntryKit.isCurrentlyDisplaying(entryNamed: type.name) else { return }
+        let messageView = MessageView(type: type)
+        messageView.didTapButtonWithStringOutput = { [weak self] text in
+            updateButton?(text)
+        }
+        messageView.didTappedFirstButton = { [weak self] in
+            skipButton?()
         }
 
         configure(messageView: messageView, with: type)
@@ -89,9 +108,15 @@ extension Messagable where Self: UIViewController {
         switch type {
         case let .success(title):
             messageView.configure(with: SuccessMessageViewModel(title: title))
-        case let .dialog(title, subtitle, firstButtonTitle, secondButtonTitle),
-            let .completeAppleSignin(title, subtitle, firstButtonTitle, secondButtonTitle):
+        case let .dialog(title, subtitle, firstButtonTitle, secondButtonTitle):
             messageView.configure(with: DialogMessageViewModel(
+                title: title,
+                subtitle: subtitle,
+                firstButtonTitle: firstButtonTitle,
+                secondButtonTitle: secondButtonTitle
+            ))
+        case let .completeAppleSignin(title, subtitle, firstButtonTitle, secondButtonTitle):
+            messageView.configure(with: UpdateCredentialsViewModel(
                 title: title,
                 subtitle: subtitle,
                 firstButtonTitle: firstButtonTitle,
@@ -160,7 +185,7 @@ extension Messagable where Self: UIViewController {
             attributes.screenInteraction = .absorbTouches
             attributes.scroll = .disabled
             messageView.animationView.play()
-        case .forceUpdate:
+        case .forceUpdate, .completeAppleSignin:
             attributes.displayDuration = .infinity
             attributes.entranceAnimation = .init(fade: .some(.init(from: 0, to: 1, duration: 0.3)))
             attributes.entryInteraction = .absorbTouches
@@ -191,4 +216,3 @@ extension Messagable where Self: UIViewController {
     }
 
 }
-

@@ -9,16 +9,16 @@
 import UIKit
 
 extension AddCommentViewController: UITableViewDataSource {
-    
+
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -39,11 +39,11 @@ extension AddCommentViewController: UITableViewDataSource {
             return cell
         }
     }
-    
+
 }
 
 extension AddCommentViewController: UITableViewDelegate {
-    
+
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
@@ -52,7 +52,7 @@ extension AddCommentViewController: UITableViewDelegate {
             break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -68,7 +68,7 @@ extension AddCommentViewController: UITableViewDelegate {
             return 400
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -84,7 +84,7 @@ extension AddCommentViewController: UITableViewDelegate {
             return 400
         }
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {

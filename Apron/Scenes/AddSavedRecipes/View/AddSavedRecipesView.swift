@@ -44,7 +44,7 @@ final class AddSavedRecipesView: UICollectionView {
         showsVerticalScrollIndicator = false
 
         [
-            SavedRecipeHeaderView.self,
+            SavedRecipeHeaderView.self
         ].forEach {
             register(
                 viewClass: $0,

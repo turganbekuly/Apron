@@ -11,7 +11,7 @@ import UIKit
 public class AKTabBar: UITabBar {
     private var tabWidth: CGFloat = 0
     private var index: CGFloat = 0 {
-        willSet{
+        willSet {
             self.previousIndex = index
         }
     }
@@ -57,7 +57,7 @@ extension AKTabBar {
         mask.fillRule = .evenOdd
         mask.fillColor = UIColor.white.cgColor
         mask.path = bezPath.cgPath
-        if (self.animated) {
+        if self.animated {
             let bezAnimation = CABasicAnimation(keyPath: "path")
             let bezPathFrom = drawPath(for: previousIndex)
             bezAnimation.toValue = bezPath.cgPath
@@ -69,7 +69,7 @@ extension AKTabBar {
         self.layer.mask = mask
     }
 
-    private func customInit(){
+    private func customInit() {
         self.tintColor = .white
         self.barTintColor = .white
         self.backgroundColor = .white
@@ -108,5 +108,3 @@ extension AKTabBar {
         return bezPath
     }
 }
-
-

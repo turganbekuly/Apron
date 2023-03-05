@@ -20,7 +20,7 @@ protocol RecipeCreationServiceProtocol {
 }
 
 final class RecipeCreationService: RecipeCreationServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<RecipeCreationEndpoint>
 
@@ -28,7 +28,7 @@ final class RecipeCreationService: RecipeCreationServiceProtocol {
     init(provider: AKNetworkProvider<RecipeCreationEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - RecipeCreationServiceProtocol
 
     func createRecipe(

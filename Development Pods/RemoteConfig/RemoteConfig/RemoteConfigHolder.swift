@@ -4,21 +4,23 @@ public protocol RemoteConfigHolderProtocol: AnyObject {
     init(persistentStorage: RemoteConfigPersistentStorage)
     func save(remoteConfigDictionary: [String: Any])
 
+    func configValue(for key: String) -> Any?
+
     subscript(bool key: String) -> Bool { get }
     subscript(int key: String) -> Int { get }
     subscript(string key: String) -> String { get }
 }
 
-public final class RemoteConfigHolder: RemoteConfigHolderProtocol {
+public class RemoteConfigHolder: RemoteConfigHolderProtocol {
     // MARK: - Dependenciees
     private let persistentStorage: RemoteConfigPersistentStorage
 
     // MARK: - Remote config
     private var remoteConfig: Atomic<[String: Any]>
-    
+
     // MARK: - Init
-    
-    public init(persistentStorage: RemoteConfigPersistentStorage) {
+
+    required public init(persistentStorage: RemoteConfigPersistentStorage) {
         self.persistentStorage = persistentStorage
         remoteConfig = Atomic<[String: Any]>(wrappedValue:
             RemoteConfigDefault.fields.mapValues {
@@ -30,14 +32,18 @@ public final class RemoteConfigHolder: RemoteConfigHolderProtocol {
         }
         forceUpdateConfig(persistentStorageConfig)
     }
-    
+
     // MARK: - RemoteConfigHolderProtocol
 
     public func save(remoteConfigDictionary: [String: Any]) {
         persistentStorage.save(remoteConfigDictionary: remoteConfigDictionary)
         updateRemoteConfig(remoteConfigDictionary)
     }
-    
+
+    public func configValue(for key: String) -> Any? {
+        remoteConfig.wrappedValue[key]
+    }
+
     public subscript(bool key: String) -> Bool {
         guard let value = remoteConfig.wrappedValue[key] else {
             return false
@@ -59,7 +65,7 @@ public final class RemoteConfigHolder: RemoteConfigHolderProtocol {
             return false
         }
     }
-    
+
     public subscript(int key: String) -> Int {
         guard let value = remoteConfig.wrappedValue[key] else {
             return 0
@@ -77,15 +83,17 @@ public final class RemoteConfigHolder: RemoteConfigHolderProtocol {
             return 0
         }
     }
-    
+
     public subscript(string key: String) -> String {
         if let value = remoteConfig.wrappedValue[key] as? String {
             return value
+        } else if let value = remoteConfig.wrappedValue[key] as? Int {
+            return String(value)
         } else {
             return ""
         }
     }
-    
+
     // MARK: - Helpers
 
     private func updateRemoteConfig(_ newConfig: [String: Any]) {
@@ -101,7 +109,7 @@ public final class RemoteConfigHolder: RemoteConfigHolderProtocol {
 
         self.remoteConfig.store(newValue: remoteConfig)
     }
-    
+
     private func forceUpdateConfig(_ newConfig: [String: Any]) {
         var config = remoteConfig.wrappedValue
         config.merge(newConfig) { $1 }
@@ -136,5 +144,5 @@ struct Atomic<Value> {
 }
 
 private extension Int {
-    
+
 }

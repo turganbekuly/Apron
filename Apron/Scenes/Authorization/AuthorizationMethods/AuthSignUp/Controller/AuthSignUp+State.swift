@@ -12,14 +12,14 @@ import Storages
 import OneSignal
 
 extension AuthSignUpViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial
         case signupSucceed(Auth)
         case signupFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -40,13 +40,14 @@ extension AuthSignUpViewController {
                     )
                 )
             )
-            let viewController = TabBarBuilder(state: .initial(.normal)).build()
+            let vc = TabBarBuilder(state: .initial(.normal)).build()
+            let navigationVC = UINavigationController(rootViewController: vc)
             DispatchQueue.main.async {
-                UIApplication.shared.windows.first?.rootViewController = viewController
+                UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .signupFailed:
             print("asd")
         }
     }
-    
+
 }

@@ -19,7 +19,6 @@ public enum SuggestedDishType: Int, CaseIterable, Codable {
     case deserti
     case garniri = 10
 
-
     public var title: String {
         switch self {
         case .pervoeBluda:
@@ -45,4 +44,3 @@ public enum SuggestedDishType: Int, CaseIterable, Codable {
         }
     }
 }
-

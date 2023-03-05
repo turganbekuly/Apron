@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ru-RU</string>
 	<key>CFBundleDisplayName</key>
-	<string>Moca</string>
+	<string>Moca.kz</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -25,7 +25,7 @@
 			<string>kz.turganbekuly.apron.ios</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>apron.ws</string>
+				<string>moca.kz</string>
 			</array>
 		</dict>
 	</array>
@@ -42,7 +42,7 @@
 	<key>Configuration.BASE_URL</key>
 	<string>104.248.249.70/receipts/</string>
 	<key>Configuration.DEEPLINK_BASED_URL</key>
-	<string>moca</string>
+	<string>moca.kz</string>
 	<key>Configuration.HTTP</key>
 	<string>http://</string>
 	<key>Configuration.MIXPANEL_API_KEY</key>

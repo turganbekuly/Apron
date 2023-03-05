@@ -33,7 +33,7 @@ final class GeneralSearchResultPagerViewController: PageViewController {
             }
         }
     }
-    
+
     var pages = [GeneralSearchInitialState]() {
         didSet {
             selectedIndex = pages.firstIndex(of: currentPage) ?? 0

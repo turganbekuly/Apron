@@ -150,4 +150,3 @@ public final class RecipeCartView: UIView {
         CATransaction.commit()
     }
 }
-

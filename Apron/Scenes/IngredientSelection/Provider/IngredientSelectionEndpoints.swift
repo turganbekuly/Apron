@@ -15,29 +15,29 @@ enum IngredientSelectionEndpoint {
 }
 
 extension IngredientSelectionEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .getProducts:
             return "products"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .getProducts:
             return .get
         }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
         case .getProducts(let query):
@@ -47,7 +47,7 @@ extension IngredientSelectionEndpoint: AKNetworkTargetType {
             )
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -58,5 +58,5 @@ extension IngredientSelectionEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

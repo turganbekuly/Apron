@@ -15,26 +15,26 @@ enum SavedRecipesEndpoint {
 }
 
 extension SavedRecipesEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .getRecipes:
             return "recipes/mySavedRecipes"
         }
     }
-    
+
     var method: AKNetworkMethod {
         return .get
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
         case let .getRecipes(page):
@@ -44,7 +44,7 @@ extension SavedRecipesEndpoint: AKNetworkTargetType {
             )
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -55,5 +55,5 @@ extension SavedRecipesEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

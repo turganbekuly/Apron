@@ -15,8 +15,8 @@ protocol InstructionSelectionDisplayLogic: AnyObject {
     func displayUploadedImage(with viewModel: InstructionSelectionDataFlow.UploadImage.ViewModel)
 }
 
-final class InstructionSelectionViewController: ViewController, Messagable {
-    
+final class InstructionSelectionViewController: ViewController {
+
     struct Section {
         enum Section {
             case instructions
@@ -26,13 +26,13 @@ final class InstructionSelectionViewController: ViewController, Messagable {
             case placeholder
             case description
         }
-        
+
         var section: Section
         var rows: [Row]
     }
-    
+
     // MARK: - Properties
-    
+
     let interactor: InstructionSelectionBusinessLogic
     var sections: [Section] = []
     var state: State {
@@ -70,7 +70,7 @@ final class InstructionSelectionViewController: ViewController, Messagable {
     // Apply and send delegate
 
     weak var delegate: InstructionSelectedProtocol?
-    
+
     // MARK: - Views
     lazy var mainView: InstructionSelectionView = {
         let view = InstructionSelectionView()
@@ -81,50 +81,51 @@ final class InstructionSelectionViewController: ViewController, Messagable {
 
     private lazy var navigationRightButton: NavigationButton = {
         let button = NavigationButton()
+        button.backgroundType = .greenBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
 
     private lazy var backButton = NavigationBackButton()
-    
+
     // MARK: - Init
     init(interactor: InstructionSelectionBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         backButton.configure(with: "Добавить шаг")
@@ -139,20 +140,20 @@ final class InstructionSelectionViewController: ViewController, Messagable {
             $0.height.equalTo(30)
         }
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
@@ -194,9 +195,9 @@ final class InstructionSelectionViewController: ViewController, Messagable {
         }
         navigationController?.popViewController(animated: true)
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 extension RecipeCreationViewController: RecipeCreationDisplayLogic {
-    
+
     // MARK: - RecipeCreationDisplayLogic
 
     func displayRecipe(viewModel: RecipeCreationDataFlow.CreateRecipe.ViewModel) {

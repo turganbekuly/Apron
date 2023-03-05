@@ -23,7 +23,7 @@ extension SplashScreenDataFlow {
     }
 
     enum UpdateTokenResult {
-        case successful(accessToken: String)
+        case successful(model: Auth)
         case failed(error: AKNetworkError)
     }
 }

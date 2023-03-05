@@ -36,7 +36,7 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
         label.font = TypographyFonts.semibold16
         label.textColor = .black
         label.numberOfLines = 1
-        label.text = "Адрес электронной почты *"
+        label.text = "Номер телефона *"
         return label
     }()
 
@@ -45,13 +45,13 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
         label.font = TypographyFonts.regular12
         label.textColor = .black
         label.numberOfLines = 0
-        label.text = "Подарок будет отправлен на указанный адрес электронной почты"
+        label.text = "Подарок будет отправлен на указанный номер по WhatsApp"
         return label
     }()
 
     private lazy var emailTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            placeholder: "Напишите эл.почту"
+            placeholder: "Напишите номер телефона (WhatsApp)"
         )
         textField.textField.keyboardType = .emailAddress
         textField.textField.addTarget(self, action: #selector(didEnterEmail(_:)), for: .editingChanged)
@@ -72,7 +72,7 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
         label.font = TypographyFonts.regular12
         label.textColor = .black
         label.numberOfLines = 0
-        label.text = "Укажите правильный промокод для получения подарка"
+        label.text = "Укажите правильный промокод по которому вы пришли для получения подарка"
         return label
     }()
 
@@ -148,7 +148,6 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
     private func didEnterPromo(_ sender: UITextField) {
         delegate?.cell(didEnteredPromo: sender.text)
     }
-
 
     // MARK: - Public methods
 

@@ -48,6 +48,3 @@ struct SearchMadeModel: Codable {
         return json
     }
 }
-
-
-

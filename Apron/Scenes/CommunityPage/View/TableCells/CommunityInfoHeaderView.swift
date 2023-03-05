@@ -161,7 +161,7 @@ final class CommunityInfoHeaderView: UITableViewHeaderFooterView {
         ].forEach {
             containerView.addSubview($0)
         }
-        
+
         setupConstraints()
     }
 

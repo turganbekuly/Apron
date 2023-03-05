@@ -22,13 +22,13 @@ public struct TagCellViewModel: TagCellViewModelProtocol {
     private let isSelected: Bool
 
     public var backgroundColor: UIColor? {
-        isSelected ? ApronAssets.colorsYello.color : .white
+        isSelected ? ApronAssets.mainAppColor.color : .white
     }
 
     public var title: NSAttributedString? {
-        return Typography.regular14(
+        return Typography.regular16(
             text: tag,
-            color: .black,
+            color: isSelected ? .white : .black,
             textAlignment: .center
         ).styled
     }
@@ -41,4 +41,3 @@ public struct TagCellViewModel: TagCellViewModelProtocol {
     }
 
 }
-

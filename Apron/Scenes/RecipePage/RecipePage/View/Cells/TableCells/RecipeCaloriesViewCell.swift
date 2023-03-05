@@ -5,7 +5,6 @@
 //  Created by Akarys Turganbekuly on 25.02.2022.
 //
 
-
 import UIKit
 import APRUIKit
 
@@ -129,6 +128,6 @@ final class RecipeCaloriesViewCell: UITableViewCell {
         fatView.configure(type: "ЖИРЫ", measure: String(format: "%.1f", viewModel.fatCount ?? 0) + "г")
         proteinView.configure(type: "БЕЛКИ", measure: String(format: "%.1f", viewModel.proteinCount ?? 0) + "г")
         carbsView.configure(type: "УГЛЕВОДЫ", measure: String(format: "%.1f", viewModel.carbsCount ?? 0) + "г")
-        attributedLabelSetup(firstString: "\(viewModel.ccalCount ?? 0) ", secondString: "Ккал на 100 гр")
+        attributedLabelSetup(firstString: String(format: "%.1f", viewModel.ccalCount ?? 0), secondString: " Ккал на 100 гр")
     }
 }

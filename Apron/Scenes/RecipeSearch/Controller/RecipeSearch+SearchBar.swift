@@ -10,7 +10,7 @@ import Foundation
 extension RecipeSearchViewController: APSearchBarDelegate {
     func searchBar(_ searchBar: APSearchBar, textDidChange text: String) {
         query = text
-        
+
         if text.isEmpty {
             sections = [
                 .init(section: .trendings, rows: trends.compactMap { .trending($0) })

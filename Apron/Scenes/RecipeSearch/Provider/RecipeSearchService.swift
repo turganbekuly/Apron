@@ -27,12 +27,11 @@ final class RecipeSearchService: RecipeSearchServiceProtocol {
     init(provider: AKNetworkProvider<RecipeSearchEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - RecipeSearchServiceProtocol
 
     func getRecipes(request: RecipeSearchDataFlow.GetRecipes.Request, completion: @escaping ((AKResult) -> Void)) {
-        provider.send(target: .getRecipes(request.body))
-        { result in
+        provider.send(target: .getRecipes(request.body)) { result in
             completion(result)
         }
     }

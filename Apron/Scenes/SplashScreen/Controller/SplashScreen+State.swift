@@ -11,25 +11,25 @@ import UIKit
 import Storages
 
 extension SplashScreenViewController {
-    
+
     // MARK: - State
     enum State {
         case initial
-        case updateTokenSucceed(String)
+        case updateTokenSucceed(Auth)
         case updateTokenFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     func updateState() {
         switch state {
         case .initial:
             break
-        case let .updateTokenSucceed(accessToken):
-            AuthStorage.shared.accessToken = accessToken
-            AuthStorage.shared.isUserAuthorized = true
+        case let .updateTokenSucceed(model):
+            AuthStorage.shared.save(model: model)
             let vc = TabBarBuilder(state: .initial(.normal)).build()
+            let navigationVC = UINavigationController(rootViewController: vc)
             DispatchQueue.main.async {
-                UIApplication.shared.windows.first?.rootViewController = vc
+                UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .updateTokenFailed:
             AuthStorage.shared.clear()
@@ -41,5 +41,5 @@ extension SplashScreenViewController {
             }
         }
     }
-    
+
 }

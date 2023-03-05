@@ -9,7 +9,7 @@
 import Models
 
 enum CommunityPageDataFlow {
-    
+
 }
 
 extension CommunityPageDataFlow {

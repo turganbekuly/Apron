@@ -30,4 +30,3 @@ extension Bundle {
         return "\(appVersion)(\(buildVersion))"
     }
 }
-

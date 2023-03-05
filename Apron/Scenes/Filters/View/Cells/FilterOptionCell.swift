@@ -106,4 +106,3 @@ final class FilterOptionCell: UICollectionViewCell {
         type = viewModel.cellType
     }
 }
-

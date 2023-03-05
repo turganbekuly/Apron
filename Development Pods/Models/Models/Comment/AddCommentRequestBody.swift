@@ -7,10 +7,10 @@
 
 import Foundation
 
-//"recipeId": 1,
-//"comment": "asdfadsfa"
-//**"tags": [String]**
-//**"image": String**
+// "recipeId": 1,
+// "comment": "asdfadsfa"
+// **"tags": [String]**
+// **"image": String**
 
 public struct AddCommentRequestBody: Codable {
     private enum CodingKeys: String, CodingKey {

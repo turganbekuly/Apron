@@ -6,34 +6,95 @@
 //
 
 import UIKit
+import SkeletonView
 
-open class ShimmerView: UIView {
+public final class ShimmerView: View {
+    // MARK: - Public properties
 
-    // MARK: - Init
-
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-
-        startAnimating()
+    public var cornerRadius: CGFloat {
+        get { layer.cornerRadius }
+        set { layer.cornerRadius = newValue }
     }
 
-    public required init?(coder: NSCoder) {
-        nil
+    // MARK: - Private properties
+
+    private var baseSkeletonColor: UIColor {
+        return ApronAssets.lightGray.color
     }
 
-    // MARK: - Methods
-
-    public func startAnimating() {
-        UIView.animate(
-            withDuration: 0.6,
-            delay: 0,
-            options: [.autoreverse, .repeat, .curveEaseInOut],
-            animations: { [weak self] in
-                self?.alpha = 0.6
-            },
-            completion: nil
-        )
+    private var secondarySkeletonColor: UIColor? {
+        return ApronAssets.lightGray.color.withAlphaComponent(0.3)
     }
 
+    private var shimmer = UIView()
+    private var viewMask: UIView?
+    private var isStartedSkeleton = false
+
+    // MARK: - Lifecycle
+
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutSkeletonIfNeeded()
+    }
+
+    public func setup(mask view: UIView, insets: UIEdgeInsets = .zero) {
+        removeFromSuperview()
+        view.addSubviews(self)
+        snp.matchSuperview(insets: insets)
+        view.bringSubviewToFront(self)
+    }
+
+    public override func setupViews() {
+        super.setupViews()
+        addSubviews(shimmer)
+        shimmer.snp.matchSuperview()
+
+        isSkeletonable = true
+        shimmer.isSkeletonable = true
+        clipsToBounds = true
+        shimmer.backgroundColor = .white
+        backgroundColor = .white
+
+        isHidden = true
+        alpha = 0.0
+    }
+
+    public func startAnimatingSkeleton() {
+        isHidden = false
+        alpha = 1.0
+
+        guard !isStartedSkeleton else { return }
+
+        layoutSkeletonIfNeeded()
+        setNeedsDisplay()
+        layoutIfNeeded()
+
+        let gradient = SkeletonGradient(baseColor: baseSkeletonColor, secondaryColor: secondarySkeletonColor)
+        let gradientDirection: GradientDirection = Locale.current.isRightToLeft ? .rightLeft : .leftRight
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: gradientDirection)
+        showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation, transition: .none)
+        isStartedSkeleton = true
+    }
+
+    public func stopAnimatingSkeleton(animated: Bool) {
+        if animated {
+            UIView.animate(
+                withDuration: 0.25,
+                animations: {
+                    self.alpha = 0.0
+                },
+                completion: { _ in
+                    self.isHidden = true
+                    self.isStartedSkeleton = false
+                    self.hideSkeleton(reloadDataAfter: true, transition: .none)
+                }
+            )
+        } else {
+            alpha = 0.0
+            isHidden = true
+            hideSkeleton(reloadDataAfter: true, transition: .none)
+            isStartedSkeleton = false
+        }
+    }
 }
 

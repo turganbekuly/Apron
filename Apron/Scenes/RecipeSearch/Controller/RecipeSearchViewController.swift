@@ -18,8 +18,8 @@ protocol RecipeSearchDisplayLogic: AnyObject {
     func displaySaveRecipe(viewModel: RecipeSearchDataFlow.SaveRecipe.ViewModel)
 }
 
-final class RecipeSearchViewController: ViewController, Messagable {
-    
+final class RecipeSearchViewController: ViewController {
+
     struct Section {
         enum Section {
             case filter
@@ -30,11 +30,11 @@ final class RecipeSearchViewController: ViewController, Messagable {
             case shimmer
             case result(RecipeResponse)
         }
-        
+
         var section: Section
         var rows: [Row]
     }
-    
+
     // MARK: - Properties
     private var isFirstAppear = true
 
@@ -53,7 +53,7 @@ final class RecipeSearchViewController: ViewController, Messagable {
     var filtersCount: Int = 0
 
     var recipesList: [RecipeResponse] = []
-    
+
     let interactor: RecipeSearchBusinessLogic
 
     lazy var sections: [Section] = [
@@ -67,7 +67,7 @@ final class RecipeSearchViewController: ViewController, Messagable {
     }
 
     var trends = [String]()
-    
+
     // MARK: - Views
     lazy var searchBar: APSearchBar = {
         let searchBar = APSearchBar()
@@ -81,35 +81,35 @@ final class RecipeSearchViewController: ViewController, Messagable {
         view.delegate = self
         return view
     }()
-    
+
     // MARK: - Init
     init(interactor: RecipeSearchBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
 
@@ -117,13 +117,13 @@ final class RecipeSearchViewController: ViewController, Messagable {
         super.viewDidDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -132,7 +132,7 @@ final class RecipeSearchViewController: ViewController, Messagable {
             isFirstAppear = false
         }
     }
-    
+
     private func configureViews() {
         [mainView, searchBar].forEach { view.addSubview($0) }
 
@@ -149,11 +149,11 @@ final class RecipeSearchViewController: ViewController, Messagable {
         searchBar.onTouchedCancelButton = { [weak self] in
             self?.dismiss(animated: true)
         }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         searchBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(5)
@@ -165,11 +165,11 @@ final class RecipeSearchViewController: ViewController, Messagable {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }

@@ -10,18 +10,19 @@ import Models
 import UIKit
 
 extension SavedRecipesViewController {
-    
+
     // MARK: - State
     public enum State {
-        case initial
+        case initial(SavedRecipesInitialState)
         case getSavedRecipesSucceed([RecipeResponse])
         case getSavedRecipesFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case .initial:
+        case let .initial(state):
+            self.initialState = state
             getSavedRecipes(page: currentPage)
         case let .getSavedRecipesSucceed(model):
             updateList(with: model)

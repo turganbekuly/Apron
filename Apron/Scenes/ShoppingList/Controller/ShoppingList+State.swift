@@ -16,7 +16,7 @@ enum ShoppingListEntryPoint {
 }
 
 extension ShoppingListViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(ShoppingListEntryPoint)
@@ -25,7 +25,7 @@ extension ShoppingListViewController {
         case cartItemsDidClear([CartItem])
         case cartItemsDidClearWithError
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {

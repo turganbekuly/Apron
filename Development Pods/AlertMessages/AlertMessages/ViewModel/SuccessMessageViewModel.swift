@@ -30,11 +30,11 @@ public struct SuccessMessageViewModel: MessageProtocol {
     }
 
     public var backgroundColor: UIColor {
-        ApronAssets.colorsYello.color
+        ApronAssets.mainAppColor.color
     }
 
     public var titleColor: UIColor {
-        .black
+        .white
     }
 
     public var subtitleColor: UIColor? {
@@ -42,7 +42,7 @@ public struct SuccessMessageViewModel: MessageProtocol {
     }
 
     public var iconColor: UIColor? {
-        .black
+        .white
     }
 
     // MARK: - Init

@@ -16,7 +16,7 @@ protocol IngredientSelectionDisplayLogic: AnyObject {
     func displayProducts(viewModel: IngredientSelectionDataFlow.GetProducts.ViewModel)
 }
 
-final class IngredientSelectionViewController: ViewController, Messagable {
+final class IngredientSelectionViewController: ViewController {
     // MARK: - Properties
 
     let interactor: IngredientSelectionBusinessLogic
@@ -46,7 +46,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
 
         }
     }
-    
+
     // MARK: - Views
 
     lazy var recipeTextField: RoundedTextField = {
@@ -74,6 +74,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
 
     private lazy var saveButton: NavigationButton = {
         let button = NavigationButton()
+        button.backgroundType = .greenBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
@@ -81,32 +82,31 @@ final class IngredientSelectionViewController: ViewController, Messagable {
 
     private lazy var backButton = NavigationBackButton()
 
-    
     // MARK: - Init
 
     init(interactor: IngredientSelectionBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
         configureViews()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
 
@@ -114,15 +114,15 @@ final class IngredientSelectionViewController: ViewController, Messagable {
         super.viewDidLayoutSubviews()
         setupDropdown()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
-    
+
     private func configureNavigation() {
         backButton.configure(with: "Добавить ингредиент")
         backButton.onBackButtonTapped = { [weak self] in
@@ -136,7 +136,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
             $0.width.equalTo(100)
         }
     }
-    
+
     private func configureViews() {
         view.addSubview(recipeTextField)
 
@@ -150,7 +150,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         recipeTextField.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
@@ -169,7 +169,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
 
     private func setupDropdown() {
         dropDown.anchorView = recipeTextField
-        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.bottomOffset = CGPoint(x: 0, y: (dropDown.anchorView?.plainView.bounds.height)!)
         dropDown.direction = .bottom
         dropDown.selectionAction = { [weak self] (index, product) in
             guard let self = self,
@@ -179,7 +179,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
             self.recipeTextField.textField.text = product
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
@@ -187,9 +187,7 @@ final class IngredientSelectionViewController: ViewController, Messagable {
     func configureSaveButtonEnabled(isEnabled: Bool) {
         saveButton.isEnabled = isEnabled
     }
-    
-    
-    
+
     deinit {
         NSLog("deinit \(self)")
     }

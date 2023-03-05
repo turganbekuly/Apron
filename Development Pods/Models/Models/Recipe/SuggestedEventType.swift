@@ -15,6 +15,7 @@ public enum SuggestedEventType: Int, CaseIterable, Codable {
     case womensday
     case paskha
     case masslenica
+    case ramadan
 
     public var title: String {
         switch self {
@@ -32,7 +33,8 @@ public enum SuggestedEventType: Int, CaseIterable, Codable {
             return "Пасха"
         case .masslenica:
             return "Массленица"
+        case .ramadan:
+            return "Рамадан"
         }
     }
 }
-

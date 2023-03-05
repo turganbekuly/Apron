@@ -20,7 +20,7 @@ protocol CommunityPageDisplayLogic: AnyObject {
     func displaySaveRecipe(viewModel: CommunityPageDataFlow.SaveRecipe.ViewModel)
 }
 
-public final class CommunityPageViewController: ViewController, Messagable {
+public final class CommunityPageViewController: ViewController {
     // MARK: - Properties
     let interactor: CommunityPageBusinessLogic
     var sections: [Section] = []
@@ -96,7 +96,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
 
     private var tableViewTopConstraint: Constraint?
     private var cacheOffset: CGPoint?
-    
+
     // MARK: - Views
     lazy var imageView: ImageHeaderView = {
         let imageHeader = ImageHeaderView()
@@ -132,35 +132,35 @@ public final class CommunityPageViewController: ViewController, Messagable {
         view.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         return view
     }()
-    
+
     // MARK: - Init
     init(interactor: CommunityPageBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     public required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override public func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
 
@@ -173,17 +173,17 @@ public final class CommunityPageViewController: ViewController, Messagable {
             height: view.safeAreaInsets.top
         )
     }
-    
+
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
 
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle()
     }
-    
+
     // MARK: - Private Methods
 
     private func configureNavigation() {
@@ -192,7 +192,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
         navigationItem.leftBarButtonItem =  UIBarButtonItem(customView: backButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
-    
+
     private func configureViews() {
         backButton.icon = ApronAssets.navBackButton.image.withTintColor(.black)
         moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
@@ -216,11 +216,11 @@ public final class CommunityPageViewController: ViewController, Messagable {
             guard let self = self else { return }
             self.navigateToCreateActionFlow(with: .communityPageMore)
         }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         imageView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -253,7 +253,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
 
         return .lightContent
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
         navigationBarView.backgroundColor = .clear
@@ -295,7 +295,7 @@ public final class CommunityPageViewController: ViewController, Messagable {
             self.navigationController?.presentPanModal(vc)
         }
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
@@ -365,8 +365,6 @@ extension CommunityPageViewController {
             navigationItem.title = nil
             navigationBarView.backgroundColor = .clear
         }
-
-
 
         let offsetY = mainView.contentOffset.y + mainView.contentInset.top
         guard offsetY <= 0 else {

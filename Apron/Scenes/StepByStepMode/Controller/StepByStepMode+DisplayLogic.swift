@@ -9,7 +9,7 @@
 import UIKit
 
 extension StepByStepModeViewController: StepByStepModeDisplayLogic {
-    
+
     // MARK: - StepByStepModeDisplayLogic
-    
+
 }

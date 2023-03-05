@@ -14,10 +14,10 @@ protocol RecipeCreationPresentationLogic: AnyObject {
 }
 
 final class RecipeCreationPresenter: RecipeCreationPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: RecipeCreationDisplayLogic?
-    
+
     // MARK: - RecipeCreationPresentationLogic
 
     func createRecipe(response: RecipeCreationDataFlow.CreateRecipe.Response) {

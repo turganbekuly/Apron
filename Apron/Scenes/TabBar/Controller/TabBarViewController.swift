@@ -15,10 +15,14 @@ import Models
 import Storages
 
 protocol TabBarDisplayLogic: AnyObject {
-    
+
 }
 
-final class TabBarViewController: AppTabBarController, Messagable {
+final class TabBarViewController: AppTabBarController {
+    // MARK: - Private properties
+
+    private lazy var cartManager = CartManager.shared
+
     // MARK: - Properties
 
     var state: State {
@@ -33,44 +37,51 @@ final class TabBarViewController: AppTabBarController, Messagable {
         case main
         case search
         case saved
-//        case shoppingList
+        case mealPlanner
     }
 
     private lazy var mainModule = MainBuilder(state: .initial).build()
     private lazy var searchModule = SearchBuilder(state: .initial(.general)).build()
-    private lazy var favouriteModule = SavedRecipesBuilder(state: .initial).build()
+    private lazy var favouriteModule = SavedRecipesBuilder(state: .initial(.tab)).build()
     private lazy var shoppingListModule = ShoppingListBuilder(state: .initial(.tab)).build()
+    private lazy var mealPlannerModule = MealPlannerBuilder(state: .initial).build()
 
     // MARK: - Init
-    
+
     init(state: State) {
         self.state = state
 
         super.init(nibName: nil, bundle: nil)
+
+        CartManager.shared.subscribe(self) { [weak self] in
+            self?.updateCount()
+        }
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
-    
+
     override  func viewDidLoad() {
         super.viewDidLoad()
         state = { state }()
+        self.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         handleRemoteConfig()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
 
     func configureTabBar() {
@@ -78,8 +89,9 @@ final class TabBarViewController: AppTabBarController, Messagable {
         viewControllers = [
             configureViewController(viewController: mainModule, type: .main),
             configureViewController(viewController: searchModule, type: .search),
-            configureViewController(viewController: favouriteModule, type: .saved)
+            configureViewController(viewController: favouriteModule, type: .saved),
 //            configureViewController(viewController: shoppingListModule, type: .shoppingList)
+            configureViewController(viewController: mealPlannerModule, type: .mealPlanner)
         ]
     }
 
@@ -98,15 +110,44 @@ final class TabBarViewController: AppTabBarController, Messagable {
 //        case .shoppingList:
 //            navigationController.tabBarItem.title = L10n.TabBar.ShoppingList.title
 //            navigationController.tabBarItem.image = ApronAssets.tabListSelectedIcon.image
+        case .mealPlanner:
+            navigationController.tabBarItem.title = L10n.TabBar.MealPlanner.title
+            navigationController.tabBarItem.image = ApronAssets.tabPlannerSelectedIcon.image
         }
         return navigationController
     }
 
     private func configureColors() {
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
+        cartManager.unsubscribe(self)
     }
-    
+
+    // MARK: - Private methods
+
+    private func updateCount() {
+        let count = cartManager.itemsCount()
+        tabBarItem.badgeValue = count > 0 ? "\(count)" : ""
+        tabBarItem.badgeColor = count > 0 ? ApronAssets.mainAppColor.color : .clear
+        tabBarItem.setBadgeTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+    }
+}
+
+extension TabBarViewController: UITabBarControllerDelegate {
+    func tabBarController(
+        _ tabBarController: UITabBarController,
+        shouldSelect viewController: UIViewController
+    ) -> Bool {
+        guard let index = self.viewControllers?.firstIndex(of: viewController) else { return false }
+        if index == 2 || index == 3 {
+            handleAuthorizationStatus {
+                self.selectedIndex = index
+            }
+            return false
+        }
+        self.selectedIndex = index
+        return false
+    }
 }

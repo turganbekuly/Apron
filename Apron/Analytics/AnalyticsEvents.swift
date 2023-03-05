@@ -47,6 +47,7 @@ enum AnalyticsEvents {
     case shoppingListCheckoutTapped([String])
     case stepByStepViewed
     case filtersApplied(SearchFilterRequestBody)
+    case adBannerTapped(AdBannerModel)
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -84,10 +85,12 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "shopping_list_checkout_tapped"
         case .filtersApplied:
             return "search_filters_applied"
+        case .adBannerTapped:
+            return "ad_banner_tapped"
         }
     }
 
-    var eventProperties: [String : Any] {
+    var eventProperties: [String: Any] {
         switch self {
         case let .homePageViewed(model):
             return ["customer_status": model.rawValue]
@@ -120,6 +123,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
         case let .shoppingListCheckoutTapped(ingredients):
             return ["ingredients": ingredients]
         case let .filtersApplied(model):
+            return model.toJSON()
+        case let .adBannerTapped(model):
             return model.toJSON()
         }
     }

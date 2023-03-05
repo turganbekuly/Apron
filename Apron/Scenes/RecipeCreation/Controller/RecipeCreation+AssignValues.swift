@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AssignTypesSelectedDelegate {
+protocol AssignTypesSelectedDelegate: AnyObject {
     func didSelected(type: AssignTypes)
 }
 

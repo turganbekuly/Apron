@@ -9,7 +9,7 @@
 import UIKit
 
 extension InstructionSelectionViewController: InstructionSelectionDisplayLogic {
-    
+
     // MARK: - InstructionSelectionDisplayLogic
 
     func displayUploadedImage(with viewModel: InstructionSelectionDataFlow.UploadImage.ViewModel) {

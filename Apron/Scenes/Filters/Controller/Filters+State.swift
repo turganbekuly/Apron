@@ -14,12 +14,12 @@ protocol ApplyFiltersProtocol: AnyObject {
 }
 
 extension FiltersViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(SearchFilterRequestBody, ApplyFiltersProtocol)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -28,5 +28,5 @@ extension FiltersViewController {
             self.delegate = delegate
         }
     }
-    
+
 }

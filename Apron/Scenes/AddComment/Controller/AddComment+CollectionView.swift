@@ -78,8 +78,8 @@ extension AddCommentViewController: UICollectionViewDelegateFlowLayout {
         let row = tagsSections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .option(option):
-            let width = min(Typography.regular14(text: option).styled.size().width + 16, collectionView.bounds.width)
-            return CGSize(width: width, height: 24)
+            let width = min(Typography.regular16(text: option).styled.size().width + 16, collectionView.bounds.width)
+            return CGSize(width: width, height: 36)
         }
     }
 

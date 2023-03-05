@@ -27,15 +27,29 @@ import AppsFlyerLib
          return .unknown
      }
 
+     func makeAppsFlyerConversionDeepLink(with deeplink: [AnyHashable: Any]) -> CustomDeepLink {
+         if let _ = deeplink["saved_recipes"] as? String {
+             return .openSavedRecipes
+         }
+         if let _ = deeplink["shopping_list"] as? String {
+             return .openShoppingList
+         }
+         if let receipeId = deeplink["recipe_id"] as? String {
+             return .openRecipe(id: Int(receipeId) ?? 1)
+         }
+         return .unknown
+     }
+
      func makeDeeplink(from url: URL) -> CustomDeepLink {
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         guard
-            let urlHost = urlComponents?.host,
+            let scheme = urlComponents?.scheme,
+            let _ = urlComponents?.host,
             let urlPath = urlComponents?.path
         else { return .unknown }
 
         let components = urlPath.components(separatedBy: "/").filter { !$0.isEmpty }
-        switch urlHost {
+        switch scheme {
         case Configurations.getDeeplinkBaseURL():
             return getBaseDeeplink(from: components)
         default:
@@ -91,4 +105,3 @@ import AppsFlyerLib
         }
     }
 }
-

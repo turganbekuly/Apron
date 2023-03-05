@@ -26,7 +26,7 @@ public final class Configurations {
     }
 
     public static func downloadImageURL(imagePath: String) -> String {
-        return "\(getBaseURL())image/download?fileName=\(imagePath)"
+        return "\(getBaseURL())file/download?fileName=\(imagePath)"
     }
 
     public static func getWebBaseHost() -> String {
@@ -34,12 +34,11 @@ public final class Configurations {
     }
 
     public static func getDeeplinkBaseURL() -> String {
-        guard let http = getValue(for: ConfigurationKeys.http),
-              let urlString = getValue(for: ConfigurationKeys.deeplinkBasedURL) else {
+        guard let urlString = getValue(for: ConfigurationKeys.deeplinkBasedURL) else {
             print("Cannot get base url")
             return ""
         }
-        return "\(http)\(urlString)"
+        return "\(urlString)"
     }
 
     public static func getAppId() -> String {
@@ -82,4 +81,3 @@ public final class Configurations {
     }
 
 }
-

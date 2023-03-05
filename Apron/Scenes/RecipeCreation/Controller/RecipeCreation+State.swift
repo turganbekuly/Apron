@@ -9,9 +9,10 @@
 import Models
 import UIKit
 import Configurations
+import RemoteConfig
 
 extension RecipeCreationViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(RecipeCreationInitialState)
@@ -20,13 +21,14 @@ extension RecipeCreationViewController {
         case uploadImageSucceed(String)
         case uploadImageFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
         case let .initial(state):
             self.initialState = state
         case let .recipeCreationSucceed(recipe):
+            let remoteConfigManager = RemoteConfigManager.shared
             saveButtonLoader(isLoading: false)
             recipeCreationStorage.recipeCreation = nil
             ApronAnalytics.shared.sendAnalyticsEvent(
@@ -36,7 +38,8 @@ extension RecipeCreationViewController {
                         recipeName: recipe.recipeName ?? "",
                         sourceType: analyticsSourceType ?? .community,
                         imageAdded: selectedImage != nil ? true : false,
-                        ingredients: recipe.ingredients?.map { $0.product?.name ?? ""} ?? []
+                        ingredients: recipe.ingredients?.map { $0.product?.name ?? ""} ?? [],
+                        isPaidRecipe: remoteConfigManager.remoteConfig.isPaidRecipeEnabled
                     )
                 )
             )
@@ -57,5 +60,5 @@ extension RecipeCreationViewController {
             show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
         }
     }
-    
+
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 extension ShoppingListViewController: ShoppingListDisplayLogic {
-    
+
     // MARK: - ShoppingListDisplayLogic
 
     func displayCartItems(viewModel: ShoppingListDataFlow.GetCartItems.ViewModel) {

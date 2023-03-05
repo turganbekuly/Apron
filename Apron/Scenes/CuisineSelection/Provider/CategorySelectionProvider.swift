@@ -20,13 +20,13 @@ final class CategorySelectionProvider: CategorySelectionProviderProtocol {
 
     // MARK: - Properties
     private let service: CategorySelectionServiceProtocol
-    
+
     // MARK: - Init
     init(service: CategorySelectionServiceProtocol =
                     CategorySelectionService(provider: AKNetworkProvider<CategorySelectionEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - CategorySelectionProviderProtocol
 
     func getCategories(

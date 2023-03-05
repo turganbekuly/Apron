@@ -17,11 +17,11 @@ enum RecipeSearchEndpoint {
 }
 
 extension RecipeSearchEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .getRecipes:
@@ -30,7 +30,7 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
             return "recipes/saveRecipe/\(id)"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .getRecipes:
@@ -39,11 +39,11 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
             return .put
         }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
         case .getRecipes(let body):
@@ -55,7 +55,7 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
             return .requestPlain
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -66,5 +66,5 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

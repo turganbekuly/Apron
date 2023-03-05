@@ -10,15 +10,15 @@ import Protocols
 import UIKit
 
 final class SplashScreenBuilder: ModuleBuilderProtocol {
-    
+
     // MARK: Properties
     private let state: SplashScreenViewController.State
-    
+
     // MARK: Initialization
     init(state: SplashScreenViewController.State) {
         self.state = state
     }
-    
+
     // MARK: - ModuleBuilder
     func build() -> ViewControllerProtocol {
         let presenter = SplashScreenPresenter()
@@ -28,5 +28,5 @@ final class SplashScreenBuilder: ModuleBuilderProtocol {
         presenter.viewController = viewController
         return viewController
     }
-    
+
 }

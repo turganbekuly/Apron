@@ -25,7 +25,7 @@ final class StretchyTableViewHeaderView: UIView {
             )
         }
     }
-    
+
     // MARK: - Init
 
     override init(frame: CGRect) {

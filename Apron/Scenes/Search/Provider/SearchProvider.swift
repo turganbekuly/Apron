@@ -9,20 +9,20 @@
 import AKNetwork
 
 protocol SearchProviderProtocol {
-    
+
 }
 
 final class SearchProvider: SearchProviderProtocol {
 
     // MARK: - Properties
     private let service: SearchServiceProtocol
-    
+
     // MARK: - Init
     init(service: SearchServiceProtocol =
                     SearchService(provider: AKNetworkProvider<SearchEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - SearchProviderProtocol
 
 }

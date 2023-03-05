@@ -11,7 +11,7 @@ import APRUIKit
 final class NavigationSearchView: UIView {
     // MARK: - Init
 
-    init(title: String? = "Поиск рецептов и сообществ", frame: CGRect = .zero) {
+    init(title: String? = "Поиск рецептов", frame: CGRect = .zero) {
         super.init(frame: frame)
         setupViews()
     }

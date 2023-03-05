@@ -106,16 +106,23 @@ final class CookNowCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: CookNowCellViewModelProtocol) {
-        titleLabel.text = viewModel.sectionTitle
-        guard !viewModel.recipes.isEmpty else {
+        let title = viewModel.sectionTitle
+        titleLabel.text = title
+
+        switch viewModel.state {
+        case .failed:
+            break
+        case .loading:
+            seeAllButton.isHidden = true
             recipesSection = [
                 .init(section: .recipes, rows: Array(repeating: .shimmer, count: 2))
             ]
-            return
+        case let .loaded(recipes):
+            seeAllButton.isHidden = false
+            recipesSection = [
+                .init(section: .recipes, rows: recipes.compactMap { .recipe($0) })
+            ]
         }
-        recipesSection = [
-            .init(section: .recipes, rows: viewModel.recipes.compactMap { .recipe($0) })
-        ]
     }
 }
 

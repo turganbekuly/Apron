@@ -80,4 +80,3 @@ final class CommunityCreationNamingCell: UITableViewCell {
         roudedTextField.textField.text = recipeName ?? ""
     }
 }
-

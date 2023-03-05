@@ -16,20 +16,19 @@ protocol SearchBusinessLogic {
 }
 
 final class SearchInteractor: SearchBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: SearchPresentationLogic
     private let provider: SearchProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: SearchPresentationLogic,
          provider: SearchProviderProtocol = SearchProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
-    // MARK: - SearchBusinessLogic
 
+    // MARK: - SearchBusinessLogic
 
     func addSearchQueryToHistory(_ query: String) {
         guard !query.trimmingCharacters(in: .whitespaces).isEmpty else { return }

@@ -14,12 +14,12 @@ protocol CreateActionFlowProtocol: AnyObject {
 }
 
 extension CreateActionFlowViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(CreateActionInitialState, CreateActionFlowProtocol)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -28,5 +28,5 @@ extension CreateActionFlowViewController {
             self.delegate = delegate
         }
     }
-    
+
 }

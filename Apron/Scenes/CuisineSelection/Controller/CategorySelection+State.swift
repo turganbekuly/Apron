@@ -10,14 +10,14 @@ import Models
 import UIKit
 
 extension CategorySelectionViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(CategorySelectionProtocol)
         case displayCategories(model: [CommunityCategory])
         case displayCategoriesFailed(error: AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -32,5 +32,5 @@ extension CategorySelectionViewController {
             break
         }
     }
-    
+
 }

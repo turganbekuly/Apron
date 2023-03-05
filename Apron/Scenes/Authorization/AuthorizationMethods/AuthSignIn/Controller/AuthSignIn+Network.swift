@@ -7,7 +7,7 @@
 //
 
 extension AuthSignInViewController {
-    
+
     // MARK: - Network
 
     func login(email: String, password: String) {

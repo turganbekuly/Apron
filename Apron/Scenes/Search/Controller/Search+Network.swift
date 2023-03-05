@@ -7,7 +7,7 @@
 //
 
 extension SearchViewController {
-    
+
     // MARK: - Network
 
 //    func getSearchHistory() {

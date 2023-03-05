@@ -5,17 +5,17 @@
 ////  Created by Akarys Turganbekuly on 08.12.2022.
 ////
 //
-//import UIKit
-//import APRUIKit
-//import HapticTouch
-//import Storages
+// import UIKit
+// import APRUIKit
+// import HapticTouch
+// import Storages
 //
-//protocol ShoppingListBottomStickyViewDelegate: AnyObject {
+// protocol ShoppingListBottomStickyViewDelegate: AnyObject {
 //    func addButtonTapped()
 //    func orderButtonTapped()
-//}
+// }
 //
-//final class ShoppingListBottomStickyView: View {
+// final class ShoppingListBottomStickyView: View {
 //    // MARK: - Properties
 //
 //    weak var delegate: ShoppingListBottomStickyViewDelegate?
@@ -127,5 +127,5 @@
 //    func configure(isSaved: Bool) {
 //        self.isSaved = isSaved
 //    }
-//}
+// }
 //

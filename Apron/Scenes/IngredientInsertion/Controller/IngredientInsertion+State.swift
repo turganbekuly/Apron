@@ -10,12 +10,12 @@ import Models
 import UIKit
 
 extension IngredientInsertionViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(RecipeCreationAddIngredientCellProtocol?)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -23,5 +23,5 @@ extension IngredientInsertionViewController {
             self.delegate = delegate
         }
     }
-    
+
 }

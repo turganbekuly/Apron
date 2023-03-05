@@ -43,7 +43,7 @@ final class WhatToCookCollectionView: UICollectionView {
         isScrollEnabled = false
 
         [
-            SavedRecipeHeaderView.self,
+            SavedRecipeHeaderView.self
         ].forEach {
             register(
                 viewClass: $0,
@@ -63,5 +63,3 @@ final class WhatToCookCollectionView: UICollectionView {
         backgroundColor = .clear
     }
 }
-
-

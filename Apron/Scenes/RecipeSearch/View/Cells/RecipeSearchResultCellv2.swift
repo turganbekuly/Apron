@@ -138,7 +138,6 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         return label
     }()
 
-
     // MARK: - Setup Views
 
     private func setupViews() {

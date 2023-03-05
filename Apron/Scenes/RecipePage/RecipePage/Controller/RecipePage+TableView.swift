@@ -43,6 +43,9 @@ extension RecipePageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .reworkInfo:
+            let cell: RecipeReworkInfoViewCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         case .topView:
             let cell: RecipeInformationViewCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
@@ -73,15 +76,27 @@ extension RecipePageViewController: UITableViewDelegate {
             break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .reworkInfo:
+            guard let reworkInfo = recipe?.reworkInfo else { return 0 }
+            let width = (UIScreen.main.bounds.width - 32)
+            var text = "Замечания от модератора:\n"
+            for (index, reason) in reworkInfo.enumerated() {
+                if index == 0 {
+                    text += reason
+                } else {
+                    text += "\n \(reason)"
+                }
+            }
+            return 16 + text.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14)
         case .topView:
-            return (view.bounds.width / 1.5) + 90
+            return (mainView.bounds.width / 1.5) + 80
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
-            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 0)
+            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14) ?? 0)
         case .ingredient:
             return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
@@ -90,18 +105,16 @@ extension RecipePageViewController: UITableViewDelegate {
             var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
 
-            if let images = recipe?.instructions?.compactMap({ $0.image }), images.count != 0
-            {
+            if let images = recipe?.instructions?.compactMap({ $0.image }), images.count != 0 {
                 imageSize = CGFloat(images.count) * 220
             }
 
             return 160 + imageSize + ((recipe?.instructions?
                 .reduce(
-                    0,
-                    {
+                    0, {
                         $0 + (
                             (
-                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10
+                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10
                             ) + 37
                         )
                     }
@@ -114,11 +127,23 @@ extension RecipePageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .reworkInfo:
+            guard let reworkInfo = recipe?.reworkInfo else { return 0 }
+            let width = (UIScreen.main.bounds.width - 32)
+            var text = "Замечания от модератора:\n"
+            for (index, reason) in reworkInfo.enumerated() {
+                if index == 0 {
+                    text += reason
+                } else {
+                    text += "\n \(reason)"
+                }
+            }
+            return 16 + text.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14)
         case .topView:
-            return (view.bounds.width / 1.5) + 90
+            return (mainView.bounds.width / 1.5) + 80
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
-            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular12) ?? 0)
+            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14) ?? 0)
         case .ingredient:
             return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
@@ -127,18 +152,16 @@ extension RecipePageViewController: UITableViewDelegate {
             var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
 
-            if let images = recipe?.instructions?.compactMap({ $0.image }), images.count != 0
-            {
+            if let images = recipe?.instructions?.compactMap({ $0.image }), images.count != 0 {
                 imageSize = CGFloat(images.count) * 220
             }
 
             return 160 + imageSize + ((recipe?.instructions?
                 .reduce(
-                    0,
-                    {
+                    0, {
                         $0 + (
                             (
-                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10
+                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10
                             ) + 35
                         )
                     }
@@ -155,6 +178,9 @@ extension RecipePageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .reworkInfo:
+            guard let cell = cell as? RecipeReworkInfoViewCell else { return }
+            cell.configure(reworkInfo: recipe?.reworkInfo ?? [])
         case .topView:
             guard let cell = cell as? RecipeInformationViewCell else { return }
             cell.onEditButtonTapped = {
@@ -172,7 +198,7 @@ extension RecipePageViewController: UITableViewDelegate {
                 guard let self = self else { return }
                 let viewController = UIActivityViewController(
                     activityItems: [
-                        "Зацените рецепт \"\(self.recipe?.recipeName ?? "")\" на Apron  👀\nhttps://apron.ws/recipe/\(self.recipe?.id ?? 0)"
+                        "Зацените рецепт \"\(self.recipe?.recipeName ?? "")\" на Moca.kz 👀\n moca.kz://main/recipe/\(self.recipe?.id ?? 0)"
                     ],
                     applicationActivities: nil
                 )

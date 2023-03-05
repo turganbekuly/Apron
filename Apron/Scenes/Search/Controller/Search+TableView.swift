@@ -9,16 +9,16 @@
 import UIKit
 
 extension SearchViewController: UITableViewDataSource {
-    
+
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -27,11 +27,11 @@ extension SearchViewController: UITableViewDataSource {
             return cell
         }
     }
-    
+
 }
 
 extension SearchViewController: UITableViewDelegate {
-    
+
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
@@ -40,7 +40,7 @@ extension SearchViewController: UITableViewDelegate {
             break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -49,7 +49,7 @@ extension SearchViewController: UITableViewDelegate {
             return CGFloat(rowCount * 176)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -58,7 +58,7 @@ extension SearchViewController: UITableViewDelegate {
             return CGFloat(rowCount * 176)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -68,7 +68,7 @@ extension SearchViewController: UITableViewDelegate {
             cell.suggestionCategoriesView.dataSource = self
         }
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = sections[section].section
         switch section {

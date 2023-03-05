@@ -9,7 +9,7 @@
 import UIKit
 
 final class RecipeSearchView: UICollectionView {
-    
+
     // MARK: - Initialization
     init() {
         let layout: UICollectionViewFlowLayout = {
@@ -23,20 +23,20 @@ final class RecipeSearchView: UICollectionView {
         }()
 
         super.init(frame: .zero, collectionViewLayout: layout)
-        
+
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configure() {
         allowsMultipleSelection = false
@@ -60,10 +60,10 @@ final class RecipeSearchView: UICollectionView {
         ].forEach {
             register(cellClass: $0)
         }
-        
+
         configureColors()
     }
-    
+
     private func configureColors() {
         backgroundColor = .clear
     }

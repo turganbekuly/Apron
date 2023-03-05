@@ -16,7 +16,7 @@ enum AddSavedRecipesEndpoint {
 }
 
 extension AddSavedRecipesEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
@@ -68,5 +68,5 @@ extension AddSavedRecipesEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

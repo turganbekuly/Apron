@@ -10,7 +10,7 @@ import UIKit
 import APRUIKit
 
 final class FiltersView: UICollectionView {
-    
+
     // MARK: - Initialization
     init() {
         let layout: CollectionViewLeftAlignLayout = {
@@ -22,20 +22,20 @@ final class FiltersView: UICollectionView {
         }()
 
         super.init(frame: .zero, collectionViewLayout: layout)
-        
+
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configure() {
         allowsMultipleSelection = true
@@ -54,7 +54,7 @@ final class FiltersView: UICollectionView {
 
         configureColors()
     }
-    
+
     private func configureColors() {
         backgroundColor = .clear
     }

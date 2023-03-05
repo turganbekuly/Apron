@@ -48,7 +48,6 @@ final class StepFinalStepCell: UICollectionViewCell {
         )
         return button
     }()
-    
 
     // MARK: - Setup Views
 

@@ -9,7 +9,7 @@
 import Models
 
 enum IngredientSelectionDataFlow {
-    
+
 }
 
 extension IngredientSelectionDataFlow {

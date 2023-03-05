@@ -10,7 +10,7 @@ import Models
 import AKNetwork
 
 public enum MainDataFlow {
-    
+
 }
 
 extension MainDataFlow {

@@ -94,7 +94,6 @@ extension CommunityPageViewController: UITableViewDelegate {
         }
     }
 
-
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = sections[section].section
         switch section {

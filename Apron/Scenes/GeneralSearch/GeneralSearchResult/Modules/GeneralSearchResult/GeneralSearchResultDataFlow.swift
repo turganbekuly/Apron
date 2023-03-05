@@ -7,5 +7,5 @@
 //
 
 enum GeneralSearchResultDataFlow {
-    
+
 }

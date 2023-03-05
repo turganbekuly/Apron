@@ -16,23 +16,23 @@ protocol ResultListViewControllerDelegate: AnyObject {
 }
 
 protocol GeneralSearchDisplayLogic: AnyObject {
-    
+
 }
 
 final class GeneralSearchViewController: ViewController {
-    
+
     struct Section {
         enum Section {
-            
+
         }
         enum Row {
-            
+
         }
-        
+
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
     let interactor: GeneralSearchBusinessLogic
 
@@ -49,7 +49,7 @@ final class GeneralSearchViewController: ViewController {
     var initialState: GeneralSearchInitialState?
 
     var historySelectedQuery: String?
-    
+
     // MARK: - Views
 
     lazy var mainView: GeneralSearchView = {
@@ -67,37 +67,37 @@ final class GeneralSearchViewController: ViewController {
         controller.definesPresentationContext = true
         controller.hidesNavigationBarDuringPresentation = false
         controller.obscuresBackgroundDuringPresentation = true
-        controller.searchBar.placeholder = "Поиск рецептов и сообществ"
+        controller.searchBar.placeholder = "Поиск рецептов"
         controller.searchResultsUpdater = self
         controller.searchBar.delegate = self
         controller.delegate = self
         return controller
     }()
-    
+
     // MARK: - Init
     init(interactor: GeneralSearchBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
         configureViews()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
 
@@ -110,25 +110,25 @@ final class GeneralSearchViewController: ViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
 
     private func search(term: String) {
         searchController.searchBar.text = term
-        
+
     }
 
     private func configureNavigation() {
 //        navigationItem.titleView = searchController.searchBar
 //        definesPresentationContext = true
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
         navigationItem.titleView = searchController.searchBar
@@ -136,19 +136,19 @@ final class GeneralSearchViewController: ViewController {
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
 }

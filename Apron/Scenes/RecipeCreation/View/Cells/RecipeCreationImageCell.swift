@@ -43,8 +43,9 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var deleteButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-        button.setImage(ApronAssets.trashIcon.image, for: .normal)
+        button.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+        button.setImage(ApronAssets.trashIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
         button.layer.cornerRadius = 15.5
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
@@ -53,8 +54,9 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = ApronAssets.colorsYello.color
-        button.setImage(ApronAssets.editIcon.image, for: .normal)
+        button.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+        button.setImage(ApronAssets.editIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
         button.layer.cornerRadius = 15.5
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)

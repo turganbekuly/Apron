@@ -35,8 +35,8 @@ final class RecipeBottomStickyView: View {
         return textField
     }()
 
-    private lazy var addButton: BlackOpButton = {
-        let button = BlackOpButton()
+    private lazy var addButton: NavigationButton = {
+        let button = NavigationButton()
         button.backgroundType = .whiteBackground
         button.setTitle("Добавить в корзину", for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
@@ -45,8 +45,8 @@ final class RecipeBottomStickyView: View {
         return button
     }()
 
-    private lazy var saveButton: BlackOpButton = {
-        let button = BlackOpButton()
+    private lazy var saveButton: NavigationButton = {
+        let button = NavigationButton()
         button.backgroundType = .greenBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
@@ -108,7 +108,6 @@ final class RecipeBottomStickyView: View {
             return
         }
         HapticTouch.generateSuccess()
-        isSaved = true
         delegate?.saveButtonTapped()
     }
 
@@ -122,7 +121,8 @@ final class RecipeBottomStickyView: View {
     private func configureSavedButton() {
         guard !isSaved else {
             saveButton.setTitle("Режим готовки", for: .normal)
-            saveButton.setImage(nil, for: .normal)
+            saveButton.setImage(ApronAssets.recipePlayIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
+            saveButton.tintColor = .white
             saveButton.setImage(nil, for: .highlighted)
             return
         }

@@ -43,7 +43,8 @@ public final class CookNowCollectionView: UICollectionView {
 
         [
             RecipeSearchResultCellv2.self,
-            CookNowEmptyCollectionCell.self
+            CookNowEmptyCollectionCell.self,
+            RecipeSearchSkeletonCell.self
         ].forEach {
             register(cellClass: $0)
         }
@@ -55,7 +56,3 @@ public final class CookNowCollectionView: UICollectionView {
     }
 
 }
-
-
-
-

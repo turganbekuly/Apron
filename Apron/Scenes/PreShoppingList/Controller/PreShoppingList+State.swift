@@ -16,12 +16,12 @@ protocol PreShoppingListDismissedDelegate: AnyObject {
 }
 
 extension PreShoppingListViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial([CartItem], PreShoppingListDismissedDelegate)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -30,5 +30,5 @@ extension PreShoppingListViewController {
             self.cartItems = items
         }
     }
-    
+
 }

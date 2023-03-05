@@ -51,4 +51,3 @@ extension RecipeCreationViewController: RecipeCreationPaidInfoCellProtocol {
         recipeCreation?.promo = promo
     }
 }
-

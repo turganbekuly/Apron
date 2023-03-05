@@ -9,7 +9,7 @@
 import UIKit
 
 extension MainViewController: MainDisplayLogic {
-    
+
     // MARK: - MainDisplayLogic
 
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel) {

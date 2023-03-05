@@ -17,6 +17,7 @@ public class MessageView: UIView {
 
     public var didTappedFirstButton: (() -> Void)?
     public var didTappedSecondButton: (() -> Void)?
+    public var didTapButtonWithStringOutput: ((String) -> Void)?
     private let type: MessageType
     private var colorBackground: UIColor?
     private var colorTitle: UIColor?
@@ -57,6 +58,7 @@ public class MessageView: UIView {
 
     private lazy var roundedTextField: RoundedTextField = {
         let textField = RoundedTextField(placeholder: "Имя")
+        textField.textField.addTarget(self, action: #selector(roundedTextFieldDidChange(_:)), for: .editingChanged)
         return textField
     }()
 
@@ -77,12 +79,14 @@ public class MessageView: UIView {
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.numberOfLines = 0
+        view.textAlignment = .center
         return view
     }()
 
     private lazy var subtitleLabel: UILabel = {
         let view = UILabel()
         view.numberOfLines = 0
+        view.textAlignment = .center
         return view
     }()
 
@@ -95,6 +99,12 @@ public class MessageView: UIView {
     private lazy var secondButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(secondButtonTapped(_:)), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var thirdButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(thirdButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
 
@@ -111,7 +121,7 @@ public class MessageView: UIView {
         case .forceUpdate:
             return [subtitleLabel, firstButton, iconImageView]
         case .completeAppleSignin:
-            return [subtitleLabel, roundedTextField, firstButton, secondButton]
+            return [subtitleLabel, roundedTextField, thirdButton, firstButton]
         }
     }()
 
@@ -147,10 +157,21 @@ public class MessageView: UIView {
         didTappedSecondButton?()
     }
 
+    @objc
+    private func thirdButtonTapped(_ sender: UIButton) {
+        guard let text = roundedTextField.textField.text else { return }
+        didTapButtonWithStringOutput?(text)
+    }
+
+    @objc
+    private func roundedTextFieldDidChange(_ sender: UITextField) {
+        thirdButton.isEnabled = sender.text?.isEmpty == false
+    }
+
     public func configure(with viewModel: MessageProtocol) {
         titleLabel.attributedText = viewModel.title
         switch type {
-        case .dialog, .completeAppleSignin:
+        case .dialog:
             subtitleLabel.attributedText = viewModel.subtitle
             firstButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
             secondButton.setAttributedTitle(viewModel.secondButtonTitle, for: .normal)
@@ -167,6 +188,19 @@ public class MessageView: UIView {
             firstButton.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
             firstButton.layer.cornerRadius = 19
             firstButton.clipsToBounds = true
+        case .completeAppleSignin:
+            subtitleLabel.attributedText = viewModel.subtitle
+            thirdButton.isEnabled = false
+            thirdButton.setBackgroundColor(ApronAssets.lightGray2.color, for: .disabled)
+            thirdButton.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+            thirdButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
+            thirdButton.layer.cornerRadius = 19
+            thirdButton.clipsToBounds = true
+            firstButton.setAttributedTitle(viewModel.secondButtonTitle, for: .normal)
+            firstButton.layer.cornerRadius = 19
+            firstButton.clipsToBounds = true
+            firstButton.layer.borderWidth = 1
+            firstButton.layer.borderColor = ApronAssets.primaryTextMain.color.cgColor
         }
         colorBackground = viewModel.backgroundColor
         colorTitle = viewModel.titleColor
@@ -228,42 +262,6 @@ public class MessageView: UIView {
         }
         firstButton.snp.makeConstraints { make in
             make.top.equalTo(subtitleLabel.snp.bottom).offset(16)
-            make.leading.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(8)
-            make.height.equalTo(40)
-        }
-        secondButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(16)
-            make.centerY.equalTo(firstButton.snp.centerY)
-            make.height.equalTo(firstButton.snp.height)
-        }
-    }
-
-    private func makeCompleteAppleSignInConstraints() {
-        blurView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        headerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(16)
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().inset(16)
-        }
-        subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().inset(16)
-        }
-
-        roundedTextField.snp.makeConstraints {
-            $0.top.equalTo(subtitleLabel.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview().inset(16)
-        }
-
-        firstButton.snp.makeConstraints { make in
-            make.top.equalTo(roundedTextField.snp.bottom).offset(16)
             make.leading.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(8)
             make.height.equalTo(40)
@@ -344,6 +342,41 @@ public class MessageView: UIView {
             make.top.equalTo(subtitleLabel.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(8)
+            make.height.equalTo(38)
+        }
+    }
+
+    private func makeCompleteAppleSignInConstraints() {
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        headerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(16)
+        }
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
+        }
+
+        roundedTextField.snp.makeConstraints {
+            $0.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(38)
+        }
+
+        thirdButton.snp.makeConstraints { make in
+            make.top.equalTo(roundedTextField.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(38)
+        }
+        firstButton.snp.makeConstraints { make in
+            make.top.equalTo(thirdButton.snp.bottom).offset(8)
+            make.trailing.leading.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(24)
             make.height.equalTo(38)
         }
     }

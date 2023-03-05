@@ -19,7 +19,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
         }
     }
 
-    var delegate: AssignTypesSelectedDelegate?
+    weak var delegate: AssignTypesSelectedDelegate?
 
     var type: AssignTypes?
 
@@ -50,7 +50,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
     var transitionDuration: Double {
         return 0.4
     }
-    
+
     // MARK: - Views factory
 
     private lazy var titleLabel: UILabel = {
@@ -91,29 +91,29 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
 
     init(state: State) {
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
         setupViews()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
 
     // MARK: - Setup Views
@@ -157,11 +157,11 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
             $0.bottom.equalTo(saveButton.snp.top).offset(-16)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
@@ -174,5 +174,5 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
             self.delegate?.didSelected(type: self.type ?? .servings(""))
         }
     }
-    
+
 }

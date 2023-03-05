@@ -123,7 +123,7 @@ final class StepByStepTimerView: View {
         timerTitleLabel.text = title
         self.instruction = instruction
         self.duration = duration
-        TimerScheduleManager.shared.startTimer(instruction: instruction, duration: duration) { progress, seconds, isFinished, instr in
+        TimerScheduleManager.shared.startTimer(instruction: instruction, duration: duration) { _, seconds, isFinished, _ in
             self.observeTimer(seconds: seconds)
 
             if isFinished {

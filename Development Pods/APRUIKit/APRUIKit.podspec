@@ -45,5 +45,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'NVActivityIndicatorView'
   spec.dependency 'GrowingTextView'
   spec.dependency 'SkeletonView'
+  spec.dependency 'RemoteConfig'
 
 end

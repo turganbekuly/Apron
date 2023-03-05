@@ -11,7 +11,7 @@ import UIKit
 import APRUIKit
 
 extension CommunityPageViewController {
-    
+
     // MARK: - State
     enum State {
         case initial(CommunityPageInitialState)
@@ -24,7 +24,7 @@ extension CommunityPageViewController {
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     func updateState() {
         switch state {

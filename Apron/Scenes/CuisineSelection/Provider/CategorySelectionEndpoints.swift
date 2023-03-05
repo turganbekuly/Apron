@@ -15,33 +15,33 @@ enum CategorySelectionEndpoint {
 }
 
 extension CategorySelectionEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .getCategories:
             return "communities/communityCategories"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .getCategories:
             return .get
         }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         return .requestPlain
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -52,5 +52,5 @@ extension CategorySelectionEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

@@ -168,7 +168,6 @@ final class RecipeReviewsCell: UITableViewCell {
         postAuthorLabel.numberOfLines = 2
     }
 
-
     // MARK: - Public methods
 
     func configure(with viewModel: RecipePageReviewsViewModelProtocol) {

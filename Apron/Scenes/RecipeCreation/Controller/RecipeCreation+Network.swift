@@ -9,7 +9,7 @@
 import Models
 
 extension RecipeCreationViewController {
-    
+
     // MARK: - Network
 
     func createRecipe(recipe: RecipeCreation?) {

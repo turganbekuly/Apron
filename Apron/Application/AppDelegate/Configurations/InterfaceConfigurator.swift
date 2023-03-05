@@ -23,11 +23,11 @@ final class InterfaceConfigurator: ApplicationConfiguratorProtocol {
 
     // MARK: - Methods
 
-    func configure(_ application: UIApplication?, launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
+    func configure(_ application: UIApplication?, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         guard let window = window else {
             fatalError("Window not found")
         }
-        
+
         let vc = SplashScreenBuilder(state: .initial).build()
         let navVC = UINavigationController(rootViewController: vc)
         window.rootViewController = navVC

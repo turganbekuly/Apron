@@ -68,4 +68,3 @@ private extension ImageHeaderView {
         )
     }
 }
-

@@ -10,14 +10,15 @@ import APRUIKit
 import UIKit
 import Storages
 import AlertMessages
+import NVActivityIndicatorView
 
 protocol ProfileDisplayLogic: AnyObject {
     func displayProfile(with viewModel: ProfileDataFlow.GetProfile.ViewModel)
     func displayDeleteAccount(with viewModel: ProfileDataFlow.DeleteAccount.ViewModel)
 }
 
-final class ProfileViewController: ViewController, Messagable {
-    
+final class ProfileViewController: ViewController {
+
     struct Section {
         enum Section {
             case app
@@ -28,12 +29,13 @@ final class ProfileViewController: ViewController, Messagable {
             case deleteAccount
             case contactWithDevelopers
             case logout
+            case myRecipes
         }
-        
+
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
     let interactor: ProfileBusinessLogic
     var sections: [Section] = []
@@ -44,7 +46,7 @@ final class ProfileViewController: ViewController, Messagable {
     }
 
     public var userStorage: UserStorageProtocol = UserStorage()
-    
+
     // MARK: - Views
     lazy var mainView: ProfileView = {
         let view = ProfileView()
@@ -52,48 +54,55 @@ final class ProfileViewController: ViewController, Messagable {
         view.delegate = self
         return view
     }()
-    
+
+    private lazy var activityIndicator = NVActivityIndicatorView(
+        frame: .zero,
+        type: .circleStrokeSpin,
+        color: ApronAssets.mainAppColor.color,
+        padding: nil
+    )
+
     // MARK: - Init
     init(interactor: ProfileBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
 
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -105,28 +114,49 @@ final class ProfileViewController: ViewController, Messagable {
         navigationItem.leftBarButtonItem?.tintColor = .black
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     private func configureViews() {
-        [mainView].forEach { view.addSubview($0) }
-        
+        [mainView, activityIndicator].forEach { view.addSubview($0) }
+
+        activityIndicator.isHidden = true
+        activityIndicator.alpha = 0.0
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(24)
+        }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
+    }
+
+    func isLoading(_ loading: Bool) {
+        guard loading else {
+            activityIndicator.isHidden = true
+            activityIndicator.alpha = 0.0
+            activityIndicator.stopAnimating()
+            return
+        }
+
+        activityIndicator.isHidden = false
+        activityIndicator.alpha = 1.0
+        activityIndicator.startAnimating()
     }
 
     // MARK: - User actions
 
     @objc
     private func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: false)
     }
 }

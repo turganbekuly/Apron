@@ -11,6 +11,7 @@ import UIKit
 import AlertMessages
 import Storages
 import Models
+import RemoteConfig
 
 protocol MainDisplayLogic: AnyObject {
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel)
@@ -19,9 +20,12 @@ protocol MainDisplayLogic: AnyObject {
     func displaySavedRecipe(viewModel: MainDataFlow.SaveRecipe.ViewModel)
 }
 
-final class MainViewController: ViewController, Messagable {
+final class MainViewController: ViewController {
     // MARK: - Properties
     let interactor: MainBusinessLogic
+
+    let remoteConfigManager = RemoteConfigManager.shared.remoteConfig
+    let configManager = RemoteConfigManager.shared.configManager
 
     var state: State {
         didSet {
@@ -42,6 +46,8 @@ final class MainViewController: ViewController, Messagable {
         }
     }
 
+    var eventType = 0
+    var adBanners: [AdBannerObject] = []
     var eventRecipes: [RecipeResponse] = [] {
         didSet {
             configureMainPageCells()
@@ -53,7 +59,18 @@ final class MainViewController: ViewController, Messagable {
             configureMainPageCells()
         }
     }
-    
+
+    var cookNowRecipesState = CookNowCellState.failed {
+        didSet {
+            configureMainPageCells()
+        }
+    }
+    var eventRecipesState = CookNowCellState.failed {
+        didSet {
+            configureMainPageCells()
+        }
+    }
+
     // MARK: - Views
 
     lazy var mainView: MainView = {
@@ -69,32 +86,32 @@ final class MainViewController: ViewController, Messagable {
         view.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         return view
     }()
-    
+
     // MARK: - Init
     init(interactor: MainBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigation()
@@ -108,13 +125,13 @@ final class MainViewController: ViewController, Messagable {
             )
         }
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Setup Views
     private func configureNavigation() {
         let avatarView = AvatarView()
@@ -123,11 +140,11 @@ final class MainViewController: ViewController, Messagable {
             self.handleAuthorizationStatus {
                 let viewController = ProfileBuilder(state: .initial).build()
                 DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(viewController, animated: true)
+                    self.navigationController?.pushViewController(viewController, animated: false)
                 }
             }
         }
-        
+
         let cartView = CartButtonView()
         cartView.onTap = { [weak self] in
             guard let self = self else { return }
@@ -147,7 +164,7 @@ final class MainViewController: ViewController, Messagable {
                     let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .saved))).build()
                     let navController = RecipeCreationNavigationController(rootViewController: vc)
                     navController.modalPresentationStyle = .fullScreen
-                    
+
                     DispatchQueue.main.async {
                         self.navigationController?.present(navController, animated: true)
                     }
@@ -155,20 +172,20 @@ final class MainViewController: ViewController, Messagable {
             }
         }
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
@@ -178,7 +195,7 @@ final class MainViewController: ViewController, Messagable {
     private func configureCommunities() {
         var sections = [Section]()
         if !dynamicCommunities.isEmpty {
-            let _ = dynamicCommunities.compactMap { com in
+            _ = dynamicCommunities.compactMap { com in
                 if let communities = com.communities, !communities.isEmpty {
                     sections.append(
                         .init(
@@ -209,10 +226,10 @@ final class MainViewController: ViewController, Messagable {
         if (7...13).contains(hour) {
             return .zavtrak
         }
-        if (13...16).contains(hour) {
+        if (13...15).contains(hour) {
             return .obed
         }
-        if (16...19).contains(hour) {
+        if (16...18).contains(hour) {
             return .poldnik
         }
         if (19...23).contains(hour) {
@@ -226,8 +243,35 @@ final class MainViewController: ViewController, Messagable {
 
     func configureMainPageCells() {
         var sections = [Section]()
-        sections.append(.init(section: .cookNow, rows: [.cookNow("Приготовить на \(defineRecipeDayTime().title.lowercased())", cookNowRecipes)]))
-//        sections.append(.init(section: .eventRecipes, rows: [.eventRecipes("Салаты на новый год", eventRecipes)]))
+        if !adBanners.isEmpty {
+            sections.append(.init(section: .adBanner, rows: [.adBanner(adBanners)]))
+        }
+        switch cookNowRecipesState {
+        case .failed:
+            break
+        case .loading:
+            sections.append(.init(section: .cookNow, rows: [.cookNow("", [])]))
+        case let .loaded(recipes):
+            if !recipes.isEmpty {
+                sections.append(.init(section: .cookNow, rows: [.cookNow("Приготовить на \(defineRecipeDayTime().title.lowercased())", cookNowRecipes)]))
+            }
+        }
+
+        switch eventRecipesState {
+        case .failed:
+            break
+        case .loading:
+            sections.append(.init(section: .cookNow, rows: [.cookNow("", [])]))
+        case let .loaded(recipes):
+            if !recipes.isEmpty {
+                sections.append(
+                    .init(
+                        section: .eventRecipes,
+                        rows: [.eventRecipes(SuggestedEventType(rawValue: eventType)?.title ?? "", eventRecipes)]
+                    )
+                )
+            }
+        }
         sections.append(
             .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
         )
@@ -238,11 +282,11 @@ final class MainViewController: ViewController, Messagable {
 
     @objc
     private func refresh(_ sender: UIRefreshControl) {
-//        eventRecipes.removeAll()
+        eventRecipes.removeAll()
         cookNowRecipes.removeAll()
-        configureMainPageCells()
+        cookNowRecipesState = .loading
         getCookNowRecipes()
-//        getEventRecipes()
+        fetchRemoteConfigFeatures()
     }
 
     deinit {

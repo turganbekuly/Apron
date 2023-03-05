@@ -16,10 +16,10 @@ protocol CommunityPagePresentationLogic: AnyObject {
 }
 
 final class CommunityPagePresenter: CommunityPagePresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: CommunityPageDisplayLogic?
-    
+
     // MARK: - CommunityPagePresentationLogic
 
     func getCommunity(response: CommunityPageDataFlow.GetCommunity.Response) {

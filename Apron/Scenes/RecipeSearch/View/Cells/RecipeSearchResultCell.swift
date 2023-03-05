@@ -78,7 +78,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var avatarOverlayView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -112,7 +112,6 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
     let cartView = RecipeCartView()
 
-
     // MARK: - Setup Views
 
     private func setupViews() {
@@ -135,7 +134,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
+
         recipeView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(163)

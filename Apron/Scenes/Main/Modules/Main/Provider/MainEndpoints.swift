@@ -91,7 +91,7 @@ extension MainEndpoint: AKNetworkTargetType {
                 if let token = AuthStorage.shared.accessToken {
                     headers["Authorization"] = "Bearer \(token)"
                 }
-            } 
+            }
         }
         return headers
     }

@@ -126,4 +126,3 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
         self.instructions = instructions
     }
 }
-

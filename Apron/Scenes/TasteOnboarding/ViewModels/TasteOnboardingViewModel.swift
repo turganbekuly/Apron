@@ -8,7 +8,6 @@
 import APRUIKit
 import UIKit
 
-
 struct TasteOnboardingViewModel {
     var text: String
     var type: TasteOnboardingScreenType

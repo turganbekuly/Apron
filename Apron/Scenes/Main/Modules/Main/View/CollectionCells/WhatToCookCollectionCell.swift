@@ -69,4 +69,3 @@ final class WhatToCookCollectionCell: UICollectionViewCell {
         nameLabel.text = type.title
     }
 }
-

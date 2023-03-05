@@ -18,11 +18,11 @@ public enum CommunityPageEndpoint {
 }
 
 extension CommunityPageEndpoint: AKNetworkTargetType {
-    
+
     public var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     public var path: String {
         switch self {
         case .getCommunity(let id):
@@ -35,7 +35,7 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return "recipes/saveRecipe/\(id)"
         }
     }
-    
+
     public var method: AKNetworkMethod {
         switch self {
         case .getCommunity:
@@ -48,11 +48,11 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return .put
         }
     }
-    
+
     public var sampleData: Data {
         return Data()
     }
-    
+
     public var task: AKNetworkTask {
         switch self {
         case .getCommunity:
@@ -68,7 +68,7 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
             return .requestPlain
         }
     }
-    
+
     public var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -79,5 +79,5 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

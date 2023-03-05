@@ -12,7 +12,7 @@ import Models
 import OneSignal
 
 protocol FiltersDisplayLogic: AnyObject {
-    
+
 }
 
 final class FiltersViewController: ViewController {
@@ -56,7 +56,7 @@ final class FiltersViewController: ViewController {
     var ingredients: [Product] = []
 
     var cookingTimePreviousIndex: IndexPath?
-    
+
     // MARK: - Views
 
     lazy var mainView: FiltersView = {
@@ -109,60 +109,60 @@ final class FiltersViewController: ViewController {
 
         return item
     }()
-    
+
     // MARK: - Init
     init(interactor: FiltersBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.title = "Фильтры"
         navigationItem.rightBarButtonItem = resetFilters
     }
-    
+
     private func configureViews() {
         [
             mainView,
             applyButton
         ].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         applyButton.snp.makeConstraints {
             $0.height.equalTo(40)
@@ -176,11 +176,11 @@ final class FiltersViewController: ViewController {
             make.top.equalTo(view.safeAreaLayoutGuide)
         }
     }
-    
+
     private func configureColors() {
         view.backgroundColor = ApronAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }

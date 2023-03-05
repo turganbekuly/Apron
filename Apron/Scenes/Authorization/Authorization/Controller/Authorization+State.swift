@@ -12,14 +12,14 @@ import Storages
 import APRUIKit
 
 extension AuthorizationViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial
         case loginSucceed(Auth)
         case loginFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -39,13 +39,14 @@ extension AuthorizationViewController {
                     )
                 )
             )
-            let viewController = TabBarBuilder(state: .initial(.normal)).build()
+            let vc = TabBarBuilder(state: .initial(.normal)).build()
+            let navigationVC = UINavigationController(rootViewController: vc)
             DispatchQueue.main.async {
-                UIApplication.shared.windows.first?.rootViewController = viewController
+                UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .loginFailed:
             show(type: .error(L10n.Common.errorMessage))
         }
     }
-    
+
 }

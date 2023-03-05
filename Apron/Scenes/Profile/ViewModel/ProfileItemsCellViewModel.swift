@@ -41,6 +41,10 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
             return ApronAssets.exit.image
         case .contactWithDevelopers:
             return ApronAssets.chat.image
+        case .myRecipes:
+            return ApronAssets.iconKnifeFork.image
+                .withRenderingMode(.alwaysTemplate)
+                .withTintColor(.black)
         case .user:
             return nil
         }
@@ -55,6 +59,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
             title = "Удалить аккаунт"
         case .logout:
             title = "Выйти"
+        case .myRecipes:
+            title = "Мои рецепты"
         case .contactWithDevelopers:
             title = "Сообщить о проблеме"
         case .user:
@@ -92,4 +98,3 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
         self.mode = mode
     }
 }
-

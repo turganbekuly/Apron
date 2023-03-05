@@ -53,5 +53,3 @@ final class InstructionSelectionHeaderView: UITableViewHeaderFooterView {
         sectionHeaderLabel.text = title
     }
 }
-
-

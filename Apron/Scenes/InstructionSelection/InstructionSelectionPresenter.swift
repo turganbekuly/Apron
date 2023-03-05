@@ -13,10 +13,10 @@ protocol InstructionSelectionPresentationLogic: AnyObject {
 }
 
 final class InstructionSelectionPresenter: InstructionSelectionPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: InstructionSelectionDisplayLogic?
-    
+
     // MARK: - InstructionSelectionPresentationLogic
 
     func uploadImage(response: InstructionSelectionDataFlow.UploadImage.Response) {

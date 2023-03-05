@@ -29,4 +29,3 @@ public extension ButtonStyleApplierProtocol where Self: Button {
 }
 
 extension Button: ButtonStyleApplierProtocol {}
-

@@ -32,13 +32,13 @@ final class CommunityPageProvider: CommunityPageProviderProtocol {
 
     // MARK: - Properties
     private let service: CommunityPageServiceProtocol
-    
+
     // MARK: - Init
     init(service: CommunityPageServiceProtocol =
                     CommunityPageService(provider: AKNetworkProvider<CommunityPageEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - CommunityPageProviderProtocol
 
     func getCommunity(

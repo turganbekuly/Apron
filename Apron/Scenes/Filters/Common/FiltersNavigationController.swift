@@ -110,6 +110,3 @@ public final class FiltersNavigationController: UINavigationController {
     }
 
 }
-
-
-

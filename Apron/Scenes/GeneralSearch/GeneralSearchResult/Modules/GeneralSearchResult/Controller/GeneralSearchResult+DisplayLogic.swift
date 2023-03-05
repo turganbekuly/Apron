@@ -9,7 +9,7 @@
 import UIKit
 
 extension GeneralSearchResultViewController: GeneralSearchResultDisplayLogic {
-    
+
     // MARK: - GeneralSearchResultDisplayLogic
-    
+
 }

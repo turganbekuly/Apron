@@ -13,10 +13,10 @@ protocol CategorySelectionPresentationLogic: AnyObject {
 }
 
 final class CategorySelectionPresenter: CategorySelectionPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: CategorySelectionDisplayLogic?
-    
+
     // MARK: - CategorySelectionPresentationLogic
 
     func getCategories(response: CategorySelectionDataFlow.GetCategories.Response) {

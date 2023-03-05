@@ -179,7 +179,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
             joinButton.setTitle("Вступить", for: .normal)
             joinButton.setBackgroundColor(.black, for: .normal)
             joinButton.setTitleColor(.white, for: .normal)
-            joinButton.snp.updateConstraints( {
+            joinButton.snp.updateConstraints({
                 $0.width.equalTo(93)
             })
             return

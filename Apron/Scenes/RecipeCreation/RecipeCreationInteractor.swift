@@ -12,18 +12,18 @@ protocol RecipeCreationBusinessLogic {
 }
 
 final class RecipeCreationInteractor: RecipeCreationBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: RecipeCreationPresentationLogic
     private let provider: RecipeCreationProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: RecipeCreationPresentationLogic,
          provider: RecipeCreationProviderProtocol = RecipeCreationProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - RecipeCreationBusinessLogic
 
     func createRecipe(request: RecipeCreationDataFlow.CreateRecipe.Request) {
