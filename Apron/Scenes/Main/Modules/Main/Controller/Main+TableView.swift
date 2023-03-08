@@ -47,8 +47,10 @@ extension MainViewController: UITableViewDelegate {
             let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
             return rawCount * categoryCellHeight
-        case .cookNow, .eventRecipes, .adBanner:
-            return 205
+        case .cookNow, .eventRecipes:
+            return 185
+        case .adBanner:
+            return adBanners.count == 0 ? 0 : ((UIScreen.main.bounds.width / 375) * 134) + 60
         }
     }
 
@@ -61,8 +63,10 @@ extension MainViewController: UITableViewDelegate {
             let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
             return rawCount * categoryCellHeight
-        case .cookNow, .eventRecipes, .adBanner:
-            return 205
+        case .cookNow, .eventRecipes:
+            return 185
+        case .adBanner:
+            return adBanners.count == 0 ? 0 : ((UIScreen.main.bounds.width / 375) * 134) + 60
         }
     }
 

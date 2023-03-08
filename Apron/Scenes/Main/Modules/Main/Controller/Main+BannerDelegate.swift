@@ -18,6 +18,13 @@ extension MainViewController: AdBannerCellProtocol {
         )
         ApronAnalytics.shared.sendAnalyticsEvent(.adBannerTapped(analyticsModel))
         guard !model.bannerAction.isEmpty else { return }
+        if model.bannerAction.contains("moca.kz://"),
+           let url = URL(string: model.bannerAction)
+        {
+            DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
+            return
+        }
+        
         let webViewController = WebViewHandler(urlString: model.bannerAction)
         present(webViewController, animated: true)
     }

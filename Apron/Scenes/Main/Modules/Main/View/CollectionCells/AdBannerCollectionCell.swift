@@ -1,14 +1,15 @@
 //
-//  WhatToCookCollectionCell.swift
+//  AdBannerCollectionCell.swift
 //  Apron
 //
-//  Created by Akarys Turganbekuly on 17.10.2022.
+//  Created by Akarys Turganbekuly on 07.03.2023.
 //
 
 import UIKit
 import APRUIKit
+import RemoteConfig
 
-final class WhatToCookCollectionCell: UICollectionViewCell {
+final class AdBannerCollectionCell: UICollectionViewCell {
     // MARK: - Init
 
     override init(frame: CGRect) {
@@ -26,35 +27,22 @@ final class WhatToCookCollectionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 16
+        imageView.layer.cornerRadius = 24
         return imageView
-    }()
-
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = TypographyFonts.regular16
-        label.textColor = ApronAssets.primaryTextMain.color
-        label.textAlignment = .center
-        return label
     }()
 
     // MARK: - Setup Views
 
     private func setupViews() {
         contentView.addSubview(imageView)
-        imageView.addSubview(nameLabel)
         setupConstraints()
         configureCell()
     }
 
     private func setupConstraints() {
         imageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-
-        nameLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(8)
+            $0.top.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
 
@@ -65,7 +53,7 @@ final class WhatToCookCollectionCell: UICollectionViewCell {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 1.0)
-        
+
         UIView.animate(
             withDuration: 0.1,
             delay: 0,
@@ -78,15 +66,15 @@ final class WhatToCookCollectionCell: UICollectionViewCell {
             }
         )
     }
-    
+
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         touchesEnded(touches, with: event)
     }
-    
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        
+
         UIView.animate(
             withDuration: 0.1,
             delay: 0.07,
@@ -99,8 +87,13 @@ final class WhatToCookCollectionCell: UICollectionViewCell {
 
     // MARK: - Methods
 
-    func configure(with type: WhatToCookCategoryTypes) {
-        imageView.image = type.image
-        nameLabel.text = type.title
+    func configure(with model: AdBannerObject) {
+        if let url = URL(string: model.bannerLink) {
+            imageView.kf.setImage(
+                with: url,
+                placeholder: ApronAssets.iconPlaceholderItem.image
+            )
+        }
     }
 }
+

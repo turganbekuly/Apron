@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Models
 
 extension TabBarViewController: PendingDeeplinkProviderDelegate {
     func pendingDeeplinkProvider(_ provider: PendingDeeplinkProvider, didChangePendingDeeplink deeplink: CustomDeepLink?) {
@@ -52,8 +53,20 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
             DispatchQueue.main.async {
                 navigationController.pushViewController(vc, animated: false)
             }
+        case .openRecipeCreation:
+            self.handleAuthorizationStatus {
+                let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .banner))).build()
+                let navController = RecipeCreationNavigationController(rootViewController: vc)
+                navController.modalPresentationStyle = .fullScreen
+
+                DispatchQueue.main.async {
+                    self.navigationController?.present(navController, animated: true)
+                }
+            }
         case .openSavedRecipes:
             changeTab(for: .openSavedRecipes)
+        case .openMealPlanner:
+            changeTab(for: .openMealPlanner)
         case .unknown:
             print("Did received unknown")
         }
@@ -61,10 +74,12 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
 
     private func changeTab(for deeplink: CustomDeepLink) {
         switch deeplink {
-        case .openCommunity, .openRecipe, .openShoppingList:
+        case .openCommunity, .openRecipe, .openShoppingList, .openRecipeCreation:
             selectedIndex = 0
         case .openSavedRecipes:
             selectedIndex = 2
+        case .openMealPlanner:
+            selectedIndex = 3
         case .unknown:
             print("Did received unknown")
         }

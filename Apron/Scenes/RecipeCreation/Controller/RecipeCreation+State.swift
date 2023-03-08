@@ -43,7 +43,7 @@ extension RecipeCreationViewController {
                     )
                 )
             )
-            show(type: .success("Рецепт создался успешно"), firstAction: nil, secondAction: nil)
+            show(type: .success("Смотрите статус своих рецептов в \"Мои рецепты\""), firstAction: nil, secondAction: nil)
             self.dismiss(animated: true) {
                 self.delegate?.didCreate()
             }

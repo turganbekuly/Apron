@@ -30,7 +30,7 @@ final class CookNowEmptyCollectionCell: UICollectionViewCell {
         numberOfColumns: 1,
         numberOfRows: 1,
         itemWidth: bounds.width,
-        itemHeight: 160,
+        itemHeight: 140,
         cellCornerRadius: 20
     )
 

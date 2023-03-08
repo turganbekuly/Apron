@@ -157,6 +157,8 @@
 		6D170AA0296D699F007FA9CF /* MealPlannerCell+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D170A9F296D699F007FA9CF /* MealPlannerCell+CollectionView.swift */; };
 		6D170AA4296D7012007FA9CF /* MealPlannerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D170AA3296D7012007FA9CF /* MealPlannerHeaderView.swift */; };
 		6D170AA6296D8BBD007FA9CF /* MealPlannerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D170AA5296D8BBD007FA9CF /* MealPlannerCollectionCell.swift */; };
+		6D1EFCF929B7470D00464AD4 /* AdBannerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1EFCF829B7470D00464AD4 /* AdBannerCollectionCell.swift */; };
+		6D1EFCFD29B74F0700464AD4 /* AdBannerCell+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1EFCFC29B74F0700464AD4 /* AdBannerCell+CollectionView.swift */; };
 		6D22677F282D4298001FFE6D /* CommunityCreation+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D22677E282D4298001FFE6D /* CommunityCreation+Category.swift */; };
 		6D226784282D4788001FFE6D /* CommunityCreationInitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D226783282D4788001FFE6D /* CommunityCreationInitialState.swift */; };
 		6D226786282D4B47001FFE6D /* CommunityCreation+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D226785282D4B47001FFE6D /* CommunityCreation+TextField.swift */; };
@@ -848,6 +850,8 @@
 		6D170A9F296D699F007FA9CF /* MealPlannerCell+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealPlannerCell+CollectionView.swift"; sourceTree = "<group>"; };
 		6D170AA3296D7012007FA9CF /* MealPlannerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlannerHeaderView.swift; sourceTree = "<group>"; };
 		6D170AA5296D8BBD007FA9CF /* MealPlannerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlannerCollectionCell.swift; sourceTree = "<group>"; };
+		6D1EFCF829B7470D00464AD4 /* AdBannerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBannerCollectionCell.swift; sourceTree = "<group>"; };
+		6D1EFCFC29B74F0700464AD4 /* AdBannerCell+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdBannerCell+CollectionView.swift"; sourceTree = "<group>"; };
 		6D22677E282D4298001FFE6D /* CommunityCreation+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+Category.swift"; sourceTree = "<group>"; };
 		6D226783282D4788001FFE6D /* CommunityCreationInitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCreationInitialState.swift; sourceTree = "<group>"; };
 		6D226785282D4B47001FFE6D /* CommunityCreation+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+TextField.swift"; sourceTree = "<group>"; };
@@ -1574,6 +1578,7 @@
 				6D8A08CC2835031200133D46 /* DynamicCell+CollectionVIew.swift */,
 				6DA1B67B28FD5EDA0033351C /* WhatToCookCell+CollectionView.swift */,
 				6D58737A293CF5A8008535CA /* CookNowCell+CollectionView.swift */,
+				6D1EFCFC29B74F0700464AD4 /* AdBannerCell+CollectionView.swift */,
 				6DCF95AF27902E32009FEE78 /* Main+TableView.swift */,
 			);
 			path = Controller;
@@ -2383,6 +2388,7 @@
 				6DCF95A0278FFDC0009FEE78 /* MainCommunityCollectionCell.swift */,
 				6DB2AD13283FBC1A00C25D62 /* MainCommunityEmptyCollectionCell.swift */,
 				6D85E6A02958B432007156E5 /* CookNowEmptyCollectionCell.swift */,
+				6D1EFCF829B7470D00464AD4 /* AdBannerCollectionCell.swift */,
 			);
 			path = CollectionCells;
 			sourceTree = "<group>";
@@ -4420,6 +4426,7 @@
 				6DBF802C288434EC00F2738A /* ProfileShimmerCell.swift in Sources */,
 				373B14B731AAC0576CD072FF /* CommunityCreationDataFlow.swift in Sources */,
 				3170886B90957BED9256A830 /* CommunityCreationInteractor.swift in Sources */,
+				6D1EFCF929B7470D00464AD4 /* AdBannerCollectionCell.swift in Sources */,
 				37F52B988607F1071BF8C832 /* CommunityCreationPresenter.swift in Sources */,
 				04E7F786121317BF6112EDBA /* CategorySelectionViewController.swift in Sources */,
 				6D507A0B283A1E89000E6141 /* CaloriesCellViewModel.swift in Sources */,
@@ -4461,6 +4468,7 @@
 				999936B985405C6585E45EDD /* SavedRecipesView.swift in Sources */,
 				6D5716B028B2150500163EAE /* InstructionSelectionHeaderView.swift in Sources */,
 				093243BEF7FA801DD6EEE994 /* SavedRecipesBuilder.swift in Sources */,
+				6D1EFCFD29B74F0700464AD4 /* AdBannerCell+CollectionView.swift in Sources */,
 				0437D43598F594D2600A1E6B /* SavedRecipesDataFlow.swift in Sources */,
 				6D22678E282D69AD001FFE6D /* CommunityCreation+Privacy.swift in Sources */,
 				67A19DAC9215ACFCB332356A /* SavedRecipesInteractor.swift in Sources */,

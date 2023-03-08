@@ -46,6 +46,7 @@ extension AuthSignInViewController {
                 UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .loginFailed:
+            AuthStorage.shared.clear()
             hideLoader()
             show(type: .error("Не удалось войти. Пожалуйста, попробуйте еще раз!"))
         }

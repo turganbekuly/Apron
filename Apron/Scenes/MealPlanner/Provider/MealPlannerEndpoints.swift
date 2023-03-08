@@ -35,7 +35,7 @@ extension MealPlannerEndpoint: AKNetworkTargetType {
         case .getRecipes:
             return .get
         case .saveRecipe:
-            return .put
+            return .post
         case .deleteRecipe:
             return .delete
         }

@@ -45,6 +45,7 @@ extension AuthorizationViewController {
                 UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .loginFailed:
+            AuthStorage.shared.clear()
             show(type: .error(L10n.Common.errorMessage))
         }
     }

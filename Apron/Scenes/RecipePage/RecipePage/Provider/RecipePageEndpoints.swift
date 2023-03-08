@@ -44,7 +44,7 @@ extension RecipePageEndpoint: AKNetworkTargetType {
         case .rateRecipe:
             return .post
         case .saveRecipe:
-            return .put
+            return .post
         case .getCommentsByRecipe:
             return .get
         }

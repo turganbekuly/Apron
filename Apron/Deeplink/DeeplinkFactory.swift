@@ -21,6 +21,9 @@ import AppsFlyerLib
          if let _ = dict["shopping_list"] as? String {
              return .openShoppingList
          }
+         if let _ = dict["meal_planner"] as? String {
+             return .openMealPlanner
+         }
          if let receipeId = dict["recipe_id"] as? String {
              return .openRecipe(id: Int(receipeId) ?? 1)
          }
@@ -36,6 +39,9 @@ import AppsFlyerLib
          }
          if let receipeId = deeplink["recipe_id"] as? String {
              return .openRecipe(id: Int(receipeId) ?? 1)
+         }
+         if let _ = deeplink["meal_planner"] as? String {
+             return .openMealPlanner
          }
          return .unknown
      }
@@ -63,8 +69,10 @@ import AppsFlyerLib
             switch components.first {
             case "saved":
                 return .openSavedRecipes
-//            case "planner":
-//                return .openPlanner
+            case "planner":
+                return .openMealPlanner
+            case "recipe_creation":
+                return .openRecipeCreation
             case "list":
                 return .openShoppingList
             default:

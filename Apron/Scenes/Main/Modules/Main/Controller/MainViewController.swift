@@ -161,7 +161,7 @@ final class MainViewController: ViewController {
         if let myTabBar = tabBarController?.tabBar as? AppTabBar {
             myTabBar.centerButtonActionHandler = {
                 self.handleAuthorizationStatus {
-                    let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .saved))).build()
+                    let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .main))).build()
                     let navController = RecipeCreationNavigationController(rootViewController: vc)
                     navController.modalPresentationStyle = .fullScreen
 
@@ -223,7 +223,7 @@ final class MainViewController: ViewController {
     func defineRecipeDayTime() -> SuggestedDayTimeType {
         let today = Date()
         let hour = Calendar.current.component(.hour, from: today)
-        if (7...13).contains(hour) {
+        if (7...12).contains(hour) {
             return .zavtrak
         }
         if (13...15).contains(hour) {

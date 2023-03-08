@@ -210,6 +210,41 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         backgroundColor = .clear
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 1.0)
+
+        UIView.animate(
+            withDuration: 0.1,
+            delay: 0,
+            options: [.beginFromCurrentState],
+            animations: {
+                self.containerView.transform = self.containerView.transform.scaledBy(
+                    x: 0.9,
+                    y: 0.9
+                )
+            }
+        )
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        touchesEnded(touches, with: event)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+
+        UIView.animate(
+            withDuration: 0.1,
+            delay: 0.07,
+            options: [.beginFromCurrentState],
+            animations: {
+                self.containerView.transform = .identity
+            }
+        )
+    }
+
     // MARK: - Private methods
 
     private func configureButton(isSaved: Bool) {

@@ -90,15 +90,15 @@ final class ThirdPartiesConfigurator: NSObject, ApplicationConfiguratorProtocol 
     }
 
     private func configureWormholy() {
-        #if DEBUG
-            Wormholy.ignoredHosts = [
-                "crashlytics.com",
-                "googleapis.com",
-                "sentry.io"
-            ]
-        #else
-            Wormholy.shakeEnabled = false
-        #endif
+#if DEBUG
+        Wormholy.ignoredHosts = [
+            "crashlytics.com",
+            "googleapis.com",
+            "sentry.io"
+        ]
+#else
+        Wormholy.shakeEnabled = false
+#endif
     }
 
     private func configureIQKeyboardManager() {
@@ -132,7 +132,12 @@ extension ThirdPartiesConfigurator: DeepLinkDelegate {
 
 extension ThirdPartiesConfigurator: AppsFlyerLibDelegate {
     func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
-        DeeplinkServicesContainer.shared.deeplinkHandler.handleAFConversionDeeplink(with: conversionInfo)
+        if let data = conversionInfo as? [String: Any],
+           let status = data["af_status"] as? String,
+           status == "Non-organic"
+        {
+            DeeplinkServicesContainer.shared.deeplinkHandler.handleAFConversionDeeplink(with: conversionInfo)
+        }
     }
 
     func onConversionDataFail(_ error: Error) {

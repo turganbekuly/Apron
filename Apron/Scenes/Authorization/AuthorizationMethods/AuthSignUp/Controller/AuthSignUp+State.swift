@@ -46,7 +46,8 @@ extension AuthSignUpViewController {
                 UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .signupFailed:
-            print("asd")
+            AuthStorage.shared.clear()
+            show(type: .error("Не удалось зарегистрироваться. Пожалуйста, попробуйте позднее!"))
         }
     }
 

@@ -98,3 +98,17 @@ extension CookNowCell {
         var rows: [Row]
     }
 }
+
+extension AdBannerCell {
+    struct AdBannerSection {
+        enum Section {
+            case banners
+        }
+        enum Row {
+            case banner(AdBannerObject)
+        }
+
+        var section: Section
+        var rows: [Row]
+    }
+}
