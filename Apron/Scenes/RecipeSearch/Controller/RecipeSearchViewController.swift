@@ -26,7 +26,7 @@ final class RecipeSearchViewController: ViewController {
             case trendings
         }
         enum Row {
-            case trending(String)
+            case trending(SearchSuggestionCategoriesTypes)
             case shimmer
             case result(RecipeResponse)
         }
@@ -57,7 +57,7 @@ final class RecipeSearchViewController: ViewController {
     let interactor: RecipeSearchBusinessLogic
 
     lazy var sections: [Section] = [
-        .init(section: .trendings, rows: trends.compactMap { .trending($0) })
+        .init(section: .trendings, rows: SearchSuggestionCategoriesTypes.allCases.compactMap { .trending($0) })
     ]
 
     var state: State {

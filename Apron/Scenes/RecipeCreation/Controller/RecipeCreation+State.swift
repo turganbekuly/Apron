@@ -10,6 +10,7 @@ import Models
 import UIKit
 import Configurations
 import RemoteConfig
+import HapticTouch
 
 extension RecipeCreationViewController {
 
@@ -43,12 +44,14 @@ extension RecipeCreationViewController {
                     )
                 )
             )
+            HapticTouch.generateSuccess()
             show(type: .success("Смотрите статус своих рецептов в \"Мои рецепты\""), firstAction: nil, secondAction: nil)
             self.dismiss(animated: true) {
                 self.delegate?.didCreate()
             }
         case .recipeCreationFailed:
             saveButtonLoader(isLoading: false)
+            HapticTouch.generateError()
             show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)
         case let .uploadImageSucceed(path):
             recipeCreation?.imageURL = Configurations.downloadImageURL(imagePath: path)
@@ -57,6 +60,7 @@ extension RecipeCreationViewController {
             replaceImageCell(type: .image)
         case .uploadImageFailed:
             configureImageCell(isLoaded: false)
+            HapticTouch.generateError()
             show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
         }
     }

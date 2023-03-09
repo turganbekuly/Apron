@@ -128,5 +128,18 @@ extension MealPlannerViewController: UITableViewDelegate {
             view.configure(with: weekDay)
         }
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            addToCartButton.isHidden = true
+        } else {
+            addToCartButton.isHidden = false
+        }
+
+        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
+        if bottomEdge >= scrollView.contentSize.height {
+            addToCartButton.isHidden = false
+        }
+    }
 }
 

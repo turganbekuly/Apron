@@ -103,10 +103,10 @@ final class ShoppingListViewController: ViewController {
 
     private lazy var orderButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.backgroundType = .greenBackground
+        button.backgroundType = .blackBackground
         button.setTitle("Заказать", for: .normal)
         button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 23
         button.layer.masksToBounds = true
         return button
     }()
@@ -198,7 +198,7 @@ final class ShoppingListViewController: ViewController {
 
     private func makeConstraints() {
         orderButton.snp.makeConstraints {
-            $0.height.equalTo(40)
+            $0.height.equalTo(46)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }

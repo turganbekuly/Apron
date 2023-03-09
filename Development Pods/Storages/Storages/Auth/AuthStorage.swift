@@ -13,11 +13,6 @@ public enum AuthorizationStatus: String {
     case unauthorized = "false"
 }
 
-public enum GrantType: String {
-    case apple = "apple_login"
-    case native = "refresh_token"
-}
-
 public protocol AuthStorageProtocol {
     var accessToken: String? { get set }
     var username: String? { get set }
@@ -103,6 +98,7 @@ public final class AuthStorage: AuthStorageProtocol {
         refreshToken = model.refreshToken
         username = model.username
         email = model.email
+        grantType = model.grantType
         isUserAuthorized = true
     }
 

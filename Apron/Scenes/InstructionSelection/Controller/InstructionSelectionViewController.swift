@@ -81,7 +81,7 @@ final class InstructionSelectionViewController: ViewController {
 
     private lazy var navigationRightButton: NavigationButton = {
         let button = NavigationButton()
-        button.backgroundType = .greenBackground
+        button.backgroundType = .blackBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button

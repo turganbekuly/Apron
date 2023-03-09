@@ -38,18 +38,26 @@ final class PhotoPlaceholderView: UIView {
 
     private lazy var photoTitle: UILabel = {
         let title = UILabel()
-        title.font = TypographyFonts.regular14
+        title.font = TypographyFonts.semibold14
         title.textColor = .black
         title.text = "Загрузить фото"
         title.textAlignment = .center
+        title.sizeToFit()
         return title
+    }()
+
+    private lazy var vStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
     }()
 
     // MARK: - Setup Views
 
     private func setupViews() {
         addSubview(containerView)
-        containerView.addSubviews(photoImageView, photoTitle)
+        containerView.addSubviews(photoImageView, photoTitle, vStackView)
         setupConstraints()
     }
 
@@ -59,7 +67,7 @@ final class PhotoPlaceholderView: UIView {
         }
 
         photoImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(-15)
+            $0.top.equalToSuperview().offset(16)
             $0.centerX.equalToSuperview()
             $0.size.equalTo(45)
         }
@@ -68,5 +76,31 @@ final class PhotoPlaceholderView: UIView {
             $0.top.equalTo(photoImageView.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
         }
+
+        vStackView.snp.makeConstraints {
+            $0.top.equalTo(photoTitle.snp.bottom).offset(16)
+            $0.leading.trailing.bottom.equalToSuperview().inset(16)
+        }
+    }
+
+    // MARK: - Methods
+
+    func configure() {
+        vStackView.removeAllArrangedSubviews()
+        let texts = [
+            "Пожалуйста, используйте только свои уникальные фотографии. Формат JPG, JPEG, PNG. Размер до 20 мб",
+            "Убедитесь, что вы подключены к 4G (LTE) или Wi-Fi. Через 3G фото может не загрузиться"
+        ]
+        for text in texts {
+            let label = UILabel()
+            label.font = TypographyFonts.regular12
+            label.textColor = ApronAssets.gray.color
+            label.text = text
+            label.numberOfLines = 0
+            label.textAlignment = .center
+            vStackView.addArrangedSubview(label)
+        }
+        vStackView.setNeedsUpdateConstraints()
+        vStackView.layoutIfNeeded()
     }
 }

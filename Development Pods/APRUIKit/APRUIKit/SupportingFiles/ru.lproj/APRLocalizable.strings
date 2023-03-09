@@ -14,6 +14,7 @@
 "TabBar.Profile.Title" = "Профиль";
 "TabBar.ShoppingList.Title" = "Список";
 "TabBar.MealPlanner.Title" = "Планировщик";
+"TabBar.RecipeCreation.Title" = "Добавить";
 
 // MARK: - Common
 

@@ -54,7 +54,7 @@ final class PreShoppingListViewController: ViewController {
 
     private lazy var addButton: NavigationButton = {
         let button = NavigationButton()
-        button.backgroundType = .greenBackground
+        button.backgroundType = .blackBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button

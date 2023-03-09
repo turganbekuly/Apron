@@ -112,7 +112,7 @@ final class AddCommentViewController: ViewController {
     private lazy var saveButton: BlackOpButton = {
         let button = BlackOpButton()
         button.setTitle("Сохранить", for: .normal)
-        button.backgroundType = .greenBackground
+        button.backgroundType = .blackBackground
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 17
         button.layer.masksToBounds = true

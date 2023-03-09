@@ -39,7 +39,7 @@ final class SearchSuggestionCategoriesView: UICollectionView {
     // MARK: - Methods
 
     private func configure() {
-        allowsMultipleSelection = true
+        allowsMultipleSelection = false
         showsVerticalScrollIndicator = false
 
         [

@@ -114,12 +114,12 @@ public final class BlackOpButton: DefaultButton {
     private func configureColors() {
         switch backgroundType {
         case .blackBackground:
-            setBackgroundColor(.black.withAlphaComponent(0.5), for: .disabled)
-            setBackgroundColor(.black, for: .normal)
-            setBackgroundColor(.black.highlighted, for: .highlighted)
+            setBackgroundColor(ApronAssets.primaryTextMain.color.withAlphaComponent(0.5), for: .disabled)
+            setBackgroundColor(ApronAssets.primaryTextMain.color, for: .normal)
+            setBackgroundColor(ApronAssets.primaryTextMain.color.highlighted, for: .highlighted)
             setTitleColor(.white, for: .disabled)
             setTitleColor(.white, for: .normal)
-            tintColor = isEnabled ? .black : .black.withAlphaComponent(0.5)
+            tintColor = isEnabled ? ApronAssets.primaryTextMain.color : .black.withAlphaComponent(0.5)
         case .whiteBackground:
             setBackgroundColor(.white.withAlphaComponent(0.5), for: .disabled)
             setBackgroundColor(.white, for: .normal)

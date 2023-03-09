@@ -44,6 +44,7 @@ final class MealPlannerViewController: ViewController {
     var mealPlannerRecipes: [MealPlannerResponse] = [] {
         didSet {
             configurePlannerCells(mealPlanner: mealPlannerRecipes)
+            addToCartButton.isEnabled = !(mealPlannerRecipes.reduce(0, { $0 + ($1.recipes?.count ?? 0) }) == 0)
         }
     }
 
@@ -72,6 +73,16 @@ final class MealPlannerViewController: ViewController {
         color: ApronAssets.mainAppColor.color,
         padding: nil
     )
+
+    lazy var addToCartButton: BlackOpButton = {
+        let button = BlackOpButton()
+        button.setTitle("Добавить в корзину", for: .normal)
+        button.backgroundType = .blackBackground
+        button.addTarget(self, action: #selector(addToCartButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 23
+        button.layer.masksToBounds = true
+        return button
+    }()
 
     // MARK: - Init
     init(interactor: MealPlannerBusinessLogic, state: State) {
@@ -135,8 +146,9 @@ final class MealPlannerViewController: ViewController {
     }
 
     private func configureViews() {
-        [mainView, weekdayCalendarView, activityIndicator].forEach { view.addSubview($0) }
+        [mainView, weekdayCalendarView, activityIndicator, addToCartButton].forEach { view.addSubview($0) }
 
+        addToCartButton.isEnabled = false
         activityIndicator.isHidden = true
         activityIndicator.alpha = 0.0
 
@@ -160,6 +172,11 @@ final class MealPlannerViewController: ViewController {
             $0.center.equalToSuperview()
             $0.size.equalTo(36)
         }
+
+        addToCartButton.snp.makeConstraints {
+            $0.height.equalTo(46)
+            $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+        }
     }
 
     private func configureColors() {
@@ -170,7 +187,64 @@ final class MealPlannerViewController: ViewController {
         NSLog("deinit \(self)")
     }
 
+    // MARK: - User actions
+
+    @objc
+    private func addToCartButtonTapped() {
+        show(type: .loader)
+        let cartItems: [CartItem] = mealPlannerRecipes
+            .compactMap { $0.recipes }
+            .flatMap { $0 }
+            .compactMap { $0.ingredients }
+            .flatMap { $0 }
+            .map {
+                CartItem(
+                    productId: $0.product?.id ?? 0,
+                    productName: $0.product?.name ?? "",
+                    productCategoryName: $0.product?.productCategoryName ?? "",
+                    productImage: $0.product?.image,
+                    amount: $0.amount ?? 0,
+                    measurement: $0.measurement ?? "",
+                    recipeName: [""],
+                    bought: false
+                )
+            }
+
+        updateCart(cartItems: cartItems) {
+            hideLoader()
+        }
+    }
+
     // MARK: - Methods
+
+    private func updateCart(cartItems: [CartItem], completion: () -> Void) {
+        let cartManager = CartManager.shared
+        cartItems.forEach {
+            cartManager.update(
+                productId: $0.productId,
+                productName: $0.productName,
+                productCategoryName: $0.productCategoryName,
+                productImage: $0.productImage,
+                amount: $0.amount,
+                measurement: $0.measurement,
+                recipeName: $0.recipeName?.first ?? "",
+                bought: false
+            )
+        }
+
+        cartItems.forEach {
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .ingredientAdded(
+                    IngredientAddedModel(
+                        id: $0.productId,
+                        name: $0.productName,
+                        sourceType: .recipePage
+                    )
+                )
+            )
+        }
+        completion()
+    }
 
     func dateConverter(date: Date?) -> String {
         let dateFormatter = DateFormatter()

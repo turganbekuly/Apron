@@ -43,7 +43,7 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var deleteButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+        button.setBackgroundColor(ApronAssets.primaryTextMain.color, for: .normal)
         button.setImage(ApronAssets.trashIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 15.5
@@ -54,7 +54,7 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+        button.setBackgroundColor(ApronAssets.primaryTextMain.color, for: .normal)
         button.setImage(ApronAssets.editIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 15.5

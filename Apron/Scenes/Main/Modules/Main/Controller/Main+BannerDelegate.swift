@@ -24,7 +24,7 @@ extension MainViewController: AdBannerCellProtocol {
             DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
             return
         }
-        
+
         let webViewController = WebViewHandler(urlString: model.bannerAction)
         present(webViewController, animated: true)
     }

@@ -13,7 +13,7 @@ extension RecipeSearchViewController: APSearchBarDelegate {
 
         if text.isEmpty {
             sections = [
-                .init(section: .trendings, rows: trends.compactMap { .trending($0) })
+                .init(section: .trendings, rows: SearchSuggestionCategoriesTypes.allCases.compactMap { .trending($0) })
             ]
             mainView.reloadData()
         }

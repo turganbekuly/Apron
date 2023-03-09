@@ -85,7 +85,7 @@ final class SplashScreenView: UIView {
         let slideInFromLeftTransition = CATransition()
         slideInFromLeftTransition.type = .push
         slideInFromLeftTransition.subtype = .fromRight
-        slideInFromLeftTransition.duration = 1
+        slideInFromLeftTransition.duration = 0.7
         slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         slideInFromLeftTransition.fillMode = .removed
         logoImage.layer.add(slideInFromLeftTransition, forKey: "slideInFromRightTransition")

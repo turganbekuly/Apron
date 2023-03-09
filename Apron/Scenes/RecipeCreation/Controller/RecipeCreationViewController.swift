@@ -12,6 +12,7 @@ import Models
 import Storages
 import AlertMessages
 import RemoteConfig
+import HapticTouch
 
 protocol RecipeCreationDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipeCreationDataFlow.CreateRecipe.ViewModel)
@@ -107,10 +108,8 @@ final class RecipeCreationViewController: ViewController {
                 let .edit(recipeCreation, sourceType):
                 if let storeRecipeCreation = recipeCreationStorage.recipeCreation {
                     show(with: storeRecipeCreation, initialRecipe: recipeCreation)
-                } else {
-                    self.recipeCreation = recipeCreation
                 }
-
+                self.recipeCreation = recipeCreation
                 self.recipeCreationSourceType = sourceType
                 handleSections(with: recipeCreation)
             default:
@@ -129,7 +128,7 @@ final class RecipeCreationViewController: ViewController {
 
     private lazy var saveButton: NavigationButton = {
         let button = NavigationButton()
-        button.backgroundType = .greenBackground
+        button.backgroundType = .blackBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
@@ -281,8 +280,8 @@ final class RecipeCreationViewController: ViewController {
 
     private func handleSections(with recipe: RecipeCreation?) {
         let remoteConfigManager = RemoteConfigManager.shared
+        var sections = [Section]()
         var rows = [RecipeCreationViewController.Section.Row]()
-        sections.append(.init(section: .info, rows: [.name]))
         rows.append(.name)
 
         if let image = recipe?.imageURL, !image.isEmpty {
@@ -300,6 +299,7 @@ final class RecipeCreationViewController: ViewController {
         rows.append(contentsOf: [.instruction, .servings, .cookTime, .whenToCook])
 
         sections = [.init(section: .info, rows: rows)]
+        self.sections = sections
         self.mainView.reloadData()
     }
 
@@ -312,10 +312,7 @@ final class RecipeCreationViewController: ViewController {
            let _ = recipeCreation?.instructions,
            let _ = recipeCreation?.servings,
            let _ = recipeCreation?.cookTime,
-           let _ = recipeCreation?.whenToCook,
-           let _ = recipeCreation?.dishType,
-           let _ = recipeCreation?.lifestyleType,
-           let _ = recipeCreation?.occasion {
+           let _ = recipeCreation?.whenToCook {
             guard let instructions = recipeCreation?.instructions else { return }
             for (index, item) in instructions.enumerated() {
                 guard let itemIndex = recipeCreation?.instructions.firstIndex(where: { $0.description == item.description }) else { return }
@@ -325,10 +322,11 @@ final class RecipeCreationViewController: ViewController {
             self.createRecipe(recipe: recipeCreation)
             saveButtonLoader(isLoading: true)
         } else {
+            HapticTouch.generateError()
             show(
                 type: .dialog(
                 "Обязательные поля!",
-                "Пожалуйста, заполните все поля, чтобы остальным учасникам было все понятно. Спасибо!",
+                "Пожалуйста, заполните все поля, чтобы облегчить готовку остальным пользователям пользователям. Спасибо!",
                 "Понятно",
                 "Заполнить"
             ),

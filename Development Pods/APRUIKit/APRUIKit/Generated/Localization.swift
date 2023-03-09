@@ -89,6 +89,10 @@ public enum L10n {
       /// Профиль
       public static let title = L10n.tr("APRLocalizable", "TabBar.Profile.Title")
     }
+    public enum RecipeCreation {
+      /// Добавить
+      public static let title = L10n.tr("APRLocalizable", "TabBar.RecipeCreation.Title")
+    }
     public enum Saved {
       /// Избранное
       public static let title = L10n.tr("APRLocalizable", "TabBar.Saved.Title")

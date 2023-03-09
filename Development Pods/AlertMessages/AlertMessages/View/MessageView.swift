@@ -192,7 +192,7 @@ public class MessageView: UIView {
             subtitleLabel.attributedText = viewModel.subtitle
             thirdButton.isEnabled = false
             thirdButton.setBackgroundColor(ApronAssets.lightGray2.color, for: .disabled)
-            thirdButton.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+            thirdButton.setBackgroundColor(ApronAssets.primaryTextMain.color, for: .normal)
             thirdButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
             thirdButton.layer.cornerRadius = 19
             thirdButton.clipsToBounds = true

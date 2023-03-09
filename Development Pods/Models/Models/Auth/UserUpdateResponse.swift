@@ -10,6 +10,7 @@ import Foundation
 public enum OperationResultType: String, Codable {
     case success = "SUCCESS"
     case error = "ERROR"
+    case exists = "USERNAME_EXISTS"
 }
 
 public struct UserUpdateResponse: Codable {

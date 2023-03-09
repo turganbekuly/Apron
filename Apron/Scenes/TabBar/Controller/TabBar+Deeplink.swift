@@ -77,9 +77,9 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
         case .openCommunity, .openRecipe, .openShoppingList, .openRecipeCreation:
             selectedIndex = 0
         case .openSavedRecipes:
-            selectedIndex = 2
-        case .openMealPlanner:
             selectedIndex = 3
+        case .openMealPlanner:
+            selectedIndex = 4
         case .unknown:
             print("Did received unknown")
         }

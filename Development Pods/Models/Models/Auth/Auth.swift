@@ -7,6 +7,11 @@
 
 import Foundation
 
+public enum GrantType: String, Codable {
+    case apple = "apple_login"
+    case native = "refresh_token"
+}
+
 public struct Auth: Codable {
 
     private enum CodingKeys: String, CodingKey {
@@ -14,6 +19,7 @@ public struct Auth: Codable {
         case refreshToken = "refresh_token"
         case username
         case email
+        case grantType
     }
 
     // MARK: - Properties
@@ -22,6 +28,7 @@ public struct Auth: Codable {
     public let refreshToken: String
     public var username: String?
     public let email: String
+    public let grantType: String
 
     // MARK: - Init
 
@@ -42,6 +49,6 @@ public struct Auth: Codable {
         self.refreshToken = refreshToken
         self.email = email
         self.username = (json[CodingKeys.username.rawValue] as? String) ?? nil
+        self.grantType = json[CodingKeys.grantType.rawValue] as? String ?? ""
     }
-
 }

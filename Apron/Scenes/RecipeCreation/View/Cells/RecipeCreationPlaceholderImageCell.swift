@@ -117,5 +117,6 @@ final class RecipeCreationPlaceholderImageCell: UITableViewCell {
 
     func configure() {
 
+        imagePlaceholder.configure()
     }
 }

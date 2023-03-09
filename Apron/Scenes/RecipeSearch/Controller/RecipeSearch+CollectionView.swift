@@ -22,7 +22,7 @@ extension RecipeSearchViewController: UICollectionViewDataSource {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .trending:
-            let cell: RecipeSearchSuggestionsCell = collectionView.dequeueReusableCell(for: indexPath)
+            let cell: SearchSuggestionCategoryCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         case .shimmer:
             let cell: RecipeSearchSkeletonCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -54,6 +54,8 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: false)
             }
+        case let .trending(type):
+            select(block: type)
         default:
             break
         }
@@ -63,7 +65,7 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .trending:
-            return CGSize(width: collectionView.bounds.width - 32, height: 30)
+            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 160)
         case .shimmer:
             return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
         case .result:
@@ -78,9 +80,9 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
             guard let cell = cell as? RecipeSearchResultCellv2 else { return }
             cell.delegate = self
             cell.configure(with: recipe)
-        case let .trending(trend):
-            guard let cell = cell as? RecipeSearchSuggestionsCell else { return }
-            cell.configure(title: trend)
+        case let .trending(type):
+            guard let cell = cell as? SearchSuggestionCategoryCollectionCell else { return }
+            cell.configure(with: type)
         case .shimmer:
             guard let cell = cell as? RecipeSearchSkeletonCell else { return }
             cell.configure()
@@ -92,11 +94,8 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
                                at indexPath: IndexPath) -> UICollectionReusableView {
         let section = sections[indexPath.section].section
         switch section {
-        case .filter:
+        case .filter, .trendings:
             let view: RecipeSearchFilterHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
-            return view
-        default:
-            let view: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
             return view
         }
     }
@@ -106,10 +105,8 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
                                referenceSizeForHeaderInSection section: Int) -> CGSize {
         let section = sections[section].section
         switch section {
-        case .filter:
+        case .filter, .trendings:
             return CGSize(width: collectionView.bounds.width, height: 60)
-        case .trendings:
-            return CGSize(width: 0, height: 24)
         }
     }
 
@@ -119,12 +116,10 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
                                at indexPath: IndexPath) {
         let section = sections[indexPath.section].section
         switch section {
-        case .filter:
+        case .filter, .trendings:
             guard let view = view as? RecipeSearchFilterHeaderView else { return }
             view.delegate = self
             view.configure(type: .filters, filters: filtersCount)
-        default:
-            break
         }
     }
 }

@@ -89,7 +89,7 @@ public final class TagCell: UICollectionViewCell {
         titleBackgroundView.layer.borderWidth = isSelected ? 0 : 0.5
         titleBackgroundView.layer.borderColor = isSelected ? .none : ApronAssets.gray.color.cgColor
         titleBackgroundView.backgroundColor = isSelected
-            ? ApronAssets.mainAppColor.color
+            ? ApronAssets.primaryTextMain.color
             : .white
         titleLabel.textColor = isSelected ? .white : .black
     }

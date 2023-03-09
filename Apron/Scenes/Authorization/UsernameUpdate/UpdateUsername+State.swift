@@ -8,6 +8,7 @@
 import Foundation
 import Models
 import Storages
+import APRUIKit
 
 extension UpdateUsernameViewController {
     enum State {
@@ -30,6 +31,11 @@ extension UpdateUsernameViewController {
                 }
             case .error:
                 break
+            case .exists:
+                NotificationBannerManager.shared.show(
+                    style: .information,
+                    text: "Такое имя уже существует, пожалуйста, введите другое"
+                )
             default:
                 break
             }

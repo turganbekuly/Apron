@@ -12,6 +12,7 @@ import AlertMessages
 import Storages
 import Models
 import RemoteConfig
+import HapticTouch
 
 protocol MainDisplayLogic: AnyObject {
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel)
@@ -150,6 +151,7 @@ final class MainViewController: ViewController {
             guard let self = self else { return }
             let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
 
+            HapticTouch.generateLight()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(viewController, animated: false)
             }
@@ -164,7 +166,7 @@ final class MainViewController: ViewController {
                     let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .main))).build()
                     let navController = RecipeCreationNavigationController(rootViewController: vc)
                     navController.modalPresentationStyle = .fullScreen
-
+                    HapticTouch.generateSuccess()
                     DispatchQueue.main.async {
                         self.navigationController?.present(navController, animated: true)
                     }

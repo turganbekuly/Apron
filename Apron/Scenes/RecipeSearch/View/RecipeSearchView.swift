@@ -56,7 +56,8 @@ final class RecipeSearchView: UICollectionView {
             RecipeSearchSuggestionsCell.self,
             RecipeSearchResultCell.self,
             RecipeSearchResultCellv2.self,
-            RecipeSearchSkeletonCell.self
+            RecipeSearchSkeletonCell.self,
+            SearchSuggestionCategoryCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }

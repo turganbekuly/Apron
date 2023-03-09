@@ -68,7 +68,7 @@ final class FiltersViewController: ViewController {
 
     private lazy var applyButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.backgroundType = .greenBackground
+        button.backgroundType = .blackBackground
         button.setTitle("Применить", for: .normal)
         button.addTarget(self, action: #selector(applyButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 20

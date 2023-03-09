@@ -70,7 +70,7 @@ extension RecipeCreationViewController: UITableViewDelegate {
         case .image:
             return 221
         case .imagePlaceholder:
-            return 167
+            return 240
         case .description:
             return 125
         case .composition:
@@ -108,7 +108,7 @@ extension RecipeCreationViewController: UITableViewDelegate {
         case .image:
             return 221
         case .imagePlaceholder:
-            return 167
+            return 240
         case .description:
             return 125
         case .composition:

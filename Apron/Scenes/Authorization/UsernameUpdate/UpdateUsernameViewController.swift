@@ -9,6 +9,7 @@ import UIKit
 import APRUIKit
 import AlertMessages
 import Models
+import IQKeyboardManagerSwift
 
 final class UpdateUsernameViewController: ViewController {
 
@@ -48,6 +49,24 @@ final class UpdateUsernameViewController: ViewController {
         state = { state }()
         view.isOpaque = false
         view.backgroundColor = .black.withAlphaComponent(0.30)
+        showUserUpdate()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.enableAutoToolbar = false
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
+    }
+
+    // MARK: - Method
+
+    func showUserUpdate() {
         showUsernameUpdate(
             type: .completeAppleSignin(
                 "Привет!",
@@ -71,8 +90,6 @@ final class UpdateUsernameViewController: ViewController {
             }
         )
     }
-
-    // MARK: - Method
 
     private func updateProfile(with user: User) {
         provider.updateProfile(body: user) { result in

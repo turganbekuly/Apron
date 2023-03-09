@@ -11,13 +11,14 @@ struct PrimaryButtonBlackStyle: ButtonStyleProtocol {
     let button: NavigationButton
 
     func style() -> ButtonStyle {
+        let color = ApronAssets.primaryTextMain.color
         return .init(
             textColor: .init(normalColor: .white),
             font: TypographyFonts.regular14,
             background: .init(
-                normalColor: .black,
-                disabledColor: .black.withAlphaComponent(0.15),
-                highlightedColor: .black.withAlphaComponent(0.8)
+                normalColor: color,
+                disabledColor: color.withAlphaComponent(0.15),
+                highlightedColor: color.withAlphaComponent(0.8)
             ),
             image: nil,
             cornerRadius: .exact(15)

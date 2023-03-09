@@ -13,6 +13,7 @@ import RemoteConfig
 import AlertMessages
 import Models
 import Storages
+import HapticTouch
 
 protocol TabBarDisplayLogic: AnyObject {
 
@@ -36,12 +37,14 @@ final class TabBarViewController: AppTabBarController {
     enum ViewControllerTypes {
         case main
         case search
+        case createRecipe
         case saved
         case mealPlanner
     }
 
     private lazy var mainModule = MainBuilder(state: .initial).build()
     private lazy var searchModule = SearchBuilder(state: .initial(.general)).build()
+    private lazy var recipeCreationModule = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .main))).build()
     private lazy var favouriteModule = SavedRecipesBuilder(state: .initial(.tab)).build()
     private lazy var shoppingListModule = ShoppingListBuilder(state: .initial(.tab)).build()
     private lazy var mealPlannerModule = MealPlannerBuilder(state: .initial).build()
@@ -89,6 +92,7 @@ final class TabBarViewController: AppTabBarController {
         viewControllers = [
             configureViewController(viewController: mainModule, type: .main),
             configureViewController(viewController: searchModule, type: .search),
+            configureViewController(viewController: recipeCreationModule, type: .createRecipe),
             configureViewController(viewController: favouriteModule, type: .saved),
 //            configureViewController(viewController: shoppingListModule, type: .shoppingList)
             configureViewController(viewController: mealPlannerModule, type: .mealPlanner)
@@ -104,6 +108,9 @@ final class TabBarViewController: AppTabBarController {
         case .search:
             navigationController.tabBarItem.title = L10n.TabBar.Search.title
             navigationController.tabBarItem.image = ApronAssets.navSearchIcon.image
+        case .createRecipe:
+            navigationController.tabBarItem.title = L10n.TabBar.RecipeCreation.title
+            navigationController.tabBarItem.image = ApronAssets.tabAddSelectedIcon.image
         case .saved:
             navigationController.tabBarItem.title = L10n.TabBar.Saved.title
             navigationController.tabBarItem.image = ApronAssets.tabFaveSelectedIcon.image
@@ -141,7 +148,19 @@ extension TabBarViewController: UITabBarControllerDelegate {
         shouldSelect viewController: UIViewController
     ) -> Bool {
         guard let index = self.viewControllers?.firstIndex(of: viewController) else { return false }
-        if index == 2 || index == 3 {
+        if index == 2 {
+            self.handleAuthorizationStatus {
+                let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .main))).build()
+                let navController = RecipeCreationNavigationController(rootViewController: vc)
+                navController.modalPresentationStyle = .fullScreen
+                HapticTouch.generateSuccess()
+                DispatchQueue.main.async {
+                    self.navigationController?.present(navController, animated: true)
+                }
+            }
+            return false
+        }
+        if index == 3 || index == 4 {
             handleAuthorizationStatus {
                 self.selectedIndex = index
             }

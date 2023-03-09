@@ -28,7 +28,7 @@ public final class MealPlannerView: UITableView {
         allowsMultipleSelection = false
         backgroundColor = .clear
         separatorStyle = .none
-
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         tableHeaderView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 0)))
         [
             MealPlannerHeaderView.self

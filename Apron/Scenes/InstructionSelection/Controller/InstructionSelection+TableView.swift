@@ -39,13 +39,26 @@ extension InstructionSelectionViewController: UITableViewDataSource {
 extension InstructionSelectionViewController: UITableViewDelegate {
 
     // MARK: - UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let row = sections[indexPath.section].rows[indexPath.row]
+        switch row {
+        case .image:
+            return 221
+        case .placeholder:
+            return 240
+        case .description:
+            return 125
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .image:
             return 221
         case .placeholder:
-            return 167
+            return 240
         case .description:
             return 125
         }
