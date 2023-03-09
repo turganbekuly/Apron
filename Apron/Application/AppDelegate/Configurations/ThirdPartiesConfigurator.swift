@@ -90,15 +90,15 @@ final class ThirdPartiesConfigurator: NSObject, ApplicationConfiguratorProtocol 
     }
 
     private func configureWormholy() {
-#if DEBUG
+//#if DEBUG
         Wormholy.ignoredHosts = [
             "crashlytics.com",
             "googleapis.com",
             "sentry.io"
         ]
-#else
+//#else
         Wormholy.shakeEnabled = false
-#endif
+//#endif
     }
 
     private func configureIQKeyboardManager() {
