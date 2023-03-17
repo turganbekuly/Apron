@@ -175,6 +175,7 @@ final class PreShoppingListViewController: ViewController {
         }
 
         OneSignal.sendTag("ingredients_added", value: "recipe_page")
+        OneSignal.addTrigger("ingredients_added", withValue: "recipe_page")
 
         delegate?.dismissedWithIngredients()
         self.navigationController?.popViewController(animated: true)

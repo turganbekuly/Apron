@@ -28,7 +28,7 @@ final class MyRecipesService: MyRecipesServiceProtocol {
     // MARK: - MyRecipesServiceProtocol
 
     func getProfile(request: MyRecipesDataFlow.GetMyRecipesData.Request, completion: @escaping ((AKResult) -> Void)) {
-        provider.send(target: .getProfile) { result in
+        provider.send(target: .myRecipes) { result in
             completion(result)
         }
     }

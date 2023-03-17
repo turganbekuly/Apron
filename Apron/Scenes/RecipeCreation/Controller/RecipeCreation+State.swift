@@ -17,6 +17,8 @@ extension RecipeCreationViewController {
     // MARK: - State
     public enum State {
         case initial(RecipeCreationInitialState)
+        case recipeEditingSucceed(RecipeResponse)
+        case recipeEditingFailed(AKNetworkError)
         case recipeCreationSucceed(RecipeResponse)
         case recipeCreationFailed(AKNetworkError)
         case uploadImageSucceed(String)
@@ -49,10 +51,31 @@ extension RecipeCreationViewController {
             self.dismiss(animated: true) {
                 self.delegate?.didCreate()
             }
-        case .recipeCreationFailed:
+        case let .recipeEditingSucceed(recipe):
+            let remoteConfigManager = RemoteConfigManager.shared
+            saveButtonLoader(isLoading: false)
+            recipeCreationStorage.recipeCreation = nil
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .recipeCreated(
+                    RecipeCreatedModel(
+                        recipeID: recipe.id,
+                        recipeName: recipe.recipeName ?? "",
+                        sourceType: analyticsSourceType ?? .community,
+                        imageAdded: selectedImage != nil ? true : false,
+                        ingredients: recipe.ingredients?.map { $0.product?.name ?? ""} ?? [],
+                        isPaidRecipe: remoteConfigManager.remoteConfig.isPaidRecipeEnabled
+                    )
+                )
+            )
+            HapticTouch.generateSuccess()
+            show(type: .success("Смотрите статус своих рецептов в \"Мои рецепты\""), firstAction: nil, secondAction: nil)
+            self.dismiss(animated: true) {
+                self.delegate?.didCreate()
+            }
+        case .recipeCreationFailed, .recipeEditingFailed:
             saveButtonLoader(isLoading: false)
             HapticTouch.generateError()
-            show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)
+            show(type: .error("Произошла ошибка, пожалуйста, попробуйта позже"), firstAction: nil, secondAction: nil)
         case let .uploadImageSucceed(path):
             recipeCreation?.imageURL = Configurations.downloadImageURL(imagePath: path)
             configureImageCell(isLoaded: false)

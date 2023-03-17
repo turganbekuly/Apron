@@ -13,6 +13,10 @@ protocol RecipeCreationServiceProtocol {
         request: RecipeCreationDataFlow.CreateRecipe.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func editRecipe(
+        request: RecipeCreationDataFlow.CreateRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
     func uploadImage(
         request: RecipeCreationDataFlow.UploadImage.Request,
         completion: @escaping ((AKResult) -> Void)
@@ -33,12 +37,23 @@ final class RecipeCreationService: RecipeCreationServiceProtocol {
 
     func createRecipe(
         request: RecipeCreationDataFlow.CreateRecipe.Request,
-        completion: @escaping ((AKResult) -> Void)) {
-            provider.send(
-                target: .createRecipe(request.recipeCreation)) { result in
-                    completion(result)
-                }
-        }
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(
+            target: .createRecipe(request.recipeCreation)) { result in
+                completion(result)
+            }
+    }
+
+    func editRecipe(
+        request: RecipeCreationDataFlow.CreateRecipe.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(
+            target: .editRecipe(request.recipeCreation)) { result in
+                completion(result)
+            }
+    }
 
     func uploadImage(
         request: RecipeCreationDataFlow.UploadImage.Request,

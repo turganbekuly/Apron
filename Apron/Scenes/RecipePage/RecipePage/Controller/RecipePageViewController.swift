@@ -11,6 +11,7 @@ import UIKit
 import Models
 import AlertMessages
 import OneSignal
+import HapticTouch
 
 protocol RecipePageDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipePageDataFlow.GetRecipe.ViewModel)
@@ -51,7 +52,6 @@ final class RecipePageViewController: ViewController {
                         )
                     )
                 )
-                OneSignal.sendTag("recipe_page_viewed", value: recipe.recipeName ?? "")
                 bottomStickyView.configure(isSaved: recipe.isSaved ?? false)
             }
             if recipe?.status == .declined {
@@ -170,6 +170,16 @@ final class RecipePageViewController: ViewController {
             target: self,
             action: #selector(backButtonTapped)
         )
+        if initialState == .myRecipes {
+            let rigtBarButtonItem = UIBarButtonItem(
+                image: ApronAssets.recipeEditIcon.image,
+                style: .plain,
+                target: self,
+                action: #selector(editButtonTapped)
+            )
+            rigtBarButtonItem.tintColor = ApronAssets.primaryTextMain.color
+            navigationItem.rightBarButtonItem = rigtBarButtonItem
+        }
         navigationItem.leftBarButtonItem?.tintColor = .black
         navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
     }
@@ -204,5 +214,19 @@ final class RecipePageViewController: ViewController {
     @objc
     private func backButtonTapped() {
         navigationController?.popViewController(animated: false)
+    }
+
+    @objc
+    private func editButtonTapped() {
+        guard let recipe = recipe,
+              let model = RecipeCreation(from: recipe )
+        else { return }
+        let vc = RecipeCreationBuilder(state: .initial(.edit(model, .recipePage))).build()
+        let navController = RecipeCreationNavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        HapticTouch.generateSuccess()
+        DispatchQueue.main.async {
+            self.navigationController?.present(navController, animated: true)
+        }
     }
 }

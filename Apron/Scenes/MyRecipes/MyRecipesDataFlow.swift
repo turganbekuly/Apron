@@ -24,7 +24,7 @@ extension MyRecipesDataFlow {
     }
 
     enum MyRecipesResults {
-        case successful(User)
+        case successful([RecipeResponse])
         case failed(AKNetworkError)
     }
 }

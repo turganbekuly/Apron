@@ -46,7 +46,6 @@ extension ProfileViewController {
             show(type: .error(L10n.Common.errorMessage))
         case .deleteAccount:
             AuthStorage.shared.clear()
-            OneSignal.sendTag("user_account", value: "deleted")
             let vc = AuthorizationBuilder(state: .initial).build()
             vc.hidesBottomBarWhenPushed = true
             DispatchQueue.main.async {

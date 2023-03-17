@@ -22,7 +22,7 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
             let vc = RecipeCreationBuilder(
                 state: .initial(
                     .create(
-                        recipeCreation, .community(from: self)
+                        recipeCreation, .community
                     )
                 )
             ).build()

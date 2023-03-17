@@ -18,9 +18,12 @@ enum CustomerStatus: String {
 enum RecipeCreationSourceTypeModel: String, Codable {
     case community = "community_page"
     case saved = "saved_recipes"
+    case myRecipes
     case deeplink
     case search
     case main
+    case banner
+    case recipePage
 }
 
 enum CommunityCreationSourceTypeModel: String, Codable {

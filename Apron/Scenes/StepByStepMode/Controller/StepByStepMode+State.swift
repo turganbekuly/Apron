@@ -29,7 +29,6 @@ extension StepByStepModeViewController {
             self.finalImage = finalImage
             self.delegate = delegate
             ApronAnalytics.shared.sendAnalyticsEvent(.stepByStepViewed)
-            OneSignal.sendTag("step_by_step_mode", value: "recipe_page")
         }
     }
 

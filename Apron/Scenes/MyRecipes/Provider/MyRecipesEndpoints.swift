@@ -11,7 +11,7 @@ import AKNetwork
 import Storages
 
 enum MyRecipesEndpoint {
-    case getProfile
+    case myRecipes
 }
 
 extension MyRecipesEndpoint: AKNetworkTargetType {
@@ -22,14 +22,14 @@ extension MyRecipesEndpoint: AKNetworkTargetType {
 
     var path: String {
         switch self {
-        case .getProfile:
-            return "users/myProfile"
+        case .myRecipes:
+            return "recipes/myRecipes"
         }
     }
 
     var method: AKNetworkMethod {
         switch self {
-        case .getProfile:
+        case .myRecipes:
             return .get
         }
     }
@@ -40,7 +40,7 @@ extension MyRecipesEndpoint: AKNetworkTargetType {
 
     var task: AKNetworkTask {
         switch self {
-        case .getProfile:
+        case .myRecipes:
             return .requestPlain
         }
     }

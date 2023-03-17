@@ -12,6 +12,7 @@ import Models
 import Storages
 import Extensions
 import NVActivityIndicatorView
+import OneSignal
 
 protocol MealPlannerDisplayLogic: AnyObject {
     func displayGetMealPlannerRecipes(
@@ -43,8 +44,16 @@ final class MealPlannerViewController: ViewController {
 
     var mealPlannerRecipes: [MealPlannerResponse] = [] {
         didSet {
+            let isMealPlannerEmpty = (mealPlannerRecipes.reduce(0, { $0 + ($1.recipes?.count ?? 0) }) == 0)
             configurePlannerCells(mealPlanner: mealPlannerRecipes)
-            addToCartButton.isEnabled = !(mealPlannerRecipes.reduce(0, { $0 + ($1.recipes?.count ?? 0) }) == 0)
+            addToCartButton.isEnabled = !isMealPlannerEmpty
+            guard !isMealPlannerEmpty else {
+                OneSignal.sendTag("meal_planner", value: "no_items")
+                OneSignal.addTrigger("meal_planner", withValue: "no_items")
+                return
+            }
+            OneSignal.sendTag("meal_planner", value: "has_items")
+            OneSignal.addTrigger("meal_planner", withValue: "has_items")
         }
     }
 
@@ -107,7 +116,7 @@ final class MealPlannerViewController: ViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        OneSignal.addTrigger("meal_planner", withValue: "has_viewed")
         configureNavigation()
     }
 
@@ -247,12 +256,11 @@ final class MealPlannerViewController: ViewController {
     }
 
     func dateConverter(date: Date?) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = Calendar(identifier: .iso8601)
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.string(from: date ?? Date())
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date ?? Date())
+        let month = calendar.component(.month, from: date ?? Date())
+        let day = calendar.component(.day, from: date ?? Date())
+        return String(format: "%04d-%02d-%02d", year, month, day)
     }
 
     func isLoadingButton(_ isLoading: Bool) {
@@ -266,33 +274,6 @@ final class MealPlannerViewController: ViewController {
         activityIndicator.isHidden = false
         activityIndicator.alpha = 1.0
         activityIndicator.startAnimating()
-//        guard let addingDay = addingDay else { return }
-//        var dynamicSection: Section.Section = .monday(addingDay)
-//        switch addingDay {
-//        case .sunday:
-//            dynamicSection = .sunday(addingDay)
-//        case .monday:
-//            dynamicSection = .monday(addingDay)
-//        case .tuesday:
-//            dynamicSection = .tuesday(addingDay)
-//        case .wednesday:
-//            dynamicSection = .wednesday(addingDay)
-//        case .thursday:
-//            dynamicSection = .thursday(addingDay)
-//        case .friday:
-//            dynamicSection = .friday(addingDay)
-//        case .saturday:
-//            dynamicSection = .saturday(addingDay)
-//        }
-//        guard let section = sections.firstIndex(where: { $0.section == dynamicSection}),
-//              let view = mainView.headerView(forSection: section) as? MealPlannerHeaderView else {
-//            return
-//        }
-//        if isLoading {
-//            view.addButton.startAnimating()
-//            return
-//        }
-//        view.addButton.stopAnimating()
     }
 
     private func configurePlannerCells(mealPlanner: [MealPlannerResponse]) {

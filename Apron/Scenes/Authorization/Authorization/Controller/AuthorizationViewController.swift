@@ -123,7 +123,6 @@ final class AuthorizationViewController: ViewController {
             title: L10n.Common.yes,
             style: .default
         ) { [weak self] _ in
-            OneSignal.sendTag("authorization_page", value: "skipped")
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
 

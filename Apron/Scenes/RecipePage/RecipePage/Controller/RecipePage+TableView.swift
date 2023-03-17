@@ -189,7 +189,7 @@ extension RecipePageViewController: UITableViewDelegate {
                     let recipeCreation = RecipeCreation(from: recipe) else { return }
 
                 let viewController = RecipeCreationBuilder(
-                    state: .initial(.edit(recipeCreation, .recipe))).build()
+                    state: .initial(.edit(recipeCreation, .recipePage))).build()
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }

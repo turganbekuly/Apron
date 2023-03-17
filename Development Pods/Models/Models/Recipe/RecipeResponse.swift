@@ -59,6 +59,11 @@ public struct RecipeResponse: Codable {
         case isHidden = "hidden"
         case status
         case reworkInfo
+        case promo = "promoCode"
+        case whenToCook = "whenToCook"
+        case dishType
+        case occasion
+        case lifestyleType
     }
 
     // MARK: - Properties
@@ -82,6 +87,11 @@ public struct RecipeResponse: Codable {
     public var isHidden: Bool?
     public var status: RecipeStatusType?
     public var reworkInfo: [String]?
+    public var promo: String?
+    public var whenToCook: [Int]?
+    public var dishType: [Int]?
+    public var occasion: [Int]?
+    public var lifestyleType: [Int]?
 
     // MARK: - Init
 
@@ -108,6 +118,11 @@ public struct RecipeResponse: Codable {
         self.isHidden = json[CodingKeys.isHidden.rawValue] as? Bool
         self.status = RecipeStatusType(rawValue: json[CodingKeys.status.rawValue] as? String ?? "Active")
         self.reworkInfo = json[CodingKeys.reworkInfo.rawValue] as? [String]
+        self.promo = json[CodingKeys.promo.rawValue] as? String
+        self.whenToCook = json[CodingKeys.whenToCook.rawValue] as? [Int]
+        self.dishType = json[CodingKeys.dishType.rawValue] as? [Int]
+        self.occasion = json[CodingKeys.occasion.rawValue] as? [Int]
+        self.lifestyleType = json[CodingKeys.lifestyleType.rawValue] as? [Int]
     }
 
     // MARK: - Methods

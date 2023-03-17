@@ -39,7 +39,6 @@ extension AuthSignInViewController {
                     )
                 )
             )
-            OneSignal.sendTag("authorization_page", value: "signed_in")
             let vc = TabBarBuilder(state: .initial(.normal)).build()
             let navigationVC = UINavigationController(rootViewController: vc)
             DispatchQueue.main.async {

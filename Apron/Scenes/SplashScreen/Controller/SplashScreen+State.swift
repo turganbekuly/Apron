@@ -26,6 +26,7 @@ extension SplashScreenViewController {
             break
         case let .updateTokenSucceed(model):
             AuthStorage.shared.save(model: model)
+            ApronAnalytics.shared.setupUserInfo(id: 0, name: model.username, email: model.email)
             let vc = TabBarBuilder(state: .initial(.normal)).build()
             let navigationVC = UINavigationController(rootViewController: vc)
             DispatchQueue.main.async {

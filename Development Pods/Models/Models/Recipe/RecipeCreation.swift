@@ -27,10 +27,12 @@ public struct RecipeCreation: Codable {
         case cuisineId
         case email = "authorEmail"
         case promo = "promoCode"
+        case id
     }
 
     // MARK: - Properties
 
+    public var id: Int?
     public var recipeName: String?
     public var sourceLink: String?
     public var sourceName: String?
@@ -55,6 +57,7 @@ public struct RecipeCreation: Codable {
     public init() { }
 
     public init?(from recipe: RecipeResponse) {
+        self.id = recipe.id
         self.recipeName = recipe.recipeName
         self.sourceLink = recipe.sourceLink
         self.sourceName = recipe.sourceName
@@ -67,18 +70,21 @@ public struct RecipeCreation: Codable {
         self.isHidden = recipe.isHidden
         self.cuisineId = nil
         self.communityId = nil
-        self.whenToCook = []
-        self.dishType = []
-        self.occasion = []
-        self.lifestyleType = []
+        self.whenToCook = recipe.whenToCook
+        self.dishType = recipe.dishType
+        self.occasion = recipe.occasion
+        self.lifestyleType = recipe.lifestyleType
         self.email = nil
-        self.promo = nil
+        self.promo = recipe.promo
     }
 
     // MARK: - Methods
 
     public func toJSON() -> JSON {
         var params = JSON()
+        if let id = id {
+            params[CodingKeys.id.rawValue] = id
+        }
         if let name = recipeName {
             params[CodingKeys.recipeName.rawValue] = name
         }

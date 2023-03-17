@@ -30,7 +30,6 @@ extension AuthSignUpViewController {
             AuthStorage.shared.grantType = GrantType.native.rawValue
             AuthStorage.shared.save(model: model)
             ApronAnalytics.shared.setupUserInfo(id: 0, name: model.username, email: model.email)
-            OneSignal.sendTag("authorization_page", value: "signed_up")
             ApronAnalytics.shared.sendAnalyticsEvent(
                 .authorization(
                     AuthorizationModel(

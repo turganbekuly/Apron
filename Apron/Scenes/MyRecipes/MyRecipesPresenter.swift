@@ -27,7 +27,7 @@ final class MyRecipesPresenter: MyRecipesPresentationLogic {
 
             switch response.result {
             case let .successful(model):
-                viewModel = .init(state: .getProfileRecipeSucceed(model.myRecipes ?? []))
+                viewModel = .init(state: .getProfileRecipeSucceed(model))
             case let .failed(error):
                 viewModel = .init(state: .getProfileRecipeFailed(error))
             }

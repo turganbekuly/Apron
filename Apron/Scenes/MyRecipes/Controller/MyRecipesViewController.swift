@@ -117,7 +117,7 @@ final class MyRecipesViewController: ViewController {
     
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }

@@ -136,7 +136,6 @@ final class ShoppingListViewController: ViewController {
         state = { state }()
 
         ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListViewed)
-        OneSignal.sendTag("shopping_list_page_viewed", value: "\(initialState)")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -234,6 +233,7 @@ final class ShoppingListViewController: ViewController {
         let webViewController = WebViewHandler(urlString: link)
         ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListCheckoutTapped(cartItems.map { $0.productName }))
         OneSignal.sendTag("shopping_list_checkout_tapped", value: "order_button_tapped")
+        OneSignal.addTrigger("shopping_list_checkout_tapped", withValue: "order_button_tapped")
         present(webViewController, animated: true)
     }
 
@@ -266,7 +266,6 @@ extension ShoppingListViewController: IngredientSelectedProtocol {
                 )
             )
         )
-        OneSignal.sendTag("ingredients_added", value: "shopping_list")
         var productAmount: Double = 0
         if cartManager.isContains(product: ingredient.product?.name ?? "") {
             productAmount = CartManager.shared.getProductAmount(for: ingredient.product?.name ?? "")

@@ -49,7 +49,6 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
                     )
                 )
             )
-            OneSignal.sendTag("search_tab", value: "\(query ?? "") - query, \(recipe.recipeName ?? "") - selectedRecipe")
             let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: false)

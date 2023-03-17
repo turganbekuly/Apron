@@ -13,6 +13,7 @@ import Models
 
 enum RecipeCreationEndpoint {
     case createRecipe(RecipeCreation)
+    case editRecipe(RecipeCreation)
     case uploadImage(image: Data)
 }
 
@@ -24,7 +25,7 @@ extension RecipeCreationEndpoint: AKNetworkTargetType {
 
     var path: String {
         switch self {
-        case .createRecipe:
+        case .createRecipe, .editRecipe:
             return "recipes"
         case .uploadImage:
             return "file/upload/image/4"
@@ -35,6 +36,8 @@ extension RecipeCreationEndpoint: AKNetworkTargetType {
         switch self {
         case .createRecipe:
             return .post
+        case .editRecipe:
+            return .put
         case .uploadImage:
             return .post
         }
@@ -46,7 +49,8 @@ extension RecipeCreationEndpoint: AKNetworkTargetType {
 
     var task: AKNetworkTask {
         switch self {
-        case .createRecipe(let recipeCreation):
+        case let .createRecipe(recipeCreation),
+            let .editRecipe(recipeCreation):
             return .requestParameters(
                 parameters: recipeCreation.toJSON(),
                 encoding: AKJSONEncoding.default

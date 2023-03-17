@@ -36,8 +36,8 @@ final class MyRecipesProvider: MyRecipesProviderProtocol {
         service.getProfile(request: request) {
             switch $0 {
             case let .success(json):
-                if let json = User(json: json) {
-                    completion(.successful(json))
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(jsons.compactMap { RecipeResponse(json: $0) }))
                 } else {
                     completion(.failed(.invalidData))
                 }

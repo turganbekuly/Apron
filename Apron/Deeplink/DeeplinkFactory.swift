@@ -24,6 +24,9 @@ import AppsFlyerLib
          if let _ = dict["meal_planner"] as? String {
              return .openMealPlanner
          }
+         if let _ = dict["recipe_creation"] as? String {
+             return .openRecipeCreation
+         }
          if let receipeId = dict["recipe_id"] as? String {
              return .openRecipe(id: Int(receipeId) ?? 1)
          }
@@ -42,6 +45,9 @@ import AppsFlyerLib
          }
          if let _ = deeplink["meal_planner"] as? String {
              return .openMealPlanner
+         }
+         if let _ = deeplink["recipe_creation"] as? String {
+             return .openRecipeCreation
          }
          return .unknown
      }
@@ -67,13 +73,13 @@ import AppsFlyerLib
         switch components.count {
         case 1:
             switch components.first {
-            case "saved":
+            case "saved_recipes":
                 return .openSavedRecipes
-            case "planner":
+            case "meal_planner":
                 return .openMealPlanner
             case "recipe_creation":
                 return .openRecipeCreation
-            case "list":
+            case "shopping_list":
                 return .openShoppingList
             default:
                 return .unknown

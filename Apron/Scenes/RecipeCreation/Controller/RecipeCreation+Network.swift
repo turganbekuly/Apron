@@ -20,6 +20,14 @@ extension RecipeCreationViewController {
         interactor.createRecipe(request: .init(recipeCreation: recipe))
     }
 
+    func editRecipe(recipe: RecipeCreation?) {
+        guard let recipe = recipe else {
+            return
+        }
+
+        interactor.editRecipe(request: .init(recipeCreation: recipe))
+    }
+
     func uploadImage(with image: UIImage) {
         interactor.uploadImage(request: .init(image: image))
     }

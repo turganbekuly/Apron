@@ -54,7 +54,6 @@
 		1D1AB6E7D3A3C26E56A02402 /* Filters+DisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507648314EEC4EA95270296E /* Filters+DisplayLogic.swift */; };
 		1E4B414D5C5D870A5F3B3B4C /* AddSavedRecipesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE372457DFE48CB279E43368 /* AddSavedRecipesBuilder.swift */; };
 		1EC726FB9228981D31AABC75 /* RecipePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D08EBF0F47DD37AD9E09732 /* RecipePageService.swift */; };
-		1F42A8F36237E9CC6065EB65 /* Pods_Apron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 296593E8CF2821B04FC4D517 /* Pods_Apron.framework */; };
 		2056B1C9F4A3F6C99E2FDB56 /* ResultListEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA85673EFD4DED2384D1283 /* ResultListEndpoints.swift */; };
 		210BF0C04B2F72F6A377E24E /* CommunityPage+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F59647B97270F3342DDD5 /* CommunityPage+Network.swift */; };
 		223CC733D59A9D89273B233F /* MealPlannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9753ABE933A6D5C406A79D3 /* MealPlannerPresenter.swift */; };
@@ -685,14 +684,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6D3201EE285F47BB00B89AC8 /* Embed App Extensions */ = {
+		6D3201EE285F47BB00B89AC8 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1389,7 +1388,6 @@
 				6D8F5CFE284DDB5000EFE0E4 /* DropDown in Frameworks */,
 				6DD23AB22966C9DD0064418E /* AppsFlyerLib in Frameworks */,
 				519C46291315924EE1C31873 /* Pods_Apron.framework in Frameworks */,
-				1F42A8F36237E9CC6065EB65 /* Pods_Apron.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3928,7 +3926,7 @@
 				6D0A71C5277A12EC0067E580 /* Frameworks */,
 				6D0A71C6277A12EC0067E580 /* Resources */,
 				28084D3733FCDC5FE42DD6B1 /* [CP] Embed Pods Frameworks */,
-				6D3201EE285F47BB00B89AC8 /* Embed App Extensions */,
+				6D3201EE285F47BB00B89AC8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -3951,7 +3949,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					6D0A71C7277A12EC0067E580 = {
 						CreatedOnToolsVersion = 13.0;
@@ -4872,7 +4870,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
@@ -4912,7 +4910,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;

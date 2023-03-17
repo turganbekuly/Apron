@@ -46,7 +46,6 @@ final class RecipeCreationViewController: ViewController {
 
     var selectedCookingTime = [SuggestedDayTimeType]() {
         didSet {
-            recipeCreation?.cuisineId = 1
             recipeCreation?.whenToCook = selectedCookingTime.compactMap { $0.rawValue }
         }
     }
@@ -74,20 +73,6 @@ final class RecipeCreationViewController: ViewController {
         }
     }
 
-    var recipeCreationSourceType: RecipeCreationSourceType? {
-        didSet {
-            switch recipeCreationSourceType {
-            case let .community(delegate):
-                self.delegate = delegate
-                analyticsSourceType = .community
-            case .saved:
-                analyticsSourceType = .saved
-            default:
-                break
-            }
-        }
-    }
-
     weak var delegate: CommunityPageCreateRecipeProtocol?
 
     var selectedImage: UIImage? {
@@ -104,13 +89,17 @@ final class RecipeCreationViewController: ViewController {
     var initialState: RecipeCreationInitialState? {
         didSet {
             switch initialState {
-            case let .create(recipeCreation, sourceType),
-                let .edit(recipeCreation, sourceType):
+            case let .create(recipeCreation, sourceType):
                 if let storeRecipeCreation = recipeCreationStorage.recipeCreation {
                     show(with: storeRecipeCreation, initialRecipe: recipeCreation)
                 }
                 self.recipeCreation = recipeCreation
-                self.recipeCreationSourceType = sourceType
+                self.analyticsSourceType = sourceType
+                handleSections(with: recipeCreation)
+            case let .edit(recipeCreation, sourceType):
+                assignTagValues(recipeCreation: recipeCreation)
+                self.recipeCreation = recipeCreation
+                self.analyticsSourceType = sourceType
                 handleSections(with: recipeCreation)
             default:
                 break
@@ -303,6 +292,36 @@ final class RecipeCreationViewController: ViewController {
         self.mainView.reloadData()
     }
 
+    private func assignTagValues(recipeCreation: RecipeCreation) {
+        if let whenToCook = recipeCreation.whenToCook, !whenToCook.isEmpty {
+            for cook in whenToCook {
+                guard let cookTime = SuggestedDayTimeType(rawValue: cook) else { return }
+                selectedCookingTime.append(cookTime)
+            }
+        }
+
+        if let dishType = recipeCreation.dishType, !dishType.isEmpty {
+            for type in dishType {
+                guard let dish = SuggestedDishType(rawValue: type) else { return }
+                selectedDishTypes.append(dish)
+            }
+        }
+
+        if let lifestyleType = recipeCreation.lifestyleType, !lifestyleType.isEmpty {
+            for type in lifestyleType {
+                guard let lifeStyle = SuggestedLifestyleType(rawValue: type) else { return }
+                selectedLifestyleTypes.append(lifeStyle)
+            }
+        }
+
+        if let eventType = recipeCreation.occasion, !eventType.isEmpty {
+            for type in eventType {
+                guard let event = SuggestedEventType(rawValue: type) else { return }
+                selectedEventTypes.append(event)
+            }
+        }
+    }
+    
     // MARK: - User actions
 
     @objc
@@ -319,7 +338,14 @@ final class RecipeCreationViewController: ViewController {
                 recipeCreation?.instructions[itemIndex].orderNo = index + 1
             }
             recipeCreation?.isHidden = false
-            self.createRecipe(recipe: recipeCreation)
+            switch initialState {
+            case .edit:
+                self.editRecipe(recipe: recipeCreation)
+            case .create:
+                self.createRecipe(recipe: recipeCreation)
+            default:
+                break
+            }
             saveButtonLoader(isLoading: true)
         } else {
             HapticTouch.generateError()

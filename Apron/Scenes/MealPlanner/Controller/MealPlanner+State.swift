@@ -8,6 +8,7 @@
 
 import Models
 import UIKit
+import OneSignal
 
 extension MealPlannerViewController {
 
@@ -26,7 +27,7 @@ extension MealPlannerViewController {
     public func updateState() {
         switch state {
         case .initial:
-            break
+            OneSignal.deleteTag("meal_planner")
         case let .getRecipesSucceed(planner):
             isLoadingButton(false)
             self.mealPlannerRecipes = planner

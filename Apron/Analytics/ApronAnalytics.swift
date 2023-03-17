@@ -76,8 +76,8 @@ final class ApronAnalytics: AnalyticsProtocol {
         Analytics.setUserProperty(name, forName: "user_name")
         Analytics.setUserProperty(email, forName: "user_email")
         Mixpanel.mainInstance().identify(distinctId: "\(id ?? 0)")
-        Mixpanel.mainInstance().people.set(property: "user_name", to: name)
-        Mixpanel.mainInstance().people.set(property: "user_email", to: email)
+        Mixpanel.mainInstance().people.set(property: "$name", to: name)
+        Mixpanel.mainInstance().people.set(property: "$email", to: email)
         AppsFlyerLib.shared().customData = ["id": id ?? 0, "name": name ?? "", "email": email ?? ""]
     }
 

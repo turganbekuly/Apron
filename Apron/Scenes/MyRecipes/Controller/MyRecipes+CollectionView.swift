@@ -39,7 +39,7 @@ extension MyRecipesViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .recipe(recipe):
-            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
+            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .myRecipes)).build()
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(vc, animated: false)
             }
