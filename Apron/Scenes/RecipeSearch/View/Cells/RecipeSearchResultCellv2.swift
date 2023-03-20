@@ -284,18 +284,23 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         recipeIngredientsCountLabel.text = "\(recipe.ingredients?.count ?? 0) ингредиентов"
         recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image
+            placeholder: ApronAssets.iconPlaceholderItem.image,
+            options: [
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(0.4)),
+                .cacheOriginalImage
+            ]
         )
         let likesCount = recipe.likesCount ?? 0
         let dislikesCount = recipe.dislikesCount ?? 0
         if likesCount > 0 && dislikesCount >= 0 {
             let percentRatio = ((likesCount / (likesCount + dislikesCount)) * 100)
-            ratingLabel.text = "\(percentRatio)"
-            recipeImageView.image = ApronAssets.recipeLikeSelected.image.withTintColor(.white)
+            ratingLabel.text = "\(percentRatio) %"
+            ratingImageView.image = ApronAssets.recipeLikeSelected.image.withTintColor(.white)
             ratingImageView.isHidden = false
         } else if dislikesCount > 0 && likesCount == 0 {
             let percentRatio = ((dislikesCount / (likesCount + dislikesCount)) * 100)
-            ratingLabel.text = "\(percentRatio)"
+            ratingLabel.text = "\(percentRatio) %"
             ratingImageView.isHidden = false
             ratingImageView.image = ApronAssets.recipeDislikeSelected.image.withTintColor(.white)
         } else if likesCount <= 0 && dislikesCount <= 0 {

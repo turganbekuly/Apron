@@ -8,6 +8,7 @@
 import UIKit
 import Models
 import RemoteConfig
+import HapticTouch
 
 extension TabBarViewController: PendingDeeplinkProviderDelegate {
     func pendingDeeplinkProvider(_ provider: PendingDeeplinkProvider, didChangePendingDeeplink deeplink: CustomDeepLink?) {
@@ -55,24 +56,26 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
                 navigationController.pushViewController(vc, animated: false)
             }
         case .openRecipeCreation:
-            let remoteConfigManager = RemoteConfigManager.shared.remoteConfig
-            if remoteConfigManager.isRecipeCreationEnabled {
-                self.handleAuthorizationStatus {
-                    let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .banner))).build()
-                    let navController = RecipeCreationNavigationController(rootViewController: vc)
-                    navController.modalPresentationStyle = .fullScreen
-
-                    DispatchQueue.main.async {
-                        self.navigationController?.present(navController, animated: true)
+            handleAuthorizationStatus {
+                let isRecipeCreationEnabled = RemoteConfigManager.shared.configManager.config(for: RemoteConfigKeys.isRecipeCreationEnabled)
+                if isRecipeCreationEnabled {
+                    self.handleAuthorizationStatus {
+                        let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .main))).build()
+                        let navController = RecipeCreationNavigationController(rootViewController: vc)
+                        navController.modalPresentationStyle = .fullScreen
+                        HapticTouch.generateSuccess()
+                        DispatchQueue.main.async {
+                            self.navigationController?.present(navController, animated: true)
+                        }
                     }
+                } else {
+                    self.show(type: .dialog(
+                        "Внимание!",
+                        "К сожалению, содание рецептов на данный момент недоступно. Администратор приложения временно отключил эту функцию.",
+                        "Жаль",
+                        "Понятно"
+                    ))
                 }
-            } else {
-                show(type: .dialog(
-                    "Внимание!",
-                    "К сожалению, содание рецептов на данный момент недоступно. Администратор приложения временно отключил эту функцию.",
-                    "Жаль",
-                    "Понятно"
-                ))
             }
         case .openSavedRecipes:
             self.handleAuthorizationStatus {

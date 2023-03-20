@@ -39,7 +39,7 @@ public extension RemoteConfigKeys {
         .init(firebaseKey: .isGallerySourceEnabled, abKey: nil, defaultValue: false)
     }
     static var isRecipeCreationEnabled: ConfigKey<Bool> {
-        .init(firebaseKey: .isRecipeCreationEnabled, abKey: nil, defaultValue: false)
+        .init(firebaseKey: .isRecipeCreationEnabled, abKey: nil, defaultValue: true)
     }
     static var isPaidRecipeEnabled: ConfigKey<Bool> {
         .init(firebaseKey: .isPaidRecipeEnabled, abKey: nil, defaultValue: false)
