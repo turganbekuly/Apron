@@ -51,11 +51,15 @@ extension RecipePageViewController: BottomStickyViewDelegate {
     }
 
     func textFieldTapped() {
-        var body = AddCommentRequestBody()
-        body.recipeId = recipe?.id
-        let viewController = AddCommentBuilder(state: .initial(recipe?.id, body, self)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(viewController, animated: true)
+        handleAuthorizationStatus() {
+            var body = AddCommentRequestBody()
+            body.recipeId = self.recipe?.id
+            let viewController = AddCommentBuilder(
+                state: .initial(self.recipe?.id, body, self)
+            ).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(viewController, animated: true)
+            }
         }
     }
 }
