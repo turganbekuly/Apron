@@ -284,6 +284,7 @@ final class MainViewController: ViewController {
 
     @objc
     private func refresh(_ sender: UIRefreshControl) {
+        HapticTouch.generateLight()
         eventRecipes.removeAll()
         cookNowRecipes.removeAll()
         cookNowRecipesState = .loading

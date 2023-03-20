@@ -10,6 +10,7 @@ import APRUIKit
 import UIKit
 import Models
 import AlertMessages
+import HapticTouch
 
 protocol MyRecipesDisplayLogic: AnyObject {
     func displayProfileRecipes(with viewModel: MyRecipesDataFlow.GetMyRecipesData.ViewModel)
@@ -145,6 +146,7 @@ final class MyRecipesViewController: ViewController {
 
     @objc
     private func refresh(_ sender: UIRefreshControl) {
+        HapticTouch.generateLight()
         recipes.removeAll()
         sections = [
             .init(section: .recipes, rows: [.shimmer])
