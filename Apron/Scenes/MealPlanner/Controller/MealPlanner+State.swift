@@ -28,6 +28,7 @@ extension MealPlannerViewController {
         switch state {
         case .initial:
             OneSignal.deleteTag("meal_planner")
+            OneSignal.removeTrigger(forKey: "meal_planner")
         case let .getRecipesSucceed(planner):
             isLoadingButton(false)
             self.mealPlannerRecipes = planner

@@ -40,7 +40,12 @@ final class RecipeCreationViewController: ViewController {
     var recipeCreationStorage: RecipeCreationStorageProtocol = RecipeCreationStorage()
     var recipeCreation: RecipeCreation? {
         didSet {
-            recipeCreationStorage.recipeCreation = recipeCreation
+            switch initialState {
+            case .create:
+                recipeCreationStorage.recipeCreation = recipeCreation
+            default:
+                break
+            }
         }
     }
 

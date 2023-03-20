@@ -45,7 +45,7 @@ public extension RemoteConfigKeys {
         .init(firebaseKey: .isPaidRecipeEnabled, abKey: nil, defaultValue: false)
     }
     static var adBannerObject: ConfigKey<[AdBannerObject]> {
-        .init(firebaseKey: .adBannerObject, abKey: nil, defaultValue: [AdBannerObject(bannerLink: "", bannerAction: "")])
+        .init(firebaseKey: .adBannerObject, abKey: nil, defaultValue: [])
     }
 }
 

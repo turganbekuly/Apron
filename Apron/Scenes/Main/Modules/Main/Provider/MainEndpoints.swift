@@ -50,7 +50,7 @@ extension MainEndpoint: AKNetworkTargetType {
         case .getCookNowRecipes, .getEventRecipes:
             return .post
         case .saveRecipe:
-            return .put
+            return .post
         }
     }
 

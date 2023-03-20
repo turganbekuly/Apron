@@ -13,6 +13,7 @@ public enum GrantType: String, Codable {
 }
 
 public struct Auth: Codable {
+    // MARK: - CodingKeys
 
     private enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"

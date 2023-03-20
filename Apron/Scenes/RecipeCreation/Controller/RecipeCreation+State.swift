@@ -11,6 +11,7 @@ import UIKit
 import Configurations
 import RemoteConfig
 import HapticTouch
+import OneSignal
 
 extension RecipeCreationViewController {
 
@@ -30,6 +31,7 @@ extension RecipeCreationViewController {
         switch state {
         case let .initial(state):
             self.initialState = state
+            OneSignal.addTrigger("recipe_creation", withValue: "opened")
         case let .recipeCreationSucceed(recipe):
             let remoteConfigManager = RemoteConfigManager.shared
             saveButtonLoader(isLoading: false)

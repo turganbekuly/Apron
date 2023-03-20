@@ -54,7 +54,9 @@ extension ResultListEndpoint: AKNetworkTargetType {
                 .getRecipes,
                 .getCommunities:
             return .get
-        case .saveRecipe, .joinCommunity:
+        case .saveRecipe:
+            return .post
+        case .joinCommunity:
             return .put
         }
     }

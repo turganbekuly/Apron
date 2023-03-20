@@ -94,7 +94,6 @@ final class TabBarViewController: AppTabBarController {
             configureViewController(viewController: searchModule, type: .search),
             configureViewController(viewController: recipeCreationModule, type: .createRecipe),
             configureViewController(viewController: favouriteModule, type: .saved),
-//            configureViewController(viewController: shoppingListModule, type: .shoppingList)
             configureViewController(viewController: mealPlannerModule, type: .mealPlanner)
         ]
     }
@@ -114,9 +113,6 @@ final class TabBarViewController: AppTabBarController {
         case .saved:
             navigationController.tabBarItem.title = L10n.TabBar.Saved.title
             navigationController.tabBarItem.image = ApronAssets.tabFaveSelectedIcon.image
-//        case .shoppingList:
-//            navigationController.tabBarItem.title = L10n.TabBar.ShoppingList.title
-//            navigationController.tabBarItem.image = ApronAssets.tabListSelectedIcon.image
         case .mealPlanner:
             navigationController.tabBarItem.title = L10n.TabBar.MealPlanner.title
             navigationController.tabBarItem.image = ApronAssets.tabPlannerSelectedIcon.image
@@ -149,15 +145,26 @@ extension TabBarViewController: UITabBarControllerDelegate {
     ) -> Bool {
         guard let index = self.viewControllers?.firstIndex(of: viewController) else { return false }
         if index == 2 {
-            self.handleAuthorizationStatus {
-                let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .main))).build()
-                let navController = RecipeCreationNavigationController(rootViewController: vc)
-                navController.modalPresentationStyle = .fullScreen
-                HapticTouch.generateSuccess()
-                DispatchQueue.main.async {
-                    self.navigationController?.present(navController, animated: true)
+            let remoteConfigManager = RemoteConfigManager.shared.remoteConfig
+            if remoteConfigManager.isRecipeCreationEnabled {
+                self.handleAuthorizationStatus {
+                    let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .main))).build()
+                    let navController = RecipeCreationNavigationController(rootViewController: vc)
+                    navController.modalPresentationStyle = .fullScreen
+                    HapticTouch.generateSuccess()
+                    DispatchQueue.main.async {
+                        self.navigationController?.present(navController, animated: true)
+                    }
                 }
+            } else {
+                show(type: .dialog(
+                    "Внимание!",
+                    "К сожалению, содание рецептов на данный момент недоступно. Администратор приложения временно отключил эту функцию.",
+                    "Жаль",
+                    "Понятно"
+                ))
             }
+
             return false
         }
         if index == 3 || index == 4 {

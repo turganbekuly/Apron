@@ -45,7 +45,7 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
         case .getRecipesByCommunity:
             return .get
         case .saveRecipe:
-            return .put
+            return .post
         }
     }
 

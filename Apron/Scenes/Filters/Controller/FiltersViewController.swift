@@ -26,8 +26,8 @@ final class FiltersViewController: ViewController {
         .init(section: .dishTypes, rows: SuggestedDishType.allCases.compactMap { .dishType($0) }),
 //        .init(section: .ingredients, rows: ingredients.compactMap { .ingredient($0) }),
 //        .init(section: .addIngredient, rows: [.addIngredient]),
-        .init(section: .eventTypes, rows: SuggestedEventType.allCases.compactMap { .eventType($0) })
-//        .init(section: .lifestyleTypes, rows: SuggestedLifestyleType.allCases.compactMap { .lifestyleType($0) })
+        .init(section: .eventTypes, rows: SuggestedEventType.allCases.compactMap { .eventType($0) }),
+        .init(section: .lifestyleTypes, rows: SuggestedLifestyleType.allCases.compactMap { .lifestyleType($0) })
     ]
     var state: State {
         didSet {
@@ -42,18 +42,6 @@ final class FiltersViewController: ViewController {
     }
 
     weak var delegate: ApplyFiltersProtocol?
-
-    var cuisines = [
-        RecipeCuisine(id: 1, name: "ASD"),
-        RecipeCuisine(id: 2, name: "213"),
-        RecipeCuisine(id: 3, name: "vdf"),
-        RecipeCuisine(id: 4, name: "sdfasdfasdf"),
-        RecipeCuisine(id: 5, name: "AS231234§123D"),
-        RecipeCuisine(id: 6, name: "ASdsf asd fasd D"),
-        RecipeCuisine(id: 7, name: "dfasd k sdfk")
-    ]
-
-    var ingredients: [Product] = []
 
     var cookingTimePreviousIndex: IndexPath?
 

@@ -36,7 +36,7 @@ extension RecipeSearchEndpoint: AKNetworkTargetType {
         case .getRecipes:
             return .post
         case .saveRecipe:
-            return .put
+            return .post
         }
     }
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import Models
+import RemoteConfig
 
 extension TabBarViewController: PendingDeeplinkProviderDelegate {
     func pendingDeeplinkProvider(_ provider: PendingDeeplinkProvider, didChangePendingDeeplink deeplink: CustomDeepLink?) {
@@ -54,19 +55,33 @@ extension TabBarViewController: PendingDeeplinkProviderDelegate {
                 navigationController.pushViewController(vc, animated: false)
             }
         case .openRecipeCreation:
-            self.handleAuthorizationStatus {
-                let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .banner))).build()
-                let navController = RecipeCreationNavigationController(rootViewController: vc)
-                navController.modalPresentationStyle = .fullScreen
+            let remoteConfigManager = RemoteConfigManager.shared.remoteConfig
+            if remoteConfigManager.isRecipeCreationEnabled {
+                self.handleAuthorizationStatus {
+                    let vc = RecipeCreationBuilder(state: .initial(.create(RecipeCreation(), .banner))).build()
+                    let navController = RecipeCreationNavigationController(rootViewController: vc)
+                    navController.modalPresentationStyle = .fullScreen
 
-                DispatchQueue.main.async {
-                    self.navigationController?.present(navController, animated: true)
+                    DispatchQueue.main.async {
+                        self.navigationController?.present(navController, animated: true)
+                    }
                 }
+            } else {
+                show(type: .dialog(
+                    "Внимание!",
+                    "К сожалению, содание рецептов на данный момент недоступно. Администратор приложения временно отключил эту функцию.",
+                    "Жаль",
+                    "Понятно"
+                ))
             }
         case .openSavedRecipes:
-            changeTab(for: .openSavedRecipes)
+            self.handleAuthorizationStatus {
+                self.changeTab(for: .openSavedRecipes)
+            }
         case .openMealPlanner:
-            changeTab(for: .openMealPlanner)
+            self.handleAuthorizationStatus {
+                self.changeTab(for: .openMealPlanner)
+            }
         case .unknown:
             print("Did received unknown")
         }
