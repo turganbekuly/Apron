@@ -89,7 +89,7 @@ final class StepPagerCell: UICollectionViewCell {
 
     private func configureColors() {
         backgroundColor = .clear
-        titleBackgroundView.backgroundColor = isSelected ? .black : ApronAssets.lightGray2.color
+        titleBackgroundView.backgroundColor = isSelected ? .black : APRAssets.lightGray2.color
         titleLabel.textColor = .white
     }
 

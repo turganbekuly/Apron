@@ -48,7 +48,7 @@ final class MealPlannerCollectionCell: UICollectionViewCell {
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowOpacity = 0.2
         view.layer.shadowRadius = 3
-        view.layer.shadowColor = ApronAssets.primaryTextMain.color.cgColor
+        view.layer.shadowColor = APRAssets.primaryTextMain.color.cgColor
         return view
     }()
 
@@ -64,7 +64,7 @@ final class MealPlannerCollectionCell: UICollectionViewCell {
     private lazy var removeRecipesImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.iconNavigationCloseBackground.image
+        imageView.image = APRAssets.iconNavigationCloseBackground.image
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -72,8 +72,8 @@ final class MealPlannerCollectionCell: UICollectionViewCell {
     private lazy var topOverlayView: GradientView = {
         let view = GradientView()
         view.isUserInteractionEnabled = true
-        view.topColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.7)
-        view.bottomColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.01)
+        view.topColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.7)
+        view.bottomColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.01)
         view.startPointX = 0.5
         view.endPointX = 0.5
         view.startPointY = 0
@@ -84,8 +84,8 @@ final class MealPlannerCollectionCell: UICollectionViewCell {
     private lazy var bottomOverlayView: GradientView = {
         let view = GradientView()
         view.isUserInteractionEnabled = true
-        view.topColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.01)
-        view.bottomColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.7)
+        view.topColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.01)
+        view.bottomColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.7)
         view.startPointX = 0.5
         view.endPointX = 0.5
         view.startPointY = 0
@@ -98,7 +98,7 @@ final class MealPlannerCollectionCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 14
-        imageView.tintColor = ApronAssets.gray.color
+        imageView.tintColor = APRAssets.gray.color
         return imageView
     }()
 
@@ -210,7 +210,7 @@ final class MealPlannerCollectionCell: UICollectionViewCell {
         self.recipeIngredientsCountLabel.text = "\(recipe.ingredients?.count ?? 0) ингредиентов"
         self.recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image
+            placeholder: APRAssets.iconPlaceholderItem.image
         )
     }
 }

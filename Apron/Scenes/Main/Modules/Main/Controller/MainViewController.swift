@@ -158,7 +158,7 @@ final class MainViewController: ViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
-        navigationController?.navigationBar.barTintColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.barTintColor = APRAssets.secondary.color
 
         if let myTabBar = tabBarController?.tabBar as? AppTabBar {
             myTabBar.centerButtonActionHandler = {
@@ -189,7 +189,7 @@ final class MainViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     // MARK: - Methods
@@ -248,6 +248,23 @@ final class MainViewController: ViewController {
         if !adBanners.isEmpty {
             sections.append(.init(section: .adBanner, rows: [.adBanner(adBanners)]))
         }
+
+        switch eventRecipesState {
+        case .failed:
+            break
+        case .loading:
+            sections.append(.init(section: .eventRecipes, rows: [.eventRecipes("", [])]))
+        case let .loaded(recipes):
+            if !recipes.isEmpty {
+                sections.append(
+                    .init(
+                        section: .eventRecipes,
+                        rows: [.eventRecipes(SuggestedEventType(rawValue: eventType)?.title ?? "", eventRecipes)]
+                    )
+                )
+            }
+        }
+
         switch cookNowRecipesState {
         case .failed:
             break
@@ -259,21 +276,6 @@ final class MainViewController: ViewController {
             }
         }
 
-        switch eventRecipesState {
-        case .failed:
-            break
-        case .loading:
-            sections.append(.init(section: .cookNow, rows: [.cookNow("", [])]))
-        case let .loaded(recipes):
-            if !recipes.isEmpty {
-                sections.append(
-                    .init(
-                        section: .eventRecipes,
-                        rows: [.eventRecipes(SuggestedEventType(rawValue: eventType)?.title ?? "", eventRecipes)]
-                    )
-                )
-            }
-        }
         sections.append(
             .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
         )

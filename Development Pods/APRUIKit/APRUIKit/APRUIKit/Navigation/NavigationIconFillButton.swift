@@ -17,12 +17,12 @@ public final class NavigationIconFillButton: UIView {
         }
     }
 
-    public var color: UIColor? = ApronAssets.secondary.color {
+    public var color: UIColor? = APRAssets.secondary.color {
         didSet {
             button.backgroundConfig = .init(
                 normalColor: color,
                 disabledColor: color?.withAlphaComponent(0.5),
-                highlightedColor: ApronAssets.lightGray.color
+                highlightedColor: APRAssets.lightGray.color
             )
         }
     }
@@ -61,9 +61,9 @@ public final class NavigationIconFillButton: UIView {
         }
 
         button.backgroundConfig = .init(
-            normalColor: ApronAssets.secondary.color,
+            normalColor: APRAssets.secondary.color,
             disabledColor: .white.withAlphaComponent(0.5),
-            highlightedColor: ApronAssets.lightGray.color
+            highlightedColor: APRAssets.lightGray.color
         )
 
         button.addTarget(

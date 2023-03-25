@@ -51,6 +51,8 @@
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
 	<key>Configuration.WEB_BASED_URL</key>
 	<string>apron.ws</string>
+	<key>Configuration.SENTRY_URL</key>
+	<string>https://7d5b77ad9ba841fe9300861282741c5d@o4504897920106496.ingest.sentry.io/4504897921089536</string>
 	<key>FacebookAppID</key>
 	<string>534377055292946</string>
 	<key>FacebookDisplayName</key>

@@ -23,7 +23,7 @@ final class StepStickyBottomButton: View {
         let view = UIView()
         view.backgroundColor = .clear
         view.layer.borderWidth = 1
-        view.layer.borderColor = ApronAssets.lightGray2.color.cgColor
+        view.layer.borderColor = APRAssets.lightGray2.color.cgColor
         view.layer.cornerRadius = 17
         view.clipsToBounds = true
         return view
@@ -31,7 +31,7 @@ final class StepStickyBottomButton: View {
 
     private lazy var counterLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ApronAssets.primaryTextMain.color
+        label.textColor = APRAssets.primaryTextMain.color
         label.font = TypographyFonts.semibold14
         label.textAlignment = .left
         label.text = "Начать таймер"
@@ -42,7 +42,7 @@ final class StepStickyBottomButton: View {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(systemName: "timer")?.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = ApronAssets.mainAppColor.color
+        imageView.tintColor = APRAssets.mainAppColor.color
         return imageView
     }()
 
@@ -80,11 +80,11 @@ final class StepStickyBottomButton: View {
             counterLabel.text = "Начать таймер"
         case .ingredient:
             counterLabel.text = "Игредиенты"
-            imageView.image = ApronAssets.recipeIngredientPlaceholder.image.withRenderingMode(.alwaysTemplate)
+            imageView.image = APRAssets.recipeIngredientPlaceholder.image.withRenderingMode(.alwaysTemplate)
             imageView.tintColor = .white
         case .addComment:
             counterLabel.text = "Оставить отзыв"
-            imageView.image = ApronAssets.cameraIcon.image.withRenderingMode(.alwaysTemplate)
+            imageView.image = APRAssets.cameraIcon.image.withRenderingMode(.alwaysTemplate)
             imageView.tintColor = .white
         }
     }

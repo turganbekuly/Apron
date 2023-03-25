@@ -25,7 +25,7 @@ final class NutritionView: UIView {
     private lazy var typeLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.textAlignment = .center
         return label
     }()

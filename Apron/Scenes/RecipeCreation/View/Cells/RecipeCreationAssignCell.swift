@@ -62,7 +62,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
     private lazy var subtitlLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.textAlignment = .left
         label.numberOfLines = 2
         label.sizeToFit()

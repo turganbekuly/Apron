@@ -19,6 +19,7 @@ import Mixpanel
 import IQKeyboardManagerSwift
 import APRUIKit
 import AppsFlyerLib
+import Sentry
 
 final class ThirdPartiesConfigurator: NSObject, ApplicationConfiguratorProtocol {
     // MARK: - Private proeprties
@@ -71,6 +72,19 @@ final class ThirdPartiesConfigurator: NSObject, ApplicationConfiguratorProtocol 
         })
     }
 
+    private func configureSentry() {
+        SentrySDK.start { options in
+            options.dsn = Configurations.getSentryURL()
+            #if DEBUG
+                options.debug = true
+                options.environment = "dev"
+            #else
+                options.environment = "prod"
+            options.tracesSampleRate = 1.0
+            #endif
+        }
+    }
+
     private func prepareFirebaseRemoteConfig() {
         let remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()
@@ -103,7 +117,7 @@ final class ThirdPartiesConfigurator: NSObject, ApplicationConfiguratorProtocol 
 
     private func configureIQKeyboardManager() {
         IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.toolbarTintColor = ApronAssets.mainAppColor.color
+        IQKeyboardManager.shared.toolbarTintColor = APRAssets.mainAppColor.color
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Скрыть клавиатуру"
     }
 }

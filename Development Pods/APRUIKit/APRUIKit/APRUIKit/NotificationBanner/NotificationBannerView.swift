@@ -82,14 +82,14 @@ final class NotificationBannerView: View {
     func setupStyle(_ style: NotificationBannerStyle) {
         switch style {
         case .success:
-            let image = ApronAssets.iconTickGreen24.image.withRenderingMode(.alwaysTemplate)
+            let image = APRAssets.iconTickGreen24.image.withRenderingMode(.alwaysTemplate)
             iconImageView.image = image
             iconImageView.tintColor = .white
-            containerView.backgroundColor = ApronAssets.mainAppColor.color.withAlphaComponent(0.9)
+            containerView.backgroundColor = APRAssets.mainAppColor.color.withAlphaComponent(0.9)
             textLabel.textColor = .white
         case .information:
             iconImageView.isHidden = true
-            containerView.backgroundColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.8)
+            containerView.backgroundColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.8)
             textLabel.textColor = .white
         }
     }

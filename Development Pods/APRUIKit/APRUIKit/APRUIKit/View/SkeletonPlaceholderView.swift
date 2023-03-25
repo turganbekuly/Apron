@@ -17,11 +17,11 @@ public final class SkeletonPlaceholderView: View {
     // MARK: - Skeleton configuration
 
     public var baseSkeletonColor: UIColor {
-        return ApronAssets.whiteSmoke.color
+        return APRAssets.whiteSmoke.color
     }
 
     public var secondarySkeletonColor: UIColor? {
-        return ApronAssets.snow.color
+        return APRAssets.snow.color
     }
 
     // MARK: - Public properties
@@ -114,7 +114,7 @@ public final class SkeletonPlaceholderView: View {
                 cell.isSkeletonable = true
                 cell.skeletonCornerRadius = Float(cellCornerRadius)
                 cell.layer.cornerRadius = cellCornerRadius
-                cell.backgroundColor = ApronAssets.lightGray.color
+                cell.backgroundColor = APRAssets.lightGray.color
                 cell.frame = .init(x: 0, y: 0, width: itemWidth, height: itemHeight)
                 horizontalStackView.addArrangedSubview(cell)
             }

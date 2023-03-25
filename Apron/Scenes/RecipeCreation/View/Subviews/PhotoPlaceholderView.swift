@@ -25,14 +25,14 @@ final class PhotoPlaceholderView: UIView {
 
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = ApronAssets.lightGray2.color
+        view.backgroundColor = APRAssets.lightGray2.color
         view.layer.cornerRadius = 20
         return view
     }()
 
     private lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.cameraIcon.image
+        imageView.image = APRAssets.cameraIcon.image
         return imageView
     }()
 
@@ -94,7 +94,7 @@ final class PhotoPlaceholderView: UIView {
         for text in texts {
             let label = UILabel()
             label.font = TypographyFonts.regular12
-            label.textColor = ApronAssets.gray.color
+            label.textColor = APRAssets.gray.color
             label.text = text
             label.numberOfLines = 0
             label.textAlignment = .center

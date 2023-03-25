@@ -165,23 +165,23 @@ final class RecipePageViewController: ViewController {
 
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: ApronAssets.navBackButton.image,
+            image: APRAssets.navBackButton.image,
             style: .plain,
             target: self,
             action: #selector(backButtonTapped)
         )
         if initialState == .myRecipes {
             let rigtBarButtonItem = UIBarButtonItem(
-                image: ApronAssets.recipeEditIcon.image,
+                image: APRAssets.recipeEditIcon.image,
                 style: .plain,
                 target: self,
                 action: #selector(editButtonTapped)
             )
-            rigtBarButtonItem.tintColor = ApronAssets.primaryTextMain.color
+            rigtBarButtonItem.tintColor = APRAssets.primaryTextMain.color
             navigationItem.rightBarButtonItem = rigtBarButtonItem
         }
         navigationItem.leftBarButtonItem?.tintColor = .black
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
     }
 
     private func configureViews() {
@@ -202,7 +202,7 @@ final class RecipePageViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     deinit {

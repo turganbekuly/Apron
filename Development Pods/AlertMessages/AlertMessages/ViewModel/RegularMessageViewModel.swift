@@ -43,7 +43,7 @@ public struct RegularMessageViewModel: MessageProtocol {
     }
 
     public var iconColor: UIColor? {
-        ApronAssets.blue.color
+        APRAssets.blue.color
     }
 
     // MARK: - Init

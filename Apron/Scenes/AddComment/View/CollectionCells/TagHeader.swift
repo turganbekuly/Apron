@@ -47,7 +47,7 @@ final class TagHeader: UICollectionReusableView {
     }
 
     private func configureColor() {
-        backgroundColor = ApronAssets.secondary.color
+        backgroundColor = APRAssets.secondary.color
     }
 
     // MARK: - Methods

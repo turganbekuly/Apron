@@ -38,21 +38,21 @@ public final class RecipeCartView: UIView {
         view.layer.cornerRadius = 12
         view.backgroundColor = .white
         view.layer.borderWidth = 0.5
-        view.layer.borderColor = ApronAssets.primaryTextMain.color.cgColor
+        view.layer.borderColor = APRAssets.primaryTextMain.color.cgColor
         return view
     }()
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "cart.fill.badge.plus")
-        imageView.tintColor = ApronAssets.primaryTextMain.color
+        imageView.tintColor = APRAssets.primaryTextMain.color
         return imageView
     }()
 
     private lazy var ingredientsCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.medium12
-        label.textColor = ApronAssets.primaryTextMain.color
+        label.textColor = APRAssets.primaryTextMain.color
         label.textAlignment = .center
         return label
     }()
@@ -60,7 +60,7 @@ public final class RecipeCartView: UIView {
     private lazy var activityIndicator = NVActivityIndicatorView(
         frame: .zero,
         type: .ballRotateChase,
-        color: ApronAssets.primaryTextMain.color,
+        color: APRAssets.primaryTextMain.color,
         padding: nil
     )
 

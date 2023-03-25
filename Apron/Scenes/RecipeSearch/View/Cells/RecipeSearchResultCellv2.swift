@@ -53,7 +53,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowOpacity = 0.2
         view.layer.shadowRadius = 3
-        view.layer.shadowColor = ApronAssets.primaryTextMain.color.cgColor
+        view.layer.shadowColor = APRAssets.primaryTextMain.color.cgColor
         return view
     }()
 
@@ -69,7 +69,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
     private lazy var favoriteImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.favoriteIcon24.image
+        imageView.image = APRAssets.favoriteIcon24.image
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -77,8 +77,8 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
     private lazy var topOverlayView: GradientView = {
         let view = GradientView()
         view.isUserInteractionEnabled = true
-        view.topColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.7)
-        view.bottomColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.01)
+        view.topColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.7)
+        view.bottomColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.01)
         view.startPointX = 0.5
         view.endPointX = 0.5
         view.startPointY = 0
@@ -89,8 +89,8 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
     private lazy var bottomOverlayView: GradientView = {
         let view = GradientView()
         view.isUserInteractionEnabled = true
-        view.topColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.01)
-        view.bottomColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.7)
+        view.topColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.01)
+        view.bottomColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.7)
         view.startPointX = 0.5
         view.endPointX = 0.5
         view.startPointY = 0
@@ -103,7 +103,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 14
-        imageView.tintColor = ApronAssets.gray.color
+        imageView.tintColor = APRAssets.gray.color
         return imageView
     }()
 
@@ -117,7 +117,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
     private lazy var ratingImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = ApronAssets.recipeLikeSelected.image.withTintColor(.white)
+        imageView.image = APRAssets.recipeLikeSelected.image.withTintColor(.white)
         return imageView
     }()
 
@@ -249,11 +249,11 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
 
     private func configureButton(isSaved: Bool) {
         guard isSaved else {
-            favoriteImageView.image = ApronAssets.favoriteIcon.image
+            favoriteImageView.image = APRAssets.favoriteIcon.image
             return
         }
 
-        favoriteImageView.image = ApronAssets.favoriteFilledIcon.image
+        favoriteImageView.image = APRAssets.favoriteFilledIcon.image
     }
 
     // MARK: - User actions
@@ -272,7 +272,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
 
         delegate?.saveRecipeTappedv2(with: id)
         HapticTouch.generateSuccess()
-        favoriteImageView.image = ApronAssets.favoriteFilledIcon.image
+        favoriteImageView.image = APRAssets.favoriteFilledIcon.image
     }
 
     // MARK: - Public methods
@@ -284,7 +284,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         recipeIngredientsCountLabel.text = "\(recipe.ingredients?.count ?? 0) ингредиентов"
         recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image,
+            placeholder: APRAssets.iconPlaceholderItem.image,
             options: [
                 .scaleFactor(UIScreen.main.scale),
                 .transition(.fade(0.4)),
@@ -296,13 +296,13 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         if likesCount > 0 && dislikesCount >= 0 {
             let percentRatio = ((likesCount / (likesCount + dislikesCount)) * 100)
             ratingLabel.text = "\(percentRatio) %"
-            ratingImageView.image = ApronAssets.recipeLikeSelected.image.withTintColor(.white)
+            ratingImageView.image = APRAssets.recipeLikeSelected.image.withTintColor(.white)
             ratingImageView.isHidden = false
         } else if dislikesCount > 0 && likesCount == 0 {
             let percentRatio = ((dislikesCount / (likesCount + dislikesCount)) * 100)
             ratingLabel.text = "\(percentRatio) %"
             ratingImageView.isHidden = false
-            ratingImageView.image = ApronAssets.recipeDislikeSelected.image.withTintColor(.white)
+            ratingImageView.image = APRAssets.recipeDislikeSelected.image.withTintColor(.white)
         } else if likesCount <= 0 && dislikesCount <= 0 {
             ratingLabel.text = ""
             ratingImageView.isHidden = true

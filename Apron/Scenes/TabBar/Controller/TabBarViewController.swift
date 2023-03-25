@@ -103,19 +103,19 @@ final class TabBarViewController: AppTabBarController {
         switch type {
         case .main:
             navigationController.tabBarItem.title = L10n.TabBar.Home.title
-            navigationController.tabBarItem.image = ApronAssets.tabHomeSelectedIcon.image
+            navigationController.tabBarItem.image = APRAssets.tabHomeSelectedIcon.image
         case .search:
             navigationController.tabBarItem.title = L10n.TabBar.Search.title
-            navigationController.tabBarItem.image = ApronAssets.navSearchIcon.image
+            navigationController.tabBarItem.image = APRAssets.navSearchIcon.image
         case .createRecipe:
             navigationController.tabBarItem.title = L10n.TabBar.RecipeCreation.title
-            navigationController.tabBarItem.image = ApronAssets.tabAddSelectedIcon.image
+            navigationController.tabBarItem.image = APRAssets.tabAddSelectedIcon.image
         case .saved:
             navigationController.tabBarItem.title = L10n.TabBar.Saved.title
-            navigationController.tabBarItem.image = ApronAssets.tabFaveSelectedIcon.image
+            navigationController.tabBarItem.image = APRAssets.tabFaveSelectedIcon.image
         case .mealPlanner:
             navigationController.tabBarItem.title = L10n.TabBar.MealPlanner.title
-            navigationController.tabBarItem.image = ApronAssets.tabPlannerSelectedIcon.image
+            navigationController.tabBarItem.image = APRAssets.tabPlannerSelectedIcon.image
         }
         return navigationController
     }
@@ -133,7 +133,7 @@ final class TabBarViewController: AppTabBarController {
     private func updateCount() {
         let count = cartManager.itemsCount()
         tabBarItem.badgeValue = count > 0 ? "\(count)" : ""
-        tabBarItem.badgeColor = count > 0 ? ApronAssets.mainAppColor.color : .clear
+        tabBarItem.badgeColor = count > 0 ? APRAssets.mainAppColor.color : .clear
         tabBarItem.setBadgeTextAttributes([.foregroundColor: UIColor.white], for: .normal)
     }
 }

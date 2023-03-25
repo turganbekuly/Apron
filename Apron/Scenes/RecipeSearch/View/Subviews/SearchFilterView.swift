@@ -73,13 +73,13 @@ final class SearchFilterView: UIView {
     ) {
         if count < 1 {
             containerView.backgroundColor = .white
-            titleLabel.textColor = ApronAssets.gray.color
+            titleLabel.textColor = APRAssets.gray.color
             titleLabel.text = type == .filters ? "Все фильтры" : ""
             return
         }
 
-        containerView.backgroundColor = ApronAssets.mainAppColor.color
-        containerView.layer.borderColor = ApronAssets.mainAppColor.color.cgColor
+        containerView.backgroundColor = APRAssets.mainAppColor.color
+        containerView.layer.borderColor = APRAssets.mainAppColor.color.cgColor
         titleLabel.textColor = .white
         titleLabel.text = type == .filters ? "Все фильтры · \(count)" : ""
     }

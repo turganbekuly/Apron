@@ -20,7 +20,7 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
-public enum ApronAssets {
+public enum APRAssets {
   public static let blue = ColorAsset(name: "blue")
   public static let colorsYello = ColorAsset(name: "colorsYello")
   public static let darkYello = ColorAsset(name: "darkYello")

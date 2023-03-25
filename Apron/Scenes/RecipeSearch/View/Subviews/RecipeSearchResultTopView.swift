@@ -61,7 +61,7 @@ final class RecipeSearchResultTopView: View {
     func configure(with viewModel: RecipeSearchResultTopViewModelProtocol) {
         recipeImageView.kf.setImage(
             with: URL(string: viewModel.recipeImage ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image
+            placeholder: APRAssets.iconPlaceholderItem.image
         )
 
         cookTimeLabel.text = viewModel.cookTime

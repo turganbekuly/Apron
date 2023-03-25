@@ -102,8 +102,8 @@ final class StepByStepModeViewController: ViewController {
 
     lazy var progressBar: ALProgressBar = {
         let view = ALProgressBar()
-        view.startColor = ApronAssets.mainAppColor.color.withAlphaComponent(0.8)
-        view.endColor = ApronAssets.mainAppColor.color
+        view.startColor = APRAssets.mainAppColor.color.withAlphaComponent(0.8)
+        view.endColor = APRAssets.mainAppColor.color
         view.duration = 1.5
         view.timingFunction = .easeOutExpo
         return view
@@ -184,7 +184,7 @@ final class StepByStepModeViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     deinit {

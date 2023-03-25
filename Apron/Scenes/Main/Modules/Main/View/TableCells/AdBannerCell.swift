@@ -57,7 +57,7 @@ final class AdBannerCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold18
-        label.textColor = ApronAssets.primaryTextMain.color
+        label.textColor = APRAssets.primaryTextMain.color
         label.textAlignment = .left
         return label
     }()
@@ -89,8 +89,8 @@ final class AdBannerCell: UITableViewCell {
 
     lazy var pageControl: JXPageControlScale = {
         let view = JXPageControlScale()
-        view.activeColor = ApronAssets.primaryTextMain.color
-        view.inactiveColor = ApronAssets.lightGray.color
+        view.activeColor = APRAssets.primaryTextMain.color
+        view.inactiveColor = APRAssets.lightGray.color
         view.activeSize = .init(width: 11, height: 5)
         view.inactiveSize = .init(width: 5, height: 5)
         view.columnSpacing = 1.5

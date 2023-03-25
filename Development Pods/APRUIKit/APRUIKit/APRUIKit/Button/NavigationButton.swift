@@ -28,16 +28,16 @@ public final class NavigationButton: Button {
                 activityIndicator.color = .white
             case .whiteBackground:
                 applyStyle(PrimaryButtonWhiteStyle.self)
-                activityIndicator.color = ApronAssets.primaryTextMain.color
+                activityIndicator.color = APRAssets.primaryTextMain.color
             case .greenBackground:
                 applyStyle(PrimaryButtonGreenStyle.self)
-                activityIndicator.color = ApronAssets.primaryTextMain.color
+                activityIndicator.color = APRAssets.primaryTextMain.color
             case .clearBackground:
                 applyStyle(PrimaryButtonClearStyle.self)
-                activityIndicator.color = ApronAssets.primaryTextMain.color
+                activityIndicator.color = APRAssets.primaryTextMain.color
             case .grayBackground:
                 applyStyle(PrimaryButtonGrayStyle.self)
-                activityIndicator.color = ApronAssets.primaryTextMain.color
+                activityIndicator.color = APRAssets.primaryTextMain.color
             }
         }
     }

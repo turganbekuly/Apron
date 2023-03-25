@@ -10,7 +10,7 @@ public struct SuccessMessageViewModel: MessageProtocol {
     // MARK: - MessageProtocol
 
     public var icon: UIImage? {
-        ApronAssets.checkOvalOutline.image
+        APRAssets.checkOvalOutline.image
     }
 
     public var title: NSAttributedString? {
@@ -30,7 +30,7 @@ public struct SuccessMessageViewModel: MessageProtocol {
     }
 
     public var backgroundColor: UIColor {
-        ApronAssets.mainAppColor.color
+        APRAssets.mainAppColor.color
     }
 
     public var titleColor: UIColor {

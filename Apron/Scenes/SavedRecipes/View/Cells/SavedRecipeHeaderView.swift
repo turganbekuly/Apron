@@ -53,7 +53,7 @@ final class SavedRecipeHeaderView: UICollectionReusableView {
     }
 
     private func configureColor() {
-        backgroundColor = ApronAssets.secondary.color
+        backgroundColor = APRAssets.secondary.color
     }
 
     // MARK: - User actions

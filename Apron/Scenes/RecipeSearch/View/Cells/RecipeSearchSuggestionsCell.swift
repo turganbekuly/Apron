@@ -26,7 +26,7 @@ final class RecipeSearchSuggestionsCell: UICollectionViewCell {
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = ApronAssets.iconChartUp.image
+        imageView.image = APRAssets.iconChartUp.image
         return imageView
     }()
 

@@ -42,17 +42,13 @@ extension MainViewController {
             show(type: .error(L10n.Common.errorMessage))
             endRefreshingIfNeeded()
         case let .fetchCookNowRecipes(recipes):
-            fetchRemoteConfigFeatures()
             cookNowRecipesState = .loaded(recipes)
         case .fetchCookNowRecipesFailed:
-            fetchRemoteConfigFeatures()
-            cookNowRecipesState = .loaded([])
+            cookNowRecipesState = .failed
         case let .fetchEventRecipes(recipes):
-            fetchRemoteConfigFeatures()
             eventRecipesState = .loaded(recipes)
         case .fetchEventRecipesFailed:
-            fetchRemoteConfigFeatures()
-            eventRecipesState = .loaded([])
+            eventRecipesState = .failed
         case .saveRecipe:
             HapticTouch.generateSuccess()
         case .saveRecipeFailed:
@@ -63,16 +59,17 @@ extension MainViewController {
 
     func fetchRemoteConfigFeatures() {
         let eventValue = remoteConfigManager.mainOccaisionNumber
-        let adBanners = configManager.config(for: RemoteConfigKeys.adBannerObject)
-        if !adBanners.isEmpty {
-            self.adBanners = adBanners
-            configureMainPageCells()
-        }
         if !eventValue.isEmpty, let eventType = Int(eventValue) {
             self.eventType = eventType
             eventRecipesState = .loading
             getEventRecipes(eventType: eventType)
         }
+        
+        let adBanners = configManager.config(for: RemoteConfigKeys.adBannerObject)
+        if !adBanners.isEmpty {
+            self.adBanners = adBanners
+        }
+        configureMainPageCells()
     }
 
     func endRefreshingIfNeeded() {

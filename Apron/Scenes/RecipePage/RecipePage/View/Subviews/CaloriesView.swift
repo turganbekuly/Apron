@@ -23,7 +23,7 @@ final class CaloriesView: UIView {
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.calLowIcon.image
+        imageView.image = APRAssets.calLowIcon.image
         return imageView
     }()
 

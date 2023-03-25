@@ -133,7 +133,7 @@ final class InstructionSelectionViewController: ViewController {
             self?.navigationController?.popViewController(animated: true)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navigationRightButton)
         navigationRightButton.snp.makeConstraints {
             $0.width.equalTo(100)
@@ -155,7 +155,7 @@ final class InstructionSelectionViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     private func configureSaveButton() {

@@ -95,7 +95,7 @@ public final class SegmentItemCell: UICollectionViewCell {
 
     private func configureColors() {
         backgroundColor = .clear
-        selectedView.backgroundColor = isSelected ? ApronAssets.colorsYello.color : .clear
+        selectedView.backgroundColor = isSelected ? APRAssets.colorsYello.color : .clear
         titleBackgroundView.backgroundColor = .clear
         titleLabel.textColor = isSelected ? .black : .gray
     }

@@ -33,7 +33,7 @@ public struct DialogMessageViewModel: MessageProtocol {
     }
 
     public var backgroundColor: UIColor {
-        ApronAssets.primaryTextMain.color
+        APRAssets.primaryTextMain.color
     }
 
     public var titleColor: UIColor {

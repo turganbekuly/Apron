@@ -91,7 +91,7 @@ final class AdBannerCollectionCell: UICollectionViewCell {
         if let url = URL(string: model.bannerLink) {
             imageView.kf.setImage(
                 with: url,
-                placeholder: ApronAssets.iconPlaceholderItem.image
+                placeholder: APRAssets.iconPlaceholderItem.image
             )
         }
     }

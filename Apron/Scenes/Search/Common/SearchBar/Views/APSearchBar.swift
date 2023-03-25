@@ -70,7 +70,7 @@ public final class APSearchBar: UIView {
 
     private lazy var contentView: UIImageView = {
         let view = UIImageView()
-        view.image = ApronAssets.searchRoundedView.image.withRenderingMode(.alwaysOriginal)
+        view.image = APRAssets.searchRoundedView.image.withRenderingMode(.alwaysOriginal)
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.isUserInteractionEnabled = true
@@ -79,8 +79,8 @@ public final class APSearchBar: UIView {
     private lazy var hContentStackView = UIStackView()
     private lazy var textField: CustomClearTextField = {
         let textField = CustomClearTextField()
-        textField.tintColor = ApronAssets.gray.color
-        textField.textColor = ApronAssets.gray.color
+        textField.tintColor = APRAssets.gray.color
+        textField.textColor = APRAssets.gray.color
         textField.backgroundColor = .clear
         textField.font = TypographyFonts.regular12
         textField.defaultTextAttributes.updateValue(0.15, forKey: NSAttributedString.Key.kern)
@@ -91,7 +91,7 @@ public final class APSearchBar: UIView {
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(
-            ApronAssets.gray.color,
+            APRAssets.gray.color,
             for: .normal
         )
 
@@ -107,7 +107,7 @@ public final class APSearchBar: UIView {
     private var contentViewTrailingConstraint: Constraint?
     private var rightItemsWidthConstraint: Constraint?
 
-    private var icon = ApronAssets.navSearchIcon.image {
+    private var icon = APRAssets.navSearchIcon.image {
         didSet {
             iconImageView.image = icon
         }

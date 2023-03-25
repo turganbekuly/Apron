@@ -84,7 +84,7 @@ final class StepFinalStepCell: UICollectionViewCell {
     func configure(with image: String?) {
         imageView.kf.setImage(
             with: URL(string: image ?? ""),
-            placeholder: ApronAssets.iconPlaceholderCard.image
+            placeholder: APRAssets.iconPlaceholderCard.image
         )
     }
 }

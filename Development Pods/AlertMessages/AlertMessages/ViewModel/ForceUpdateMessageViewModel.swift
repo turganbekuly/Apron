@@ -12,7 +12,7 @@ public struct ForceUpdateMessageViewModel: MessageProtocol {
     // MARK: - MessageProtocol
 
     public var icon: UIImage? {
-        ApronAssets.forceUpdateImage.image
+        APRAssets.forceUpdateImage.image
     }
 
     public var title: NSAttributedString? {

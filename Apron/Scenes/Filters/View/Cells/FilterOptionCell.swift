@@ -42,7 +42,7 @@ final class FilterOptionCell: UICollectionViewCell {
 
     private lazy var addButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(ApronAssets.darkYello.color, for: .normal)
+        button.setTitleColor(APRAssets.darkYello.color, for: .normal)
         return button
     }()
 
@@ -94,7 +94,7 @@ final class FilterOptionCell: UICollectionViewCell {
     private func configureColors() {
         backgroundColor = .clear
         titleBackgroundView.backgroundColor = isSelected
-        ? ApronAssets.primaryTextMain.color : .white
+        ? APRAssets.primaryTextMain.color : .white
         titleLabel.textColor = isSelected ? .white : .black
     }
 

@@ -26,13 +26,13 @@ final class EmojiCell: UITableViewCell {
     // MARK: - Private properties
 
     private var activeEmojies = [
-        ApronAssets.ratingLoveInitial.image,
-        ApronAssets.ratingSadInitial.image
+        APRAssets.ratingLoveInitial.image,
+        APRAssets.ratingSadInitial.image
     ]
 
     private var inactiveEmojies = [
-        ApronAssets.ratingLoveInactive.image,
-        ApronAssets.ratingSadInactive.image
+        APRAssets.ratingLoveInactive.image,
+        APRAssets.ratingSadInactive.image
     ]
 
     private lazy var buttons = [loveButton, sadButton]
@@ -63,14 +63,14 @@ final class EmojiCell: UITableViewCell {
     private lazy var sadButton: UIButton = {
         let button = UIButton()
         button.tag = 1
-        button.setImage(ApronAssets.ratingSadInitial.image, for: .normal)
+        button.setImage(APRAssets.ratingSadInitial.image, for: .normal)
         return button
     }()
 
     private lazy var loveButton: UIButton = {
         let button = UIButton()
         button.tag = 0
-        button.setImage(ApronAssets.ratingLoveInitial.image, for: .normal)
+        button.setImage(APRAssets.ratingLoveInitial.image, for: .normal)
         return button
     }()
 

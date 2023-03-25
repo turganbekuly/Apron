@@ -82,7 +82,7 @@ final class SavedRecipesViewController: ViewController {
     private lazy var navigationTitleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold20
-        label.textColor = ApronAssets.primaryTextMain.color
+        label.textColor = APRAssets.primaryTextMain.color
         label.textAlignment = .center
         label.text = "Сохраненные рецепты"
         return label
@@ -153,7 +153,7 @@ final class SavedRecipesViewController: ViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
-        navigation.navigationBar.barTintColor = ApronAssets.secondary.color
+        navigation.navigationBar.barTintColor = APRAssets.secondary.color
         navigation.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigation.navigationBar.shadowImage = UIImage()
     }
@@ -184,7 +184,7 @@ final class SavedRecipesViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     // MARK: - User actions

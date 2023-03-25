@@ -39,7 +39,7 @@ final class RecipeCreationPlaceholderImageCell: UITableViewCell {
     private lazy var activityIndicator = NVActivityIndicatorView(
         frame: .zero,
         type: .circleStrokeSpin,
-        color: ApronAssets.mainAppColor.color,
+        color: APRAssets.mainAppColor.color,
         padding: nil
     )
 
@@ -83,7 +83,7 @@ final class RecipeCreationPlaceholderImageCell: UITableViewCell {
     // MARK: - Public methods
 
     public func startAnimating() {
-        activityIndicator.color = ApronAssets.mainAppColor.color
+        activityIndicator.color = APRAssets.mainAppColor.color
 
         isLoading = true
         isUserInteractionEnabled = false

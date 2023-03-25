@@ -21,7 +21,7 @@ public final class AppTabBar: UITabBar {
     @IBInspectable public var buttonTitle: String?
 
     @IBInspectable public var tabbarColor: UIColor = .white
-    @IBInspectable public var unselectedItemColor: UIColor = ApronAssets.gray.color
+    @IBInspectable public var unselectedItemColor: UIColor = APRAssets.gray.color
 
     private var shapeLayer: CALayer?
 
@@ -44,7 +44,7 @@ public final class AppTabBar: UITabBar {
             self.layer.insertSublayer(shapeLayer, at: 0)
         }
         self.shapeLayer = shapeLayer
-        self.tintColor = ApronAssets.mainAppColor.color
+        self.tintColor = APRAssets.mainAppColor.color
         self.unselectedItemTintColor = unselectedItemColor
         self.setupMiddleButton()
     }

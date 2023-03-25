@@ -25,7 +25,7 @@ public final class TagCell: UICollectionViewCell {
         view.clipsToBounds = true
         view.layer.cornerRadius = 18
         view.layer.borderWidth = 0.5
-        view.layer.borderColor = ApronAssets.gray.color.cgColor
+        view.layer.borderColor = APRAssets.gray.color.cgColor
         return view
     }()
 
@@ -87,9 +87,9 @@ public final class TagCell: UICollectionViewCell {
 
     private func configureColors() {
         titleBackgroundView.layer.borderWidth = isSelected ? 0 : 0.5
-        titleBackgroundView.layer.borderColor = isSelected ? .none : ApronAssets.gray.color.cgColor
+        titleBackgroundView.layer.borderColor = isSelected ? .none : APRAssets.gray.color.cgColor
         titleBackgroundView.backgroundColor = isSelected
-            ? ApronAssets.primaryTextMain.color
+            ? APRAssets.primaryTextMain.color
             : .white
         titleLabel.textColor = isSelected ? .white : .black
     }

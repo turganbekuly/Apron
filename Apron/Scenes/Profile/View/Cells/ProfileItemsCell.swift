@@ -29,7 +29,7 @@ final class ProfileItemsCell: UITableViewCell {
     private lazy var arrowImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleToFill
-        view.image = ApronAssets.arrowForward.image
+        view.image = APRAssets.arrowForward.image
         return view
     }()
 

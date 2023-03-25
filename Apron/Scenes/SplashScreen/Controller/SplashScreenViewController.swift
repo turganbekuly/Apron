@@ -86,7 +86,7 @@ final class SplashScreenViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.whiteSmoke.color
+        view.backgroundColor = APRAssets.whiteSmoke.color
     }
 
     deinit {

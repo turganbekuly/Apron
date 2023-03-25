@@ -49,25 +49,25 @@ enum SearchSuggestionCategoriesTypes: CaseIterable {
     var image: UIImage {
         switch self {
         case .pervieBluda:
-            return ApronAssets.firstCourseDish.image
+            return APRAssets.firstCourseDish.image
         case .vtorieBluda:
-            return ApronAssets.vtorieBluda.image
+            return APRAssets.vtorieBluda.image
         case .salati:
-            return ApronAssets.salats.image
+            return APRAssets.salats.image
         case .zakuski:
-            return ApronAssets.zakuski.image
+            return APRAssets.zakuski.image
         case .deserti:
-            return ApronAssets.deserts.image
+            return APRAssets.deserts.image
         case .vipechki:
-            return ApronAssets.baking.image
+            return APRAssets.baking.image
         case .souciMarinadi:
-            return ApronAssets.souces.image
+            return APRAssets.souces.image
         case .zagotovki:
-            return ApronAssets.zagotovki.image
+            return APRAssets.zagotovki.image
         case .napitki:
-            return ApronAssets.napitki.image
+            return APRAssets.napitki.image
         case .garniri:
-            return ApronAssets.sideDish.image
+            return APRAssets.sideDish.image
         }
     }
 

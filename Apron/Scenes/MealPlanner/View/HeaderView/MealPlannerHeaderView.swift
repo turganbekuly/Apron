@@ -49,7 +49,7 @@ final class MealPlannerHeaderView: UITableViewHeaderFooterView {
     private lazy var weekDayLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold16
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         return label
     }()
 

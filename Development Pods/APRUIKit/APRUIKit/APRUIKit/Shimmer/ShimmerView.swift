@@ -19,11 +19,11 @@ public final class ShimmerView: View {
     // MARK: - Private properties
 
     private var baseSkeletonColor: UIColor {
-        return ApronAssets.lightGray.color
+        return APRAssets.lightGray.color
     }
 
     private var secondarySkeletonColor: UIColor? {
-        return ApronAssets.lightGray.color.withAlphaComponent(0.3)
+        return APRAssets.lightGray.color.withAlphaComponent(0.3)
     }
 
     private var shimmer = UIView()

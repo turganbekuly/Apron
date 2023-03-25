@@ -34,15 +34,15 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
     public var icon: UIImage? {
         switch row {
         case .assistant:
-            return ApronAssets.cookAssistant.image
+            return APRAssets.cookAssistant.image
         case .deleteAccount:
-            return ApronAssets.profileDeleteAccount.image
+            return APRAssets.profileDeleteAccount.image
         case .logout:
-            return ApronAssets.exit.image
+            return APRAssets.exit.image
         case .contactWithDevelopers:
-            return ApronAssets.chat.image
+            return APRAssets.chat.image
         case .myRecipes:
-            return ApronAssets.iconKnifeFork.image
+            return APRAssets.iconKnifeFork.image
                 .withRenderingMode(.alwaysTemplate)
                 .withTintColor(.black)
         case .user:

@@ -121,7 +121,7 @@ public final class CommunityPageViewController: ViewController {
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
-        button.setImage(ApronAssets.creationPlusButton.image, for: .normal)
+        button.setImage(APRAssets.creationPlusButton.image, for: .normal)
         button.clipsToBounds = true
         button.isHidden = true
         return button
@@ -194,8 +194,8 @@ public final class CommunityPageViewController: ViewController {
     }
 
     private func configureViews() {
-        backButton.icon = ApronAssets.navBackButton.image.withTintColor(.black)
-        moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
+        backButton.icon = APRAssets.navBackButton.image.withTintColor(.black)
+        moreButton.icon = APRAssets.navMoreButton.image.withTintColor(.black)
         backButton.onTouch = { [weak self] in
             switch self?.initialState {
             case .fromAddedRecipes:
@@ -255,7 +255,7 @@ public final class CommunityPageViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
         navigationBarView.backgroundColor = .clear
         refreshControl.tintColor = .white
         refreshControl.backgroundColor = .clear
@@ -358,7 +358,7 @@ extension CommunityPageViewController {
         // navigation bar overlay
         if topConstraint.constant <= view.safeAreaInsets.top {
             imageView.isHidden = true
-            navigationBarView.backgroundColor = ApronAssets.secondary.color
+            navigationBarView.backgroundColor = APRAssets.secondary.color
             navigationItem.title = community?.name ?? ""
         } else {
             imageView.isHidden = false

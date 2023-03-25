@@ -87,8 +87,8 @@ extension RecipeCreationAddInstructionCell: UITableViewDelegate {
                 self.newInstructionDelegate?.remove(instruction: instruction)
                     completion(true)
                 }
-            action.image = ApronAssets.trashIcon.image
-            action.backgroundColor = ApronAssets.secondary.color
+            action.image = APRAssets.trashIcon.image
+            action.backgroundColor = APRAssets.secondary.color
             return UISwipeActionsConfiguration(actions: [action])
         }
     }

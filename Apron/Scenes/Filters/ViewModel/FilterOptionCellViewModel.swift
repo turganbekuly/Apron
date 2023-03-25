@@ -32,7 +32,7 @@ struct FilterOptionCellViewModel: FilterOptionCellViewModelProtocol {
     private let isSelected: Bool
 
     var backgroundColor: UIColor? {
-        isSelected ? ApronAssets.primaryTextMain.color : .white
+        isSelected ? APRAssets.primaryTextMain.color : .white
     }
 
     var cellType: FilterOptionType {

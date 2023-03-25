@@ -197,7 +197,7 @@ final class RecipeCreationViewController: ViewController {
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
         saveButton.snp.makeConstraints {
             $0.width.equalTo(100)
@@ -219,7 +219,7 @@ final class RecipeCreationViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     func configureInstructions() {

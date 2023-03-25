@@ -107,7 +107,7 @@ final class ProfileAssistantCell: UITableViewCell {
     }
 
     private func configureColors() {
-        switcher.onTintColor = ApronAssets.mainAppColor.color
+        switcher.onTintColor = APRAssets.mainAppColor.color
         backgroundColor = .clear
         cellBackgroundView.backgroundColor = .white
         iconImageView.tintColor = .black

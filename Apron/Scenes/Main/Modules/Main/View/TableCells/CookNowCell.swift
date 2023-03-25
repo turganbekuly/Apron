@@ -13,7 +13,7 @@ protocol CookNowCellProtocol: AnyObject {
     func saveRecipeTappedv2(with id: Int)
     func navigateToAuthFromRecipev2()
     func navigateToRecipev2(with id: Int)
-    func navigateToSeeAll()
+    func navigateToSeeAll(with type: CookNowCellType)
 }
 
 final class CookNowCell: UITableViewCell {
@@ -25,6 +25,8 @@ final class CookNowCell: UITableViewCell {
             cookNowCollectionView.reloadData()
         }
     }
+
+    var type: CookNowCellType = .cookNow
 
     // MARK: - Init
 
@@ -42,7 +44,7 @@ final class CookNowCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold18
-        label.textColor = ApronAssets.primaryTextMain.color
+        label.textColor = APRAssets.primaryTextMain.color
         label.textAlignment = .left
         return label
     }()
@@ -50,8 +52,8 @@ final class CookNowCell: UITableViewCell {
     private lazy var seeAllButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = TypographyFonts.regular16
-        button.setTitleColor(ApronAssets.gray.color, for: .normal)
-        button.setTitleColor(ApronAssets.gray.color, for: .highlighted)
+        button.setTitleColor(APRAssets.gray.color, for: .normal)
+        button.setTitleColor(APRAssets.gray.color, for: .highlighted)
         button.setTitle("Все", for: .normal)
         button.addTarget(self, action: #selector(seeAllButtonTapped), for: .touchUpInside)
         return button
@@ -100,7 +102,7 @@ final class CookNowCell: UITableViewCell {
 
     @objc
     private func seeAllButtonTapped() {
-        delegate?.navigateToSeeAll()
+        delegate?.navigateToSeeAll(with: type)
     }
 
     // MARK: - Public methods
@@ -108,7 +110,7 @@ final class CookNowCell: UITableViewCell {
     func configure(with viewModel: CookNowCellViewModelProtocol) {
         let title = viewModel.sectionTitle
         titleLabel.text = title
-
+        type = viewModel.type
         switch viewModel.state {
         case .failed:
             break

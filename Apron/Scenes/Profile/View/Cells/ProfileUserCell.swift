@@ -28,7 +28,7 @@ public final class ProfileUserCell: UITableViewCell {
     }()
 
     private lazy var userImageView: UIImageView = {
-        let view = UIImageView(image: ApronAssets.user.image)
+        let view = UIImageView(image: APRAssets.user.image)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedAvatar(_:))))
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
@@ -116,9 +116,9 @@ public final class ProfileUserCell: UITableViewCell {
 
     private func configureColors() {
         backgroundColor = .clear
-        emailLabel.textColor = ApronAssets.gray.color
+        emailLabel.textColor = APRAssets.gray.color
         usernameLabel.textColor = .black
-        userImageView.tintColor = ApronAssets.lightGray.color
+        userImageView.tintColor = APRAssets.lightGray.color
     }
 
 }

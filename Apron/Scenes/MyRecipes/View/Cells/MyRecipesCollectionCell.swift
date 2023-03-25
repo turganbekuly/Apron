@@ -35,7 +35,7 @@ final class MyRecipesCollectionCell: UICollectionViewCell {
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowOpacity = 0.2
         view.layer.shadowRadius = 3
-        view.layer.shadowColor = ApronAssets.primaryTextMain.color.cgColor
+        view.layer.shadowColor = APRAssets.primaryTextMain.color.cgColor
         return view
     }()
 
@@ -65,8 +65,8 @@ final class MyRecipesCollectionCell: UICollectionViewCell {
     private lazy var topOverlayView: GradientView = {
         let view = GradientView()
         view.isUserInteractionEnabled = true
-        view.topColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.7)
-        view.bottomColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.01)
+        view.topColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.7)
+        view.bottomColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.01)
         view.startPointX = 0.5
         view.endPointX = 0.5
         view.startPointY = 0
@@ -77,8 +77,8 @@ final class MyRecipesCollectionCell: UICollectionViewCell {
     private lazy var bottomOverlayView: GradientView = {
         let view = GradientView()
         view.isUserInteractionEnabled = true
-        view.topColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.01)
-        view.bottomColor = ApronAssets.primaryTextMain.color.withAlphaComponent(0.7)
+        view.topColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.01)
+        view.bottomColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.7)
         view.startPointX = 0.5
         view.endPointX = 0.5
         view.startPointY = 0
@@ -91,7 +91,7 @@ final class MyRecipesCollectionCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 14
-        imageView.tintColor = ApronAssets.gray.color
+        imageView.tintColor = APRAssets.gray.color
         return imageView
     }()
 
@@ -184,17 +184,17 @@ final class MyRecipesCollectionCell: UICollectionViewCell {
         statusLabel.text = recipe.status?.title?.uppercased() ?? ""
         switch recipe.status {
         case .active:
-            statusView.backgroundColor = ApronAssets.mainAppColor.color
+            statusView.backgroundColor = APRAssets.mainAppColor.color
         case .declined:
             statusView.backgroundColor = .red
         case .pending:
-            statusView.backgroundColor = ApronAssets.darkYello.color
+            statusView.backgroundColor = APRAssets.darkYello.color
         default:
             break
         }
         recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image
+            placeholder: APRAssets.iconPlaceholderItem.image
         )
     }
 }

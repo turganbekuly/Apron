@@ -97,6 +97,7 @@ extension MainViewController: UITableViewDelegate {
             cell.configure(
                 with: CookNowCellViewModel(
                     sectionTitle: sectionTitle,
+                    type: .cookNow,
                     state: cookNowRecipesState
                 )
             )
@@ -106,6 +107,7 @@ extension MainViewController: UITableViewDelegate {
             cell.configure(
                 with: CookNowCellViewModel(
                     sectionTitle: sectionTitle,
+                    type: .eventRecipe,
                     state: eventRecipesState
                 )
             )

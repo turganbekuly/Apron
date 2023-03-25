@@ -172,7 +172,7 @@ final class ShoppingListViewController: ViewController {
                 }
             }
         }
-        moreButton.icon = ApronAssets.navMoreButton.image.withTintColor(.black)
+        moreButton.icon = APRAssets.navMoreButton.image.withTintColor(.black)
         moreButton.onTouch = { [weak self] in
             self?.navigateToCreateActionFlow(with: .shoppingListMore)
         }
@@ -184,7 +184,7 @@ final class ShoppingListViewController: ViewController {
         default:
             break
         }
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
 
@@ -210,7 +210,7 @@ final class ShoppingListViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     private func navigateToCreateActionFlow(with state: CreateActionInitialState) {

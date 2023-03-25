@@ -23,14 +23,14 @@ open class AppTabBarController: UITabBarController, ViewControllerProtocol {
 //        if remoteConfigManager.isRecipeCreationEnabled {
 //            let tabBar = AppTabBar()
 //            setValue(tabBar, forKey: "tabBar")
-//            tabBar.centerButtonColor = ApronAssets.mainAppColor.color
+//            tabBar.centerButtonColor = APRAssets.mainAppColor.color
 //            if #available(iOS 13.0, *) {
-//                tabBar.buttonImage = ApronAssets.tabbarAddIcon.image.withTintColor(.white, renderingMode: .alwaysTemplate)
+//                tabBar.buttonImage = APRAssets.tabbarAddIcon.image.withTintColor(.white, renderingMode: .alwaysTemplate)
 //            } else {
-//                tabBar.buttonImage = ApronAssets.tabbarAddIcon.image
+//                tabBar.buttonImage = APRAssets.tabbarAddIcon.image
 //            }
 //            return
 //        }
-        tabBar.tintColor = ApronAssets.mainAppColor.color
+        tabBar.tintColor = APRAssets.mainAppColor.color
     }
 }

@@ -185,14 +185,14 @@ public class MessageView: UIView {
             subtitleLabel.attributedText = viewModel.subtitle
             iconImageView.image = viewModel.icon
             firstButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
-            firstButton.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+            firstButton.setBackgroundColor(APRAssets.mainAppColor.color, for: .normal)
             firstButton.layer.cornerRadius = 19
             firstButton.clipsToBounds = true
         case .completeAppleSignin:
             subtitleLabel.attributedText = viewModel.subtitle
             thirdButton.isEnabled = false
-            thirdButton.setBackgroundColor(ApronAssets.lightGray2.color, for: .disabled)
-            thirdButton.setBackgroundColor(ApronAssets.primaryTextMain.color, for: .normal)
+            thirdButton.setBackgroundColor(APRAssets.lightGray2.color, for: .disabled)
+            thirdButton.setBackgroundColor(APRAssets.primaryTextMain.color, for: .normal)
             thirdButton.setAttributedTitle(viewModel.firstButtonTitle, for: .normal)
             thirdButton.layer.cornerRadius = 19
             thirdButton.clipsToBounds = true
@@ -200,7 +200,7 @@ public class MessageView: UIView {
             firstButton.layer.cornerRadius = 19
             firstButton.clipsToBounds = true
             firstButton.layer.borderWidth = 1
-            firstButton.layer.borderColor = ApronAssets.primaryTextMain.color.cgColor
+            firstButton.layer.borderColor = APRAssets.primaryTextMain.color.cgColor
         }
         colorBackground = viewModel.backgroundColor
         colorTitle = viewModel.titleColor

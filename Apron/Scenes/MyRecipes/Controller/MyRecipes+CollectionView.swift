@@ -70,7 +70,7 @@ extension MyRecipesViewController: UICollectionViewDelegateFlowLayout {
             guard let cell = cell as? MyRecipesEmptyCollectionCell else { return }
             cell.configure(
                 with: "У вас еще нет созданных рецептов",
-                image: ApronAssets.emptyRecipesIcon.image
+                image: APRAssets.emptyRecipesIcon.image
             )
         case .shimmer:
             guard let cell = cell as? RecipeSearchSkeletonCell else { return }

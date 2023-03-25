@@ -65,7 +65,7 @@ public final class AuthorizationView: UIView {
 
     lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.mocoLogoWhiteBackground.image
+        imageView.image = APRAssets.mocoLogoWhiteBackground.image
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         return imageView
@@ -73,7 +73,7 @@ public final class AuthorizationView: UIView {
 
     lazy var signUpButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = ApronAssets.mainAppColor.color
+        button.backgroundColor = APRAssets.mainAppColor.color
         button.setTitle(L10n.Authorization.Button.SignUp.title, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular20
         button.setTitleColor(.white, for: .normal)

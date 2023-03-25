@@ -59,7 +59,7 @@ final class ShoppingItemCell: UITableViewCell {
     private lazy var sourceRecipsButton: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.textAlignment = .left
         return label
     }()
@@ -85,7 +85,7 @@ final class ShoppingItemCell: UITableViewCell {
         checkbox.boxType = .square
         checkbox.cornerRadius = 8
         checkbox.stateChangeAnimation = .fill
-        checkbox.tintColor = ApronAssets.mainAppColor.color
+        checkbox.tintColor = APRAssets.mainAppColor.color
         checkbox.secondaryTintColor = .gray
         checkbox.secondaryCheckmarkTintColor = .black
         checkbox.addTarget(self, action: #selector(checkboxValueChanged), for: .valueChanged)
@@ -177,7 +177,7 @@ final class ShoppingItemCell: UITableViewCell {
         cartItem = item
         productImageView.kf.setImage(
             with: URL(string: cartItem?.productImage ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image
+            placeholder: APRAssets.iconPlaceholderItem.image
         )
         sourceRecipsButton.text = item.recipeName?.first ?? ""
         ingredientNameLabel.text = item.productName

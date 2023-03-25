@@ -49,7 +49,7 @@
 //        button.layer.cornerRadius = 19
 //        button.clipsToBounds = true
 //        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-//        button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
+//        button.setImage(APRAssets.recipeFavoriteIcon.image, for: .normal)
 //        return button
 //    }()
 //
@@ -115,11 +115,11 @@
 //    private func configureSavedButton() {
 //        saveButton.backgroundType = .greenBackground
 //        saveButton.setTitle("Сохранен", for: .normal)
-//        saveButton.setImage(ApronAssets.recipeFavoriteIcon.image.withTintColor(.white), for: .normal)
+//        saveButton.setImage(APRAssets.recipeFavoriteIcon.image.withTintColor(.white), for: .normal)
 //
 //        // For made it flow
 ////        saveButton.setTitle("Приготовил/а", for: .normal)
-////        saveButton.setImage(ApronAssets.checkOvalOutline.image.withTintColor(.black), for: .normal)
+////        saveButton.setImage(APRAssets.checkOvalOutline.image.withTintColor(.black), for: .normal)
 //    }
 //
 //    // MARK: - Public methods

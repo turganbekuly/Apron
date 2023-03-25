@@ -74,7 +74,7 @@ final class RecipeReviewsCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .clear
-        imageView.tintColor = ApronAssets.lightGray.color
+        imageView.tintColor = APRAssets.lightGray.color
         return imageView
     }()
 
@@ -173,7 +173,7 @@ final class RecipeReviewsCell: UITableViewCell {
     func configure(with viewModel: RecipePageReviewsViewModelProtocol) {
         guard let comment = viewModel.comment else { return }
         configureAttributedText(name: comment.user ?? "", time: comment.createdAt ?? "")
-        userImageView.image = ApronAssets.user.image
+        userImageView.image = APRAssets.user.image
         postTextLabel.text = comment.description ?? ""
         tags = comment.tags ?? []
 

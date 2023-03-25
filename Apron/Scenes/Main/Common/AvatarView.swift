@@ -24,8 +24,8 @@ final class AvatarView: View {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .clear
-        imageView.image = ApronAssets.user.image
-        imageView.tintColor = ApronAssets.primaryTextMain.color
+        imageView.image = APRAssets.user.image
+        imageView.tintColor = APRAssets.primaryTextMain.color
         imageView.isUserInteractionEnabled = true
         return imageView
     }()

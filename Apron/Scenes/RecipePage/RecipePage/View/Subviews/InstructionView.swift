@@ -31,7 +31,7 @@ final class InstructionView: UIView {
 
     private lazy var stepCountLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.font = TypographyFonts.regular14
         return label
     }()
@@ -46,7 +46,7 @@ final class InstructionView: UIView {
 
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = ApronAssets.lightGray2.color
+        view.backgroundColor = APRAssets.lightGray2.color
         return view
     }()
 

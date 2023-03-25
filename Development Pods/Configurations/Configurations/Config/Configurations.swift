@@ -58,6 +58,15 @@ public final class Configurations {
         return apiKey
     }
 
+    public static func getSentryURL() -> String {
+        guard let urlString = getValue(for: ConfigurationKeys.sentryURL) else {
+            print("Cannot get api key")
+            return ""
+        }
+
+        return urlString
+    }
+
     public static func getMixpanelAPIKey() -> String {
         guard let apiKey = getValue(for: ConfigurationKeys.mixpanelApiKey) else {
             print("Cannot get api key")

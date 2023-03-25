@@ -56,8 +56,8 @@ extension ShoppingListViewController: UITableViewDelegate {
                     self.removeCartItem(with: item.productName, measurement: item.measurement)
                     completion(true)
                 }
-            action.image = ApronAssets.trashIcon.image
-            action.backgroundColor = ApronAssets.secondary.color
+            action.image = APRAssets.trashIcon.image
+            action.backgroundColor = APRAssets.secondary.color
             return UISwipeActionsConfiguration(actions: [action])
         default:
             return .none
@@ -126,7 +126,7 @@ extension ShoppingListViewController: UITableViewDelegate {
             guard let cell = cell as? EmptyListTableCell else { return }
             cell.configure(
                 with: "Добавьте товары в свой список покупок",
-                image: ApronAssets.emptyCart.image
+                image: APRAssets.emptyCart.image
             )
         case let .ingredient(item):
             guard let cell = cell as? ShoppingItemCell else { return }

@@ -53,7 +53,7 @@ final class RecipeBottomStickyView: View {
         button.layer.cornerRadius = 19
         button.clipsToBounds = true
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-        button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
+        button.setImage(APRAssets.recipeFavoriteIcon.image, for: .normal)
         return button
     }()
 
@@ -121,14 +121,14 @@ final class RecipeBottomStickyView: View {
     private func configureSavedButton() {
         guard !isSaved else {
             saveButton.setTitle("Режим готовки", for: .normal)
-            saveButton.setImage(ApronAssets.recipePlayIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
+            saveButton.setImage(APRAssets.recipePlayIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
             saveButton.tintColor = .white
             saveButton.setImage(nil, for: .highlighted)
             return
         }
         // MARK: - TODO SAVED/UNSAVED FLOW
         saveButton.setTitle("Сохранить", for: .normal)
-        saveButton.setImage(ApronAssets.favoriteIcon24.image.withTintColor(.white), for: .normal)
+        saveButton.setImage(APRAssets.favoriteIcon24.image.withTintColor(.white), for: .normal)
     }
 
     // MARK: - Public methods

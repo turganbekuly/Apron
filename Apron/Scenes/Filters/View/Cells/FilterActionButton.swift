@@ -38,7 +38,7 @@ final class FilterActionButton: UICollectionViewCell {
 
     private lazy var addButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(ApronAssets.darkYello.color, for: .normal)
+        button.setTitleColor(APRAssets.darkYello.color, for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()

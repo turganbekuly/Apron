@@ -42,7 +42,7 @@ public final class CartButtonView: UIView {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
-        view.backgroundColor = ApronAssets.primaryTextMain.color
+        view.backgroundColor = APRAssets.primaryTextMain.color
         return view
     }()
 

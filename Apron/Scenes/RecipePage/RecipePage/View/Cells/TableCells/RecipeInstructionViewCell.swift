@@ -56,7 +56,7 @@ final class RecipeInstructionViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = TypographyFonts.regular14
-        label.backgroundColor = ApronAssets.lightGray.color
+        label.backgroundColor = APRAssets.lightGray.color
         label.textAlignment = .center
         label.layer.cornerRadius = 10
         label.layer.masksToBounds = true

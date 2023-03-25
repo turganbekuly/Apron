@@ -25,7 +25,7 @@ public final class StepNavigationController: UINavigationController {
 
     private lazy var closeButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
-            image: ApronAssets.iconNavigationClose.image,
+            image: APRAssets.iconNavigationClose.image,
             style: .plain,
             target: self,
             action: #selector(didTappedClose(_:))
@@ -108,15 +108,15 @@ public final class StepNavigationController: UINavigationController {
     }
 
     private func configureColors() {
-        closeButton.tintColor = ApronAssets.gray.color.withAlphaComponent(0.32)
-        navigationBar.barTintColor = ApronAssets.secondary.color
+        closeButton.tintColor = APRAssets.gray.color.withAlphaComponent(0.32)
+        navigationBar.barTintColor = APRAssets.secondary.color
         navigationBar.isTranslucent = false
         navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.black
         ]
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = ApronAssets.secondary.color
+            appearance.backgroundColor = APRAssets.secondary.color
             appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
             appearance.shadowColor = .clear
 
@@ -124,7 +124,7 @@ public final class StepNavigationController: UINavigationController {
             navigationBar.compactAppearance = appearance
             navigationBar.scrollEdgeAppearance = appearance
         }
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
 }

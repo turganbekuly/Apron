@@ -73,7 +73,7 @@ final class FiltersViewController: ViewController {
         )
         item.setTitleTextAttributes(
             [
-                NSAttributedString.Key.foregroundColor: ApronAssets.gray.color,
+                NSAttributedString.Key.foregroundColor: APRAssets.gray.color,
                 NSAttributedString.Key.font: TypographyFonts.regular14
             ],
             for: .normal
@@ -81,7 +81,7 @@ final class FiltersViewController: ViewController {
 
         item.setTitleTextAttributes(
             [
-                NSAttributedString.Key.foregroundColor: ApronAssets.gray.color,
+                NSAttributedString.Key.foregroundColor: APRAssets.gray.color,
                 NSAttributedString.Key.font: TypographyFonts.regular14
             ],
             for: .highlighted
@@ -89,7 +89,7 @@ final class FiltersViewController: ViewController {
 
         item.setTitleTextAttributes(
             [
-                NSAttributedString.Key.foregroundColor: ApronAssets.gray.color,
+                NSAttributedString.Key.foregroundColor: APRAssets.gray.color,
                 NSAttributedString.Key.font: TypographyFonts.regular14
             ],
             for: .selected
@@ -166,7 +166,7 @@ final class FiltersViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     deinit {

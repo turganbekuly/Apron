@@ -36,17 +36,17 @@ enum WhatToCookCategoryTypes: CaseIterable {
     var image: UIImage {
         switch self {
         case .zavtrak:
-            return ApronAssets.breakfast.image
+            return APRAssets.breakfast.image
         case .obed:
-            return ApronAssets.obed.image
+            return APRAssets.obed.image
         case .uzhin:
-            return ApronAssets.uzhin.image
+            return APRAssets.uzhin.image
         case .salati:
-            return ApronAssets.salats.image
+            return APRAssets.salats.image
         case .zakuski:
-            return ApronAssets.zakuski.image
+            return APRAssets.zakuski.image
         case .deserti:
-            return ApronAssets.deserts.image
+            return APRAssets.deserts.image
         }
     }
 }

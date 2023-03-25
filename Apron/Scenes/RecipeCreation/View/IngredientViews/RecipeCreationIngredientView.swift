@@ -58,7 +58,7 @@ final class RecipeCreationIngredientView: UIView {
 
     private lazy var removeButton: UIButton = {
         let button = UIButton()
-        button.setImage(ApronAssets.trashIcon.image, for: .normal)
+        button.setImage(APRAssets.trashIcon.image, for: .normal)
         button.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
         return button
     }()

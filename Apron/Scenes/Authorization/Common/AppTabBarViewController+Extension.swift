@@ -19,15 +19,15 @@ extension AppTabBarController: Messagable {
         if storage.isUserAuthorized {
             guard storage.username != nil, storage.username?.isEmpty == false else {
                 let viewController = UpdateUsernameViewController(state: .initial) { [weak self] success in
-                    self?.tabBarController?.tabBar.isHidden = false
+//                    self?.tabBarController?.tabBar.isHidden = false
                     if success {
                         completion?()
                     }
                 }
                 DispatchQueue.main.async {
-                    viewController.modalPresentationStyle = .overCurrentContext
-                    self.tabBarController?.tabBar.isHidden = true
-                    self.present(viewController, animated: true)
+//                    viewController.modalPresentationStyle = .overCurrentContext
+//                    self.tabBarController?.tabBar.isHidden = true
+                    self.presentPanModal(viewController)
                 }
                 return
             }

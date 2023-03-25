@@ -14,8 +14,14 @@ enum CookNowCellState {
     case loaded([RecipeResponse])
 }
 
+enum CookNowCellType {
+    case cookNow
+    case eventRecipe
+}
+
 protocol CookNowCellViewModelProtocol {
     var sectionTitle: String { get }
+    var type: CookNowCellType { get }
     var state: CookNowCellState { get }
 }
 
@@ -23,5 +29,6 @@ struct CookNowCellViewModel: CookNowCellViewModelProtocol {
     // MARK: - Properties
 
     var sectionTitle: String
+    var type: CookNowCellType
     var state: CookNowCellState
 }

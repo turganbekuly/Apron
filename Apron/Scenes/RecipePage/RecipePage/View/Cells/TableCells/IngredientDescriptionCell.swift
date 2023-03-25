@@ -35,7 +35,7 @@ final class IngredientDescriptionCell: UITableViewCell {
 
     private lazy var timingImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.recipeCookingTimeIcon.image
+        imageView.image = APRAssets.recipeCookingTimeIcon.image
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -43,14 +43,14 @@ final class IngredientDescriptionCell: UITableViewCell {
     private lazy var timingLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular14
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.textAlignment = .left
         return label
     }()
 
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = ApronAssets.lightGray2.color
+        view.backgroundColor = APRAssets.lightGray2.color
         return view
     }()
 

@@ -25,7 +25,7 @@ public final class RecipeCreationNavigationController: UINavigationController {
 
     private lazy var closeButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
-            image: ApronAssets.iconNavigationClose.image.withRenderingMode(.alwaysOriginal),
+            image: APRAssets.iconNavigationClose.image.withRenderingMode(.alwaysOriginal),
             style: .plain,
             target: self,
             action: #selector(didTappedClose(_:))
@@ -105,14 +105,14 @@ public final class RecipeCreationNavigationController: UINavigationController {
     }
 
     private func configureColors() {
-        navigationBar.barTintColor = ApronAssets.secondary.color
+        navigationBar.barTintColor = APRAssets.secondary.color
         navigationBar.isTranslucent = false
         navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.black
         ]
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = ApronAssets.secondary.color
+            appearance.backgroundColor = APRAssets.secondary.color
             appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
             appearance.shadowColor = .clear
 
@@ -120,7 +120,7 @@ public final class RecipeCreationNavigationController: UINavigationController {
             navigationBar.compactAppearance = appearance
             navigationBar.scrollEdgeAppearance = appearance
         }
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
 }

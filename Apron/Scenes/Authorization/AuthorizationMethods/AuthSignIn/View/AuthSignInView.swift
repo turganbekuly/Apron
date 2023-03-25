@@ -48,7 +48,7 @@ final class AuthSignInView: UIView {
         let button = UIButton()
         button.clipsToBounds = true
         button.layer.cornerRadius = 22
-        button.setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
+        button.setBackgroundColor(APRAssets.mainAppColor.color, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Войти", for: .normal)

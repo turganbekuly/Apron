@@ -44,8 +44,8 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     private lazy var likeButton: UIButton = {
         let button = UIButton()
-        button.setImage(ApronAssets.recipeLikeUnselected.image, for: .normal)
-        button.setTitleColor(ApronAssets.gray.color, for: .normal)
+        button.setImage(APRAssets.recipeLikeUnselected.image, for: .normal)
+        button.setTitleColor(APRAssets.gray.color, for: .normal)
         button.setTitle("20", for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         return button
@@ -53,16 +53,16 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     private lazy var dislikeButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(ApronAssets.gray.color, for: .normal)
+        button.setTitleColor(APRAssets.gray.color, for: .normal)
         button.setTitle("2", for: .normal)
-        button.setImage(ApronAssets.recipeDislikeUnselected.image, for: .normal)
+        button.setImage(APRAssets.recipeDislikeUnselected.image, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         return button
     }()
 
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.setImage(ApronAssets.recipeEditIcon.image, for: .normal)
+        button.setImage(APRAssets.recipeEditIcon.image, for: .normal)
         button.isUserInteractionEnabled = true
         button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         return button
@@ -70,7 +70,7 @@ final class RecipeInformationViewCell: UITableViewCell {
 
     private lazy var shareButton: UIButton = {
         let button = UIButton()
-        button.setImage(ApronAssets.recipeShareIcon.image, for: .normal)
+        button.setImage(APRAssets.recipeShareIcon.image, for: .normal)
         button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -174,7 +174,7 @@ final class RecipeInformationViewCell: UITableViewCell {
         }
         recipeImageView.kf.setImage(
             with: URL(string: viewModel.recipeImage ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image,
+            placeholder: APRAssets.iconPlaceholderItem.image,
             options: [.transition(.fade(0.4))]
         )
         likeButton.setTitle("\(viewModel.likeCount)", for: .normal)

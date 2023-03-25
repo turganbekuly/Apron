@@ -41,11 +41,11 @@ public struct UpdateCredentialsViewModel: MessageProtocol {
     }
 
     public var titleColor: UIColor {
-        ApronAssets.primaryTextMain.color
+        APRAssets.primaryTextMain.color
     }
 
     public var subtitleColor: UIColor? {
-        ApronAssets.primaryTextMain.color
+        APRAssets.primaryTextMain.color
     }
 
     public var iconColor: UIColor? {

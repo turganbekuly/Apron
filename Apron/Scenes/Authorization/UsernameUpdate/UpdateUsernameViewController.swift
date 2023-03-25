@@ -10,8 +10,10 @@ import APRUIKit
 import AlertMessages
 import Models
 import IQKeyboardManagerSwift
+import PanModal
+import SnapKit
 
-final class UpdateUsernameViewController: ViewController {
+final class UpdateUsernameViewController: ViewController, PanModalPresentable, MCKeyboardHelperDelegate {
 
     // MARK: - Public properties
 
@@ -23,6 +25,40 @@ final class UpdateUsernameViewController: ViewController {
         didSet {
             updateState()
         }
+    }
+
+    // MARK: - Private properties
+
+    private lazy var keyboardHelper = MCKeyboardHelper(delegate: self)
+    private var bottomConstraint: Constraint?
+
+    private var keyboardHeight: CGFloat = 0
+    private var isTyping = false
+
+    // MARK: - PanModal properties
+
+    var panScrollable: UIScrollView? {
+        return nil
+    }
+
+    var longFormHeight: PanModalHeight {
+        if isTyping {
+            return .contentHeightIgnoringSafeArea(mainView.frame.height + keyboardHeight)
+        }
+
+        return .contentHeightIgnoringSafeArea(mainView.frame.height)
+    }
+
+    var cornerRadius: CGFloat {
+        return 32
+    }
+
+    var springDamping: CGFloat {
+        return 1
+    }
+
+    var transitionDuration: Double {
+        return 0.4
     }
 
     // MARK: - Init
@@ -44,52 +80,51 @@ final class UpdateUsernameViewController: ViewController {
 
     // MARK: - Lifecycle
 
+    override func loadView() {
+        super.loadView()
+        setupViews()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardHelper = { keyboardHelper }()
         state = { state }()
-        view.isOpaque = false
-        view.backgroundColor = .black.withAlphaComponent(0.30)
-        showUserUpdate()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        IQKeyboardManager.shared.enable = false
-        IQKeyboardManager.shared.enableAutoToolbar = false
+        view.layoutIfNeeded()
+        panModalSetNeedsLayoutUpdate()
+        panModalTransition(to: .longForm)
+        mainView.roundedTextField.textField.becomeFirstResponder()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.enableAutoToolbar = true
+    // MARK: - Views factory
+
+    private lazy var mainView = UpdateUsernameView()
+
+    // MARK: - Setup Views
+
+    private func setupViews() {
+        view.backgroundColor = APRAssets.secondary.color
+        view.addSubviews(mainView)
+        mainView.onSaveButtonTapped = { [weak self] username in
+            guard let self = self else { return }
+            var user = User()
+            user.username = username
+            self.updateProfile(with: user)
+        }
+        setupConstraints()
+    }
+
+    private func setupConstraints() {
+        mainView.snp.makeConstraints {
+            $0.height.equalTo(210)
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 
     // MARK: - Method
-
-    func showUserUpdate() {
-        showUsernameUpdate(
-            type: .completeAppleSignin(
-                "Привет!",
-                "Заполните ваше имя для продолжения",
-                "Продолжить",
-                "Позже"
-            ),
-            updateButton: { [weak self] text in
-                guard let self = self else { return }
-                var user = User()
-                user.username = text
-                self.updateProfile(with: user)
-            },
-            skipButton: { [weak self] in
-                guard let self = self else { return }
-                self.view.isUserInteractionEnabled = true
-                self.hideLoader()
-                self.dismiss(animated: true) {
-                    self.completion(false)
-                }
-            }
-        )
-    }
 
     private func updateProfile(with user: User) {
         provider.updateProfile(body: user) { result in
@@ -101,4 +136,53 @@ final class UpdateUsernameViewController: ViewController {
             }
         }
     }
+
+    // MARK: - Delegate
+
+    public func keyboardWillAppear(_ info: MCKeyboardAppearanceInfo) {
+        UIView.animate(
+            withDuration: TimeInterval(info.animationDuration),
+            delay: 0,
+            options: info.animationOptions,
+            animations: { [weak self] in
+                guard let self = self else { return }
+                let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+                let bottomPadding = window?.safeAreaInsets.bottom
+                self.keyboardHeight = info.endFrame.size.height
+                UIView.animate(
+                    withDuration: 0.1,
+                    animations: {
+                        self.view.layoutIfNeeded()
+                    }
+                )
+                self.isTyping = true
+                self.panModalSetNeedsLayoutUpdate()
+                self.panModalTransition(to: .longForm)
+            },
+            completion: nil
+        )
+    }
+
+    public func keyboardWillDisappear(_ info: MCKeyboardAppearanceInfo) {
+        UIView.animate(
+            withDuration: TimeInterval(info.animationDuration),
+            delay: 0,
+            options: info.animationOptions,
+            animations: { [weak self] in
+                guard let self = self else { return }
+                UIView.animate(
+                    withDuration: 0.1,
+                    animations: {
+                        self.view.layoutIfNeeded()
+                    }
+                )
+                self.isTyping = false
+                self.panModalSetNeedsLayoutUpdate()
+                self.panModalTransition(to: .longForm)
+            },
+            completion: nil
+        )
+    }
 }
+
+

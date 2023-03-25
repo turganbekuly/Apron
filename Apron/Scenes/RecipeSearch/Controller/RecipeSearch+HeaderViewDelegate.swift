@@ -26,7 +26,7 @@ extension RecipeSearchViewController: ApplyFiltersProtocol {
         sections = [
             .init(section: .filter, rows: [.shimmer])
         ]
-        self.filtersCount = filters.dayTimeType.count + filters.cuisines.count + filters.eventTypes.count + filters.time.count + filters.dishTypes.count
+        self.filtersCount = filters.dayTimeType.count + filters.cuisines.count + filters.eventTypes.count + filters.time.count + filters.dishTypes.count + filters.lifestyleTypes.count
         mainView.reloadData()
         self.filters = filters
         self.query = query ?? ""

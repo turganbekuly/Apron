@@ -26,20 +26,20 @@ final class WeeklyCalendarView: View {
     // MARK: - Views factory
 
     private lazy var previousWeekButton: UIButton = {
-        $0.setImage(ApronAssets.mealPlannerLeftArrow.image, for: .normal)
+        $0.setImage(APRAssets.mealPlannerLeftArrow.image, for: .normal)
         $0.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
         return $0
     }(UIButton())
 
     private lazy var nextWeekButton: UIButton = {
-        $0.setImage(ApronAssets.mealPlannerRightArrow.image, for: .normal)
+        $0.setImage(APRAssets.mealPlannerRightArrow.image, for: .normal)
         $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return $0
     }(UIButton())
 
     private lazy var currentWeekDateRange: UILabel = {
         $0.font = TypographyFonts.semibold16
-        $0.textColor = ApronAssets.primaryTextMain.color
+        $0.textColor = APRAssets.primaryTextMain.color
         $0.textAlignment = .center
         return $0
     }(UILabel())

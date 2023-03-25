@@ -75,7 +75,7 @@ final class RecipeSearchFilterHeaderView: UICollectionReusableView {
     }
 
     private func setupColors() {
-        backgroundColor = ApronAssets.secondary.color
+        backgroundColor = APRAssets.secondary.color
     }
 
     // MARK: - User actions

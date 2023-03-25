@@ -114,30 +114,30 @@ public final class BlackOpButton: DefaultButton {
     private func configureColors() {
         switch backgroundType {
         case .blackBackground:
-            setBackgroundColor(ApronAssets.primaryTextMain.color.withAlphaComponent(0.5), for: .disabled)
-            setBackgroundColor(ApronAssets.primaryTextMain.color, for: .normal)
-            setBackgroundColor(ApronAssets.primaryTextMain.color.highlighted, for: .highlighted)
+            setBackgroundColor(APRAssets.primaryTextMain.color.withAlphaComponent(0.5), for: .disabled)
+            setBackgroundColor(APRAssets.primaryTextMain.color, for: .normal)
+            setBackgroundColor(APRAssets.primaryTextMain.color.highlighted, for: .highlighted)
             setTitleColor(.white, for: .disabled)
             setTitleColor(.white, for: .normal)
-            tintColor = isEnabled ? ApronAssets.primaryTextMain.color : .black.withAlphaComponent(0.5)
+            tintColor = isEnabled ? APRAssets.primaryTextMain.color : .black.withAlphaComponent(0.5)
         case .whiteBackground:
             setBackgroundColor(.white.withAlphaComponent(0.5), for: .disabled)
             setBackgroundColor(.white, for: .normal)
             setBackgroundColor(.white.highlighted, for: .highlighted)
-            setTitleColor(ApronAssets.primaryTextMain.color, for: .disabled)
-            setTitleColor(ApronAssets.primaryTextMain.color, for: .normal)
+            setTitleColor(APRAssets.primaryTextMain.color, for: .disabled)
+            setTitleColor(APRAssets.primaryTextMain.color, for: .normal)
             tintColor = isEnabled ? .white : .white.withAlphaComponent(0.5)
             layer.borderWidth = 1
-            layer.borderColor = ApronAssets.lightGray2.color.cgColor
+            layer.borderColor = APRAssets.lightGray2.color.cgColor
         case .greenBackground:
-            setBackgroundColor(ApronAssets.mainAppColor.color.withAlphaComponent(0.5), for: .disabled)
-            setBackgroundColor(ApronAssets.mainAppColor.color, for: .normal)
-            setBackgroundColor(ApronAssets.mainAppColor.color.highlighted, for: .highlighted)
+            setBackgroundColor(APRAssets.mainAppColor.color.withAlphaComponent(0.5), for: .disabled)
+            setBackgroundColor(APRAssets.mainAppColor.color, for: .normal)
+            setBackgroundColor(APRAssets.mainAppColor.color.highlighted, for: .highlighted)
             setTitleColor(.white, for: .disabled)
             setTitleColor(.white, for: .normal)
-            tintColor = isEnabled ? ApronAssets.mainAppColor.color : ApronAssets.mainAppColor.color.withAlphaComponent(0.5)
+            tintColor = isEnabled ? APRAssets.mainAppColor.color : APRAssets.mainAppColor.color.withAlphaComponent(0.5)
             layer.borderWidth = 1
-            layer.borderColor = ApronAssets.mainAppColor.color.cgColor
+            layer.borderColor = APRAssets.mainAppColor.color.cgColor
         }
     }
 }

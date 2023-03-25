@@ -79,7 +79,7 @@ final class MealPlannerViewController: ViewController {
     private lazy var activityIndicator = NVActivityIndicatorView(
         frame: .zero,
         type: .circleStrokeSpin,
-        color: ApronAssets.mainAppColor.color,
+        color: APRAssets.mainAppColor.color,
         padding: nil
     )
 
@@ -149,7 +149,7 @@ final class MealPlannerViewController: ViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
-        navigationController?.navigationBar.barTintColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.barTintColor = APRAssets.secondary.color
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }

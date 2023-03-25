@@ -111,7 +111,7 @@ final class SearchViewController: ViewController {
     private lazy var navigationTitleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold20
-        label.textColor = ApronAssets.primaryTextMain.color
+        label.textColor = APRAssets.primaryTextMain.color
         label.textAlignment = .left
         label.text = "Поиск"
         return label
@@ -140,7 +140,7 @@ final class SearchViewController: ViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
-        navigationController?.navigationBar.barTintColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.barTintColor = APRAssets.secondary.color
     }
 
     private func configureViews() {
@@ -158,7 +158,7 @@ final class SearchViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
 //    func configureCategories() {

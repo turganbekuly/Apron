@@ -63,14 +63,14 @@ final class RecipeSearchResultCell: UICollectionViewCell {
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowOpacity = 0.2
         view.layer.shadowRadius = 3
-        view.layer.shadowColor = ApronAssets.primaryTextMain.color.cgColor
+        view.layer.shadowColor = APRAssets.primaryTextMain.color.cgColor
         return view
     }()
 
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundColor(ApronAssets.primaryTextMain.color, for: .normal)
-        button.setImage(ApronAssets.favoriteIcon.image, for: .normal)
+        button.setBackgroundColor(APRAssets.primaryTextMain.color, for: .normal)
+        button.setImage(APRAssets.favoriteIcon.image, for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 14
         button.imageView?.contentMode = .scaleAspectFit
@@ -97,14 +97,14 @@ final class RecipeSearchResultCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 14
-        imageView.tintColor = ApronAssets.gray.color
+        imageView.tintColor = APRAssets.gray.color
         return imageView
     }()
 
     private lazy var recipeNameLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.medium16
-        label.textColor = ApronAssets.primaryTextMain.color
+        label.textColor = APRAssets.primaryTextMain.color
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
         return label
@@ -176,11 +176,11 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
     private func configureButton(isSaved: Bool) {
         guard isSaved else {
-            favoriteButton.setImage(ApronAssets.favoriteIcon.image, for: .normal)
+            favoriteButton.setImage(APRAssets.favoriteIcon.image, for: .normal)
             return
         }
 
-        favoriteButton.setImage(ApronAssets.favoriteFilledIcon.image, for: .normal)
+        favoriteButton.setImage(APRAssets.favoriteFilledIcon.image, for: .normal)
     }
 
     // MARK: - User actions
@@ -199,7 +199,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
         delegate?.saveRecipeTapped(with: id)
         HapticTouch.generateSuccess()
-        favoriteButton.setImage(ApronAssets.favoriteFilledIcon.image, for: .normal)
+        favoriteButton.setImage(APRAssets.favoriteFilledIcon.image, for: .normal)
     }
 
     // MARK: - Public methods
@@ -213,7 +213,7 @@ final class RecipeSearchResultCell: UICollectionViewCell {
         )
         isSaved = recipe.isSaved ?? false
         id = recipe.id
-        avatarImageView.image = ApronAssets.user.image
+        avatarImageView.image = APRAssets.user.image
         contentView.layoutIfNeeded()
         recipeNameLabel.text = recipe.recipeName
         cartView.configure(ingredients: recipe.ingredients?.count ?? 0)

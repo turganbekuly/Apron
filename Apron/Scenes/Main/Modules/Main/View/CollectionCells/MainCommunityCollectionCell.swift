@@ -47,7 +47,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.cmntImageview.image
+        imageView.image = APRAssets.cmntImageview.image
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -62,27 +62,27 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
 
     private lazy var recipeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.cmntRecipeIcon.image
+        imageView.image = APRAssets.cmntRecipeIcon.image
         return imageView
     }()
 
     private lazy var recipeCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         return label
     }()
 
     private lazy var membersImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.cmntMemberIcon.image
+        imageView.image = APRAssets.cmntMemberIcon.image
         return imageView
     }()
 
     private lazy var membersCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         return label
     }()
 
@@ -144,7 +144,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         id = community.id
         imageView.kf.setImage(
             with: URL(string: community.image ?? ""),
-            placeholder: ApronAssets.iconPlaceholderCard.image
+            placeholder: APRAssets.iconPlaceholderCard.image
         )
         communityNameLabel.text = community.name ?? ""
         recipeCountLabel.text = "\(community.recipesCount ?? 0)"

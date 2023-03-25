@@ -20,7 +20,7 @@ final class StretchyTableViewHeaderView: UIView {
         didSet {
             imageView.kf.setImage(
                 with: URL(string: imageURL ?? ""),
-                placeholder: ApronAssets.iconPlaceholderCard.image,
+                placeholder: APRAssets.iconPlaceholderCard.image,
                 options: [.transition(.fade(0.4))]
             )
         }

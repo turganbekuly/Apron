@@ -32,7 +32,7 @@ final class NavigationSearchView: UIView {
 
     private lazy var iconView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.navSearchIcon.image
+        imageView.image = APRAssets.navSearchIcon.image
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -40,7 +40,7 @@ final class NavigationSearchView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.text = "Поиск рецептов и сообществ"
         return label
     }()

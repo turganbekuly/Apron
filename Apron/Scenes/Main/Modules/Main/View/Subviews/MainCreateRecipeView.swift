@@ -21,7 +21,7 @@ final class MainCreateRecipeView: View {
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowOpacity = 0.2
         view.layer.shadowRadius = 3
-        view.layer.shadowColor = ApronAssets.primaryTextMain.color.cgColor
+        view.layer.shadowColor = APRAssets.primaryTextMain.color.cgColor
         return view
     }()
 

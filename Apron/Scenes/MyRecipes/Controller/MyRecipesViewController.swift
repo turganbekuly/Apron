@@ -107,13 +107,13 @@ final class MyRecipesViewController: ViewController {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: ApronAssets.navBackButton.image,
+            image: APRAssets.navBackButton.image,
             style: .plain,
             target: self,
             action: #selector(backButtonTapped)
         )
         navigationItem.leftBarButtonItem?.tintColor = .black
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
     }
     
     private func configureViews() {

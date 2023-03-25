@@ -41,7 +41,7 @@ final class CreateButtonCell: UITableViewCell {
         let label = UILabel()
         label.font = TypographyFonts.regular11
         label.numberOfLines = 2
-        label.textColor = ApronAssets.lightGray.color
+        label.textColor = APRAssets.lightGray.color
         label.sizeToFit()
         return label
     }()

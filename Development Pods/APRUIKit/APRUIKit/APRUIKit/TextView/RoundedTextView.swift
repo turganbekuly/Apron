@@ -34,7 +34,7 @@ public class RoundedTextView: UIView {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.layer.borderWidth = 1
-        view.layer.borderColor = ApronAssets.lightGray2.color.cgColor
+        view.layer.borderColor = APRAssets.lightGray2.color.cgColor
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view

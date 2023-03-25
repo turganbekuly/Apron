@@ -32,7 +32,7 @@ final class AddsavedRecipeCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.cmntImageview.image
+        imageView.image = APRAssets.cmntImageview.image
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -113,7 +113,7 @@ final class AddsavedRecipeCell: UICollectionViewCell {
     func configure(with viewModel: SavedRecipeCellViewModelProtocol) {
         savedImageView.kf.setImage(
             with: URL(string: viewModel.image ?? ""),
-            placeholder: ApronAssets.iconPlaceholderItem.image
+            placeholder: APRAssets.iconPlaceholderItem.image
         )
         recipeNameLabel.text = viewModel.name ?? ""
     }

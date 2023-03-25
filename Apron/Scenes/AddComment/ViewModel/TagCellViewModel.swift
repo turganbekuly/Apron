@@ -22,7 +22,7 @@ public struct TagCellViewModel: TagCellViewModelProtocol {
     private let isSelected: Bool
 
     public var backgroundColor: UIColor? {
-        isSelected ? ApronAssets.primaryTextMain.color : .white
+        isSelected ? APRAssets.primaryTextMain.color : .white
     }
 
     public var title: NSAttributedString? {

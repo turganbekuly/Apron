@@ -10,7 +10,7 @@ public struct ErrorMessageViewModel: MessageProtocol {
     // MARK: - MessageProtocol
 
     public var icon: UIImage? {
-        ApronAssets.attention.image
+        APRAssets.attention.image
     }
 
     public var title: NSAttributedString? {

@@ -52,7 +52,7 @@ final class RecipeCreationPaidCell: UITableViewCell {
     private lazy var switcher: UISwitch = {
         let view = UISwitch()
         view.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .touchUpInside)
-        view.onTintColor = ApronAssets.primaryTextMain.color
+        view.onTintColor = APRAssets.primaryTextMain.color
         return view
     }()
 

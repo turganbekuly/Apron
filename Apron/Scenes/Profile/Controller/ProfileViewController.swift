@@ -58,7 +58,7 @@ final class ProfileViewController: ViewController {
     private lazy var activityIndicator = NVActivityIndicatorView(
         frame: .zero,
         type: .circleStrokeSpin,
-        color: ApronAssets.mainAppColor.color,
+        color: APRAssets.mainAppColor.color,
         padding: nil
     )
 
@@ -106,13 +106,13 @@ final class ProfileViewController: ViewController {
     // MARK: - Methods
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: ApronAssets.navBackButton.image,
+            image: APRAssets.navBackButton.image,
             style: .plain,
             target: self,
             action: #selector(backButtonTapped)
         )
         navigationItem.leftBarButtonItem?.tintColor = .black
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
     }
 
     private func configureViews() {
@@ -137,7 +137,7 @@ final class ProfileViewController: ViewController {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     func isLoading(_ loading: Bool) {
