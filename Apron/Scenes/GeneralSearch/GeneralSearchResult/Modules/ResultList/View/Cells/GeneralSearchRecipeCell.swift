@@ -54,7 +54,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
 
     private lazy var favoriteButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
+        button.setImage(APRAssets.recipeFavoriteIcon.image, for: .normal)
         button.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
         button.layer.masksToBounds = true
@@ -74,7 +74,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     private lazy var sourceLinkLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.textAlignment = .left
         return label
     }()
@@ -122,12 +122,12 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     private func configureButton(isSaved: Bool) {
         guard isSaved else {
             favoriteButton.setBackgroundColor(.black, for: .normal)
-            favoriteButton.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
+            favoriteButton.setImage(APRAssets.recipeFavoriteIcon.image, for: .normal)
             return
         }
 
-        favoriteButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-        favoriteButton.setImage(ApronAssets.tabFaveSelectedIcon.image, for: .normal)
+        favoriteButton.setBackgroundColor(APRAssets.colorsYello.color, for: .normal)
+        favoriteButton.setImage(APRAssets.tabFaveSelectedIcon.image, for: .normal)
     }
 
     // MARK: - User actions
@@ -145,8 +145,8 @@ final class GeneralSearchRecipeCell: UITableViewCell {
         }
 
         HapticTouch.generateSuccess()
-        favoriteButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-        favoriteButton.setImage(ApronAssets.tabFaveSelectedIcon.image, for: .normal)
+        favoriteButton.setBackgroundColor(APRAssets.colorsYello.color, for: .normal)
+        favoriteButton.setImage(APRAssets.tabFaveSelectedIcon.image, for: .normal)
         delegate?.didTapSaveRecipe(with: id)
     }
 
@@ -158,7 +158,7 @@ final class GeneralSearchRecipeCell: UITableViewCell {
         id = recipe.id
         recipeImageView.kf.setImage(
             with: URL(string: recipe.imageURL ?? ""),
-            placeholder: ApronAssets.addedImagePlaceholder.image
+            placeholder: APRAssets.addedImagePlaceholder.image
         )
 
         recipeNameLabel.text = recipe.recipeName ?? ""

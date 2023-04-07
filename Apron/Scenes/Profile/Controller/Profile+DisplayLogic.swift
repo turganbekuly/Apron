@@ -9,7 +9,7 @@
 import UIKit
 
 extension ProfileViewController: ProfileDisplayLogic {
-    
+
     // MARK: - ProfileDisplayLogic
 
     func displayProfile(with viewModel: ProfileDataFlow.GetProfile.ViewModel) {

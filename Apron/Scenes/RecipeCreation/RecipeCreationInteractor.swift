@@ -8,22 +8,23 @@
 
 protocol RecipeCreationBusinessLogic {
     func createRecipe(request: RecipeCreationDataFlow.CreateRecipe.Request)
+    func editRecipe(request: RecipeCreationDataFlow.CreateRecipe.Request)
     func uploadImage(request: RecipeCreationDataFlow.UploadImage.Request)
 }
 
 final class RecipeCreationInteractor: RecipeCreationBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: RecipeCreationPresentationLogic
     private let provider: RecipeCreationProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: RecipeCreationPresentationLogic,
          provider: RecipeCreationProviderProtocol = RecipeCreationProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - RecipeCreationBusinessLogic
 
     func createRecipe(request: RecipeCreationDataFlow.CreateRecipe.Request) {
@@ -33,6 +34,17 @@ final class RecipeCreationInteractor: RecipeCreationBusinessLogic {
                 self?.presenter.createRecipe(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.createRecipe(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func editRecipe(request: RecipeCreationDataFlow.CreateRecipe.Request) {
+        provider.editRecipe(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.editRecipe(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.editRecipe(response: .init(result: .failed(error: error)))
             }
         }
     }

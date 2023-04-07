@@ -48,7 +48,7 @@ final class StepByStepTimerView: View {
     private lazy var timerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = ApronAssets.recipeCookingTimeIcon.image.withRenderingMode(.alwaysTemplate)
+        imageView.image = APRAssets.recipeCookingTimeIcon.image.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = .white
         return imageView
     }()
@@ -123,7 +123,7 @@ final class StepByStepTimerView: View {
         timerTitleLabel.text = title
         self.instruction = instruction
         self.duration = duration
-        TimerScheduleManager.shared.startTimer(instruction: instruction, duration: duration) { progress, seconds, isFinished, instr in
+        TimerScheduleManager.shared.startTimer(instruction: instruction, duration: duration) { _, seconds, isFinished, _ in
             self.observeTimer(seconds: seconds)
 
             if isFinished {

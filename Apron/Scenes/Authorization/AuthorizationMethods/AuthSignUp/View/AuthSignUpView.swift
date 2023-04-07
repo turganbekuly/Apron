@@ -32,23 +32,35 @@ final class AuthSignUpView: UIView {
     // MARK: - Views factory
 
     lazy var nicknameTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "username", title: "Username")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Username.tfPlaceholder,
+            title: L10n.Authorization.Username.tfTitle
+        )
         return textField
     }()
 
     lazy var emailTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "mymail@gmail.com", title: "E-mail")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Email.tfPlaceholder,
+            title: L10n.Authorization.Email.tfTitle
+        )
         return textField
     }()
 
     lazy var passwordTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "***********", title: "Password")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Password.tfPlaceholder,
+            title: L10n.Authorization.Password.tfTitle
+        )
         textField.textField.addTarget(self, action: #selector(passwordChanged(_:)), for: .editingChanged)
         return textField
     }()
 
     lazy var confirmTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "***********", title: "Confirm Password")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Password.tfPlaceholder,
+            title: L10n.Authorization.ConfirmPassword.tfTitle
+        )
         textField.textField.addTarget(self, action: #selector(passwordChanged(_:)), for: .editingChanged)
         return textField
     }()
@@ -57,10 +69,10 @@ final class AuthSignUpView: UIView {
         let button = UIButton()
         button.clipsToBounds = true
         button.layer.cornerRadius = 22
-        button.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        button.setBackgroundColor(APRAssets.mainAppColor.color, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
-        button.setTitleColor(.black, for: .normal)
-        button.setTitle("Регистрация", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle(L10n.Authorization.Button.SignIn.title, for: .normal)
         button.isEnabled = false
         return button
     }()
@@ -116,8 +128,7 @@ final class AuthSignUpView: UIView {
            conTF?.isEmpty == false,
            usernameTF?.isEmpty == false,
            emailTF?.isEmpty == false,
-           passTF == conTF
-        {
+           passTF == conTF {
             continueButton.isEnabled = true
             return
         }

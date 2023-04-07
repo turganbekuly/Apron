@@ -11,18 +11,18 @@ protocol IngredientSelectionBusinessLogic {
 }
 
 final class IngredientSelectionInteractor: IngredientSelectionBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: IngredientSelectionPresentationLogic
     private let provider: IngredientSelectionProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: IngredientSelectionPresentationLogic,
          provider: IngredientSelectionProviderProtocol = IngredientSelectionProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - IngredientSelectionBusinessLogic
 
     func getProducts(request: IngredientSelectionDataFlow.GetProducts.Request) {

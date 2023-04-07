@@ -16,7 +16,7 @@ protocol AddSavedRecipesDisplayLogic: AnyObject {
 }
 
 final class AddSavedRecipesViewController: ViewController {
-    
+
     struct Section {
         enum Section {
             case recipes
@@ -30,7 +30,7 @@ final class AddSavedRecipesViewController: ViewController {
         var section: Section
         var rows: [Row]
     }
-    
+
     // MARK: - Properties
 
     let interactor: AddSavedRecipesBusinessLogic
@@ -73,7 +73,7 @@ final class AddSavedRecipesViewController: ViewController {
     }
 
     var communityID = 0
-    
+
     // MARK: - Views
 
     private lazy var navigationRightButton: NavigationButton = {
@@ -99,44 +99,44 @@ final class AddSavedRecipesViewController: ViewController {
         view.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         return view
     }()
-    
+
     // MARK: - Init
     init(interactor: AddSavedRecipesBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         backButton.configure(with: "Добавить рецепт")
@@ -144,14 +144,14 @@ final class AddSavedRecipesViewController: ViewController {
             self?.navigationController?.popViewController(animated: true)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navigationRightButton)
         navigationRightButton.snp.makeConstraints {
             $0.width.equalTo(100)
             $0.height.equalTo(30)
         }
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
 
@@ -163,15 +163,15 @@ final class AddSavedRecipesViewController: ViewController {
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     // MARK: - User actions
@@ -191,9 +191,9 @@ final class AddSavedRecipesViewController: ViewController {
         navigationRightButton.startAnimating()
         addToCommunity(communityID: communityID, recipes: selectedRecipes)
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
 }

@@ -9,16 +9,16 @@
 import UIKit
 
 extension TasteOnboardingViewController: UITableViewDataSource {
-    
+
     // MARK: - UITableViewDataSource
     public func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-    
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
-    
+
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -27,11 +27,11 @@ extension TasteOnboardingViewController: UITableViewDataSource {
             return cell
         }
     }
-    
+
 }
 
 extension TasteOnboardingViewController: UITableViewDelegate {
-    
+
     // MARK: - UITableViewDelegate
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]

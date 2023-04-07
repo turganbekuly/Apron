@@ -11,18 +11,18 @@ protocol SavedRecipesBusinessLogic {
 }
 
 final class SavedRecipesInteractor: SavedRecipesBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: SavedRecipesPresentationLogic
     private let provider: SavedRecipesProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: SavedRecipesPresentationLogic,
          provider: SavedRecipesProviderProtocol = SavedRecipesProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - SavedRecipesBusinessLogic
 
     func getSavedRecipes(request: SavedRecipesDataFlow.GetSavedRecipe.Request) {

@@ -13,40 +13,44 @@ import Models
 
 enum RecipeCreationEndpoint {
     case createRecipe(RecipeCreation)
+    case editRecipe(RecipeCreation)
     case uploadImage(image: Data)
 }
 
 extension RecipeCreationEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
-        case .createRecipe:
+        case .createRecipe, .editRecipe:
             return "recipes"
         case .uploadImage:
-            return "image/upload/4"
+            return "file/upload/image/4"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .createRecipe:
             return .post
+        case .editRecipe:
+            return .put
         case .uploadImage:
             return .post
         }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
-        case .createRecipe(let recipeCreation):
+        case let .createRecipe(recipeCreation),
+            let .editRecipe(recipeCreation):
             return .requestParameters(
                 parameters: recipeCreation.toJSON(),
                 encoding: AKJSONEncoding.default
@@ -64,7 +68,7 @@ extension RecipeCreationEndpoint: AKNetworkTargetType {
             )
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -75,5 +79,5 @@ extension RecipeCreationEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

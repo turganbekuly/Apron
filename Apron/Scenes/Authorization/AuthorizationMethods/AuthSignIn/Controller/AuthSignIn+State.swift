@@ -9,16 +9,18 @@
 import Models
 import UIKit
 import Storages
+import OneSignal
+import APRUIKit
 
 extension AuthSignInViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial
         case loginSucceed(Auth)
         case loginFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -28,14 +30,26 @@ extension AuthSignInViewController {
             hideLoader()
             AuthStorage.shared.grantType = GrantType.native.rawValue
             AuthStorage.shared.save(model: model)
-            let viewController = TabBarBuilder(state: .initial(.normal)).build()
+            ApronAnalytics.shared.setupUserInfo(id: 0, name: model.username, email: model.email)
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .authorization(
+                    AuthorizationModel(
+                        email: model.email,
+                        name: model.username ?? "",
+                        sourceType: .signIn
+                    )
+                )
+            )
+            let vc = TabBarBuilder(state: .initial(.normal)).build()
+            let navigationVC = UINavigationController(rootViewController: vc)
             DispatchQueue.main.async {
-                UIApplication.shared.windows.first?.rootViewController = viewController
+                UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .loginFailed:
+            AuthStorage.shared.clear()
             hideLoader()
-            show(type: .error("Не удалось войти. Пожалуйста, попробуйте еще раз!"))
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
-    
+
 }

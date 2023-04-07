@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ru-RU</string>
 	<key>CFBundleDisplayName</key>
-	<string>Apron</string>
+	<string>Moca.kz</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,10 +22,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>kz.turganbekuly.apron.ios.deeplink</string>
+			<string>kz.turganbekuly.apron.ios</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>apron</string>
+				<string>moca.kz</string>
 			</array>
 		</dict>
 	</array>
@@ -33,16 +33,34 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>Configuration.AMPLITUDE_API_KEY</key>
 	<string>becfe5fdb6479d4df85b98227683bc97</string>
+	<key>Configuration.APPMETRICA_API_KEY</key>
+	<string>f7e85fd4-4794-4b7b-a47c-ddc4c3f7f0ea</string>
+	<key>Configuration.APPSFLYER_DEV_KEY</key>
+	<string>Qq2h88bEK2xFLpte8YBKUo</string>
+	<key>Configuration.APP_ID</key>
+	<string>1626436370</string>
 	<key>Configuration.BASE_URL</key>
 	<string>104.248.249.70/receipts/</string>
+	<key>Configuration.DEEPLINK_BASED_URL</key>
+	<string>moca.kz</string>
 	<key>Configuration.HTTP</key>
 	<string>http://</string>
+	<key>Configuration.MIXPANEL_API_KEY</key>
+	<string>9909fda9ea3b836b747832479b34a9e3</string>
 	<key>Configuration.ONE_SIGNAL_APP_ID</key>
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
 	<key>Configuration.WEB_BASED_URL</key>
 	<string>apron.ws</string>
+	<key>Configuration.SENTRY_URL</key>
+	<string>https://7d5b77ad9ba841fe9300861282741c5d@o4504897920106496.ingest.sentry.io/4504897921089536</string>
+	<key>FacebookAppID</key>
+	<string>534377055292946</string>
+	<key>FacebookDisplayName</key>
+	<string>Moca</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSAdvertisingAttributionReportEndpoint</key>
+	<string>https://appsflyer-skadnetwork.com/</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -56,6 +74,8 @@
 	<string>Разрешите приложению доступ к геолокации.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Разрешите приложению доступ к галерее для загрузки фото и видео.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Разрешите приложению доступ для предоставления вам персонализированных рецептов</string>
 	<key>OneSignal_suppress_launch_urls</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -68,11 +88,9 @@
 	<string>LaunchScreen</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
-	<key>UISupportedInterfaceOrientations~iphone</key>
+	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>

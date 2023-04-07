@@ -19,7 +19,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
         }
     }
 
-    var delegate: AssignTypesSelectedDelegate?
+    weak var delegate: AssignTypesSelectedDelegate?
 
     var type: AssignTypes?
 
@@ -28,10 +28,9 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
     let hourComponents = Array(0...23).map { "\($0)" }
     let minComponments = Array(0...59).map { "\($0)" }
     let secComponents = Array(0...59).map { "\($0)" }
-    let hourSeparator = "часов"
-    let minSeparator = "мин"
-    let secSeparator = "сек"
-    let whenToCook = ["Завтрак", "Обед", "Полдник", "Ужин", "Поздний ужин", "В любое время"]
+    let hourSeparator = L10n.Common.Measure.hours
+    let minSeparator = L10n.Common.Measure.min
+    let secSeparator = L10n.Common.Measure.seconds
 
     // MARK: - PanModal Properties
 
@@ -50,7 +49,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
     var transitionDuration: Double {
         return 0.4
     }
-    
+
     // MARK: - Views factory
 
     private lazy var titleLabel: UILabel = {
@@ -64,7 +63,7 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
     private lazy var subtitlLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.textAlignment = .left
         label.numberOfLines = 2
         return label
@@ -79,7 +78,8 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
 
     private lazy var saveButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Common.Save.title, for: .normal)
+        button.backgroundType = .blackBackground
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 17
         button.layer.masksToBounds = true
@@ -90,29 +90,29 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
 
     init(state: State) {
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
         setupViews()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
 
     // MARK: - Setup Views
@@ -121,14 +121,14 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
         [titleLabel, subtitlLabel, picker, saveButton].forEach { view.addSubview($0) }
         switch type {
         case .servings:
-            titleLabel.text = "Количество порции"
-            subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
+            titleLabel.text = L10n.RecipeCreation.Recipe.ServingCount.title
+            subtitlLabel.text = L10n.RecipeCreation.Recipe.ServingCount.subtitle
         case .cookTime:
-            titleLabel.text = "Время приготовления"
-            subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
+            titleLabel.text = L10n.RecipeCreation.Recipe.CookTime.title
+            subtitlLabel.text = L10n.RecipeCreation.Recipe.CookTime.subtitle
         case let .timer(step):
-            titleLabel.text = "Таймер"
-            subtitlLabel.text = "Шаг №\(step)"
+            titleLabel.text = L10n.Recipe.StepByStep.Timer.title
+            subtitlLabel.text = "\(L10n.Recipe.StepByStep.Timer.step)\(step)"
         default: break
         }
         configureColors()
@@ -156,11 +156,11 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
             $0.bottom.equalTo(saveButton.snp.top).offset(-16)
         }
     }
-    
+
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
     }
@@ -173,5 +173,5 @@ final class AssignBottomSheetViewController: ViewController, PanModalPresentable
             self.delegate?.didSelected(type: self.type ?? .servings(""))
         }
     }
-    
+
 }

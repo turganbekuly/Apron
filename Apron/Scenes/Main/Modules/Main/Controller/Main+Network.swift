@@ -6,19 +6,30 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-extension MainViewController {
-    
-    // MARK: - Network
+import Foundation
+import Models
 
-    func joinCommunity(with id: Int) {
-        interactor.joinCommunity(request: .init(id: id))
-    }
+extension MainViewController {
+
+    // MARK: - Network
 
     func getCommunitiesByCategory() {
         interactor.getCommunitiesByCategory(request: .init())
     }
 
-    func getMyCommunities() {
-        interactor.getMyCommunities(request: .init())
+    func getCookNowRecipes() {
+        var searchFilter = SearchFilterRequestBody()
+        searchFilter.dayTimeType = [defineRecipeDayTime().rawValue]
+        interactor.getCookNowRecipes(request: .init(body: searchFilter))
+    }
+
+    func getEventRecipes(eventType: Int) {
+        var searchFilter = SearchFilterRequestBody()
+        searchFilter.eventTypes = [eventType]
+        interactor.getEventRecipes(request: .init(body: searchFilter))
+    }
+
+    func saveRecipe(with id: Int) {
+        interactor.saveRecipe(request: .init(id: id))
     }
 }

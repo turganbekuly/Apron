@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Product: Codable {
+public struct Product: Codable, Equatable {
     // MARK: - Coding Keys
 
     private enum CodingKeys: String, CodingKey {
@@ -46,5 +46,11 @@ public struct Product: Codable {
         self.proteinMass = json[CodingKeys.proteinMass.rawValue] as? Double
         self.fatMass = json[CodingKeys.fatMass.rawValue] as? Double
         self.carbsMass = json[CodingKeys.carbsMass.rawValue] as? Double
+    }
+
+    // MARK: - Methods
+
+    public static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.id == rhs.id
     }
 }

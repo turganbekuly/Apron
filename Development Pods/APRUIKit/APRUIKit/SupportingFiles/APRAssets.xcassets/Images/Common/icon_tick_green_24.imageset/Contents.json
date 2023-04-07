@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon_tick_green_24.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -54,4 +54,3 @@ final class StepByStepPagerView: UICollectionView {
         backgroundColor = .clear
     }
 }
-

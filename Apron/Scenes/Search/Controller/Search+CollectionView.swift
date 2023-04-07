@@ -9,27 +9,26 @@ import Models
 import APRUIKit
 import UIKit
 
-
 extension SearchViewController: UICollectionViewDataSource {
 
     // MARK: - UICollectionViewDataSource
 
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        historyCollectionCell.count
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        categoryCollectionCell.count
     }
 
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        historyCollectionCell[section].rows.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        categoryCollectionCell[section].rows.count
     }
 
-    public func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let row = historyCollectionCell[indexPath.section].rows[indexPath.row]
+        let row = categoryCollectionCell[indexPath.section].rows[indexPath.row]
         switch row {
-        case .history:
-            let cell: SearchHistoryCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
+        case .category:
+            let cell: SearchSuggestionCategoryCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         }
     }
@@ -38,27 +37,32 @@ extension SearchViewController: UICollectionViewDataSource {
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
 
-    public func collectionView(
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let row = categoryCollectionCell[indexPath.section].rows[indexPath.row]
+        switch row {
+        case let .category(type):
+            select(block: type)
+        }
+    }
+
+    func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let row = historyCollectionCell[indexPath.section].rows[indexPath.row]
+        let row = categoryCollectionCell[indexPath.section].rows[indexPath.row]
         switch row {
-        case let .history(history):
-            let width = min(Typography.regular14(text: history.text).styled.size().width + 52, collectionView.bounds.width)
-            return CGSize(width: width, height: 42)
+        case.category:
+            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 160)
         }
     }
 
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let row = historyCollectionCell[indexPath.section].rows[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let row = categoryCollectionCell[indexPath.section].rows[indexPath.row]
         switch row {
-        case let .history(history):
-            guard let cell = cell as? SearchHistoryCollectionCell else { return }
-            cell.delegate = self
-            cell.configure(searchItem: history)
+        case let .category(category):
+            guard let cell = cell as? SearchSuggestionCategoryCollectionCell else { return }
+            cell.configure(with: category)
         }
     }
 }
-

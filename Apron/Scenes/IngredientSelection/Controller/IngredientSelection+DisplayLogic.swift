@@ -9,7 +9,7 @@
 import UIKit
 
 extension IngredientSelectionViewController: IngredientSelectionDisplayLogic {
-    
+
     // MARK: - IngredientSelectionDisplayLogic
 
     func displayProducts(viewModel: IngredientSelectionDataFlow.GetProducts.ViewModel) {

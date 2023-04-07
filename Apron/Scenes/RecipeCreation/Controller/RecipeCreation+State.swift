@@ -9,43 +9,76 @@
 import Models
 import UIKit
 import Configurations
+import RemoteConfig
+import HapticTouch
+import OneSignal
+import APRUIKit
 
 extension RecipeCreationViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(RecipeCreationInitialState)
+        case recipeEditingSucceed(RecipeResponse)
+        case recipeEditingFailed(AKNetworkError)
         case recipeCreationSucceed(RecipeResponse)
         case recipeCreationFailed(AKNetworkError)
         case uploadImageSucceed(String)
         case uploadImageFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
         case let .initial(state):
             self.initialState = state
+            OneSignal.addTrigger("recipe_creation", withValue: "opened")
         case let .recipeCreationSucceed(recipe):
+            let remoteConfigManager = RemoteConfigManager.shared
             saveButtonLoader(isLoading: false)
             recipeCreationStorage.recipeCreation = nil
-            ApronAnalytics.shared.sendAmplitudeEvent(
+            ApronAnalytics.shared.sendAnalyticsEvent(
                 .recipeCreated(
                     RecipeCreatedModel(
                         recipeID: recipe.id,
                         recipeName: recipe.recipeName ?? "",
                         sourceType: analyticsSourceType ?? .community,
                         imageAdded: selectedImage != nil ? true : false,
-                        ingredients: recipe.ingredients?.map { $0.product?.name ?? ""} ?? []
+                        ingredients: recipe.ingredients?.map { $0.product?.name ?? ""} ?? [],
+                        isPaidRecipe: remoteConfigManager.remoteConfig.isPaidRecipeEnabled
                     )
                 )
             )
-            show(type: .success("Рецепт создался успешно"), firstAction: nil, secondAction: nil)
-            delegate?.didCreate()
-            self.navigationController?.popViewController(animated: true)
-        case .recipeCreationFailed:
+            HapticTouch.generateSuccess()
+            show(type: .success(L10n.RecipeCreation.MessageAlert.success), firstAction: nil, secondAction: nil)
+            self.dismiss(animated: true) {
+                self.delegate?.didCreate()
+            }
+        case let .recipeEditingSucceed(recipe):
+            let remoteConfigManager = RemoteConfigManager.shared
             saveButtonLoader(isLoading: false)
-            show(type: .error("Произошла ошибка при создании"), firstAction: nil, secondAction: nil)
+            recipeCreationStorage.recipeCreation = nil
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .recipeCreated(
+                    RecipeCreatedModel(
+                        recipeID: recipe.id,
+                        recipeName: recipe.recipeName ?? "",
+                        sourceType: analyticsSourceType ?? .community,
+                        imageAdded: selectedImage != nil ? true : false,
+                        ingredients: recipe.ingredients?.map { $0.product?.name ?? ""} ?? [],
+                        isPaidRecipe: remoteConfigManager.remoteConfig.isPaidRecipeEnabled
+                    )
+                )
+            )
+            HapticTouch.generateSuccess()
+            show(type: .success(L10n.RecipeCreation.MessageAlert.success), firstAction: nil, secondAction: nil)
+            self.dismiss(animated: true) {
+                self.delegate?.didCreate()
+            }
+        case .recipeCreationFailed, .recipeEditingFailed:
+            saveButtonLoader(isLoading: false)
+            HapticTouch.generateError()
+            show(type: .error(L10n.Alert.errorMessage), firstAction: nil, secondAction: nil)
         case let .uploadImageSucceed(path):
             recipeCreation?.imageURL = Configurations.downloadImageURL(imagePath: path)
             configureImageCell(isLoaded: false)
@@ -53,8 +86,9 @@ extension RecipeCreationViewController {
             replaceImageCell(type: .image)
         case .uploadImageFailed:
             configureImageCell(isLoaded: false)
-            show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
+            HapticTouch.generateError()
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
-    
+
 }

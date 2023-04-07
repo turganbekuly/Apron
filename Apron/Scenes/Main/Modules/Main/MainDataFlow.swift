@@ -10,7 +10,7 @@ import Models
 import AKNetwork
 
 public enum MainDataFlow {
-    
+
 }
 
 extension MainDataFlow {
@@ -33,39 +33,58 @@ extension MainDataFlow {
 }
 
 extension MainDataFlow {
-    enum GetMyCommunities {
+    enum GetCookNowRecipes {
         struct Request {
-
+            let body: SearchFilterRequestBody
         }
         struct Response {
-            let result: GetMyCommunitiesResult
+            let result: GetCookNowRecipesResult
         }
         struct ViewModel {
             var state: MainViewController.State
         }
     }
 
-    enum GetMyCommunitiesResult {
-        case successful(model: [CommunityResponse])
+    enum GetCookNowRecipesResult {
+        case successful(model: [RecipeResponse])
         case failed(error: AKNetworkError)
     }
 }
 
 extension MainDataFlow {
-    enum JoinCommunity {
+    enum GetEventRecipes {
         struct Request {
-            let id: Int
+            let body: SearchFilterRequestBody
         }
         struct Response {
-            let result: JoinCommunityResult
+            let result: GetEventRecipesResult
         }
         struct ViewModel {
             var state: MainViewController.State
         }
     }
 
-    enum JoinCommunityResult {
-        case successfull
+    enum GetEventRecipesResult {
+        case successful(model: [RecipeResponse])
+        case failed(error: AKNetworkError)
+    }
+}
+
+extension MainDataFlow {
+    enum SaveRecipe {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: SaveRecipeResult
+        }
+        struct ViewModel {
+            var state: MainViewController.State
+        }
+    }
+
+    enum SaveRecipeResult {
+        case successful(model: RecipeResponse)
         case failed(error: AKNetworkError)
     }
 }

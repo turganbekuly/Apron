@@ -15,10 +15,10 @@ protocol ShoppingListPresentationLogic: AnyObject {
 }
 
 final class ShoppingListPresenter: ShoppingListPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: ShoppingListDisplayLogic?
-    
+
     // MARK: - ShoppingListPresentationLogic
 
     func fetchCartItems(response: ShoppingListDataFlow.GetCartItems.Response) {

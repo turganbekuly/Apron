@@ -26,8 +26,7 @@ extension RecipeInstructionsViewCell: UITableViewDataSource {
     }
 }
 
-extension RecipeInstructionsViewCell:
-    UITableViewDelegate {
+extension RecipeInstructionsViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = instructionsSections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -37,7 +36,7 @@ extension RecipeInstructionsViewCell:
             if let _ = instruction.image {
                 imageHeight = 220
             }
-            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 40 + imageHeight
+            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10) + 40 + imageHeight
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -49,7 +48,7 @@ extension RecipeInstructionsViewCell:
             if let _ = instruction.image {
                 imageHeight = 220
             }
-            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 40 + imageHeight
+            return (instruction.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10) + 40 + imageHeight
         }
     }
 
@@ -58,9 +57,7 @@ extension RecipeInstructionsViewCell:
         switch row {
         case let .instruction(instruction):
             guard let cell = cell as? RecipeCreationInstructionViewCell else { return }
-            cell.configure(instruction: instruction, stepCount:  "\(indexPath.row + 1)")
+            cell.configure(instruction: instruction, stepCount: "\(indexPath.row + 1)")
         }
     }
 }
-
-

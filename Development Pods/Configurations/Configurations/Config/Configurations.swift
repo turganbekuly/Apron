@@ -26,11 +26,23 @@ public final class Configurations {
     }
 
     public static func downloadImageURL(imagePath: String) -> String {
-        return "\(getBaseURL())image/download?fileName=\(imagePath)"
+        return "\(getBaseURL())file/download?fileName=\(imagePath)"
     }
 
     public static func getWebBaseHost() -> String {
         getValue(for: ConfigurationKeys.webBasedURL) ?? ""
+    }
+
+    public static func getDeeplinkBaseURL() -> String {
+        guard let urlString = getValue(for: ConfigurationKeys.deeplinkBasedURL) else {
+            print("Cannot get base url")
+            return ""
+        }
+        return "\(urlString)"
+    }
+
+    public static func getAppId() -> String {
+        getValue(for: ConfigurationKeys.app_id) ?? ""
     }
 
     public static func getOneSignalAppID() -> String {
@@ -39,10 +51,38 @@ public final class Configurations {
 
     public static func getAmplitudeAPIKey() -> String {
         guard let apiKey = getValue(for: ConfigurationKeys.amplitudeApiKey) else {
-            fatalError("Cannot get api key")
+            print("Cannot get api key")
+            return ""
         }
 
         return apiKey
+    }
+
+    public static func getSentryURL() -> String {
+        guard let urlString = getValue(for: ConfigurationKeys.sentryURL) else {
+            print("Cannot get api key")
+            return ""
+        }
+
+        return urlString
+    }
+
+    public static func getMixpanelAPIKey() -> String {
+        guard let apiKey = getValue(for: ConfigurationKeys.mixpanelApiKey) else {
+            print("Cannot get api key")
+            return ""
+        }
+
+        return apiKey
+    }
+
+    public static func getAppsflyerDevKey() -> String {
+        guard let devKey = getValue(for: ConfigurationKeys.appsflyerDevKey) else {
+            print("Cannot get dev key")
+            return ""
+        }
+
+        return devKey
     }
 
     private static func getValue(for key: String) -> String? {
@@ -50,4 +90,3 @@ public final class Configurations {
     }
 
 }
-

@@ -11,7 +11,7 @@ import UIKit
 import APRUIKit
 
 extension RecipePageViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(id: Int, RecipeCreationSourceTypeModel)
@@ -22,7 +22,7 @@ extension RecipePageViewController {
         case displayComments([RecipeCommentResponse])
         case displayCommentsFailed
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -37,15 +37,16 @@ extension RecipePageViewController {
             getComments(by: recipe.id)
         case .displayError:
             hideLoader()
-        case let .saveRecipe(newCount):
-            print(newCount)
+        case .saveRecipe:
+            bottomStickyView.configure(isSaved: true)
         case .saveRecipeFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            bottomStickyView.configure(isSaved: false)
+            show(type: .error(L10n.Alert.errorMessage))
         case let .displayComments(comment):
             self.recipeComments = comment
         case .displayCommentsFailed:
             break
         }
     }
-    
+
 }

@@ -16,7 +16,7 @@ protocol AuthSignInServiceProtocol {
 }
 
 final class AuthSignInService: AuthSignInServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<AuthSignInEndpoint>
 
@@ -24,7 +24,7 @@ final class AuthSignInService: AuthSignInServiceProtocol {
     init(provider: AKNetworkProvider<AuthSignInEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - AuthSignInServiceProtocol
 
     func login(

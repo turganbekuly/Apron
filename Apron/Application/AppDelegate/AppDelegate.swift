@@ -11,11 +11,13 @@ import Amplitude
 import Storages
 import AKNetwork
 import FirebaseDynamicLinks
+import AppTrackingTransparency
+import AppsFlyerLib
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    internal var window: UIWindow?
+    var window: UIWindow?
 
     private lazy var configurators: [ApplicationConfiguratorProtocol] = {
         [
@@ -24,30 +26,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
     }()
 
-    internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         setupFirstRun()
         configurators.forEach { $0.configure(application, launchOptions: launchOptions) }
-
         return true
     }
 
-    internal func application(
+    func application(
         _ app: UIApplication,
         open url: URL,
-        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+        options: [UIApplication.OpenURLOptionsKey: Any] = [:]
     ) -> Bool {
         if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url),
-           let dynamicURL = dynamicLink.url
-        {
+           let dynamicURL = dynamicLink.url {
             DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: dynamicURL)
             return true
         }
+        AppsFlyerLib.shared().handleOpen(url, options: options)
         DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
         return true
     }
 
-    internal func application(
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        let user = AuthStorage.shared
+        AppsFlyerLib.shared().start()
+        AppsFlyerLib.shared().waitForATTUserAuthorization(timeoutInterval: 120)
+        AppsFlyerLib.shared().customData = ["id": 0, "name": user.username ?? "", "email": user.email ?? ""]
+        requestTrackingAuthorization()
+    }
+
+    func application(
         _ application: UIApplication,
         continue userActivity: NSUserActivity,
         restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
@@ -56,6 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL
         else { return false }
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: userActivity.webpageURL)
+        }
+        AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
         let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
             guard error == nil else { return }
 
@@ -66,9 +79,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         if linkHandled { return true }
 
-        DeeplinkServicesContainer.shared.deeplinkHandler.handleDeeplink(with: url)
-
         return true
+    }
+
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        #if DEBUG
+        AppsFlyerLib.shared().useUninstallSandbox = true
+        #endif
+
+        AppsFlyerLib.shared().registerUninstall(deviceToken)
+    }
+
+    @objc func requestTrackingAuthorization() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { (status) in
+                switch status {
+                case .denied:
+                    print("AuthorizationSatus is denied")
+                case .notDetermined:
+                    print("AuthorizationSatus is notDetermined")
+                case .restricted:
+                    print("AuthorizationSatus is restricted")
+                case .authorized:
+                    print("AuthorizationSatus is authorized")
+                @unknown default:
+                    fatalError("Invalid authorization status")
+                }
+            }
+        }
     }
 
     private func setupFirstRun() {
@@ -81,4 +122,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
-

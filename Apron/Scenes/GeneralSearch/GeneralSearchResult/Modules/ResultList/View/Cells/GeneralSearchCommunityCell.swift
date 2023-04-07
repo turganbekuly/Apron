@@ -69,27 +69,27 @@ final class GeneralSearchCommunityCell: UITableViewCell {
 
     private lazy var recipeImageIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.cmntRecipeIcon.image
+        imageView.image = APRAssets.cmntRecipeIcon.image
         return imageView
     }()
 
     private lazy var recipeCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         return label
     }()
 
     private lazy var membersImageIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.cmntMemberIcon.image
+        imageView.image = APRAssets.cmntMemberIcon.image
         return imageView
     }()
 
     private lazy var membersCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         return label
     }()
 
@@ -179,13 +179,13 @@ final class GeneralSearchCommunityCell: UITableViewCell {
             joinButton.setTitle("Вступить", for: .normal)
             joinButton.setBackgroundColor(.black, for: .normal)
             joinButton.setTitleColor(.white, for: .normal)
-            joinButton.snp.updateConstraints( {
+            joinButton.snp.updateConstraints({
                 $0.width.equalTo(93)
             })
             return
         }
         joinButton.setTitle("Уже вступили", for: .normal)
-        joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
+        joinButton.setBackgroundColor(APRAssets.colorsYello.color, for: .normal)
         joinButton.setTitleColor(.black, for: .normal)
         joinButton.snp.updateConstraints {
             $0.width.equalTo(129)
@@ -199,7 +199,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
         id = community.id
         communityImageView.kf.setImage(
             with: URL(string: community.image ?? ""),
-            placeholder: ApronAssets.addedImagePlaceholder.image
+            placeholder: APRAssets.addedImagePlaceholder.image
         )
 
         communityNameLabel.text = community.name ?? ""

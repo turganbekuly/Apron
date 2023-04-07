@@ -23,9 +23,9 @@ public final class TagCell: UICollectionViewCell {
     private lazy var titleBackgroundView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
-        view.layer.cornerRadius = 12
+        view.layer.cornerRadius = 18
         view.layer.borderWidth = 0.5
-        view.layer.borderColor = ApronAssets.gray.color.cgColor
+        view.layer.borderColor = APRAssets.gray.color.cgColor
         return view
     }()
 
@@ -87,11 +87,11 @@ public final class TagCell: UICollectionViewCell {
 
     private func configureColors() {
         titleBackgroundView.layer.borderWidth = isSelected ? 0 : 0.5
-        titleBackgroundView.layer.borderColor = isSelected ? .none : ApronAssets.gray.color.cgColor
+        titleBackgroundView.layer.borderColor = isSelected ? .none : APRAssets.gray.color.cgColor
         titleBackgroundView.backgroundColor = isSelected
-            ? ApronAssets.colorsYello.color
+            ? APRAssets.primaryTextMain.color
             : .white
-        titleLabel.textColor = .black
+        titleLabel.textColor = isSelected ? .white : .black
     }
 
 }

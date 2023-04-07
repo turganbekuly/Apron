@@ -14,6 +14,7 @@ protocol BottomStickyViewDelegate: AnyObject {
     func addButtonTapped()
     func saveButtonTapped()
     func textFieldTapped()
+    func navigateToStepByStepMode()
 }
 
 final class RecipeBottomStickyView: View {
@@ -28,34 +29,31 @@ final class RecipeBottomStickyView: View {
 
     // MARK: - Views factory
 
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-
     private lazy var textField: RoundedTextField = {
-        let textField = RoundedTextField(placeholder: "Оставьте ваш отзыв")
+        let textField = RoundedTextField(placeholder: L10n.Recipe.Reviews.tfPlaceholder)
         textField.textField.isUserInteractionEnabled = false
         return textField
     }()
 
-    private lazy var addButton: BlackOpButton = {
-        let button = BlackOpButton()
-        button.setTitle("Добавить в корзину", for: .normal)
+    private lazy var addButton: NavigationButton = {
+        let button = NavigationButton()
+        button.backgroundType = .whiteBackground
+        button.setTitle(L10n.Recipe.Ingredients.addToCart, for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
         button.clipsToBounds = true
         return button
     }()
 
-    private lazy var saveButton: BlackOpButton = {
-        let button = BlackOpButton()
-        button.setTitle("Сохранить", for: .normal)
+    private lazy var saveButton: NavigationButton = {
+        let button = NavigationButton()
+        button.backgroundType = .greenBackground
+        button.setTitle(L10n.Authorization.Username.buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
         button.clipsToBounds = true
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-        button.setImage(ApronAssets.recipeFavoriteIcon.image, for: .normal)
+        button.setImage(APRAssets.recipeFavoriteIcon.image, for: .normal)
         return button
     }()
 
@@ -105,9 +103,11 @@ final class RecipeBottomStickyView: View {
 
     @objc
     private func saveButtonTapped() {
-        guard !isSaved else { return }
+        guard !isSaved else {
+            delegate?.navigateToStepByStepMode()
+            return
+        }
         HapticTouch.generateSuccess()
-        configureSavedButton()
         delegate?.saveButtonTapped()
     }
 
@@ -119,13 +119,16 @@ final class RecipeBottomStickyView: View {
     // MARK: - Private methods
 
     private func configureSavedButton() {
-        saveButton.backgroundType = .yelloBackground
-        saveButton.setTitle("Сохранен", for: .normal)
-        saveButton.setImage(ApronAssets.recipeFavoriteIcon.image.withTintColor(.black), for: .normal)
-
-        // For made it flow
-//        saveButton.setTitle("Приготовил/а", for: .normal)
-//        saveButton.setImage(ApronAssets.checkOvalOutline.image.withTintColor(.black), for: .normal)
+        guard !isSaved else {
+            saveButton.setTitle(L10n.Recipe.Cook.StepByStep.title, for: .normal)
+            saveButton.setImage(APRAssets.recipePlayIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
+            saveButton.tintColor = .white
+            saveButton.setImage(nil, for: .highlighted)
+            return
+        }
+        // MARK: - TODO SAVED/UNSAVED FLOW
+        saveButton.setTitle(L10n.Authorization.Username.buttonTitle, for: .normal)
+        saveButton.setImage(APRAssets.favoriteIcon24.image.withTintColor(.white), for: .normal)
     }
 
     // MARK: - Public methods

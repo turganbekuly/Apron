@@ -5,7 +5,6 @@
 //  Created by Akarys Turganbekuly on 08.04.2022.
 //
 
-
 import UIKit
 import APRUIKit
 import Models
@@ -59,7 +58,7 @@ final class RecipeCreationIngredientView: UIView {
 
     private lazy var removeButton: UIButton = {
         let button = UIButton()
-        button.setImage(ApronAssets.trashIcon.image, for: .normal)
+        button.setImage(APRAssets.trashIcon.image, for: .normal)
         button.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -76,7 +75,7 @@ final class RecipeCreationIngredientView: UIView {
         snp.makeConstraints {
             $0.height.equalTo(38)
         }
-        
+
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

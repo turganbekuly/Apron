@@ -9,18 +9,22 @@
 import UIKit
 
 extension MainViewController: MainDisplayLogic {
-    
-    // MARK: - MainDisplayLogic
 
-    func displayJoinCommunity(viewModel: MainDataFlow.JoinCommunity.ViewModel) {
-        state = viewModel.state
-    }
+    // MARK: - MainDisplayLogic
 
     func displayCommunities(viewModel: MainDataFlow.GetCommunities.ViewModel) {
         state = viewModel.state
     }
 
-    func displayMyCommunities(viewModel: MainDataFlow.GetMyCommunities.ViewModel) {
+    func displayCookNowRecipes(viewModel: MainDataFlow.GetCookNowRecipes.ViewModel) {
+        state = viewModel.state
+    }
+
+    func displayEventRecipes(viewModel: MainDataFlow.GetEventRecipes.ViewModel) {
+        state = viewModel.state
+    }
+
+    func displaySavedRecipe(viewModel: MainDataFlow.SaveRecipe.ViewModel) {
         state = viewModel.state
     }
 }

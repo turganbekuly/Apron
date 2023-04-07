@@ -22,4 +22,3 @@ struct DynamicCollectionDelegateCellViewModel: IDynamicCollectionDelegateCellVie
     var categoryID: Int
     var dynamicCommunities: [CommunityResponse]
 }
-

@@ -27,4 +27,3 @@ public class Throttler {
         queue.asyncAfter(deadline: .now() + Double(minimumDelay), execute: workItem)
     }
 }
-

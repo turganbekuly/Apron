@@ -51,6 +51,3 @@ public struct CommunityCreatedModel: Codable {
         return json
     }
 }
-
-
-

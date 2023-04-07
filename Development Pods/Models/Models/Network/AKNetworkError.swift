@@ -49,4 +49,3 @@ extension AKNetworkError {
     public static let noInternetConnection = AKNetworkError(code: .noInternetConnection, message: "")
 
 }
-

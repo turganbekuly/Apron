@@ -10,7 +10,7 @@ import Models
 import UIKit
 
 extension AddSavedRecipesViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(AddSavedRecipesType)
@@ -19,7 +19,7 @@ extension AddSavedRecipesViewController {
         case addRecipesToCommunitySucceed
         case addRecipesToCommunityFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {

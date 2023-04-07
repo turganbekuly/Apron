@@ -19,7 +19,7 @@ xcassets:
     - Development Pods/APRUIKit/APRUIKit/SupportingFiles/APRAssets.xcassets
   outputs:
     - templatePath: Development Pods/APRUIKit/Templates/Xcassets.stencil
-      output: Development Pods/APRUIKit/APRUIKit/Generated/ApronAssets.swift
+      output: Development Pods/APRUIKit/APRUIKit/Generated/APRAssets.swift
       params:
-        enumName: ApronAssets
+        enumName: APRAssets
         publicAccess: 1

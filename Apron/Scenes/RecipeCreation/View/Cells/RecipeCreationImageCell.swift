@@ -33,7 +33,7 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var imagePlaceholder: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.recipeSampleImage.image
+        imageView.image = APRAssets.recipeSampleImage.image
         imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -43,8 +43,9 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var deleteButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-        button.setImage(ApronAssets.trashIcon.image, for: .normal)
+        button.setBackgroundColor(APRAssets.primaryTextMain.color, for: .normal)
+        button.setImage(APRAssets.trashIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
         button.layer.cornerRadius = 15.5
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
@@ -53,8 +54,9 @@ final class RecipeCreationImageCell: UITableViewCell {
 
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = ApronAssets.colorsYello.color
-        button.setImage(ApronAssets.editIcon.image, for: .normal)
+        button.setBackgroundColor(APRAssets.primaryTextMain.color, for: .normal)
+        button.setImage(APRAssets.editIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
         button.layer.cornerRadius = 15.5
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
@@ -106,7 +108,7 @@ final class RecipeCreationImageCell: UITableViewCell {
     func configure(imageURL: String?) {
         imagePlaceholder.kf.setImage(
             with: URL(string: imageURL ?? ""),
-            placeholder: ApronAssets.addedImagePlaceholder.image,
+            placeholder: APRAssets.addedImagePlaceholder.image,
             options: [.transition(.fade(0.25))]
         )
     }

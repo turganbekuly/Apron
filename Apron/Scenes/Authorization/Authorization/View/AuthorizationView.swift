@@ -24,7 +24,7 @@ public final class AuthorizationView: UIView {
     // MARK: - Properties
 
     weak var delegate: IAuthorizationView?
-    
+
     // MARK: - Initialization
     public init(delegate: IAuthorizationView?) {
         self.delegate = delegate
@@ -41,14 +41,14 @@ public final class AuthorizationView: UIView {
 
     lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.loginBackgroundImage.image
+        imageView.image = UIImage(named: "moca-2")
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
     lazy var overlayView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black.withAlphaComponent(0.5)
+        view.backgroundColor = .black.withAlphaComponent(0.6)
         view.isUserInteractionEnabled = true
         return view
     }()
@@ -65,17 +65,18 @@ public final class AuthorizationView: UIView {
 
     lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.logoWhite.image
+        imageView.image = APRAssets.mocoLogoWhiteBackground.image
+        imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
     lazy var signUpButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = ApronAssets.colorsYello.color
+        button.backgroundColor = APRAssets.mainAppColor.color
         button.setTitle(L10n.Authorization.Button.SignUp.title, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular20
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(sigupButtonTapped), for: .touchUpInside)
         return button
@@ -116,9 +117,9 @@ public final class AuthorizationView: UIView {
 
         logoImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(-80)
-            $0.width.equalTo(215)
-            $0.height.equalTo(161)
+            $0.width.equalTo(250)
+            $0.height.equalTo(190)
+            $0.bottom.equalTo(appleSignInButton.snp.top).offset(-50)
         }
 
         appleSignInButton.snp.makeConstraints {

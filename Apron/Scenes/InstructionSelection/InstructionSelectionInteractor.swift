@@ -11,11 +11,11 @@ protocol InstructionSelectionBusinessLogic {
 }
 
 final class InstructionSelectionInteractor: InstructionSelectionBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: InstructionSelectionPresentationLogic
     private let provider: InstructionSelectionProviderProtocol
-    
+
     // MARK: - Initialization
     init(
         presenter: InstructionSelectionPresentationLogic,
@@ -24,7 +24,7 @@ final class InstructionSelectionInteractor: InstructionSelectionBusinessLogic {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - InstructionSelectionBusinessLogic
 
     func uploadImage(request: InstructionSelectionDataFlow.UploadImage.Request) {

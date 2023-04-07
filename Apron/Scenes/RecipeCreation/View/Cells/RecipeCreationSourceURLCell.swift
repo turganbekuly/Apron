@@ -50,6 +50,7 @@ final class RecipeCreationSourceURLCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         [titleLabel, roudedTextField].forEach { contentView.addSubview($0) }
         setupConstraints()
     }
@@ -82,4 +83,3 @@ final class RecipeCreationSourceURLCell: UITableViewCell {
         roudedTextField.textField.text = sourceName ?? ""
     }
 }
-

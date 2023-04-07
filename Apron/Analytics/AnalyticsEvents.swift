@@ -18,8 +18,12 @@ enum CustomerStatus: String {
 enum RecipeCreationSourceTypeModel: String, Codable {
     case community = "community_page"
     case saved = "saved_recipes"
+    case myRecipes
     case deeplink
     case search
+    case main
+    case banner
+    case recipePage
 }
 
 enum CommunityCreationSourceTypeModel: String, Codable {
@@ -41,10 +45,12 @@ enum AnalyticsEvents {
     case recipeCreationPageViewed(RecipeCreationSourceTypeModel)
     case recipeCreated(RecipeCreatedModel)
     case recipePageViewed(RecipePageViewedModel)
-    case recipeIngredientsAddedToShoppingList([String])
     case shoppingListViewed
     case ingredientAdded(IngredientAddedModel)
+    case shoppingListCheckoutTapped([String])
     case stepByStepViewed
+    case filtersApplied(SearchFilterRequestBody)
+    case adBannerTapped(AdBannerModel)
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -72,18 +78,22 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "recipe_created"
         case .recipePageViewed:
             return "recipe_page_viewed"
-        case .recipeIngredientsAddedToShoppingList:
-            return "recipe_ingredients_added_to_shopping_list"
         case .shoppingListViewed:
             return "shopping_list_viewed"
         case .ingredientAdded:
-            return "ingredient_added"
+            return "ingredients_added"
         case .stepByStepViewed:
             return "step_by_step_viewed"
+        case .shoppingListCheckoutTapped:
+            return "shopping_list_checkout_tapped"
+        case .filtersApplied:
+            return "search_filters_applied"
+        case .adBannerTapped:
+            return "ad_banner_tapped"
         }
     }
 
-    var eventProperties: [String : Any] {
+    var eventProperties: [String: Any] {
         switch self {
         case let .homePageViewed(model):
             return ["customer_status": model.rawValue]
@@ -107,14 +117,18 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return model.toJSON()
         case let .recipePageViewed(model):
             return model.toJSON()
-        case let .recipeIngredientsAddedToShoppingList(model):
-            return ["ingredients": model]
         case .shoppingListViewed:
             return [:]
         case let .ingredientAdded(model):
             return model.toJSON()
         case .stepByStepViewed:
             return [:]
+        case let .shoppingListCheckoutTapped(ingredients):
+            return ["ingredients": ingredients]
+        case let .filtersApplied(model):
+            return model.toJSON()
+        case let .adBannerTapped(model):
+            return model.toJSON()
         }
     }
 }

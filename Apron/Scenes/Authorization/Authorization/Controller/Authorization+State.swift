@@ -12,14 +12,14 @@ import Storages
 import APRUIKit
 
 extension AuthorizationViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial
         case loginSucceed(Auth)
         case loginFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -29,13 +29,25 @@ extension AuthorizationViewController {
             hideLoader()
             AuthStorage.shared.grantType = GrantType.apple.rawValue
             AuthStorage.shared.save(model: model)
-            let viewController = TabBarBuilder(state: .initial(.normal)).build()
+            ApronAnalytics.shared.setupUserInfo(id: 0, name: model.username, email: model.email)
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .authorization(
+                    AuthorizationModel(
+                        email: model.email,
+                        name: model.username ?? "",
+                        sourceType: .apple
+                    )
+                )
+            )
+            let vc = TabBarBuilder(state: .initial(.normal)).build()
+            let navigationVC = UINavigationController(rootViewController: vc)
             DispatchQueue.main.async {
-                UIApplication.shared.windows.first?.rootViewController = viewController
+                UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .loginFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            AuthStorage.shared.clear()
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
-    
+
 }

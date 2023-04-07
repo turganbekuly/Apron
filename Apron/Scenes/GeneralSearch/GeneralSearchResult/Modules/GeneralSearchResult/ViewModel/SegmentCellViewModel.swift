@@ -28,4 +28,3 @@ public struct SegmentCellViewModel: SegmentCellViewModelProtocol {
     }
 
 }
-

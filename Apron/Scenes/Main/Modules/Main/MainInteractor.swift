@@ -7,17 +7,19 @@
 //
 
 protocol MainBusinessLogic {
-    func joinCommunity(request: MainDataFlow.JoinCommunity.Request)
     func getCommunitiesByCategory(request: MainDataFlow.GetCommunities.Request)
-    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request)
+    func getCookNowRecipes(request: MainDataFlow.GetCookNowRecipes.Request)
+    func getEventRecipes(request: MainDataFlow.GetEventRecipes.Request)
+//    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request)
+    func saveRecipe(request: MainDataFlow.SaveRecipe.Request)
 }
 
 final class MainInteractor: MainBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: MainPresentationLogic
     private let provider: MainProviderProtocol
-    
+
     // MARK: - Initialization
     init(
         presenter: MainPresentationLogic,
@@ -26,19 +28,8 @@ final class MainInteractor: MainBusinessLogic {
         self.presenter = presenter
         self.provider = provider
     }
-    
-    // MARK: - MainBusinessLogic
 
-    func joinCommunity(request: MainDataFlow.JoinCommunity.Request) {
-        provider.joinCommunity(request: request) { [weak self] in
-            switch $0 {
-            case .successfull:
-                self?.presenter.joinCommunity(response: .init(result: .successfull))
-            case let .failed(error):
-                self?.presenter.joinCommunity(response: .init(result: .failed(error: error)))
-            }
-        }
-    }
+    // MARK: - MainBusinessLogic
 
     func getCommunitiesByCategory(request: MainDataFlow.GetCommunities.Request) {
         provider.getCommunitiesByCategory(request: request) { [weak self] in
@@ -55,18 +46,51 @@ final class MainInteractor: MainBusinessLogic {
         }
     }
 
-    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request) {
-        provider.getMyCommunities(request: request) { [weak self] in
+    func getCookNowRecipes(request: MainDataFlow.GetCookNowRecipes.Request) {
+        provider.getCookNowRecipes(request: request) { [weak self] in
             switch $0 {
             case let .successful(model):
-                self?.presenter.getMyCommunities(
-                    response: .init(result: .successful(model: model))
-                )
+                self?.presenter.getCookNowRecipes(response: .init(result: .successful(model: model)))
             case let .failed(error):
-                self?.presenter.getMyCommunities(
-                    response: .init(result: .failed(error: error))
-                )
+                self?.presenter.getCookNowRecipes(response: .init(result: .failed(error: error)))
             }
         }
     }
+
+    func getEventRecipes(request: MainDataFlow.GetEventRecipes.Request) {
+        provider.getEventRecipes(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.getEventRecipes(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getEventRecipes(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+    func saveRecipe(request: MainDataFlow.SaveRecipe.Request) {
+        provider.saveRecipe(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.saveRecipe(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.saveRecipe(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+
+//    func getMyCommunities(request: MainDataFlow.GetMyCommunities.Request) {
+//        provider.getMyCommunities(request: request) { [weak self] in
+//            switch $0 {
+//            case let .successful(model):
+//                self?.presenter.getMyCommunities(
+//                    response: .init(result: .successful(model: model))
+//                )
+//            case let .failed(error):
+//                self?.presenter.getMyCommunities(
+//                    response: .init(result: .failed(error: error))
+//                )
+//            }
+//        }
+//    }
 }

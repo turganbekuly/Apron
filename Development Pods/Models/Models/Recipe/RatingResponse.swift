@@ -14,7 +14,7 @@ public struct RatingResponse: Codable {
     }
 
     // MARK: - Params
-    
+
     var likesCount: Int?
     var dislikesCount: Int?
 

@@ -12,18 +12,18 @@ protocol CommunityCreationBusinessLogic {
 }
 
 final class CommunityCreationInteractor: CommunityCreationBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: CommunityCreationPresentationLogic
     private let provider: CommunityCreationProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: CommunityCreationPresentationLogic,
          provider: CommunityCreationProviderProtocol = CommunityCreationProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - CommunityCreationBusinessLogic
 
     func createCommunity(request: CommunityCreationDataFlow.CreateCommunity.Request) {

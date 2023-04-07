@@ -8,21 +8,26 @@
 import UIKit
 import Photos
 import APRUIKit
+import RemoteConfig
 
 extension RecipeCreationViewController {
     // MARK: - Open media modal
 
     func openMediaModal() {
+        let remoteConfigManager = RemoteConfigManager.shared.remoteConfig
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { [weak self] _ in
+        let cameraAction = UIAlertAction(title: L10n.Photo.Action.camera, style: .default) { [weak self] _ in
             self?.checkCameraAccessIfNeeded()
         }
-        alert.addAction(cameraAction)
-        let galleryAction = UIAlertAction(title: "Выбрать из галереи", style: .default) { [weak self] _ in
-            self?.checkLibraryAcceessIfNeeded()
+
+        if remoteConfigManager.isGallerySourceEnabled {
+            let galleryAction = UIAlertAction(title: L10n.Photo.Action.gallery, style: .default) { [weak self] _ in
+                self?.checkLibraryAcceessIfNeeded()
+            }
+            alert.addAction(galleryAction)
         }
-        alert.addAction(galleryAction)
-        alert.addAction(.init(title: "Отмена", style: .cancel))
+        alert.addAction(cameraAction)
+        alert.addAction(.init(title: L10n.Common.cancel, style: .cancel))
         DispatchQueue.main.async { [weak self] in
             self?.present(alert, animated: true, completion: nil)
         }
@@ -60,12 +65,12 @@ extension RecipeCreationViewController {
 
     func askLibraryAccess() {
         let alert = UIAlertController(
-            title: "Требуется доступ к галлерее",
+            title: L10n.Photo.Permission.Gallery.title,
             message: nil,
             preferredStyle: .alert
         )
         let yesAction = UIAlertAction(
-            title: "Перейти в \"Настройки\"",
+            title: L10n.Photo.Action.settings,
             style: .default) {_ in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
 
@@ -75,7 +80,7 @@ extension RecipeCreationViewController {
         }
         alert.addAction(yesAction)
         let noAction = UIAlertAction(
-            title: "Закрыть",
+            title: L10n.Common.close,
             style: .cancel,
             handler: nil
         )
@@ -105,8 +110,8 @@ extension RecipeCreationViewController {
     }
 
     private func askCameraAccess() {
-        let alert = UIAlertController(title: "Требуется доступ к камере", message: nil, preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Перейти в \"Настройки\"", style: .default) {_ in
+        let alert = UIAlertController(title: L10n.Photo.Permission.Camera.title, message: nil, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: L10n.Photo.Action.settings, style: .default) {_ in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
 
             DispatchQueue.main.async {
@@ -114,7 +119,7 @@ extension RecipeCreationViewController {
             }
         }
         alert.addAction(yesAction)
-        let noAction = UIAlertAction(title: "Закрыть", style: .cancel, handler: nil)
+        let noAction = UIAlertAction(title: L10n.Common.close, style: .cancel, handler: nil)
         alert.addAction(noAction)
         DispatchQueue.main.async { [weak self] in
             self?.present(alert, animated: true, completion: nil)
@@ -131,4 +136,3 @@ extension RecipeCreationViewController {
         }
     }
 }
-

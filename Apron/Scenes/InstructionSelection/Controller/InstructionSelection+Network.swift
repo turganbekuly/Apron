@@ -9,7 +9,7 @@
 import UIKit
 
 extension InstructionSelectionViewController {
-    
+
     // MARK: - Network
 
     func uploadImage(with image: UIImage) {

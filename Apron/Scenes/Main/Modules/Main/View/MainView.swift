@@ -30,10 +30,12 @@ public final class MainView: UITableView {
         backgroundColor = .clear
         separatorStyle = .none
 
-        tableHeaderView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 18)))
+        tableHeaderView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 0)))
         [
-         MyCommunityCell.self,
-         DynamicCommunityCell.self
+            AdBannerCell.self,
+            DynamicCommunityCell.self,
+            WhatToCookCell.self,
+            CookNowCell.self
         ].forEach {
             register(cellClass: $0)
         }

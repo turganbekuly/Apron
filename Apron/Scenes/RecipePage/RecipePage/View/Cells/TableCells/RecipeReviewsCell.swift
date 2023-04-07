@@ -36,6 +36,8 @@ final class RecipeReviewsCell: UITableViewCell {
         NSAttributedString.Key.foregroundColor: UIColor.black
     ]
 
+    var commentImageViewHeight: Constraint?
+
     var tagsCollectionViewHeight: Constraint?
 
     var sections: [Section] = []
@@ -72,7 +74,7 @@ final class RecipeReviewsCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .clear
-        imageView.tintColor = ApronAssets.lightGray.color
+        imageView.tintColor = APRAssets.lightGray.color
         return imageView
     }()
 
@@ -95,6 +97,14 @@ final class RecipeReviewsCell: UITableViewCell {
         return collectionView
     }()
 
+    private lazy var commentImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 10
+        return imageView
+    }()
+
     // MARK: - Setup Views
 
     private func setupViews() {
@@ -102,7 +112,8 @@ final class RecipeReviewsCell: UITableViewCell {
             userImageView,
             postAuthorLabel,
             postTextLabel,
-            tagsCollectionView
+            tagsCollectionView,
+            commentImageView
         )
         setupConstraints()
         configureCell()
@@ -133,6 +144,13 @@ final class RecipeReviewsCell: UITableViewCell {
             $0.leading.equalTo(userImageView.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(16)
         }
+
+        commentImageView.snp.makeConstraints {
+            $0.top.equalTo(postTextLabel.snp.bottom).offset(4)
+            $0.leading.equalTo(postTextLabel.snp.leading)
+            $0.width.equalTo(100)
+            commentImageViewHeight = $0.height.equalTo(0).constraint
+        }
     }
 
     private func configureCell() {
@@ -144,20 +162,23 @@ final class RecipeReviewsCell: UITableViewCell {
 
     private func configureAttributedText(name: String, time: String) {
         let attributedString = NSMutableAttributedString(string: name, attributes: boldAttributes)
-        let normalString = NSMutableAttributedString(string: time, attributes: regularAttributes)
-        attributedString.append(normalString)
+//        let normalString = NSMutableAttributedString(string: time, attributes: regularAttributes)
+//        attributedString.append(normalString)
         postAuthorLabel.attributedText = attributedString
         postAuthorLabel.numberOfLines = 2
     }
-
 
     // MARK: - Public methods
 
     func configure(with viewModel: RecipePageReviewsViewModelProtocol) {
         guard let comment = viewModel.comment else { return }
         configureAttributedText(name: comment.user ?? "", time: comment.createdAt ?? "")
-        userImageView.image = ApronAssets.user.image
+        userImageView.image = APRAssets.user.image
         postTextLabel.text = comment.description ?? ""
         tags = comment.tags ?? []
+
+        guard let image = comment.image else { return }
+        commentImageView.kf.setImage(with: URL(string: image))
+        commentImageViewHeight?.update(offset: 100)
     }
 }

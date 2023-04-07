@@ -7,14 +7,14 @@
 //
 
 protocol IngredientInsertionPresentationLogic: AnyObject {
-    
+
 }
 
 final class IngredientInsertionPresenter: IngredientInsertionPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: IngredientInsertionDisplayLogic?
-    
+
     // MARK: - IngredientInsertionPresentationLogic
-    
+
 }

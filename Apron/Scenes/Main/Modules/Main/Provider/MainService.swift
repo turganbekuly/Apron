@@ -9,16 +9,20 @@ import AKNetwork
 import Models
 
 protocol MainServiceProtocol {
-    func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping ((AKResult) -> Void)
-    )
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
     )
-    func getMyCommunities(
-        request: MainDataFlow.GetMyCommunities.Request,
+    func getCookNowRecipes(
+        request: MainDataFlow.GetCookNowRecipes.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
+    func getEventRecipes(
+        request: MainDataFlow.GetEventRecipes.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
+    func saveRecipe(
+        request: MainDataFlow.SaveRecipe.Request,
         completion: @escaping ((AKResult) -> Void)
     )
 }
@@ -35,15 +39,6 @@ final class MainService: MainServiceProtocol {
 
     // MARK: - RecipePageServiceProtocol
 
-    func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping ((AKResult) -> Void)
-    ) {
-        provider.send(target: .joinCommunity(id: request.id)) { result in
-            completion(result)
-        }
-    }
-
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
@@ -53,11 +48,26 @@ final class MainService: MainServiceProtocol {
         }
     }
 
-    func getMyCommunities(
-        request: MainDataFlow.GetMyCommunities.Request,
+    func getCookNowRecipes(
+        request: MainDataFlow.GetCookNowRecipes.Request,
         completion: @escaping ((AKResult) -> Void)
     ) {
-        provider.send(target: .getMyCommunities) { result in
+        provider.send(target: .getCookNowRecipes(body: request.body)) { result in
+            completion(result)
+        }
+    }
+
+    func getEventRecipes(
+        request: MainDataFlow.GetEventRecipes.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getEventRecipes(body: request.body)) { result in
+            completion(result)
+        }
+    }
+
+    func saveRecipe(request: MainDataFlow.SaveRecipe.Request, completion: @escaping ((AKResult) -> Void)) {
+        provider.send(target: .saveRecipe(id: request.id)) { result in
             completion(result)
         }
     }

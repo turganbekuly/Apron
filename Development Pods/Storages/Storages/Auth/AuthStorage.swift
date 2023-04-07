@@ -13,14 +13,10 @@ public enum AuthorizationStatus: String {
     case unauthorized = "false"
 }
 
-public enum GrantType: String {
-    case apple = "apple_login"
-    case native = "refresh_token"
-}
-
 public protocol AuthStorageProtocol {
     var accessToken: String? { get set }
-    var phoneNumber: String? { get set }
+    var username: String? { get set }
+    var email: String? { get set }
     var refreshToken: String? { get set }
     var deviceToken: String? { get set }
     var isUserAuthorized: Bool { get set }
@@ -35,7 +31,8 @@ public final class AuthStorage: AuthStorageProtocol {
 
     private enum Constants {
         static let accessToken = "accessToken"
-        static let phoneNumber = "phoneNumber"
+        static let username = "username"
+        static let email = "email"
         static let refreshToken = "refreshToken"
         static let deviceToken = "deviceToken"
         static let isUserAuthorized = "isUserAuthorized"
@@ -58,9 +55,14 @@ public final class AuthStorage: AuthStorageProtocol {
         set { updateRefreshToken(newValue) }
     }
 
-    public var phoneNumber: String? {
-        get { try? keychain.get(Constants.phoneNumber) }
-        set { updatePhoneNumber(newValue) }
+    public var username: String? {
+        get { try? keychain.get(Constants.username) }
+        set { updateUsername(newValue) }
+    }
+
+    public var email: String? {
+        get { try? keychain.get(Constants.email) }
+        set { updateEmail(newValue) }
     }
 
     public var deviceToken: String? {
@@ -94,13 +96,17 @@ public final class AuthStorage: AuthStorageProtocol {
     public func save(model: Auth) {
         accessToken = model.accessToken
         refreshToken = model.refreshToken
+        username = model.username
+        email = model.email
+        grantType = model.grantType
         isUserAuthorized = true
     }
 
     public func clear() {
         accessToken = nil
         refreshToken = nil
-        phoneNumber = nil
+        username = nil
+        email = nil
         isUserAuthorized = false
         CartManager.shared.resetCart()
         UserStorage().clear()
@@ -122,11 +128,19 @@ public final class AuthStorage: AuthStorageProtocol {
         }
     }
 
-    private func updatePhoneNumber(_ phoneNumber: String?) {
-        if let phoneNumber = phoneNumber {
-            try? keychain.set(phoneNumber, key: Constants.phoneNumber)
+    private func updateUsername(_ username: String?) {
+        if let username = username {
+            try? keychain.set(username, key: Constants.username)
         } else {
-            try? keychain.remove(Constants.phoneNumber)
+            try? keychain.remove(Constants.username)
+        }
+    }
+
+    private func updateEmail(_ email: String?) {
+        if let email = email {
+            try? keychain.set(email, key: Constants.email)
+        } else {
+            try? keychain.remove(Constants.email)
         }
     }
 

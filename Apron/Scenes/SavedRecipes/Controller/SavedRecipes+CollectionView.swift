@@ -22,7 +22,7 @@ extension SavedRecipesViewController: UICollectionViewDataSource {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .recipe:
-            let cell: SavedRecipeCell = collectionView.dequeueReusableCell(for: indexPath)
+            let cell: RecipeSearchResultCellv2 = collectionView.dequeueReusableCell(for: indexPath)
             return cell
         case .loading:
             let cell: MainCommunityEmptyCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -39,9 +39,18 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .recipe(recipe):
-            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .saved)).build()
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: false)
+            switch initialState {
+            case .tab:
+                let vc = RecipePageBuilder(state: .initial(id: recipe.id, .saved)).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: false)
+                }
+            case .mealPlanner:
+                dismiss(animated: true) {
+                    self.outputDelegate?.savedRecipeSelected(recipe: recipe)
+                }
+            default:
+                break
             }
         default:
             break
@@ -52,7 +61,7 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .recipe, .loading:
-            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 218)
+            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 240)
         case .empty:
             return CGSize(width: collectionView.bounds.width, height: 230)
         }
@@ -62,52 +71,52 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .recipe(recipe):
-            guard let cell = cell as? SavedRecipeCell else { return }
-            cell.configure(with: SavedRecipeCellViewModel(image: recipe.imageURL, name: recipe.recipeName))
+            guard let cell = cell as? RecipeSearchResultCellv2 else { return }
+            cell.configure(with: recipe)
         case .empty:
             guard let cell = cell as? EmptyListCollectionCell else { return }
             cell.configure(
                 with: "Добавляйте свои любимые рецепты,\n чтобы быстрее их найти",
-                image: ApronAssets.savedRecipePlaceholder.image
+                image: APRAssets.savedRecipePlaceholder.image
             )
         default:
             break
         }
     }
 
-    public func collectionView(_ collectionView: UICollectionView,
-                               viewForSupplementaryElementOfKind kind: String,
-                               at indexPath: IndexPath) -> UICollectionReusableView {
-        let section = sections[indexPath.section].section
-        switch section {
-        case .recipes:
-            let view: SavedRecipeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
-            return view
-        }
-    }
-
-    public func collectionView(_ collectionView: UICollectionView,
-                               layout collectionViewLayout: UICollectionViewLayout,
-                               referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let section = sections[section].section
-        switch section {
-        case .recipes:
-            return CGSize(width: collectionView.bounds.width - 32, height: 65)
-        }
-    }
-
-    public func collectionView(_ collectionView: UICollectionView,
-                               willDisplaySupplementaryView view: UICollectionReusableView,
-                               forElementKind elementKind: String,
-                               at indexPath: IndexPath) {
-        let section = sections[indexPath.section].section
-        switch section {
-        case .recipes:
-            guard let view = view as? SavedRecipeHeaderView else { return }
-            view.delegate = self
-            view.configure(
-                with: CommunityFilterCellViewModel(searchbarPlaceholder: "Поиск рецептов в избранном")
-            )
-        }
-    }
+//    public func collectionView(_ collectionView: UICollectionView,
+//                               viewForSupplementaryElementOfKind kind: String,
+//                               at indexPath: IndexPath) -> UICollectionReusableView {
+//        let section = sections[indexPath.section].section
+//        switch section {
+//        case .recipes:
+//            let view: SavedRecipeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
+//            return view
+//        }
+//    }
+//
+//    public func collectionView(_ collectionView: UICollectionView,
+//                               layout collectionViewLayout: UICollectionViewLayout,
+//                               referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        let section = sections[section].section
+//        switch section {
+//        case .recipes:
+//            return CGSize(width: collectionView.bounds.width - 32, height: 65)
+//        }
+//    }
+//
+//    public func collectionView(_ collectionView: UICollectionView,
+//                               willDisplaySupplementaryView view: UICollectionReusableView,
+//                               forElementKind elementKind: String,
+//                               at indexPath: IndexPath) {
+//        let section = sections[indexPath.section].section
+//        switch section {
+//        case .recipes:
+//            guard let view = view as? SavedRecipeHeaderView else { return }
+//            view.delegate = self
+//            view.configure(
+//                with: CommunityFilterCellViewModel(searchbarPlaceholder: "Поиск рецептов в избранном")
+//            )
+//        }
+//    }
 }

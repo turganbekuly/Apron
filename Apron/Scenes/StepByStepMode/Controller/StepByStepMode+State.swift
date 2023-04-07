@@ -8,18 +8,19 @@
 
 import Models
 import UIKit
+import OneSignal
 
 protocol StepByStepFinalStepProtocol: AnyObject {
     func reviewButtonTapped()
 }
 
 extension StepByStepModeViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial([RecipeInstruction], String?, StepByStepFinalStepProtocol?)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -27,8 +28,8 @@ extension StepByStepModeViewController {
             self.instructions = instructions
             self.finalImage = finalImage
             self.delegate = delegate
-            ApronAnalytics.shared.sendAmplitudeEvent(.stepByStepViewed)
+            ApronAnalytics.shared.sendAnalyticsEvent(.stepByStepViewed)
         }
     }
-    
+
 }

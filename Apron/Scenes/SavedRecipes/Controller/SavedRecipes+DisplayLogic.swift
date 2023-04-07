@@ -9,7 +9,7 @@
 import UIKit
 
 extension SavedRecipesViewController: SavedRecipesDisplayLogic {
-    
+
     // MARK: - SavedRecipesDisplayLogic
 
     func displaySavedRecipes(with viewModel: SavedRecipesDataFlow.GetSavedRecipe.ViewModel) {

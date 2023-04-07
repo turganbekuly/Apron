@@ -44,5 +44,3 @@ struct JoinedCommunityModel: Codable {
         return json
     }
 }
-
-

@@ -186,4 +186,3 @@ final class CommunityCreationPermissionsCell: UITableViewCell {
         self.isEditable = isEdiatable
     }
 }
-

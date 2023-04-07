@@ -22,7 +22,7 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
             let vc = RecipeCreationBuilder(
                 state: .initial(
                     .create(
-                        recipeCreation, .community(from: self)
+                        recipeCreation, .community
                     )
                 )
             ).build()
@@ -39,7 +39,7 @@ extension CommunityPageViewController: CreateActionFlowProtocol {
         case .shareCommunity:
             let viewController = UIActivityViewController(
                 activityItems: [
-                    "Зацените сообщество \"\(community?.name ?? "")\" на Apron👀\n https://apron.ws/community/\(community?.id ?? 0)"
+                    "Зацените сообщество \"\(community?.name ?? "")\" на Moca👀\n moca.kz://main/community/\(community?.id ?? 0)"
                 ],
                 applicationActivities: nil
             )

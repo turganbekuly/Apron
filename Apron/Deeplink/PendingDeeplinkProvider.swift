@@ -6,18 +6,21 @@
 //
 
 import Foundation
+import AppsFlyerLib
 
 protocol DeeplinkHandler: AnyObject {
-    func handleDeeplink(with url: URL)
+    func handleDeeplink(with url: URL?)
+    func handleAFDeeplink(with deeplink: DeepLink)
+    func handleAFConversionDeeplink(with deeplink: [AnyHashable: Any])
 }
 
 protocol PendingDeeplinkProvider: AnyObject {
     var delegate: PendingDeeplinkProviderDelegate? { get set }
-    var pendingDeeplink: Deeplink? { get set }
+    var pendingDeeplink: CustomDeepLink? { get set }
 }
 
 protocol PendingDeeplinkProviderDelegate: AnyObject {
-    func pendingDeeplinkProvider(_ provider: PendingDeeplinkProvider, didChangePendingDeeplink deeplink: Deeplink?)
+    func pendingDeeplinkProvider(_ provider: PendingDeeplinkProvider, didChangePendingDeeplink deeplink: CustomDeepLink?)
 }
 
 final class PendingDeeplinkProviderImpl: PendingDeeplinkProvider {
@@ -26,21 +29,32 @@ final class PendingDeeplinkProviderImpl: PendingDeeplinkProvider {
 
     weak var delegate: PendingDeeplinkProviderDelegate?
 
-    var pendingDeeplink: Deeplink? {
+    var pendingDeeplink: CustomDeepLink? {
         didSet {
             guard oldValue != pendingDeeplink else { return }
 
             delegate?.pendingDeeplinkProvider(self, didChangePendingDeeplink: pendingDeeplink)
         }
     }
-
 }
 
 extension PendingDeeplinkProviderImpl: DeeplinkHandler {
 
     // MARK: - DeeplinkHandler
 
-    func handleDeeplink(with url: URL) {
+    func handleAFDeeplink(with deeplink: DeepLink) {
+        pendingDeeplink = DeeplinkFactory().makeAppsflyerDeeplink(with: deeplink)
+    }
+
+    func handleAFConversionDeeplink(with deeplink: [AnyHashable: Any]) {
+        pendingDeeplink = DeeplinkFactory().makeAppsFlyerConversionDeepLink(with: deeplink)
+    }
+
+    func handleDeeplink(with url: URL?) {
+        guard let url = url else {
+            return
+        }
+
         pendingDeeplink = DeeplinkFactory().makeDeeplink(from: url)
     }
 }

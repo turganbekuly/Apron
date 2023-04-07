@@ -20,6 +20,8 @@ extension RecipeCreationViewController {
             case imagePlaceholder
             case description
             case composition
+            case paidRecipe
+            case paidRecipeInfo
             case instruction
             case whenToCook
             case servings
@@ -32,9 +34,15 @@ extension RecipeCreationViewController {
     struct TagsSection {
         enum Section {
             case whenToCook
+            case dishType
+            case lifeStyleType
+            case eventType
         }
         enum Row {
-            case option(SuggestedCookingTime)
+            case whenToCook(SuggestedDayTimeType)
+            case dishType(SuggestedDishType)
+            case lifeStyleType(SuggestedLifestyleType)
+            case eventType(SuggestedEventType)
         }
 
         var section: Section

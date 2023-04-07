@@ -57,6 +57,7 @@ final class RecipeCreationDescriptionCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         [titleLabel, roudedTextView].forEach { contentView.addSubview($0) }
         setupConstraints()
     }
@@ -77,7 +78,7 @@ final class RecipeCreationDescriptionCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(description: String?) {
-        titleLabel.text = "Описание"
+        titleLabel.text = L10n.RecipeCreation.Recipe.description
         guard let description = description else {
             return
         }

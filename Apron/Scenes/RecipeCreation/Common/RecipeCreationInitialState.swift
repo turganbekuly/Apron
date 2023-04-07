@@ -9,6 +9,6 @@ import Foundation
 import Models
 
 enum RecipeCreationInitialState {
-    case edit(RecipeCreation, RecipeCreationSourceType)
-    case create(RecipeCreation, RecipeCreationSourceType)
+    case edit(RecipeCreation, RecipeCreationSourceTypeModel)
+    case create(RecipeCreation, RecipeCreationSourceTypeModel)
 }

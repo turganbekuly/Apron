@@ -4,7 +4,7 @@ import Foundation
 struct TogglesStorage {
     // Список всех тоглов для отображения в меню дебага
     static let allToggles: [AbstractToggle.Type] = [
-        MerchantListingPageFilters.self,
+        MerchantListingPageFilters.self
     ]
 }
 

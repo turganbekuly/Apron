@@ -13,7 +13,6 @@ extension GeneralSearchViewController: UISearchBarDelegate {
     }
 }
 
-
 extension GeneralSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let viewController = searchController.searchResultsController as? GeneralSearchResultViewController else { return }

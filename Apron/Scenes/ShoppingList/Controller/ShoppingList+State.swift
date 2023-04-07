@@ -10,21 +10,27 @@ import Models
 import UIKit
 import Storages
 
+enum ShoppingListEntryPoint {
+    case tab
+    case regular
+}
+
 extension ShoppingListViewController {
-    
+
     // MARK: - State
     public enum State {
-        case initial
+        case initial(ShoppingListEntryPoint)
         case cartItemsDidFetch([CartItem])
         case cartItemsDidFail
         case cartItemsDidClear([CartItem])
         case cartItemsDidClearWithError
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case .initial:
+        case let .initial(initialState):
+            self.initialState = initialState
             self.fetchCartItems()
         case let .cartItemsDidFetch(items):
             self.cartItems = items

@@ -26,7 +26,7 @@ final class GeneralSearchShimmerView: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.iconPlaceholderItem.image
+        imageView.image = APRAssets.iconPlaceholderItem.image
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -35,7 +35,7 @@ final class GeneralSearchShimmerView: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 17
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.iconPlaceholderCard.image
+        imageView.image = APRAssets.iconPlaceholderCard.image
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -44,7 +44,7 @@ final class GeneralSearchShimmerView: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.iconPlaceholderCard.image
+        imageView.image = APRAssets.iconPlaceholderCard.image
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -53,7 +53,7 @@ final class GeneralSearchShimmerView: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.iconPlaceholderCard.image
+        imageView.image = APRAssets.iconPlaceholderCard.image
         imageView.clipsToBounds = true
         return imageView
     }()

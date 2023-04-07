@@ -9,16 +9,16 @@
 import UIKit
 
 extension CommunityCreationViewController: UITableViewDataSource {
-    
+
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -48,11 +48,11 @@ extension CommunityCreationViewController: UITableViewDataSource {
             return cell
         }
     }
-    
+
 }
 
 extension CommunityCreationViewController: UITableViewDelegate {
-    
+
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
@@ -66,7 +66,7 @@ extension CommunityCreationViewController: UITableViewDelegate {
             break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -88,7 +88,7 @@ extension CommunityCreationViewController: UITableViewDelegate {
             return 600
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -110,7 +110,7 @@ extension CommunityCreationViewController: UITableViewDelegate {
             return 600
         }
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {

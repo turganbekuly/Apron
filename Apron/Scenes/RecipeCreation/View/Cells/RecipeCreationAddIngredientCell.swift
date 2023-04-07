@@ -16,7 +16,7 @@ protocol AddIngredientCellTappedDelegate: AnyObject {
 
 final class RecipeCreationAddIngredientCell: UITableViewCell {
     // MARK: - Private properties
-    
+
     private weak var newIngredientDelegate: AddIngredientCellTappedDelegate?
 
     // MARK: - Init
@@ -42,7 +42,7 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
 
     private lazy var roudedTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            placeholder: "+  Добавьте ингредиенты"
+            placeholder: L10n.RecipeCreation.Recipe.ingredientsTF
         )
         textField.textField.isUserInteractionEnabled = false
         return textField
@@ -60,6 +60,7 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         [titleLabel, roudedTextField, ingredientsStackView].forEach { contentView.addSubview($0) }
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(onAddIngredientTapped))
         roudedTextField.addGestureRecognizer(tapGR)
@@ -99,7 +100,7 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
         newIngredientDelegate: AddIngredientCellTappedDelegate?
     ) {
         self.newIngredientDelegate = newIngredientDelegate
-        titleLabel.text = "Ингредиенты"
+        titleLabel.text = L10n.RecipeCreation.Recipe.ingredientsTitle
         ingredientsStackView.removeAllArrangedSubviews()
         guard let ingredients = ingredients else { return }
 

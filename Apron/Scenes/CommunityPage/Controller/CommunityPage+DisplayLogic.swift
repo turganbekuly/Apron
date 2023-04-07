@@ -9,7 +9,7 @@
 import UIKit
 
 extension CommunityPageViewController: CommunityPageDisplayLogic {
-    
+
     // MARK: - CommunityPageDisplayLogic
 
     func displayCommunity(viewModel: CommunityPageDataFlow.GetCommunity.ViewModel) {

@@ -28,6 +28,8 @@ public struct User: Codable {
 
     // MARK: - Init
 
+    public init() { }
+
     public init?(json: JSON) {
         guard let id = json[CodingKeys.id.rawValue] as? Int else {
             return nil
@@ -40,5 +42,17 @@ public struct User: Codable {
         managedCommunites = (json[CodingKeys.managedCommunites.rawValue] as? [JSON])?
             .compactMap { CommunityResponse(json: $0) } ?? []
     }
-}
 
+    public func toJSON() -> JSON {
+        var params = JSON()
+        if let email = email {
+            params[CodingKeys.email.rawValue] = email
+        }
+
+        if let username = username {
+            params[CodingKeys.username.rawValue] = username
+        }
+
+        return params
+    }
+}

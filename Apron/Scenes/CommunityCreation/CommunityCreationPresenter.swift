@@ -14,10 +14,10 @@ protocol CommunityCreationPresentationLogic: AnyObject {
 }
 
 final class CommunityCreationPresenter: CommunityCreationPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: CommunityCreationDisplayLogic?
-    
+
     // MARK: - CommunityCreationPresentationLogic
 
     func createCommunity(response: CommunityCreationDataFlow.CreateCommunity.Response) {

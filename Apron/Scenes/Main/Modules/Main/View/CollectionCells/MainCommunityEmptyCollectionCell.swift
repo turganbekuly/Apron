@@ -29,7 +29,7 @@ final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.iconPlaceholderItem.image
+        imageView.image = APRAssets.iconPlaceholderItem.image
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -39,7 +39,7 @@ final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
         button.layer.cornerRadius = 17
         button.clipsToBounds = true
         button.layer.masksToBounds = true
-        button.image = ApronAssets.iconPlaceholderCard.image
+        button.image = APRAssets.iconPlaceholderCard.image
         return button
     }()
 
@@ -48,7 +48,7 @@ final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
         image.layer.cornerRadius = 17
         image.clipsToBounds = true
         image.layer.masksToBounds = true
-        image.image = ApronAssets.iconPlaceholderCard.image
+        image.image = APRAssets.iconPlaceholderCard.image
         return image
     }()
 
@@ -85,4 +85,3 @@ final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
         backgroundColor = .clear
     }
 }
-

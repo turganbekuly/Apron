@@ -10,9 +10,10 @@ import APRUIKit
 import UIKit
 import Storages
 import AlertMessages
+import OneSignal
 
-final class PreShoppingListViewController: ViewController, Messagable {
-    
+final class PreShoppingListViewController: ViewController {
+
     struct Section {
         enum Section {
             case ingredients
@@ -20,11 +21,11 @@ final class PreShoppingListViewController: ViewController, Messagable {
         enum Row {
             case ingredient(CartItem)
         }
-        
+
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
 
     var sections: [Section] = []
@@ -46,13 +47,14 @@ final class PreShoppingListViewController: ViewController, Messagable {
     }
 
     var selectedItems: [CartItem] = []
-    
+
     // MARK: - Views
 
     private lazy var backButton = NavigationBackButton()
 
     private lazy var addButton: NavigationButton = {
         let button = NavigationButton()
+        button.backgroundType = .blackBackground
         button.setTitle("Сохранить", for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
@@ -64,11 +66,11 @@ final class PreShoppingListViewController: ViewController, Messagable {
         view.delegate = self
         return view
     }()
-    
+
     // MARK: - Init
     init(state: State) {
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -79,32 +81,32 @@ final class PreShoppingListViewController: ViewController, Messagable {
     deinit {
         NSLog("deinit \(self)")
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
     private func configureNavigation() {
         backButton.configure(with: "Предпросмотр")
@@ -113,29 +115,29 @@ final class PreShoppingListViewController: ViewController, Messagable {
             self?.navigationController?.popViewController(animated: true)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
         addButton.snp.makeConstraints {
             $0.width.equalTo(100)
             $0.height.equalTo(30)
         }
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     // MARK: - User actions
@@ -160,9 +162,20 @@ final class PreShoppingListViewController: ViewController, Messagable {
             )
         }
 
-        ApronAnalytics.shared.sendAmplitudeEvent(
-            .recipeIngredientsAddedToShoppingList(selectedItems.map { $0.productName})
-        )
+        selectedItems.forEach {
+            ApronAnalytics.shared.sendAnalyticsEvent(
+                .ingredientAdded(
+                    IngredientAddedModel(
+                        id: $0.productId,
+                        name: $0.productName,
+                        sourceType: .recipePage
+                    )
+                )
+            )
+        }
+
+        OneSignal.sendTag("ingredients_added", value: "recipe_page")
+        OneSignal.addTrigger("ingredients_added", withValue: "recipe_page")
 
         delegate?.dismissedWithIngredients()
         self.navigationController?.popViewController(animated: true)

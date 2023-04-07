@@ -22,11 +22,11 @@ enum ResultListEndpoint {
 }
 
 extension ResultListEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .getRecipesByCommunityID:
@@ -45,7 +45,7 @@ extension ResultListEndpoint: AKNetworkTargetType {
             return "communities/join/\(id)"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .getRecipesByCommunityID,
@@ -54,15 +54,17 @@ extension ResultListEndpoint: AKNetworkTargetType {
                 .getRecipes,
                 .getCommunities:
             return .get
-        case .saveRecipe, .joinCommunity:
+        case .saveRecipe:
+            return .post
+        case .joinCommunity:
             return .put
         }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
         case let .getRecipesByCommunityID(requestBody):
@@ -99,7 +101,7 @@ extension ResultListEndpoint: AKNetworkTargetType {
             return .requestPlain
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -110,5 +112,5 @@ extension ResultListEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

@@ -9,11 +9,11 @@
 import AKNetwork
 
 protocol StepByStepModeServiceProtocol {
-    
+
 }
 
 final class StepByStepModeService: StepByStepModeServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<StepByStepModeEndpoint>
 
@@ -21,7 +21,7 @@ final class StepByStepModeService: StepByStepModeServiceProtocol {
     init(provider: AKNetworkProvider<StepByStepModeEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - StepByStepModeServiceProtocol
-    
+
 }

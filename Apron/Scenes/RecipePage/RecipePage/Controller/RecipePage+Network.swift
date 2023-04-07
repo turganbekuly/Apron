@@ -7,7 +7,7 @@
 //
 
 extension RecipePageViewController {
-    
+
     // MARK: - Network
 
     func getRecipe(by id: Int) {

@@ -64,4 +64,3 @@ final class SkipButtonNavigationView: UIView {
         delegate?.skipButtonTapped()
     }
 }
-

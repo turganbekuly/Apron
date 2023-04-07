@@ -10,16 +10,16 @@ import UIKit
 import APRUIKit
 
 extension CreateActionFlowViewController: UITableViewDataSource {
-    
+
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -28,11 +28,11 @@ extension CreateActionFlowViewController: UITableViewDataSource {
             return cell
         }
     }
-    
+
 }
 
 extension CreateActionFlowViewController: UITableViewDelegate {
-    
+
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
@@ -59,7 +59,7 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             }
         }
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -69,7 +69,7 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             return 60
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -79,67 +79,67 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             return 60
         }
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .privateCommunity:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.communityPrivateIcon.image,
+                image: APRAssets.communityPrivateIcon.image,
                 title: "Создать закрытое сообщество",
                 subtitle: "Присоединиться могут только люди, которых вы пригласили"
             ))
         case .publicCommunity:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.communityPublicIcon.image,
+                image: APRAssets.communityPublicIcon.image,
                 title: "Создать публичное сообщество",
                 subtitle: "Любой может просматривать и присоединяться"
             ))
         case .aboutCommunities:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.communityAboutIcon.image,
+                image: APRAssets.communityAboutIcon.image,
                 title: "Подробнее о сообществах",
                 subtitle: nil
             ))
         case .savedRecipe:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.recipeAddIcon.image,
+                image: APRAssets.recipeAddIcon.image,
                 title: "Добавить сохраненный рецепт",
                 subtitle: nil
             ))
         case .newRecipe:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.recipeNewIcon.image,
+                image: APRAssets.recipeNewIcon.image,
                 title: "Создать новый рецепт",
                 subtitle: nil
             ))
         case .shoppingList:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.tabListIcon.image,
+                image: APRAssets.tabListIcon.image,
                 title: "Добавить в список покупок"
             ))
         case .shareIngredients:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.recipeShareIcon.image,
+                image: APRAssets.recipeShareIcon.image,
                 title: "Поделиться"
             ))
         case .shareCommunity:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.recipeShareIcon.image,
+                image: APRAssets.recipeShareIcon.image,
                 title: "Поделиться сообществом"
             ))
         case .clearIngredients:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
-                image: ApronAssets.trashIcon.image,
+                image: APRAssets.trashIcon.image,
                 title: "Очистить"
             ))
         default:

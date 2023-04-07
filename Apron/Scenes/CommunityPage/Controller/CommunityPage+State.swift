@@ -11,7 +11,7 @@ import UIKit
 import APRUIKit
 
 extension CommunityPageViewController {
-    
+
     // MARK: - State
     enum State {
         case initial(CommunityPageInitialState)
@@ -24,7 +24,7 @@ extension CommunityPageViewController {
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     func updateState() {
         switch state {
@@ -34,21 +34,21 @@ extension CommunityPageViewController {
             self.community = model
             getRecipesByCommunity(id: id, currentPage: currentPage)
         case .displayCommunityError:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         case .joinedCommunity:
             joinedCommunityEvent()
             getCommunities(by: id)
         case .joinedCommunityFailed:
             mainView.reloadData()
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         case let .displayRecipes(model):
             updateList(with: model)
         case .displayRecipesFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         case let .saveRecipe(newCount):
             print(newCount)
         case .saveRecipeFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
 

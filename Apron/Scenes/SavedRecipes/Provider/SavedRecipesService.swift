@@ -16,7 +16,7 @@ protocol SavedRecipesServiceProtocol {
 }
 
 final class SavedRecipesService: SavedRecipesServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<SavedRecipesEndpoint>
 
@@ -24,7 +24,7 @@ final class SavedRecipesService: SavedRecipesServiceProtocol {
     init(provider: AKNetworkProvider<SavedRecipesEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - SavedRecipesServiceProtocol
 
     func getSavedRecipes(

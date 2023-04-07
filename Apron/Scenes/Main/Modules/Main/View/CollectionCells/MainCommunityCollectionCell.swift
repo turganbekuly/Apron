@@ -11,21 +11,9 @@ import Kingfisher
 import HapticTouch
 import Storages
 
-protocol JoinCommunityProtocol: AnyObject {
-    func navigateToFromButtonCommunity(with id: Int)
-    func didTapJoinCommunity(with id: Int)
-    func navigateToAuth()
-}
-
 final class MainCommunityCollectionCell: UICollectionViewCell {
     // MARK: - Properties
 
-    weak var delegate: JoinCommunityProtocol?
-    var isJoined: Bool = false {
-        didSet {
-            configureButton(isJoined: isJoined)
-        }
-    }
     var id = 0
 
     // MARK: - Init
@@ -39,13 +27,13 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override var isHighlighted: Bool{
-        didSet{
-            if isHighlighted{
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
                 UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
                     self.transform = self.transform.scaledBy(x: 0.9, y: 0.9)
                 }, completion: nil)
-            }else{
+            } else {
                 UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
                     self.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
                 }, completion: nil)
@@ -59,17 +47,9 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ApronAssets.cmntImageview.image
+        imageView.image = APRAssets.cmntImageview.image
         imageView.clipsToBounds = true
         return imageView
-    }()
-
-    private lazy var joinButton: BlackOpButton = {
-        let button = BlackOpButton()
-        button.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 17
-        button.layer.masksToBounds = true
-        return button
     }()
 
     private lazy var communityNameLabel: UILabel = {
@@ -82,27 +62,27 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
 
     private lazy var recipeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.cmntRecipeIcon.image
+        imageView.image = APRAssets.cmntRecipeIcon.image
         return imageView
     }()
 
     private lazy var recipeCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         return label
     }()
 
     private lazy var membersImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.cmntMemberIcon.image
+        imageView.image = APRAssets.cmntMemberIcon.image
         return imageView
     }()
 
     private lazy var membersCountLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular11
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         return label
     }()
 
@@ -124,7 +104,7 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
 
     private func setupViews() {
         backgroundColor = .clear
-        [imageView, joinButton, communityNameLabel, recipeStackView, membersStackView].forEach { contentView.addSubview($0) }
+        [imageView, communityNameLabel, recipeStackView, membersStackView].forEach { contentView.addSubview($0) }
         setupConstraints()
         configureCell()
     }
@@ -133,13 +113,6 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(200)
-        }
-
-        joinButton.snp.makeConstraints {
-            $0.bottom.equalTo(imageView.snp.bottom).offset(-11)
-            $0.centerX.equalTo(imageView.snp.centerX)
-            $0.height.equalTo(34)
-            $0.width.equalTo(93)
         }
 
         communityNameLabel.snp.makeConstraints {
@@ -171,50 +144,10 @@ final class MainCommunityCollectionCell: UICollectionViewCell {
         id = community.id
         imageView.kf.setImage(
             with: URL(string: community.image ?? ""),
-            placeholder: ApronAssets.iconPlaceholderCard.image
+            placeholder: APRAssets.iconPlaceholderCard.image
         )
         communityNameLabel.text = community.name ?? ""
         recipeCountLabel.text = "\(community.recipesCount ?? 0)"
         membersCountLabel.text = "\(community.usersCount ?? 0)"
-        isJoined = community.joined ?? false
-    }
-
-    // MARK: - Private methods
-
-    private func configureButton(isJoined: Bool) {
-        guard isJoined else {
-            joinButton.setTitle("Вступить", for: .normal)
-            joinButton.setBackgroundColor(.black, for: .normal)
-            joinButton.setTitleColor(.white, for: .normal)
-            joinButton.snp.updateConstraints( {
-                $0.width.equalTo(93)
-            })
-            return
-        }
-        joinButton.setTitle("Уже вступили", for: .normal)
-        joinButton.setBackgroundColor(ApronAssets.colorsYello.color, for: .normal)
-        joinButton.setTitleColor(.black, for: .normal)
-        joinButton.snp.updateConstraints {
-            $0.width.equalTo(129)
-        }
-    }
-
-    // MARK: - User actions
-
-    @objc
-    private func joinButtonTapped() {
-        guard AuthStorage.shared.isUserAuthorized else {
-            delegate?.navigateToAuth()
-            return
-        }
-        
-        if isJoined {
-            delegate?.navigateToFromButtonCommunity(with: id)
-            return
-        }
-        HapticTouch.generateSuccess()
-        isJoined = true
-        layoutIfNeeded()
-        delegate?.didTapJoinCommunity(with: id)
     }
 }

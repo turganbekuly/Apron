@@ -12,7 +12,7 @@ public struct ForceUpdateMessageViewModel: MessageProtocol {
     // MARK: - MessageProtocol
 
     public var icon: UIImage? {
-        ApronAssets.forceUpdateImage.image
+        APRAssets.forceUpdateImage.image
     }
 
     public var title: NSAttributedString? {
@@ -36,7 +36,7 @@ public struct ForceUpdateMessageViewModel: MessageProtocol {
     public var firstButtonTitle: NSAttributedString? {
         Typography.semibold16(
             text: "Обновить",
-            color: .black
+            color: .white
         ).styled
     }
 

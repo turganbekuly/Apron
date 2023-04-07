@@ -14,7 +14,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
 
     private var servingCount = 0 {
         didSet {
-            serveLabel.text = "\(servingCount) порции"
+            serveLabel.text = "\(servingCount) \(L10n.Recipe.servings)"
             ingredientsStackView.subviews.forEach {
                 if let view = $0 as? IngredientView {
                     view.changeServings(initialCount: initialServeCount, changedCount: servingCount)
@@ -54,14 +54,14 @@ final class RecipeIngredientsViewCell: UITableViewCell {
 
     private lazy var minusButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        button.setImage(ApronAssets.minusButtonIcon.image, for: .normal)
+        button.setImage(APRAssets.minusButtonIcon.image, for: .normal)
         button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         return button
     }()
 
     private lazy var plusButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        button.setImage(ApronAssets.plusButtonIcon.image, for: .normal)
+        button.setImage(APRAssets.plusButtonIcon.image, for: .normal)
         button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -101,7 +101,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         button.backgroundType = .blackBackground
         button.isImageVisible = false
         button.showShadow = true
-        button.setTitle("Добавить в корзину".uppercased(), for: .normal)
+        button.setTitle(L10n.Recipe.Ingredients.addToCart.uppercased(), for: .normal)
         button.addTarget(self, action: #selector(addToCartTapped), for: .touchUpInside)
         button.layer.cornerRadius = 22
         button.layer.masksToBounds = true
@@ -110,7 +110,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
 
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = ApronAssets.lightGray2.color
+        view.backgroundColor = APRAssets.lightGray2.color
         return view
     }()
     // MARK: - Setup Views
@@ -185,7 +185,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: IIngredientsListCellViewModel) {
-        ingredientsTitleLabel.text = "Ингредиенты"
+        ingredientsTitleLabel.text = L10n.Recipe.ingredients
         self.initialServeCount = viewModel.serveCount
         ingredientsStackView.removeAllArrangedSubviews()
         viewModel.ingredients.forEach {

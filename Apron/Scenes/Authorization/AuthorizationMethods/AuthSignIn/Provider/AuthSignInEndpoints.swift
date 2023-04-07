@@ -15,7 +15,7 @@ enum AuthSignInEndpoint {
 }
 
 extension AuthSignInEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }

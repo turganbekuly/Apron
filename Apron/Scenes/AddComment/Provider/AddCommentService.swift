@@ -24,7 +24,7 @@ protocol AddCommentServiceProtocol {
 }
 
 final class AddCommentService: AddCommentServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<AddCommentEndpoint>
 
@@ -32,7 +32,7 @@ final class AddCommentService: AddCommentServiceProtocol {
     init(provider: AKNetworkProvider<AddCommentEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - AddCommentServiceProtocol
 
     func rateRecipe(

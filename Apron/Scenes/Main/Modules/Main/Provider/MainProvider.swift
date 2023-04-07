@@ -9,19 +9,24 @@ import AKNetwork
 import Models
 
 protocol MainProviderProtocol {
-    func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
-    )
-
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping (MainDataFlow.GetCommunitiesResult) -> Void
     )
 
-    func getMyCommunities(
-        request: MainDataFlow.GetMyCommunities.Request,
-        completion: @escaping (MainDataFlow.GetMyCommunitiesResult) -> Void
+    func getCookNowRecipes(
+        request: MainDataFlow.GetCookNowRecipes.Request,
+        completion: @escaping (MainDataFlow.GetCookNowRecipesResult) -> Void
+    )
+
+    func getEventRecipes(
+        request: MainDataFlow.GetEventRecipes.Request,
+        completion: @escaping (MainDataFlow.GetEventRecipesResult) -> Void
+    )
+
+    func saveRecipe(
+        request: MainDataFlow.SaveRecipe.Request,
+        completion: @escaping ((MainDataFlow.SaveRecipeResult) -> Void)
     )
 }
 
@@ -37,20 +42,6 @@ final class MainProvider: MainProviderProtocol {
     }
 
     // MARK: - RecipePageProviderProtocol
-
-    func joinCommunity(
-        request: MainDataFlow.JoinCommunity.Request,
-        completion: @escaping (MainDataFlow.JoinCommunityResult) -> Void
-    ) {
-        service.joinCommunity(request: request) {
-            switch $0 {
-            case .success(_):
-                completion(.successfull)
-            case let .failure(error):
-                completion(.failed(error: error))
-            }
-        }
-    }
 
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
@@ -70,15 +61,51 @@ final class MainProvider: MainProviderProtocol {
         }
     }
 
-    func getMyCommunities(
-        request: MainDataFlow.GetMyCommunities.Request,
-        completion: @escaping (MainDataFlow.GetMyCommunitiesResult) -> Void
+    func getCookNowRecipes(
+        request: MainDataFlow.GetCookNowRecipes.Request,
+        completion: @escaping (MainDataFlow.GetCookNowRecipesResult) -> Void
     ) {
-        service.getMyCommunities(request: request) {
+        service.getCookNowRecipes(request: request) {
             switch $0 {
             case let .success(json):
                 if let jsons = json["data"] as? [JSON] {
-                    completion(.successful(model: jsons.compactMap { CommunityResponse(json: $0) }))
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func getEventRecipes(
+        request: MainDataFlow.GetEventRecipes.Request,
+        completion: @escaping (MainDataFlow.GetEventRecipesResult) -> Void
+    ) {
+        service.getEventRecipes(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+
+    func saveRecipe(
+        request: MainDataFlow.SaveRecipe.Request,
+        completion: @escaping ((MainDataFlow.SaveRecipeResult) -> Void)
+    ) {
+        service.saveRecipe(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = RecipeResponse(json: json) {
+                    completion(.successful(model: jsons))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

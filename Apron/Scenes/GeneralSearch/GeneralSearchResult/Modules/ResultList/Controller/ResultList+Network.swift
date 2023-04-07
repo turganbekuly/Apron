@@ -9,7 +9,7 @@
 import Models
 
 extension ResultListViewController {
-    
+
     // MARK: - Network
 
     func getRecipesByCommunityId(id: Int, currentPage: Int, query: String) {

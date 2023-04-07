@@ -24,4 +24,3 @@ extension RecipeCreationViewController: SourceURLDelegate {
         recipeCreation?.sourceLink = source
     }
 }
-

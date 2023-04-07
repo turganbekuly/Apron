@@ -8,7 +8,7 @@
 import Foundation
 
 extension Bundle {
-    public var shortVersion: String {
+    public var appVersion: String {
         if let result = infoDictionary?["CFBundleShortVersionString"] as? String {
             return result
         } else {
@@ -27,7 +27,6 @@ extension Bundle {
     }
 
     public var fullVersion: String {
-        return "\(shortVersion)(\(buildVersion))"
+        return "\(appVersion)(\(buildVersion))"
     }
 }
-

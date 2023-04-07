@@ -25,7 +25,7 @@ public struct RecipeInstruction: Codable, Equatable {
     // MARK: - Init
 
     public init() { }
-    
+
     public init?(json: JSON) {
         self.description = json[CodingKeys.description.rawValue] as? String
         self.image = json[CodingKeys.image.rawValue] as? String

@@ -9,16 +9,16 @@
 import UIKit
 
 extension PreShoppingListViewController: UITableViewDataSource {
-    
+
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -27,18 +27,18 @@ extension PreShoppingListViewController: UITableViewDataSource {
             return cell
         }
     }
-    
+
 }
 
 extension PreShoppingListViewController: UITableViewDelegate {
-    
+
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .ingredient(ingredient):
             guard let cell = tableView.cellForRow(at: indexPath) as? PreShoppingCell else { return }
-            if cell.checkbox.checkState == .checked  {
+            if cell.checkbox.checkState == .checked {
                 selectedItems.append(ingredient)
             }
         }
@@ -54,7 +54,7 @@ extension PreShoppingListViewController: UITableViewDelegate {
             }
         }
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -62,7 +62,7 @@ extension PreShoppingListViewController: UITableViewDelegate {
             return 56
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -70,7 +70,7 @@ extension PreShoppingListViewController: UITableViewDelegate {
             return 56
         }
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -80,5 +80,5 @@ extension PreShoppingListViewController: UITableViewDelegate {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
     }
-    
+
 }

@@ -25,31 +25,39 @@ final class PhotoPlaceholderView: UIView {
 
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = ApronAssets.lightGray2.color
+        view.backgroundColor = APRAssets.lightGray2.color
         view.layer.cornerRadius = 20
         return view
     }()
 
     private lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.cameraIcon.image
+        imageView.image = APRAssets.cameraIcon.image
         return imageView
     }()
 
     private lazy var photoTitle: UILabel = {
         let title = UILabel()
-        title.font = TypographyFonts.regular14
+        title.font = TypographyFonts.semibold14
         title.textColor = .black
-        title.text = "Загрузить фото"
+        title.text = L10n.Photo.UploadPhoto.title
         title.textAlignment = .center
+        title.sizeToFit()
         return title
+    }()
+
+    private lazy var vStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
     }()
 
     // MARK: - Setup Views
 
     private func setupViews() {
         addSubview(containerView)
-        containerView.addSubviews(photoImageView, photoTitle)
+        containerView.addSubviews(photoImageView, photoTitle, vStackView)
         setupConstraints()
     }
 
@@ -59,7 +67,7 @@ final class PhotoPlaceholderView: UIView {
         }
 
         photoImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(-15)
+            $0.top.equalToSuperview().offset(16)
             $0.centerX.equalToSuperview()
             $0.size.equalTo(45)
         }
@@ -68,5 +76,31 @@ final class PhotoPlaceholderView: UIView {
             $0.top.equalTo(photoImageView.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
         }
+
+        vStackView.snp.makeConstraints {
+            $0.top.equalTo(photoTitle.snp.bottom).offset(16)
+            $0.leading.trailing.bottom.equalToSuperview().inset(16)
+        }
+    }
+
+    // MARK: - Methods
+
+    func configure() {
+        vStackView.removeAllArrangedSubviews()
+        let texts = [
+            L10n.Photo.UploadPhoto.Advice.format,
+            L10n.Photo.UploadPhoto.Advice.connection
+        ]
+        for text in texts {
+            let label = UILabel()
+            label.font = TypographyFonts.regular12
+            label.textColor = APRAssets.gray.color
+            label.text = text
+            label.numberOfLines = 0
+            label.textAlignment = .center
+            vStackView.addArrangedSubview(label)
+        }
+        vStackView.setNeedsUpdateConstraints()
+        vStackView.layoutIfNeeded()
     }
 }

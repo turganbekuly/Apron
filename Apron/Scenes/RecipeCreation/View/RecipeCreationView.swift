@@ -9,7 +9,7 @@
 import UIKit
 
 final class RecipeCreationView: UITableView {
-    
+
     // MARK: - Init
     init() {
         super.init(frame: .zero, style: .plain)
@@ -42,7 +42,9 @@ final class RecipeCreationView: UITableView {
             RecipeCreationAddIngredientCell.self,
             RecipeCreationAddInstructionCell.self,
             RecipeCreationAssignCell.self,
-            RecipeCreationTagsCell.self
+            RecipeCreationTagsCell.self,
+            RecipeCreationPaidCell.self,
+            RecipeCreationPaidInfoCell.self
         ].forEach {
             register(cellClass: $0)
         }

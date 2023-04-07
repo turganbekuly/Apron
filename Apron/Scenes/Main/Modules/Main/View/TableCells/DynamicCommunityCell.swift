@@ -18,7 +18,6 @@ final class DynamicCommunityCell: UITableViewCell {
     // MARK: - Properties
 
     weak var delegate: DynamicCommunityCellProtocol?
-    weak var cellActionsDelegate: JoinCommunityProtocol?
     lazy var dynamicCommunitiesSection: [DynamicCommunitySection] = [] {
         didSet {
             communityCollectionView.reloadData()
@@ -32,13 +31,10 @@ final class DynamicCommunityCell: UITableViewCell {
     }
     var dynamicCommunities: [CommunityResponse] = [] {
         didSet {
-            if !dynamicCommunities.isEmpty {
-                dynamicCommunitiesSection = [
-                    .init(section: .communities, rows: dynamicCommunities.compactMap { .community($0) })
-                ]
-            } else {
-                dynamicCommunitiesSection = [.init(section: .communities, rows: Array(repeating: .loader, count: 10))]
-            }
+            guard !dynamicCommunities.isEmpty else { return }
+            dynamicCommunitiesSection = [
+                .init(section: .communities, rows: dynamicCommunities.compactMap { .community($0) })
+            ]
         }
     }
 
@@ -66,9 +62,9 @@ final class DynamicCommunityCell: UITableViewCell {
     private lazy var seeAllButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = TypographyFonts.regular16
-        button.setTitleColor(ApronAssets.gray.color, for: .normal)
-        button.setTitleColor(ApronAssets.gray.color, for: .highlighted)
-        button.setTitle("Все", for: .normal)
+        button.setTitleColor(APRAssets.gray.color, for: .normal)
+        button.setTitleColor(APRAssets.gray.color, for: .highlighted)
+        button.setTitle(L10n.Common.all, for: .normal)
         button.addTarget(self, action: #selector(seeAllButtonTapped), for: .touchUpInside)
         return button
     }()

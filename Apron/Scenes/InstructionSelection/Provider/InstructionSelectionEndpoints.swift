@@ -23,7 +23,7 @@ extension InstructionSelectionEndpoints: AKNetworkTargetType {
     var path: String {
         switch self {
         case .uploadImage:
-            return "image/upload/4"
+            return "file/upload/image/4"
         }
     }
 
@@ -66,4 +66,3 @@ extension InstructionSelectionEndpoints: AKNetworkTargetType {
     }
 
 }
-

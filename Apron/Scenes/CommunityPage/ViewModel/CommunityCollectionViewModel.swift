@@ -16,7 +16,7 @@ protocol ICommunityCollectionViewModel {
 struct CommunityCollectionViewModel: ICommunityCollectionViewModel {
     // MARK: - Properties
 
-    var recipesDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)?
+    weak var recipesDelegate: (UICollectionViewDataSource & UICollectionViewDelegateFlowLayout)?
 
     // MARK: - Init
 

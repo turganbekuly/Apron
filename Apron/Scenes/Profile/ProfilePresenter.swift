@@ -14,10 +14,10 @@ protocol ProfilePresentationLogic: AnyObject {
 }
 
 final class ProfilePresenter: ProfilePresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: ProfileDisplayLogic?
-    
+
     // MARK: - ProfilePresentationLogic
 
     func getProfile(response: ProfileDataFlow.GetProfile.Response) {

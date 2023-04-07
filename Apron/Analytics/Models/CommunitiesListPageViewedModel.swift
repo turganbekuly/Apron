@@ -44,4 +44,3 @@ struct CommunitiesListPageViewedModel: Codable {
         return json
     }
 }
-

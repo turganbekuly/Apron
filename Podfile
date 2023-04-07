@@ -12,10 +12,11 @@ def commonPods
   pod 'Kingfisher', :inhibit_warnings => true
   pod 'UIScrollView-InfiniteScroll', :inhibit_warnings => true
   pod 'ALProgressView', :inhibit_warnings => true
+  pod 'IQKeyboardManagerSwift'
 
   # Dev Tools
 
-  pod 'SwiftGen', '~> 6.0', :inhibit_warnings => true
+  pod 'SwiftGen', '~> 6.0'
 
   #Analytics & User interaction
 
@@ -25,6 +26,9 @@ def commonPods
   pod 'Firebase/RemoteConfig', :inhibit_warnings => true
   pod 'Firebase/DynamicLinks', :inhibit_warnings => true
   pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0', :inhibit_warnings => true
+  pod 'Mixpanel-swift', :inhibit_warnings => true
+  pod 'Sentry'
+
 end
 
 def developmentPods

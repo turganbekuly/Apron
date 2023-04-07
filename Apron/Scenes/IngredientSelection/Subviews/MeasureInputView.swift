@@ -42,7 +42,7 @@ final class MeasureInputView: UIView {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderColor = APRAssets.lightGray2.color.cgColor
         view.layer.cornerRadius = 19
         view.clipsToBounds = true
         view.backgroundColor = .white
@@ -51,7 +51,7 @@ final class MeasureInputView: UIView {
 
     private lazy var dividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = ApronAssets.gray.color
+        view.backgroundColor = APRAssets.gray.color
         return view
     }()
 

@@ -15,10 +15,10 @@ protocol SavedRecipesPresentationLogic: AnyObject {
 }
 
 final class SavedRecipesPresenter: SavedRecipesPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: SavedRecipesDisplayLogic?
-    
+
     // MARK: - SavedRecipesPresentationLogic
 
     func getSavedRecipes(response: SavedRecipesDataFlow.GetSavedRecipe.Response) {

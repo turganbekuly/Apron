@@ -33,9 +33,9 @@ public final class SearchBar: UISearchBar {
 
     private func configure() {
         textField?.font = TypographyFonts.regular12
-        setImage(ApronAssets.navSearchIcon.image, for: .search, state: .normal)
-        setImage(ApronAssets.searchClearButton.image, for: .clear, state: .normal)
-        setSearchFieldBackgroundImage(ApronAssets.searchRoundedView.image.withRenderingMode(.alwaysOriginal), for: .normal)
+        setImage(APRAssets.navSearchIcon.image, for: .search, state: .normal)
+        setImage(APRAssets.searchClearButton.image, for: .clear, state: .normal)
+        setSearchFieldBackgroundImage(APRAssets.searchRoundedView.image.withRenderingMode(.alwaysOriginal), for: .normal)
         searchTextPositionAdjustment = UIOffset(horizontal: 8.0, vertical: 0.0)
         setPositionAdjustment(UIOffset(horizontal: 10, vertical: 0), for: .search)
         configureColors()
@@ -45,8 +45,7 @@ public final class SearchBar: UISearchBar {
         backgroundColor = .clear
         searchBarStyle = .minimal
         textField?.backgroundColor = .clear
-        tintColor = ApronAssets.gray.color
+        tintColor = APRAssets.gray.color
     }
 
 }
-

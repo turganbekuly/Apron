@@ -10,12 +10,12 @@ import Models
 import UIKit
 
 extension TabBarViewController {
-    
+
     // MARK: - State
      enum State {
         case initial(TabBarInitialState)
     }
-    
+
     // MARK: - Methods
      func updateState() {
         switch state {
@@ -35,5 +35,5 @@ extension TabBarViewController {
             break
         }
     }
-    
+
 }

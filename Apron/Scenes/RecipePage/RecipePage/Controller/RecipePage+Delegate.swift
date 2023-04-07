@@ -21,24 +21,45 @@ extension RecipePageViewController: RecipePageCommentAdded {
 }
 
 extension RecipePageViewController: BottomStickyViewDelegate {
-    func addButtonTapped() {
-        let vc = CreateActionFlowBuilder(state: .initial(.recipePageAddTo, self)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.presentPanModal(vc)
+    func navigateToStepByStepMode() {
+        guard let instructions = recipe?.instructions else {
+            show(type: .error("В рецепте нету инструкции"))
+            return
         }
+        let vc = StepByStepModeBuilder(state: .initial(instructions, self.recipe?.imageURL, self)).build()
+        let navController = StepNavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        DispatchQueue.main.async {
+            self.navigationController?.present(navController, animated: true)
+        }
+    }
+
+    func addButtonTapped() {
+//        let vc = CreateActionFlowBuilder(state: .initial(.recipePageAddTo, self)).build()
+//        DispatchQueue.main.async {
+//            self.navigationController?.presentPanModal(vc)
+//        }
+        handleAddToCart(ingredients: recipe?.ingredients)
     }
 
     func saveButtonTapped() {
         guard let recipe = recipe else { return }
-        saveRecipe(with: recipe.id)
+        handleAuthorizationStatus { [weak self] in
+            guard let self = self else { return }
+            self.saveRecipe(with: recipe.id)
+        }
     }
 
     func textFieldTapped() {
-        var body = AddCommentRequestBody()
-        body.recipeId = recipe?.id
-        let viewController = AddCommentBuilder(state: .initial(recipe?.id, body, self)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(viewController, animated: true)
+        handleAuthorizationStatus() {
+            var body = AddCommentRequestBody()
+            body.recipeId = self.recipe?.id
+            let viewController = AddCommentBuilder(
+                state: .initial(self.recipe?.id, body, self)
+            ).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(viewController, animated: true)
+            }
         }
     }
 }
@@ -70,7 +91,7 @@ extension RecipePageViewController: CreateActionFlowProtocol {
 
         let viewController = PreShoppingListBuilder(state: .initial(cartItems, self)).build()
         DispatchQueue.main.async {
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.navigationController?.pushViewController(viewController, animated: false)
         }
     }
 }
@@ -79,8 +100,8 @@ extension RecipePageViewController: PreShoppingListDismissedDelegate {
     func dismissedWithIngredients() {
         show(
             type: .regular("Ингредиенты добавлены в корзину", "Посмотреть"),
-            firstAction:  {
-                let viewController = ShoppingListBuilder(state: .initial).build()
+            firstAction: {
+                let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }
@@ -93,7 +114,7 @@ extension RecipePageViewController: PreShoppingListDismissedDelegate {
     }
 }
 
-extension RecipePageViewController: StepByStepFinalStepProtocol{
+extension RecipePageViewController: StepByStepFinalStepProtocol {
     func reviewButtonTapped() {
         var body = AddCommentRequestBody()
         body.recipeId = recipe?.id

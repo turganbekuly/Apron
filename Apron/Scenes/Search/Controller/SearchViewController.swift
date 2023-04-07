@@ -11,40 +11,44 @@ import UIKit
 import Storages
 
 protocol SearchDisplayLogic: AnyObject {
-    
+
 }
 
 final class SearchViewController: ViewController {
-    
+    // MARK: - Sections
+
     struct Section {
         enum Section {
-            case search
+            case categories
         }
         enum Row {
-            case searchHistory
+            case category
         }
-        
+
         let section: Section
         let rows: [Row]
     }
 
-    struct SearchHistorySection {
+    struct CategoriesSection {
         enum Section {
-            case searchHistory
+            case categories
         }
         enum Row {
-            case history(SearchHistoryItem)
+            case category(SearchSuggestionCategoriesTypes)
         }
 
         let section: Section
         let rows: [Row]
     }
-    
+
     // MARK: - Properties
+
     let interactor: SearchBusinessLogic
 
     var sections: [Section] = []
-    var historyCollectionCell: [SearchHistorySection] = []
+    var categoryCollectionCell: [CategoriesSection] = [
+        .init(section: .categories, rows: SearchSuggestionCategoriesTypes.allCases.compactMap { .category($0) })
+    ]
 
     var state: State {
         didSet {
@@ -53,43 +57,41 @@ final class SearchViewController: ViewController {
     }
     var searchTypes: SearchTypes?
     var searchHistoryItems: [SearchHistoryItem] = []
-    
+
     // MARK: - Init
     init(interactor: SearchBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
-        getSearchHistory()
-        configureHistory()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
 
@@ -105,7 +107,16 @@ final class SearchViewController: ViewController {
         view.delegate = self
         return view
     }()
-    
+
+    private lazy var navigationTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.semibold20
+        label.textColor = APRAssets.primaryTextMain.color
+        label.textAlignment = .left
+        label.text = "Поиск"
+        return label
+    }()
+
     // MARK: - Methods
     private func configureNavigation() {
         let avatarView = AvatarView()
@@ -114,52 +125,52 @@ final class SearchViewController: ViewController {
             self.handleAuthorizationStatus {
                 let viewController = ProfileBuilder(state: .initial).build()
                 DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(viewController, animated: true)
+                    self.navigationController?.pushViewController(viewController, animated: false)
                 }
             }
         }
-        
+
         let cartView = CartButtonView()
         cartView.onTap = { [weak self] in
-            let viewController = ShoppingListBuilder(state: .initial).build()
+            let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
 
             DispatchQueue.main.async {
-                self?.navigationController?.pushViewController(viewController, animated: true)
+                self?.navigationController?.pushViewController(viewController, animated: false)
             }
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
-        navigationController?.navigationBar.barTintColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.barTintColor = APRAssets.secondary.color
     }
-    
+
     private func configureViews() {
 
         [mainView].forEach { view.addSubview($0) }
-        
+
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
-    func configureHistory() {
-        guard
-            let section = sections.firstIndex(where: { $0.section == .search }),
-            let row = sections[section].rows.firstIndex(of: .searchHistory),
-            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? SearchHistoryCell
-        else { return }
-        historyCollectionCell = [
-            .init(section: .searchHistory, rows: searchHistoryItems.compactMap { .history($0) })
-        ]
-        cell.historyCollectionView.reloadData()
-    }
-    
+//    func configureCategories() {
+//        guard
+//            let section = sections.firstIndex(where: { $0.section == .categories }),
+//            let row = sections[section].rows.firstIndex(of: .category),
+//            let cell = mainView.cellForRow(at: IndexPath(row: row, section: section)) as? SearchSuggestionCategoriesCell
+//        else { return }
+//        historyCollectionCell = [
+//            .init(section: .searchHistory, rows: searchHistoryItems.compactMap { .history($0) })
+//        ]
+//        cell.historyCollectionView.reloadData()
+//    }
+
 }

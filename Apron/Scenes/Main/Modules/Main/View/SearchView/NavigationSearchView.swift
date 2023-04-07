@@ -11,8 +11,9 @@ import APRUIKit
 final class NavigationSearchView: UIView {
     // MARK: - Init
 
-    init(title: String? = "Поиск рецептов и сообществ", frame: CGRect = .zero) {
+    init(title: String? = L10n.Search.title, frame: CGRect = .zero) {
         super.init(frame: frame)
+        self.titleLabel.text = title
         setupViews()
     }
 
@@ -32,7 +33,7 @@ final class NavigationSearchView: UIView {
 
     private lazy var iconView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.navSearchIcon.image
+        imageView.image = APRAssets.navSearchIcon.image
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -40,8 +41,8 @@ final class NavigationSearchView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
-        label.text = "Поиск рецептов и сообществ"
+        label.textColor = APRAssets.gray.color
+        label.text = L10n.Search.title
         return label
     }()
 

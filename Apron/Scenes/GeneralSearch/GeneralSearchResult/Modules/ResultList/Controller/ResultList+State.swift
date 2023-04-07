@@ -12,7 +12,7 @@ import APRUIKit
 import HapticTouch
 
 extension ResultListViewController {
-    
+
     // MARK: - State
     enum State {
         case initial(GeneralSearchInitialState, String?, ResultListViewControllerDelegate?)
@@ -31,7 +31,7 @@ extension ResultListViewController {
         case joinedCommunity
         case joinedCommunityFailed
     }
-    
+
     // MARK: - Methods
     func updateState() {
         switch state {
@@ -70,11 +70,11 @@ extension ResultListViewController {
         case .saveRecipe:
             HapticTouch.generateSuccess()
         case .saveRecipeFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         case .joinedCommunity:
             HapticTouch.generateSuccess()
         case .joinedCommunityFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
 

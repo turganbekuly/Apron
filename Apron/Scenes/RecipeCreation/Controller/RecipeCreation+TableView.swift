@@ -49,12 +49,17 @@ extension RecipeCreationViewController: UITableViewDataSource {
         case .whenToCook:
             let cell: RecipeCreationTagsCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .paidRecipe:
+            let cell: RecipeCreationPaidCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
+        case .paidRecipeInfo:
+            let cell: RecipeCreationPaidInfoCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
 
-extension RecipeCreationViewController:
-    UITableViewDelegate {
+extension RecipeCreationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
@@ -65,7 +70,7 @@ extension RecipeCreationViewController:
         case .image:
             return 221
         case .imagePlaceholder:
-            return 167
+            return 240
         case .description:
             return 125
         case .composition:
@@ -74,20 +79,23 @@ extension RecipeCreationViewController:
             var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
 
-            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0
-            {
+            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0 {
                 imageSize = CGFloat(images.count) * 220
             }
             return 100 + imageSize + ((recipeCreation?.instructions
                 .reduce(0, {
-                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10) + 48)
                 }) ?? 56))
         case .servings:
             return 100
         case .cookTime:
             return 100
         case .whenToCook:
-            return 150
+            return 800
+        case .paidRecipe:
+            return 144
+        case .paidRecipeInfo:
+            return 236
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -100,7 +108,7 @@ extension RecipeCreationViewController:
         case .image:
             return 221
         case .imagePlaceholder:
-            return 167
+            return 240
         case .description:
             return 125
         case .composition:
@@ -109,20 +117,23 @@ extension RecipeCreationViewController:
             var imageSize: CGFloat = 0
             let width = (UIScreen.main.bounds.width - 60)
 
-            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0
-            {
+            if let images = recipeCreation?.instructions.compactMap({ $0.image }), images.count != 0 {
                 imageSize = CGFloat(images.count) * 220
             }
             return 100 + imageSize + ((recipeCreation?.instructions
                 .reduce(0, {
-                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10) + 48)
+                    $0 + (($1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10) + 48)
                 }) ?? 56))
         case .servings:
             return 100
         case .cookTime:
             return 100
         case .whenToCook:
-            return 150
+            return 800
+        case .paidRecipe:
+            return 144
+        case .paidRecipeInfo:
+            return 236
         }
     }
 
@@ -146,9 +157,9 @@ extension RecipeCreationViewController:
             cell.delegate = self
             cell.configure()
         case .description:
-            guard let cell = cell as? RecipeCreationDescriptionCell else  { return }
+            guard let cell = cell as? RecipeCreationDescriptionCell else { return }
             cell.delegate = self
-            cell.placeholder = "Напишете описание вашего блюда"
+            cell.placeholder = L10n.RecipeCreation.Description.tfPlaceholder
             cell.configure(description: recipeCreation?.description)
         case .composition:
             guard let cell = cell as? RecipeCreationAddIngredientCell else { return }
@@ -170,6 +181,13 @@ extension RecipeCreationViewController:
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
             cell.configure()
+        case .paidRecipe:
+            guard let cell = cell as? RecipeCreationPaidCell else { return }
+            cell.delegate = self
+        case .paidRecipeInfo:
+            guard let cell = cell as? RecipeCreationPaidInfoCell else { return }
+            cell.delegate = self
+            cell.configure(email: recipeCreation?.email, promo: recipeCreation?.promo)
         }
     }
 }

@@ -11,17 +11,17 @@ protocol GeneralSearchBusinessLogic {
 }
 
 final class GeneralSearchInteractor: GeneralSearchBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: GeneralSearchPresentationLogic
     private let provider: GeneralSearchProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: GeneralSearchPresentationLogic,
          provider: GeneralSearchProviderProtocol = GeneralSearchProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - GeneralSearchBusinessLogic
 }

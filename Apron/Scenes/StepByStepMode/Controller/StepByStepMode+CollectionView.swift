@@ -112,7 +112,7 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
                 cell.configure(with: StepPagerCellViewModel(pagerType: .regular(title: "\(indexPath.row + 1)")))
             case .review:
                 guard let cell = cell as? StepPagerCell else { return }
-                cell.configure(with: StepPagerCellViewModel(pagerType: .image(image: ApronAssets.iconKnifeFork.image)))
+                cell.configure(with: StepPagerCellViewModel(pagerType: .image(image: APRAssets.iconKnifeFork.image)))
             }
         case is StepByStepModeView:
             let row = sections[indexPath.section].rows[indexPath.row]
@@ -152,4 +152,3 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-

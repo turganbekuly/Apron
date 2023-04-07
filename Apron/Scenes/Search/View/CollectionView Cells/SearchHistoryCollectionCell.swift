@@ -25,7 +25,7 @@ final class SearchHistoryCollectionCell: UICollectionViewCell {
             }
             textLabel.attributedText = Typography.regular14(
                 text: searchItem.text,
-                color: ApronAssets.gray.color
+                color: APRAssets.gray.color
             ).styled
         }
     }
@@ -49,14 +49,14 @@ final class SearchHistoryCollectionCell: UICollectionViewCell {
         view.clipsToBounds = true
         view.layer.cornerRadius = 16
         view.layer.borderWidth = 1
-        view.layer.borderColor = ApronAssets.gray.color.cgColor
+        view.layer.borderColor = APRAssets.gray.color.cgColor
         return view
     }()
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = ApronAssets.closeIcon.image.withTintColor(ApronAssets.gray.color)
+        imageView.image = APRAssets.closeIcon.image.withTintColor(APRAssets.gray.color)
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeButtonTapped)))
         return imageView

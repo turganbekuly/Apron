@@ -46,7 +46,7 @@ final class EmptyListCollectionCell: UICollectionViewCell {
             emptyTextLabel,
             emptyStateImageView
         )
-        
+
         setupConstraints()
     }
 
@@ -70,4 +70,3 @@ final class EmptyListCollectionCell: UICollectionViewCell {
         self.emptyStateImageView.image = image
     }
 }
-

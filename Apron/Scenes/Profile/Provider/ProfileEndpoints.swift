@@ -16,11 +16,11 @@ enum ProfileEndpoint {
 }
 
 extension ProfileEndpoint: AKNetworkTargetType {
-    
+
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
-    
+
     var path: String {
         switch self {
         case .getProfile:
@@ -29,7 +29,7 @@ extension ProfileEndpoint: AKNetworkTargetType {
             return "users/\(id)"
         }
     }
-    
+
     var method: AKNetworkMethod {
         switch self {
         case .getProfile:
@@ -38,11 +38,11 @@ extension ProfileEndpoint: AKNetworkTargetType {
             return .delete
         }
     }
-    
+
     var sampleData: Data {
         return Data()
     }
-    
+
     var task: AKNetworkTask {
         switch self {
         case .getProfile:
@@ -51,7 +51,7 @@ extension ProfileEndpoint: AKNetworkTargetType {
             return .requestPlain
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
@@ -62,5 +62,5 @@ extension ProfileEndpoint: AKNetworkTargetType {
         }
         return headers
     }
-    
+
 }

@@ -8,11 +8,15 @@
 import Configurations
 import AKNetwork
 import Storages
+import Models
 
 enum MainEndpoint {
     case joinCommunity(id: Int)
     case getCommuntiesByCategories
     case getMyCommunities
+    case getCookNowRecipes(body: SearchFilterRequestBody)
+    case getEventRecipes(body: SearchFilterRequestBody)
+    case saveRecipe(id: Int)
 }
 
 extension MainEndpoint: AKNetworkTargetType {
@@ -28,6 +32,10 @@ extension MainEndpoint: AKNetworkTargetType {
             return "communities/main"
         case .getMyCommunities:
             return "communities/getMyCreatedCommunities/true"
+        case .getCookNowRecipes, .getEventRecipes:
+            return "recipes/mainSearch"
+        case .saveRecipe(let id):
+            return "recipes/saveRecipe/\(id)"
         }
     }
 
@@ -39,6 +47,10 @@ extension MainEndpoint: AKNetworkTargetType {
             return .get
         case .getMyCommunities:
             return .get
+        case .getCookNowRecipes, .getEventRecipes:
+            return .post
+        case .saveRecipe:
+            return .post
         }
     }
 
@@ -49,6 +61,14 @@ extension MainEndpoint: AKNetworkTargetType {
         case .getCommuntiesByCategories:
             return .requestPlain
         case .getMyCommunities:
+            return .requestPlain
+        case let .getCookNowRecipes(body),
+            let .getEventRecipes(body):
+            return .requestParameters(
+                parameters: body.toJSON(),
+                encoding: AKJSONEncoding.default
+            )
+        case .saveRecipe:
             return .requestPlain
         }
     }
@@ -71,7 +91,7 @@ extension MainEndpoint: AKNetworkTargetType {
                 if let token = AuthStorage.shared.accessToken {
                     headers["Authorization"] = "Bearer \(token)"
                 }
-            } 
+            }
         }
         return headers
     }

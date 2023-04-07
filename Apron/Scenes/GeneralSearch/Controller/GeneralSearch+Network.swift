@@ -7,7 +7,7 @@
 //
 
 extension GeneralSearchViewController {
-    
+
     // MARK: - Network
 
 }

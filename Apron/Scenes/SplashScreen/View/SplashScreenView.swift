@@ -35,28 +35,60 @@ final class SplashScreenView: UIView {
 
     // MARK: - Views factory
 
-    private lazy var animationView = AnimationView(name: "splash_lottie_animation")
+    private lazy var backgroundImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "moca-5")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+
+    private lazy var logoImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "moca_logo_green_background")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
+        return imageView
+    }()
 
     // MARK: - SetupViews
 
     private func setupViews() {
         backgroundColor = .clear
-        [animationView].forEach { addSubview($0) }
+        [backgroundImage].forEach { addSubview($0) }
+        backgroundImage.addSubview(logoImage)
         setupConstraints()
-        animationView.loopMode = .playOnce
-        animationView.animationSpeed = 1
-        animationView.play() { [weak self] _ in
-            self?.delegate?.animationDidFinished()
-        }
-        animationView.contentMode = .scaleAspectFill
     }
 
     private func setupConstraints() {
-        animationView.snp.makeConstraints {
-            $0.centerX.equalToSuperview().offset(7)
-            $0.centerY.equalToSuperview().offset(-12)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(250)
+        backgroundImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
+
+        logoImage.snp.makeConstraints {
+            $0.size.equalTo(135)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(45)
+        }
+    }
+
+    // MARK: - Methods
+
+    func configure() {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.delegate?.animationDidFinished()
+            }
+        }
+
+        let slideInFromLeftTransition = CATransition()
+        slideInFromLeftTransition.type = .push
+        slideInFromLeftTransition.subtype = .fromRight
+        slideInFromLeftTransition.duration = 0.7
+        slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        slideInFromLeftTransition.fillMode = .removed
+        logoImage.layer.add(slideInFromLeftTransition, forKey: "slideInFromRightTransition")
+        CATransaction.commit()
     }
 }

@@ -10,12 +10,12 @@ import Models
 import UIKit
 
 extension GeneralSearchResultPagerViewController {
-    
+
     // MARK: - State
     enum State {
         case initial([GeneralSearchInitialState], GeneralSearchInitialState, ResultListViewControllerDelegate?)
     }
-    
+
     // MARK: - Methods
     func updateState() {
         switch state {
@@ -25,5 +25,5 @@ extension GeneralSearchResultPagerViewController {
             self.pages = pages
         }
     }
-    
+
 }

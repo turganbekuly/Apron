@@ -32,13 +32,13 @@ final class RecipePageProvider: RecipePageProviderProtocol {
 
     // MARK: - Properties
     private let service: RecipePageServiceProtocol
-    
+
     // MARK: - Init
     init(service: RecipePageServiceProtocol =
                     RecipePageService(provider: AKNetworkProvider<RecipePageEndpoint>())) {
         self.service = service
     }
-    
+
     // MARK: - RecipePageProviderProtocol
 
     func getRecipe(

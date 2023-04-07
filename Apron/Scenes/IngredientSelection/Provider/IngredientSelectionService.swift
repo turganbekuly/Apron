@@ -17,7 +17,7 @@ protocol IngredientSelectionServiceProtocol {
 }
 
 final class IngredientSelectionService: IngredientSelectionServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<IngredientSelectionEndpoint>
 
@@ -25,7 +25,7 @@ final class IngredientSelectionService: IngredientSelectionServiceProtocol {
     init(provider: AKNetworkProvider<IngredientSelectionEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - IngredientSelectionServiceProtocol
 
     func getProducts(
@@ -36,5 +36,5 @@ final class IngredientSelectionService: IngredientSelectionServiceProtocol {
             completion(result)
         }
     }
-    
+
 }

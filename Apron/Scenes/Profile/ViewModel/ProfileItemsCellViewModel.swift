@@ -34,11 +34,17 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
     public var icon: UIImage? {
         switch row {
         case .assistant:
-            return ApronAssets.cookAssistant.image
+            return APRAssets.cookAssistant.image
         case .deleteAccount:
-            return ApronAssets.profileDeleteAccount.image
+            return APRAssets.profileDeleteAccount.image
         case .logout:
-            return ApronAssets.exit.image
+            return APRAssets.exit.image
+        case .contactWithDevelopers:
+            return APRAssets.chat.image
+        case .myRecipes:
+            return APRAssets.iconKnifeFork.image
+                .withRenderingMode(.alwaysTemplate)
+                .withTintColor(.black)
         case .user:
             return nil
         }
@@ -48,11 +54,15 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
         var title = ""
         switch row {
         case .assistant:
-            title = "Ассистент готовки"
+            title = "Голосовой ассистент"
         case .deleteAccount:
             title = "Удалить аккаунт"
         case .logout:
             title = "Выйти"
+        case .myRecipes:
+            title = "Мои рецепты"
+        case .contactWithDevelopers:
+            title = "Сообщить о проблеме"
         case .user:
             return nil
         }
@@ -88,4 +98,3 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
         self.mode = mode
     }
 }
-

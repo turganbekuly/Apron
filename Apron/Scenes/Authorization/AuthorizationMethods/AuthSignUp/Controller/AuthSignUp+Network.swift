@@ -9,7 +9,7 @@
 import Models
 
 extension AuthSignUpViewController {
-    
+
     // MARK: - Network
 
     func signupRequest(username: String, email: String, password: String) {

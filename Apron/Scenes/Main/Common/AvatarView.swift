@@ -24,8 +24,8 @@ final class AvatarView: View {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .clear
-        imageView.image = ApronAssets.user.image
-        imageView.tintColor = ApronAssets.lightGray.color
+        imageView.image = APRAssets.user.image
+        imageView.tintColor = APRAssets.primaryTextMain.color
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -39,14 +39,7 @@ final class AvatarView: View {
         addSubview(imageView)
 
         guard userStorage.user != nil else { return }
-        self.imageView.setNameTitleImage(
-            string: userStorage.user?.username ?? "User",
-            color: .random,
-            circular: true,
-            stroke: false,
-            textAttributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
-                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11)]
-        )
+        self.imageView.setImage(string: userStorage.user?.username ?? "User")
     }
 
     override func setupConstraints() {

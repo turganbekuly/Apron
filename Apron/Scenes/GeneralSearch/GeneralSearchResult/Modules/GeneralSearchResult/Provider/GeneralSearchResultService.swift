@@ -9,11 +9,11 @@
 import AKNetwork
 
 protocol GeneralSearchResultServiceProtocol {
-    
+
 }
 
 final class GeneralSearchResultService: GeneralSearchResultServiceProtocol {
-    
+
     // MARK: - Properties
     private let provider: AKNetworkProvider<GeneralSearchResultEndpoint>
 
@@ -21,7 +21,7 @@ final class GeneralSearchResultService: GeneralSearchResultServiceProtocol {
     init(provider: AKNetworkProvider<GeneralSearchResultEndpoint>) {
         self.provider = provider
     }
-    
+
     // MARK: - GeneralSearchResultServiceProtocol
-    
+
 }

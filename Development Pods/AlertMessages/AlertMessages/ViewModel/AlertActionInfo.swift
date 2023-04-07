@@ -35,4 +35,3 @@ public struct AlertActionInfo {
         self.type = type
     }
 }
-

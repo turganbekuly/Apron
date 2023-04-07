@@ -11,7 +11,7 @@ import UIKit
 import Configurations
 
 extension AddCommentViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial(Int?, AddCommentRequestBody, RecipePageCommentAdded?)
@@ -22,7 +22,7 @@ extension AddCommentViewController {
         case uploadImageSucceed(String)
         case uploadImageFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
@@ -58,5 +58,5 @@ extension AddCommentViewController {
             show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
         }
     }
-    
+
 }

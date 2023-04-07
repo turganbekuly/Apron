@@ -9,44 +9,67 @@
 import Models
 import UIKit
 import APRUIKit
+import HapticTouch
+import RemoteConfig
 
 extension MainViewController {
-    
+
     // MARK: - State
     public enum State {
         case initial
-        case joinedCommunity
-        case joinedCommunityFailed
         case fetchCommunitiesByCategory([CommunityCategory])
         case fetchCommunitiesByCategoryFailed(AKNetworkError)
-        case fetchMyCommunities([CommunityResponse])
-        case fetchMyCommunititesFailed(AKNetworkError)
+        case fetchCookNowRecipes([RecipeResponse])
+        case fetchCookNowRecipesFailed(AKNetworkError)
+        case fetchEventRecipes([RecipeResponse])
+        case fetchEventRecipesFailed(AKNetworkError)
+        case saveRecipe(RecipeResponse)
+        case saveRecipeFailed(AKNetworkError)
     }
-    
+
     // MARK: - Methods
     public func updateState() {
         switch state {
         case .initial:
-            getMyCommunities()
-            getCommunitiesByCategory()
-        case .joinedCommunity:
-            getMyCommunities()
-            getCommunitiesByCategory()
-        case .joinedCommunityFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            cookNowRecipesState = .loading
+            configureMainPageCells()
+            fetchRemoteConfigFeatures()
+            getCookNowRecipes()
         case let .fetchCommunitiesByCategory(model):
             self.dynamicCommunities = model
             endRefreshingIfNeeded()
         case .fetchCommunitiesByCategoryFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
             endRefreshingIfNeeded()
-        case let .fetchMyCommunities(model):
-            myCommunities = model
-            endRefreshingIfNeeded()
-        case .fetchMyCommunititesFailed:
-            show(type: .error(L10n.Common.errorMessage))
-            endRefreshingIfNeeded()
+        case let .fetchCookNowRecipes(recipes):
+            cookNowRecipesState = .loaded(recipes)
+        case .fetchCookNowRecipesFailed:
+            cookNowRecipesState = .failed
+        case let .fetchEventRecipes(recipes):
+            eventRecipesState = .loaded(recipes)
+        case .fetchEventRecipesFailed:
+            eventRecipesState = .failed
+        case .saveRecipe:
+            HapticTouch.generateSuccess()
+        case .saveRecipeFailed:
+            show(type: .error(L10n.Alert.errorMessage))
+            mainView.reloadData()
         }
+    }
+
+    func fetchRemoteConfigFeatures() {
+        let eventValue = remoteConfigManager.mainOccaisionNumber
+        if !eventValue.isEmpty, let eventType = Int(eventValue) {
+            self.eventType = eventType
+            eventRecipesState = .loading
+            getEventRecipes(eventType: eventType)
+        }
+        
+        let adBanners = configManager.config(for: RemoteConfigKeys.adBannerObject)
+        if !adBanners.isEmpty {
+            self.adBanners = adBanners
+        }
+        configureMainPageCells()
     }
 
     func endRefreshingIfNeeded() {

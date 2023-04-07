@@ -17,7 +17,7 @@ final class RecipeCreationPlaceholderImageCell: UITableViewCell {
     // MARK: - Private properties
 
     private var isLoading = false
-    
+
     // MARK: - Public properties
 
     weak var delegate: RecipeCreationPlaceholderImageCellProtocol?
@@ -39,7 +39,7 @@ final class RecipeCreationPlaceholderImageCell: UITableViewCell {
     private lazy var activityIndicator = NVActivityIndicatorView(
         frame: .zero,
         type: .circleStrokeSpin,
-        color: ApronAssets.colorsYello.color,
+        color: APRAssets.mainAppColor.color,
         padding: nil
     )
 
@@ -83,7 +83,7 @@ final class RecipeCreationPlaceholderImageCell: UITableViewCell {
     // MARK: - Public methods
 
     public func startAnimating() {
-        activityIndicator.color = ApronAssets.colorsYello.color
+        activityIndicator.color = APRAssets.mainAppColor.color
 
         isLoading = true
         isUserInteractionEnabled = false
@@ -117,5 +117,6 @@ final class RecipeCreationPlaceholderImageCell: UITableViewCell {
 
     func configure() {
 
+        imagePlaceholder.configure()
     }
 }

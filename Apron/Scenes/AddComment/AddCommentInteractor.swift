@@ -16,14 +16,14 @@ final class AddCommentInteractor: AddCommentBusinessLogic {
     // MARK: - Properties
     private let presenter: AddCommentPresentationLogic
     private let provider: AddCommentProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: AddCommentPresentationLogic,
          provider: AddCommentProviderProtocol = AddCommentProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - AddCommentBusinessLogic
 
     func addComment(request: AddCommentDataFlow.AddComment.Request) {

@@ -53,7 +53,7 @@ final class AuthNavigationController: UINavigationController {
 
     private lazy var skipButton: BlackOpButton = {
         let button = BlackOpButton(arrowState: .none, frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        button.setTitle("Пропустить", for: .normal)
+        button.setTitle(L10n.Common.Skip.title, for: .normal)
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
@@ -72,11 +72,11 @@ final class AuthNavigationController: UINavigationController {
     @objc
     private func skipButtonTapped() {
         let alert = UIAlertController(
-            title: "Вы действительно хотите пропустить?",
-            message: "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.",
+            title: L10n.Alert.Authorization.Skip.title,
+            message: L10n.Alert.Authorization.Skip.message,
             preferredStyle: .alert
         )
-        let yesAction = UIAlertAction(title: "Да", style: .default) { [weak self] _ in
+        let yesAction = UIAlertAction(title: L10n.Common.yes, style: .default) { [weak self] _ in
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
 
@@ -87,7 +87,7 @@ final class AuthNavigationController: UINavigationController {
                 }
             }
         }
-        let noAction = UIAlertAction(title: "Нет", style: .cancel)
+        let noAction = UIAlertAction(title: L10n.Common.no, style: .cancel)
         [noAction, yesAction].forEach {
             alert.addAction($0)
         }

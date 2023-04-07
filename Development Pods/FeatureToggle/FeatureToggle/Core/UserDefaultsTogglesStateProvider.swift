@@ -7,9 +7,9 @@ final class UserDefaultsTogglesStateProvider {
     private let userDefaultsKey = "com.apron.feature-toggles"
     private let syncQueue = DispatchQueue(label: "com.apron.UserDefaultsTogglesStateProvider")
     private var togglesCache: [String: String]
-    
+
     // MARK: - Init
-    
+
     init() {
         togglesCache = userDefaults.value(forKey: userDefaultsKey) as? [String: String] ?? [:]
     }
@@ -24,7 +24,7 @@ final class UserDefaultsTogglesStateProvider {
             return nil
         }
     }
-    
+
     // For usage from tests
     func setValue<F: GenericToggle>(_ value: F.ValueType, forToggle toggle: F.Type) {
         syncQueue.async {
@@ -52,7 +52,7 @@ final class UserDefaultsTogglesStateProvider {
             self.togglesCache.removeAll()
             self.synchronize()
         }
-        
+
     }
 
     // MARK: - Private methods

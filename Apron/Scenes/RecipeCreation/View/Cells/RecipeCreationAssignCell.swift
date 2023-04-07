@@ -31,7 +31,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
     private var buttonWidth: Constraint?
 
     // MARK: - Init
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -62,7 +62,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
     private lazy var subtitlLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular12
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.textAlignment = .left
         label.numberOfLines = 2
         label.sizeToFit()
@@ -73,6 +73,7 @@ final class RecipeCreationAssignCell: UITableViewCell {
 
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         contentView.addSubviews(
             titleLabel,
             subtitlLabel,
@@ -115,16 +116,16 @@ final class RecipeCreationAssignCell: UITableViewCell {
         self.type = type
         switch type {
         case let .servings(value):
-            titleLabel.text = "Количество порции"
-            assignButton.setTitle(value == "0" ? "Задать" : value, for: .normal)
-            subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
+            titleLabel.text = L10n.RecipeCreation.Recipe.ServingCount.title
+            assignButton.setTitle(value == "0" ? L10n.RecipeCreation.Recipe.AssignButton.title : value, for: .normal)
+            subtitlLabel.text = L10n.RecipeCreation.Recipe.ServingCount.subtitle
             if !value.isEmpty {
                 buttonWidth?.update(offset: 80)
             }
         case let .cookTime(value):
-            titleLabel.text = "Время готовки"
-            assignButton.setTitle(value == "0" ? "Задать" : "\(value) минут", for: .normal)
-            subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
+            titleLabel.text = L10n.RecipeCreation.Recipe.CookTime.title
+            assignButton.setTitle(value == "0" ? L10n.RecipeCreation.Recipe.AssignButton.title : "\(value) \(L10n.Common.Measure.minutes)", for: .normal)
+            subtitlLabel.text = L10n.RecipeCreation.Recipe.CookTime.subtitle
             if !value.isEmpty {
                 buttonWidth?.update(offset: 80)
             }

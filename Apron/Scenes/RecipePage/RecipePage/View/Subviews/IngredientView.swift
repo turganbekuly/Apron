@@ -125,7 +125,7 @@ final class IngredientView: UIView {
 
         self.imageView.kf.setImage(
             with: URL(string: image ?? ""),
-            placeholder: ApronAssets.recipeIngredientPlaceholder.image.withRenderingMode(.alwaysTemplate)
+            placeholder: APRAssets.recipeIngredientPlaceholder.image.withRenderingMode(.alwaysTemplate)
         )
         self.imageView.tintColor = .gray
         self.imageView.backgroundColor = .white

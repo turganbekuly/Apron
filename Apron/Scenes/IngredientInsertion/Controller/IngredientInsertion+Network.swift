@@ -7,7 +7,7 @@
 //
 
 extension IngredientInsertionViewController {
-    
+
     // MARK: - Network
 
 }

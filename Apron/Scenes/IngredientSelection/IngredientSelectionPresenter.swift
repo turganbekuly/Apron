@@ -13,10 +13,10 @@ protocol IngredientSelectionPresentationLogic: AnyObject {
 }
 
 final class IngredientSelectionPresenter: IngredientSelectionPresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: IngredientSelectionDisplayLogic?
-    
+
     // MARK: - IngredientSelectionPresentationLogic
 
     func getProducts(response: IngredientSelectionDataFlow.GetProducts.Response) {

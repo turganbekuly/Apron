@@ -18,11 +18,12 @@ protocol InstructionSelectedProtocol: AnyObject {
 
 extension RecipeCreationViewController: IngredientSelectedProtocol {
     func onIngredientSelected(ingredient: RecipeIngredient) {
-        ApronAnalytics.shared.sendAmplitudeEvent(
+        ApronAnalytics.shared.sendAnalyticsEvent(
             .ingredientAdded(
                 IngredientAddedModel(
                     id: ingredient.product?.id ?? 0,
-                    name: ingredient.product?.name ?? ""
+                    name: ingredient.product?.name ?? "",
+                    sourceType: .selectionFromCreation
                 )
             )
         )
@@ -45,7 +46,7 @@ extension RecipeCreationViewController: InstructionSelectedProtocol {
 
 extension RecipeCreationViewController: AddIngredientCellTappedDelegate {
     func onAddIngredientTapped() {
-        let viewController = IngredientSelectionBuilder(state: .initial(self)).build()
+        let viewController = IngredientSelectionBuilder(state: .initial(self, .fullItem)).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(viewController, animated: true)
         }

@@ -7,7 +7,7 @@
 //
 
 extension ShoppingListViewController {
-    
+
     // MARK: - Network
 
     func fetchCartItems() {

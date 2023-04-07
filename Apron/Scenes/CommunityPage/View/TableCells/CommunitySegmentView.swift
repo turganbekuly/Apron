@@ -38,13 +38,13 @@ public final class CommunitySegmentView: UIView {
         segmentedControl.insertSegment(withTitle: "Рецепты", at: CommunitySegment.recipes.rawValue)
         segmentedControl.insertSegment(withTitle: "Комментарии", at: CommunitySegment.comments.rawValue)
         segmentedControl.underlineSelected = true
-        segmentedControl.tintColor = ApronAssets.darkYello.color
+        segmentedControl.tintColor = APRAssets.darkYello.color
         segmentedControl.setTitleTextAttributes(
             [.font: TypographyFonts.medium14, .foregroundColor: UIColor.black],
             for: .selected
         )
         segmentedControl.setTitleTextAttributes(
-            [.font: TypographyFonts.regular14, .foregroundColor: ApronAssets.gray.color],
+            [.font: TypographyFonts.regular14, .foregroundColor: APRAssets.gray.color],
             for: .normal
         )
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged(_:)), for: .valueChanged)
@@ -102,4 +102,3 @@ public final class CommunitySegmentView: UIView {
     }
 
 }
-

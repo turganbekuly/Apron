@@ -20,7 +20,7 @@ struct ChipCellViewModel: ChipCellViewModelProtocol {
     private let chip: String
 
     var backgroundColor: UIColor? {
-        return ApronAssets.lightGray2.color
+        return APRAssets.lightGray2.color
     }
 
     var title: NSAttributedString? {
@@ -38,4 +38,3 @@ struct ChipCellViewModel: ChipCellViewModelProtocol {
     }
 
 }
-

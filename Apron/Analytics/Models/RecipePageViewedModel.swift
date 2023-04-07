@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct RecipePageViewedModel: Codable {
     private enum CodingKeys: String, CodingKey {
         case recipeID = "recipe_id"
@@ -42,6 +41,3 @@ struct RecipePageViewedModel: Codable {
         return json
     }
 }
-
-
-

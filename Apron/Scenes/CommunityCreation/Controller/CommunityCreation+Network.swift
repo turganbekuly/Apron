@@ -10,7 +10,7 @@ import Models
 import UIKit
 
 extension CommunityCreationViewController {
-    
+
     // MARK: - Network
 
     func createCommunity(with model: CommunityCreation?) {

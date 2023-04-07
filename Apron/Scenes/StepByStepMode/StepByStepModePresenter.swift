@@ -7,14 +7,14 @@
 //
 
 protocol StepByStepModePresentationLogic: AnyObject {
-    
+
 }
 
 final class StepByStepModePresenter: StepByStepModePresentationLogic {
-    
+
     // MARK: - Properties
     weak var viewController: StepByStepModeDisplayLogic?
-    
+
     // MARK: - StepByStepModePresentationLogic
-    
+
 }

@@ -13,18 +13,18 @@ protocol RecipePageBusinessLogic {
 }
 
 final class RecipePageInteractor: RecipePageBusinessLogic {
-    
+
     // MARK: - Properties
     private let presenter: RecipePagePresentationLogic
     private let provider: RecipePageProviderProtocol
-    
+
     // MARK: - Initialization
     init(presenter: RecipePagePresentationLogic,
          provider: RecipePageProviderProtocol = RecipePageProvider()) {
         self.presenter = presenter
         self.provider = provider
     }
-    
+
     // MARK: - RecipePageBusinessLogic
 
     func getRecipe(request: RecipePageDataFlow.GetRecipe.Request) {

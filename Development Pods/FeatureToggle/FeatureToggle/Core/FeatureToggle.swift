@@ -20,25 +20,25 @@ public final class FeatureToggle {
     }
 
     // MARK: - Internal
-    
+
     /// Reset toggles storage to default state.
     /// For usage in unit tests: @testable import FeatureToggle.
     public static func reset() {
         FeatureToggle.shared.togglesStateProvider.reset()
     }
-    
+
     /// Set toggle value.
     /// For usage in unit tests: @testable import FeatureToggle.
     static func setValue<F: GenericToggle>(_ value: F.ValueType, forToggle toggle: F.Type) {
         FeatureToggle.shared.togglesStateProvider.setValue(value, forToggle: toggle)
     }
-    
+
     // For toggles changing interface
     static func valueDescription(forToggle toggle: AbstractToggle.Type) -> String? {
         return FeatureToggle.shared.togglesStateProvider.valueDescription(forToggle: toggle)
             ?? toggle.defaultValueDescription
     }
-    
+
     public static func set(valueDescription: String, forToggleIdentifier identifier: String) {
         FeatureToggle.shared.togglesStateProvider.set(
             valueDescription: valueDescription,

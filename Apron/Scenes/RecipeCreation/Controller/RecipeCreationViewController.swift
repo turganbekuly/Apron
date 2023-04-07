@@ -11,13 +11,15 @@ import UIKit
 import Models
 import Storages
 import AlertMessages
+import RemoteConfig
+import HapticTouch
 
 protocol RecipeCreationDisplayLogic: AnyObject {
     func displayRecipe(viewModel: RecipeCreationDataFlow.CreateRecipe.ViewModel)
     func displayUploadedImage(with viewModel: RecipeCreationDataFlow.UploadImage.ViewModel)
 }
 
-final class RecipeCreationViewController: ViewController, Messagable {
+final class RecipeCreationViewController: ViewController {
     // MARK: - Properties
 
     let interactor: RecipeCreationBusinessLogic
@@ -27,7 +29,10 @@ final class RecipeCreationViewController: ViewController, Messagable {
     var sections: [Section] = []
 
     var tagsSections: [TagsSection] = [
-        .init(section: .whenToCook, rows: SuggestedCookingTime.allCases.compactMap { .option($0) })
+        .init(section: .whenToCook, rows: SuggestedDayTimeType.allCases.compactMap { .whenToCook($0) }),
+        .init(section: .dishType, rows: SuggestedDishType.allCases.compactMap { .dishType($0) }),
+        .init(section: .lifeStyleType, rows: SuggestedLifestyleType.allCases.compactMap { .lifeStyleType($0) }),
+        .init(section: .eventType, rows: SuggestedEventType.allCases.compactMap { .eventType($0) })
     ]
 
     // Recipe creation model
@@ -35,35 +40,41 @@ final class RecipeCreationViewController: ViewController, Messagable {
     var recipeCreationStorage: RecipeCreationStorageProtocol = RecipeCreationStorage()
     var recipeCreation: RecipeCreation? {
         didSet {
-            recipeCreationStorage.recipeCreation = recipeCreation
+            switch initialState {
+            case .create:
+                recipeCreationStorage.recipeCreation = recipeCreation
+            default:
+                break
+            }
         }
     }
 
-    var selectedOptions = [SuggestedCookingTime]() {
+    var selectedCookingTime = [SuggestedDayTimeType]() {
         didSet {
-            recipeCreation?.whenToCook = selectedOptions.compactMap { $0.rawValue }
+            recipeCreation?.whenToCook = selectedCookingTime.compactMap { $0.rawValue }
+        }
+    }
+    var selectedDishTypes = [SuggestedDishType]() {
+        didSet {
+            recipeCreation?.dishType = selectedDishTypes.compactMap { $0.rawValue }
+        }
+    }
+    var selectedLifestyleTypes = [SuggestedLifestyleType]() {
+        didSet {
+            recipeCreation?.lifestyleType = selectedLifestyleTypes.compactMap { $0.rawValue }
+        }
+    }
+    var selectedEventTypes = [SuggestedEventType]() {
+        didSet {
+            recipeCreation?.occasion = selectedEventTypes.compactMap { $0.rawValue }
         }
     }
 
     var analyticsSourceType: RecipeCreationSourceTypeModel? {
         didSet {
-            ApronAnalytics.shared.sendAmplitudeEvent(
+            ApronAnalytics.shared.sendAnalyticsEvent(
                 .recipeCreationPageViewed(analyticsSourceType ?? .community)
             )
-        }
-    }
-
-    var recipeCreationSourceType: RecipeCreationSourceType? {
-        didSet {
-            switch recipeCreationSourceType {
-            case let .community(delegate):
-                self.delegate = delegate
-                analyticsSourceType = .community
-            case .saved:
-                analyticsSourceType = .saved
-            default:
-                break
-            }
         }
     }
 
@@ -83,26 +94,18 @@ final class RecipeCreationViewController: ViewController, Messagable {
     var initialState: RecipeCreationInitialState? {
         didSet {
             switch initialState {
-            case let .create(recipeCreation, sourceType),
-                let .edit(recipeCreation, sourceType):
-                if let storeRecipeCreation = recipeCreationStorage.recipeCreation,
-                    storeRecipeCreation.communityId == recipeCreation.communityId {
+            case let .create(recipeCreation, sourceType):
+                if let storeRecipeCreation = recipeCreationStorage.recipeCreation {
                     show(with: storeRecipeCreation, initialRecipe: recipeCreation)
-                } else {
-                    self.recipeCreation = recipeCreation
                 }
-                self.recipeCreationSourceType = sourceType
-                sections = [
-                    .init(
-                        section: .info,
-                        rows: [
-                            .name, .imagePlaceholder,.source,
-                            .description, .composition, .instruction,
-                            .servings, .cookTime, .whenToCook
-                        ]
-                    )
-                ]
-                mainView.reloadData()
+                self.recipeCreation = recipeCreation
+                self.analyticsSourceType = sourceType
+                handleSections(with: recipeCreation)
+            case let .edit(recipeCreation, sourceType):
+                assignTagValues(recipeCreation: recipeCreation)
+                self.recipeCreation = recipeCreation
+                self.analyticsSourceType = sourceType
+                handleSections(with: recipeCreation)
             default:
                 break
             }
@@ -114,12 +117,13 @@ final class RecipeCreationViewController: ViewController, Messagable {
             updateState()
         }
     }
-    
+
     // MARK: - Views factory
 
     private lazy var saveButton: NavigationButton = {
         let button = NavigationButton()
-        button.setTitle("Сохранить", for: .normal)
+        button.backgroundType = .blackBackground
+        button.setTitle(L10n.Common.Save.title, for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -132,46 +136,46 @@ final class RecipeCreationViewController: ViewController, Messagable {
         view.delegate = self
         return view
     }()
-    
+
     // MARK: - Init
 
     init(interactor: RecipeCreationBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         return nil
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
         super.loadView()
-        
+
         configureViews()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         state = { state }()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         configureNavigation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         configureColors()
     }
-    
+
     // MARK: - Methods
 
     func configureImageCell(isLoaded: Bool) {
@@ -189,26 +193,25 @@ final class RecipeCreationViewController: ViewController, Messagable {
     }
 
     private func configureNavigation() {
-        backButton.configure(with: "Новый рецепт")
+        backButton.configure(with: L10n.RecipeCreation.NewRecipe.title)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationController?.navigationBar.backgroundColor = ApronAssets.secondary.color
+        navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
         saveButton.snp.makeConstraints {
             $0.width.equalTo(100)
             $0.height.equalTo(30)
         }
     }
-    
+
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
 
         configureColors()
         makeConstraints()
     }
-    
+
     private func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -216,7 +219,7 @@ final class RecipeCreationViewController: ViewController, Messagable {
     }
 
     private func configureColors() {
-        view.backgroundColor = ApronAssets.secondary.color
+        view.backgroundColor = APRAssets.secondary.color
     }
 
     func configureInstructions() {
@@ -228,35 +231,9 @@ final class RecipeCreationViewController: ViewController, Messagable {
         cell.instructionsView.reloadData()
         mainView.reloadTableViewWithoutAnimation()
     }
-    
+
     deinit {
         NSLog("deinit \(self)")
-    }
-
-    private func show(with storageRecipe: RecipeCreation, initialRecipe: RecipeCreation) {
-        let confirm = AlertActionInfo(
-            title: "Да",
-            type: .normal,
-            action: {
-                self.recipeCreation = storageRecipe
-                self.mainView.reloadData()
-                self.recipeCreationStorage.recipeCreation = nil
-            }
-        )
-        let cancel = AlertActionInfo(
-            title: "Нет",
-            type: .cancel,
-            action: {
-                self.recipeCreation = initialRecipe
-                self.recipeCreationStorage.recipeCreation = nil
-                self.mainView.reloadData()
-            }
-        )
-        self.showAlert(
-            "Продолжить создание рецепта?",
-            message: "Вы недавно были в процессе создания рецепта. Вы хотите продолжить с того места, на котором остановились?",
-            actions: [confirm, cancel]
-        )
     }
 
     func saveButtonLoader(isLoading: Bool) {
@@ -267,6 +244,89 @@ final class RecipeCreationViewController: ViewController, Messagable {
         saveButton.stopAnimating()
     }
 
+    // MARK: - Private methods
+
+    private func show(with storageRecipe: RecipeCreation, initialRecipe: RecipeCreation) {
+        let confirm = AlertActionInfo(
+            title: L10n.Common.yes,
+            type: .normal,
+            action: {
+                self.recipeCreation = storageRecipe
+                self.handleSections(with: storageRecipe)
+                self.recipeCreationStorage.recipeCreation = nil
+            }
+        )
+        let cancel = AlertActionInfo(
+            title: L10n.Common.no,
+            type: .cancel,
+            action: {
+                self.recipeCreation = initialRecipe
+                self.handleSections(with: nil)
+                self.recipeCreationStorage.recipeCreation = nil
+            }
+        )
+        self.showAlert(
+            L10n.RecipeCreation.StartAlert.title,
+            message: L10n.RecipeCreation.StartAlert.message,
+            actions: [confirm, cancel]
+        )
+    }
+
+    private func handleSections(with recipe: RecipeCreation?) {
+        let remoteConfigManager = RemoteConfigManager.shared
+        var sections = [Section]()
+        var rows = [RecipeCreationViewController.Section.Row]()
+        rows.append(.name)
+
+        if let image = recipe?.imageURL, !image.isEmpty {
+            rows.append(.image)
+        } else {
+            rows.append(.imagePlaceholder)
+        }
+
+        rows.append(contentsOf: [.description, .composition])
+
+        if remoteConfigManager.remoteConfig.isPaidRecipeEnabled {
+            rows.append(.paidRecipe)
+        }
+
+        rows.append(contentsOf: [.instruction, .servings, .cookTime, .whenToCook])
+
+        sections = [.init(section: .info, rows: rows)]
+        self.sections = sections
+        self.mainView.reloadData()
+    }
+
+    private func assignTagValues(recipeCreation: RecipeCreation) {
+        if let whenToCook = recipeCreation.whenToCook, !whenToCook.isEmpty {
+            for cook in whenToCook {
+                guard let cookTime = SuggestedDayTimeType(rawValue: cook) else { return }
+                selectedCookingTime.append(cookTime)
+            }
+        }
+
+        if let dishType = recipeCreation.dishType, !dishType.isEmpty {
+            for type in dishType {
+                guard let dish = SuggestedDishType(rawValue: type) else { return }
+                selectedDishTypes.append(dish)
+            }
+        }
+
+        if let lifestyleType = recipeCreation.lifestyleType, !lifestyleType.isEmpty {
+            for type in lifestyleType {
+                guard let lifeStyle = SuggestedLifestyleType(rawValue: type) else { return }
+                selectedLifestyleTypes.append(lifeStyle)
+            }
+        }
+
+        if let eventType = recipeCreation.occasion, !eventType.isEmpty {
+            for type in eventType {
+                guard let event = SuggestedEventType(rawValue: type) else { return }
+                selectedEventTypes.append(event)
+            }
+        }
+    }
+    
     // MARK: - User actions
 
     @objc
@@ -275,23 +335,31 @@ final class RecipeCreationViewController: ViewController, Messagable {
            let _ = recipeCreation?.ingredients,
            let _ = recipeCreation?.instructions,
            let _ = recipeCreation?.servings,
-           let _ = recipeCreation?.cookTime
-        {
+           let _ = recipeCreation?.cookTime,
+           let _ = recipeCreation?.whenToCook {
             guard let instructions = recipeCreation?.instructions else { return }
             for (index, item) in instructions.enumerated() {
                 guard let itemIndex = recipeCreation?.instructions.firstIndex(where: { $0.description == item.description }) else { return }
                 recipeCreation?.instructions[itemIndex].orderNo = index + 1
             }
-
-            self.createRecipe(recipe: recipeCreation)
+            recipeCreation?.isHidden = false
+            switch initialState {
+            case .edit:
+                self.editRecipe(recipe: recipeCreation)
+            case .create:
+                self.createRecipe(recipe: recipeCreation)
+            default:
+                break
+            }
             saveButtonLoader(isLoading: true)
         } else {
+            HapticTouch.generateError()
             show(
                 type: .dialog(
-                "Обязательные поля!",
-                "Пожалуйста, заполните все поля, чтобы остальным учасникам было все понятно. Спасибо!",
-                "Понятно",
-                "Заполнить"
+                    L10n.RecipeCreation.DialogAlert.title,
+                    L10n.RecipeCreation.DialogAlert.message,
+                    L10n.RecipeCreation.DialogAlert.okayButton,
+                    L10n.RecipeCreation.DialogAlert.fillButton
             ),
                 firstAction: nil,
                 secondAction: nil

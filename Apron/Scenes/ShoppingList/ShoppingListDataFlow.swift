@@ -10,7 +10,7 @@ import Storages
 import Models
 
 enum ShoppingListDataFlow {
-    
+
 }
 
 extension ShoppingListDataFlow {

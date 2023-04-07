@@ -16,26 +16,5 @@ extension MainViewController: DynamicCommunityCellProtocol {
         }
     }
 
-    func navigateToSeeAll(with categoryID: Int, title: String) {
-        let vc = CommunitiesListBuilder(state: .initial(.all(id: categoryID, name: title))).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-}
-
-extension MainViewController: MyCommunityCellProtocol {
-    func navigateToMyCommunity(with id: Int) {
-        let vc = CommunityPageBuilder(state: .initial(.fromMain(id: id))).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-
-    func navigateToSeeAll() {
-        let vc = CommunitiesListBuilder(state: .initial(.myCommunities)).build()
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
+    func navigateToSeeAll(with categoryID: Int, title: String) {}
 }

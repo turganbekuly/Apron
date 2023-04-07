@@ -13,5 +13,5 @@ public protocol AbstractToggle {
     static var valueDescriptions: [String] { get }
 
     static var tags: [FeatureToggleTag] { get }
-    
+
 }

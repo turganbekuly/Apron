@@ -19,4 +19,3 @@ struct CommunityCollectionCellViewModel: ICommunityCollectionCellViewModel {
 
     var community: CommunityResponse?
 }
-

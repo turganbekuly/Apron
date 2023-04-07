@@ -14,6 +14,7 @@ public enum MessageType {
     case success(String)
     case regular(String, String)
     case forceUpdate
+    case completeAppleSignin(String, String, String, String)
 
     public var name: String {
         switch self {
@@ -29,6 +30,8 @@ public enum MessageType {
             return "success"
         case .forceUpdate:
             return "forceUpdate"
+        case .completeAppleSignin:
+            return "completeAppleSignin"
         }
     }
 }

@@ -55,6 +55,3 @@ public final class DynamicCommunityCollectionView: UICollectionView {
     }
 
 }
-
-
-

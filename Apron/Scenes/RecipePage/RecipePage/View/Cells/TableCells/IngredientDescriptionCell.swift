@@ -24,16 +24,18 @@ final class IngredientDescriptionCell: UITableViewCell {
 
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.regular12
+        label.font = TypographyFonts.regular14
         label.textColor = .black
+        label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.sizeToFit()
         return label
     }()
 
     private lazy var timingImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ApronAssets.recipeCookingTimeIcon.image
+        imageView.image = APRAssets.recipeCookingTimeIcon.image
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -41,14 +43,14 @@ final class IngredientDescriptionCell: UITableViewCell {
     private lazy var timingLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.regular14
-        label.textColor = ApronAssets.gray.color
+        label.textColor = APRAssets.gray.color
         label.textAlignment = .left
         return label
     }()
 
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = ApronAssets.lightGray2.color
+        view.backgroundColor = APRAssets.lightGray2.color
         return view
     }()
 
@@ -81,10 +83,9 @@ final class IngredientDescriptionCell: UITableViewCell {
         }
 
         timingLabel.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(8.5)
+            $0.centerY.equalTo(timingImageView.snp.centerY)
             $0.leading.equalTo(timingImageView.snp.trailing).offset(5)
             $0.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalTo(separatorView.snp.top).offset(-13)
         }
     }
 
@@ -92,6 +93,6 @@ final class IngredientDescriptionCell: UITableViewCell {
 
     func configure(with viewModel: IIngredientsDescriptionCellViewModel) {
         self.descriptionLabel.text = viewModel.description
-        self.timingLabel.text = "\(viewModel.cookingTime ?? "0") мин"
+        self.timingLabel.text = "\(viewModel.cookingTime ?? "0") \(L10n.Common.Measure.min)"
     }
 }

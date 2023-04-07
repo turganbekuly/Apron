@@ -7,7 +7,7 @@
 //
 
 extension IngredientSelectionViewController {
-    
+
     // MARK: - Network
 
     func getProducts(query: String) {
