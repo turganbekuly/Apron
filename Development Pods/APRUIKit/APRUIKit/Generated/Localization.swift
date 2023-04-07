@@ -84,6 +84,10 @@ public enum L10n {
     public enum SignUp {
       /// Регистрация в Apron
       public static let title = L10n.tr("APRLocalizable", "Authorization.SignUp.Title")
+      public enum Error {
+        /// Не удалось зарегистрироваться. Пожалуйста, попробуйте позднее!
+        public static let title = L10n.tr("APRLocalizable", "Authorization.SignUp.Error.Title")
+      }
     }
     public enum Skip {
       /// Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.
@@ -114,6 +118,8 @@ public enum L10n {
     public static let close = L10n.tr("APRLocalizable", "Common.Close")
     /// Нет
     public static let no = L10n.tr("APRLocalizable", "Common.No")
+    /// Предпросмотр
+    public static let preview = L10n.tr("APRLocalizable", "Common.Preview")
     /// Да
     public static let yes = L10n.tr("APRLocalizable", "Common.Yes")
     public enum Join {
@@ -172,6 +178,28 @@ public enum L10n {
     }
   }
 
+  public enum IngredientSelection {
+    public enum Ingredient {
+      /// Добавить ингредиент
+      public static let add = L10n.tr("APRLocalizable", "IngredientSelection.Ingredient.Add")
+      /// Пожалуйста, выберите ингредиент из списка
+      public static let chooseFromList = L10n.tr("APRLocalizable", "IngredientSelection.Ingredient.ChooseFromList")
+      /// Пожалуйста, выберите измерение
+      public static let chooseMeasureTF = L10n.tr("APRLocalizable", "IngredientSelection.Ingredient.ChooseMeasureTF")
+    }
+  }
+
+  public enum InstructionSelection {
+    public enum AddStep {
+      /// Добавить шаг
+      public static let title = L10n.tr("APRLocalizable", "InstructionSelection.AddStep.Title")
+    }
+    public enum Description {
+      /// Введите инструкцию
+      public static let cellPlaceholder = L10n.tr("APRLocalizable", "InstructionSelection.Description.CellPlaceholder")
+    }
+  }
+
   public enum Main {
     public enum AdBanner {
       /// Для Вас
@@ -215,6 +243,49 @@ public enum L10n {
         /// Пожалуйста, используйте только свои уникальные фотографии. Формат JPG, JPEG, PNG. Размер до 20 мб
         public static let format = L10n.tr("APRLocalizable", "Photo.UploadPhoto.Advice.Format")
       }
+      public enum Error {
+        /// Не удалось загрузить фото, попробуйте еще раз
+        public static let title = L10n.tr("APRLocalizable", "Photo.UploadPhoto.Error.Title")
+      }
+    }
+  }
+
+  public enum PreshoppingList {
+    /// Купленные ингредиенты
+    public static let boughtIngredients = L10n.tr("APRLocalizable", "PreshoppingList.BoughtIngredients")
+    /// Ингредиенты
+    public static let ingredients = L10n.tr("APRLocalizable", "PreshoppingList.Ingredients")
+    public enum AddProduct {
+      /// Добавить продукт
+      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.AddProduct.Title")
+    }
+    public enum AddProductsToBuyList {
+      /// Добавьте товары в свой список покупок
+      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.AddProductsToBuyList.Title")
+    }
+    public enum CannotCleanCart {
+      /// Не удалось очистить корзину
+      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.CannotCleanCart.Title")
+    }
+    public enum CannotUploadCart {
+      /// Не удалось загрузить корзину
+      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.CannotUploadCart.Title")
+    }
+    public enum ChooseAtLeastOneProduct {
+      /// Пожалуйста, выберите не менее 1 продукта
+      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.ChooseAtLeastOneProduct.Title")
+    }
+    public enum ListOfProducts {
+      /// Список покупок
+      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.ListOfProducts.Title")
+    }
+    public enum Order {
+      /// Заказать
+      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.Order.Title")
+    }
+    public enum SelfProduct {
+      /// Личный продукт
+      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.SelfProduct.Title")
     }
   }
 

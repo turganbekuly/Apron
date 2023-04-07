@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import APRUIKit
 
 extension InstructionSelectionViewController: UITableViewDataSource {
 
@@ -77,7 +78,7 @@ extension InstructionSelectionViewController: UITableViewDelegate {
             cell.configure(imageURL: instruction.image)
         case .description:
             guard let cell = cell as? RecipeCreationDescriptionCell else { return }
-            cell.placeholder = "Введите инструкцию"
+            cell.placeholder = L10n.InstructionSelection.Description.cellPlaceholder
             cell.delegate = self
             cell.configure(description: instruction.description)
         }

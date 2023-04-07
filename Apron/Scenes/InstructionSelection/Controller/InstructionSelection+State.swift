@@ -9,6 +9,7 @@
 import Models
 import UIKit
 import Configurations
+import APRUIKit
 
 extension InstructionSelectionViewController {
 
@@ -36,7 +37,7 @@ extension InstructionSelectionViewController {
             replaceImageCell(type: .image)
         case .uploadImageFailed:
             configureImageCell(isLoaded: false)
-            show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
+            show(type: .error(L10n.Photo.UploadPhoto.Error.title))
         }
     }
 

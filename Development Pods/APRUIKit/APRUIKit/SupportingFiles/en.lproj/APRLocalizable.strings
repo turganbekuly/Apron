@@ -32,6 +32,7 @@
 "Common.Measure.Minutes" = "минут";
 "Common.Cancel" = "Отмена";
 "Common.Close" = "Закрыть";
+"Common.Preview" = "Предпросмотр";
 
 // MARK: - Photo
 
@@ -43,6 +44,7 @@
 "Photo.UploadPhoto.Title" = "Загрузить фото";
 "Photo.UploadPhoto.Advice.Format" = "Пожалуйста, используйте только свои уникальные фотографии. Формат JPG, JPEG, PNG. Размер до 20 мб";
 "Photo.UploadPhoto.Advice.Connection" = "Убедитесь, что вы подключены к 4G (LTE) или Wi-Fi. Через 3G фото может не загрузиться";
+"Photo.UploadPhoto.Error.Title" = "Не удалось загрузить фото, попробуйте еще раз";
 
 // MARK: - Alert Messages
 
@@ -69,6 +71,7 @@
 "Authorization.Username.TFTitle" = "Имя пользователя";
 "Authorization.SignIn.Title" = "С возвращением!";
 "Authorization.SignUp.Title" = "Регистрация в Apron";
+"Authorization.SignUp.Error.Title" = "Не удалось зарегистрироваться. Пожалуйста, попробуйте позднее!";
 "Authorization.Skip.Title" = "Вы действительно хотите пропустить?";
 "Authorization.Skip.Message" = "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.";
 "Authorization.Username.Title" = "Привет!";
@@ -153,4 +156,26 @@
 "RecipeCreation.Recipe.AssignButton.Title" = "Задать";
 "RecipeCreation.Recipe.CookTime.Title" = "Время готовки";
 "RecipeCreation.Recipe.CookTime.Subtitle" = "Сколько времени нужно, что бы приготовить это блюдо?";
+
+// MARK: Ingredient Selection
+"IngredientSelection.Ingredient.Add" = "Добавить ингредиент";
+"IngredientSelection.Ingredient.ChooseFromList" = "Пожалуйста, выберите ингредиент из списка";
+"IngredientSelection.Ingredient.ChooseMeasureTF" = "Пожалуйста, выберите измерение";
+
+//MARK: Instruction Selection
+"InstructionSelection.AddStep.Title" = "Добавить шаг";
+"InstructionSelection.Description.CellPlaceholder" = "Введите инструкцию";
+
+//MARK: PreShopping List
+"PreshoppingList.ChooseAtLeastOneProduct.Title" = "Пожалуйста, выберите не менее 1 продукта";
+"PreshoppingList.Order.Title" = "Заказать";
+"PreshoppingList.AddProduct.Title" = "Добавить продукт";
+"PreshoppingList.ListOfProducts.Title" = "Список покупок";
+"PreshoppingList.SelfProduct.Title" = "Личный продукт";
+"PreshoppingList.CannotUploadCart.Title" = "Не удалось загрузить корзину";
+"PreshoppingList.CannotCleanCart.Title" = "Не удалось очистить корзину";
+"PreshoppingList.AddProductsToBuyList.Title" = "Добавьте товары в свой список покупок";
+"PreshoppingList.Ingredients" = "Ингредиенты";
+"PreshoppingList.BoughtIngredients" = "Купленные ингредиенты";
+
 

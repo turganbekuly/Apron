@@ -82,7 +82,7 @@ final class InstructionSelectionViewController: ViewController {
     private lazy var navigationRightButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .blackBackground
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Common.Save.title, for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -128,7 +128,7 @@ final class InstructionSelectionViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        backButton.configure(with: "Добавить шаг")
+        backButton.configure(with: L10n.InstructionSelection.AddStep.title)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

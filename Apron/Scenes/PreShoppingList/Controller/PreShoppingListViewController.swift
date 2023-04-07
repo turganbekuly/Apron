@@ -55,7 +55,7 @@ final class PreShoppingListViewController: ViewController {
     private lazy var addButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .blackBackground
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Common.Save.title, for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -109,7 +109,7 @@ final class PreShoppingListViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        backButton.configure(with: "Предпросмотр")
+        backButton.configure(with: L10n.Common.preview)
         backButton.onBackButtonTapped = { [weak self] in
             self?.delegate?.dismissed()
             self?.navigationController?.popViewController(animated: true)
@@ -145,7 +145,7 @@ final class PreShoppingListViewController: ViewController {
     @objc
     private func addButtonTapped() {
         if selectedItems.isEmpty {
-            show(type: .error("Пожалуйста, выберите не менее 1 продукта"))
+            show(type: .error(L10n.PreshoppingList.ChooseAtLeastOneProduct.title))
             return
         }
 
