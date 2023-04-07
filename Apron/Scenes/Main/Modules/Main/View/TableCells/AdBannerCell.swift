@@ -143,7 +143,7 @@ final class AdBannerCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(viewModel: [AdBannerObject]) {
-        titleLabel.text = "Для Вас"
+        titleLabel.text = L10n.Main.AdBanner.title
         bannersSection = [.init(section: .banners, rows: viewModel.compactMap { .banner($0) })]
         pageControl.numberOfPages = viewModel.count
         itemsCount = viewModel.count

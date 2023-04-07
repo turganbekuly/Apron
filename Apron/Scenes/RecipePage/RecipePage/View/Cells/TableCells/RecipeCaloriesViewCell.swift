@@ -27,7 +27,7 @@ final class RecipeCaloriesViewCell: UITableViewCell {
         label.font = TypographyFonts.semibold20
         label.textColor = .black
         label.textAlignment = .left
-        label.text = "Калорийность"
+        label.text = L10n.Recipe.Calories.title
         return label
     }()
 
@@ -125,9 +125,9 @@ final class RecipeCaloriesViewCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: CaloriesCellViewModelProtocol) {
-        fatView.configure(type: "ЖИРЫ", measure: String(format: "%.1f", viewModel.fatCount ?? 0) + "г")
-        proteinView.configure(type: "БЕЛКИ", measure: String(format: "%.1f", viewModel.proteinCount ?? 0) + "г")
-        carbsView.configure(type: "УГЛЕВОДЫ", measure: String(format: "%.1f", viewModel.carbsCount ?? 0) + "г")
-        attributedLabelSetup(firstString: String(format: "%.1f", viewModel.ccalCount ?? 0), secondString: " Ккал на 100 гр")
+        fatView.configure(type: L10n.Recipe.Calories.fat, measure: String(format: "%.1f", viewModel.fatCount ?? 0) + "г")
+        proteinView.configure(type: L10n.Recipe.Calories.protein, measure: String(format: "%.1f", viewModel.proteinCount ?? 0) + "г")
+        carbsView.configure(type: L10n.Recipe.Calories.carbs, measure: String(format: "%.1f", viewModel.carbsCount ?? 0) + "г")
+        attributedLabelSetup(firstString: String(format: "%.1f", viewModel.ccalCount ?? 0), secondString: " \(L10n.Recipe.Calories.subtitle)")
     }
 }

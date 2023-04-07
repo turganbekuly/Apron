@@ -66,7 +66,7 @@ extension ProfileViewController: UITableViewDelegate {
             let link = RemoteConfigManager.shared.remoteConfig.contactWithDevelopersLink
             guard !link.isEmpty else { return }
             let webViewController = WebViewHandler(urlString: link)
-            present(webViewController, animated: true)
+            presentPanModal(webViewController)
         default:
             break
         }

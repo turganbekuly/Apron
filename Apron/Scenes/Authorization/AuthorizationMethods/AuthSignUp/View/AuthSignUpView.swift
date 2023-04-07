@@ -32,23 +32,35 @@ final class AuthSignUpView: UIView {
     // MARK: - Views factory
 
     lazy var nicknameTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "Имя пользователя", title: "Имя пользователя")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Username.tfPlaceholder,
+            title: L10n.Authorization.Username.tfTitle
+        )
         return textField
     }()
 
     lazy var emailTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "mymail@gmail.com", title: "Эл.почта")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Email.tfPlaceholder,
+            title: L10n.Authorization.Email.tfTitle
+        )
         return textField
     }()
 
     lazy var passwordTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "***********", title: "Пароль")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Password.tfPlaceholder,
+            title: L10n.Authorization.Password.tfTitle
+        )
         textField.textField.addTarget(self, action: #selector(passwordChanged(_:)), for: .editingChanged)
         return textField
     }()
 
     lazy var confirmTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "***********", title: "Подтвердите пароль")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Password.tfPlaceholder,
+            title: L10n.Authorization.ConfirmPassword.tfTitle
+        )
         textField.textField.addTarget(self, action: #selector(passwordChanged(_:)), for: .editingChanged)
         return textField
     }()
@@ -60,7 +72,7 @@ final class AuthSignUpView: UIView {
         button.setBackgroundColor(APRAssets.mainAppColor.color, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Регистрация", for: .normal)
+        button.setTitle(L10n.Authorization.Button.SignIn.title, for: .normal)
         button.isEnabled = false
         return button
     }()

@@ -75,7 +75,7 @@ final class AuthSignUpViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        backButton.configure(with: "Регистрация")
+        backButton.configure(with: L10n.Authorization.Button.SignIn.title)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

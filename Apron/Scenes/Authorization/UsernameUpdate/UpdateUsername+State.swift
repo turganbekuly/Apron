@@ -34,7 +34,7 @@ extension UpdateUsernameViewController {
             case .exists:
                 NotificationBannerManager.shared.show(
                     style: .information,
-                    text: "Такое имя уже существует, пожалуйста, введите другое"
+                    text: L10n.Alert.NameExists.message
                 )
             default:
                 break

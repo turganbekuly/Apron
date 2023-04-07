@@ -19,17 +19,17 @@ enum WhatToCookCategoryTypes: CaseIterable {
     var title: String {
         switch self {
         case .zavtrak:
-            return "Завтрак"
+            return L10n.Food.CategoryType.breakfast
         case .obed:
-            return "Обед"
+            return L10n.Food.CategoryType.lunch
         case .uzhin:
-            return "Ужин"
+            return L10n.Food.CategoryType.dinner
         case .salati:
-            return "Салаты"
+            return L10n.Food.CategoryType.salads
         case .zakuski:
-            return "Закуски"
+            return L10n.Food.CategoryType.snacks
         case .deserti:
-            return "Десерты"
+            return L10n.Food.CategoryType.deserts
         }
     }
 

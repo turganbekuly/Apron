@@ -66,7 +66,7 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
 
     private lazy var roudedTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            placeholder: "+  Добавьте шаги приготовления"
+            placeholder: L10n.RecipeCreation.Recipe.instructionsTF
         )
         textField.textField.isUserInteractionEnabled = false
         return textField
@@ -119,7 +119,7 @@ final class RecipeCreationAddInstructionCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(instructions: [RecipeInstruction]?) {
-        titleLabel.text = "Инструкция"
+        titleLabel.text = L10n.RecipeCreation.Recipe.instructionsTitle
         guard let instructions = instructions else {
             return
         }

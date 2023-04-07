@@ -111,6 +111,24 @@ final class ShoppingListViewController: ViewController {
         return button
     }()
 
+    private lazy var addProductButton: BlackOpButton = {
+        let button = BlackOpButton()
+        button.backgroundType = .whiteBackground
+        button.setTitle("Добавить продукт", for: .normal)
+        button.addTarget(self, action: #selector(addProductButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 23
+        button.layer.masksToBounds = true
+        return button
+    }()
+
+    private lazy var hStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [addProductButton, orderButton])
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+
     // MARK: - Init
     init(interactor: ShoppingListBusinessLogic, state: State) {
         self.interactor = interactor
@@ -189,14 +207,14 @@ final class ShoppingListViewController: ViewController {
     }
 
     private func configureViews() {
-        [mainView, orderButton].forEach { view.addSubview($0) }
+        [mainView, hStackView].forEach { view.addSubview($0) }
 
         configureColors()
         makeConstraints()
     }
 
     private func makeConstraints() {
-        orderButton.snp.makeConstraints {
+        hStackView.snp.makeConstraints {
             $0.height.equalTo(46)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
@@ -234,7 +252,15 @@ final class ShoppingListViewController: ViewController {
         ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListCheckoutTapped(cartItems.map { $0.productName }))
         OneSignal.sendTag("shopping_list_checkout_tapped", value: "order_button_tapped")
         OneSignal.addTrigger("shopping_list_checkout_tapped", withValue: "order_button_tapped")
-        present(webViewController, animated: true)
+        presentPanModal(webViewController)
+    }
+
+    @objc
+    private func addProductButtonTapped() {
+        let vc = IngredientSelectionBuilder(state: .initial(self, .fullItem)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     // MARK: - Private functions
@@ -266,7 +292,7 @@ extension ShoppingListViewController: IngredientSelectedProtocol {
                 )
             )
         )
-        var productAmount: Double = 0
+        var productAmount: Double = 1
         if cartManager.isContains(product: ingredient.product?.name ?? "") {
             productAmount = CartManager.shared.getProductAmount(for: ingredient.product?.name ?? "")
         }
@@ -275,7 +301,7 @@ extension ShoppingListViewController: IngredientSelectedProtocol {
             productName: ingredient.product?.name ?? "",
             productCategoryName: ingredient.product?.productCategoryName ?? "",
             productImage: ingredient.product?.image,
-            amount: (ingredient.amount ?? 0) + productAmount,
+            amount: ingredient.amount ?? productAmount,
             measurement: ingredient.measurement ?? "",
             recipeName: "Личный продукт",
             bought: false

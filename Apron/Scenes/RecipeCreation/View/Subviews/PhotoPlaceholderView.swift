@@ -40,7 +40,7 @@ final class PhotoPlaceholderView: UIView {
         let title = UILabel()
         title.font = TypographyFonts.semibold14
         title.textColor = .black
-        title.text = "Загрузить фото"
+        title.text = L10n.Photo.UploadPhoto.title
         title.textAlignment = .center
         title.sizeToFit()
         return title
@@ -88,8 +88,8 @@ final class PhotoPlaceholderView: UIView {
     func configure() {
         vStackView.removeAllArrangedSubviews()
         let texts = [
-            "Пожалуйста, используйте только свои уникальные фотографии. Формат JPG, JPEG, PNG. Размер до 20 мб",
-            "Убедитесь, что вы подключены к 4G (LTE) или Wi-Fi. Через 3G фото может не загрузиться"
+            L10n.Photo.UploadPhoto.Advice.format,
+            L10n.Photo.UploadPhoto.Advice.connection
         ]
         for text in texts {
             let label = UILabel()

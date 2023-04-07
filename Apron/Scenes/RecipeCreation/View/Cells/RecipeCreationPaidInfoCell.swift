@@ -36,7 +36,7 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
         label.font = TypographyFonts.semibold16
         label.textColor = .black
         label.numberOfLines = 1
-        label.text = "Номер телефона *"
+        label.text = L10n.RecipeCreation.Recipe.Paid.emailTitle
         return label
     }()
 
@@ -45,13 +45,13 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
         label.font = TypographyFonts.regular12
         label.textColor = .black
         label.numberOfLines = 0
-        label.text = "Подарок будет отправлен на указанный номер по WhatsApp"
+        label.text = L10n.RecipeCreation.Recipe.Paid.emailDescr
         return label
     }()
 
     private lazy var emailTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            placeholder: "Напишите номер телефона (WhatsApp)"
+            placeholder: L10n.RecipeCreation.Recipe.Paid.emailTF
         )
         textField.textField.keyboardType = .emailAddress
         textField.textField.addTarget(self, action: #selector(didEnterEmail(_:)), for: .editingChanged)
@@ -63,7 +63,7 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
         label.font = TypographyFonts.semibold16
         label.textColor = .black
         label.numberOfLines = 1
-        label.text = "Введите промокод *"
+        label.text = L10n.RecipeCreation.Recipe.Paid.promoTitle
         return label
     }()
 
@@ -72,13 +72,13 @@ final class RecipeCreationPaidInfoCell: UITableViewCell {
         label.font = TypographyFonts.regular12
         label.textColor = .black
         label.numberOfLines = 0
-        label.text = "Укажите правильный промокод по которому вы пришли для получения подарка"
+        label.text = L10n.RecipeCreation.Recipe.Paid.promoDescr
         return label
     }()
 
     private lazy var promoTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            placeholder: "Напишите промо код"
+            placeholder: L10n.RecipeCreation.Recipe.Paid.promoTF
         )
         textField.textField.addTarget(self, action: #selector(didEnterPromo(_:)), for: .editingChanged)
         return textField

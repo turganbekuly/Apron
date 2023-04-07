@@ -146,8 +146,6 @@ final class UpdateUsernameViewController: ViewController, PanModalPresentable, M
             options: info.animationOptions,
             animations: { [weak self] in
                 guard let self = self else { return }
-                let window = UIApplication.shared.windows.first { $0.isKeyWindow }
-                let bottomPadding = window?.safeAreaInsets.bottom
                 self.keyboardHeight = info.endFrame.size.height
                 UIView.animate(
                     withDuration: 0.1,

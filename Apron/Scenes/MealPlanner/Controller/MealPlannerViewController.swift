@@ -192,8 +192,8 @@ final class MealPlannerViewController: ViewController {
 
     }
 
-    deinit {
-        NSLog("deinit \(self)")
+    private func animationHanlding() {
+        
     }
 
     // MARK: - User actions
@@ -294,5 +294,11 @@ final class MealPlannerViewController: ViewController {
             .init(section: .saturday(.saturday), rows: [.saturday(saturday)]),
             .init(section: .sunday(.sunday), rows: [.sunday(sunday)]),
         ]
+    }
+
+    // MARK: - Deinit
+
+    deinit {
+        NSLog("deinit \(self)")
     }
 }

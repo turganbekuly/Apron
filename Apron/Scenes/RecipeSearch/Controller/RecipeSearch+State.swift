@@ -45,7 +45,7 @@ extension RecipeSearchViewController {
         case .saveRecipe:
             HapticTouch.generateSuccess()
         case .saveRecipeFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
             mainView.reloadData()
         }
     }

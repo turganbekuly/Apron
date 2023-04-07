@@ -42,7 +42,7 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
 
     private lazy var roudedTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            placeholder: "+  Добавьте ингредиенты"
+            placeholder: L10n.RecipeCreation.Recipe.ingredientsTF
         )
         textField.textField.isUserInteractionEnabled = false
         return textField
@@ -100,7 +100,7 @@ final class RecipeCreationAddIngredientCell: UITableViewCell {
         newIngredientDelegate: AddIngredientCellTappedDelegate?
     ) {
         self.newIngredientDelegate = newIngredientDelegate
-        titleLabel.text = "Ингредиенты"
+        titleLabel.text = L10n.RecipeCreation.Recipe.ingredientsTitle
         ingredientsStackView.removeAllArrangedSubviews()
         guard let ingredients = ingredients else { return }
 

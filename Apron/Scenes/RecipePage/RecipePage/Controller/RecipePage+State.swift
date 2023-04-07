@@ -41,7 +41,7 @@ extension RecipePageViewController {
             bottomStickyView.configure(isSaved: true)
         case .saveRecipeFailed:
             bottomStickyView.configure(isSaved: false)
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         case let .displayComments(comment):
             self.recipeComments = comment
         case .displayCommentsFailed:

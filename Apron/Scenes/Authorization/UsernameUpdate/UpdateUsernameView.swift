@@ -33,7 +33,7 @@ final class UpdateUsernameView: UIView {
         label.textAlignment = .center
         label.textColor = APRAssets.primaryTextMain.color
         label.font = TypographyFonts.semibold20
-        label.text = "Привет!"
+        label.text = L10n.Authorization.Username.title
         return label
     }()
 
@@ -43,12 +43,12 @@ final class UpdateUsernameView: UIView {
         label.textAlignment = .center
         label.textColor = APRAssets.primaryTextMain.color
         label.font = TypographyFonts.semibold14
-        label.text = "Заполните ваше имя для продолжения"
+        label.text = L10n.Authorization.Username.subtitle
         return label
     }()
 
     lazy var roundedTextField: RoundedTextField = {
-        let textField = RoundedTextField(placeholder: "Имя")
+        let textField = RoundedTextField(placeholder: L10n.Authorization.Username.tfPlaceholder)
         textField.textField.addTarget(self, action: #selector(roundedTextFieldDidChange(_:)), for: .editingChanged)
         return textField
     }()
@@ -60,7 +60,7 @@ final class UpdateUsernameView: UIView {
         button.setBackgroundColor(APRAssets.primaryTextMain.color, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Authorization.Username.buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()

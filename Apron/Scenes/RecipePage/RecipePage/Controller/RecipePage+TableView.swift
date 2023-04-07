@@ -130,7 +130,7 @@ extension RecipePageViewController: UITableViewDelegate {
         case .reworkInfo:
             guard let reworkInfo = recipe?.reworkInfo else { return 0 }
             let width = (UIScreen.main.bounds.width - 32)
-            var text = "Замечания от модератора:\n"
+            var text = L10n.Recipe.Moderator.message
             for (index, reason) in reworkInfo.enumerated() {
                 if index == 0 {
                     text += reason
@@ -302,7 +302,7 @@ extension RecipePageViewController: UITableViewDelegate {
         switch section {
         case .reviews:
             guard let view = view as? RecipeReviewsHeaderView, !recipeComments.isEmpty else { return }
-            view.configure(title: "Отзывы")
+            view.configure(title: L10n.Recipe.Reviews.title)
         default:
             break
         }

@@ -123,7 +123,7 @@ final class RecipeCreationViewController: ViewController {
     private lazy var saveButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .blackBackground
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Common.Save.title, for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -193,7 +193,7 @@ final class RecipeCreationViewController: ViewController {
     }
 
     private func configureNavigation() {
-        backButton.configure(with: "Новый рецепт")
+        backButton.configure(with: L10n.RecipeCreation.NewRecipe.title)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
@@ -248,7 +248,7 @@ final class RecipeCreationViewController: ViewController {
 
     private func show(with storageRecipe: RecipeCreation, initialRecipe: RecipeCreation) {
         let confirm = AlertActionInfo(
-            title: "Да",
+            title: L10n.Common.yes,
             type: .normal,
             action: {
                 self.recipeCreation = storageRecipe
@@ -257,7 +257,7 @@ final class RecipeCreationViewController: ViewController {
             }
         )
         let cancel = AlertActionInfo(
-            title: "Нет",
+            title: L10n.Common.no,
             type: .cancel,
             action: {
                 self.recipeCreation = initialRecipe
@@ -266,8 +266,8 @@ final class RecipeCreationViewController: ViewController {
             }
         )
         self.showAlert(
-            "Продолжить создание рецепта?",
-            message: "Вы недавно были в процессе создания рецепта. Вы хотите продолжить с того места, на котором остановились?",
+            L10n.RecipeCreation.StartAlert.title,
+            message: L10n.RecipeCreation.StartAlert.message,
             actions: [confirm, cancel]
         )
     }
@@ -356,10 +356,10 @@ final class RecipeCreationViewController: ViewController {
             HapticTouch.generateError()
             show(
                 type: .dialog(
-                "Обязательные поля!",
-                "Пожалуйста, заполните все поля, чтобы облегчить готовку остальным пользователям пользователям. Спасибо!",
-                "Понятно",
-                "Заполнить"
+                    L10n.RecipeCreation.DialogAlert.title,
+                    L10n.RecipeCreation.DialogAlert.message,
+                    L10n.RecipeCreation.DialogAlert.okayButton,
+                    L10n.RecipeCreation.DialogAlert.fillButton
             ),
                 firstAction: nil,
                 secondAction: nil

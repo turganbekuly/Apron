@@ -32,7 +32,7 @@ final class RecipeCreationNamingCell: UITableViewCell {
 
     private lazy var roudedTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            placeholder: "Напишите название рецепта"
+            placeholder: L10n.RecipeCreation.Recipe.Name.tfPlaceholder
         )
         textField.textField.addTarget(self, action: #selector(didEnterName(_:)), for: .editingChanged)
         return textField

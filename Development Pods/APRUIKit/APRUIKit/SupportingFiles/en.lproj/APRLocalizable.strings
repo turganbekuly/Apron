@@ -18,7 +18,6 @@
 
 // MARK: - Common
 
-"Common.ErrorMessage" = "Произошла ошибка! Пожалуйста, попробуйте позднее";
 "Common.Yes" = "Да";
 "Common.No" = "Нет";
 "Common.Skip.Title" = "Пропустить";
@@ -26,17 +25,132 @@
 "Common.Share.Title" = "Поделиться";
 "Common.Join.Title" = "Вступить";
 "Common.Joined.Title" = "Уже вступили";
+"Common.All" = "Все";
+"Common.Measure.Min" = "мин";
+"Common.Measure.Hours" = "часов";
+"Common.Measure.Seconds" = "сек";
+"Common.Measure.Minutes" = "минут";
+"Common.Cancel" = "Отмена";
+"Common.Close" = "Закрыть";
+
+// MARK: - Photo
+
+"Photo.Action.Camera" = "Сделать фото";
+"Photo.Action.Gallery" = "Выбрать из галереи";
+"Photo.Permission.Gallery.Title" = "Требуется доступ к галлерее";
+"Photo.Permission.Camera.Title" = "Требуется доступ к камере";
+"Photo.Action.Settings" = "Перейти в \"Настройки\"";
+"Photo.UploadPhoto.Title" = "Загрузить фото";
+"Photo.UploadPhoto.Advice.Format" = "Пожалуйста, используйте только свои уникальные фотографии. Формат JPG, JPEG, PNG. Размер до 20 мб";
+"Photo.UploadPhoto.Advice.Connection" = "Убедитесь, что вы подключены к 4G (LTE) или Wi-Fi. Через 3G фото может не загрузиться";
+
+// MARK: - Alert Messages
+
+"Alert.ErrorMessage" = "Произошла ошибка! Пожалуйста, попробуйте позднее";
+"Alert.RecipeCreation.Error" = "К сожалению, содание рецептов на данный момент недоступно. Администратор приложения временно отключил эту функцию.";
+"Alert.Attention.Title" = "Внимание!";
+"Alert.Sad.ButtonTitle" = "Жаль";
+"Alert.Clear.ButtonTitle" = "Понятно";
+"Alert.NameExists.Message" = "Такое имя уже существует, пожалуйста, введите другое";
+"Alert.Authorization.Skip.Title" = "Вы действительно хотите пропустить?";
+"Alert.Authorization.Skip.Message" = "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.";
 
 // MARK: - Authorization
 
 "Authorization.Button.SignIn.Title" = "Войти";
 "Authorization.Button.SignIn.Disclaimer" = "У вас уже есть аккаунт?  ";
 "Authorization.Button.SignUp.Title" = "Регистрация";
+"Authorization.Email.TFPlaceholder" = "mymail@gmail.com";
+"Authorization.Email.TFTitle" = "Эл.почта";
+"Authorization.Password.TFPlaceholder" = "***********";
+"Authorization.Password.TFTitle" = "Пароль";
+"Authorization.ConfirmPassword.TFTitle" = "Подтвердите пароль";
+"Authorization.Username.TFPlaceholder" = "Имя пользователя";
+"Authorization.Username.TFTitle" = "Имя пользователя";
 "Authorization.SignIn.Title" = "С возвращением!";
 "Authorization.SignUp.Title" = "Регистрация в Apron";
 "Authorization.Skip.Title" = "Вы действительно хотите пропустить?";
 "Authorization.Skip.Message" = "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.";
+"Authorization.Username.Title" = "Привет!";
+"Authorization.Username.Subtitle" = "Заполните ваше имя для продолжения";
+"Authorization.Username.TFPlaceholder" = "Имя";
+"Authorization.Username.ButtonTitle" = "Сохранить";
+"Authorization.Navigation.Title" = "Вход";
 
 // MARK: - Communities
 
 "Communities.MyCommunity.Title" = "Мои сообщества";
+
+// MARK: - Main
+
+"Main.DayTimeCooking.Title" = "Приготовить на";
+"Main.WhenToCook.Title" = "Что приготовить?";
+"Main.AdBanner.Title" = "Для Вас";
+
+// MARK: - Search
+
+"Search.Title" = "Поиск рецептов";
+
+// MARK: - Food
+
+"Food.CategoryType.Breakfast" = "Завтрак";
+"Food.CategoryType.Lunch" = "Обед";
+"Food.CategoryType.Dinner" = "Ужин";
+"Food.CategoryType.Salads" = "Салаты";
+"Food.CategoryType.Snacks" = "Закуски";
+"Food.CategoryType.Deserts" = "Десерты";
+
+// MARK: - Recipe
+
+"Recipe.Moderator.Message" = "Замечания от модератора:\n";
+"Recipe.Reviews.Title" = "Отзывы";
+"Recipe.Reviews.TFPlaceholder" = "Оставьте ваш отзыв";
+"Recipe.Step.Title" = "шаг";
+"Recipe.Ingredients.AddToCart" = "Добавить в корзину";
+"Recipe.Cook.StepByStep.Title" = "Режим готовки";
+"Recipe.Servings" = "порции";
+"Recipe.Ingredients" = "Ингредиенты";
+"Recipe.Instructions" = "Инструкция";
+"Recipe.Calories.Title" = "Калорийность";
+"Recipe.Calories.Subtitle" = "Ккал на 100 гр";
+"Recipe.Calories.Fat" = "ЖИРЫ";
+"Recipe.Calories.Protein" = "БЕЛКИ";
+"Recipe.Calories.Carbs" = "УГЛЕВОДЫ";
+"Recipe.StepByStep.Timer.Title" = "Таймер";
+"Recipe.StepByStep.Timer.Step" = "Шаг №";
+
+// MARK: - Recipe Creation
+
+"RecipeCreation.NewRecipe.Title" = "Новый рецепт";
+"RecipeCreation.StartAlert.Title" = "Продолжить создание рецепта?";
+"RecipeCreation.StartAlert.Message" = "Вы недавно были в процессе создания рецепта. Вы хотите продолжить с того места, на котором остановились?";
+"RecipeCreation.DialogAlert.Title" = "Обязательные поля!";
+"RecipeCreation.DialogAlert.Message" = "Пожалуйста, заполните все поля, чтобы облегчить готовку остальным пользователям пользователям. Спасибо!";
+"RecipeCreation.DialogAlert.OkayButton" = "Понятно";
+"RecipeCreation.DialogAlert.FillButton" = "Заполнить";
+"RecipeCreation.MessageAlert.Success" = "Смотрите статус своих рецептов в \"Мои рецепты\"";
+"RecipeCreation.Description.TFPlaceholder" = "Напишете описание вашего блюда";
+"RecipeCreation.Tags.WhenToCook" = "Укажите тип приема пищи";
+"RecipeCreation.Tags.DishType" = "Укажите тип блюда";
+"RecipeCreation.Tags.Lifestyle" = "Укажите образ жизни";
+"RecipeCreation.Tags.Event" = "Укажите праздники";
+"RecipeCreation.Recipe.Name.TFPlaceholder" = "Напишите название рецепта";
+"RecipeCreation.Recipe.Description" = "Описание";
+"RecipeCreation.Recipe.Paid.Title" = "Получить подарок";
+"RecipeCreation.Recipe.Paid.Descr" = "Добавьте к своему рецепту фотографию, а в описании рецепта укажите не менее трех шагов с фото. Для того, чтобы мы могли отправить подарок, укажите, пожалуйста, свой номер телефона";
+"RecipeCreation.Recipe.Paid.EmailTitle" = "Номер телефона *";
+"RecipeCreation.Recipe.Paid.EmailDescr" = "Подарок будет отправлен на указанный номер по WhatsApp";
+"RecipeCreation.Recipe.Paid.EmailTF" = "Напишите номер телефона (WhatsApp)";
+"RecipeCreation.Recipe.Paid.PromoTitle" = "Введите промокод *";
+"RecipeCreation.Recipe.Paid.PromoDescr" = "Укажите правильный промокод по которому вы пришли для получения подарка";
+"RecipeCreation.Recipe.Paid.PromoTF" = "Напишите промо код";
+"RecipeCreation.Recipe.IngredientsTF" = "+  Добавьте ингредиенты";
+"RecipeCreation.Recipe.IngredientsTitle" = "Ингредиенты";
+"RecipeCreation.Recipe.InstructionsTF" = "+  Добавьте шаги приготовления";
+"RecipeCreation.Recipe.InstructionsTitle" = "Инструкция";
+"RecipeCreation.Recipe.ServingCount.Title" = "Количество порции";
+"RecipeCreation.Recipe.ServingCount.Subtitle" = "Используется для изменения рецепта и подсчитывания каллорийности блюда";
+"RecipeCreation.Recipe.AssignButton.Title" = "Задать";
+"RecipeCreation.Recipe.CookTime.Title" = "Время готовки";
+"RecipeCreation.Recipe.CookTime.Subtitle" = "Сколько времени нужно, что бы приготовить это блюдо?";
+

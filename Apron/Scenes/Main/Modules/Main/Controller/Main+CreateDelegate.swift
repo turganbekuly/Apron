@@ -34,7 +34,7 @@ extension MainViewController: CreateActionFlowProtocol {
             let link = RemoteConfigManager.shared.remoteConfig.aboutCommunitiesLink
             guard !link.isEmpty else { return }
             let webViewController = WebViewHandler(urlString: link)
-            present(webViewController, animated: true)
+            presentPanModal(webViewController)
         default:
             break
         }

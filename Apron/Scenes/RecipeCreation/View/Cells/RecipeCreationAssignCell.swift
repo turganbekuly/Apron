@@ -116,16 +116,16 @@ final class RecipeCreationAssignCell: UITableViewCell {
         self.type = type
         switch type {
         case let .servings(value):
-            titleLabel.text = "Количество порции"
-            assignButton.setTitle(value == "0" ? "Задать" : value, for: .normal)
-            subtitlLabel.text = "Используется для изменения рецепта и подсчитывания каллорийности блюда"
+            titleLabel.text = L10n.RecipeCreation.Recipe.ServingCount.title
+            assignButton.setTitle(value == "0" ? L10n.RecipeCreation.Recipe.AssignButton.title : value, for: .normal)
+            subtitlLabel.text = L10n.RecipeCreation.Recipe.ServingCount.subtitle
             if !value.isEmpty {
                 buttonWidth?.update(offset: 80)
             }
         case let .cookTime(value):
-            titleLabel.text = "Время готовки"
-            assignButton.setTitle(value == "0" ? "Задать" : "\(value) минут", for: .normal)
-            subtitlLabel.text = "Сколько времени нужно, что бы приготовить это блюдо?"
+            titleLabel.text = L10n.RecipeCreation.Recipe.CookTime.title
+            assignButton.setTitle(value == "0" ? L10n.RecipeCreation.Recipe.AssignButton.title : "\(value) \(L10n.Common.Measure.minutes)", for: .normal)
+            subtitlLabel.text = L10n.RecipeCreation.Recipe.CookTime.subtitle
             if !value.isEmpty {
                 buttonWidth?.update(offset: 80)
             }

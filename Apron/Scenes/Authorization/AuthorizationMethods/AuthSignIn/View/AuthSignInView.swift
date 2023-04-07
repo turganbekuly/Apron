@@ -34,12 +34,18 @@ final class AuthSignInView: UIView {
     // MARK: - Views factory
 
     lazy var emailTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "mymail@gmail.com", title: "Эл.почта")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Email.tfPlaceholder,
+            title: L10n.Authorization.Email.tfTitle
+        )
         return textField
     }()
 
     lazy var passwordTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "***********", title: "Пароль")
+        let textField = LoginTextField(
+            placeholder: L10n.Authorization.Password.tfPlaceholder,
+            title: L10n.Authorization.Password.tfTitle
+        )
         textField.textField.isSecureTextEntry = true
         return textField
     }()
@@ -51,7 +57,7 @@ final class AuthSignInView: UIView {
         button.setBackgroundColor(APRAssets.mainAppColor.color, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Войти", for: .normal)
+        button.setTitle(L10n.Authorization.SignIn.title, for: .normal)
         return button
     }()
 

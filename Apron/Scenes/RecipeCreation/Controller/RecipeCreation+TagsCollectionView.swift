@@ -213,16 +213,16 @@ extension RecipeCreationViewController: UICollectionViewDelegateFlowLayout {
         switch section {
         case .whenToCook:
             guard let view = view as? TagHeader else { return }
-            view.configure(title: "Укажите тип приема пищи")
+            view.configure(title: L10n.RecipeCreation.Tags.whenToCook)
         case .dishType:
             guard let view = view as? TagHeader else { return }
-            view.configure(title: "Укажите тип блюда")
+            view.configure(title: L10n.RecipeCreation.Tags.dishType)
         case .lifeStyleType:
             guard let view = view as? TagHeader else { return }
-            view.configure(title: "Укажите образ жизни")
+            view.configure(title: L10n.RecipeCreation.Tags.lifestyle)
         case .eventType:
             guard let view = view as? TagHeader else { return }
-            view.configure(title: "Укажите праздники")
+            view.configure(title: L10n.RecipeCreation.Tags.event)
         }
     }
 }

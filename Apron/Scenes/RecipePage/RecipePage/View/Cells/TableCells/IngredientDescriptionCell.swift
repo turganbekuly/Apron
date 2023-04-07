@@ -93,6 +93,6 @@ final class IngredientDescriptionCell: UITableViewCell {
 
     func configure(with viewModel: IIngredientsDescriptionCellViewModel) {
         self.descriptionLabel.text = viewModel.description
-        self.timingLabel.text = "\(viewModel.cookingTime ?? "0") мин"
+        self.timingLabel.text = "\(viewModel.cookingTime ?? "0") \(L10n.Common.Measure.min)"
     }
 }

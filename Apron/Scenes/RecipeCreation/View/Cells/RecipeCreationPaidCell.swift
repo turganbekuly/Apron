@@ -35,7 +35,7 @@ final class RecipeCreationPaidCell: UITableViewCell {
         label.font = TypographyFonts.regular16
         label.textColor = .black
         label.numberOfLines = 1
-        label.text = "Получить подарок"
+        label.text = L10n.RecipeCreation.Recipe.Paid.title
         return label
     }()
 
@@ -44,7 +44,7 @@ final class RecipeCreationPaidCell: UITableViewCell {
         label.font = TypographyFonts.regular12
         label.textColor = .black
         label.numberOfLines = 0
-        label.text = "Добавьте к своему рецепту фотографию, а в описании рецепта укажите не менее трех шагов с фото. Для того, чтобы мы могли отправить подарок, укажите, пожалуйста, свой номер телефона."
+        label.text = L10n.RecipeCreation.Recipe.Paid.descr
         label.lineBreakMode = .byWordWrapping
         return label
     }()

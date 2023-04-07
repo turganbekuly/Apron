@@ -76,7 +76,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
         button.setImage(APRAssets.recipePlayIcon.image.withTintColor(APRAssets.gray.color), for: .highlighted)
         button.backgroundType = .clearBackground
         button.isImageVisible = true
-        button.setTitle("Режим готовки".uppercased(), for: .normal)
+        button.setTitle(L10n.Recipe.Cook.StepByStep.title.uppercased(), for: .normal)
         button.setTitleColor(APRAssets.primaryTextMain.color, for: .normal)
         button.addTarget(self, action: #selector(cookModeTapped), for: .touchUpInside)
         button.layer.cornerRadius = 22
@@ -123,7 +123,7 @@ final class RecipeInstructionsViewCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: InstructionCellViewModel) {
-        instructionsTitleLabel.text = "Инструкция"
+        instructionsTitleLabel.text = L10n.Recipe.instructions
         self.instructions = viewModel.instructions
     }
 }

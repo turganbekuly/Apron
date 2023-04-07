@@ -43,7 +43,7 @@ extension ProfileViewController {
             mainView.reloadData()
         case .fetchProfileFailed:
             isLoading(false)
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         case .deleteAccount:
             AuthStorage.shared.clear()
             let vc = AuthorizationBuilder(state: .initial).build()

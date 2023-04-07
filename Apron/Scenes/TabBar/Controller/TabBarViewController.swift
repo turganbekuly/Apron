@@ -159,10 +159,10 @@ extension TabBarViewController: UITabBarControllerDelegate {
                     }
                 } else {
                     self.show(type: .dialog(
-                        "Внимание!",
-                        "К сожалению, содание рецептов на данный момент недоступно. Администратор приложения временно отключил эту функцию.",
-                        "Жаль",
-                        "Понятно"
+                        L10n.Alert.Attention.title,
+                        L10n.Alert.RecipeCreation.error,
+                        L10n.Alert.Sad.buttonTitle,
+                        L10n.Alert.Clear.buttonTitle
                     ))
                 }
             }

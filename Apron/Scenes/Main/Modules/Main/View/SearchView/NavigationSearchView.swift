@@ -11,8 +11,9 @@ import APRUIKit
 final class NavigationSearchView: UIView {
     // MARK: - Init
 
-    init(title: String? = "Поиск рецептов", frame: CGRect = .zero) {
+    init(title: String? = L10n.Search.title, frame: CGRect = .zero) {
         super.init(frame: frame)
+        self.titleLabel.text = title
         setupViews()
     }
 
@@ -41,7 +42,7 @@ final class NavigationSearchView: UIView {
         let label = UILabel()
         label.font = TypographyFonts.regular12
         label.textColor = APRAssets.gray.color
-        label.text = "Поиск рецептов и сообществ"
+        label.text = L10n.Search.title
         return label
     }()
 

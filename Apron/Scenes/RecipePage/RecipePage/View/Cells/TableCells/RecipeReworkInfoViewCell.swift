@@ -55,7 +55,7 @@ final class RecipeReworkInfoViewCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(reworkInfo: [String]) {
-        var text = "Замечания от модератора:\n"
+        var text = L10n.Recipe.Moderator.message
         for (index, reason) in reworkInfo.enumerated() {
             if index == 0 {
                 text += "\(index + 1) \(reason)"

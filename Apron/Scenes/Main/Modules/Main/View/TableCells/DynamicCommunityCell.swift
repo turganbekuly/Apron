@@ -64,7 +64,7 @@ final class DynamicCommunityCell: UITableViewCell {
         button.titleLabel?.font = TypographyFonts.regular16
         button.setTitleColor(APRAssets.gray.color, for: .normal)
         button.setTitleColor(APRAssets.gray.color, for: .highlighted)
-        button.setTitle("Все", for: .normal)
+        button.setTitle(L10n.Common.all, for: .normal)
         button.addTarget(self, action: #selector(seeAllButtonTapped), for: .touchUpInside)
         return button
     }()

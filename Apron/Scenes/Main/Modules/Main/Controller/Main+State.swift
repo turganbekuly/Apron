@@ -39,7 +39,7 @@ extension MainViewController {
             self.dynamicCommunities = model
             endRefreshingIfNeeded()
         case .fetchCommunitiesByCategoryFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
             endRefreshingIfNeeded()
         case let .fetchCookNowRecipes(recipes):
             cookNowRecipesState = .loaded(recipes)
@@ -52,7 +52,7 @@ extension MainViewController {
         case .saveRecipe:
             HapticTouch.generateSuccess()
         case .saveRecipeFailed:
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
             mainView.reloadData()
         }
     }

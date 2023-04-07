@@ -46,7 +46,6 @@ final class RecipeInformationViewCell: UITableViewCell {
         let button = UIButton()
         button.setImage(APRAssets.recipeLikeUnselected.image, for: .normal)
         button.setTitleColor(APRAssets.gray.color, for: .normal)
-        button.setTitle("20", for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         return button
     }()
@@ -54,7 +53,6 @@ final class RecipeInformationViewCell: UITableViewCell {
     private lazy var dislikeButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(APRAssets.gray.color, for: .normal)
-        button.setTitle("2", for: .normal)
         button.setImage(APRAssets.recipeDislikeUnselected.image, for: .normal)
         button.titleLabel?.font = TypographyFonts.regular16
         return button

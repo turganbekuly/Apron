@@ -46,7 +46,7 @@ extension AuthorizationViewController {
             }
         case .loginFailed:
             AuthStorage.shared.clear()
-            show(type: .error(L10n.Common.errorMessage))
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
 

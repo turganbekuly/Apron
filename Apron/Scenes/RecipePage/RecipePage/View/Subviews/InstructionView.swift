@@ -17,7 +17,7 @@ final class InstructionView: UIView {
     ) {
         super.init(frame: .zero)
 
-        self.stepCountLabel.text = "\(counter) шаг"
+        self.stepCountLabel.text = "\(counter) \(L10n.Recipe.Step.title)"
         self.textView.text = description
 
         setupViews()

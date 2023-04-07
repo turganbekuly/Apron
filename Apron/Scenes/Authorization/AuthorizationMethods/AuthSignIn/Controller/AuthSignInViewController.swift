@@ -72,7 +72,7 @@ final class AuthSignInViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        backButton.configure(with: "Вход")
+        backButton.configure(with: L10n.Authorization.Navigation.title)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

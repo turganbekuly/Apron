@@ -30,7 +30,7 @@ final class RecipeBottomStickyView: View {
     // MARK: - Views factory
 
     private lazy var textField: RoundedTextField = {
-        let textField = RoundedTextField(placeholder: "Оставьте ваш отзыв")
+        let textField = RoundedTextField(placeholder: L10n.Recipe.Reviews.tfPlaceholder)
         textField.textField.isUserInteractionEnabled = false
         return textField
     }()
@@ -38,7 +38,7 @@ final class RecipeBottomStickyView: View {
     private lazy var addButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .whiteBackground
-        button.setTitle("Добавить в корзину", for: .normal)
+        button.setTitle(L10n.Recipe.Ingredients.addToCart, for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
         button.clipsToBounds = true
@@ -48,7 +48,7 @@ final class RecipeBottomStickyView: View {
     private lazy var saveButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .greenBackground
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Authorization.Username.buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
         button.clipsToBounds = true
@@ -120,14 +120,14 @@ final class RecipeBottomStickyView: View {
 
     private func configureSavedButton() {
         guard !isSaved else {
-            saveButton.setTitle("Режим готовки", for: .normal)
+            saveButton.setTitle(L10n.Recipe.Cook.StepByStep.title, for: .normal)
             saveButton.setImage(APRAssets.recipePlayIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
             saveButton.tintColor = .white
             saveButton.setImage(nil, for: .highlighted)
             return
         }
         // MARK: - TODO SAVED/UNSAVED FLOW
-        saveButton.setTitle("Сохранить", for: .normal)
+        saveButton.setTitle(L10n.Authorization.Username.buttonTitle, for: .normal)
         saveButton.setImage(APRAssets.favoriteIcon24.image.withTintColor(.white), for: .normal)
     }
 

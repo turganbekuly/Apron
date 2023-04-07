@@ -9,8 +9,32 @@ import UIKit
 import WebKit
 import APRUIKit
 import NVActivityIndicatorView
+import PanModal
 
-final class WebViewHandler: ViewController {
+final class WebViewHandler: ViewController, PanModalPresentable {
+
+    // MARK: - PanModal properties
+
+    var panScrollable: UIScrollView? {
+        return nil
+    }
+
+    var longFormHeight: PanModalHeight {
+        return .maxHeight
+    }
+
+    var cornerRadius: CGFloat {
+        return 32
+    }
+
+    var springDamping: CGFloat {
+        return 1
+    }
+
+    var transitionDuration: Double {
+        return 0.4
+    }
+
     // MARK: - Properties
 
     var urlString: String

@@ -8,6 +8,7 @@
 import Foundation
 import RemoteConfig
 import Storages
+import PanModal
 
 extension MainViewController: AdBannerCellProtocol {
     func adBannerTapped(with model: AdBannerObject) {
@@ -26,6 +27,6 @@ extension MainViewController: AdBannerCellProtocol {
         }
 
         let webViewController = WebViewHandler(urlString: model.bannerAction)
-        present(webViewController, animated: true)
+        presentPanModal(webViewController)
     }
 }

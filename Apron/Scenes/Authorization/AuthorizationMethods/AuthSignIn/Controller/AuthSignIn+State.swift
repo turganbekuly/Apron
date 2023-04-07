@@ -10,6 +10,7 @@ import Models
 import UIKit
 import Storages
 import OneSignal
+import APRUIKit
 
 extension AuthSignInViewController {
 
@@ -47,7 +48,7 @@ extension AuthSignInViewController {
         case .loginFailed:
             AuthStorage.shared.clear()
             hideLoader()
-            show(type: .error("Не удалось войти. Пожалуйста, попробуйте еще раз!"))
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
 

@@ -14,7 +14,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
 
     private var servingCount = 0 {
         didSet {
-            serveLabel.text = "\(servingCount) порции"
+            serveLabel.text = "\(servingCount) \(L10n.Recipe.servings)"
             ingredientsStackView.subviews.forEach {
                 if let view = $0 as? IngredientView {
                     view.changeServings(initialCount: initialServeCount, changedCount: servingCount)
@@ -101,7 +101,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
         button.backgroundType = .blackBackground
         button.isImageVisible = false
         button.showShadow = true
-        button.setTitle("Добавить в корзину".uppercased(), for: .normal)
+        button.setTitle(L10n.Recipe.Ingredients.addToCart.uppercased(), for: .normal)
         button.addTarget(self, action: #selector(addToCartTapped), for: .touchUpInside)
         button.layer.cornerRadius = 22
         button.layer.masksToBounds = true
@@ -185,7 +185,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(with viewModel: IIngredientsListCellViewModel) {
-        ingredientsTitleLabel.text = "Ингредиенты"
+        ingredientsTitleLabel.text = L10n.Recipe.ingredients
         self.initialServeCount = viewModel.serveCount
         ingredientsStackView.removeAllArrangedSubviews()
         viewModel.ingredients.forEach {

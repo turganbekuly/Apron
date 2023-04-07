@@ -272,12 +272,22 @@ final class MainViewController: ViewController {
             sections.append(.init(section: .cookNow, rows: [.cookNow("", [])]))
         case let .loaded(recipes):
             if !recipes.isEmpty {
-                sections.append(.init(section: .cookNow, rows: [.cookNow("Приготовить на \(defineRecipeDayTime().title.lowercased())", cookNowRecipes)]))
+                sections.append(
+                    .init(
+                        section: .cookNow,
+                        rows: [
+                            .cookNow(
+                                "\(L10n.Main.DayTimeCooking.title) \(defineRecipeDayTime().title.lowercased())",
+                                cookNowRecipes
+                            )
+                        ]
+                    )
+                )
             }
         }
 
         sections.append(
-            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
+            .init(section: .whatToCook, rows: [.whatToCook(L10n.Main.WhenToCook.title)])
         )
         self.sections = sections
     }

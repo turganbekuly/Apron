@@ -11,6 +11,39 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum L10n {
 
+  public enum Alert {
+    /// Произошла ошибка! Пожалуйста, попробуйте позднее
+    public static let errorMessage = L10n.tr("APRLocalizable", "Alert.ErrorMessage")
+    public enum Attention {
+      /// Внимание!
+      public static let title = L10n.tr("APRLocalizable", "Alert.Attention.Title")
+    }
+    public enum Authorization {
+      public enum Skip {
+        /// Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.
+        public static let message = L10n.tr("APRLocalizable", "Alert.Authorization.Skip.Message")
+        /// Вы действительно хотите пропустить?
+        public static let title = L10n.tr("APRLocalizable", "Alert.Authorization.Skip.Title")
+      }
+    }
+    public enum Clear {
+      /// Понятно
+      public static let buttonTitle = L10n.tr("APRLocalizable", "Alert.Clear.ButtonTitle")
+    }
+    public enum NameExists {
+      /// Такое имя уже существует, пожалуйста, введите другое
+      public static let message = L10n.tr("APRLocalizable", "Alert.NameExists.Message")
+    }
+    public enum RecipeCreation {
+      /// К сожалению, содание рецептов на данный момент недоступно. Администратор приложения временно отключил эту функцию.
+      public static let error = L10n.tr("APRLocalizable", "Alert.RecipeCreation.Error")
+    }
+    public enum Sad {
+      /// Жаль
+      public static let buttonTitle = L10n.tr("APRLocalizable", "Alert.Sad.ButtonTitle")
+    }
+  }
+
   public enum Authorization {
     public enum Button {
       public enum SignIn {
@@ -23,6 +56,26 @@ public enum L10n {
         /// Регистрация
         public static let title = L10n.tr("APRLocalizable", "Authorization.Button.SignUp.Title")
       }
+    }
+    public enum ConfirmPassword {
+      /// Подтвердите пароль
+      public static let tfTitle = L10n.tr("APRLocalizable", "Authorization.ConfirmPassword.TFTitle")
+    }
+    public enum Email {
+      /// mymail@gmail.com
+      public static let tfPlaceholder = L10n.tr("APRLocalizable", "Authorization.Email.TFPlaceholder")
+      /// Эл.почта
+      public static let tfTitle = L10n.tr("APRLocalizable", "Authorization.Email.TFTitle")
+    }
+    public enum Navigation {
+      /// Вход
+      public static let title = L10n.tr("APRLocalizable", "Authorization.Navigation.Title")
+    }
+    public enum Password {
+      /// ***********
+      public static let tfPlaceholder = L10n.tr("APRLocalizable", "Authorization.Password.TFPlaceholder")
+      /// Пароль
+      public static let tfTitle = L10n.tr("APRLocalizable", "Authorization.Password.TFTitle")
     }
     public enum SignIn {
       /// С возвращением!
@@ -38,11 +91,27 @@ public enum L10n {
       /// Вы действительно хотите пропустить?
       public static let title = L10n.tr("APRLocalizable", "Authorization.Skip.Title")
     }
+    public enum Username {
+      /// Сохранить
+      public static let buttonTitle = L10n.tr("APRLocalizable", "Authorization.Username.ButtonTitle")
+      /// Заполните ваше имя для продолжения
+      public static let subtitle = L10n.tr("APRLocalizable", "Authorization.Username.Subtitle")
+      /// Имя
+      public static let tfPlaceholder = L10n.tr("APRLocalizable", "Authorization.Username.TFPlaceholder")
+      /// Имя пользователя
+      public static let tfTitle = L10n.tr("APRLocalizable", "Authorization.Username.TFTitle")
+      /// Привет!
+      public static let title = L10n.tr("APRLocalizable", "Authorization.Username.Title")
+    }
   }
 
   public enum Common {
-    /// Произошла ошибка! Пожалуйста, попробуйте позднее
-    public static let errorMessage = L10n.tr("APRLocalizable", "Common.ErrorMessage")
+    /// Все
+    public static let all = L10n.tr("APRLocalizable", "Common.All")
+    /// Отмена
+    public static let cancel = L10n.tr("APRLocalizable", "Common.Cancel")
+    /// Закрыть
+    public static let close = L10n.tr("APRLocalizable", "Common.Close")
     /// Нет
     public static let no = L10n.tr("APRLocalizable", "Common.No")
     /// Да
@@ -54,6 +123,16 @@ public enum L10n {
     public enum Joined {
       /// Уже вступили
       public static let title = L10n.tr("APRLocalizable", "Common.Joined.Title")
+    }
+    public enum Measure {
+      /// часов
+      public static let hours = L10n.tr("APRLocalizable", "Common.Measure.Hours")
+      /// мин
+      public static let min = L10n.tr("APRLocalizable", "Common.Measure.Min")
+      /// минут
+      public static let minutes = L10n.tr("APRLocalizable", "Common.Measure.Minutes")
+      /// сек
+      public static let seconds = L10n.tr("APRLocalizable", "Common.Measure.Seconds")
     }
     public enum Save {
       /// Сохранить
@@ -74,6 +153,218 @@ public enum L10n {
       /// Мои сообщества
       public static let title = L10n.tr("APRLocalizable", "Communities.MyCommunity.Title")
     }
+  }
+
+  public enum Food {
+    public enum CategoryType {
+      /// Завтрак
+      public static let breakfast = L10n.tr("APRLocalizable", "Food.CategoryType.Breakfast")
+      /// Десерты
+      public static let deserts = L10n.tr("APRLocalizable", "Food.CategoryType.Deserts")
+      /// Ужин
+      public static let dinner = L10n.tr("APRLocalizable", "Food.CategoryType.Dinner")
+      /// Обед
+      public static let lunch = L10n.tr("APRLocalizable", "Food.CategoryType.Lunch")
+      /// Салаты
+      public static let salads = L10n.tr("APRLocalizable", "Food.CategoryType.Salads")
+      /// Закуски
+      public static let snacks = L10n.tr("APRLocalizable", "Food.CategoryType.Snacks")
+    }
+  }
+
+  public enum Main {
+    public enum AdBanner {
+      /// Для Вас
+      public static let title = L10n.tr("APRLocalizable", "Main.AdBanner.Title")
+    }
+    public enum DayTimeCooking {
+      /// Приготовить на
+      public static let title = L10n.tr("APRLocalizable", "Main.DayTimeCooking.Title")
+    }
+    public enum WhenToCook {
+      /// Что приготовить?
+      public static let title = L10n.tr("APRLocalizable", "Main.WhenToCook.Title")
+    }
+  }
+
+  public enum Photo {
+    public enum Action {
+      /// Сделать фото
+      public static let camera = L10n.tr("APRLocalizable", "Photo.Action.Camera")
+      /// Выбрать из галереи
+      public static let gallery = L10n.tr("APRLocalizable", "Photo.Action.Gallery")
+      /// Перейти в "Настройки"
+      public static let settings = L10n.tr("APRLocalizable", "Photo.Action.Settings")
+    }
+    public enum Permission {
+      public enum Camera {
+        /// Требуется доступ к камере
+        public static let title = L10n.tr("APRLocalizable", "Photo.Permission.Camera.Title")
+      }
+      public enum Gallery {
+        /// Требуется доступ к галлерее
+        public static let title = L10n.tr("APRLocalizable", "Photo.Permission.Gallery.Title")
+      }
+    }
+    public enum UploadPhoto {
+      /// Загрузить фото
+      public static let title = L10n.tr("APRLocalizable", "Photo.UploadPhoto.Title")
+      public enum Advice {
+        /// Убедитесь, что вы подключены к 4G (LTE) или Wi-Fi. Через 3G фото может не загрузиться
+        public static let connection = L10n.tr("APRLocalizable", "Photo.UploadPhoto.Advice.Connection")
+        /// Пожалуйста, используйте только свои уникальные фотографии. Формат JPG, JPEG, PNG. Размер до 20 мб
+        public static let format = L10n.tr("APRLocalizable", "Photo.UploadPhoto.Advice.Format")
+      }
+    }
+  }
+
+  public enum Recipe {
+    /// Ингредиенты
+    public static let ingredients = L10n.tr("APRLocalizable", "Recipe.Ingredients")
+    /// Инструкция
+    public static let instructions = L10n.tr("APRLocalizable", "Recipe.Instructions")
+    /// порции
+    public static let servings = L10n.tr("APRLocalizable", "Recipe.Servings")
+    public enum Calories {
+      /// УГЛЕВОДЫ
+      public static let carbs = L10n.tr("APRLocalizable", "Recipe.Calories.Carbs")
+      /// ЖИРЫ
+      public static let fat = L10n.tr("APRLocalizable", "Recipe.Calories.Fat")
+      /// БЕЛКИ
+      public static let protein = L10n.tr("APRLocalizable", "Recipe.Calories.Protein")
+      /// Ккал на 100 гр
+      public static let subtitle = L10n.tr("APRLocalizable", "Recipe.Calories.Subtitle")
+      /// Калорийность
+      public static let title = L10n.tr("APRLocalizable", "Recipe.Calories.Title")
+    }
+    public enum Cook {
+      public enum StepByStep {
+        /// Режим готовки
+        public static let title = L10n.tr("APRLocalizable", "Recipe.Cook.StepByStep.Title")
+      }
+    }
+    public enum Ingredients {
+      /// Добавить в корзину
+      public static let addToCart = L10n.tr("APRLocalizable", "Recipe.Ingredients.AddToCart")
+    }
+    public enum Moderator {
+      /// Замечания от модератора:\n
+      public static let message = L10n.tr("APRLocalizable", "Recipe.Moderator.Message")
+    }
+    public enum Reviews {
+      /// Оставьте ваш отзыв
+      public static let tfPlaceholder = L10n.tr("APRLocalizable", "Recipe.Reviews.TFPlaceholder")
+      /// Отзывы
+      public static let title = L10n.tr("APRLocalizable", "Recipe.Reviews.Title")
+    }
+    public enum Step {
+      /// шаг
+      public static let title = L10n.tr("APRLocalizable", "Recipe.Step.Title")
+    }
+    public enum StepByStep {
+      public enum Timer {
+        /// Шаг №
+        public static let step = L10n.tr("APRLocalizable", "Recipe.StepByStep.Timer.Step")
+        /// Таймер
+        public static let title = L10n.tr("APRLocalizable", "Recipe.StepByStep.Timer.Title")
+      }
+    }
+  }
+
+  public enum RecipeCreation {
+    public enum Description {
+      /// Напишете описание вашего блюда
+      public static let tfPlaceholder = L10n.tr("APRLocalizable", "RecipeCreation.Description.TFPlaceholder")
+    }
+    public enum DialogAlert {
+      /// Заполнить
+      public static let fillButton = L10n.tr("APRLocalizable", "RecipeCreation.DialogAlert.FillButton")
+      /// Пожалуйста, заполните все поля, чтобы облегчить готовку остальным пользователям пользователям. Спасибо!
+      public static let message = L10n.tr("APRLocalizable", "RecipeCreation.DialogAlert.Message")
+      /// Понятно
+      public static let okayButton = L10n.tr("APRLocalizable", "RecipeCreation.DialogAlert.OkayButton")
+      /// Обязательные поля!
+      public static let title = L10n.tr("APRLocalizable", "RecipeCreation.DialogAlert.Title")
+    }
+    public enum MessageAlert {
+      /// Смотрите статус своих рецептов в "Мои рецепты"
+      public static let success = L10n.tr("APRLocalizable", "RecipeCreation.MessageAlert.Success")
+    }
+    public enum NewRecipe {
+      /// Новый рецепт
+      public static let title = L10n.tr("APRLocalizable", "RecipeCreation.NewRecipe.Title")
+    }
+    public enum Recipe {
+      /// Описание
+      public static let description = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Description")
+      /// +  Добавьте ингредиенты
+      public static let ingredientsTF = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.IngredientsTF")
+      /// Ингредиенты
+      public static let ingredientsTitle = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.IngredientsTitle")
+      /// +  Добавьте шаги приготовления
+      public static let instructionsTF = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.InstructionsTF")
+      /// Инструкция
+      public static let instructionsTitle = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.InstructionsTitle")
+      public enum AssignButton {
+        /// Задать
+        public static let title = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.AssignButton.Title")
+      }
+      public enum CookTime {
+        /// Сколько времени нужно, что бы приготовить это блюдо?
+        public static let subtitle = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.CookTime.Subtitle")
+        /// Время готовки
+        public static let title = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.CookTime.Title")
+      }
+      public enum Name {
+        /// Напишите название рецепта
+        public static let tfPlaceholder = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Name.TFPlaceholder")
+      }
+      public enum Paid {
+        /// Добавьте к своему рецепту фотографию, а в описании рецепта укажите не менее трех шагов с фото. Для того, чтобы мы могли отправить подарок, укажите, пожалуйста, свой номер телефона
+        public static let descr = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Paid.Descr")
+        /// Подарок будет отправлен на указанный номер по WhatsApp
+        public static let emailDescr = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Paid.EmailDescr")
+        /// Напишите номер телефона (WhatsApp)
+        public static let emailTF = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Paid.EmailTF")
+        /// Номер телефона *
+        public static let emailTitle = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Paid.EmailTitle")
+        /// Укажите правильный промокод по которому вы пришли для получения подарка
+        public static let promoDescr = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Paid.PromoDescr")
+        /// Напишите промо код
+        public static let promoTF = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Paid.PromoTF")
+        /// Введите промокод *
+        public static let promoTitle = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Paid.PromoTitle")
+        /// Получить подарок
+        public static let title = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.Paid.Title")
+      }
+      public enum ServingCount {
+        /// Используется для изменения рецепта и подсчитывания каллорийности блюда
+        public static let subtitle = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.ServingCount.Subtitle")
+        /// Количество порции
+        public static let title = L10n.tr("APRLocalizable", "RecipeCreation.Recipe.ServingCount.Title")
+      }
+    }
+    public enum StartAlert {
+      /// Вы недавно были в процессе создания рецепта. Вы хотите продолжить с того места, на котором остановились?
+      public static let message = L10n.tr("APRLocalizable", "RecipeCreation.StartAlert.Message")
+      /// Продолжить создание рецепта?
+      public static let title = L10n.tr("APRLocalizable", "RecipeCreation.StartAlert.Title")
+    }
+    public enum Tags {
+      /// Укажите тип блюда
+      public static let dishType = L10n.tr("APRLocalizable", "RecipeCreation.Tags.DishType")
+      /// Укажите праздники
+      public static let event = L10n.tr("APRLocalizable", "RecipeCreation.Tags.Event")
+      /// Укажите образ жизни
+      public static let lifestyle = L10n.tr("APRLocalizable", "RecipeCreation.Tags.Lifestyle")
+      /// Укажите тип приема пищи
+      public static let whenToCook = L10n.tr("APRLocalizable", "RecipeCreation.Tags.WhenToCook")
+    }
+  }
+
+  public enum Search {
+    /// Поиск рецептов
+    public static let title = L10n.tr("APRLocalizable", "Search.Title")
   }
 
   public enum TabBar {

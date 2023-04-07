@@ -159,7 +159,7 @@ extension RecipeCreationViewController: UITableViewDelegate {
         case .description:
             guard let cell = cell as? RecipeCreationDescriptionCell else { return }
             cell.delegate = self
-            cell.placeholder = "Напишете описание вашего блюда"
+            cell.placeholder = L10n.RecipeCreation.Description.tfPlaceholder
             cell.configure(description: recipeCreation?.description)
         case .composition:
             guard let cell = cell as? RecipeCreationAddIngredientCell else { return }

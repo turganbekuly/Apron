@@ -12,6 +12,7 @@ import Configurations
 import RemoteConfig
 import HapticTouch
 import OneSignal
+import APRUIKit
 
 extension RecipeCreationViewController {
 
@@ -49,7 +50,7 @@ extension RecipeCreationViewController {
                 )
             )
             HapticTouch.generateSuccess()
-            show(type: .success("Смотрите статус своих рецептов в \"Мои рецепты\""), firstAction: nil, secondAction: nil)
+            show(type: .success(L10n.RecipeCreation.MessageAlert.success), firstAction: nil, secondAction: nil)
             self.dismiss(animated: true) {
                 self.delegate?.didCreate()
             }
@@ -70,14 +71,14 @@ extension RecipeCreationViewController {
                 )
             )
             HapticTouch.generateSuccess()
-            show(type: .success("Смотрите статус своих рецептов в \"Мои рецепты\""), firstAction: nil, secondAction: nil)
+            show(type: .success(L10n.RecipeCreation.MessageAlert.success), firstAction: nil, secondAction: nil)
             self.dismiss(animated: true) {
                 self.delegate?.didCreate()
             }
         case .recipeCreationFailed, .recipeEditingFailed:
             saveButtonLoader(isLoading: false)
             HapticTouch.generateError()
-            show(type: .error("Произошла ошибка, пожалуйста, попробуйта позже"), firstAction: nil, secondAction: nil)
+            show(type: .error(L10n.Alert.errorMessage), firstAction: nil, secondAction: nil)
         case let .uploadImageSucceed(path):
             recipeCreation?.imageURL = Configurations.downloadImageURL(imagePath: path)
             configureImageCell(isLoaded: false)
@@ -86,7 +87,7 @@ extension RecipeCreationViewController {
         case .uploadImageFailed:
             configureImageCell(isLoaded: false)
             HapticTouch.generateError()
-            show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
 
