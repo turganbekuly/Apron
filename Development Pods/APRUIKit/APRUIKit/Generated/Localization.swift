@@ -11,6 +11,17 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum L10n {
 
+  public enum AddSavedRecipes {
+    public enum AddRecipe {
+      /// Добавить рецепт
+      public static let title = L10n.tr("APRLocalizable", "AddSavedRecipes.AddRecipe.Title")
+    }
+    public enum SearchFavoriteRecipes {
+      /// Поиск рецептов в избранном
+      public static let title = L10n.tr("APRLocalizable", "AddSavedRecipes.SearchFavoriteRecipes.Title")
+    }
+  }
+
   public enum Alert {
     /// Произошла ошибка! Пожалуйста, попробуйте позднее
     public static let errorMessage = L10n.tr("APRLocalizable", "Alert.ErrorMessage")
@@ -122,6 +133,10 @@ public enum L10n {
     public static let preview = L10n.tr("APRLocalizable", "Common.Preview")
     /// Да
     public static let yes = L10n.tr("APRLocalizable", "Common.Yes")
+    public enum Add {
+      /// Добавить
+      public static let title = L10n.tr("APRLocalizable", "Common.Add.Title")
+    }
     public enum Join {
       /// Вступить
       public static let title = L10n.tr("APRLocalizable", "Common.Join.Title")
@@ -158,6 +173,49 @@ public enum L10n {
     public enum MyCommunity {
       /// Мои сообщества
       public static let title = L10n.tr("APRLocalizable", "Communities.MyCommunity.Title")
+    }
+  }
+
+  public enum CreateActionFlow {
+    public enum AboutCommunities {
+      /// Подробнее о сообществах
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.AboutCommunities.Title")
+    }
+    public enum ClearIngredients {
+      /// Очистить
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.ClearIngredients.Title")
+    }
+    public enum NewRecipe {
+      /// Создать новый рецепт
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.NewRecipe.Title")
+    }
+    public enum PrivateCommunity {
+      /// Присоединиться могут только люди, которых вы пригласили
+      public static let subtitle = L10n.tr("APRLocalizable", "CreateActionFlow.PrivateCommunity.Subtitle")
+      /// Создать закрытое сообщество
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.PrivateCommunity.Title")
+    }
+    public enum PublicCommunity {
+      /// Любой может просматривать и присоединяться
+      public static let subtitle = L10n.tr("APRLocalizable", "CreateActionFlow.PublicCommunity.Subtitle")
+      /// Создать публичное сообщество
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.PublicCommunity.Title")
+    }
+    public enum SavedRecipe {
+      /// Добавить сохраненный рецепт
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.SavedRecipe.Title")
+    }
+    public enum ShareCommunity {
+      /// Поделиться сообществом
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.ShareCommunity.Title")
+    }
+    public enum ShareIngredients {
+      /// Поделиться
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.ShareIngredients.Title")
+    }
+    public enum ShoppingList {
+      /// Добавить в список покупок
+      public static let title = L10n.tr("APRLocalizable", "CreateActionFlow.ShoppingList.Title")
     }
   }
 

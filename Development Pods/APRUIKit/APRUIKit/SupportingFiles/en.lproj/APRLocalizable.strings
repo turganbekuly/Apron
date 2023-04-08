@@ -33,6 +33,7 @@
 "Common.Cancel" = "Отмена";
 "Common.Close" = "Закрыть";
 "Common.Preview" = "Предпросмотр";
+"Common.Add.Title" = "Добавить";
 
 // MARK: - Photo
 
@@ -225,3 +226,20 @@
 "ResultListEndpoint.getCommunities.Title" = "communities";
 "ResultListEndpoint.saveRecipe.Title" = "recipes/saveRecipe/";
 "ResultListEndpoint.joinCommunity.Title" = "communities/join/";
+
+//MARK: - Create Action Flow
+"CreateActionFlow.PrivateCommunity.Title" = "Создать закрытое сообщество";
+"CreateActionFlow.PrivateCommunity.Subtitle" = "Присоединиться могут только люди, которых вы пригласили";
+"CreateActionFlow.PublicCommunity.Title" = "Создать публичное сообщество";
+"CreateActionFlow.PublicCommunity.Subtitle" = "Любой может просматривать и присоединяться";
+"CreateActionFlow.AboutCommunities.Title" = "Подробнее о сообществах";
+"CreateActionFlow.SavedRecipe.Title" = "Добавить сохраненный рецепт";
+"CreateActionFlow.NewRecipe.Title" = "Создать новый рецепт";
+"CreateActionFlow.ShoppingList.Title" = "Добавить в список покупок";
+"CreateActionFlow.ShareIngredients.Title" = "Поделиться";
+"CreateActionFlow.ShareCommunity.Title" = "Поделиться сообществом";
+"CreateActionFlow.ClearIngredients.Title" = "Очистить";
+
+//MARK: - Add Saved Recipes
+"AddSavedRecipes.AddRecipe.Title" = "Добавить рецепт";
+"AddSavedRecipes.SearchFavoriteRecipes.Title" = "Поиск рецептов в избранном";

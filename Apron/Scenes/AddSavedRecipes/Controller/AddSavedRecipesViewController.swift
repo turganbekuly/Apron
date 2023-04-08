@@ -50,10 +50,10 @@ final class AddSavedRecipesViewController: ViewController {
         didSet {
             if selectedRecipes.isEmpty {
                 navigationRightButton.backgroundType = .whiteBackground
-                navigationRightButton.setTitle("Пропустить", for: .normal)
+                navigationRightButton.setTitle(L10n.Common.Skip.title, for: .normal)
             } else {
                 navigationRightButton.backgroundType = .blackBackground
-                navigationRightButton.setTitle("Добавить", for: .normal)
+                navigationRightButton.setTitle(L10n.Common.Add.title, for: .normal)
             }
         }
     }
@@ -79,7 +79,7 @@ final class AddSavedRecipesViewController: ViewController {
     private lazy var navigationRightButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .whiteBackground
-        button.setTitle("Пропустить", for: .normal)
+        button.setTitle(L10n.Common.Skip.title, for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -139,7 +139,7 @@ final class AddSavedRecipesViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        backButton.configure(with: "Добавить рецепт")
+        backButton.configure(with: L10n.AddSavedRecipes.AddRecipe.title)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
