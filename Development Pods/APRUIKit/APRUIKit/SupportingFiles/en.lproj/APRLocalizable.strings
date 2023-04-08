@@ -278,6 +278,15 @@
 "MealPlanner.AreYouSure" = "Вы уверены?";
 "MealPlanner.WillBeDeletedFromYourPlan" = "Этот рецепт будет удален из вашего плана питания.";
 
-//MARK: - MyRecipes
+//MARK: - My Recipes
 "MyRecipes.GetProfileRecipeFailed" = "Не удалось получить ваши рецепты! Пожалуйста, попробуйте еще раз!";
 "MyRecipes.EmptyListOfRecipes" = "У вас еще нет созданных рецептов";
+
+//MARK: - Meal Planner Weekdays
+"MealPlannerWeekDays.Monday.Title" = "Понедельник";
+"MealPlannerWeekDays.Tuesday.Title" = "Вторник";
+"MealPlannerWeekDays.Wednesday.Title" = "Среда";
+"MealPlannerWeekDays.Thursday.Title" = "Четверг";
+"MealPlannerWeekDays.Friday.Title" = "Пятница";
+"MealPlannerWeekDays.Saturday.Title" = "Суббота";
+"MealPlannerWeekDays.Sunday.Title" = "Воскресенье";

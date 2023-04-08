@@ -153,7 +153,7 @@ final class StepByStepModeViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.title = L10n.Recipe.Cook.StepByStep.Title
+        navigationItem.title = L10n.Recipe.Cook.StepByStep.title
     }
 
     private func configureViews() {

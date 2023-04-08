@@ -427,6 +427,37 @@ public enum L10n {
     public static let willBeDeletedFromYourPlan = L10n.tr("APRLocalizable", "MealPlanner.WillBeDeletedFromYourPlan")
   }
 
+  public enum MealPlannerWeekDays {
+    public enum Friday {
+      /// Пятница
+      public static let title = L10n.tr("APRLocalizable", "MealPlannerWeekDays.Friday.Title")
+    }
+    public enum Monday {
+      /// Понедельник
+      public static let title = L10n.tr("APRLocalizable", "MealPlannerWeekDays.Monday.Title")
+    }
+    public enum Saturday {
+      /// Суббота
+      public static let title = L10n.tr("APRLocalizable", "MealPlannerWeekDays.Saturday.Title")
+    }
+    public enum Sunday {
+      /// Воскресенье
+      public static let title = L10n.tr("APRLocalizable", "MealPlannerWeekDays.Sunday.Title")
+    }
+    public enum Thursday {
+      /// Четверг
+      public static let title = L10n.tr("APRLocalizable", "MealPlannerWeekDays.Thursday.Title")
+    }
+    public enum Tuesday {
+      /// Вторник
+      public static let title = L10n.tr("APRLocalizable", "MealPlannerWeekDays.Tuesday.Title")
+    }
+    public enum Wednesday {
+      /// Среда
+      public static let title = L10n.tr("APRLocalizable", "MealPlannerWeekDays.Wednesday.Title")
+    }
+  }
+
   public enum MyRecipes {
     /// У вас еще нет созданных рецептов
     public static let emptyListOfRecipes = L10n.tr("APRLocalizable", "MyRecipes.EmptyListOfRecipes")
@@ -654,40 +685,7 @@ public enum L10n {
     }
   }
 
-  public enum ResultListEndpoint {
-    public enum GetCommunities {
-      /// communities
-      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getCommunities.Title")
-    }
-    public enum GetEverything {
-      /// recipes/searchByRecipesAndCommunities
-      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getEverything.Title")
-    }
-    public enum GetRecipes {
-      /// recipes
-      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getRecipes.Title")
-    }
-    public enum GetRecipesByCommunityID {
-      /// recipes/recipesByCommunityId
-      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getRecipesByCommunityID.Title")
-    }
-    public enum GetSavedRecipes {
-      /// recipes/mySavedRecipes
-      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getSavedRecipes.Title")
-    }
-    public enum JoinCommunity {
-      /// communities/join/
-      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.joinCommunity.Title")
-    }
-    public enum SaveRecipe {
-      /// recipes/saveRecipe/
-      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.saveRecipe.Title")
-    }
-  }
-
   public enum SavedRecipes {
-    /// recipes/mySavedRecipes
-    public static let getRecipes = L10n.tr("APRLocalizable", "SavedRecipes.getRecipes")
     public enum AddFavoriteRecipes {
       /// Добавляйте свои любимые рецепты,\n чтобы быстрее их найти
       public static let title = L10n.tr("APRLocalizable", "SavedRecipes.AddFavoriteRecipes.Title")
