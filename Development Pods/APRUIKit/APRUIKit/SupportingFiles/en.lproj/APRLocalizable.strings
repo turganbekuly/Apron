@@ -157,25 +157,71 @@
 "RecipeCreation.Recipe.CookTime.Title" = "Время готовки";
 "RecipeCreation.Recipe.CookTime.Subtitle" = "Сколько времени нужно, что бы приготовить это блюдо?";
 
-// MARK: Ingredient Selection
+// MARK: - Ingredient Selection
 "IngredientSelection.Ingredient.Add" = "Добавить ингредиент";
 "IngredientSelection.Ingredient.ChooseFromList" = "Пожалуйста, выберите ингредиент из списка";
 "IngredientSelection.Ingredient.ChooseMeasureTF" = "Пожалуйста, выберите измерение";
 
-//MARK: Instruction Selection
+//MARK: - Instruction Selection
 "InstructionSelection.AddStep.Title" = "Добавить шаг";
 "InstructionSelection.Description.CellPlaceholder" = "Введите инструкцию";
 
-//MARK: PreShopping List
+//MARK: - PreShopping List
 "PreshoppingList.ChooseAtLeastOneProduct.Title" = "Пожалуйста, выберите не менее 1 продукта";
-"PreshoppingList.Order.Title" = "Заказать";
-"PreshoppingList.AddProduct.Title" = "Добавить продукт";
-"PreshoppingList.ListOfProducts.Title" = "Список покупок";
-"PreshoppingList.SelfProduct.Title" = "Личный продукт";
-"PreshoppingList.CannotUploadCart.Title" = "Не удалось загрузить корзину";
-"PreshoppingList.CannotCleanCart.Title" = "Не удалось очистить корзину";
-"PreshoppingList.AddProductsToBuyList.Title" = "Добавьте товары в свой список покупок";
-"PreshoppingList.Ingredients" = "Ингредиенты";
-"PreshoppingList.BoughtIngredients" = "Купленные ингредиенты";
 
+//MARK: - Shopping List
+"ShoppingList.Order.Title" = "Заказать";
+"ShoppingList.AddProduct.Title" = "Добавить продукт";
+"ShoppingList.ListOfProducts.Title" = "Список покупок";
+"ShoppingList.SelfProduct.Title" = "Личный продукт";
+"ShoppingList.CannotUploadCart.Title" = "Не удалось загрузить корзину";
+"ShoppingList.CannotCleanCart.Title" = "Не удалось очистить корзину";
+"ShoppingList.AddProductsToBuyList.Title" = "Добавьте товары в свой список покупок";
+"ShoppingList.Ingredients" = "Ингредиенты";
+"ShoppingList.BoughtIngredients" = "Купленные ингредиенты";
 
+//MARK: - Cusisine Selection
+"CuisineSelection.Category" = "Категории";
+
+//MARK: - Saved Recipes
+"SavedRecipes.SavedRecipes.Title" = "Сохраненные рецепты";
+"SavedRecipes.AddFavoriteRecipes.Title" = "Добавляйте свои любимые рецепты,\n чтобы быстрее их найти";
+"SavedRecipes.getRecipes" = "recipes/mySavedRecipes";
+
+//MARK: - Search
+"Search.Cancel.Title" = "Cancel";
+"Search.Search" = "Поиск";
+"Search.NotFound.Title" = "Ничего не найдено";
+
+//MARK: - Food Categories
+"FoodCategories.firstMeal.Title" = "Первые блюда";
+"FoodCategories.secondMeal.Title" = "Вторые блюда";
+"FoodCategories.salads.Title" = "Салаты";
+"FoodCategories.snacks.Title" = "Закуски";
+"FoodCategories.desserts.Title" = "Десерты";
+"FoodCategories.bakery.Title" = "Выпечки";
+"FoodCategories.saucesMarinades.Title" = "Соусы и маринады";
+"FoodCategories.foodPrepProvision.Title" = "Заготовки";
+"FoodCategories.drinks.Title" = "Напитки";
+"FoodCategories.sideDishes.Title" = "Гарниры";
+
+//MARK: - Recipe Search
+"RecipeSearch.RecipeSearch.Title" = "Поиск по рецептам";
+"RecipeSearch.AllFilters.Title" = "Все фильтры";
+
+//MARK: - General Search
+"GeneralSearchInitialState.RU.Everything" = "Все";
+"GeneralSearchInitialState.RU.Recipe" = "Рецепты";
+"GeneralSearchInitialState.RU.Community" = "Сообщество";
+"GeneralSearchInitialState.EN.Everything" = "Everything";
+"GeneralSearchInitialState.EN.Recipe" = "Recipes";
+"GeneralSearchInitialState.EN.Community" = "Communities";
+
+//MARK: - Result List Endpoint
+"ResultListEndpoint.getRecipesByCommunityID.Title" = "recipes/recipesByCommunityId";
+"ResultListEndpoint.getEverything.Title" = "recipes/searchByRecipesAndCommunities";
+"ResultListEndpoint.getSavedRecipes.Title" = "recipes/mySavedRecipes";
+"ResultListEndpoint.getRecipes.Title" = "recipes";
+"ResultListEndpoint.getCommunities.Title" = "communities";
+"ResultListEndpoint.saveRecipe.Title" = "recipes/saveRecipe/";
+"ResultListEndpoint.joinCommunity.Title" = "communities/join/";

@@ -9,6 +9,7 @@
 import Configurations
 import AKNetwork
 import Storages
+import APRUIKit
 
 enum SavedRecipesEndpoint {
     case getRecipes(page: Int)
@@ -23,7 +24,7 @@ extension SavedRecipesEndpoint: AKNetworkTargetType {
     var path: String {
         switch self {
         case .getRecipes:
-            return "recipes/mySavedRecipes"
+            return L10n.SavedRecipes.getRecipes
         }
     }
 

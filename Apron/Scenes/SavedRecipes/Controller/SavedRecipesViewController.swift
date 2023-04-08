@@ -84,7 +84,7 @@ final class SavedRecipesViewController: ViewController {
         label.font = TypographyFonts.semibold20
         label.textColor = APRAssets.primaryTextMain.color
         label.textAlignment = .center
-        label.text = "Сохраненные рецепты"
+        label.text = L10n.SavedRecipes.SavedRecipes.title
         return label
     }()
 

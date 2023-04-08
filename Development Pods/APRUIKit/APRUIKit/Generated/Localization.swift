@@ -161,6 +161,11 @@ public enum L10n {
     }
   }
 
+  public enum CuisineSelection {
+    /// Категории
+    public static let category = L10n.tr("APRLocalizable", "CuisineSelection.Category")
+  }
+
   public enum Food {
     public enum CategoryType {
       /// Завтрак
@@ -175,6 +180,68 @@ public enum L10n {
       public static let salads = L10n.tr("APRLocalizable", "Food.CategoryType.Salads")
       /// Закуски
       public static let snacks = L10n.tr("APRLocalizable", "Food.CategoryType.Snacks")
+    }
+  }
+
+  public enum FoodCategories {
+    public enum Bakery {
+      /// Выпечки
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.bakery.Title")
+    }
+    public enum Desserts {
+      /// Десерты
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.desserts.Title")
+    }
+    public enum Drinks {
+      /// Напитки
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.drinks.Title")
+    }
+    public enum FirstMeal {
+      /// Первые блюда
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.firstMeal.Title")
+    }
+    public enum FoodPrepProvision {
+      /// Заготовки
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.foodPrepProvision.Title")
+    }
+    public enum Salads {
+      /// Салаты
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.salads.Title")
+    }
+    public enum SaucesMarinades {
+      /// Соусы и маринады
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.saucesMarinades.Title")
+    }
+    public enum SecondMeal {
+      /// Вторые блюда
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.secondMeal.Title")
+    }
+    public enum SideDishes {
+      /// Гарниры
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.sideDishes.Title")
+    }
+    public enum Snacks {
+      /// Закуски
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.snacks.Title")
+    }
+  }
+
+  public enum GeneralSearchInitialState {
+    public enum En {
+      /// Communities
+      public static let community = L10n.tr("APRLocalizable", "GeneralSearchInitialState.EN.Community")
+      /// Everything
+      public static let everything = L10n.tr("APRLocalizable", "GeneralSearchInitialState.EN.Everything")
+      /// Recipes
+      public static let recipe = L10n.tr("APRLocalizable", "GeneralSearchInitialState.EN.Recipe")
+    }
+    public enum Ru {
+      /// Сообщество
+      public static let community = L10n.tr("APRLocalizable", "GeneralSearchInitialState.RU.Community")
+      /// Все
+      public static let everything = L10n.tr("APRLocalizable", "GeneralSearchInitialState.RU.Everything")
+      /// Рецепты
+      public static let recipe = L10n.tr("APRLocalizable", "GeneralSearchInitialState.RU.Recipe")
     }
   }
 
@@ -251,41 +318,9 @@ public enum L10n {
   }
 
   public enum PreshoppingList {
-    /// Купленные ингредиенты
-    public static let boughtIngredients = L10n.tr("APRLocalizable", "PreshoppingList.BoughtIngredients")
-    /// Ингредиенты
-    public static let ingredients = L10n.tr("APRLocalizable", "PreshoppingList.Ingredients")
-    public enum AddProduct {
-      /// Добавить продукт
-      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.AddProduct.Title")
-    }
-    public enum AddProductsToBuyList {
-      /// Добавьте товары в свой список покупок
-      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.AddProductsToBuyList.Title")
-    }
-    public enum CannotCleanCart {
-      /// Не удалось очистить корзину
-      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.CannotCleanCart.Title")
-    }
-    public enum CannotUploadCart {
-      /// Не удалось загрузить корзину
-      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.CannotUploadCart.Title")
-    }
     public enum ChooseAtLeastOneProduct {
       /// Пожалуйста, выберите не менее 1 продукта
       public static let title = L10n.tr("APRLocalizable", "PreshoppingList.ChooseAtLeastOneProduct.Title")
-    }
-    public enum ListOfProducts {
-      /// Список покупок
-      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.ListOfProducts.Title")
-    }
-    public enum Order {
-      /// Заказать
-      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.Order.Title")
-    }
-    public enum SelfProduct {
-      /// Личный продукт
-      public static let title = L10n.tr("APRLocalizable", "PreshoppingList.SelfProduct.Title")
     }
   }
 
@@ -433,9 +468,109 @@ public enum L10n {
     }
   }
 
+  public enum RecipeSearch {
+    public enum AllFilters {
+      /// Все фильтры
+      public static let title = L10n.tr("APRLocalizable", "RecipeSearch.AllFilters.Title")
+    }
+    public enum RecipeSearch {
+      /// Поиск по рецептам
+      public static let title = L10n.tr("APRLocalizable", "RecipeSearch.RecipeSearch.Title")
+    }
+  }
+
+  public enum ResultListEndpoint {
+    public enum GetCommunities {
+      /// communities
+      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getCommunities.Title")
+    }
+    public enum GetEverything {
+      /// recipes/searchByRecipesAndCommunities
+      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getEverything.Title")
+    }
+    public enum GetRecipes {
+      /// recipes
+      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getRecipes.Title")
+    }
+    public enum GetRecipesByCommunityID {
+      /// recipes/recipesByCommunityId
+      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getRecipesByCommunityID.Title")
+    }
+    public enum GetSavedRecipes {
+      /// recipes/mySavedRecipes
+      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.getSavedRecipes.Title")
+    }
+    public enum JoinCommunity {
+      /// communities/join/
+      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.joinCommunity.Title")
+    }
+    public enum SaveRecipe {
+      /// recipes/saveRecipe/
+      public static let title = L10n.tr("APRLocalizable", "ResultListEndpoint.saveRecipe.Title")
+    }
+  }
+
+  public enum SavedRecipes {
+    /// recipes/mySavedRecipes
+    public static let getRecipes = L10n.tr("APRLocalizable", "SavedRecipes.getRecipes")
+    public enum AddFavoriteRecipes {
+      /// Добавляйте свои любимые рецепты,\n чтобы быстрее их найти
+      public static let title = L10n.tr("APRLocalizable", "SavedRecipes.AddFavoriteRecipes.Title")
+    }
+    public enum SavedRecipes {
+      /// Сохраненные рецепты
+      public static let title = L10n.tr("APRLocalizable", "SavedRecipes.SavedRecipes.Title")
+    }
+  }
+
   public enum Search {
+    /// Поиск
+    public static let search = L10n.tr("APRLocalizable", "Search.Search")
     /// Поиск рецептов
     public static let title = L10n.tr("APRLocalizable", "Search.Title")
+    public enum Cancel {
+      /// Cancel
+      public static let title = L10n.tr("APRLocalizable", "Search.Cancel.Title")
+    }
+    public enum NotFound {
+      /// Ничего не найдено
+      public static let title = L10n.tr("APRLocalizable", "Search.NotFound.Title")
+    }
+  }
+
+  public enum ShoppingList {
+    /// Купленные ингредиенты
+    public static let boughtIngredients = L10n.tr("APRLocalizable", "ShoppingList.BoughtIngredients")
+    /// Ингредиенты
+    public static let ingredients = L10n.tr("APRLocalizable", "ShoppingList.Ingredients")
+    public enum AddProduct {
+      /// Добавить продукт
+      public static let title = L10n.tr("APRLocalizable", "ShoppingList.AddProduct.Title")
+    }
+    public enum AddProductsToBuyList {
+      /// Добавьте товары в свой список покупок
+      public static let title = L10n.tr("APRLocalizable", "ShoppingList.AddProductsToBuyList.Title")
+    }
+    public enum CannotCleanCart {
+      /// Не удалось очистить корзину
+      public static let title = L10n.tr("APRLocalizable", "ShoppingList.CannotCleanCart.Title")
+    }
+    public enum CannotUploadCart {
+      /// Не удалось загрузить корзину
+      public static let title = L10n.tr("APRLocalizable", "ShoppingList.CannotUploadCart.Title")
+    }
+    public enum ListOfProducts {
+      /// Список покупок
+      public static let title = L10n.tr("APRLocalizable", "ShoppingList.ListOfProducts.Title")
+    }
+    public enum Order {
+      /// Заказать
+      public static let title = L10n.tr("APRLocalizable", "ShoppingList.Order.Title")
+    }
+    public enum SelfProduct {
+      /// Личный продукт
+      public static let title = L10n.tr("APRLocalizable", "ShoppingList.SelfProduct.Title")
+    }
   }
 
   public enum TabBar {

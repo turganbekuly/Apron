@@ -76,7 +76,7 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         case .empty:
             guard let cell = cell as? EmptyListCollectionCell else { return }
             cell.configure(
-                with: "Добавляйте свои любимые рецепты,\n чтобы быстрее их найти",
+                with: L10n.SavedRecipes.AddFavoriteRecipes.title,
                 image: APRAssets.savedRecipePlaceholder.image
             )
         default:

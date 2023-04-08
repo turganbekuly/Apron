@@ -60,7 +60,7 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
 
             sections = [
                 .init(
-                    section: .options("Категории"),
+                    section: .options(L10n.CuisineSelection.category),
                     rows: categories.compactMap { .option($0) }
                 )
             ]
@@ -99,7 +99,7 @@ final class CategorySelectionViewController: ViewController, PanModalPresentable
 
     private lazy var doneButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Common.Save.title, for: .normal)
         button.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 17
         button.layer.masksToBounds = true

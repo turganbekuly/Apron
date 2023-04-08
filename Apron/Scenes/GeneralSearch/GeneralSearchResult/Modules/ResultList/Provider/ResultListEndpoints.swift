@@ -10,6 +10,7 @@ import Configurations
 import AKNetwork
 import Storages
 import Models
+import APRUIKit
 
 enum ResultListEndpoint {
     case getRecipesByCommunityID(RecipesByCommunityIDRequestBody)
@@ -30,19 +31,19 @@ extension ResultListEndpoint: AKNetworkTargetType {
     var path: String {
         switch self {
         case .getRecipesByCommunityID:
-            return "recipes/recipesByCommunityId"
+            return L10n.ResultListEndpoint.GetRecipesByCommunityID.title
         case .getEverything:
-            return "recipes/searchByRecipesAndCommunities"
+            return L10n.ResultListEndpoint.GetEverything.title
         case .getSavedRecipes:
-            return "recipes/mySavedRecipes"
+            return L10n.ResultListEndpoint.GetSavedRecipes.title
         case .getRecipes:
-            return "recipes"
+            return L10n.ResultListEndpoint.GetRecipes.title
         case .getCommunities:
-            return "communities"
+            return L10n.ResultListEndpoint.GetCommunities.title
         case let .saveRecipe(id):
-            return "recipes/saveRecipe/\(id)"
+            return L10n.ResultListEndpoint.SaveRecipe.title + "\(id)"
         case let .joinCommunity(id):
-            return "communities/join/\(id)"
+            return L10n.ResultListEndpoint.JoinCommunity.title + "\(id)"
         }
     }
 

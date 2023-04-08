@@ -113,7 +113,7 @@ final class SearchViewController: ViewController {
         label.font = TypographyFonts.semibold20
         label.textColor = APRAssets.primaryTextMain.color
         label.textAlignment = .left
-        label.text = "Поиск"
+        label.text = L10n.Search.search
         return label
     }()
 

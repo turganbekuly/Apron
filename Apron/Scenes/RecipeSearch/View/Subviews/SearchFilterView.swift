@@ -74,7 +74,7 @@ final class SearchFilterView: UIView {
         if count < 1 {
             containerView.backgroundColor = .white
             titleLabel.textColor = APRAssets.gray.color
-            titleLabel.text = type == .filters ? "Все фильтры" : ""
+            titleLabel.text = type == .filters ? L10n.RecipeSearch.AllFilters.title : ""
             return
         }
 

@@ -104,7 +104,7 @@ final class ShoppingListViewController: ViewController {
     private lazy var orderButton: BlackOpButton = {
         let button = BlackOpButton()
         button.backgroundType = .blackBackground
-        button.setTitle(L10n.PreshoppingList.Order.title, for: .normal)
+        button.setTitle(L10n.ShoppingList.Order.title, for: .normal)
         button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 23
         button.layer.masksToBounds = true
@@ -114,7 +114,7 @@ final class ShoppingListViewController: ViewController {
     private lazy var addProductButton: BlackOpButton = {
         let button = BlackOpButton()
         button.backgroundType = .whiteBackground
-        button.setTitle(L10n.PreshoppingList.AddProduct.title, for: .normal)
+        button.setTitle(L10n.ShoppingList.AddProduct.title, for: .normal)
         button.addTarget(self, action: #selector(addProductButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 23
         button.layer.masksToBounds = true
@@ -177,7 +177,7 @@ final class ShoppingListViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        backButton.configure(with: L10n.PreshoppingList.ListOfProducts.title)
+        backButton.configure(with: L10n.ShoppingList.ListOfProducts.title)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
@@ -303,7 +303,7 @@ extension ShoppingListViewController: IngredientSelectedProtocol {
             productImage: ingredient.product?.image,
             amount: ingredient.amount ?? productAmount,
             measurement: ingredient.measurement ?? "",
-            recipeName: L10n.PreshoppingList.SelfProduct.title,
+            recipeName: L10n.ShoppingList.SelfProduct.title,
             bought: false
         )
         fetchCartItems()

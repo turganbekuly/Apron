@@ -36,11 +36,11 @@ extension ShoppingListViewController {
         case let .cartItemsDidFetch(items):
             self.cartItems = items
         case .cartItemsDidFail:
-            show(type: .error(L10n.PreshoppingList.CannotUploadCart.title))
+            show(type: .error(L10n.ShoppingList.CannotUploadCart.title))
         case let .cartItemsDidClear(items):
             self.cartItems = items
         case .cartItemsDidClearWithError:
-            show(type: .error(L10n.PreshoppingList.CannotUploadCart.title))
+            show(type: .error(L10n.ShoppingList.CannotUploadCart.title))
         }
     }
 }
