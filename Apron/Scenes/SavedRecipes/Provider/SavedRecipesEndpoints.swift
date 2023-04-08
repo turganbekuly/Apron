@@ -24,7 +24,7 @@ extension SavedRecipesEndpoint: AKNetworkTargetType {
     var path: String {
         switch self {
         case .getRecipes:
-            return L10n.SavedRecipes.getRecipes
+            return "recipes/mySavedRecipes"
         }
     }
 

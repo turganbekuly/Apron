@@ -194,7 +194,6 @@
 //MARK: - Saved Recipes
 "SavedRecipes.SavedRecipes.Title" = "Сохраненные рецепты";
 "SavedRecipes.AddFavoriteRecipes.Title" = "Добавляйте свои любимые рецепты,\n чтобы быстрее их найти";
-"SavedRecipes.getRecipes" = "recipes/mySavedRecipes";
 
 //MARK: - Search
 "Search.Cancel.Title" = "Cancel";
@@ -224,15 +223,6 @@
 "GeneralSearchInitialState.EN.Everything" = "Everything";
 "GeneralSearchInitialState.EN.Recipe" = "Recipes";
 "GeneralSearchInitialState.EN.Community" = "Communities";
-
-//MARK: - Result List Endpoint
-"ResultListEndpoint.getRecipesByCommunityID.Title" = "recipes/recipesByCommunityId";
-"ResultListEndpoint.getEverything.Title" = "recipes/searchByRecipesAndCommunities";
-"ResultListEndpoint.getSavedRecipes.Title" = "recipes/mySavedRecipes";
-"ResultListEndpoint.getRecipes.Title" = "recipes";
-"ResultListEndpoint.getCommunities.Title" = "communities";
-"ResultListEndpoint.saveRecipe.Title" = "recipes/saveRecipe/";
-"ResultListEndpoint.joinCommunity.Title" = "communities/join/";
 
 //MARK: - Create Action Flow
 "CreateActionFlow.PrivateCommunity.Title" = "Создать закрытое сообщество";

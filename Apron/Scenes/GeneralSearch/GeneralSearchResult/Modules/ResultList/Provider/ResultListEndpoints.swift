@@ -31,19 +31,19 @@ extension ResultListEndpoint: AKNetworkTargetType {
     var path: String {
         switch self {
         case .getRecipesByCommunityID:
-            return L10n.ResultListEndpoint.GetRecipesByCommunityID.title
+            return "recipes/recipesByCommunityId"
         case .getEverything:
-            return L10n.ResultListEndpoint.GetEverything.title
+            return "recipes/searchByRecipesAndCommunities"
         case .getSavedRecipes:
-            return L10n.ResultListEndpoint.GetSavedRecipes.title
+            return "recipes/mySavedRecipes"
         case .getRecipes:
-            return L10n.ResultListEndpoint.GetRecipes.title
+            return "recipes"
         case .getCommunities:
-            return L10n.ResultListEndpoint.GetCommunities.title
+            return "communities"
         case let .saveRecipe(id):
-            return L10n.ResultListEndpoint.SaveRecipe.title + "\(id)"
+            return "recipes/saveRecipe/\(id)"
         case let .joinCommunity(id):
-            return L10n.ResultListEndpoint.JoinCommunity.title + "\(id)"
+            return "communities/join/\(id)"
         }
     }
 
