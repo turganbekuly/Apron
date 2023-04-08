@@ -34,7 +34,7 @@ final class StepStickyBottomButton: View {
         label.textColor = APRAssets.primaryTextMain.color
         label.font = TypographyFonts.semibold14
         label.textAlignment = .left
-        label.text = "Начать таймер"
+        label.text = L10n.StepByStepMode.StartTimer.title
         return label
     }()
 
@@ -77,13 +77,13 @@ final class StepStickyBottomButton: View {
     func configure(with state: StepStickyButtonState) {
         switch state {
         case .timer:
-            counterLabel.text = "Начать таймер"
+            counterLabel.text = L10n.StepByStepMode.StartTimer.title
         case .ingredient:
-            counterLabel.text = "Игредиенты"
+            counterLabel.text = L10n.Recipe.ingredients
             imageView.image = APRAssets.recipeIngredientPlaceholder.image.withRenderingMode(.alwaysTemplate)
             imageView.tintColor = .white
         case .addComment:
-            counterLabel.text = "Оставить отзыв"
+            counterLabel.text = L10n.StepByStepMode.LeaveFeedback.title
             imageView.image = APRAssets.cameraIcon.image.withRenderingMode(.alwaysTemplate)
             imageView.tintColor = .white
         }

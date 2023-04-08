@@ -41,7 +41,7 @@ final class MealPlannerHeaderView: UITableViewHeaderFooterView {
     lazy var addButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .grayBackground
-        button.setTitle("+ ДОБАВИТЬ", for: .normal)
+        button.setTitle(L10n.Common.PlusAdd.title, for: .normal)
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()

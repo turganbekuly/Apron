@@ -80,9 +80,9 @@ final class FilterActionButton: UICollectionViewCell {
         self.type = type
         switch type {
         case .ingredients:
-            addButton.setTitle("Добавить продукт +", for: .normal)
+            addButton.setTitle(L10n.Filters.IngredientsPlus.title, for: .normal)
         case .cuisines:
-            addButton.setTitle("Добавить кухню +", for: .normal)
+            addButton.setTitle(L10n.Filters.CuisinesKitchenPlus.title, for: .normal)
         }
     }
 }

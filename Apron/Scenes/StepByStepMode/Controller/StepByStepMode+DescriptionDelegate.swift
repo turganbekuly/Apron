@@ -11,6 +11,7 @@ import Models
 import AVFoundation
 import UIKit
 import AlertMessages
+import APRUIKit
 
 enum AlertHandlerType {
     case stopFromCell(instruction: RecipeInstruction)
@@ -44,7 +45,7 @@ extension StepByStepModeViewController: StepDescriptionCellProtocol {
         switch type {
         case let .stopFromCell(instruction):
             confirm = AlertActionInfo(
-                title: "Да",
+                title: L10n.Common.yes,
                 type: .normal,
                 action: {
                     TimerScheduleManager.shared.stopTimer(instruction: instruction)
@@ -57,7 +58,7 @@ extension StepByStepModeViewController: StepDescriptionCellProtocol {
             )
         case let .stopFromMain(instruction):
             confirm = AlertActionInfo(
-                title: "Да",
+                title: L10n.Common.yes,
                 type: .normal,
                 action: {
                     guard let timerView = timerView else {
@@ -70,13 +71,13 @@ extension StepByStepModeViewController: StepDescriptionCellProtocol {
             )
         }
         let cancel = AlertActionInfo(
-            title: "Нет",
+            title: L10n.Common.no,
             type: .cancel,
             action: { }
         )
 
         showAlert(
-            "Вы точно хотите остановить таймер?",
+            L10n.StepByStepMode.PauseTimer.title,
             message: "",
             actions: [confirm, cancel]
         )

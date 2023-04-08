@@ -8,6 +8,7 @@
 
 import Models
 import UIKit
+import APRUIKit
 
 extension MyRecipesViewController {
     
@@ -31,7 +32,7 @@ extension MyRecipesViewController {
             refreshControl.endRefreshing()
         case .getProfileRecipeFailed:
             refreshControl.endRefreshing()
-            show(type: .error("Не удалось получить ваши рецепты! Пожалуйста, попробуйте еще раз!"))
+            show(type: .error(L10n.MyRecipes.getProfileRecipeFailed))
         }
     }
     
