@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import APRUIKit
 
 extension AddCommentViewController: UITableViewDataSource {
 
@@ -102,7 +103,7 @@ extension AddCommentViewController: UITableViewDelegate {
             cell.configure(imageURL: addCommentRequestBody?.image)
         case .note:
             guard let cell = cell as? RecipeCreationDescriptionCell else { return }
-            cell.placeholder = "Расскажите о своем опыте. Любые советы по улучшению этого рецепта?"
+            cell.placeholder = L10n.AddComment.Note.placeholder
             cell.delegate = self
             cell.configure(description: "")
         case .tags:

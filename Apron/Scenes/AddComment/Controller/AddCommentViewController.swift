@@ -60,9 +60,9 @@ final class AddCommentViewController: ViewController {
             let whatWasGoodOptions = ["Легкий", "Подходит для детей", "Одна посуда", "До 30 минут"]
             let makeItAgainOptions = ["Частый выбор", "Никогда", "Особый случай"]
             tagsSections = [
-                .init(section: .howDidItTaste("Как это было на вкус?"), rows: howDidItTasteOptions.compactMap { .option($0) }),
-                .init(section: .whatWasGood("Что в нем было хорошего?"), rows: whatWasGoodOptions.compactMap { .option($0) }),
-                .init(section: .makeItAgain("Приготовили бы снова?"), rows: makeItAgainOptions.compactMap { .option($0) })
+                .init(section: .howDidItTaste(L10n.AddComment.HowDidItTaste.title), rows: howDidItTasteOptions.compactMap { .option($0) }),
+                .init(section: .whatWasGood(L10n.AddComment.WhatWasGood.title), rows: whatWasGoodOptions.compactMap { .option($0) }),
+                .init(section: .makeItAgain(L10n.AddComment.MakeItAgain.title), rows: makeItAgainOptions.compactMap { .option($0) })
             ]
         }
     }
@@ -111,7 +111,7 @@ final class AddCommentViewController: ViewController {
 
     private lazy var saveButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Common.Save.title, for: .normal)
         button.backgroundType = .blackBackground
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 17
@@ -182,7 +182,7 @@ final class AddCommentViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        backButton.configure(with: "Добавить отзыв")
+        backButton.configure(with: L10n.Common.AddReview.title)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
@@ -218,12 +218,12 @@ final class AddCommentViewController: ViewController {
     @objc
     private func saveButtonTapped() {
         guard let _ = selectedRate else {
-            show(type: .error("Пожалуйста, выберите подходящий смайлик"))
+            show(type: .error(L10n.AddComment.ChooseRightEmoji.title))
             return
         }
 
         guard let comment = addCommentRequestBody, comment.comment != nil || comment.tags != nil else {
-            show(type: .error("Пожалуйста, заполните поля!"))
+            show(type: .error(L10n.AddComment.FillAllFields.title))
             return
         }
 

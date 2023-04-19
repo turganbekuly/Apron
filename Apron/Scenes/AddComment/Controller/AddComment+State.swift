@@ -9,6 +9,7 @@
 import Models
 import UIKit
 import Configurations
+import APRUIKit
 
 extension AddCommentViewController {
 
@@ -44,10 +45,10 @@ extension AddCommentViewController {
                 delegate?.commentDidAdd()
                 navigationController?.popViewController(animated: true)
             case .failed:
-                show(type: .error("Произошла ошибка при отправке, пожалуйста, попробуйте позднее"))
+                show(type: .error(L10n.AddComment.SendMessageError.title))
             }
         case .commentAddingFailed:
-            show(type: .error("Произошла ошибка при отправке, пожалуйста, попробуйте позднее"))
+            show(type: .error(L10n.AddComment.SendMessageError.title))
         case let .uploadImageSucceed(path):
             addCommentRequestBody?.image = Configurations.downloadImageURL(imagePath: path)
             configureImageCell(isLoaded: false)
@@ -55,7 +56,7 @@ extension AddCommentViewController {
             replaceImageCell(type: .image)
         case .uploadImageFailed(_):
             configureImageCell(isLoaded: false)
-            show(type: .error("Не удалось загрузить фото, попробуйте еще раз"))
+            show(type: .error(L10n.Photo.UploadPhoto.Error.title))
         }
     }
 

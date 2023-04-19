@@ -125,7 +125,7 @@ extension ShoppingListViewController: UITableViewDelegate {
         case .empty:
             guard let cell = cell as? EmptyListTableCell else { return }
             cell.configure(
-                with: "Добавьте товары в свой список покупок",
+                with: L10n.ShoppingList.AddProductsToBuyList.title,
                 image: APRAssets.emptyCart.image
             )
         case let .ingredient(item):
@@ -165,10 +165,10 @@ extension ShoppingListViewController: UITableViewDelegate {
         switch section {
         case .ingredients:
             guard let view = view as? ShoppingListHeaderView else { return }
-            view.configure(title: "Ингредиенты")
+            view.configure(title: L10n.ShoppingList.ingredients)
         case .checkedIngredients:
             guard let view = view as? ShoppingListHeaderView else { return }
-            view.configure(title: "Купленные ингредиенты")
+            view.configure(title: L10n.ShoppingList.boughtIngredients)
         }
     }
 }

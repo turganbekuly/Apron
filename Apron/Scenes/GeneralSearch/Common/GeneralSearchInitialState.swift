@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import APRUIKit
 
 public enum GeneralSearchInitialState: Equatable {
     case main
@@ -18,11 +19,11 @@ public enum GeneralSearchInitialState: Equatable {
     var title: String? {
         switch self {
         case .everything:
-            return "Все"
+            return L10n.GeneralSearchInitialState.Ru.everything
         case .recipe, .recipesFromCommunityPage, .savedRecipes:
-            return "Рецепты"
+            return L10n.GeneralSearchInitialState.Ru.recipe
         case .community:
-            return "Сообщество"
+            return L10n.GeneralSearchInitialState.Ru.community
         default:
             return nil
         }
@@ -31,11 +32,11 @@ public enum GeneralSearchInitialState: Equatable {
     var sections: String? {
         switch self {
         case .everything:
-            return "Everything"
+            return L10n.GeneralSearchInitialState.En.everything
         case .recipe, .recipesFromCommunityPage, .savedRecipes:
-            return "Recipes"
+            return L10n.GeneralSearchInitialState.En.recipe
         case .community:
-            return "Communities"
+            return L10n.GeneralSearchInitialState.En.community
         default:
             return nil
         }

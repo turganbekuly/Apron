@@ -76,11 +76,11 @@ public final class StepNavigationController: UINavigationController {
     @objc
     private func didTappedClose(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(
-            title: "Вы действительно хотите закрыть режим готовки?",
+            title: L10n.StepByStepMode.CloseCookingMode.title,
             message: nil,
             preferredStyle: .alert
         )
-        let yesAction = UIAlertAction(title: "Да", style: .default) { [weak self] _ in
+        let yesAction = UIAlertAction(title: L10n.Common.yes, style: .default) { [weak self] _ in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 TTSMAnager.shared.stopTTS()
@@ -91,7 +91,7 @@ public final class StepNavigationController: UINavigationController {
                 }
             }
         }
-        let noAction = UIAlertAction(title: "Нет", style: .cancel)
+        let noAction = UIAlertAction(title: L10n.Common.no, style: .cancel)
         [yesAction, noAction].forEach {
             alert.addAction($0)
         }

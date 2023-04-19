@@ -75,7 +75,7 @@ final class IngredientSelectionViewController: ViewController {
     private lazy var saveButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .blackBackground
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle(L10n.Common.Save.title, for: .normal)
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -124,7 +124,7 @@ final class IngredientSelectionViewController: ViewController {
     // MARK: - Methods
 
     private func configureNavigation() {
-        backButton.configure(with: "Добавить ингредиент")
+        backButton.configure(with: L10n.IngredientSelection.Ingredient.add)
         backButton.onBackButtonTapped = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
@@ -204,13 +204,13 @@ final class IngredientSelectionViewController: ViewController {
     @objc
     private func saveButtonTapped() {
         guard let _ = recipeIgredient.product?.id else {
-            show(type: .error("Пожалуйста, выберите ингредиент из списка"))
+            show(type: .error(L10n.IngredientSelection.Ingredient.chooseFromList))
             return
         }
 
         if initialState == .fullItem {
             guard let _ = measureTextField.measurementTyptextField.text else {
-                show(type: .error("Пожалуйтса, выберите измерение"))
+                show(type: .error(L10n.IngredientSelection.Ingredient.chooseMeasureTF))
                 return
             }
 

@@ -12,25 +12,25 @@ extension RecipeSearchViewController {
     func select(block type: SearchSuggestionCategoriesTypes) {
         var searchFilter = SearchFilterRequestBody()
         switch type {
-        case .pervieBluda:
+        case .firstMeal:
             searchFilter.dishTypes = [1]
-        case .vtorieBluda:
+        case .secondMeal:
             searchFilter.dishTypes = [2]
-        case .salati:
+        case .salads:
             searchFilter.dishTypes = [3]
-        case .zakuski:
+        case .snacks:
             searchFilter.dishTypes = [4]
-        case .deserti:
+        case .desserts:
             searchFilter.dishTypes = [9]
-        case .vipechki:
+        case .bakery:
             searchFilter.dishTypes = [5]
-        case .souciMarinadi:
+        case .saucesMarinades:
             searchFilter.dishTypes = [6]
-        case .zagotovki:
+        case .foodPrepProvision:
             searchFilter.dishTypes = [7]
-        case .napitki:
+        case .drinks:
             searchFilter.dishTypes = [8]
-        case .garniri:
+        case .sideDishes:
             searchFilter.dishTypes = [10]
         }
 

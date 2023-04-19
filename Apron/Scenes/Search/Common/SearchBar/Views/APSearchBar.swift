@@ -159,7 +159,7 @@ public final class APSearchBar: UIView {
         textField.delegate = self
 
         cancelButton.setTitle(
-            "Cancel",
+            L10n.Search.Cancel.title,
             for: .normal
         )
         cancelButton.addTarget(
@@ -173,7 +173,7 @@ public final class APSearchBar: UIView {
         rightItemsStackView.isHidden = true
         rightItemsStackView.alpha = 0.0
 
-        setPlaceholder("Поиск")
+        setPlaceholder(L10n.Search.search)
 
         cancelButton.setContentHuggingPriority(.required, for: .horizontal)
         cancelButton.setContentCompressionResistancePriority(.required, for: .horizontal)

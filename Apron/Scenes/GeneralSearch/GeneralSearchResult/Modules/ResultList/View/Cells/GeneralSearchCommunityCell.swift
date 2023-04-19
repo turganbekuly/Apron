@@ -52,7 +52,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
 
     private lazy var joinButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.setTitle("Вступить", for: .normal)
+        button.setTitle(L10n.Common.Join.title, for: .normal)
         button.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 17
         button.layer.masksToBounds = true
@@ -176,7 +176,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
 
     private func configureButton(isJoined: Bool) {
         guard isJoined else {
-            joinButton.setTitle("Вступить", for: .normal)
+            joinButton.setTitle(L10n.Common.Join.title, for: .normal)
             joinButton.setBackgroundColor(.black, for: .normal)
             joinButton.setTitleColor(.white, for: .normal)
             joinButton.snp.updateConstraints({
@@ -184,7 +184,7 @@ final class GeneralSearchCommunityCell: UITableViewCell {
             })
             return
         }
-        joinButton.setTitle("Уже вступили", for: .normal)
+        joinButton.setTitle(L10n.Common.Joined.title, for: .normal)
         joinButton.setBackgroundColor(APRAssets.colorsYello.color, for: .normal)
         joinButton.setTitleColor(.black, for: .normal)
         joinButton.snp.updateConstraints {

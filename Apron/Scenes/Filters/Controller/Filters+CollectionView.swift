@@ -282,25 +282,25 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
         switch section {
         case .cookingTime:
             guard let view = view as? FiltersHeaderView else { return }
-            view.configure(with: FilterHeaderViewModel(text: "Время на кухне"))
+            view.configure(with: FilterHeaderViewModel(text: L10n.Filters.cookingTime))
         case .dayTimeType:
             guard let view = view as? FiltersHeaderView else { return }
-            view.configure(with: FilterHeaderViewModel(text: "Тип приема пищи"))
+            view.configure(with: FilterHeaderViewModel(text: L10n.Filters.dayTimeType))
         case .cuisines:
             guard let view = view as? FiltersHeaderView else { return }
-            view.configure(with: FilterHeaderViewModel(text: "Кухня мира"))
+            view.configure(with: FilterHeaderViewModel(text: L10n.Filters.cuisines))
         case .dishTypes:
             guard let view = view as? FiltersHeaderView else { return }
-            view.configure(with: FilterHeaderViewModel(text: "Тип блюда"))
+            view.configure(with: FilterHeaderViewModel(text: L10n.Filters.dishTypes))
         case .ingredients:
             guard let view = view as? FiltersHeaderView else { return }
-            view.configure(with: FilterHeaderViewModel(text: "Добавить продукт"))
+            view.configure(with: FilterHeaderViewModel(text: L10n.Filters.ingredients))
         case .eventTypes:
             guard let view = view as? FiltersHeaderView else { return }
-            view.configure(with: FilterHeaderViewModel(text: "Праздники"))
+            view.configure(with: FilterHeaderViewModel(text: L10n.Filters.eventTypes))
         case .lifestyleTypes:
             guard let view = view as? FiltersHeaderView else { return }
-            view.configure(with: FilterHeaderViewModel(text: "Стиль жизни"))
+            view.configure(with: FilterHeaderViewModel(text: L10n.Filters.lifestyleTypes))
         case .addIngredient, .addCuisine:
             break
         }

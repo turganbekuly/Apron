@@ -67,7 +67,7 @@ final class GeneralSearchViewController: ViewController {
         controller.definesPresentationContext = true
         controller.hidesNavigationBarDuringPresentation = false
         controller.obscuresBackgroundDuringPresentation = true
-        controller.searchBar.placeholder = "Поиск рецептов"
+        controller.searchBar.placeholder = L10n.Search.title
         controller.searchResultsUpdater = self
         controller.searchBar.delegate = self
         controller.delegate = self

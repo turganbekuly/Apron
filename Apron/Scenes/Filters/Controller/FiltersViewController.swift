@@ -57,7 +57,7 @@ final class FiltersViewController: ViewController {
     private lazy var applyButton: BlackOpButton = {
         let button = BlackOpButton()
         button.backgroundType = .blackBackground
-        button.setTitle("Применить", for: .normal)
+        button.setTitle(L10n.Common.Apply.title, for: .normal)
         button.addTarget(self, action: #selector(applyButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 20
         button.layer.masksToBounds = true
@@ -66,7 +66,7 @@ final class FiltersViewController: ViewController {
 
     private lazy var resetFilters: UIBarButtonItem = {
         let item = UIBarButtonItem(
-            title: "Сбросить все",
+            title: L10n.Common.ResetAll.title,
             style: .done,
             target: self,
             action: #selector(clearAllFilters)
@@ -137,7 +137,7 @@ final class FiltersViewController: ViewController {
 
     // MARK: - Methods
     private func configureNavigation() {
-        navigationItem.title = "Фильтры"
+        navigationItem.title = L10n.Common.filters
         navigationItem.rightBarButtonItem = resetFilters
     }
 

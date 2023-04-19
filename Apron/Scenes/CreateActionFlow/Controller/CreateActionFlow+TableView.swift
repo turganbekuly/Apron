@@ -87,60 +87,60 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.communityPrivateIcon.image,
-                title: "Создать закрытое сообщество",
-                subtitle: "Присоединиться могут только люди, которых вы пригласили"
+                title: L10n.CreateActionFlow.PrivateCommunity.title,
+                subtitle: L10n.CreateActionFlow.PrivateCommunity.subtitle
             ))
         case .publicCommunity:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.communityPublicIcon.image,
-                title: "Создать публичное сообщество",
-                subtitle: "Любой может просматривать и присоединяться"
+                title: L10n.CreateActionFlow.PublicCommunity.title,
+                subtitle: L10n.CreateActionFlow.PublicCommunity.subtitle
             ))
         case .aboutCommunities:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.communityAboutIcon.image,
-                title: "Подробнее о сообществах",
+                title: L10n.CreateActionFlow.AboutCommunities.title,
                 subtitle: nil
             ))
         case .savedRecipe:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.recipeAddIcon.image,
-                title: "Добавить сохраненный рецепт",
+                title: L10n.CreateActionFlow.SavedRecipe.title,
                 subtitle: nil
             ))
         case .newRecipe:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.recipeNewIcon.image,
-                title: "Создать новый рецепт",
+                title: L10n.CreateActionFlow.NewRecipe.title,
                 subtitle: nil
             ))
         case .shoppingList:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.tabListIcon.image,
-                title: "Добавить в список покупок"
+                title: L10n.CreateActionFlow.ShoppingList.title
             ))
         case .shareIngredients:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.recipeShareIcon.image,
-                title: "Поделиться"
+                title: L10n.CreateActionFlow.ShareIngredients.title
             ))
         case .shareCommunity:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.recipeShareIcon.image,
-                title: "Поделиться сообществом"
+                title: L10n.CreateActionFlow.ShareCommunity.title
             ))
         case .clearIngredients:
             guard let cell = cell as? CreateButtonCell else { return }
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.trashIcon.image,
-                title: "Очистить"
+                title: L10n.CreateActionFlow.ClearIngredients.title
             ))
         default:
             break

@@ -85,7 +85,7 @@ extension Messagable where Self: UIViewController {
 
         if actions.isEmpty {
             var defaultCancelAction: UIAlertAction {
-                let dismissActionTitle = "Закрыть"
+                let dismissActionTitle = L10n.Common.close
                 return UIAlertAction(title: dismissActionTitle, style: .cancel) { _ in }
             }
             alertVC.addAction(defaultCancelAction)

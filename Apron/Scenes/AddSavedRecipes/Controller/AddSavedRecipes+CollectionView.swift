@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import APRUIKit
 
 extension AddSavedRecipesViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -110,7 +111,7 @@ extension AddSavedRecipesViewController: UICollectionViewDelegateFlowLayout {
             guard let view = view as? SavedRecipeHeaderView else { return }
             view.delegate = self
             view.configure(
-                with: CommunityFilterCellViewModel(searchbarPlaceholder: "Поиск рецептов в избранном")
+                with: CommunityFilterCellViewModel(searchbarPlaceholder: L10n.AddSavedRecipes.SearchFavoriteRecipes.title)
             )
         }
     }

@@ -32,6 +32,15 @@
 "Common.Measure.Minutes" = "минут";
 "Common.Cancel" = "Отмена";
 "Common.Close" = "Закрыть";
+"Common.Preview" = "Предпросмотр";
+"Common.Add.Title" = "Добавить";
+"Common.AddReview.Title" = "Добавить отзыв";
+"Common.Apply.Title" = "Применить";
+"Common.ResetAll.Title" = "Сбросить все";
+"Common.Filters" = "Фильтры";
+"Common.Delete.Title" = "Удалить";
+"Common.СancelTwo" = "Отменить";
+"Common.PlusAdd.Title" = "+ ДОБАВИТЬ";
 
 // MARK: - Photo
 
@@ -43,6 +52,7 @@
 "Photo.UploadPhoto.Title" = "Загрузить фото";
 "Photo.UploadPhoto.Advice.Format" = "Пожалуйста, используйте только свои уникальные фотографии. Формат JPG, JPEG, PNG. Размер до 20 мб";
 "Photo.UploadPhoto.Advice.Connection" = "Убедитесь, что вы подключены к 4G (LTE) или Wi-Fi. Через 3G фото может не загрузиться";
+"Photo.UploadPhoto.Error.Title" = "Не удалось загрузить фото, попробуйте еще раз";
 
 // MARK: - Alert Messages
 
@@ -69,6 +79,7 @@
 "Authorization.Username.TFTitle" = "Имя пользователя";
 "Authorization.SignIn.Title" = "С возвращением!";
 "Authorization.SignUp.Title" = "Регистрация в Apron";
+"Authorization.SignUp.Error.Title" = "Не удалось зарегистрироваться. Пожалуйста, попробуйте позднее!";
 "Authorization.Skip.Title" = "Вы действительно хотите пропустить?";
 "Authorization.Skip.Message" = "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.";
 "Authorization.Username.Title" = "Привет!";
@@ -154,3 +165,128 @@
 "RecipeCreation.Recipe.CookTime.Title" = "Время готовки";
 "RecipeCreation.Recipe.CookTime.Subtitle" = "Сколько времени нужно, что бы приготовить это блюдо?";
 
+// MARK: - Ingredient Selection
+"IngredientSelection.Ingredient.Add" = "Добавить ингредиент";
+"IngredientSelection.Ingredient.ChooseFromList" = "Пожалуйста, выберите ингредиент из списка";
+"IngredientSelection.Ingredient.ChooseMeasureTF" = "Пожалуйста, выберите измерение";
+
+//MARK: - Instruction Selection
+"InstructionSelection.AddStep.Title" = "Добавить шаг";
+"InstructionSelection.Description.CellPlaceholder" = "Введите инструкцию";
+
+//MARK: - PreShopping List
+"PreshoppingList.ChooseAtLeastOneProduct.Title" = "Пожалуйста, выберите не менее 1 продукта";
+
+//MARK: - Shopping List
+"ShoppingList.Order.Title" = "Заказать";
+"ShoppingList.AddProduct.Title" = "Добавить продукт";
+"ShoppingList.ListOfProducts.Title" = "Список покупок";
+"ShoppingList.SelfProduct.Title" = "Личный продукт";
+"ShoppingList.CannotUploadCart.Title" = "Не удалось загрузить корзину";
+"ShoppingList.CannotCleanCart.Title" = "Не удалось очистить корзину";
+"ShoppingList.AddProductsToBuyList.Title" = "Добавьте товары в свой список покупок";
+"ShoppingList.Ingredients" = "Ингредиенты";
+"ShoppingList.BoughtIngredients" = "Купленные ингредиенты";
+
+//MARK: - Cusisine Selection
+"CuisineSelection.Category" = "Категории";
+
+//MARK: - Saved Recipes
+"SavedRecipes.SavedRecipes.Title" = "Сохраненные рецепты";
+"SavedRecipes.AddFavoriteRecipes.Title" = "Добавляйте свои любимые рецепты,\n чтобы быстрее их найти";
+
+//MARK: - Search
+"Search.Cancel.Title" = "Cancel";
+"Search.Search" = "Поиск";
+"Search.NotFound.Title" = "Ничего не найдено";
+
+//MARK: - Food Categories
+"FoodCategories.firstMeal.Title" = "Первые блюда";
+"FoodCategories.secondMeal.Title" = "Вторые блюда";
+"FoodCategories.salads.Title" = "Салаты";
+"FoodCategories.snacks.Title" = "Закуски";
+"FoodCategories.desserts.Title" = "Десерты";
+"FoodCategories.bakery.Title" = "Выпечки";
+"FoodCategories.saucesMarinades.Title" = "Соусы и маринады";
+"FoodCategories.foodPrepProvision.Title" = "Заготовки";
+"FoodCategories.drinks.Title" = "Напитки";
+"FoodCategories.sideDishes.Title" = "Гарниры";
+
+//MARK: - Recipe Search
+"RecipeSearch.RecipeSearch.Title" = "Поиск по рецептам";
+"RecipeSearch.AllFilters.Title" = "Все фильтры";
+
+//MARK: - General Search
+"GeneralSearchInitialState.RU.Everything" = "Все";
+"GeneralSearchInitialState.RU.Recipe" = "Рецепты";
+"GeneralSearchInitialState.RU.Community" = "Сообщество";
+"GeneralSearchInitialState.EN.Everything" = "Everything";
+"GeneralSearchInitialState.EN.Recipe" = "Recipes";
+"GeneralSearchInitialState.EN.Community" = "Communities";
+
+//MARK: - Create Action Flow
+"CreateActionFlow.PrivateCommunity.Title" = "Создать закрытое сообщество";
+"CreateActionFlow.PrivateCommunity.Subtitle" = "Присоединиться могут только люди, которых вы пригласили";
+"CreateActionFlow.PublicCommunity.Title" = "Создать публичное сообщество";
+"CreateActionFlow.PublicCommunity.Subtitle" = "Любой может просматривать и присоединяться";
+"CreateActionFlow.AboutCommunities.Title" = "Подробнее о сообществах";
+"CreateActionFlow.SavedRecipe.Title" = "Добавить сохраненный рецепт";
+"CreateActionFlow.NewRecipe.Title" = "Создать новый рецепт";
+"CreateActionFlow.ShoppingList.Title" = "Добавить в список покупок";
+"CreateActionFlow.ShareIngredients.Title" = "Поделиться";
+"CreateActionFlow.ShareCommunity.Title" = "Поделиться сообществом";
+"CreateActionFlow.ClearIngredients.Title" = "Очистить";
+
+//MARK: - Add Saved Recipes
+"AddSavedRecipes.AddRecipe.Title" = "Добавить рецепт";
+"AddSavedRecipes.SearchFavoriteRecipes.Title" = "Поиск рецептов в избранном";
+
+//MARK: - Profile
+"Profile.Assistant.Title" = "Голосовой ассистент";
+"Profile.DeleteAccount.Title" = "Удалить аккаунт";
+"Profile.Logout.Title" = "Выйти";
+"Profile.MyRecipes.Title" = "Мои рецепты";
+"Profile.ContactWithDevelopers.Title" = "Сообщить о проблеме";
+
+//MARK: - Add Comment
+"AddComment.ChooseRightEmoji.Title" = "Пожалуйста, выберите подходящий смайлик";
+"AddComment.FillAllFields.Title" = "Пожалуйста, заполните поля!";
+"AddComment.HowDidItTaste.Title" = "Как это было на вкус?";
+"AddComment.WhatWasGood.Title" = "Что в нем было хорошего?";
+"AddComment.MakeItAgain.Title" = "Приготовили бы снова?";
+"AddComment.SendMessageError.Title" = "Произошла ошибка при отправке, пожалуйста, попробуйте позднее";
+"AddComment.Note.Placeholder" = "Расскажите о своем опыте. Любые советы по улучшению этого рецепта?";
+
+//MARK: - Step by step mode
+"StepByStepMode.CloseCookingMode.Title" = "Вы действительно хотите закрыть режим готовки?";
+"StepByStepMode.PauseTimer.Title" = "Вы точно хотите остановить таймер?";
+"StepByStepMode.StartTimer.Title" = "Начать таймер";
+"StepByStepMode.LeaveFeedback.Title" = "Оставить отзыв";
+
+//MARK: - Filters
+"Filters.CookingTime" = "Время на кухне";
+"Filters.DayTimeType" = "Тип приема пищи";
+"Filters.Cuisines" = "Кухня мира";
+"Filters.DishTypes" = "Тип блюда";
+"Filters.Ingredients" = "Добавить продукт";
+"Filters.IngredientsPlus.Title" = "Добавить продукт +";
+"Filters.CuisinesKitchenPlus.Title" = "Добавить кухню +";
+"Filters.EventTypes" = "Праздники";
+"Filters.LifestyleTypes" = "Стиль жизни";
+
+//MARK: - Meal Planner
+"MealPlanner.AreYouSure" = "Вы уверены?";
+"MealPlanner.WillBeDeletedFromYourPlan" = "Этот рецепт будет удален из вашего плана питания.";
+
+//MARK: - My Recipes
+"MyRecipes.GetProfileRecipeFailed" = "Не удалось получить ваши рецепты! Пожалуйста, попробуйте еще раз!";
+"MyRecipes.EmptyListOfRecipes" = "У вас еще нет созданных рецептов";
+
+//MARK: - Meal Planner Weekdays
+"MealPlannerWeekDays.Monday.Title" = "Понедельник";
+"MealPlannerWeekDays.Tuesday.Title" = "Вторник";
+"MealPlannerWeekDays.Wednesday.Title" = "Среда";
+"MealPlannerWeekDays.Thursday.Title" = "Четверг";
+"MealPlannerWeekDays.Friday.Title" = "Пятница";
+"MealPlannerWeekDays.Saturday.Title" = "Суббота";
+"MealPlannerWeekDays.Sunday.Title" = "Воскресенье";

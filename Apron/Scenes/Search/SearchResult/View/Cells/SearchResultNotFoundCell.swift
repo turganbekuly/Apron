@@ -13,7 +13,7 @@ public final class SearchResultNotFoundCell: UITableViewCell {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ничего не найдено"
+        label.text = L10n.Search.NotFound.title
         return label
     }()
 

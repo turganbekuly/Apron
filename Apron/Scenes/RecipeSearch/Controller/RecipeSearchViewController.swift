@@ -138,7 +138,7 @@ final class RecipeSearchViewController: ViewController {
 
         searchBar.clearButtonMode = .whileEditing
         searchBar.canceButtonMode = .always
-        searchBar.placeholder = "Поиск по рецептам"
+        searchBar.placeholder = L10n.RecipeSearch.RecipeSearch.title
         mainView.addInfiniteScroll { [weak self] _ in
             guard let self = self else { return }
             self.filters.query = self.query ?? ""

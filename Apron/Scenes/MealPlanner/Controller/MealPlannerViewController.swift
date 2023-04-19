@@ -85,7 +85,7 @@ final class MealPlannerViewController: ViewController {
 
     lazy var addToCartButton: BlackOpButton = {
         let button = BlackOpButton()
-        button.setTitle("Добавить в корзину", for: .normal)
+        button.setTitle(L10n.Recipe.Ingredients.addToCart, for: .normal)
         button.backgroundType = .blackBackground
         button.addTarget(self, action: #selector(addToCartButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 23

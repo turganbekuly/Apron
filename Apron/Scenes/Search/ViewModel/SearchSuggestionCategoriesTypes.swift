@@ -10,63 +10,63 @@ import UIKit
 import APRUIKit
 
 enum SearchSuggestionCategoriesTypes: CaseIterable {
-    case pervieBluda
-    case vtorieBluda
-    case salati
-    case zakuski
-    case deserti
-    case vipechki
-    case souciMarinadi
-    case zagotovki
-    case napitki
-    case garniri
+    case firstMeal
+    case secondMeal
+    case salads
+    case snacks
+    case desserts
+    case bakery
+    case saucesMarinades
+    case foodPrepProvision
+    case drinks
+    case sideDishes
 
     var title: String {
         switch self {
-        case .pervieBluda:
-            return "Первые блюда"
-        case .vtorieBluda:
-            return "Вторые блюда"
-        case .salati:
-            return "Салаты"
-        case .zakuski:
-            return "Закуски"
-        case .deserti:
-            return "Десерты"
-        case .vipechki:
-            return "Выпечки"
-        case .souciMarinadi:
-            return "Соусы и маринады"
-        case .zagotovki:
-            return "Заготовки"
-        case .napitki:
-            return "Напитки"
-        case .garniri:
-            return "Гарниры"
+        case .firstMeal:
+            return L10n.FoodCategories.FirstMeal.title
+        case .secondMeal:
+            return L10n.FoodCategories.SecondMeal.title
+        case .salads:
+            return L10n.FoodCategories.Salads.title
+        case .snacks:
+            return L10n.FoodCategories.Snacks.title
+        case .desserts:
+            return L10n.FoodCategories.Desserts.title
+        case .bakery:
+            return L10n.FoodCategories.Bakery.title
+        case .saucesMarinades:
+            return L10n.FoodCategories.SaucesMarinades.title
+        case .foodPrepProvision:
+            return L10n.FoodCategories.FoodPrepProvision.title
+        case .drinks:
+            return L10n.FoodCategories.Drinks.title
+        case .sideDishes:
+            return L10n.FoodCategories.SideDishes.title
         }
     }
 
     var image: UIImage {
         switch self {
-        case .pervieBluda:
+        case .firstMeal:
             return APRAssets.firstCourseDish.image
-        case .vtorieBluda:
+        case .secondMeal:
             return APRAssets.vtorieBluda.image
-        case .salati:
+        case .salads:
             return APRAssets.salats.image
-        case .zakuski:
+        case .snacks:
             return APRAssets.zakuski.image
-        case .deserti:
+        case .desserts:
             return APRAssets.deserts.image
-        case .vipechki:
+        case .bakery:
             return APRAssets.baking.image
-        case .souciMarinadi:
+        case .saucesMarinades:
             return APRAssets.souces.image
-        case .zagotovki:
+        case .foodPrepProvision:
             return APRAssets.zagotovki.image
-        case .napitki:
+        case .drinks:
             return APRAssets.napitki.image
-        case .garniri:
+        case .sideDishes:
             return APRAssets.sideDish.image
         }
     }

@@ -8,6 +8,7 @@
 import Foundation
 import Extensions
 import AlertMessages
+import APRUIKit
 
 extension MealPlannerViewController: MealPlannerCellProtocol {
     func removeRecipe(with id: Int, with weekDay: MealPlannerWeekDays) {
@@ -15,7 +16,7 @@ extension MealPlannerViewController: MealPlannerCellProtocol {
         guard let day = addingDay else { return }
         let recipeDate = CalendarHelper().weekDayFromType(day, start: startDate, end: endDate)
         let yesAction = AlertActionInfo(
-            title: "Удалить",
+            title: L10n.Common.Delete.title,
             type: .destructive
         ) {
             self.isLoadingButton(true)
@@ -23,15 +24,15 @@ extension MealPlannerViewController: MealPlannerCellProtocol {
         }
 
         let noAction = AlertActionInfo(
-            title: "Отменить",
+            title: L10n.Common.сancelTwo,
             type: .cancel
         ) {
             self.dismiss(animated: true)
         }
 
         showAlert(
-            "Вы уверены?",
-            message: "Этот рецепт будет удален из вашего плана питания.",
+            L10n.MealPlanner.areYouSure,
+            message: L10n.MealPlanner.willBeDeletedFromYourPlan,
             actions: [noAction, yesAction]
         )
     }

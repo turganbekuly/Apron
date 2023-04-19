@@ -9,6 +9,7 @@
 import Models
 import UIKit
 import Storages
+import APRUIKit
 
 enum ShoppingListEntryPoint {
     case tab
@@ -35,11 +36,11 @@ extension ShoppingListViewController {
         case let .cartItemsDidFetch(items):
             self.cartItems = items
         case .cartItemsDidFail:
-            show(type: .error("Не удалось загрузить корзину"))
+            show(type: .error(L10n.ShoppingList.CannotUploadCart.title))
         case let .cartItemsDidClear(items):
             self.cartItems = items
         case .cartItemsDidClearWithError:
-            show(type: .error("Не удалось очистить корзину"))
+            show(type: .error(L10n.ShoppingList.CannotUploadCart.title))
         }
     }
 }
