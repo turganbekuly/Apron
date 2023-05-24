@@ -10,6 +10,7 @@ import UIKit
 import APRUIKit
 
 enum SearchSuggestionCategoriesTypes: CaseIterable {
+    case pp
     case firstMeal
     case secondMeal
     case salads
@@ -23,6 +24,8 @@ enum SearchSuggestionCategoriesTypes: CaseIterable {
 
     var title: String {
         switch self {
+        case .pp:
+            return L10n.FoodCategories.Pp.title
         case .firstMeal:
             return L10n.FoodCategories.FirstMeal.title
         case .secondMeal:
@@ -48,6 +51,8 @@ enum SearchSuggestionCategoriesTypes: CaseIterable {
 
     var image: UIImage {
         switch self {
+        case .pp:
+            return APRAssets.breakfast.image
         case .firstMeal:
             return APRAssets.firstCourseDish.image
         case .secondMeal:

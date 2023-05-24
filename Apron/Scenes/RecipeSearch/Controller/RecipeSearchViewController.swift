@@ -36,7 +36,7 @@ final class RecipeSearchViewController: ViewController {
     }
 
     // MARK: - Properties
-    private var isFirstAppear = true
+    var isFirstAppear = true
 
     var throttler = Throttler(minimumDelay: 0.3)
 
@@ -187,6 +187,7 @@ final class RecipeSearchViewController: ViewController {
 
         filters.query = query
         filters.page = currentPage
+        searchBar.text = query
         throttler.throttle { [weak self] in
             guard let self = self else { return }
             self.getRecipes(filters: self.filters)

@@ -99,6 +99,7 @@
 "Food.CategoryType.Salads" = "Салаты";
 "Food.CategoryType.Snacks" = "Закуски";
 "Food.CategoryType.Deserts" = "Десерты";
+"Food.CategoryType.PP" = "ПП";
 
 // MARK: - Recipe
 
@@ -200,6 +201,7 @@
 "FoodCategories.foodPrepProvision.Title" = "Заготовки";
 "FoodCategories.drinks.Title" = "Напитки";
 "FoodCategories.sideDishes.Title" = "Гарниры";
+"FoodCategories.pp.Title" = "ПП";
 
 //MARK: - Recipe Search
 "RecipeSearch.RecipeSearch.Title" = "Поиск по рецептам";

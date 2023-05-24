@@ -112,7 +112,6 @@
 		4C6A11A9BF60E10BEF9901A6 /* GeneralSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855722DD6C81B9255DD82F12 /* GeneralSearchService.swift */; };
 		4F33E6A5E722CEBF326D16C3 /* AuthSignUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFBBFEE9D0167D55AB658D6 /* AuthSignUpBuilder.swift */; };
 		51028C5AA8B4E3B98755C8D6 /* FiltersDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C761BE3EEC1D50B400D87A2 /* FiltersDataFlow.swift */; };
-		519C46291315924EE1C31873 /* Pods_Apron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 296593E8CF2821B04FC4D517 /* Pods_Apron.framework */; };
 		5398772426135BAF337360DB /* SavedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD1ED3C1E56AB0691090F4 /* SavedRecipesViewController.swift */; };
 		53BB4EB144DE7049DF24F727 /* RecipeCreation+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A038ECD06E85F2C7329C2F /* RecipeCreation+State.swift */; };
 		53F31FE944656DC6E4829D7E /* CategorySelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF7244590BC86BC4AAFC12F /* CategorySelectionPresenter.swift */; };
@@ -501,6 +500,7 @@
 		7246FAFD34B1E6EF7581BCFC /* CreateActionFlow+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D75B5CEA16621123D6F290C /* CreateActionFlow+State.swift */; };
 		732D9527D67855802276068D /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525840991436AC8E6989EFB7 /* FiltersViewController.swift */; };
 		73B6A529115BA269314AF941 /* MyRecipes+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC41920BDCCBF8FB5481502 /* MyRecipes+Network.swift */; };
+		748C367C7E3543A9E21DF326 /* Pods_Apron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD3F5545FD9CA6B52FEF684 /* Pods_Apron.framework */; };
 		75690A077FF013DB53AC4F53 /* TasteOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3B1821A380B99D8B681107 /* TasteOnboardingViewController.swift */; };
 		76A58A6AF98C4ADC4C737D75 /* GeneralSearchResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6849C056F1F733C00C512C /* GeneralSearchResultInteractor.swift */; };
 		77B3DAE89F2569E066EB18AA /* RecipePage+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E4FCB8D1D4E430345B246D /* RecipePage+Network.swift */; };
@@ -702,7 +702,6 @@
 
 /* Begin PBXFileReference section */
 		012431E092B46EC9D76EAB29 /* AddCommentDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddCommentDataFlow.swift; sourceTree = "<group>"; };
-		01545CDAF7B7FE3CE84B38DC /* Pods-Apron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.debug.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.debug.xcconfig"; sourceTree = "<group>"; };
 		016591C9C5B6CD6251702A91 /* GeneralSearchResult+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "GeneralSearchResult+Network.swift"; sourceTree = "<group>"; };
 		029A8C3919856A146BDEC2F9 /* CommunityCreation+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+DisplayLogic.swift"; sourceTree = "<group>"; };
 		03A5A10B8C0ACDEFAC948639 /* StepByStepMode+CollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "StepByStepMode+CollectionView.swift"; sourceTree = "<group>"; };
@@ -751,10 +750,10 @@
 		26834BD0E231EEE0A5ECF1AB /* FiltersBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FiltersBuilder.swift; sourceTree = "<group>"; };
 		26E05AFFEF7DBDF5A0323D42 /* IngredientSelectionDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionDataFlow.swift; sourceTree = "<group>"; };
 		293B5B244BF5B14A2A04C404 /* IngredientSelectionEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IngredientSelectionEndpoints.swift; sourceTree = "<group>"; };
-		296593E8CF2821B04FC4D517 /* Pods_Apron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Apron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29AA76884BBCDDE186621F23 /* PreShoppingList+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "PreShoppingList+TableView.swift"; sourceTree = "<group>"; };
 		2A64288AEDF734B400CFA2A0 /* MyRecipesInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyRecipesInteractor.swift; sourceTree = "<group>"; };
 		2AEE0CECAA51AC56DCAF4001 /* CommunityPageDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageDataFlow.swift; sourceTree = "<group>"; };
+		2BD3F5545FD9CA6B52FEF684 /* Pods_Apron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Apron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BFA9487D3570A8C131CBE0A /* StepByStepModeBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StepByStepModeBuilder.swift; sourceTree = "<group>"; };
 		2C032F7BDEE9FE086EFC6C3F /* FiltersView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		2C58D9E6CE56C5E86D280907 /* CommunityPageViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageViewController.swift; sourceTree = "<group>"; };
@@ -778,6 +777,7 @@
 		3B3DC4A1DD1B8B6F11FCBFEB /* GeneralSearchResultPagerBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultPagerBuilder.swift; sourceTree = "<group>"; };
 		3BB0B48C79FF4FAEBD20C50F /* GeneralSearchResultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultView.swift; sourceTree = "<group>"; };
 		3BE12E6FA75AED4EB1D22890 /* SavedRecipesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedRecipesView.swift; sourceTree = "<group>"; };
+		3CA6FD11109509DB45709A76 /* Pods-Apron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.release.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.release.xcconfig"; sourceTree = "<group>"; };
 		3DCEF0339B3CADBA9A69CC6C /* ShoppingList+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ShoppingList+TableView.swift"; sourceTree = "<group>"; };
 		3E72174ECFEB2949317FFF8E /* InstructionSelectionPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InstructionSelectionPresenter.swift; sourceTree = "<group>"; };
 		3F0C4E68BD02FFAC18776857 /* SearchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
@@ -1198,7 +1198,6 @@
 		6F28F083ED902BADDD1B98CF /* ResultListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultListView.swift; sourceTree = "<group>"; };
 		702A4B74D466ED3E7E5A1AAE /* Profile+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Profile+DisplayLogic.swift"; sourceTree = "<group>"; };
 		70C3A68A9DF8E3F606F45174 /* RecipeSearchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeSearchPresenter.swift; sourceTree = "<group>"; };
-		73FE9AD14597268524D766C0 /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		753C5C01545DAA070F0C2B2B /* ResultList+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ResultList+State.swift"; sourceTree = "<group>"; };
 		754C35D82BC57F157B14B396 /* RecipePage+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RecipePage+State.swift"; sourceTree = "<group>"; };
 		758256F517491161017DDCEB /* ShoppingListInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShoppingListInteractor.swift; sourceTree = "<group>"; };
@@ -1291,7 +1290,6 @@
 		B3D0D0F259E0B04E01992B2B /* RecipeSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeSearchView.swift; sourceTree = "<group>"; };
 		B46487091F1E45FDE156F288 /* SearchEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchEndpoints.swift; sourceTree = "<group>"; };
 		B50DB8F6C8621F0314246CBD /* Search+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Search+Network.swift"; sourceTree = "<group>"; };
-		B5A04F103D28EA603883C140 /* Pods-Apron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.release.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.release.xcconfig"; sourceTree = "<group>"; };
 		B80CE728A1A3EEB1A14E0C1E /* CategorySelectionDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySelectionDataFlow.swift; sourceTree = "<group>"; };
 		B835B33D35E2BBE9F76DF26C /* RecipeSearchEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeSearchEndpoints.swift; sourceTree = "<group>"; };
 		B8462DAB041690FD56309291 /* RecipePageViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipePageViewController.swift; sourceTree = "<group>"; };
@@ -1327,6 +1325,7 @@
 		D2FA38D2C8F7A10BDF2B0BED /* MyRecipesService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyRecipesService.swift; sourceTree = "<group>"; };
 		D3524BCD6FF838F0B33172E7 /* Search+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Search+State.swift"; sourceTree = "<group>"; };
 		D42B18E92F1FAAEEBC024110 /* ResultList+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ResultList+DisplayLogic.swift"; sourceTree = "<group>"; };
+		D4790FCE19B920A9C0DA1928 /* Pods-Apron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apron.debug.xcconfig"; path = "Target Support Files/Pods-Apron/Pods-Apron.debug.xcconfig"; sourceTree = "<group>"; };
 		D4A3A31E8AD2B4BE7A9EB8D3 /* GeneralSearchProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchProvider.swift; sourceTree = "<group>"; };
 		D5F63C3D47E2F8521EFD7D63 /* GeneralSearchEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchEndpoints.swift; sourceTree = "<group>"; };
 		D5F735D2C740462B365170E3 /* MyRecipes+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MyRecipes+DisplayLogic.swift"; sourceTree = "<group>"; };
@@ -1334,14 +1333,12 @@
 		D7D31249BB9AD13A5E4AA8F7 /* TasteOnboardingPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TasteOnboardingPresenter.swift; sourceTree = "<group>"; };
 		D81C9F7EECCBF4895C33D68C /* GeneralSearchResultProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeneralSearchResultProvider.swift; sourceTree = "<group>"; };
 		D9753ABE933A6D5C406A79D3 /* MealPlannerPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MealPlannerPresenter.swift; sourceTree = "<group>"; };
-		DA2B86440CF085D794758FCD /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		DA7D0B377614133309540F1D /* ProfileEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileEndpoints.swift; sourceTree = "<group>"; };
 		DAA4EDC566941360C1E3505D /* StepByStepModeInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StepByStepModeInteractor.swift; sourceTree = "<group>"; };
 		DE0EDC0D06286DA0CFF3623B /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		DE149D786CD0C9AECC7CF65F /* CommunityPageProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommunityPageProvider.swift; sourceTree = "<group>"; };
 		DECFB9B4BCDA2CE48D25614F /* AddCommentInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddCommentInteractor.swift; sourceTree = "<group>"; };
 		DEFB6CB6C9150CF9B99D6D2E /* CategorySelection+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CategorySelection+State.swift"; sourceTree = "<group>"; };
-		E167A8404EA1F004A3ACD270 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		E19D9CE8270FD246D5CD0334 /* FiltersService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FiltersService.swift; sourceTree = "<group>"; };
 		E29BE76FBD259B9A7F051309 /* MealPlannerDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MealPlannerDataFlow.swift; sourceTree = "<group>"; };
 		E2B59F70578E2D1841886005 /* TabBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -1395,7 +1392,7 @@
 			files = (
 				6D8F5CFE284DDB5000EFE0E4 /* DropDown in Frameworks */,
 				6DD23AB22966C9DD0064418E /* AppsFlyerLib in Frameworks */,
-				519C46291315924EE1C31873 /* Pods_Apron.framework in Frameworks */,
+				748C367C7E3543A9E21DF326 /* Pods_Apron.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1896,13 +1893,19 @@
 			path = Provider;
 			sourceTree = "<group>";
 		};
+		58BA2EBFB7342590EA1CA0D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2BD3F5545FD9CA6B52FEF684 /* Pods_Apron.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58DC78021841B3D410B7C859 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E167A8404EA1F004A3ACD270 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
-				DA2B86440CF085D794758FCD /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
-				01545CDAF7B7FE3CE84B38DC /* Pods-Apron.debug.xcconfig */,
-				B5A04F103D28EA603883C140 /* Pods-Apron.release.xcconfig */,
+				D4790FCE19B920A9C0DA1928 /* Pods-Apron.debug.xcconfig */,
+				3CA6FD11109509DB45709A76 /* Pods-Apron.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2042,7 +2045,7 @@
 				6D0A71CA277A12EC0067E580 /* Apron */,
 				6D0A71C9277A12EC0067E580 /* Products */,
 				58DC78021841B3D410B7C859 /* Pods */,
-				E4F9701EA9D78C64B1F19A74 /* Frameworks */,
+				58BA2EBFB7342590EA1CA0D5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3739,15 +3742,6 @@
 			path = Provider;
 			sourceTree = "<group>";
 		};
-		E4F9701EA9D78C64B1F19A74 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				296593E8CF2821B04FC4D517 /* Pods_Apron.framework */,
-				73FE9AD14597268524D766C0 /* Pods_OneSignalNotificationServiceExtension.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		E7D3F982B32B02E40FDF6F85 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -3932,14 +3926,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D0A71DC277A12EE0067E580 /* Build configuration list for PBXNativeTarget "Apron" */;
 			buildPhases = (
-				7FEDB2511A48726592583300 /* [CP] Check Pods Manifest.lock */,
+				C6A6497D3480B556FCBAFD9C /* [CP] Check Pods Manifest.lock */,
 				6D8F5D00284F155700EFE0E4 /* Swiftgen */,
 				6D0A71C4277A12EC0067E580 /* Sources */,
 				6D0A71C5277A12EC0067E580 /* Frameworks */,
 				6D0A71C6277A12EC0067E580 /* Resources */,
-				28084D3733FCDC5FE42DD6B1 /* [CP] Embed Pods Frameworks */,
 				6D3201EE285F47BB00B89AC8 /* Embed Foundation Extensions */,
 				6D332DB029CED5E500A96A87 /* Crashlytics */,
+				F13D9028D7EA3C3ADCA28D9B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4009,23 +4003,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		28084D3733FCDC5FE42DD6B1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6D332DB029CED5E500A96A87 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4064,7 +4041,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\"\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi \n";
 		};
-		7FEDB2511A48726592583300 /* [CP] Check Pods Manifest.lock */ = {
+		C6A6497D3480B556FCBAFD9C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4084,6 +4061,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F13D9028D7EA3C3ADCA28D9B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4899,7 +4893,7 @@
 		};
 		6D0A71DD277A12EE0067E580 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01545CDAF7B7FE3CE84B38DC /* Pods-Apron.debug.xcconfig */;
+			baseConfigurationReference = D4790FCE19B920A9C0DA1928 /* Pods-Apron.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -4940,7 +4934,7 @@
 		};
 		6D0A71DE277A12EE0067E580 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5A04F103D28EA603883C140 /* Pods-Apron.release.xcconfig */;
+			baseConfigurationReference = 3CA6FD11109509DB45709A76 /* Pods-Apron.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

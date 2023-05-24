@@ -12,6 +12,8 @@ extension RecipeSearchViewController {
     func select(block type: SearchSuggestionCategoriesTypes) {
         var searchFilter = SearchFilterRequestBody()
         switch type {
+        case .pp:
+            searchFilter.query = "ПП"
         case .firstMeal:
             searchFilter.dishTypes = [1]
         case .secondMeal:

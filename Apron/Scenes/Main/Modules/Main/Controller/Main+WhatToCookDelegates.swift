@@ -20,8 +20,8 @@ extension MainViewController: WhatToCookCellDelegate {
             searchFilter.dayTimeType = [4]
         case .salati:
             searchFilter.dishTypes = [3]
-        case .zakuski:
-            searchFilter.dishTypes = [4]
+        case .pp:
+            searchFilter.query = "ПП"
         case .deserti:
             searchFilter.dishTypes = [9]
         }

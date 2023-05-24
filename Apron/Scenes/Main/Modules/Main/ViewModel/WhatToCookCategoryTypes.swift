@@ -9,11 +9,11 @@ import UIKit
 import APRUIKit
 
 enum WhatToCookCategoryTypes: CaseIterable {
+    case pp
     case zavtrak
     case obed
     case uzhin
     case salati
-    case zakuski
     case deserti
 
     var title: String {
@@ -26,8 +26,8 @@ enum WhatToCookCategoryTypes: CaseIterable {
             return L10n.Food.CategoryType.dinner
         case .salati:
             return L10n.Food.CategoryType.salads
-        case .zakuski:
-            return L10n.Food.CategoryType.snacks
+        case .pp:
+            return L10n.Food.CategoryType.pp
         case .deserti:
             return L10n.Food.CategoryType.deserts
         }
@@ -43,7 +43,7 @@ enum WhatToCookCategoryTypes: CaseIterable {
             return APRAssets.uzhin.image
         case .salati:
             return APRAssets.salats.image
-        case .zakuski:
+        case .pp:
             return APRAssets.zakuski.image
         case .deserti:
             return APRAssets.deserts.image

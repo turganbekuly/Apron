@@ -9,7 +9,7 @@ def commonPods
   # Pods for Apron
 
   pod 'PanModal', :inhibit_warnings => true
-  pod 'Kingfisher', :inhibit_warnings => true
+  pod 'Kingfisher', '~> 7.0'
   pod 'UIScrollView-InfiniteScroll', :inhibit_warnings => true
   pod 'ALProgressView', :inhibit_warnings => true
   pod 'IQKeyboardManagerSwift'

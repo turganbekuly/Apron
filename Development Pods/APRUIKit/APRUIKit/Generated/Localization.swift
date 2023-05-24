@@ -314,6 +314,8 @@ public enum L10n {
       public static let dinner = L10n.tr("APRLocalizable", "Food.CategoryType.Dinner")
       /// Обед
       public static let lunch = L10n.tr("APRLocalizable", "Food.CategoryType.Lunch")
+      /// ПП
+      public static let pp = L10n.tr("APRLocalizable", "Food.CategoryType.PP")
       /// Салаты
       public static let salads = L10n.tr("APRLocalizable", "Food.CategoryType.Salads")
       /// Закуски
@@ -341,6 +343,10 @@ public enum L10n {
     public enum FoodPrepProvision {
       /// Заготовки
       public static let title = L10n.tr("APRLocalizable", "FoodCategories.foodPrepProvision.Title")
+    }
+    public enum Pp {
+      /// ПП
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.pp.Title")
     }
     public enum Salads {
       /// Салаты
