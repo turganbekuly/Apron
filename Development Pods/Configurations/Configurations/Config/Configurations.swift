@@ -75,6 +75,15 @@ public final class Configurations {
 
         return apiKey
     }
+    
+    public static func getOpenAIAPIKey() -> String {
+        guard let apiKey = getValue(for: ConfigurationKeys.openAIApiKey) else {
+            print("Cannot get api key")
+            return ""
+        }
+
+        return apiKey
+    }
 
     public static func getAppsflyerDevKey() -> String {
         guard let devKey = getValue(for: ConfigurationKeys.appsflyerDevKey) else {

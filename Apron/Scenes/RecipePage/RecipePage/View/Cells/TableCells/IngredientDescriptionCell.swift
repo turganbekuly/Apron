@@ -42,9 +42,18 @@ final class IngredientDescriptionCell: UITableViewCell {
 
     private lazy var timingLabel: UILabel = {
         let label = UILabel()
+        label.font = TypographyFonts.semibold18
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var timingTitleLabel: UILabel = {
+        let label = UILabel()
         label.font = TypographyFonts.regular14
         label.textColor = APRAssets.gray.color
-        label.textAlignment = .left
+        label.textAlignment = .center
+        label.text = L10n.RecipeCreation.Recipe.CookTime.title
         return label
     }()
 
@@ -53,39 +62,46 @@ final class IngredientDescriptionCell: UITableViewCell {
         view.backgroundColor = APRAssets.lightGray2.color
         return view
     }()
+    
+    private lazy var timingStackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 10
+        view.layoutMargins = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
+        view.isLayoutMarginsRelativeArrangement = true
+        view.backgroundColor = .clear
+        view.layer.borderColor = APRAssets.lightGray.color.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        view.layer.shadowOpacity = 0.6
+        view.layer.shadowRadius = 15
+        return view
+    }()
 
     // MARK: - Setup Views
 
     private func setupViews() {
         selectionStyle = .none
         backgroundColor = .clear
-        [descriptionLabel, timingImageView, timingLabel, separatorView].forEach {
+        [descriptionLabel, timingStackView].forEach {
             contentView.addSubview($0)
         }
+        
+        timingStackView.addArrangedSubviews(timingLabel, timingTitleLabel)
         setupConstraints()
     }
 
     private func setupConstraints() {
-        separatorView.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalToSuperview()
-            $0.height.equalTo(1)
-        }
-
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
-
-        timingImageView.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(8.5)
-            $0.leading.equalToSuperview().offset(16)
-            $0.height.width.equalTo(17.5)
-        }
-
-        timingLabel.snp.makeConstraints {
-            $0.centerY.equalTo(timingImageView.snp.centerY)
-            $0.leading.equalTo(timingImageView.snp.trailing).offset(5)
-            $0.trailing.equalToSuperview().inset(16)
+        
+        timingStackView.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.greaterThanOrEqualTo(80)
         }
     }
 

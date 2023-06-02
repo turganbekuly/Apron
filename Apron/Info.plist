@@ -47,6 +47,8 @@
 	<string>http://</string>
 	<key>Configuration.MIXPANEL_API_KEY</key>
 	<string>9909fda9ea3b836b747832479b34a9e3</string>
+	<key>Configuration.OPENAI_API_KEY</key>
+	<string>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</string>
 	<key>Configuration.ONE_SIGNAL_APP_ID</key>
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
 	<key>Configuration.WEB_BASED_URL</key>

@@ -19,4 +19,5 @@ public enum ConfigurationKeys {
     public static let oneSignalAppID = "Configuration.ONE_SIGNAL_APP_ID"
     public static let deeplinkBasedURL = "Configuration.DEEPLINK_BASED_URL"
     public static let sentryURL = "Configuration.SENTRY_URL"
+    public static let openAIApiKey = "Configuration.OPENAI_API_KEY"
 }

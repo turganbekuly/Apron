@@ -93,10 +93,10 @@ extension RecipePageViewController: UITableViewDelegate {
             }
             return 16 + text.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14)
         case .topView:
-            return (mainView.bounds.width / 1.5) + 80
+            return (UIScreen.main.bounds.height / 2) + 90
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
-            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14) ?? 0)
+            return 120 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14) ?? 0)
         case .ingredient:
             return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
@@ -114,7 +114,7 @@ extension RecipePageViewController: UITableViewDelegate {
                     0, {
                         $0 + (
                             (
-                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10
+                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10
                             ) + 37
                         )
                     }
@@ -140,10 +140,10 @@ extension RecipePageViewController: UITableViewDelegate {
             }
             return 16 + text.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14)
         case .topView:
-            return (mainView.bounds.width / 1.5) + 80
+            return (UIScreen.main.bounds.height / 2) + 90
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
-            return 50 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14) ?? 0)
+            return 120 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14) ?? 0)
         case .ingredient:
             return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
@@ -161,8 +161,8 @@ extension RecipePageViewController: UITableViewDelegate {
                     0, {
                         $0 + (
                             (
-                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold14) ?? 10
-                            ) + 35
+                                $1.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.semibold12) ?? 10
+                            ) + 56
                         )
                     }
                 ) ?? 56))
@@ -214,7 +214,7 @@ extension RecipePageViewController: UITableViewDelegate {
             cell.configure(with: InformationCellViewModel(
                 recipeName: recipe?.recipeName ?? "",
                 recipeImage: recipe?.imageURL ?? "",
-                recipeSourceURL: recipe?.sourceName,
+                recipeAuthor: recipe?.authorName?.username,
                 likeCount: recipe?.likesCount ?? 0,
                 dislikeCount: recipe?.dislikesCount ?? 0
             ))
@@ -281,7 +281,7 @@ extension RecipePageViewController: UITableViewDelegate {
         let section = sections[section].section
         switch section {
         case .reviews:
-            return 54
+            return recipeComments.isEmpty ? 0 : 54
         default:
             return 0
         }
@@ -291,7 +291,7 @@ extension RecipePageViewController: UITableViewDelegate {
         let section = sections[section].section
         switch section {
         case .reviews:
-            return 54
+            return recipeComments.isEmpty ? 0 : 54
         default:
             return 0
         }

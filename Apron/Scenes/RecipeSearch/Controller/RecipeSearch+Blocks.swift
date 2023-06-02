@@ -13,7 +13,7 @@ extension RecipeSearchViewController {
         var searchFilter = SearchFilterRequestBody()
         switch type {
         case .pp:
-            searchFilter.query = "ПП"
+            searchFilter.query = "ПП "
         case .firstMeal:
             searchFilter.dishTypes = [1]
         case .secondMeal:

@@ -21,7 +21,7 @@ extension MainViewController: WhatToCookCellDelegate {
         case .salati:
             searchFilter.dishTypes = [3]
         case .pp:
-            searchFilter.query = "ПП"
+            searchFilter.query = "ПП "
         case .deserti:
             searchFilter.dishTypes = [9]
         }

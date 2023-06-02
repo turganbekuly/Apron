@@ -27,7 +27,7 @@ extension RecipeSearchViewController {
         switch state {
         case let .initial(incomingFilters):
             filters = incomingFilters
-            guard filters.ifAnyArrayContainsValue() || filters.query?.isEmpty == false else { return }
+            guard filters.ifAnyArrayContainsValue() || filters.query.isEmpty == false else { return }
             recipesList.removeAll()
             self.filtersCount = filters.dayTimeType.count + filters.cuisines.count + filters.eventTypes.count + filters.time.count + filters.dishTypes.count
             currentPage = 1
@@ -36,7 +36,7 @@ extension RecipeSearchViewController {
             ]
             mainView.reloadData()
 
-            if filters.query?.isEmpty == false {
+            if filters.query.isEmpty == false {
                 query = filters.query
             }
             isFirstAppear = false

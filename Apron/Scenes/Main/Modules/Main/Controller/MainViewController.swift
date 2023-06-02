@@ -156,6 +156,13 @@ final class MainViewController: ViewController {
                 self.navigationController?.pushViewController(viewController, animated: false)
             }
         }
+        
+//        let label = UILabel()
+//        label.numberOfLines = 2
+//        label.textAlignment = .center
+//        label.font = TypographyFonts.regular12
+//        label.text = "\(Int.random(in: 2500...4000)) людей \nиспользуют приложение"
+//        navigationItem.titleView = label
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
         navigationController?.navigationBar.barTintColor = APRAssets.secondary.color
