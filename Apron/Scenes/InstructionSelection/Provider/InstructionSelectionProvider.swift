@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 21.08.2022.
 //
 
-import AKNetwork
+
 import Models
 
 protocol InstructionSelectionProviderProtocol {

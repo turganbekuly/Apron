@@ -112,7 +112,7 @@ final class TabBarViewController: AppTabBarController {
             navigationController.tabBarItem.image = APRAssets.tabAddSelectedIcon.image
         case .saved:
             navigationController.tabBarItem.title = L10n.TabBar.Saved.title
-            navigationController.tabBarItem.image = APRAssets.tabFaveSelectedIcon.image
+            navigationController.tabBarItem.image = APRAssets.heart24White.image
         case .mealPlanner:
             navigationController.tabBarItem.title = L10n.TabBar.MealPlanner.title
             navigationController.tabBarItem.image = APRAssets.tabPlannerSelectedIcon.image

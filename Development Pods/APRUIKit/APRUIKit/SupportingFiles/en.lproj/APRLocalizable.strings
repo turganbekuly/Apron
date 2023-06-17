@@ -130,6 +130,7 @@
 "Recipe.Calories.Carbs" = "УГЛЕВОДЫ";
 "Recipe.StepByStep.Timer.Title" = "Таймер";
 "Recipe.StepByStep.Timer.Step" = "Шаг №";
+"Recipe.Rating.RatingCounter.Title" = "отзывов";
 
 // MARK: - Recipe Creation
 
@@ -195,6 +196,7 @@
 //MARK: - Saved Recipes
 "SavedRecipes.SavedRecipes.Title" = "Сохраненные рецепты";
 "SavedRecipes.AddFavoriteRecipes.Title" = "Добавляйте свои любимые рецепты,\n чтобы быстрее их найти";
+"SavedRecipes.AlreadyAdded.Title" = "Вы уже добавили этот рецепт в избранное";
 
 //MARK: - Search
 "Search.Cancel.Title" = "Cancel";

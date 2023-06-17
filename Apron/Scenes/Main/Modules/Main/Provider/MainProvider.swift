@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 10.05.2022.
 //
 
-import AKNetwork
+
 import Models
 
 protocol MainProviderProtocol {

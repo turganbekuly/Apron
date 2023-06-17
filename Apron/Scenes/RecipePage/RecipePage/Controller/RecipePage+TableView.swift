@@ -93,12 +93,12 @@ extension RecipePageViewController: UITableViewDelegate {
             }
             return 16 + text.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14)
         case .topView:
-            return (UIScreen.main.bounds.height / 2) + 90
+            return (UIScreen.main.bounds.height / 2) + 70
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
             return 120 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14) ?? 0)
         case .ingredient:
-            return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
+            return CGFloat(200 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
             return 203
         case .instruction:
@@ -140,12 +140,12 @@ extension RecipePageViewController: UITableViewDelegate {
             }
             return 16 + text.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14)
         case .topView:
-            return (UIScreen.main.bounds.height / 2) + 90
+            return (UIScreen.main.bounds.height / 2) + 70
         case .description:
             let width = (UIScreen.main.bounds.width - 32)
             return 120 + (recipe?.description?.heightLabel(constraintedWidth: width, font: TypographyFonts.regular14) ?? 0)
         case .ingredient:
-            return CGFloat(185 + ((recipe?.ingredients?.count ?? 1) * 55))
+            return CGFloat(200 + ((recipe?.ingredients?.count ?? 1) * 55))
         case .nutrition:
             return 203
         case .instruction:
@@ -194,23 +194,6 @@ extension RecipePageViewController: UITableViewDelegate {
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }
             }
-            cell.onShareButtonTapped = { [weak self] in
-                guard let self = self else { return }
-                let viewController = UIActivityViewController(
-                    activityItems: [
-                        "Зацените рецепт \"\(self.recipe?.recipeName ?? "")\" на Moca.kz 👀\n moca.kz://main/recipe/\(self.recipe?.id ?? 0)"
-                    ],
-                    applicationActivities: nil
-                )
-
-                if let popoover = viewController.popoverPresentationController {
-                    popoover.sourceView = self.view
-                    popoover.sourceRect = self.view.bounds
-                    popoover.permittedArrowDirections = []
-                }
-
-                self.navigationController?.present(viewController, animated: true, completion: nil)
-            }
             cell.configure(with: InformationCellViewModel(
                 recipeName: recipe?.recipeName ?? "",
                 recipeImage: recipe?.imageURL ?? "",
@@ -253,7 +236,14 @@ extension RecipePageViewController: UITableViewDelegate {
                       let instructions = self.recipe?.instructions,
                       !instructions.isEmpty
                 else { return }
-                let vc = StepByStepModeBuilder(state: .initial(instructions, self.recipe?.imageURL, self)).build()
+                let vc = StepByStepModeBuilder(
+                    state: .initial(
+                        instructions,
+                        self.recipe?.imageURL,
+                        self,
+                        self.recipe?.ingredients ?? []
+                    )
+                ).build()
                 let navController = StepNavigationController(rootViewController: vc)
                 navController.modalPresentationStyle = .fullScreen
                 DispatchQueue.main.async {

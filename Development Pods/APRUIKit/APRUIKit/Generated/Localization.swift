@@ -569,6 +569,12 @@ public enum L10n {
       /// Замечания от модератора:\n
       public static let message = L10n.tr("APRLocalizable", "Recipe.Moderator.Message")
     }
+    public enum Rating {
+      public enum RatingCounter {
+        /// отзывов
+        public static let title = L10n.tr("APRLocalizable", "Recipe.Rating.RatingCounter.Title")
+      }
+    }
     public enum Reviews {
       /// Оставьте ваш отзыв
       public static let tfPlaceholder = L10n.tr("APRLocalizable", "Recipe.Reviews.TFPlaceholder")
@@ -695,6 +701,10 @@ public enum L10n {
     public enum AddFavoriteRecipes {
       /// Добавляйте свои любимые рецепты,\n чтобы быстрее их найти
       public static let title = L10n.tr("APRLocalizable", "SavedRecipes.AddFavoriteRecipes.Title")
+    }
+    public enum AlreadyAdded {
+      /// Вы уже добавили этот рецепт в избранное
+      public static let title = L10n.tr("APRLocalizable", "SavedRecipes.AlreadyAdded.Title")
     }
     public enum SavedRecipes {
       /// Сохраненные рецепты

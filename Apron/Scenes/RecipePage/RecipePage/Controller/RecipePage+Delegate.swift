@@ -26,7 +26,14 @@ extension RecipePageViewController: BottomStickyViewDelegate {
             show(type: .error("В рецепте нету инструкции"))
             return
         }
-        let vc = StepByStepModeBuilder(state: .initial(instructions, self.recipe?.imageURL, self)).build()
+        let vc = StepByStepModeBuilder(
+            state: .initial(
+                instructions,
+                self.recipe?.imageURL,
+                self,
+                self.recipe?.ingredients ?? []
+            )
+        ).build()
         let navController = StepNavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
         DispatchQueue.main.async {
@@ -40,14 +47,6 @@ extension RecipePageViewController: BottomStickyViewDelegate {
 //            self.navigationController?.presentPanModal(vc)
 //        }
         handleAddToCart(ingredients: recipe?.ingredients)
-    }
-
-    func saveButtonTapped() {
-        guard let recipe = recipe else { return }
-        handleAuthorizationStatus { [weak self] in
-            guard let self = self else { return }
-            self.saveRecipe(with: recipe.id)
-        }
     }
 
     func textFieldTapped() {

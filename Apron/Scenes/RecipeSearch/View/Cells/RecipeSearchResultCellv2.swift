@@ -69,7 +69,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
     private lazy var favoriteImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = APRAssets.favoriteIcon24.image
+        imageView.image = APRAssets.heart24White.image
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -249,11 +249,11 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
 
     private func configureButton(isSaved: Bool) {
         guard isSaved else {
-            favoriteImageView.image = APRAssets.favoriteIcon.image
+            favoriteImageView.image = APRAssets.heart24White.image
             return
         }
 
-        favoriteImageView.image = APRAssets.favoriteFilledIcon.image
+        favoriteImageView.image = APRAssets.heartFilled24White.image
     }
 
     // MARK: - User actions
@@ -272,7 +272,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
 
         delegate?.saveRecipeTappedv2(with: id)
         HapticTouch.generateSuccess()
-        favoriteImageView.image = APRAssets.favoriteFilledIcon.image
+        favoriteImageView.image = APRAssets.heartFilled24White.image
     }
 
     // MARK: - Public methods

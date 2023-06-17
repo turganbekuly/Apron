@@ -32,8 +32,8 @@ final class ScreenCounterNavigationView: UIView {
     lazy var pageCounterTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        let firstAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black, .font: TypographyFonts.bold16]
-        let secondAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black, .font: TypographyFonts.regular16]
+        let firstAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: APRAssets.primaryTextMain.color, .font: TypographyFonts.bold16]
+        let secondAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: APRAssets.primaryTextMain.color, .font: TypographyFonts.regular16]
         let firstParenthsis = NSMutableAttributedString(string: "(", attributes: secondAttributes)
         let firstString = NSMutableAttributedString(string: currectPage, attributes: firstAttributes)
         let secondString = NSMutableAttributedString(string: "/3)", attributes: secondAttributes)

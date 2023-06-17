@@ -17,7 +17,6 @@ Pod::Spec.new do |spec|
 
   spec.source_files  = ["**/*.{h,m,swift}"]
 
-  spec.dependency 'Models'
   spec.dependency 'Moya', '15.0.0'
   spec.dependency 'Wormholy', '1.6.4'
 

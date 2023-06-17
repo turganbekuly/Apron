@@ -40,13 +40,16 @@ extension StepByStepModeViewController: UICollectionViewDataSource {
         case is StepByStepPagerView:
             let row = stepperSections[indexPath.section].rows[indexPath.row]
             switch row {
-            case .step, .review:
+            case .step, .review, .ingredient:
                 let cell: StepPagerCell = collectionView.dequeueReusableCell(for: indexPath)
                 return cell
             }
         case is StepByStepModeView:
             let row = sections[indexPath.section].rows[indexPath.row]
             switch row {
+            case .ingredient:
+                let cell: StepIngredientsCell = collectionView.dequeueReusableCell(for: indexPath)
+                return cell
             case .instruction:
                 let cell: StepDescriptionCell = collectionView.dequeueReusableCell(for: indexPath)
                 return cell
@@ -67,7 +70,7 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
         case is StepByStepPagerView:
             let row = stepperSections[indexPath.section].rows[indexPath.row]
             switch row {
-            case .step, .review:
+            case .step, .review, .ingredient:
                 onStepperSelected = true
                 mainView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
                 stepperView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -88,13 +91,13 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
         case is StepByStepPagerView:
             let row = stepperSections[indexPath.section].rows[indexPath.row]
             switch row {
-            case .step, .review:
+            case .step, .review, .ingredient:
                 return CGSize(width: 50, height: 60)
             }
         case is StepByStepModeView:
             let row = sections[indexPath.section].rows[indexPath.row]
             switch row {
-            case .instruction, .review:
+            case .instruction, .review, .ingredient:
                 return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
             }
         default:
@@ -107,6 +110,9 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
         case is StepByStepPagerView:
             let row = stepperSections[indexPath.section].rows[indexPath.row]
             switch row {
+            case .ingredient:
+                guard let cell = cell as? StepPagerCell else { return }
+                cell.configure(with: StepPagerCellViewModel(pagerType: .image(image: APRAssets.iconKnifeFork.image)))
             case .step:
                 guard let cell = cell as? StepPagerCell else { return }
                 cell.configure(with: StepPagerCellViewModel(pagerType: .regular(title: "\(indexPath.row + 1)")))
@@ -117,6 +123,9 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
         case is StepByStepModeView:
             let row = sections[indexPath.section].rows[indexPath.row]
             switch row {
+            case let .ingredient(ingredients):
+                guard let cell = cell as? StepIngredientsCell else { return }
+                cell.configure(with: ingredients)
             case let .instruction(instruction):
                 guard let cell = cell as? StepDescriptionCell else { return }
                 cell.delegate = self
@@ -139,13 +148,13 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
         let currentPage = (Int(scrollView.contentOffset.x / width) + 1)
-        let progress = Double(currentPage) / Double(instructions.count + 1)
+        let progress = Double(currentPage) / Double(instructions.count + 2)
         progressBar.setProgress(Float(progress), animated: true)
-        guard instructions.indices.contains(currentPage - 1) else {
+        guard instructions.indices.contains(currentPage - 2) else {
             return
         }
 
-        guard let description = instructions[currentPage - 1].description else { return }
+        guard let description = instructions[currentPage - 2].description else { return }
         if RemoteConfigManager.shared.remoteConfig.isCookAssistantEnabled {
             guard RecipeCreationStorage().isCookAssistEnabled else { return }
             TTSMAnager.shared.startTTS(with: description)

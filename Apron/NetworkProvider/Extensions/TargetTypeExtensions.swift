@@ -11,7 +11,7 @@ extension TargetType {
 
     // MARK: - Target Name
 
-    public var targetName: String {
+    var targetName: String {
         let targetString = "\(self)"
         var index: String.Index {
             guard let index = targetString.firstIndex(where: { $0 == "(" }) else {

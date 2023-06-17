@@ -522,6 +522,17 @@
 		7DE71DEBC88D23850687C907 /* TasteOnboarding+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3147E9AF39A6BE468E87F /* TasteOnboarding+Network.swift */; };
 		804DFF732A2213D300136A39 /* AIRecommendationStagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804DFF722A2213D300136A39 /* AIRecommendationStagesState.swift */; };
 		804DFF752A221F0000136A39 /* AIRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804DFF742A221F0000136A39 /* AIRecommendationView.swift */; };
+		805DAF972A373AB900F488C7 /* AKNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAF912A373AB900F488C7 /* AKNetworkProvider.swift */; };
+		805DAF9E2A373B7C00F488C7 /* TargetTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAF9D2A373B7C00F488C7 /* TargetTypeExtensions.swift */; };
+		805DAFA12A373B8F00F488C7 /* AKMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAFA02A373B8F00F488C7 /* AKMoyaPlugin.swift */; };
+		805DAFA92A373BB700F488C7 /* AKNetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAFA32A373BB600F488C7 /* AKNetworkMethod.swift */; };
+		805DAFAA2A373BB700F488C7 /* AKNetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAFA42A373BB600F488C7 /* AKNetworkTask.swift */; };
+		805DAFAB2A373BB700F488C7 /* AKJSONEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAFA52A373BB600F488C7 /* AKJSONEncoding.swift */; };
+		805DAFAC2A373BB700F488C7 /* AKURLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAFA62A373BB700F488C7 /* AKURLEncoding.swift */; };
+		805DAFAD2A373BB700F488C7 /* AKResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAFA72A373BB700F488C7 /* AKResult.swift */; };
+		805DAFAE2A373BB700F488C7 /* AKNetworkTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAFA82A373BB700F488C7 /* AKNetworkTargetType.swift */; };
+		805DAFB42A373F1C00F488C7 /* SilentTokenUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DAFB32A373F1C00F488C7 /* SilentTokenUpdateService.swift */; };
+		80CD14642A2DFDCC006F54B0 /* StepIngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD14632A2DFDCC006F54B0 /* StepIngredientsCell.swift */; };
 		8131F8C47FC31F056FDD700E /* Search+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DB8F6C8621F0314246CBD /* Search+Network.swift */; };
 		81392E31763CCF814F8B0AD9 /* ResultList+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753C5C01545DAA070F0C2B2B /* ResultList+State.swift */; };
 		817329F82DD9812619C29376 /* AddSavedRecipesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF078DDBF6468C2E652EF4AC /* AddSavedRecipesPresenter.swift */; };
@@ -1235,6 +1246,17 @@
 		800C2EFF8C436F121909E6CF /* CategorySelection+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CategorySelection+Network.swift"; sourceTree = "<group>"; };
 		804DFF722A2213D300136A39 /* AIRecommendationStagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommendationStagesState.swift; sourceTree = "<group>"; };
 		804DFF742A221F0000136A39 /* AIRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommendationView.swift; sourceTree = "<group>"; };
+		805DAF912A373AB900F488C7 /* AKNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKNetworkProvider.swift; path = "Development Pods/AKNetwork/AKNetwork/AKNetworkProvider.swift"; sourceTree = SOURCE_ROOT; };
+		805DAF9D2A373B7C00F488C7 /* TargetTypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetTypeExtensions.swift; sourceTree = "<group>"; };
+		805DAFA02A373B8F00F488C7 /* AKMoyaPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKMoyaPlugin.swift; sourceTree = "<group>"; };
+		805DAFA32A373BB600F488C7 /* AKNetworkMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKNetworkMethod.swift; sourceTree = "<group>"; };
+		805DAFA42A373BB600F488C7 /* AKNetworkTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKNetworkTask.swift; sourceTree = "<group>"; };
+		805DAFA52A373BB600F488C7 /* AKJSONEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKJSONEncoding.swift; sourceTree = "<group>"; };
+		805DAFA62A373BB700F488C7 /* AKURLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKURLEncoding.swift; sourceTree = "<group>"; };
+		805DAFA72A373BB700F488C7 /* AKResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKResult.swift; sourceTree = "<group>"; };
+		805DAFA82A373BB700F488C7 /* AKNetworkTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKNetworkTargetType.swift; sourceTree = "<group>"; };
+		805DAFB32A373F1C00F488C7 /* SilentTokenUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilentTokenUpdateService.swift; sourceTree = "<group>"; };
+		80CD14632A2DFDCC006F54B0 /* StepIngredientsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIngredientsCell.swift; sourceTree = "<group>"; };
 		815B7FADDC494D5A2276DA01 /* SearchProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchProvider.swift; sourceTree = "<group>"; };
 		81E720FC0F3B3516146BDBDF /* MealPlanner+DisplayLogic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MealPlanner+DisplayLogic.swift"; sourceTree = "<group>"; };
 		83E92E2F2B9A6F2EA371891D /* CommunityCreation+TableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CommunityCreation+TableView.swift"; sourceTree = "<group>"; };
@@ -2108,6 +2130,7 @@
 		6D0A71CA277A12EC0067E580 /* Apron */ = {
 			isa = PBXGroup;
 			children = (
+				805DAF902A373A7D00F488C7 /* NetworkProvider */,
 				6DB0A3A0284A4356009721BD /* Apron.entitlements */,
 				6DB0A3A1284A4356009721BD /* ApronRelease.entitlements */,
 				6D047F82284F85DA00BAA2EA /* Deeplink */,
@@ -2868,6 +2891,7 @@
 			isa = PBXGroup;
 			children = (
 				6DCF4F5028B691A200A29DA9 /* StepDescriptionCell.swift */,
+				80CD14632A2DFDCC006F54B0 /* StepIngredientsCell.swift */,
 				6DAED95D28C26C1900CBCA20 /* StepPagerCell.swift */,
 				6DCF4F5228B691BB00A29DA9 /* StepFinalStepCell.swift */,
 			);
@@ -3260,6 +3284,47 @@
 				CEA632BB535ACB433B1A3FB1 /* AIRecommendationService.swift */,
 			);
 			path = Provider;
+			sourceTree = "<group>";
+		};
+		805DAF902A373A7D00F488C7 /* NetworkProvider */ = {
+			isa = PBXGroup;
+			children = (
+				805DAFA22A373B9500F488C7 /* TypeAliases */,
+				805DAF9F2A373B8100F488C7 /* Plugins */,
+				805DAF9C2A373B7000F488C7 /* Extensions */,
+				805DAF912A373AB900F488C7 /* AKNetworkProvider.swift */,
+				805DAFB32A373F1C00F488C7 /* SilentTokenUpdateService.swift */,
+			);
+			path = NetworkProvider;
+			sourceTree = "<group>";
+		};
+		805DAF9C2A373B7000F488C7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				805DAF9D2A373B7C00F488C7 /* TargetTypeExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		805DAF9F2A373B8100F488C7 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				805DAFA02A373B8F00F488C7 /* AKMoyaPlugin.swift */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		805DAFA22A373B9500F488C7 /* TypeAliases */ = {
+			isa = PBXGroup;
+			children = (
+				805DAFA52A373BB600F488C7 /* AKJSONEncoding.swift */,
+				805DAFA32A373BB600F488C7 /* AKNetworkMethod.swift */,
+				805DAFA82A373BB700F488C7 /* AKNetworkTargetType.swift */,
+				805DAFA42A373BB600F488C7 /* AKNetworkTask.swift */,
+				805DAFA72A373BB700F488C7 /* AKResult.swift */,
+				805DAFA62A373BB700F488C7 /* AKURLEncoding.swift */,
+			);
+			path = TypeAliases;
 			sourceTree = "<group>";
 		};
 		809C462059C24860D824EBB9 /* View */ = {
@@ -4160,6 +4225,7 @@
 			files = (
 				6D78BB0B282BAD0D00B2819F /* AnalyticsEventProtocol.swift in Sources */,
 				6D27270627C8A5940001DCC0 /* RecipeIngredientsViewCell.swift in Sources */,
+				805DAFA92A373BB700F488C7 /* AKNetworkMethod.swift in Sources */,
 				6D69BBF52812D916000237E1 /* InstructionSelection+ImagePicker.swift in Sources */,
 				6D9F7A56282A3FDC0053BF5B /* CommunityCreationPermissionsCell.swift in Sources */,
 				6DAED95E28C26C1900CBCA20 /* StepPagerCell.swift in Sources */,
@@ -4217,6 +4283,7 @@
 				6D6D676428A5364D006AD2DA /* TagCell.swift in Sources */,
 				6DE489CD27E2516C00C14781 /* RecipeInstructionsViewCell.swift in Sources */,
 				6D9301ED282ED9100018EF14 /* GeneralSearchResult+CollectionView.swift in Sources */,
+				805DAFB42A373F1C00F488C7 /* SilentTokenUpdateService.swift in Sources */,
 				6DD31AB0280EE35C006A0C06 /* RecipeCreation+Photos.swift in Sources */,
 				6D64F8CB2785A62900F9EEC0 /* TasteOnboardingCell.swift in Sources */,
 				6DCF95A827900EC7009FEE78 /* CommunityCollectionCellViewModel.swift in Sources */,
@@ -4281,6 +4348,7 @@
 				C65E8B10FB492DCAFB2D3CCD /* TasteOnboardingDataFlow.swift in Sources */,
 				0F5955053EBEF250C59421D7 /* TasteOnboardingInteractor.swift in Sources */,
 				6D6D676928A546DB006AD2DA /* AddComment+CollectionView.swift in Sources */,
+				805DAFAC2A373BB700F488C7 /* AKURLEncoding.swift in Sources */,
 				6DD16A01278C542600026EBC /* TabBarInitialState.swift in Sources */,
 				6D58C16528942E170062D7D5 /* RecipeReviewsHeaderView.swift in Sources */,
 				6D2817372942514300E62A20 /* RecipeCartView.swift in Sources */,
@@ -4291,6 +4359,7 @@
 				6DDBBB4A2793396400BFE1C2 /* MainSectionType.swift in Sources */,
 				9D10E9FC90C0D8B5EA323533 /* TasteOnboardingPresenter.swift in Sources */,
 				6D9F7A65282A6C100053BF5B /* MainEndpoints.swift in Sources */,
+				80CD14642A2DFDCC006F54B0 /* StepIngredientsCell.swift in Sources */,
 				6D226784282D4788001FFE6D /* CommunityCreationInitialState.swift in Sources */,
 				6DB0A3B2284C7384009721BD /* SplashScreenDataFlow.swift in Sources */,
 				6D64F8CD2785AEC400F9EEC0 /* TasteOnboardingViewModel.swift in Sources */,
@@ -4371,6 +4440,7 @@
 				6DD31ABF281020D7006A0C06 /* AssignBottomSheetBuilder.swift in Sources */,
 				6D944FF727F31D7400ABD6AD /* RecipeCreationNamingCell.swift in Sources */,
 				6D5FB03228ED6265004440AE /* RecipeSearchSuggestionsCell.swift in Sources */,
+				805DAFAA2A373BB700F488C7 /* AKNetworkTask.swift in Sources */,
 				487EF2A0A104ED145A8FD9A0 /* SplashScreen+State.swift in Sources */,
 				6D9F7A62282A697B0053BF5B /* SavedRecipeCell.swift in Sources */,
 				6DB0A3BC284C8179009721BD /* SplashScreen+Animation.swift in Sources */,
@@ -4380,6 +4450,7 @@
 				6D587382293E5999008535CA /* SearchFilterView.swift in Sources */,
 				FC09E9C8F667213F6FA8EF05 /* SplashScreenView.swift in Sources */,
 				6D58737F293E567A008535CA /* RecipeSearchFilterHeaderView.swift in Sources */,
+				805DAFAB2A373BB700F488C7 /* AKJSONEncoding.swift in Sources */,
 				0E905726F56C8B4FF2BE7AA0 /* SplashScreenBuilder.swift in Sources */,
 				49CFBFE0575F4032272266A0 /* RecipePageViewController.swift in Sources */,
 				45F495B7DD7E3DDFC97C2A03 /* RecipePage+DisplayLogic.swift in Sources */,
@@ -4548,6 +4619,7 @@
 				12D655F87D19F9ED81A2813C /* CategorySelection+Network.swift in Sources */,
 				C2B08AE0F232E745D01C9B0D /* CategorySelection+State.swift in Sources */,
 				6D68ED6029B9B9B200BC2879 /* RecipeSearch+Blocks.swift in Sources */,
+				805DAFAD2A373BB700F488C7 /* AKResult.swift in Sources */,
 				DA3D792250891F14E5F25C4E /* CategorySelection+TableView.swift in Sources */,
 				40EB831DF1A8B034176B2B8A /* CategorySelectionEndpoints.swift in Sources */,
 				6D047F87284F864100BAA2EA /* DeeplinkServicesContainer.swift in Sources */,
@@ -4584,6 +4656,7 @@
 				6D1EFCFD29B74F0700464AD4 /* AdBannerCell+CollectionView.swift in Sources */,
 				0437D43598F594D2600A1E6B /* SavedRecipesDataFlow.swift in Sources */,
 				6D332DBA29CEEF1700A96A87 /* MCKeyboardAppearanceInfo.swift in Sources */,
+				805DAF972A373AB900F488C7 /* AKNetworkProvider.swift in Sources */,
 				6D22678E282D69AD001FFE6D /* CommunityCreation+Privacy.swift in Sources */,
 				67A19DAC9215ACFCB332356A /* SavedRecipesInteractor.swift in Sources */,
 				6D9301F0282ED98B0018EF14 /* SegmentItemCell.swift in Sources */,
@@ -4634,6 +4707,7 @@
 				46B91795C2F51CE639F3BCBE /* ResultListViewController.swift in Sources */,
 				617179ECA01048F3C06835F5 /* ResultList+DisplayLogic.swift in Sources */,
 				6D58737B293CF5A8008535CA /* CookNowCell+CollectionView.swift in Sources */,
+				805DAFAE2A373BB700F488C7 /* AKNetworkTargetType.swift in Sources */,
 				6DBF80242882E7A800F2738A /* ProfileCellViewModel.swift in Sources */,
 				363C02605042283A56E927F9 /* ResultList+Network.swift in Sources */,
 				6DAED95C28C2370300CBCA20 /* StepByStepPagerView.swift in Sources */,
@@ -4789,6 +4863,7 @@
 				3C6A8C27EE8F7BAE9A30AF8F /* RecipeSearchBuilder.swift in Sources */,
 				411F62DAF2BF73298450B9F0 /* RecipeSearchDataFlow.swift in Sources */,
 				C0C41B04745C0540AEC0C579 /* RecipeSearchInteractor.swift in Sources */,
+				805DAF9E2A373B7C00F488C7 /* TargetTypeExtensions.swift in Sources */,
 				A62818491DB21DAE19F9EFE8 /* RecipeSearchPresenter.swift in Sources */,
 				732D9527D67855802276068D /* FiltersViewController.swift in Sources */,
 				1D1AB6E7D3A3C26E56A02402 /* Filters+DisplayLogic.swift in Sources */,
@@ -4821,6 +4896,7 @@
 				73B6A529115BA269314AF941 /* MyRecipes+Network.swift in Sources */,
 				EE79C773B390E20DE6D4630F /* MyRecipes+State.swift in Sources */,
 				9CD4D4644F8C872632D2B339 /* MyRecipesEndpoints.swift in Sources */,
+				805DAFA12A373B8F00F488C7 /* AKMoyaPlugin.swift in Sources */,
 				BCB2E6D36E7EB2C44B591AD8 /* MyRecipesProvider.swift in Sources */,
 				E35EB71FE073CD4730AECEB1 /* MyRecipesService.swift in Sources */,
 				6D7B8BDD299B7E220006AB5F /* MealPlanner+Delegate.swift in Sources */,
@@ -5006,7 +5082,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.6;
+				MARKETING_VERSION = 3.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5046,7 +5122,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.6;
+				MARKETING_VERSION = 3.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

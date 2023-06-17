@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-public struct AKMoyaPlugin: PluginType {
+struct AKMoyaPlugin: PluginType {
 
     // MARK: - Methods
 
-    public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         guard let mcTarget = target as? AKNetworkTargetType else { return request }
 
         var mcRequest = request

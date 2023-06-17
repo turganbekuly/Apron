@@ -38,9 +38,9 @@ extension RecipePageViewController {
         case .displayError:
             hideLoader()
         case .saveRecipe:
-            bottomStickyView.configure(isSaved: true)
+            configureSave(isSaved: true)
         case .saveRecipeFailed:
-            bottomStickyView.configure(isSaved: false)
+            configureSave(isSaved: false)
             show(type: .error(L10n.Alert.errorMessage))
         case let .displayComments(comment):
             self.recipeComments = comment

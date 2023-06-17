@@ -53,14 +53,14 @@ final class RecipeIngredientsViewCell: UITableViewCell {
     }()
 
     private lazy var minusButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         button.setImage(APRAssets.minusButtonIcon.image, for: .normal)
         button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         return button
     }()
 
     private lazy var plusButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         button.setImage(APRAssets.plusButtonIcon.image, for: .normal)
         button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         return button
@@ -123,18 +123,12 @@ final class RecipeIngredientsViewCell: UITableViewCell {
             ingredientsTitleLabel,
             serveStackView,
             ingredientsStackView,
-            addToCartButton,
-            separatorView
+            addToCartButton
         ].forEach { contentView.addSubviews($0) }
         setupConstraints()
     }
 
     private func setupConstraints() {
-        separatorView.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalToSuperview()
-            $0.height.equalTo(1)
-        }
-
         ingredientsTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
@@ -145,7 +139,7 @@ final class RecipeIngredientsViewCell: UITableViewCell {
             $0.top.equalTo(ingredientsTitleLabel.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(150)
-            $0.height.equalTo(24)
+            $0.height.equalTo(40)
         }
 
         ingredientsStackView.snp.makeConstraints {

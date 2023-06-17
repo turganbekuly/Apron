@@ -8,4 +8,4 @@
 import Foundation
 import Models
 
-public typealias AKResult = Result<JSON, AKNetworkError>
+typealias AKResult = Result<JSON, AKNetworkError>

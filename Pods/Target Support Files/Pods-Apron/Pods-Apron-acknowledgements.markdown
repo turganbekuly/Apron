@@ -1,12 +1,6 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## AKNetwork
-
-Copyright 2022
-Permission is granted to Apron.com
-
-
 ## ALProgressView
 
 MIT License

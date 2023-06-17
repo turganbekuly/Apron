@@ -1,5 +1,5 @@
 //
-//  AKNetworkTask.swift
+//  AKNetworkMethod.swift
 //  AKNetwork
 //
 //  Created by Akarys Turganbekuly on 07.01.2022.
@@ -7,4 +7,4 @@
 
 import Moya
 
-public typealias AKNetworkTask = Moya.Task
+typealias AKNetworkMethod = Moya.Method

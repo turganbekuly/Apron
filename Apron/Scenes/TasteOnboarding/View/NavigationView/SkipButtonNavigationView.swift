@@ -36,7 +36,7 @@ final class SkipButtonNavigationView: UIView {
         label.textAlignment = .center
         label.text = "Пропустить"
         label.font = TypographyFonts.regular16
-        label.textColor = .black
+        label.textColor = APRAssets.primaryTextMain.color
         label.isUserInteractionEnabled = true
         return label
     }()

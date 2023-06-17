@@ -7,4 +7,4 @@
 
 import Moya
 
-public typealias AKJSONEncoding = JSONEncoding
+typealias AKJSONEncoding = JSONEncoding

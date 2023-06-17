@@ -51,8 +51,10 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
             }
             if tasteOnboardingTypes == .vegan {
                 mainView.allowsMultipleSelection = false
+                previousButton.isHidden = true
             } else {
                 mainView.allowsMultipleSelection = true
+                previousButton.isHidden = false
             }
         }
     }
@@ -73,10 +75,21 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
 
     public lazy var nextButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = APRAssets.colorsYello.color
-        button.setImage(APRAssets.arrowForward.image, for: .normal)
+        button.backgroundColor = APRAssets.mainAppColor.color
+        button.setImage(APRAssets.arrowForward.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
         button.layer.cornerRadius = 28
-        button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    public lazy var previousButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = APRAssets.mainAppColor.color
+        button.setImage(APRAssets.arrowBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 28
+        button.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -132,7 +145,7 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
     }
 
     private func configureViews() {
-        [mainView, nextButton].forEach { view.addSubview($0) }
+        [mainView, nextButton, previousButton].forEach { view.addSubview($0) }
 
         configureColors()
         makeConstraints()
@@ -145,6 +158,13 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
             $0.height.equalTo(56)
             $0.width.equalTo(56)
         }
+        
+        previousButton.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.equalToSuperview().offset(16)
+            $0.size.equalTo(56)
+        }
+        
         mainView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(nextButton.snp.top).offset(-8)
@@ -172,9 +192,36 @@ public final class TasteOnboardingViewController: ViewController, ISkipButtonAct
         default: break
         }
     }
+    
+    private func previousSreenAction() {
+        switch tasteOnboardingTypes {
+        case .ingredients:
+            let vc = TasteOnboardingBuilder(state: .initial(.vegan, tasteOnboardingModel ?? TasteOnboardingModel())).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: false)
+            }
+        case .cuisine:
+            let vc = TasteOnboardingBuilder(state: .initial(.ingredients, tasteOnboardingModel ?? TasteOnboardingModel())).build()
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: false)
+            }
+        default:
+            break
+        }
+    }
 
-    @objc func skipButtonTapped() {
+    @objc
+    func nextButtonTapped() {
         nextScreenAction()
+    }
+    
+    @objc
+    func previousButtonTapped() {
+        previousSreenAction()
+    }
+    
+    func skipButtonTapped() {
+        print("asd")
     }
 
     deinit {

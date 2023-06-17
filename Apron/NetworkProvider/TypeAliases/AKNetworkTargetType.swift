@@ -7,17 +7,17 @@
 
 import Moya
 
-public protocol AKNetworkTargetType: TargetType {
+protocol AKNetworkTargetType: TargetType {
     var isCancellable: Bool { get }
     var timeout: TimeInterval { get }
 }
 
 extension AKNetworkTargetType {
-    public var isCancellable: Bool {
+    var isCancellable: Bool {
         true
     }
 
-    public var timeout: TimeInterval {
+    var timeout: TimeInterval {
         60
     }
 

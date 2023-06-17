@@ -6,7 +6,6 @@
 //
 
 import Configurations
-import AKNetwork
 import Storages
 import Models
 
@@ -17,6 +16,10 @@ enum MainEndpoint {
     case getCookNowRecipes(body: SearchFilterRequestBody)
     case getEventRecipes(body: SearchFilterRequestBody)
     case saveRecipe(id: Int)
+}
+
+enum Counter {
+    static var counter = 1
 }
 
 extension MainEndpoint: AKNetworkTargetType {

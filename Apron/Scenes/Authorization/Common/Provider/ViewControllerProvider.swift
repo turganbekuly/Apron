@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 20.02.2023.
 //
 
-import AKNetwork
+
 import Models
 
 enum ViewControllerProfileResult {

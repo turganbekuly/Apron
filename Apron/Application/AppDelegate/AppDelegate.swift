@@ -9,7 +9,7 @@ import UIKit
 import Protocols
 import Amplitude
 import Storages
-import AKNetwork
+
 import FirebaseDynamicLinks
 import AppTrackingTransparency
 import AppsFlyerLib

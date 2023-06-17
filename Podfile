@@ -28,6 +28,8 @@ def commonPods
   pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0', :inhibit_warnings => true
   pod 'Mixpanel-swift', :inhibit_warnings => true
   pod 'Sentry'
+  pod 'Moya', '15.0.0'
+  pod 'Wormholy', '1.6.4'
 
 end
 
@@ -41,7 +43,6 @@ def developmentPods
   pod 'Decoders', path: './Development Pods/Decoders'
   pod 'Models', path: './Development Pods/Models'
   pod 'HapticTouch', path: './Development Pods/HapticTouch'
-  pod 'AKNetwork', path: './Development Pods/AKNetwork'
   pod 'AlertMessages', path: './Development pods/AlertMessages'
   pod 'FeatureToggle', path: './Development pods/FeatureToggle'
   pod 'RemoteConfig', path: './Development pods/RemoteConfig'

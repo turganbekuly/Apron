@@ -7,4 +7,4 @@
 
 import Moya
 
-public typealias AKURLEncoding = URLEncoding
+typealias AKURLEncoding = URLEncoding

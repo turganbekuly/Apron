@@ -48,6 +48,7 @@ enum AnalyticsEvents {
     case shoppingListViewed
     case ingredientAdded(IngredientAddedModel)
     case shoppingListCheckoutTapped([String])
+    case shoppingListShareTapped([String])
     case stepByStepViewed
     case filtersApplied(SearchFilterRequestBody)
     case adBannerTapped(AdBannerModel)
@@ -86,6 +87,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "step_by_step_viewed"
         case .shoppingListCheckoutTapped:
             return "shopping_list_checkout_tapped"
+        case .shoppingListShareTapped:
+            return "shopping_list_share_tapped"
         case .filtersApplied:
             return "search_filters_applied"
         case .adBannerTapped:
@@ -124,6 +127,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
         case .stepByStepViewed:
             return [:]
         case let .shoppingListCheckoutTapped(ingredients):
+            return ["ingredients": ingredients]
+        case let .shoppingListShareTapped(ingredients):
             return ["ingredients": ingredients]
         case let .filtersApplied(model):
             return model.toJSON()

@@ -6,7 +6,7 @@
 //  Copyright © 2023 Apron. All rights reserved.
 //
 
-import AKNetwork
+
 
 protocol MyRecipesServiceProtocol {
     func getProfile(
