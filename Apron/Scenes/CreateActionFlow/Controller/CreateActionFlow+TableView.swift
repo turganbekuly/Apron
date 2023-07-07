@@ -53,7 +53,8 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             let .shoppingList(type),
             let .mealPlan(type),
             let .clearIngredients(type),
-            let .shareIngredients(type):
+            let .shareIngredients(type),
+            let .searchRecipes(type):
             dismiss(animated: true) {
                 self.delegate?.handleChosenAction(type: type)
             }
@@ -141,6 +142,12 @@ extension CreateActionFlowViewController: UITableViewDelegate {
             cell.configure(with: CreateButtonCellViewModel(
                 image: APRAssets.trashIcon.image,
                 title: L10n.CreateActionFlow.ClearIngredients.title
+            ))
+        case .searchRecipes:
+            guard let cell = cell as? CreateButtonCell else { return }
+            cell.configure(with: CreateButtonCellViewModel(
+                image: APRAssets.searchIcon24.image,
+                title: L10n.RecipeSearch.RecipeSearch.title
             ))
         default:
             break

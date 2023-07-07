@@ -15,4 +15,5 @@ enum CreateActionInitialState {
     case recipePageAddTo
     case savedPageCreate
     case shoppingListMore
+    case mealPlanner
 }

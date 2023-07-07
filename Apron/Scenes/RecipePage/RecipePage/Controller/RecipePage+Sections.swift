@@ -19,6 +19,7 @@ extension RecipePageViewController {
             case nutritions
             case instructions
             case reviews
+            case similarRecommendations
         }
         enum Row {
             case reworkInfo
@@ -28,6 +29,7 @@ extension RecipePageViewController {
             case nutrition
             case instruction
             case review(RecipeCommentResponse)
+            case similarRecommendations([RecipeResponse])
 
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch(lhs, rhs) {
@@ -44,6 +46,8 @@ extension RecipePageViewController {
                 case (.instruction, .instruction):
                     return true
                 case (.review, .review):
+                    return true
+                case (.similarRecommendations, .similarRecommendations):
                     return true
                 default:
                     return false

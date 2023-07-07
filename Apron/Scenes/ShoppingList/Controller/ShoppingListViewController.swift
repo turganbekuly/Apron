@@ -273,8 +273,13 @@ final class ShoppingListViewController: ViewController {
     // MARK: - Private functions
 
     func shareIngredients(cartItems: [CartItem]) {
+        var items = ""
+        for item in cartItems {
+            items.append("\(item.productName) - \(item.amount?.clean ?? "") \(item.measurement ?? "")")
+            items.append("\n")
+        }
         let viewController = UIActivityViewController(
-            activityItems: cartItems.map { "\($0.productName) - \($0.amount?.clean ?? "") \($0.measurement ?? "")"},
+            activityItems: [items],
             applicationActivities: nil
         )
 

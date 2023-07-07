@@ -23,7 +23,6 @@ final class ShoppingItemCell: UITableViewCell {
     // MARK: - Private properties
 
     var cartItem: CartItem?
-    var measurement = ""
 
     // MARK: - Init
 
@@ -93,7 +92,7 @@ final class ShoppingItemCell: UITableViewCell {
         checkbox.stateChangeAnimation = .fill
         checkbox.tintColor = APRAssets.mainAppColor.color
         checkbox.secondaryTintColor = .gray
-        checkbox.secondaryCheckmarkTintColor = .black
+        checkbox.secondaryCheckmarkTintColor = .white
         checkbox.addTarget(self, action: #selector(checkboxValueChanged), for: .valueChanged)
         return checkbox
     }()
@@ -202,12 +201,7 @@ final class ShoppingItemCell: UITableViewCell {
         sourceRecipsButton.text = item.recipeName?.first ?? ""
         ingredientNameLabel.text = item.productName
         
-        if (item.amount ?? 0) > 0 {
-            measurement = "\(item.amount ?? 0) \(item.measurement ?? "")"
-        } else {
-            measurement = "\(item.measurement ?? "")"
-        }
-        measurementLabel.text = measurement
+        measurementLabel.text = "\(item.amount?.clean ?? "") \(item.measurement ?? "")"
         checkbox.setCheckState(item.bought ? .checked : .unchecked, animated: true)
         containerView.alpha = item.bought ? 0.5 : 1
 

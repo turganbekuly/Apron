@@ -123,3 +123,15 @@ extension RecipePageViewController: StepByStepFinalStepProtocol {
         }
     }
 }
+
+extension RecipePageViewController: RecipeSimilarRecommendationDelegate {
+    func recipeSelected(_ recipe: RecipeResponse, row point: CGFloat) {
+        ApronAnalytics.shared.sendAnalyticsEvent(
+            .recipePageRecommendationTapped(recipeName: recipe.recipeName ?? "", rowPlace: point)
+        )
+        let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+}

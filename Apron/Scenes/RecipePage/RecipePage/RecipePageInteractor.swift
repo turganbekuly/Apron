@@ -10,6 +10,7 @@ protocol RecipePageBusinessLogic {
     func getRecipe(request: RecipePageDataFlow.GetRecipe.Request)
     func saveRecipe(request: RecipePageDataFlow.SaveRecipe.Request)
     func getComments(request: RecipePageDataFlow.GetComments.Request)
+    func getRecommendations(request: RecipePageDataFlow.GetRecommendations.Request)
 }
 
 final class RecipePageInteractor: RecipePageBusinessLogic {
@@ -56,6 +57,17 @@ final class RecipePageInteractor: RecipePageBusinessLogic {
                 self?.presenter.getComments(response: .init(result: .successful(model: model)))
             case let .failed(error):
                 self?.presenter.getComments(response: .init(result: .failed(error: error)))
+            }
+        }
+    }
+    
+    func getRecommendations(request: RecipePageDataFlow.GetRecommendations.Request) {
+        provider.getRecommendations(request: request) { [weak self] in
+            switch $0 {
+            case let .successful(model):
+                self?.presenter.getRecommendations(response: .init(result: .successful(model: model)))
+            case let .failed(error):
+                self?.presenter.getRecommendations(response: .init(result: .failed(error: error)))
             }
         }
     }

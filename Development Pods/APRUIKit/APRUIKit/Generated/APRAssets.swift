@@ -140,6 +140,7 @@ public enum APRAssets {
   public static let cameraIcon = ImageAsset(name: "camera_icon")
   public static let savedRecipePlaceholder = ImageAsset(name: "saved_recipe_placeholder")
   public static let iconChartUp = ImageAsset(name: "icon_chart_up")
+  public static let searchIcon24 = ImageAsset(name: "search_icon_24")
   public static let searchRoundedView = ImageAsset(name: "search_rounded_view")
   public static let emptyCart = ImageAsset(name: "empty_cart")
   public static let tabAddSelectedIcon = ImageAsset(name: "tab_add_selected_icon")

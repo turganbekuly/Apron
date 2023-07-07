@@ -18,6 +18,7 @@ protocol RecipePageDisplayLogic: AnyObject {
     func displayRating(viewModel: RecipePageDataFlow.RateRecipe.ViewModel)
     func displaySaveRecipe(viewModel: RecipePageDataFlow.SaveRecipe.ViewModel)
     func displayComments(viewModel: RecipePageDataFlow.GetComments.ViewModel)
+    func displayRecommendations(viewModel: RecipePageDataFlow.GetRecommendations.ViewModel)
 }
 
 final class RecipePageViewController: ViewController {
@@ -89,7 +90,32 @@ final class RecipePageViewController: ViewController {
                         .init(section: .ingredients, rows: [.ingredient]),
                         //                        .init(section: .nutritions, rows: [.nutrition]),
                         .init(section: .instructions, rows: [.instruction]),
-                        .init(section: .reviews, rows: recipeComments.compactMap { .review($0) })
+                        .init(section: .reviews, rows: recipeComments.compactMap { .review($0) }),
+                        .init(section: .similarRecommendations, rows: [.similarRecommendations(recommendations)])
+                    ]
+            )
+            self.sections = localSections
+            mainView.reloadData()
+        }
+    }
+    
+    var recommendations: [RecipeResponse] = [] {
+        didSet {
+            var localSections = [Section]()
+            guard let recipe = recipe, !recommendations.isEmpty else { return }
+            if recipe.status == .declined {
+                localSections.append(.init(section: .reworkInfo, rows: [.reworkInfo]))
+            }
+            localSections.append(
+                contentsOf:
+                    [
+                        .init(section: .topView, rows: [.topView]),
+                        .init(section: .description, rows: [.description]),
+                        .init(section: .ingredients, rows: [.ingredient]),
+                        //                        .init(section: .nutritions, rows: [.nutrition]),
+                        .init(section: .instructions, rows: [.instruction]),
+                        .init(section: .reviews, rows: recipeComments.compactMap { .review($0) }),
+                        .init(section: .similarRecommendations, rows: [.similarRecommendations(recommendations)])
                     ]
             )
             self.sections = localSections
@@ -290,7 +316,7 @@ final class RecipePageViewController: ViewController {
     private func shareRecipeTapped() {
         let viewController = UIActivityViewController(
             activityItems: [
-                "Зацените рецепт \"\(self.recipe?.recipeName ?? "")\" на Moca.kz 👀\n moca.kz://main/recipe/\(self.recipe?.id ?? 0)"
+                "Зацените рецепт \"\(self.recipe?.recipeName ?? "")\" на Moca👀\n https://moca.kz/recipe/\(self.recipe?.id ?? 0)"
             ],
             applicationActivities: nil
         )

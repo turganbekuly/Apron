@@ -25,14 +25,20 @@
 			<string>kz.turganbekuly.apron.ios</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>moca.kz</string>
+				<string>moca</string>
 			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>Configuration.AMPLITUDE_API_KEY</key>
-	<string>becfe5fdb6479d4df85b98227683bc97</string>
+	<string>b9670c28b10d266c93cd05f2fadda282</string>
 	<key>Configuration.APPMETRICA_API_KEY</key>
 	<string>f7e85fd4-4794-4b7b-a47c-ddc4c3f7f0ea</string>
 	<key>Configuration.APPSFLYER_DEV_KEY</key>
@@ -47,14 +53,14 @@
 	<string>http://</string>
 	<key>Configuration.MIXPANEL_API_KEY</key>
 	<string>9909fda9ea3b836b747832479b34a9e3</string>
-	<key>Configuration.OPENAI_API_KEY</key>
-	<string>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</string>
 	<key>Configuration.ONE_SIGNAL_APP_ID</key>
 	<string>401c4ecc-4999-4327-bded-d5ebd939d9b4</string>
-	<key>Configuration.WEB_BASED_URL</key>
-	<string>apron.ws</string>
+	<key>Configuration.OPENAI_API_KEY</key>
+	<string>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</string>
 	<key>Configuration.SENTRY_URL</key>
 	<string>https://7d5b77ad9ba841fe9300861282741c5d@o4504897920106496.ingest.sentry.io/4504897921089536</string>
+	<key>Configuration.WEB_BASED_URL</key>
+	<string>apron.ws</string>
 	<key>FacebookAppID</key>
 	<string>534377055292946</string>
 	<key>FacebookDisplayName</key>

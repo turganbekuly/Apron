@@ -26,7 +26,6 @@ final class CreateButtonCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.layer.masksToBounds = true
         return imageView
     }()
 
@@ -67,14 +66,13 @@ final class CreateButtonCell: UITableViewCell {
     private func setupConstraints() {
         iconImageView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(16)
-            $0.size.equalTo(30)
+            $0.size.equalTo(24)
         }
 
         stackView.snp.makeConstraints {
-            $0.top.equalTo(iconImageView.snp.top)
+            $0.centerY.equalTo(iconImageView.snp.centerY)
             $0.leading.equalTo(iconImageView.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview()
         }
     }
 

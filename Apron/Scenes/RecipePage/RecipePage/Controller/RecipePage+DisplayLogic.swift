@@ -27,4 +27,8 @@ extension RecipePageViewController: RecipePageDisplayLogic {
     func displayComments(viewModel: RecipePageDataFlow.GetComments.ViewModel) {
         state = viewModel.state
     }
+    
+    func displayRecommendations(viewModel: RecipePageDataFlow.GetRecommendations.ViewModel) {
+        state = viewModel.state
+    }
 }

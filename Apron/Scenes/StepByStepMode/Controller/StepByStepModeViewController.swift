@@ -152,6 +152,11 @@ final class StepByStepModeViewController: ViewController {
         super.viewDidAppear(animated)
         scrollViewDidEndDecelerating(mainView)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ApronAnalytics.shared.sendAnalyticsEvent(.stepByStepViewed(progressBar.progress))
+    }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)

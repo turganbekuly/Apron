@@ -48,6 +48,8 @@ final class RecipeSearchViewController: ViewController {
         }
     }
 
+    weak var delegate: MealPlannerRecipeSelected?
+    
     var filters = SearchFilterRequestBody()
 
     var filtersCount: Int = 0
@@ -63,6 +65,22 @@ final class RecipeSearchViewController: ViewController {
     var state: State {
         didSet {
             updateState()
+        }
+    }
+    
+    var initialState: RecipeSearchInitialState? {
+        didSet {
+            switch initialState {
+            case let .generalSearch(incomingFilters):
+                self.filters = incomingFilters
+                handleIncomingFilters()
+            case let .mealPlannerSearch(incomingFilters, delegate):
+                self.filters = incomingFilters
+                handleIncomingFilters()
+                self.delegate = delegate
+            default:
+                break
+            }
         }
     }
 
@@ -192,5 +210,23 @@ final class RecipeSearchViewController: ViewController {
             guard let self = self else { return }
             self.getRecipes(filters: self.filters)
         }
+    }
+    
+    private func handleIncomingFilters() {
+        guard filters.ifAnyArrayContainsValue() || filters.query.isEmpty == false else { return }
+        recipesList.removeAll()
+        self.filtersCount = filters.dayTimeType.count + filters.cuisines.count + filters.eventTypes.count + filters.time.count + filters.dishTypes.count
+        currentPage = 1
+        sections = [
+            .init(section: .filter, rows: [.shimmer])
+        ]
+        mainView.reloadData()
+        
+        if filters.query.isEmpty == false {
+            query = filters.query
+        }
+        isFirstAppear = false
+        filters.page = currentPage
+        getRecipes(filters: filters)
     }
 }

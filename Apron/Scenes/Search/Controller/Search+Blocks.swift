@@ -37,7 +37,7 @@ extension SearchViewController {
         }
 
         let viewController = UINavigationController(
-            rootViewController: RecipeSearchBuilder(state: .initial(searchFilter)).build()
+            rootViewController: RecipeSearchBuilder(state: .initial(.generalSearch(searchFilter))).build()
         )
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical

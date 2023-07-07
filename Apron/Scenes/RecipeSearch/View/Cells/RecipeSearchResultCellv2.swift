@@ -271,6 +271,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         }
 
         delegate?.saveRecipeTappedv2(with: id)
+        ApronAnalytics.shared.sendAnalyticsEvent(.recipeAddedToFavorite(recipeName))
         HapticTouch.generateSuccess()
         favoriteImageView.image = APRAssets.heartFilled24White.image
     }
@@ -280,6 +281,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
     func configure(with recipe: RecipeResponse) {
         isSaved = recipe.isSaved ?? false
         id = recipe.id
+        recipeName = recipe.recipeName ?? ""
         recipeNameLabel.text = recipe.recipeName ?? ""
         recipeIngredientsCountLabel.text = "\(recipe.ingredients?.count ?? 0) ингредиентов"
         recipeImageView.kf.setImage(

@@ -8,7 +8,11 @@
 import Foundation
 import Models
 
+protocol MealPlannerRecipeSelected: AnyObject {
+    func mealPlanner(selected recipe: RecipeResponse)
+}
+
 enum RecipeSearchInitialState {
     case generalSearch(SearchFilterRequestBody)
-    case savedRecipesSearch
+    case mealPlannerSearch(SearchFilterRequestBody, MealPlannerRecipeSelected)
 }

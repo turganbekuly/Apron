@@ -64,6 +64,9 @@ extension RecipePageViewController: UITableViewDataSource {
         case .review:
             let cell: RecipeReviewsCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .similarRecommendations:
+            let cell: RecipeSimilarRecommendationsCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -122,6 +125,9 @@ extension RecipePageViewController: UITableViewDelegate {
         case let .review(comment):
             let width = (UIScreen.main.bounds.width - 85)
             return 45 + Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width) + (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)
+        case let .similarRecommendations(recipes):
+            let recipesCount = (CGFloat(recipes.count / 2)).rounded(.up)
+            return recipes.count > 0 ? (recipesCount * 240) + 65 + (recipesCount * 16) : 0
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -172,6 +178,9 @@ extension RecipePageViewController: UITableViewDelegate {
             let descriptionHeight = Typography.regular14(text: comment.description ?? "").styled.height(containerWidth: width)
             let tagsHeight = (ceil(CGFloat(comment.tags?.count ?? 1) / 2) * 32)
             return 45 + descriptionHeight + tagsHeight + imageHeight
+        case let .similarRecommendations(recipes):
+            let recipesCount = (CGFloat(recipes.count / 2)).rounded(.up)
+            return recipes.count > 0 ? (recipesCount * 240) + 65 + (recipesCount  * 16) : 0
         }
     }
 
@@ -253,6 +262,10 @@ extension RecipePageViewController: UITableViewDelegate {
         case let .review(comment):
             guard let cell = cell as? RecipeReviewsCell else { return }
             cell.configure(with: RecipePageReviewsViewModel(comment: comment))
+        case let .similarRecommendations(recipes):
+            guard let cell = cell as? RecipeSimilarRecommendationsCell else { return }
+            cell.delegate = self
+            cell.configure(with: recipes)
         }
     }
 

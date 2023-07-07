@@ -16,6 +16,7 @@ enum MainEndpoint {
     case getCookNowRecipes(body: SearchFilterRequestBody)
     case getEventRecipes(body: SearchFilterRequestBody)
     case saveRecipe(id: Int)
+    case trendingsRecommendations(id: Int)
 }
 
 enum Counter {
@@ -39,6 +40,8 @@ extension MainEndpoint: AKNetworkTargetType {
             return "recipes/mainSearch"
         case .saveRecipe(let id):
             return "recipes/saveRecipe/\(id)"
+        case let .trendingsRecommendations(id):
+            return "recipes/trendings/\(id)"
         }
     }
 
@@ -52,7 +55,7 @@ extension MainEndpoint: AKNetworkTargetType {
             return .get
         case .getCookNowRecipes, .getEventRecipes:
             return .post
-        case .saveRecipe:
+        case .saveRecipe, .trendingsRecommendations:
             return .post
         }
     }
@@ -72,6 +75,8 @@ extension MainEndpoint: AKNetworkTargetType {
                 encoding: AKJSONEncoding.default
             )
         case .saveRecipe:
+            return .requestPlain
+        case .trendingsRecommendations:
             return .requestPlain
         }
     }

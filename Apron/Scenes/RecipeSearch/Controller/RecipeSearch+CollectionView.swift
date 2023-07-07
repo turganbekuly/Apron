@@ -49,9 +49,18 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
                     )
                 )
             )
-            let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: false)
+            switch initialState {
+            case .generalSearch:
+                let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: false)
+                }
+            case .mealPlannerSearch:
+                dismiss(animated: true) {
+                    self.delegate?.mealPlanner(selected: recipe)
+                }
+            default:
+                break
             }
         case let .trending(type):
             select(block: type)

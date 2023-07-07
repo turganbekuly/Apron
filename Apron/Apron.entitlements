@@ -11,8 +11,9 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:moca.kz</string>
-		<string>applinks:apronapp.page.link</string>
 		<string>applinks:apron.onelink.me</string>
+		<string>applinks:link.moca.kz</string>
+		<string>applinks:moca</string>
 	</array>
 </dict>
 </plist>

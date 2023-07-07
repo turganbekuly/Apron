@@ -45,11 +45,13 @@ enum AnalyticsEvents {
     case recipeCreationPageViewed(RecipeCreationSourceTypeModel)
     case recipeCreated(RecipeCreatedModel)
     case recipePageViewed(RecipePageViewedModel)
+    case recipePageRecommendationTapped(recipeName: String, rowPlace: CGFloat)
+    case recipeAddedToFavorite(String)
     case shoppingListViewed
     case ingredientAdded(IngredientAddedModel)
     case shoppingListCheckoutTapped([String])
     case shoppingListShareTapped([String])
-    case stepByStepViewed
+    case stepByStepViewed(CGFloat)
     case filtersApplied(SearchFilterRequestBody)
     case adBannerTapped(AdBannerModel)
 }
@@ -79,6 +81,10 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "recipe_created"
         case .recipePageViewed:
             return "recipe_page_viewed"
+        case .recipePageRecommendationTapped:
+            return "recipe_page_recommendation_tapped"
+        case .recipeAddedToFavorite:
+            return "recipe_added_to_favorite"
         case .shoppingListViewed:
             return "shopping_list_viewed"
         case .ingredientAdded:
@@ -120,12 +126,16 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return model.toJSON()
         case let .recipePageViewed(model):
             return model.toJSON()
+        case let .recipePageRecommendationTapped(recipeName, rowPlace):
+            return ["recipe_name": recipeName, "row_place": rowPlace]
+        case let .recipeAddedToFavorite(recipeName):
+            return ["recipe_name": recipeName]
         case .shoppingListViewed:
             return [:]
         case let .ingredientAdded(model):
             return model.toJSON()
-        case .stepByStepViewed:
-            return [:]
+        case let .stepByStepViewed(progress):
+            return ["last_progress": progress]
         case let .shoppingListCheckoutTapped(ingredients):
             return ["ingredients": ingredients]
         case let .shoppingListShareTapped(ingredients):

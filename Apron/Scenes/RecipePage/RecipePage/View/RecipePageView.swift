@@ -41,7 +41,8 @@ public final class RecipePageView: UITableView {
             RecipeCaloriesViewCell.self,
             RecipeIngredientsViewCell.self,
             RecipeInstructionsViewCell.self,
-            RecipeReviewsCell.self
+            RecipeReviewsCell.self,
+            RecipeSimilarRecommendationsCell.self
         ].forEach {
             register(cellClass: $0)
         }

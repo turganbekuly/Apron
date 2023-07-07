@@ -5,6 +5,7 @@
 //  Created by Akarys Turganbekuly on 21/01/2022.
 //  Copyright © 2022 Apron. All rights reserved.
 //
+import Models
 
 extension RecipePageViewController {
 
@@ -20,5 +21,9 @@ extension RecipePageViewController {
 
     func getComments(by id: Int) {
         interactor.getComments(request: .init(recipeId: id))
+    }
+    
+    func getRecommendations(by id: Int) {
+        interactor.getRecommendations(request: .init(recipeId: id))
     }
 }
