@@ -104,7 +104,8 @@ final class ShoppingListViewController: ViewController {
     private lazy var orderButton: BlackOpButton = {
         let button = BlackOpButton()
         button.backgroundType = .blackBackground
-        button.setTitle(L10n.ShoppingList.Order.title, for: .normal)
+//        button.setTitle(L10n.ShoppingList.Order.title, for: .normal)
+        button.setTitle(L10n.CreateActionFlow.ShareIngredients.title, for: .normal)
         button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 23
         button.layer.masksToBounds = true
@@ -246,13 +247,19 @@ final class ShoppingListViewController: ViewController {
 
     @objc
     private func orderButtonTapped() {
-        let link = RemoteConfigManager.shared.remoteConfig.orderFromStoreLink
-        guard !link.isEmpty else { return }
-        let webViewController = WebViewHandler(urlString: link)
-        ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListCheckoutTapped(cartItems.map { $0.productName }))
+//        let link = RemoteConfigManager.shared.remoteConfig.orderFromStoreLink
+//        guard !link.isEmpty else { return }
+//        let webViewController = WebViewHandler(urlString: link)
+        guard !cartItems.isEmpty else {
+            show(type: .error(L10n.ShoppingList.AddProductsToBuyList.title))
+            return
+        }
+        shareIngredients(cartItems: self.cartItems)
+//        ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListCheckoutTapped(cartItems.map { $0.productName }))
+        ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListShareTapped(cartItems.map { $0.productName }))
         OneSignal.sendTag("shopping_list_checkout_tapped", value: "order_button_tapped")
         OneSignal.addTrigger("shopping_list_checkout_tapped", withValue: "order_button_tapped")
-        presentPanModal(webViewController)
+//        presentPanModal(webViewController)
     }
 
     @objc
@@ -266,8 +273,13 @@ final class ShoppingListViewController: ViewController {
     // MARK: - Private functions
 
     func shareIngredients(cartItems: [CartItem]) {
+        var items = ""
+        for item in cartItems {
+            items.append("\(item.productName) - \(item.amount?.clean ?? "") \(item.measurement ?? "")")
+            items.append("\n")
+        }
         let viewController = UIActivityViewController(
-            activityItems: cartItems.map { "\($0.productName) - \($0.amount?.clean ?? "") \($0.measurement ?? "")"},
+            activityItems: [items],
             applicationActivities: nil
         )
 

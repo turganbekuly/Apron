@@ -26,6 +26,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
             case recipePageAdd
             case savedPageCreate
             case shoppingListMore
+            case mealPlanner
         }
         enum Row {
             case privateCommunity(CreateActionType)
@@ -45,6 +46,7 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
             case mealPlan(CreateActionType)
             case clearIngredients(CreateActionType)
             case shareIngredients(CreateActionType)
+            case searchRecipes(CreateActionType)
         }
 
         let section: Section
@@ -103,6 +105,13 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
                         rows: [.shareIngredients(.shareIngredients), .clearIngredients(.clearIngredients)]
                     )
                 ]
+            case .mealPlanner:
+                sections = [
+                    .init(
+                        section: .mealPlanner,
+                        rows: [.savedRecipe(.savedRecipe), .searchRecipes(.searchRecipes)]
+                    )
+                ]
             default:
                 break
             }
@@ -134,6 +143,8 @@ final class CreateActionFlowViewController: ViewController, PanModalPresentable 
         case .savedPageCreate:
             return .contentHeight(170)
         case .shoppingListMore:
+            return .contentHeight(110)
+        case .mealPlanner:
             return .contentHeight(110)
         }
     }

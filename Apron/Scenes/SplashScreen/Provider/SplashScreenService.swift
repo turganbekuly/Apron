@@ -5,8 +5,6 @@
 //  Created by Akarys Turganbekuly on 05.06.2022.
 //
 
-import AKNetwork
-
 protocol SplashScreenServiceProtocol {
     func updateToken(
         request: SplashScreenDataFlow.UpdateToken.Request,

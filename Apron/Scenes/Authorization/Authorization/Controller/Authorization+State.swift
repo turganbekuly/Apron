@@ -45,6 +45,7 @@ extension AuthorizationViewController {
                 UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .loginFailed:
+            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationFailed("apple"))
             AuthStorage.shared.clear()
             show(type: .error(L10n.Alert.errorMessage))
         }

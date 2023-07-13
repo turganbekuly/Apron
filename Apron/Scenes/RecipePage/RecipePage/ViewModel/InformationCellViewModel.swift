@@ -11,7 +11,7 @@ import UIKit
 protocol IInformationCellViewModel: AnyObject {
     var recipeName: String { get }
     var recipeImage: String? { get }
-    var recipeSourceURL: String? { get }
+    var recipeAuthor: String? { get }
     var likeCount: Int { get }
     var dislikeCount: Int { get }
 }
@@ -21,7 +21,7 @@ final class InformationCellViewModel: IInformationCellViewModel {
 
     var recipeImage: String?
 
-    var recipeSourceURL: String?
+    var recipeAuthor: String?
 
     var likeCount: Int
 
@@ -30,13 +30,13 @@ final class InformationCellViewModel: IInformationCellViewModel {
     init(
         recipeName: String,
         recipeImage: String?,
-        recipeSourceURL: String?,
+        recipeAuthor: String?,
         likeCount: Int,
         dislikeCount: Int
     ) {
         self.recipeName = recipeName
         self.recipeImage = recipeImage
-        self.recipeSourceURL = recipeSourceURL
+        self.recipeAuthor = recipeAuthor
         self.likeCount = likeCount
         self.dislikeCount = dislikeCount
     }

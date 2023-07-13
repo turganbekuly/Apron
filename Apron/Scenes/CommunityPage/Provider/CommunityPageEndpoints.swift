@@ -7,10 +7,9 @@
 //
 
 import Configurations
-import AKNetwork
 import Storages
 
-public enum CommunityPageEndpoint {
+enum CommunityPageEndpoint {
     case getCommunity(id: Int)
     case joinCommunity(id: Int)
     case getRecipesByCommunity(id: Int, currentPage: Int)
@@ -19,11 +18,11 @@ public enum CommunityPageEndpoint {
 
 extension CommunityPageEndpoint: AKNetworkTargetType {
 
-    public var baseURL: URL {
+    var baseURL: URL {
         return Configurations.getBaseURL()
     }
 
-    public var path: String {
+    var path: String {
         switch self {
         case .getCommunity(let id):
             return "communities/\(id)"
@@ -36,7 +35,7 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
         }
     }
 
-    public var method: AKNetworkMethod {
+    var method: AKNetworkMethod {
         switch self {
         case .getCommunity:
             return .get
@@ -49,11 +48,11 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
         }
     }
 
-    public var sampleData: Data {
+    var sampleData: Data {
         return Data()
     }
 
-    public var task: AKNetworkTask {
+    var task: AKNetworkTask {
         switch self {
         case .getCommunity:
             return .requestPlain
@@ -69,7 +68,7 @@ extension CommunityPageEndpoint: AKNetworkTargetType {
         }
     }
 
-    public var headers: [String: String]? {
+    var headers: [String: String]? {
         var headers = [
             "Accept-Language": "ru",
             "Content-Type": "application/json"

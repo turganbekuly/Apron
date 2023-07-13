@@ -26,7 +26,14 @@ extension RecipePageViewController: BottomStickyViewDelegate {
             show(type: .error("В рецепте нету инструкции"))
             return
         }
-        let vc = StepByStepModeBuilder(state: .initial(instructions, self.recipe?.imageURL, self)).build()
+        let vc = StepByStepModeBuilder(
+            state: .initial(
+                instructions,
+                self.recipe?.imageURL,
+                self,
+                self.recipe?.ingredients ?? []
+            )
+        ).build()
         let navController = StepNavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
         DispatchQueue.main.async {
@@ -40,14 +47,6 @@ extension RecipePageViewController: BottomStickyViewDelegate {
 //            self.navigationController?.presentPanModal(vc)
 //        }
         handleAddToCart(ingredients: recipe?.ingredients)
-    }
-
-    func saveButtonTapped() {
-        guard let recipe = recipe else { return }
-        handleAuthorizationStatus { [weak self] in
-            guard let self = self else { return }
-            self.saveRecipe(with: recipe.id)
-        }
     }
 
     func textFieldTapped() {
@@ -121,6 +120,18 @@ extension RecipePageViewController: StepByStepFinalStepProtocol {
         let viewController = AddCommentBuilder(state: .initial(recipe?.id, body, self)).build()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+}
+
+extension RecipePageViewController: RecipeSimilarRecommendationDelegate {
+    func recipeSelected(_ recipe: RecipeResponse, row point: CGFloat) {
+        ApronAnalytics.shared.sendAnalyticsEvent(
+            .recipePageRecommendationTapped(recipeName: recipe.recipeName ?? "", rowPlace: point)
+        )
+        let vc = RecipePageBuilder(state: .initial(id: recipe.id, .search)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: false)
         }
     }
 }

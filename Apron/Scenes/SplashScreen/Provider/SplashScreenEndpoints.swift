@@ -6,7 +6,7 @@
 //
 
 import Configurations
-import AKNetwork
+
 import Storages
 import Models
 
@@ -15,7 +15,6 @@ enum SplashScreenEndpoints {
 }
 
 extension SplashScreenEndpoints: AKNetworkTargetType {
-
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
@@ -57,5 +56,4 @@ extension SplashScreenEndpoints: AKNetworkTargetType {
             "Content-Type": "application/json"
         ]
     }
-
 }

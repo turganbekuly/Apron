@@ -6,7 +6,7 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-import AKNetwork
+
 import Models
 
 protocol RecipePageProviderProtocol {
@@ -25,6 +25,10 @@ protocol RecipePageProviderProtocol {
     func getComments(
         request: RecipePageDataFlow.GetComments.Request,
         completion: @escaping ((RecipePageDataFlow.GetCommentsResult) -> Void)
+    )
+    func getRecommendations(
+        request: RecipePageDataFlow.GetRecommendations.Request,
+        completion: @escaping ((RecipePageDataFlow.GetRecommendationsResult) -> Void)
     )
 }
 
@@ -104,6 +108,24 @@ final class RecipePageProvider: RecipePageProviderProtocol {
             case let .success(json):
                 if let jsons = json["data"] as? [JSON] {
                     completion(.successful(model: jsons.compactMap { RecipeCommentResponse(json: $0) }))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+    
+    func getRecommendations(
+        request: RecipePageDataFlow.GetRecommendations.Request,
+        completion: @escaping ((RecipePageDataFlow.GetRecommendationsResult) -> Void)
+    ) {
+        service.getRecommendations(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
                 } else {
                     completion(.failed(error: .invalidData))
                 }

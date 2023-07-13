@@ -26,6 +26,11 @@ enum RecipeCreationSourceTypeModel: String, Codable {
     case recipePage
 }
 
+enum RecipeCategoriesType: String, Codable {
+    case main
+    case search
+}
+
 enum CommunityCreationSourceTypeModel: String, Codable {
     case publicButton = "public_button"
     case privateButton = "private_button"
@@ -36,6 +41,7 @@ enum CommunityCreationSourceTypeModel: String, Codable {
 enum AnalyticsEvents {
     case homePageViewed(CustomerStatus)
     case authorization(AuthorizationModel)
+    case authorizationFailed(String)
     case communitiesListPageViewed(CommunitiesListPageViewedModel)
     case communityPageViewed(CommunityPageViewedModel)
     case joinedCommunity(JoinedCommunityModel)
@@ -45,12 +51,20 @@ enum AnalyticsEvents {
     case recipeCreationPageViewed(RecipeCreationSourceTypeModel)
     case recipeCreated(RecipeCreatedModel)
     case recipePageViewed(RecipePageViewedModel)
+    case recipePageRecommendationTapped(recipeName: String, rowPlace: CGFloat)
+    case recipeAddedToFavorite(String)
     case shoppingListViewed
     case ingredientAdded(IngredientAddedModel)
     case shoppingListCheckoutTapped([String])
-    case stepByStepViewed
+    case shoppingListShareTapped([String])
+    case stepByStepViewed(CGFloat)
     case filtersApplied(SearchFilterRequestBody)
     case adBannerTapped(AdBannerModel)
+    case authorizationSkipped(Bool)
+    case authorizationPageViewed
+    case categoriesTapped(String, RecipeCategoriesType)
+    case mealPlannerPageViewed
+    case mealPlannerMealAdded(String)
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -60,6 +74,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "home_page_viewed"
         case .authorization:
             return "authorization"
+        case .authorizationFailed:
+            return "authorization_failed"
         case .communitiesListPageViewed:
             return "commuties_list_page_viewed"
         case .communityPageViewed:
@@ -78,6 +94,10 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "recipe_created"
         case .recipePageViewed:
             return "recipe_page_viewed"
+        case .recipePageRecommendationTapped:
+            return "recipe_page_recommendation_tapped"
+        case .recipeAddedToFavorite:
+            return "recipe_added_to_favorite"
         case .shoppingListViewed:
             return "shopping_list_viewed"
         case .ingredientAdded:
@@ -86,10 +106,23 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "step_by_step_viewed"
         case .shoppingListCheckoutTapped:
             return "shopping_list_checkout_tapped"
+        case .shoppingListShareTapped:
+            return "shopping_list_share_tapped"
         case .filtersApplied:
             return "search_filters_applied"
         case .adBannerTapped:
             return "ad_banner_tapped"
+        case .authorizationSkipped:
+            return "authorization_skipped"
+        case .authorizationPageViewed:
+            return "authorization_page_viewed"
+        case .categoriesTapped:
+            return "recipe_categories_tapped"
+        case .mealPlannerPageViewed:
+            return "meal_planner_page_viwed"
+        case .mealPlannerMealAdded:
+            return "meal_planner_meal_added"
+            
         }
     }
 
@@ -99,6 +132,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return ["customer_status": model.rawValue]
         case let .authorization(model):
             return model.toJSON()
+        case let .authorizationFailed(error):
+            return ["result": error]
         case let .communitiesListPageViewed(model):
             return model.toJSON()
         case let .communityPageViewed(model):
@@ -117,18 +152,34 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return model.toJSON()
         case let .recipePageViewed(model):
             return model.toJSON()
+        case let .recipePageRecommendationTapped(recipeName, rowPlace):
+            return ["recipe_name": recipeName, "row_place": rowPlace]
+        case let .recipeAddedToFavorite(recipeName):
+            return ["recipe_name": recipeName]
         case .shoppingListViewed:
             return [:]
         case let .ingredientAdded(model):
             return model.toJSON()
-        case .stepByStepViewed:
-            return [:]
+        case let .stepByStepViewed(progress):
+            return ["last_progress": progress]
         case let .shoppingListCheckoutTapped(ingredients):
+            return ["ingredients": ingredients]
+        case let .shoppingListShareTapped(ingredients):
             return ["ingredients": ingredients]
         case let .filtersApplied(model):
             return model.toJSON()
         case let .adBannerTapped(model):
             return model.toJSON()
+        case let .authorizationSkipped(skipped):
+            return ["is_skipped": skipped]
+        case .authorizationPageViewed:
+            return [:]
+        case let .categoriesTapped(categoryName, sourceType):
+            return ["category_name": categoryName, "source_type": sourceType.rawValue]
+        case .mealPlannerPageViewed:
+            return [:]
+        case let .mealPlannerMealAdded(meal):
+            return ["recipe_name": meal]
         }
     }
 }

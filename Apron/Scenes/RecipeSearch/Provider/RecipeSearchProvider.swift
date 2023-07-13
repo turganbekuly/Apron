@@ -6,7 +6,7 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-import AKNetwork
+
 import Models
 
 protocol RecipeSearchProviderProtocol {

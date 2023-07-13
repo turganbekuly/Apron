@@ -314,6 +314,8 @@ public enum L10n {
       public static let dinner = L10n.tr("APRLocalizable", "Food.CategoryType.Dinner")
       /// Обед
       public static let lunch = L10n.tr("APRLocalizable", "Food.CategoryType.Lunch")
+      /// ПП
+      public static let pp = L10n.tr("APRLocalizable", "Food.CategoryType.PP")
       /// Салаты
       public static let salads = L10n.tr("APRLocalizable", "Food.CategoryType.Salads")
       /// Закуски
@@ -341,6 +343,10 @@ public enum L10n {
     public enum FoodPrepProvision {
       /// Заготовки
       public static let title = L10n.tr("APRLocalizable", "FoodCategories.foodPrepProvision.Title")
+    }
+    public enum Pp {
+      /// ПП
+      public static let title = L10n.tr("APRLocalizable", "FoodCategories.pp.Title")
     }
     public enum Salads {
       /// Салаты
@@ -563,6 +569,12 @@ public enum L10n {
       /// Замечания от модератора:\n
       public static let message = L10n.tr("APRLocalizable", "Recipe.Moderator.Message")
     }
+    public enum Rating {
+      public enum RatingCounter {
+        /// отзывов
+        public static let title = L10n.tr("APRLocalizable", "Recipe.Rating.RatingCounter.Title")
+      }
+    }
     public enum Reviews {
       /// Оставьте ваш отзыв
       public static let tfPlaceholder = L10n.tr("APRLocalizable", "Recipe.Reviews.TFPlaceholder")
@@ -689,6 +701,10 @@ public enum L10n {
     public enum AddFavoriteRecipes {
       /// Добавляйте свои любимые рецепты,\n чтобы быстрее их найти
       public static let title = L10n.tr("APRLocalizable", "SavedRecipes.AddFavoriteRecipes.Title")
+    }
+    public enum AlreadyAdded {
+      /// Вы уже добавили этот рецепт в избранное
+      public static let title = L10n.tr("APRLocalizable", "SavedRecipes.AlreadyAdded.Title")
     }
     public enum SavedRecipes {
       /// Сохраненные рецепты

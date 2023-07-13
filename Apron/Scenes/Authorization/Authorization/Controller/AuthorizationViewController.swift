@@ -67,6 +67,7 @@ final class AuthorizationViewController: ViewController {
         super.viewDidLoad()
 
         state = { state }()
+        ApronAnalytics.shared.sendAnalyticsEvent(.authorizationPageViewed)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -123,6 +124,7 @@ final class AuthorizationViewController: ViewController {
             title: L10n.Common.yes,
             style: .default
         ) { [weak self] _ in
+            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationSkipped(true))
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
 

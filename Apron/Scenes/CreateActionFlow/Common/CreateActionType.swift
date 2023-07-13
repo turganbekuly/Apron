@@ -25,4 +25,5 @@ enum CreateActionType {
     case mealPlan
     case shareIngredients
     case clearIngredients
+    case searchRecipes
 }

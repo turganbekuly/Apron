@@ -1,5 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Apron/Pods-Apron-frameworks.sh
-${BUILT_PRODUCTS_DIR}/AKNetwork/AKNetwork.framework
 ${BUILT_PRODUCTS_DIR}/ALProgressView/ALProgressView.framework
 ${BUILT_PRODUCTS_DIR}/APRUIKit/APRUIKit.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework

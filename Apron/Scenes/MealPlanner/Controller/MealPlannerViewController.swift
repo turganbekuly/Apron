@@ -112,6 +112,7 @@ final class MealPlannerViewController: ViewController {
         state = { state }()
         configureViews()
         weekdayCalendarView.delegate = self
+        ApronAnalytics.shared.sendAnalyticsEvent(.mealPlannerPageViewed)
     }
 
     override func viewWillAppear(_ animated: Bool) {

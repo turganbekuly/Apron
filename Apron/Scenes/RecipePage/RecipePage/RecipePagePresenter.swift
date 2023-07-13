@@ -12,6 +12,7 @@ protocol RecipePagePresentationLogic: AnyObject {
     func getRecipe(response: RecipePageDataFlow.GetRecipe.Response)
     func saveRecipe(response: RecipePageDataFlow.SaveRecipe.Response)
     func getComments(response: RecipePageDataFlow.GetComments.Response)
+    func getRecommendations(response: RecipePageDataFlow.GetRecommendations.Response)
 }
 
 final class RecipePagePresenter: RecipePagePresentationLogic {
@@ -62,6 +63,21 @@ final class RecipePagePresenter: RecipePagePresentationLogic {
                 viewModel = .init(state: .displayComments(model))
             case .failed:
                 viewModel = .init(state: .displayCommentsFailed)
+            }
+        }
+    }
+    
+    func getRecommendations(response: RecipePageDataFlow.GetRecommendations.Response) {
+        DispatchQueue.main.async {
+            var viewModel: RecipePageDataFlow.GetRecommendations.ViewModel
+
+            defer { self.viewController?.displayRecommendations(viewModel: viewModel) }
+
+            switch response.result {
+            case let .successful(model):
+                viewModel = .init(state: .displayRecommendations(model))
+            case .failed:
+                viewModel = .init(state: .displayRecommendationsFailed)
             }
         }
     }

@@ -24,9 +24,9 @@ public final class RecipePageView: UITableView {
     // MARK: - Methods
 
     private func configure() {
+        showsVerticalScrollIndicator = false
         separatorStyle = .none
-        tableFooterView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 64)))
-        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 160, right: 0)
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
 
         [
             RecipeReviewsHeaderView.self
@@ -41,7 +41,8 @@ public final class RecipePageView: UITableView {
             RecipeCaloriesViewCell.self,
             RecipeIngredientsViewCell.self,
             RecipeInstructionsViewCell.self,
-            RecipeReviewsCell.self
+            RecipeReviewsCell.self,
+            RecipeSimilarRecommendationsCell.self
         ].forEach {
             register(cellClass: $0)
         }

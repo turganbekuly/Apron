@@ -20,14 +20,14 @@ extension MainViewController: WhatToCookCellDelegate {
             searchFilter.dayTimeType = [4]
         case .salati:
             searchFilter.dishTypes = [3]
-        case .zakuski:
-            searchFilter.dishTypes = [4]
+        case .pp:
+            searchFilter.query = "ПП "
         case .deserti:
             searchFilter.dishTypes = [9]
         }
 
         let viewController = UINavigationController(
-            rootViewController: RecipeSearchBuilder(state: .initial(searchFilter)).build()
+            rootViewController: RecipeSearchBuilder(state: .initial(.generalSearch(searchFilter))).build()
         )
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical

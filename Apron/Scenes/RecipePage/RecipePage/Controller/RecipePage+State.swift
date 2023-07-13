@@ -21,6 +21,8 @@ extension RecipePageViewController {
         case saveRecipeFailed(AKNetworkError)
         case displayComments([RecipeCommentResponse])
         case displayCommentsFailed
+        case displayRecommendations([RecipeResponse])
+        case displayRecommendationsFailed
     }
 
     // MARK: - Methods
@@ -35,16 +37,21 @@ extension RecipePageViewController {
             hideLoader()
             self.recipe = recipe
             getComments(by: recipe.id)
+            getRecommendations(by: recipe.id)
         case .displayError:
             hideLoader()
         case .saveRecipe:
-            bottomStickyView.configure(isSaved: true)
+            configureSave(isSaved: true)
         case .saveRecipeFailed:
-            bottomStickyView.configure(isSaved: false)
+            configureSave(isSaved: false)
             show(type: .error(L10n.Alert.errorMessage))
         case let .displayComments(comment):
             self.recipeComments = comment
         case .displayCommentsFailed:
+            break
+        case let .displayRecommendations(recommendations):
+            self.recommendations = recommendations
+        case .displayRecommendationsFailed:
             break
         }
     }

@@ -156,6 +156,7 @@ final class MainViewController: ViewController {
                 self.navigationController?.pushViewController(viewController, animated: false)
             }
         }
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
         navigationController?.navigationBar.barTintColor = APRAssets.secondary.color

@@ -12,6 +12,8 @@ extension SearchViewController {
     func select(block type: SearchSuggestionCategoriesTypes) {
         var searchFilter = SearchFilterRequestBody()
         switch type {
+        case .pp:
+            searchFilter.query = "ПП "
         case .firstMeal:
             searchFilter.dishTypes = [1]
         case .secondMeal:
@@ -35,7 +37,7 @@ extension SearchViewController {
         }
 
         let viewController = UINavigationController(
-            rootViewController: RecipeSearchBuilder(state: .initial(searchFilter)).build()
+            rootViewController: RecipeSearchBuilder(state: .initial(.generalSearch(searchFilter))).build()
         )
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical

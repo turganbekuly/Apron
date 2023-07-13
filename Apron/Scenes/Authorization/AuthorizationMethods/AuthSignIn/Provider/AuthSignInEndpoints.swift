@@ -7,7 +7,7 @@
 //
 
 import Configurations
-import AKNetwork
+
 import Storages
 
 enum AuthSignInEndpoint {
@@ -53,9 +53,6 @@ extension AuthSignInEndpoint: AKNetworkTargetType {
             "Accept-Language": "ru",
             "Content-Type": "application/json"
         ]
-        if let token = AuthStorage.shared.accessToken {
-            headers["Authorization"] = "Bearer \(token)"
-        }
         return headers
     }
 }

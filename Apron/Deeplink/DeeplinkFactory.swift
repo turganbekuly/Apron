@@ -55,13 +55,12 @@ import AppsFlyerLib
      func makeDeeplink(from url: URL) -> CustomDeepLink {
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         guard
-            let scheme = urlComponents?.scheme,
-            let _ = urlComponents?.host,
+            let host = urlComponents?.host,
             let urlPath = urlComponents?.path
         else { return .unknown }
 
         let components = urlPath.components(separatedBy: "/").filter { !$0.isEmpty }
-        switch scheme {
+        switch host {
         case Configurations.getDeeplinkBaseURL():
             return getBaseDeeplink(from: components)
         default:

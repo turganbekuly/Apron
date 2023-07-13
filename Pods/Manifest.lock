@@ -1,9 +1,5 @@
 PODS:
-  - AKNetwork (0.0.1):
-    - Models
-    - Moya (= 15.0.0)
-    - Wormholy (= 1.6.4)
-  - Alamofire (5.6.1)
+  - Alamofire (5.7.1)
   - AlertMessages (0.0.1):
     - APRUIKit
     - HapticTouch
@@ -149,7 +145,7 @@ PODS:
     - Haptica (= 3.0.2)
   - IQKeyboardManagerSwift (6.5.10)
   - KeychainAccess (4.2.2)
-  - Kingfisher (7.2.3)
+  - Kingfisher (7.6.2)
   - lottie-ios (3.3.0)
   - M13Checkbox (3.4.0)
   - Mixpanel-swift (4.0.2):
@@ -203,7 +199,6 @@ PODS:
   - Wormholy (1.6.4)
 
 DEPENDENCIES:
-  - AKNetwork (from `./Development Pods/AKNetwork`)
   - AlertMessages (from `./Development pods/AlertMessages`)
   - ALProgressView
   - Amplitude
@@ -218,9 +213,10 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - HapticTouch (from `./Development Pods/HapticTouch`)
   - IQKeyboardManagerSwift
-  - Kingfisher
+  - Kingfisher (~> 7.0)
   - Mixpanel-swift
   - Models (from `./Development Pods/Models`)
+  - Moya (= 15.0.0)
   - Onboarding (from `./Development Pods/Onboarding`)
   - OneSignalXCFramework (< 4.0, >= 3.0.0)
   - PanModal
@@ -230,6 +226,7 @@ DEPENDENCIES:
   - Storages (from `./Development Pods/Storages`)
   - SwiftGen (~> 6.0)
   - UIScrollView-InfiniteScroll
+  - Wormholy (= 1.6.4)
 
 SPEC REPOS:
   trunk:
@@ -276,8 +273,6 @@ SPEC REPOS:
     - Wormholy
 
 EXTERNAL SOURCES:
-  AKNetwork:
-    :path: "./Development Pods/AKNetwork"
   AlertMessages:
     :path: "./Development pods/AlertMessages"
   APRUIKit:
@@ -304,8 +299,7 @@ EXTERNAL SOURCES:
     :path: "./Development Pods/Storages"
 
 SPEC CHECKSUMS:
-  AKNetwork: c138f069e3767abac65c9a70b93531b652120561
-  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   AlertMessages: 8ee9d8c7c0ea2295fea1eda9c3a09e45e8183cb3
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   ALProgressView: 547883405970e932d8f1f12b605aa4f6df08f155
@@ -335,7 +329,7 @@ SPEC CHECKSUMS:
   HapticTouch: 03da243d7f1c055766916006b2f4688e18cf1a42
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
-  Kingfisher: 8c2cbe0c11ea4d481542895112682a99e058468e
+  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   Mixpanel-swift: 91fc28834402720682f4cce760e95571fbb388c3
@@ -359,6 +353,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: b8af969afb0237e5403de345a687eb9c58590143
+PODFILE CHECKSUM: 1994d7f0c1039cf24acf6287183c40686c62b320
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

@@ -6,19 +6,21 @@
 //
 
 import Foundation
-import Models
 import Moya
+import Storages
+import Models
 
-public final class AKNetworkProvider<T: AKNetworkTargetType>: MoyaProvider<T> {
+final class AKNetworkProvider<T: AKNetworkTargetType>: MoyaProvider<T> {
 
     // MARK: - Properties
 
     private let provider: MoyaProvider<T>
     private var requests = [String: Cancellable]()
+    private lazy var sessionManager = SilentTokenUpdateService()
 
     // MARK: - Init
 
-    override public init(
+    override init(
         endpointClosure: @escaping MoyaProvider<T>.EndpointClosure = MoyaProvider<T>.defaultEndpointMapping,
         requestClosure: @escaping MoyaProvider<T>.RequestClosure = MoyaProvider<T>.defaultRequestMapping,
         stubClosure: @escaping MoyaProvider<T>.StubClosure = MoyaProvider<T>.neverStub,
@@ -40,7 +42,10 @@ public final class AKNetworkProvider<T: AKNetworkTargetType>: MoyaProvider<T> {
 
     // MARK: - Methods
 
-    public func send(target: T, completion: @escaping (AKResult) -> Void) {
+    func send(
+        target: T,
+        completion: @escaping (AKResult) -> Void
+    ) {
         print("Handle Request: \(target.baseURL)\(target.path)")
         let targetName = target.targetName
         requests[targetName]?.cancel()
@@ -52,7 +57,17 @@ public final class AKNetworkProvider<T: AKNetworkTargetType>: MoyaProvider<T> {
                 case 200...299, 300...399:
                     self?.handleSuccess(data: response.data, completion: completion)
                 case 401:
-                    self?.handleAuthorizationError(completion: completion)
+                    self?.handleRefreshToken(completion: { result in
+                        switch result {
+                        case let .success(json):
+                            if let jsons = Auth(json: json) {
+                                AuthStorage.shared.save(model: jsons)
+                            }
+                            self?.send(target: target, completion: completion)
+                        case let .failure(error):
+                            print(error)
+                        }
+                    })
                 default:
                     self?.handleError(data: response.data, completion: completion)
                 }
@@ -81,6 +96,10 @@ public final class AKNetworkProvider<T: AKNetworkTargetType>: MoyaProvider<T> {
 
     private func handleAuthorizationError(completion: @escaping (AKResult) -> Void) {
         completion(.failure(.authorizationError))
+    }
+    
+    private func handleRefreshToken(completion: @escaping (AKResult) -> Void) {
+        sessionManager.updateToken(completion: completion)
     }
 
     private func handleError(data: Data, completion: @escaping (AKResult) -> Void) {

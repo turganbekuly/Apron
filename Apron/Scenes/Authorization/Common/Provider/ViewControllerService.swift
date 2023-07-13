@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 21.02.2023.
 //
 
-import AKNetwork
+
 import Models
 
 protocol ViewControllerServiceProtocol {

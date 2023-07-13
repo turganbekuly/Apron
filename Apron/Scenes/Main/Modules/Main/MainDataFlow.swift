@@ -7,7 +7,7 @@
 //
 
 import Models
-import AKNetwork
+
 
 public enum MainDataFlow {
 
@@ -85,6 +85,25 @@ extension MainDataFlow {
 
     enum SaveRecipeResult {
         case successful(model: RecipeResponse)
+        case failed(error: AKNetworkError)
+    }
+}
+
+extension MainDataFlow {
+    enum GetTrendings {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: GetTrendingsResult
+        }
+        struct ViewModel {
+            var state: MainViewController.State
+        }
+    }
+    
+    enum GetTrendingsResult {
+        case successful(model: [RecipeResponse])
         case failed(error: AKNetworkError)
     }
 }

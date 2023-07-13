@@ -15,7 +15,7 @@ extension RecipeSearchViewController {
 
     // MARK: - State
     public enum State {
-        case initial(SearchFilterRequestBody)
+        case initial(RecipeSearchInitialState)
         case fetchRecipes([RecipeResponse])
         case fetchRecipesFailed(AKNetworkError)
         case saveRecipe(RecipeResponse)
@@ -26,18 +26,7 @@ extension RecipeSearchViewController {
     public func updateState() {
         switch state {
         case let .initial(incomingFilters):
-            filters = incomingFilters
-            guard filters.ifAnyArrayContainsValue() else { return }
-            recipesList.removeAll()
-            self.filtersCount = filters.dayTimeType.count + filters.cuisines.count + filters.eventTypes.count + filters.time.count + filters.dishTypes.count
-            currentPage = 1
-            sections = [
-                .init(section: .filter, rows: [.shimmer])
-            ]
-            mainView.reloadData()
-
-            filters.page = currentPage
-            getRecipes(filters: filters)
+            self.initialState = incomingFilters
         case let .fetchRecipes(model):
             updateRecipiesList(with: model.filter { $0.isHidden == false })
         case let .fetchRecipesFailed(error):

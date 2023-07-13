@@ -6,7 +6,7 @@
 //  Copyright © 2022 Apron. All rights reserved.
 //
 
-import AKNetwork
+
 import Models
 
 protocol RecipePageServiceProtocol {
@@ -24,6 +24,10 @@ protocol RecipePageServiceProtocol {
     )
     func getComments(
         request: RecipePageDataFlow.GetComments.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
+    func getRecommendations(
+        request: RecipePageDataFlow.GetRecommendations.Request,
         completion: @escaping ((AKResult) -> Void)
     )
 }
@@ -72,6 +76,15 @@ final class RecipePageService: RecipePageServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .getCommentsByRecipe(id: request.recipeId)) { result in
+            completion(result)
+        }
+    }
+    
+    func getRecommendations(
+        request: RecipePageDataFlow.GetRecommendations.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getRecommendations(id: request.recipeId)) { result in
             completion(result)
         }
     }

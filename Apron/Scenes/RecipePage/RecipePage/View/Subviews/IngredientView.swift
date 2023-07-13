@@ -98,7 +98,7 @@ final class IngredientView: UIView {
         }
 
         nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(4)
+            $0.centerY.equalTo(imageView.snp.centerY)
             $0.leading.equalTo(imageView.snp.trailing).offset(8)
             $0.trailing.equalTo(measureScopeLabel.snp.leading).offset(-4)
             $0.bottom.equalToSuperview().inset(4)
@@ -139,7 +139,9 @@ final class IngredientView: UIView {
 
 extension Double {
     var clean: String {
-        return self.truncatingRemainder(dividingBy: 1) == 0.0 ?
-        String(format: "%.0f", self) : String(format: "%.1f", self)
+        if self == 0 {
+            return ""
+        }
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
     }
 }

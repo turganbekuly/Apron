@@ -18,17 +18,17 @@ extension StepByStepModeViewController {
 
     // MARK: - State
     public enum State {
-        case initial([RecipeInstruction], String?, StepByStepFinalStepProtocol?)
+        case initial([RecipeInstruction], String?, StepByStepFinalStepProtocol?, [RecipeIngredient])
     }
 
     // MARK: - Methods
     public func updateState() {
         switch state {
-        case let .initial(instructions, finalImage, delegate):
+        case let .initial(instructions, finalImage, delegate, ingredients):
+            self.ingredients = ingredients
             self.instructions = instructions
             self.finalImage = finalImage
             self.delegate = delegate
-            ApronAnalytics.shared.sendAnalyticsEvent(.stepByStepViewed)
         }
     }
 

@@ -34,6 +34,11 @@ final class ShoppingItemCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.checkbox.setCheckState(.unchecked, animated: false)
+    }
 
     // MARK: - Views factory
 
@@ -87,7 +92,7 @@ final class ShoppingItemCell: UITableViewCell {
         checkbox.stateChangeAnimation = .fill
         checkbox.tintColor = APRAssets.mainAppColor.color
         checkbox.secondaryTintColor = .gray
-        checkbox.secondaryCheckmarkTintColor = .black
+        checkbox.secondaryCheckmarkTintColor = .white
         checkbox.addTarget(self, action: #selector(checkboxValueChanged), for: .valueChanged)
         return checkbox
     }()
@@ -157,15 +162,29 @@ final class ShoppingItemCell: UITableViewCell {
 
         switch checkbox.checkState {
         case .checked:
-            checkbox.setCheckState(.checked, animated: true)
-            alpha = 0.5
-            HapticTouch.generateSuccess()
-            delegate?.onCheckboxTapped(with: cartItem, value: .checked)
+            UIView.animate(
+                withDuration: 1,
+                animations: {
+                    self.checkbox.setCheckState(.checked, animated: false)
+                    self.containerView.alpha = 0.35
+                },
+                completion: { _ in
+                    HapticTouch.generateSuccess()
+                    self.delegate?.onCheckboxTapped(with: cartItem, value: .checked)
+                }
+            )
         case .unchecked:
-            checkbox.setCheckState(.unchecked, animated: true)
-            alpha = 1
-            HapticTouch.generateError()
-            delegate?.onCheckboxTapped(with: cartItem, value: .unchecked)
+            UIView.animate(
+                withDuration: 1,
+                animations: {
+                    self.checkbox.setCheckState(.unchecked, animated: false)
+                    self.containerView.alpha = 1
+                },
+                completion: { _ in
+                    HapticTouch.generateError()
+                    self.delegate?.onCheckboxTapped(with: cartItem, value: .unchecked)
+                }
+            )
         default:
             break
         }
@@ -181,9 +200,14 @@ final class ShoppingItemCell: UITableViewCell {
         )
         sourceRecipsButton.text = item.recipeName?.first ?? ""
         ingredientNameLabel.text = item.productName
-        measurementLabel.text = "\(item.amount ?? 0) \(item.measurement ?? "")"
+        
+        measurementLabel.text = "\(item.amount?.clean ?? "") \(item.measurement ?? "")"
         checkbox.setCheckState(item.bought ? .checked : .unchecked, animated: true)
-        alpha = item.bought ? 0.5 : 1
+        containerView.alpha = item.bought ? 0.5 : 1
 
     }
+}
+
+private extension FloatingPoint {
+    var isWholeNumber: Bool { isNormal ? self == rounded() : isZero }
 }

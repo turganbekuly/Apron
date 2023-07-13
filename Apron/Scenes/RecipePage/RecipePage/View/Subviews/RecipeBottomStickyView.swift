@@ -12,7 +12,6 @@ import Storages
 
 protocol BottomStickyViewDelegate: AnyObject {
     func addButtonTapped()
-    func saveButtonTapped()
     func textFieldTapped()
     func navigateToStepByStepMode()
 }
@@ -21,11 +20,6 @@ final class RecipeBottomStickyView: View {
     // MARK: - Properties
 
     weak var delegate: BottomStickyViewDelegate?
-    private var isSaved = false {
-        didSet {
-            if isSaved { configureSavedButton() }
-        }
-    }
 
     // MARK: - Views factory
 
@@ -45,15 +39,16 @@ final class RecipeBottomStickyView: View {
         return button
     }()
 
-    private lazy var saveButton: NavigationButton = {
+    private lazy var cookModeButton: NavigationButton = {
         let button = NavigationButton()
         button.backgroundType = .greenBackground
-        button.setTitle(L10n.Authorization.Username.buttonTitle, for: .normal)
-        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(cookModeButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 19
         button.clipsToBounds = true
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-        button.setImage(APRAssets.recipeFavoriteIcon.image, for: .normal)
+        button.setTitle(L10n.Recipe.Cook.StepByStep.title, for: .normal)
+        button.setImage(APRAssets.recipePlayIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
         return button
     }()
 
@@ -66,7 +61,7 @@ final class RecipeBottomStickyView: View {
         addSubviews(
             textField,
             addButton,
-            saveButton
+            cookModeButton
         )
     }
 
@@ -85,7 +80,7 @@ final class RecipeBottomStickyView: View {
             $0.trailing.equalTo(snp.centerX).offset(-5)
         }
 
-        saveButton.snp.makeConstraints {
+        cookModeButton.snp.makeConstraints {
             $0.top.equalTo(textField.snp.bottom).offset(16)
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(38)
@@ -102,38 +97,13 @@ final class RecipeBottomStickyView: View {
     }
 
     @objc
-    private func saveButtonTapped() {
-        guard !isSaved else {
-            delegate?.navigateToStepByStepMode()
-            return
-        }
+    private func cookModeButtonTapped() {
         HapticTouch.generateSuccess()
-        delegate?.saveButtonTapped()
+        delegate?.navigateToStepByStepMode()
     }
 
     @objc
     private func commentTFTapped() {
         delegate?.textFieldTapped()
-    }
-
-    // MARK: - Private methods
-
-    private func configureSavedButton() {
-        guard !isSaved else {
-            saveButton.setTitle(L10n.Recipe.Cook.StepByStep.title, for: .normal)
-            saveButton.setImage(APRAssets.recipePlayIcon.image.withRenderingMode(.alwaysTemplate), for: .normal)
-            saveButton.tintColor = .white
-            saveButton.setImage(nil, for: .highlighted)
-            return
-        }
-        // MARK: - TODO SAVED/UNSAVED FLOW
-        saveButton.setTitle(L10n.Authorization.Username.buttonTitle, for: .normal)
-        saveButton.setImage(APRAssets.favoriteIcon24.image.withTintColor(.white), for: .normal)
-    }
-
-    // MARK: - Public methods
-
-    func configure(isSaved: Bool) {
-        self.isSaved = isSaved
     }
 }

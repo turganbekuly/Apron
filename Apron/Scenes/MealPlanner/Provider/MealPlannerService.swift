@@ -6,7 +6,6 @@
 //  Copyright © 2023 Apron. All rights reserved.
 //
 
-import AKNetwork
 import Models
 
 protocol MealPlannerServiceProtocol {
@@ -38,7 +37,7 @@ final class MealPlannerService: MealPlannerServiceProtocol {
 
     func getMealPlannerRecipes(
         request: MealPlannerDataFlow.GetMealPlannerRecipes.Request,
-        completion: @escaping ((AKNetwork.AKResult) -> Void)
+        completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(
             target: .getRecipes(startDate: request.startDate, endDate: request.endDate)
@@ -49,7 +48,7 @@ final class MealPlannerService: MealPlannerServiceProtocol {
 
     func saveMealPlannerRecipe(
         request: MealPlannerDataFlow.MealPlannerRecipeOperation.Request,
-        completion: @escaping ((AKNetwork.AKResult) -> Void)
+        completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .saveRecipe(body: request.body)) { result in
             completion(result)
@@ -58,7 +57,7 @@ final class MealPlannerService: MealPlannerServiceProtocol {
 
     func removeMealPlannerRecipe(
         request: MealPlannerDataFlow.MealPlannerRecipeOperation.Request,
-        completion: @escaping ((AKNetwork.AKResult) -> Void)
+        completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .deleteRecipe(body: request.body)) { result in
             completion(result)

@@ -32,6 +32,15 @@
 "Common.Measure.Minutes" = "минут";
 "Common.Cancel" = "Отмена";
 "Common.Close" = "Закрыть";
+"Common.Preview" = "Предпросмотр";
+"Common.Add.Title" = "Добавить";
+"Common.AddReview.Title" = "Добавить отзыв";
+"Common.Apply.Title" = "Применить";
+"Common.ResetAll.Title" = "Сбросить все";
+"Common.Filters" = "Фильтры";
+"Common.Delete.Title" = "Удалить";
+"Common.СancelTwo" = "Отменить";
+"Common.PlusAdd.Title" = "+ ДОБАВИТЬ";
 
 // MARK: - Photo
 
@@ -43,6 +52,7 @@
 "Photo.UploadPhoto.Title" = "Загрузить фото";
 "Photo.UploadPhoto.Advice.Format" = "Пожалуйста, используйте только свои уникальные фотографии. Формат JPG, JPEG, PNG. Размер до 20 мб";
 "Photo.UploadPhoto.Advice.Connection" = "Убедитесь, что вы подключены к 4G (LTE) или Wi-Fi. Через 3G фото может не загрузиться";
+"Photo.UploadPhoto.Error.Title" = "Не удалось загрузить фото, попробуйте еще раз";
 
 // MARK: - Alert Messages
 
@@ -69,6 +79,7 @@
 "Authorization.Username.TFTitle" = "Имя пользователя";
 "Authorization.SignIn.Title" = "С возвращением!";
 "Authorization.SignUp.Title" = "Регистрация в Apron";
+"Authorization.SignUp.Error.Title" = "Не удалось зарегистрироваться. Пожалуйста, попробуйте позднее!";
 "Authorization.Skip.Title" = "Вы действительно хотите пропустить?";
 "Authorization.Skip.Message" = "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.";
 "Authorization.Username.Title" = "Привет!";
@@ -99,6 +110,7 @@
 "Food.CategoryType.Salads" = "Салаты";
 "Food.CategoryType.Snacks" = "Закуски";
 "Food.CategoryType.Deserts" = "Десерты";
+"Food.CategoryType.PP" = "ПП";
 
 // MARK: - Recipe
 
@@ -118,6 +130,7 @@
 "Recipe.Calories.Carbs" = "УГЛЕВОДЫ";
 "Recipe.StepByStep.Timer.Title" = "Таймер";
 "Recipe.StepByStep.Timer.Step" = "Шаг №";
+"Recipe.Rating.RatingCounter.Title" = "отзывов";
 
 // MARK: - Recipe Creation
 
@@ -183,6 +196,7 @@
 //MARK: - Saved Recipes
 "SavedRecipes.SavedRecipes.Title" = "Сохраненные рецепты";
 "SavedRecipes.AddFavoriteRecipes.Title" = "Добавляйте свои любимые рецепты,\n чтобы быстрее их найти";
+"SavedRecipes.AlreadyAdded.Title" = "Вы уже добавили этот рецепт в избранное";
 
 //MARK: - Search
 "Search.Cancel.Title" = "Cancel";
@@ -200,6 +214,7 @@
 "FoodCategories.foodPrepProvision.Title" = "Заготовки";
 "FoodCategories.drinks.Title" = "Напитки";
 "FoodCategories.sideDishes.Title" = "Гарниры";
+"FoodCategories.pp.Title" = "ПП";
 
 //MARK: - Recipe Search
 "RecipeSearch.RecipeSearch.Title" = "Поиск по рецептам";
@@ -279,5 +294,3 @@
 "MealPlannerWeekDays.Friday.Title" = "Пятница";
 "MealPlannerWeekDays.Saturday.Title" = "Суббота";
 "MealPlannerWeekDays.Sunday.Title" = "Воскресенье";
-
-

@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 05.06.2022.
 //
 
-import AKNetwork
+
 import Models
 
 protocol SplashScreenProviderProtocol {

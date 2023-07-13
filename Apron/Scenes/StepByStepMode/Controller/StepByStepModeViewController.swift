@@ -21,10 +21,12 @@ final class StepByStepModeViewController: ViewController {
 
     struct Section {
         enum Section {
+            case ingredients
             case instructions
             case review
         }
         enum Row {
+            case ingredient([RecipeIngredient])
             case instruction(RecipeInstruction)
             case review
         }
@@ -35,10 +37,12 @@ final class StepByStepModeViewController: ViewController {
 
     struct StepperSection {
         enum Section {
+            case ingredients
             case steps
             case review
         }
         enum Row {
+            case ingredient
             case step
             case review
         }
@@ -62,15 +66,19 @@ final class StepByStepModeViewController: ViewController {
     var instructions: [RecipeInstruction] = [] {
         didSet {
             sections = [
+                .init(section: .ingredients, rows: [.ingredient(ingredients)]),
                 .init(section: .instructions, rows: instructions.compactMap { .instruction($0) }),
                 .init(section: .review, rows: [.review])
             ]
             stepperSections = [
+                .init(section: .ingredients, rows: [.ingredient]),
                 .init(section: .steps, rows: Array(repeating: .step, count: instructions.count)),
                 .init(section: .review, rows: [.review])
             ]
         }
     }
+    
+    var ingredients: [RecipeIngredient] = []
 
     weak var delegate: StepByStepFinalStepProtocol?
 
@@ -143,6 +151,11 @@ final class StepByStepModeViewController: ViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollViewDidEndDecelerating(mainView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ApronAnalytics.shared.sendAnalyticsEvent(.stepByStepViewed(progressBar.progress))
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

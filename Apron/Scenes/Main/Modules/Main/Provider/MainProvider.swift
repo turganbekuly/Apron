@@ -5,7 +5,7 @@
 //  Created by Akarys Turganbekuly on 10.05.2022.
 //
 
-import AKNetwork
+
 import Models
 
 protocol MainProviderProtocol {
@@ -27,6 +27,10 @@ protocol MainProviderProtocol {
     func saveRecipe(
         request: MainDataFlow.SaveRecipe.Request,
         completion: @escaping ((MainDataFlow.SaveRecipeResult) -> Void)
+    )
+    func getTrendings(
+        request: MainDataFlow.GetTrendings.Request,
+        completion: @escaping ((MainDataFlow.GetTrendingsResult) -> Void )
     )
 }
 
@@ -106,6 +110,24 @@ final class MainProvider: MainProviderProtocol {
             case let .success(json):
                 if let jsons = RecipeResponse(json: json) {
                     completion(.successful(model: jsons))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
+    
+    func getTrendings(
+        request: MainDataFlow.GetTrendings.Request,
+        completion: @escaping ((MainDataFlow.GetTrendingsResult) -> Void )
+    ) {
+        service.getTrendings(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.successful(model: jsons.compactMap { RecipeResponse(json: $0) }))
                 } else {
                     completion(.failed(error: .invalidData))
                 }
