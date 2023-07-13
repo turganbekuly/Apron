@@ -46,6 +46,7 @@ extension AuthSignInViewController {
                 UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
         case .loginFailed:
+            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationFailed("signin"))
             AuthStorage.shared.clear()
             hideLoader()
             show(type: .error(L10n.Alert.errorMessage))

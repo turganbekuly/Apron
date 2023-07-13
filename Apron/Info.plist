@@ -75,13 +75,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Разрешите приложению доступ к камере телефона для создания снимков.</string>
+	<string>Разрешите приложению доступ к камере телефона для создания снимков профиля и рецепта.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Разрешите приложению использовать Face ID/Touch ID для быстрой и удобной аутентификации.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Разрешите приложению доступ к геолокации.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Разрешите приложению доступ к галерее для загрузки фото и видео.</string>
+	<string>Разрешите приложению доступ к галерее для загрузки фото профиля и рецепта.</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>Разрешите приложению доступ для предоставления вам персонализированных рецептов</string>
 	<key>OneSignal_suppress_launch_urls</key>

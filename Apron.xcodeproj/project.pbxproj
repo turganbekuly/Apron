@@ -3195,9 +3195,9 @@
 		6DF960172322D7D6A0BC49FD /* RecipeSearch */ = {
 			isa = PBXGroup;
 			children = (
+				A852D6BCAD8A8C07720AED19 /* Controller */,
 				6D2817452947019600E62A20 /* Common */,
 				6DB2006F28F14D0C000094AF /* ViewModel */,
-				A852D6BCAD8A8C07720AED19 /* Controller */,
 				C1FB73BCCB5A06F6B43A383D /* Provider */,
 				A722F5740267935CD83DE558 /* View */,
 				D28249BBC593370D48110841 /* RecipeSearchBuilder.swift */,
@@ -5094,7 +5094,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.8;
+				MARKETING_VERSION = 3.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5134,7 +5134,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.8;
+				MARKETING_VERSION = 3.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

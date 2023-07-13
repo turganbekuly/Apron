@@ -73,6 +73,7 @@ extension MealPlannerViewController: MealPlannerRecipeSelected {
         guard let day = addingDay else { return }
         let recipeDate = CalendarHelper().weekDayFromType(day, start: startDate, end: endDate)
         isLoadingButton(true)
+        ApronAnalytics.shared.sendAnalyticsEvent(.mealPlannerMealAdded(recipe.recipeName ?? ""))
         saveRecipe(recipeId: recipe.id, date: dateConverter(date: recipeDate))
     }
 }

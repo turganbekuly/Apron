@@ -26,6 +26,11 @@ enum RecipeCreationSourceTypeModel: String, Codable {
     case recipePage
 }
 
+enum RecipeCategoriesType: String, Codable {
+    case main
+    case search
+}
+
 enum CommunityCreationSourceTypeModel: String, Codable {
     case publicButton = "public_button"
     case privateButton = "private_button"
@@ -36,6 +41,7 @@ enum CommunityCreationSourceTypeModel: String, Codable {
 enum AnalyticsEvents {
     case homePageViewed(CustomerStatus)
     case authorization(AuthorizationModel)
+    case authorizationFailed(String)
     case communitiesListPageViewed(CommunitiesListPageViewedModel)
     case communityPageViewed(CommunityPageViewedModel)
     case joinedCommunity(JoinedCommunityModel)
@@ -54,6 +60,11 @@ enum AnalyticsEvents {
     case stepByStepViewed(CGFloat)
     case filtersApplied(SearchFilterRequestBody)
     case adBannerTapped(AdBannerModel)
+    case authorizationSkipped(Bool)
+    case authorizationPageViewed
+    case categoriesTapped(String, RecipeCategoriesType)
+    case mealPlannerPageViewed
+    case mealPlannerMealAdded(String)
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -63,6 +74,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "home_page_viewed"
         case .authorization:
             return "authorization"
+        case .authorizationFailed:
+            return "authorization_failed"
         case .communitiesListPageViewed:
             return "commuties_list_page_viewed"
         case .communityPageViewed:
@@ -99,6 +112,17 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "search_filters_applied"
         case .adBannerTapped:
             return "ad_banner_tapped"
+        case .authorizationSkipped:
+            return "authorization_skipped"
+        case .authorizationPageViewed:
+            return "authorization_page_viewed"
+        case .categoriesTapped:
+            return "recipe_categories_tapped"
+        case .mealPlannerPageViewed:
+            return "meal_planner_page_viwed"
+        case .mealPlannerMealAdded:
+            return "meal_planner_meal_added"
+            
         }
     }
 
@@ -108,6 +132,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return ["customer_status": model.rawValue]
         case let .authorization(model):
             return model.toJSON()
+        case let .authorizationFailed(error):
+            return ["result": error]
         case let .communitiesListPageViewed(model):
             return model.toJSON()
         case let .communityPageViewed(model):
@@ -144,6 +170,16 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return model.toJSON()
         case let .adBannerTapped(model):
             return model.toJSON()
+        case let .authorizationSkipped(skipped):
+            return ["is_skipped": skipped]
+        case .authorizationPageViewed:
+            return [:]
+        case let .categoriesTapped(categoryName, sourceType):
+            return ["category_name": categoryName, "source_type": sourceType.rawValue]
+        case .mealPlannerPageViewed:
+            return [:]
+        case let .mealPlannerMealAdded(meal):
+            return ["recipe_name": meal]
         }
     }
 }

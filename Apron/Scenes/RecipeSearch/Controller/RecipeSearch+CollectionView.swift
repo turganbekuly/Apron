@@ -63,6 +63,7 @@ extension RecipeSearchViewController: UICollectionViewDelegateFlowLayout {
                 break
             }
         case let .trending(type):
+            ApronAnalytics.shared.sendAnalyticsEvent(.categoriesTapped(type.title, .search))
             select(block: type)
         default:
             break

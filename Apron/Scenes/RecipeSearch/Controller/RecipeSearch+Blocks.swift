@@ -43,6 +43,5 @@ extension RecipeSearchViewController {
         mainView.reloadData()
 
         getRecipes(filters: filters)
-
     }
 }

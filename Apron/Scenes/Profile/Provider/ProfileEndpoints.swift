@@ -25,8 +25,8 @@ extension ProfileEndpoint: AKNetworkTargetType {
         switch self {
         case .getProfile:
             return "users/myProfile"
-        case let .deleteprofile(id):
-            return "users/\(id)"
+        case let .deleteprofile:
+            return "users"
         }
     }
 

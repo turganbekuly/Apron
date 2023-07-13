@@ -31,6 +31,7 @@ extension WhatToCookCell: UICollectionViewDelegateFlowLayout {
         let row = categoriesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case let .category(category):
+            ApronAnalytics.shared.sendAnalyticsEvent(.categoriesTapped(category.title, .main))
             delegate?.navigateToCategoryRecipes(with: category)
         }
     }
