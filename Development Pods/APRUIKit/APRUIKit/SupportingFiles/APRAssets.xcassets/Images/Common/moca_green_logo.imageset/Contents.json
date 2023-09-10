@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "moca_green_logo.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

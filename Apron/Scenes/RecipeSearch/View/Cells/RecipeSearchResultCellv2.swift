@@ -90,7 +90,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
         let view = GradientView()
         view.isUserInteractionEnabled = true
         view.topColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.01)
-        view.bottomColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.7)
+        view.bottomColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.9)
         view.startPointX = 0.5
         view.endPointX = 0.5
         view.startPointY = 0
@@ -123,7 +123,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
 
     private lazy var recipeNameLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.medium14
+        label.font = TypographyFonts.bold14
         label.textColor = .white
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
@@ -132,7 +132,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
 
     private lazy var recipeIngredientsCountLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.medium12
+        label.font = TypographyFonts.bold12
         label.textColor = .white
         label.numberOfLines = 1
         return label
@@ -173,7 +173,7 @@ final class RecipeSearchResultCellv2: UICollectionViewCell {
 
         bottomOverlayView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalToSuperview()
-            $0.height.equalTo(55)
+            $0.height.equalTo(100)
         }
 
         ratingImageView.snp.makeConstraints {

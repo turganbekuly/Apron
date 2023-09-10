@@ -14,14 +14,14 @@ extension CommunityPageViewController {
             case topView
         }
         enum Row: Equatable {
-            case recipiesView(RecipeResponse)
-            case emptyView
+            case result(RecipeResponse)
+            case shimmer
 
             static func == (lhs: Row, rhs: Row) -> Bool {
                 switch (lhs, rhs) {
-                case (.recipiesView, .recipiesView):
+                case (.result, .result):
                     return true
-                case (.emptyView, .emptyView):
+                case (.shimmer, .shimmer):
                     return true
                 default:
                     return false

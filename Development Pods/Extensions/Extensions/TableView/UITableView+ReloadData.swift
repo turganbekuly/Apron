@@ -15,3 +15,12 @@ extension UITableView {
         self.setContentOffset(contentOffset, animated: false)
     }
 }
+
+extension UICollectionView {
+    public func reloadCollectionViewWithoutAnimation() {
+        let contentOffset = self.contentOffset
+        self.reloadData()
+        self.layoutIfNeeded()
+        self.setContentOffset(contentOffset, animated: false)
+    }
+}

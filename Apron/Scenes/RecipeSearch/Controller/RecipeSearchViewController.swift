@@ -212,7 +212,7 @@ final class RecipeSearchViewController: ViewController {
         }
     }
     
-    private func handleIncomingFilters() {
+    func handleIncomingFilters() {
         guard filters.ifAnyArrayContainsValue() || filters.query.isEmpty == false else { return }
         recipesList.removeAll()
         self.filtersCount = filters.dayTimeType.count + filters.cuisines.count + filters.eventTypes.count + filters.time.count + filters.dishTypes.count

@@ -13,6 +13,7 @@ import AlertMessages
 import Models
 import RemoteConfig
 import OneSignal
+import SnapKit
 
 protocol ShoppingListDisplayLogic: AnyObject {
     func displayCartItems(viewModel: ShoppingListDataFlow.GetCartItems.ViewModel)
@@ -20,21 +21,20 @@ protocol ShoppingListDisplayLogic: AnyObject {
 }
 
 final class ShoppingListViewController: ViewController {
-
+    
     struct Section {
         enum Section {
-        case ingredients
-        case checkedIngredients
+            case ingredients
         }
-        enum Row {
-        case ingredient(CartItem)
-        case empty
+        enum Row: Equatable {
+            case ingredient(CartItem)
+            case empty
         }
-
+        
         let section: Section
         let rows: [Row]
     }
-
+    
     // MARK: - Properties
     let interactor: ShoppingListBusinessLogic
     var sections: [Section] = []
@@ -43,11 +43,11 @@ final class ShoppingListViewController: ViewController {
             updateState()
         }
     }
-
+    
     var initialState: ShoppingListEntryPoint?
-
+    
     var cartManager = CartManager.shared
-
+    
     var cartItems: [CartItem] = [] {
         didSet {
             guard !cartItems.isEmpty else {
@@ -55,63 +55,44 @@ final class ShoppingListViewController: ViewController {
                 mainView.reloadTableViewWithoutAnimation()
                 return
             }
-            var sections = [Section]()
-            if (cartItems.firstIndex(where: { $0.bought == false }) != nil) {
-                sections.append(
-                    .init(
-                        section: .ingredients, rows: cartItems
-                            .filter { $0.bought == false }
-                            .compactMap { .ingredient($0) }
-                    )
-                )
-            }
-
-            if (cartItems.firstIndex(where: { $0.bought == true }) != nil) {
-                sections.append(
-                    .init(
-                        section: .checkedIngredients, rows: cartItems
-                            .filter { $0.bought == true }
-                            .compactMap { .ingredient($0) }
-                    )
-                )
-            }
-            self.sections = sections
-            UIView.transition(
-                with: mainView,
-                duration: 0.5,
-                options: .transitionCrossDissolve,
-                animations: {self.mainView.reloadTableViewWithoutAnimation()},
-                completion: nil
-            )
+            
+            sections = [
+                .init(section: .ingredients, rows: cartItems.compactMap { .ingredient($0) })
+            ]
+            
+            mainView.reloadData()
         }
     }
-
+    
+    var orderBannerViewHeightConstarints: Constraint?
     // MARK: - Views
-
+    
     lazy var mainView: ShoppingListView = {
         let view = ShoppingListView()
         view.dataSource = self
         view.delegate = self
         return view
     }()
-
+    
+    lazy var canOrderBannerView = CanOrderBannerView()
+    
     private lazy var moreButton = NavigationIconFillButton()
-
+    
     private lazy var backButton = NavigationBackButton()
-
+    
     private lazy var avatarView = AvatarView()
-
+    
     private lazy var orderButton: BlackOpButton = {
         let button = BlackOpButton()
         button.backgroundType = .blackBackground
-//        button.setTitle(L10n.ShoppingList.Order.title, for: .normal)
-        button.setTitle(L10n.CreateActionFlow.ShareIngredients.title, for: .normal)
+        button.setTitle(L10n.ShoppingList.Order.title, for: .normal)
+        //        button.setTitle(L10n.CreateActionFlow.ShareIngredients.title, for: .normal)
         button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 23
         button.layer.masksToBounds = true
         return button
     }()
-
+    
     private lazy var addProductButton: BlackOpButton = {
         let button = BlackOpButton()
         button.backgroundType = .whiteBackground
@@ -121,7 +102,7 @@ final class ShoppingListViewController: ViewController {
         button.layer.masksToBounds = true
         return button
     }()
-
+    
     private lazy var hStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [addProductButton, orderButton])
         stackView.axis = .horizontal
@@ -129,58 +110,62 @@ final class ShoppingListViewController: ViewController {
         stackView.distribution = .fillEqually
         return stackView
     }()
-
+    
     // MARK: - Init
     init(interactor: ShoppingListBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
-
+        
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         return nil
     }
-
+    
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-
+        
         configureViews()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         state = { state }()
-
+        
         ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListViewed)
+        
+        cartManager.subscribe(self) {
+            //
+        }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         configureNavigation()
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         self.tabBarController?.tabBar.isHidden = false
     }
-
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-
+        
         configureColors()
     }
-
+    
     // MARK: - Methods
     private func configureNavigation() {
         backButton.configure(with: L10n.ShoppingList.ListOfProducts.title)
         backButton.onBackButtonTapped = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popViewController(animated: false)
         }
         avatarView.onTap = { [weak self] in
             guard let self = self else { return }
@@ -206,32 +191,38 @@ final class ShoppingListViewController: ViewController {
         navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
     }
-
+    
     private func configureViews() {
-        [mainView, hStackView].forEach { view.addSubview($0) }
-
+        [mainView, hStackView, canOrderBannerView].forEach { view.addSubview($0) }
+        canOrderBannerView.delegate = self
         configureColors()
         makeConstraints()
     }
-
+    
     private func makeConstraints() {
+        canOrderBannerView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            orderBannerViewHeightConstarints = $0.height.equalTo(200).constraint
+        }
+        
         hStackView.snp.makeConstraints {
             $0.height.equalTo(46)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
-
+        
         mainView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(canOrderBannerView.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(orderButton.snp.top).offset(-16)
         }
     }
-
+    
     private func configureColors() {
         view.backgroundColor = APRAssets.secondary.color
     }
-
+    
     private func navigateToCreateActionFlow(with state: CreateActionInitialState) {
         let vc = CreateActionFlowBuilder.init(state: .initial(state, self)).build()
         DispatchQueue.main.async {
@@ -242,26 +233,26 @@ final class ShoppingListViewController: ViewController {
     deinit {
         NSLog("deinit \(self)")
     }
-
+    
     // MARK: - User actions
-
+    
     @objc
     private func orderButtonTapped() {
-//        let link = RemoteConfigManager.shared.remoteConfig.orderFromStoreLink
-//        guard !link.isEmpty else { return }
-//        let webViewController = WebViewHandler(urlString: link)
-        guard !cartItems.isEmpty else {
+        //        let link = RemoteConfigManager.shared.remoteConfig.orderFromStoreLink
+        //        guard !link.isEmpty else { return }
+        //        let webViewController = WebViewHandler(urlString: link)
+        fetchCartItems()
+        let items = cartManager.fetchItems()
+        guard !items.isEmpty else {
             show(type: .error(L10n.ShoppingList.AddProductsToBuyList.title))
             return
         }
-        shareIngredients(cartItems: self.cartItems)
-//        ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListCheckoutTapped(cartItems.map { $0.productName }))
-        ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListShareTapped(cartItems.map { $0.productName }))
+        orderProducts(cartItems: items.filter { $0.bought })
+        ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListCheckoutTapped(items.map { $0.productName }))
         OneSignal.sendTag("shopping_list_checkout_tapped", value: "order_button_tapped")
         OneSignal.addTrigger("shopping_list_checkout_tapped", withValue: "order_button_tapped")
-//        presentPanModal(webViewController)
     }
-
+    
     @objc
     private func addProductButtonTapped() {
         let vc = IngredientSelectionBuilder(state: .initial(self, .fullItem)).build()
@@ -269,9 +260,23 @@ final class ShoppingListViewController: ViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-
+    
     // MARK: - Private functions
-
+    
+    func orderProducts(cartItems: [CartItem]) {
+        let items = L10n.ShoppingList.Order.link
+        var ingredientsText = "Добрый день! Хочу заказать вот эти продукты ...\n"
+        for item in cartItems {
+            ingredientsText.append("\(item.productName) - \(item.amount?.clean ?? "") \(item.measurement ?? "")")
+            ingredientsText.append("\n")
+        }
+        
+        if let url = URL(string: items + (ingredientsText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")),
+           UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
     func shareIngredients(cartItems: [CartItem]) {
         var items = ""
         for item in cartItems {
@@ -282,13 +287,13 @@ final class ShoppingListViewController: ViewController {
             activityItems: [items],
             applicationActivities: nil
         )
-
+        
         if let popoover = viewController.popoverPresentationController {
             popoover.sourceView = view
             popoover.sourceRect = view.bounds
             popoover.permittedArrowDirections = []
         }
-
+        
         self.navigationController?.present(viewController, animated: true, completion: nil)
     }
 }
@@ -318,6 +323,11 @@ extension ShoppingListViewController: IngredientSelectedProtocol {
             recipeName: L10n.ShoppingList.SelfProduct.title,
             bought: false
         )
-        fetchCartItems()
+        
+        let cartItems = cartManager.fetchItems()
+        sections = [
+            .init(section: .ingredients, rows: cartItems.compactMap { .ingredient($0) })
+        ]
+        mainView.reloadData()
     }
 }

@@ -116,3 +116,30 @@ struct PrimaryButtonGrayStyle: ButtonStyleProtocol {
         )
     }
 }
+
+struct PrimaryRectangleButtonWhiteStyle: ButtonStyleProtocol {
+    let button: NavigationButton
+
+    func style() -> ButtonStyle {
+        let borderColor = APRAssets.primaryTextMain.color.cgColor
+        let borderDisabledColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.15).cgColor
+        let borderHighlightedColor = APRAssets.primaryTextMain.color.withAlphaComponent(0.8).cgColor
+        return .init(
+            textColor: .init(normalColor: .black),
+            font: TypographyFonts.regular14,
+            background: .init(
+                normalColor: .white,
+                disabledColor: .white.withAlphaComponent(0.15),
+                highlightedColor: .white.withAlphaComponent(0.8)
+            ),
+            image: nil,
+            cornerRadius: .exact(15),
+            borders: .init(
+                width: 1,
+                normalColor: borderColor,
+                disabledColor: borderDisabledColor,
+                highlightedColor: borderHighlightedColor
+            )
+        )
+    }
+}

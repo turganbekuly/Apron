@@ -19,6 +19,8 @@ protocol MainDisplayLogic: AnyObject {
     func displayCookNowRecipes(viewModel: MainDataFlow.GetCookNowRecipes.ViewModel)
     func displayEventRecipes(viewModel: MainDataFlow.GetEventRecipes.ViewModel)
     func displaySavedRecipe(viewModel: MainDataFlow.SaveRecipe.ViewModel)
+    func displayCommunityById(viewModel: MainDataFlow.GetCommunity.ViewModel)
+    func displayProductsByIds(viewModel: MainDataFlow.GetProductsByIDs.ViewModel)
 }
 
 final class MainViewController: ViewController {
@@ -46,6 +48,18 @@ final class MainViewController: ViewController {
             configureCommunities()
         }
     }
+    
+    var communities: [CommunityResponse] = [] {
+        didSet {
+            configureMainPageCells()
+        }
+    }
+    
+    var products: [Product] = [] {
+        didSet {
+            configureMainPageCells()
+        }
+    }
 
     var eventType = 0
     var adBanners: [AdBannerObject] = []
@@ -71,6 +85,7 @@ final class MainViewController: ViewController {
             configureMainPageCells()
         }
     }
+    
 
     // MARK: - Views
 
@@ -78,7 +93,7 @@ final class MainViewController: ViewController {
         let view = MainView()
         view.dataSource = self
         view.delegate = self
-        view.refreshControl = refreshControl
+//        view.refreshControl = refreshControl
         return view
     }()
 
@@ -196,31 +211,31 @@ final class MainViewController: ViewController {
     // MARK: - Methods
 
     private func configureCommunities() {
-        var sections = [Section]()
-        if !dynamicCommunities.isEmpty {
-            _ = dynamicCommunities.compactMap { com in
-                if let communities = com.communities, !communities.isEmpty {
-                    sections.append(
-                        .init(
-                            section: .communities,
-                            rows: [
-                                .communities(
-                                    com.name ?? "",
-                                    com.communities ?? [],
-                                    com.id
-                                )
-                            ]
-                        )
-                    )
-                }
-            }
-        }
-
-        sections.append(
-            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
-        )
-        self.sections = sections
-        mainView.reloadTableViewWithoutAnimation()
+//        var sections = [Section]()
+//        if !dynamicCommunities.isEmpty {
+//            _ = dynamicCommunities.compactMap { com in
+//                if let communities = com.communities, !communities.isEmpty {
+//                    sections.append(
+//                        .init(
+//                            section: .communities,
+//                            rows: [
+//                                .communities(
+//                                    com.name ?? "",
+//                                    com.communities ?? [],
+//                                    com.id
+//                                )
+//                            ]
+//                        )
+//                    )
+//                }
+//            }
+//        }
+//
+//        sections.append(
+//            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
+//        )
+//        self.sections = sections
+//        mainView.reloadTableViewWithoutAnimation()
     }
 
     func defineRecipeDayTime() -> SuggestedDayTimeType {
@@ -248,6 +263,26 @@ final class MainViewController: ViewController {
         var sections = [Section]()
         if !adBanners.isEmpty {
             sections.append(.init(section: .adBanner, rows: [.adBanner(adBanners)]))
+        }
+        
+        if !products.isEmpty {
+            sections.append(
+                .init(
+                    section: .searchByIngredients,
+                    rows: [.searchByIngredients("Что у вас в холодильнике?", "Выберите продукты и мы подберем для вас рецепты" , products)]
+                )
+            )
+        }
+        
+        if !communities.isEmpty {
+            sections.append(
+                .init(
+                    section: .communities,
+                    rows: [
+                        .communities(L10n.Main.Communities.title, communities)
+                    ]
+                )
+            )
         }
 
         switch eventRecipesState {

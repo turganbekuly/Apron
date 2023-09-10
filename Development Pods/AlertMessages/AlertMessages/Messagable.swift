@@ -43,7 +43,6 @@ extension Messagable where Self: UIViewController {
         let messageView = MessageView(type: type)
         messageView.didTappedFirstButton = { [weak self] in
             updateButton?()
-            self?.hideLoader()
         }
 
         configure(messageView: messageView, with: type)

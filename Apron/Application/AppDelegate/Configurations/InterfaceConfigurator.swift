@@ -30,6 +30,7 @@ final class InterfaceConfigurator: ApplicationConfiguratorProtocol {
 
         let vc = SplashScreenBuilder(state: .initial).build()
 //        let vc = TasteOnboardingBuilder(state: .initial(.vegan, TasteOnboardingModel())).build()
+//        let vc = SearchByIngredientsBuilder(state: .initial).build()
         let navVC = UINavigationController(rootViewController: vc)
         window.rootViewController = navVC
         window.makeKeyAndVisible()

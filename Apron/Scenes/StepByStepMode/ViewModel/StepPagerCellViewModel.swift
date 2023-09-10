@@ -28,6 +28,7 @@ struct StepPagerCellViewModel: StepPagerCellViewModelProtocol {
     var title: NSAttributedString? {
         Typography.semibold14(
             text: name?.uppercased() ?? "",
+            color: .white,
             textAlignment: .center
         ).styled
     }

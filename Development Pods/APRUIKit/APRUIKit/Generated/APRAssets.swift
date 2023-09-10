@@ -78,6 +78,7 @@ public enum APRAssets {
   public static let heartIcon = ImageAsset(name: "heart_icon")
   public static let iconRightArrow = ImageAsset(name: "icon_right_arrow")
   public static let iconTickGreen24 = ImageAsset(name: "icon_tick_green_24")
+  public static let mocaGreenLogo = ImageAsset(name: "moca_green_logo")
   public static let mocoLogoWhiteBackground = ImageAsset(name: "moco_logo_white_background")
   public static let trashIcon = ImageAsset(name: "trash_icon")
   public static let cmntImageview = ImageAsset(name: "cmnt_imageview")
@@ -120,6 +121,7 @@ public enum APRAssets {
   public static let user = ImageAsset(name: "user")
   public static let cookAssistant = ImageAsset(name: "cook_assistant")
   public static let creationPlusButton = ImageAsset(name: "creation_plus_button")
+  public static let iconGroceryBasket = ImageAsset(name: "icon_grocery_basket")
   public static let iconKnifeFork = ImageAsset(name: "icon_knife_fork")
   public static let minusButtonIcon = ImageAsset(name: "minus_button_icon")
   public static let plusButtonIcon = ImageAsset(name: "plus_button_icon")
@@ -140,6 +142,7 @@ public enum APRAssets {
   public static let cameraIcon = ImageAsset(name: "camera_icon")
   public static let savedRecipePlaceholder = ImageAsset(name: "saved_recipe_placeholder")
   public static let iconChartUp = ImageAsset(name: "icon_chart_up")
+  public static let searchByIngredients = ImageAsset(name: "search_by_ingredients")
   public static let searchIcon24 = ImageAsset(name: "search_icon_24")
   public static let searchRoundedView = ImageAsset(name: "search_rounded_view")
   public static let emptyCart = ImageAsset(name: "empty_cart")
@@ -160,6 +163,10 @@ public enum APRAssets {
   public static let tabbarAddIcon = ImageAsset(name: "tabbar_add_icon")
   public static let tabbarAddIcon20px = ImageAsset(name: "tabbar_add_icon_20px")
   public static let tabbarAddIconThin = ImageAsset(name: "tabbar_add_icon_thin")
+  public static let step1 = ImageAsset(name: "step1")
+  public static let step2 = ImageAsset(name: "step2")
+  public static let step3 = ImageAsset(name: "step3")
+  public static let step4 = ImageAsset(name: "step4")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

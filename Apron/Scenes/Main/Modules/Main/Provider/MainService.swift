@@ -9,6 +9,10 @@
 import Models
 
 protocol MainServiceProtocol {
+    func getCommunity(
+        request: MainDataFlow.GetCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    )
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping ((AKResult) -> Void)
@@ -29,6 +33,10 @@ protocol MainServiceProtocol {
         request: MainDataFlow.GetTrendings.Request,
         completion: @escaping ((AKResult) -> Void)
     )
+    func getProductsByIds(
+        request: MainDataFlow.GetProductsByIDs.Request,
+        completion: @escaping (AKResult) -> Void
+    )
 }
 
 final class MainService: MainServiceProtocol {
@@ -42,6 +50,15 @@ final class MainService: MainServiceProtocol {
     }
     
     // MARK: - RecipePageServiceProtocol
+    
+    func getCommunity(
+        request: MainDataFlow.GetCommunity.Request,
+        completion: @escaping ((AKResult) -> Void)
+    ) {
+        provider.send(target: .getCommunity(id: request.id)) { result in
+            completion(result)
+        }
+    }
     
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
@@ -81,6 +98,15 @@ final class MainService: MainServiceProtocol {
         completion: @escaping ((AKResult) -> Void)
     ) {
         provider.send(target: .trendingsRecommendations(id: request.id)) { result in
+            completion(result)
+        }
+    }
+    
+    func getProductsByIds(
+        request: MainDataFlow.GetProductsByIDs.Request,
+        completion: @escaping (AKResult) -> Void
+    ) {
+        provider.send(target: .getSuggestedProducts(ids: request.ids)) { result in
             completion(result)
         }
     }

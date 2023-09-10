@@ -195,7 +195,7 @@ final class RecipeCreationViewController: ViewController {
     private func configureNavigation() {
         backButton.configure(with: L10n.RecipeCreation.NewRecipe.title)
         backButton.onBackButtonTapped = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popViewController(animated: false)
         }
         navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)

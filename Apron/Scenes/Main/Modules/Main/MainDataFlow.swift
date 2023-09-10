@@ -71,6 +71,25 @@ extension MainDataFlow {
 }
 
 extension MainDataFlow {
+    enum GetCommunity {
+        struct Request {
+            let id: Int
+        }
+        struct Response {
+            let result: GetCommunityResult
+        }
+        struct ViewModel {
+            var state: MainViewController.State
+        }
+    }
+
+    enum GetCommunityResult {
+    case successful(model: CommunityResponse)
+    case failed(error: AKNetworkError)
+    }
+}
+
+extension MainDataFlow {
     enum SaveRecipe {
         struct Request {
             let id: Int
@@ -105,5 +124,24 @@ extension MainDataFlow {
     enum GetTrendingsResult {
         case successful(model: [RecipeResponse])
         case failed(error: AKNetworkError)
+    }
+}
+
+extension MainDataFlow {
+    enum GetProductsByIDs {
+        struct Request {
+            let ids: [Int]
+        }
+        struct Response {
+            let result: GetProductsByIDsResult
+        }
+        struct ViewModel {
+            var state: MainViewController.State
+        }
+    }
+    
+    enum GetProductsByIDsResult {
+        case success(model: [Product])
+        case error(error: AKNetworkError)
     }
 }

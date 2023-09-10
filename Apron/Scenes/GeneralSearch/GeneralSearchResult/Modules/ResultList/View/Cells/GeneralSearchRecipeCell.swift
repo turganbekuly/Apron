@@ -41,6 +41,41 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 1.0)
+        
+        UIView.animate(
+            withDuration: 0.1,
+            delay: 0,
+            options: [.beginFromCurrentState],
+            animations: {
+                self.contentView.transform = self.contentView.transform.scaledBy(
+                    x: 0.9,
+                    y: 0.9
+                )
+            }
+        )
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        touchesEnded(touches, with: event)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        UIView.animate(
+            withDuration: 0.1,
+            delay: 0.07,
+            options: [.beginFromCurrentState],
+            animations: {
+                self.contentView.transform = .identity
+            }
+        )
+    }
 
     // MARK: - Views factory
 
@@ -52,15 +87,13 @@ final class GeneralSearchRecipeCell: UITableViewCell {
         return imageView
     }()
 
-    private lazy var favoriteButton: BlackOpButton = {
-        let button = BlackOpButton()
-        button.setImage(APRAssets.recipeFavoriteIcon.image, for: .normal)
-        button.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 19
-        button.layer.masksToBounds = true
-        button.clipsToBounds = true
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        return button
+    private lazy var favoriteImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = APRAssets.heart24White.image.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .black
+        imageView.isUserInteractionEnabled = true
+        return imageView
     }()
 
     private lazy var recipeNameLabel: UILabel = {
@@ -91,7 +124,10 @@ final class GeneralSearchRecipeCell: UITableViewCell {
     private func setupViews() {
         backgroundColor = .clear
         selectionStyle = .none
-        [recipeImageView, stackView, favoriteButton].forEach {
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(faveButtonTapped))
+        favoriteImageView.addGestureRecognizer(tapGR)
+        
+        [recipeImageView, stackView, favoriteImageView].forEach {
             contentView.addSubview($0)
         }
         setupConstraints()
@@ -104,16 +140,16 @@ final class GeneralSearchRecipeCell: UITableViewCell {
             $0.bottom.equalToSuperview()
         }
 
-        favoriteButton.snp.makeConstraints {
+        favoriteImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalTo(recipeImageView.snp.centerY)
-            $0.size.equalTo(38)
+            $0.size.equalTo(24)
         }
 
         stackView.snp.makeConstraints {
             $0.centerY.equalTo(recipeImageView.snp.centerY)
             $0.leading.equalTo(recipeImageView.snp.trailing).offset(14)
-            $0.trailing.equalTo(favoriteButton.snp.leading).offset(-14)
+            $0.trailing.equalTo(favoriteImageView.snp.leading).offset(-14)
         }
     }
 
@@ -121,33 +157,35 @@ final class GeneralSearchRecipeCell: UITableViewCell {
 
     private func configureButton(isSaved: Bool) {
         guard isSaved else {
-            favoriteButton.setBackgroundColor(.black, for: .normal)
-            favoriteButton.setImage(APRAssets.recipeFavoriteIcon.image, for: .normal)
+            favoriteImageView.image = APRAssets.heart24White.image
+                .withRenderingMode(.alwaysTemplate)
+                .withTintColor(.black)
             return
         }
-
-        favoriteButton.setBackgroundColor(APRAssets.colorsYello.color, for: .normal)
-        favoriteButton.setImage(APRAssets.tabFaveSelectedIcon.image, for: .normal)
+        
+        favoriteImageView.image = APRAssets.heartFilled24White.image
+            .withRenderingMode(.alwaysTemplate)
+            .withTintColor(.black)
     }
 
     // MARK: - User actions
-
+    
     @objc
-    private func favoriteButtonTapped() {
+    private func faveButtonTapped() {
         guard AuthStorage.shared.isUserAuthorized else {
             delegate?.navigateToAuthFromRecipe()
             return
         }
-
+        
         guard !isSaved else {
             delegate?.navigateToRecipe(with: id)
             return
         }
-
-        HapticTouch.generateSuccess()
-        favoriteButton.setBackgroundColor(APRAssets.colorsYello.color, for: .normal)
-        favoriteButton.setImage(APRAssets.tabFaveSelectedIcon.image, for: .normal)
+        
         delegate?.didTapSaveRecipe(with: id)
+        ApronAnalytics.shared.sendAnalyticsEvent(.recipeAddedToFavorite(recipeNameLabel.text ?? ""))
+        HapticTouch.generateSuccess()
+        favoriteImageView.image = APRAssets.heartFilled24White.image
     }
 
     // MARK: - Public methods

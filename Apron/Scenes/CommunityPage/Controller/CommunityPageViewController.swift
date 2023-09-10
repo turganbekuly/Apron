@@ -73,19 +73,19 @@ public final class CommunityPageViewController: ViewController {
             self.imageView.imageUrl = community.image
             if recipes.isEmpty {
                 sections = [
-                    .init(section: .topView, rows: [.emptyView])
+                    .init(section: .topView, rows: [.shimmer])
                 ]
             } else {
                 sections = [
                     .init(
                         section: .topView,
-                        rows: recipes.compactMap { .recipiesView($0) }
+                        rows: recipes.compactMap { .result($0) }
                     )
                 ]
             }
             communityPageViewedEvent(community: community)
             createRecipeButton.isHidden = community.privateAdding == true ? true : false
-            mainView.reloadTableViewWithoutAnimation()
+            mainView.reloadCollectionViewWithoutAnimation()
         }
     }
 
@@ -94,8 +94,9 @@ public final class CommunityPageViewController: ViewController {
     var currentPage = 1
     var id = 0
 
-    private var tableViewTopConstraint: Constraint?
+    private var collectionViewTopConstraint: Constraint?
     private var cacheOffset: CGPoint?
+    
 
     // MARK: - Views
     lazy var imageView: ImageHeaderView = {
@@ -108,7 +109,7 @@ public final class CommunityPageViewController: ViewController {
     private lazy var backButton = NavigationIconFillButton()
     private lazy var moreButton = NavigationIconFillButton()
 
-    public lazy var mainView: CommunityPageView = {
+    lazy var mainView: CommunityPageView = {
         let view = CommunityPageView()
         view.dataSource = self
         view.delegate = self
@@ -229,7 +230,7 @@ public final class CommunityPageViewController: ViewController {
         }
 
         mainView.snp.makeConstraints {
-            tableViewTopConstraint = $0.top
+            collectionViewTopConstraint = $0.top
                 .equalToSuperview().offset(imageView.imageHeight - 36)
                 .constraint
             $0.leading.trailing.equalToSuperview()
@@ -243,7 +244,7 @@ public final class CommunityPageViewController: ViewController {
     }
 
     private func statusBarStyle() -> UIStatusBarStyle {
-        guard let topConstraintConstant = tableViewTopConstraint?.layoutConstraints.first?.constant else {
+        guard let topConstraintConstant = collectionViewTopConstraint?.layoutConstraints.first?.constant else {
             return .default
         }
 
@@ -325,36 +326,36 @@ public final class CommunityPageViewController: ViewController {
 
 extension CommunityPageViewController {
     func handleScrollForImage(contentOffset: CGFloat) {
-        guard let topConstraint = tableViewTopConstraint?.layoutConstraints.first else {
+        guard let topConstraint = collectionViewTopConstraint?.layoutConstraints.first else {
             return
         }
-
+        
         let oldOffsetY = (cacheOffset?.y ?? contentOffset)
         var scrollDiff = contentOffset - oldOffsetY
-
+        
         if abs(scrollDiff) > 100 {
             scrollDiff = scrollDiff > 0 ? 1 : -1
         }
-
+        
         let isScrollingUp = scrollDiff > 0 && contentOffset + mainView.contentInset.top > 0
         let isScrollingDown = scrollDiff < 0 && contentOffset + mainView.contentInset.top < 0
         var constant = topConstraint.constant
-
+        
         if isScrollingDown {
             constant = min(imageView.imageHeight - 36, topConstraint.constant + abs(scrollDiff))
         } else if isScrollingUp {
             constant = max(0, topConstraint.constant - abs(scrollDiff))
         }
-
+        
         if constant != topConstraint.constant {
             topConstraint.constant = constant
             mainView.contentOffset.y = oldOffsetY
         }
-
+        
         self.cacheOffset = mainView.contentOffset
-
+        
         setNeedsStatusBarAppearanceUpdate()
-
+        
         // navigation bar overlay
         if topConstraint.constant <= view.safeAreaInsets.top {
             imageView.isHidden = true
@@ -365,19 +366,20 @@ extension CommunityPageViewController {
             navigationItem.title = nil
             navigationBarView.backgroundColor = .clear
         }
-
+        
         let offsetY = mainView.contentOffset.y + mainView.contentInset.top
         guard offsetY <= 0 else {
             imageView.imageView.layer.transform = CATransform3DIdentity
             return
         }
-
+        
         let scaleFactor = 1 + (-1 * offsetY / (imageView.imageHeight / 2))
-            imageView.imageView.layer.transform = CATransform3DScale(
+        imageView.imageView.layer.transform = CATransform3DScale(
             CATransform3DIdentity,
             scaleFactor,
             scaleFactor,
             1
         )
     }
+
 }

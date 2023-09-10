@@ -71,9 +71,17 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
             let row = stepperSections[indexPath.section].rows[indexPath.row]
             switch row {
             case .step, .review, .ingredient:
-                onStepperSelected = true
-                mainView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-                stepperView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                let actualIndexPath = translatedIndexPath(for: indexPath) ?? IndexPath(item: 0, section: 0)
+                let cellWidth = mainView.bounds.width
+                let totalCellsBefore = sections.prefix(actualIndexPath.section).reduce(0) { $0 + $1.rows.count } + actualIndexPath.item
+                let offset = cellWidth * CGFloat(totalCellsBefore)
+                let contentWidth = cellWidth * CGFloat(sections.reduce(0) { $0 + $1.rows.count })
+                
+                // Calculate progress
+                let progress = offset / (contentWidth - cellWidth)
+                progressBar.setProgress(Float(progress), animated: true)
+                
+                mainView.setContentOffset(CGPoint(x: offset, y: 0), animated: true)
             }
         case is StepByStepModeView:
             let row = sections[indexPath.section].rows[indexPath.row]
@@ -112,7 +120,7 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
             switch row {
             case .ingredient:
                 guard let cell = cell as? StepPagerCell else { return }
-                cell.configure(with: StepPagerCellViewModel(pagerType: .image(image: APRAssets.iconKnifeFork.image)))
+                cell.configure(with: StepPagerCellViewModel(pagerType: .image(image: APRAssets.iconGroceryBasket.image)))
             case .step:
                 guard let cell = cell as? StepPagerCell else { return }
                 cell.configure(with: StepPagerCellViewModel(pagerType: .regular(title: "\(indexPath.row + 1)")))
@@ -146,18 +154,96 @@ extension StepByStepModeViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let width = scrollView.frame.width
-        let currentPage = (Int(scrollView.contentOffset.x / width) + 1)
-        let progress = Double(currentPage) / Double(instructions.count + 2)
+        switch scrollView {
+        case is StepByStepPagerView:
+            progressViewHandler(scrollView)
+            stepperViewHanlder(scrollView)
+        case is StepByStepModeView:
+            progressViewHandler(scrollView)
+            stepperViewHanlder(scrollView)
+        default:
+            break
+        }
+    }
+    
+    private func progressViewHandler(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.x
+        let cellWidth = scrollView.bounds.width
+        
+        // Calculate the total number of cells across all sections
+        let totalCells = sections.reduce(0) { $0 + $1.rows.count }
+        
+        // Calculate the content width
+        let contentWidth = cellWidth * CGFloat(totalCells)
+        
+        // Calculate progress
+        let progress = offset / (contentWidth - cellWidth)
         progressBar.setProgress(Float(progress), animated: true)
-        guard instructions.indices.contains(currentPage - 2) else {
+        
+        // Use the progress to determine the current page or cell
+        let currentPage = Int((progress * CGFloat(totalCells)).rounded())
+        
+        guard currentPage > 0 && currentPage <= instructions.count else {
             return
         }
+        
+        let currentInstructionIndex = currentPage - 2 // Adjusting for your ingredient and review pages
 
-        guard let description = instructions[currentPage - 2].description else { return }
+        guard instructions.indices.contains(currentInstructionIndex) else {
+            return
+        }
+        
+        guard let description = instructions[currentInstructionIndex].description else {
+            return
+        }
+        
         if RemoteConfigManager.shared.remoteConfig.isCookAssistantEnabled {
             guard RecipeCreationStorage().isCookAssistEnabled else { return }
             TTSMAnager.shared.startTTS(with: description)
         }
+    }
+    
+    private func stepperViewHanlder(_ scrollView: UIScrollView) {
+        let width = scrollView.frame.width
+        let currentPage = Int(scrollView.contentOffset.x / width) // Removed +1 from this line
+        
+        var sectionType: StepperSection.Section
+        var item: Int
+        
+        switch currentPage {
+        case 0:
+            sectionType = .ingredients
+            item = 0
+        case 1..<1 + instructions.count:
+            sectionType = .steps
+            item = currentPage - 1
+        default:
+            sectionType = .review
+            item = 0
+        }
+        
+        guard let sectionIndex = stepperSections.firstIndex(where: { $0.section == sectionType }) else { return }
+        
+        let indexPath = IndexPath(item: item, section: sectionIndex)
+        stepperView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
+    
+    private func translatedIndexPath(for indexPath: IndexPath) -> IndexPath? {
+        let stepperSection = stepperSections[indexPath.section].section
+        switch stepperSection {
+        case .ingredients:
+            if let mainSectionIndex = sections.firstIndex(where: { $0.section == .ingredients }) {
+                return IndexPath(item: indexPath.item, section: mainSectionIndex)
+            }
+        case .steps:
+            if let mainSectionIndex = sections.firstIndex(where: { $0.section == .instructions }) {
+                return IndexPath(item: indexPath.item, section: mainSectionIndex)
+            }
+        case .review:
+            if let mainSectionIndex = sections.firstIndex(where: { $0.section == .review }) {
+                return IndexPath(item: indexPath.item, section: mainSectionIndex)
+            }
+        }
+        return nil
     }
 }
