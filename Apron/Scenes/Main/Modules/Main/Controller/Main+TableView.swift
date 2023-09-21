@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Extensions
 
 extension MainViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
@@ -21,7 +22,7 @@ extension MainViewController: UITableViewDataSource {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .communities:
-            let cell: DynamicCommunityCell = tableView.dequeueReusableCell(for: indexPath)
+            let cell: CommunityCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         case .whatToCook:
             let cell: WhatToCookCell = tableView.dequeueReusableCell(for: indexPath)
@@ -33,6 +34,9 @@ extension MainViewController: UITableViewDataSource {
         case .adBanner:
             let cell: AdBannerCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .searchByIngredients:
+            let cell: SBIMainTableCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -42,7 +46,7 @@ extension MainViewController: UITableViewDelegate {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .communities:
-            return dynamicCommunities.isEmpty ? 0 : 305
+            return communities.isEmpty ? 0 : ((UIScreen.main.bounds.width / 2) + 66) * 1.2
         case .whatToCook:
             let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
@@ -51,6 +55,11 @@ extension MainViewController: UITableViewDelegate {
             return 185
         case .adBanner:
             return adBanners.count == 0 ? 0 : ((UIScreen.main.bounds.width / 375) * 134) + 60
+        case .searchByIngredients:
+            guard !Device.isSmallIphones() else {
+                return 170
+            }
+            return 150
         }
     }
 
@@ -58,7 +67,7 @@ extension MainViewController: UITableViewDelegate {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .communities:
-            return dynamicCommunities.isEmpty ? 0 : 305
+            return communities.isEmpty ? 0 : ((UIScreen.main.bounds.width / 2) + 66) * 1.2
         case .whatToCook:
             let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
@@ -67,20 +76,25 @@ extension MainViewController: UITableViewDelegate {
             return 185
         case .adBanner:
             return adBanners.count == 0 ? 0 : ((UIScreen.main.bounds.width / 375) * 134) + 60
+        case .searchByIngredients:
+            guard !Device.isSmallIphones() else {
+                return 170
+            }
+            
+            return 150
         }
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
-        case let .communities(title, communities, categoryID):
-            guard let cell = cell as? DynamicCommunityCell else { return }
+        case let .communities(title, communities):
+            guard let cell = cell as? CommunityCell else { return }
             cell.delegate = self
             cell.configure(
-                with: DynamicCollectionDelegateCellViewModel(
+                with: CommunityCellViewModel(
                     sectionHeaderTitle: title,
-                    categoryID: categoryID,
-                    dynamicCommunities: communities
+                    communities: communities
                 )
             )
         case let .whatToCook(sectionTitle):
@@ -115,6 +129,11 @@ extension MainViewController: UITableViewDelegate {
             guard let cell = cell as? AdBannerCell else { return }
             cell.delegate = self
             cell.configure(viewModel: banners)
+            
+        case let .searchByIngredients(sectionTitle, sectionDescr, products):
+            guard let cell = cell as? SBIMainTableCell else { return }
+            cell.delegate = self
+            cell.configure(with: SBIMainViewModel(sectionTitle: sectionTitle, sectionDescription: sectionDescr, products: products))
         }
     }
 }

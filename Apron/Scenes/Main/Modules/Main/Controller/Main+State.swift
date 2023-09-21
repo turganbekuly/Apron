@@ -17,14 +17,16 @@ extension MainViewController {
     // MARK: - State
     public enum State {
         case initial
-        case fetchCommunitiesByCategory([CommunityCategory])
-        case fetchCommunitiesByCategoryFailed(AKNetworkError)
         case fetchCookNowRecipes([RecipeResponse])
         case fetchCookNowRecipesFailed(AKNetworkError)
         case fetchEventRecipes([RecipeResponse])
         case fetchEventRecipesFailed(AKNetworkError)
         case saveRecipe(RecipeResponse)
         case saveRecipeFailed(AKNetworkError)
+        case fetchCommunities([CommunityResponse])
+        case fetchCommunitiesFailed
+        case fetchedProductsByIds([Product])
+        case fetchedProductsByIdsFailed(AKNetworkError)
     }
 
     // MARK: - Methods
@@ -35,12 +37,8 @@ extension MainViewController {
             configureMainPageCells()
             fetchRemoteConfigFeatures()
             getCookNowRecipes()
-        case let .fetchCommunitiesByCategory(model):
-            self.dynamicCommunities = model
-            endRefreshingIfNeeded()
-        case .fetchCommunitiesByCategoryFailed:
-            show(type: .error(L10n.Alert.errorMessage))
-            endRefreshingIfNeeded()
+            getCommunitiesBy(ids: [77, 79])
+            getProductsByIds(ids: [13, 108, 219, 237, 272])
         case let .fetchCookNowRecipes(recipes):
             cookNowRecipesState = .loaded(recipes)
         case .fetchCookNowRecipesFailed:
@@ -54,6 +52,14 @@ extension MainViewController {
         case .saveRecipeFailed:
             show(type: .error(L10n.Alert.errorMessage))
             mainView.reloadData()
+        case let .fetchCommunities(communities):
+            self.communities = communities
+        case .fetchCommunitiesFailed:
+            show(type: .error(L10n.Alert.errorMessage))
+        case let .fetchedProductsByIds(products):
+            self.products = products
+        case .fetchedProductsByIdsFailed:
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
 

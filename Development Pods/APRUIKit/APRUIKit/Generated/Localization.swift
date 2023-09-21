@@ -152,7 +152,7 @@ public enum L10n {
   }
 
   public enum Common {
-    /// Все
+    /// Еще
     public static let all = L10n.tr("APRLocalizable", "Common.All")
     /// Отмена
     public static let cancel = L10n.tr("APRLocalizable", "Common.Cancel")
@@ -415,6 +415,10 @@ public enum L10n {
     public enum AdBanner {
       /// Для Вас
       public static let title = L10n.tr("APRLocalizable", "Main.AdBanner.Title")
+    }
+    public enum Communities {
+      /// Подборки рецептов для вас
+      public static let title = L10n.tr("APRLocalizable", "Main.Communities.Title")
     }
     public enum DayTimeCooking {
       /// Приготовить на
@@ -695,6 +699,10 @@ public enum L10n {
       /// Поиск по рецептам
       public static let title = L10n.tr("APRLocalizable", "RecipeSearch.RecipeSearch.Title")
     }
+    public enum SearchButton {
+      /// Search
+      public static let title = L10n.tr("APRLocalizable", "RecipeSearch.SearchButton.Title")
+    }
   }
 
   public enum SavedRecipes {
@@ -727,6 +735,27 @@ public enum L10n {
     }
   }
 
+  public enum SearchByIngredients {
+    public enum Main {
+      public enum Section {
+        /// Выберите продукты и мы подберем для вас рецепты
+        public static let descr = L10n.tr("APRLocalizable", "SearchByIngredients.Main.Section.Descr")
+        /// Что у вас в холодильнике?
+        public static let title = L10n.tr("APRLocalizable", "SearchByIngredients.Main.Section.Title")
+      }
+    }
+    public enum Product {
+      /// Вы уже добавили этот продукт
+      public static let alreadyAdded = L10n.tr("APRLocalizable", "SearchByIngredients.Product.AlreadyAdded")
+      /// Посмотреть еще ...
+      public static let seeMore = L10n.tr("APRLocalizable", "SearchByIngredients.Product.SeeMore")
+      /// Выбранные продукты
+      public static let selectedProducts = L10n.tr("APRLocalizable", "SearchByIngredients.Product.SelectedProducts")
+      /// Рекомендованные продукты
+      public static let suggestedProducts = L10n.tr("APRLocalizable", "SearchByIngredients.Product.SuggestedProducts")
+    }
+  }
+
   public enum ShoppingList {
     /// Купленные ингредиенты
     public static let boughtIngredients = L10n.tr("APRLocalizable", "ShoppingList.BoughtIngredients")
@@ -752,7 +781,23 @@ public enum L10n {
       /// Список покупок
       public static let title = L10n.tr("APRLocalizable", "ShoppingList.ListOfProducts.Title")
     }
+    public enum Onboarding {
+      public enum BackButton {
+        /// Предыдущий
+        public static let title = L10n.tr("APRLocalizable", "ShoppingList.Onboarding.BackButton.Title")
+      }
+      public enum FinishButton {
+        /// Завершить
+        public static let title = L10n.tr("APRLocalizable", "ShoppingList.Onboarding.FinishButton.Title")
+      }
+      public enum NextButton {
+        /// Следующий
+        public static let title = L10n.tr("APRLocalizable", "ShoppingList.Onboarding.NextButton.Title")
+      }
+    }
     public enum Order {
+      /// https://wa.me/77064302140?text=
+      public static let link = L10n.tr("APRLocalizable", "ShoppingList.Order.Link")
       /// Заказать
       public static let title = L10n.tr("APRLocalizable", "ShoppingList.Order.Title")
     }

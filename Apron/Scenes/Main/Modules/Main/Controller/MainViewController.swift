@@ -19,6 +19,8 @@ protocol MainDisplayLogic: AnyObject {
     func displayCookNowRecipes(viewModel: MainDataFlow.GetCookNowRecipes.ViewModel)
     func displayEventRecipes(viewModel: MainDataFlow.GetEventRecipes.ViewModel)
     func displaySavedRecipe(viewModel: MainDataFlow.SaveRecipe.ViewModel)
+    func displayCommunityById(viewModel: MainDataFlow.GetCommunity.ViewModel)
+    func displayProductsByIds(viewModel: MainDataFlow.GetProductsByIDs.ViewModel)
 }
 
 final class MainViewController: ViewController {
@@ -46,6 +48,18 @@ final class MainViewController: ViewController {
             configureCommunities()
         }
     }
+    
+    var communities: [CommunityResponse] = [] {
+        didSet {
+            configureMainPageCells()
+        }
+    }
+    
+    var products: [Product] = [] {
+        didSet {
+            configureMainPageCells()
+        }
+    }
 
     var eventType = 0
     var adBanners: [AdBannerObject] = []
@@ -71,6 +85,7 @@ final class MainViewController: ViewController {
             configureMainPageCells()
         }
     }
+    
 
     // MARK: - Views
 
@@ -78,7 +93,7 @@ final class MainViewController: ViewController {
         let view = MainView()
         view.dataSource = self
         view.delegate = self
-        view.refreshControl = refreshControl
+//        view.refreshControl = refreshControl
         return view
     }()
 
@@ -196,46 +211,46 @@ final class MainViewController: ViewController {
     // MARK: - Methods
 
     private func configureCommunities() {
-        var sections = [Section]()
-        if !dynamicCommunities.isEmpty {
-            _ = dynamicCommunities.compactMap { com in
-                if let communities = com.communities, !communities.isEmpty {
-                    sections.append(
-                        .init(
-                            section: .communities,
-                            rows: [
-                                .communities(
-                                    com.name ?? "",
-                                    com.communities ?? [],
-                                    com.id
-                                )
-                            ]
-                        )
-                    )
-                }
-            }
-        }
-
-        sections.append(
-            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
-        )
-        self.sections = sections
-        mainView.reloadTableViewWithoutAnimation()
+//        var sections = [Section]()
+//        if !dynamicCommunities.isEmpty {
+//            _ = dynamicCommunities.compactMap { com in
+//                if let communities = com.communities, !communities.isEmpty {
+//                    sections.append(
+//                        .init(
+//                            section: .communities,
+//                            rows: [
+//                                .communities(
+//                                    com.name ?? "",
+//                                    com.communities ?? [],
+//                                    com.id
+//                                )
+//                            ]
+//                        )
+//                    )
+//                }
+//            }
+//        }
+//
+//        sections.append(
+//            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
+//        )
+//        self.sections = sections
+//        mainView.reloadTableViewWithoutAnimation()
     }
 
     func defineRecipeDayTime() -> SuggestedDayTimeType {
         let today = Date()
         let hour = Calendar.current.component(.hour, from: today)
-        if (7...12).contains(hour) {
+        if (7...11).contains(hour) {
             return .zavtrak
         }
-        if (13...15).contains(hour) {
+        if (12...14).contains(hour) {
             return .obed
         }
-        if (16...18).contains(hour) {
+        if (15...17).contains(hour) {
             return .poldnik
         }
-        if (19...23).contains(hour) {
+        if (18...23).contains(hour) {
             return .uzhin
         }
         if (0...6).contains(hour) {
@@ -248,6 +263,30 @@ final class MainViewController: ViewController {
         var sections = [Section]()
         if !adBanners.isEmpty {
             sections.append(.init(section: .adBanner, rows: [.adBanner(adBanners)]))
+        }
+        
+        if !products.isEmpty {
+            sections.append(
+                .init(
+                    section: .searchByIngredients,
+                    rows: [.searchByIngredients(
+                        L10n.SearchByIngredients.Main.Section.title,
+                        L10n.SearchByIngredients.Main.Section.descr,
+                        products + [Product()]
+                    )]
+                )
+            )
+        }
+        
+        if !communities.isEmpty {
+            sections.append(
+                .init(
+                    section: .communities,
+                    rows: [
+                        .communities(L10n.Main.Communities.title, communities)
+                    ]
+                )
+            )
         }
 
         switch eventRecipesState {

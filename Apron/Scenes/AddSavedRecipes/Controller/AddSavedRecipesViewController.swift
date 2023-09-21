@@ -141,7 +141,7 @@ final class AddSavedRecipesViewController: ViewController {
     private func configureNavigation() {
         backButton.configure(with: L10n.AddSavedRecipes.AddRecipe.title)
         backButton.onBackButtonTapped = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popViewController(animated: false)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color

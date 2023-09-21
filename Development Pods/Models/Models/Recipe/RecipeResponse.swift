@@ -64,6 +64,7 @@ public struct RecipeResponse: Codable {
         case dishType
         case occasion
         case lifestyleType
+        case sort
     }
 
     // MARK: - Properties
@@ -92,6 +93,7 @@ public struct RecipeResponse: Codable {
     public var dishType: [Int]?
     public var occasion: [Int]?
     public var lifestyleType: [Int]?
+    public var sort: Double?
 
     // MARK: - Init
 
@@ -123,6 +125,7 @@ public struct RecipeResponse: Codable {
         self.dishType = json[CodingKeys.dishType.rawValue] as? [Int]
         self.occasion = json[CodingKeys.occasion.rawValue] as? [Int]
         self.lifestyleType = json[CodingKeys.lifestyleType.rawValue] as? [Int]
+        self.sort = json[CodingKeys.sort.rawValue] as? Double
     }
 
     // MARK: - Methods

@@ -20,7 +20,7 @@ extension MainViewController: CreateActionFlowProtocol {
                 .create(communityCreation, .privateButton))
             ).build()
             DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.pushViewController(vc, animated: false)
             }
         case .publicCommunity:
             communityCreation.isHidden = false
@@ -28,7 +28,7 @@ extension MainViewController: CreateActionFlowProtocol {
                 .create(communityCreation, .publicButton))
             ).build()
             DispatchQueue.main.async {
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.pushViewController(vc, animated: false)
             }
         case .aboutCommunities:
             let link = RemoteConfigManager.shared.remoteConfig.aboutCommunitiesLink

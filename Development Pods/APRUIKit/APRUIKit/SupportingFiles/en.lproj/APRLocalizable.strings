@@ -25,7 +25,7 @@
 "Common.Share.Title" = "Поделиться";
 "Common.Join.Title" = "Вступить";
 "Common.Joined.Title" = "Уже вступили";
-"Common.All" = "Все";
+"Common.All" = "Еще";
 "Common.Measure.Min" = "мин";
 "Common.Measure.Hours" = "часов";
 "Common.Measure.Seconds" = "сек";
@@ -97,6 +97,7 @@
 "Main.DayTimeCooking.Title" = "Приготовить на";
 "Main.WhenToCook.Title" = "Что приготовить?";
 "Main.AdBanner.Title" = "Для Вас";
+"Main.Communities.Title" = "Подборки рецептов для вас";
 
 // MARK: - Search
 
@@ -189,6 +190,10 @@
 "ShoppingList.AddProductsToBuyList.Title" = "Добавьте товары в свой список покупок";
 "ShoppingList.Ingredients" = "Ингредиенты";
 "ShoppingList.BoughtIngredients" = "Купленные ингредиенты";
+"ShoppingList.Order.Link" = "https://wa.me/77064302140?text=";
+"ShoppingList.Onboarding.BackButton.Title" = "Предыдущий";
+"ShoppingList.Onboarding.NextButton.Title" = "Следующий";
+"ShoppingList.Onboarding.FinishButton.Title" = "Завершить";
 
 //MARK: - Cusisine Selection
 "CuisineSelection.Category" = "Категории";
@@ -219,6 +224,7 @@
 //MARK: - Recipe Search
 "RecipeSearch.RecipeSearch.Title" = "Поиск по рецептам";
 "RecipeSearch.AllFilters.Title" = "Все фильтры";
+"RecipeSearch.SearchButton.Title" = "Search";
 
 //MARK: - General Search
 "GeneralSearchInitialState.RU.Everything" = "Все";
@@ -294,3 +300,11 @@
 "MealPlannerWeekDays.Friday.Title" = "Пятница";
 "MealPlannerWeekDays.Saturday.Title" = "Суббота";
 "MealPlannerWeekDays.Sunday.Title" = "Воскресенье";
+
+//MARK: - Search By Ingredients
+"SearchByIngredients.Product.AlreadyAdded" = "Вы уже добавили этот продукт";
+"SearchByIngredients.Product.SelectedProducts" = "Выбранные продукты";
+"SearchByIngredients.Product.SuggestedProducts" = "Рекомендованные продукты";
+"SearchByIngredients.Product.SeeMore" = "Посмотреть еще ...";
+"SearchByIngredients.Main.Section.Title" = "Что у вас в холодильнике?";
+"SearchByIngredients.Main.Section.Descr" = "Выберите продукты и мы подберем для вас рецепты";

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Product: Codable, Equatable {
+public struct Product: Codable, Equatable, Hashable {
     // MARK: - Coding Keys
 
     private enum CodingKeys: String, CodingKey {

@@ -75,6 +75,7 @@ final class StepIngredientsCell: UICollectionViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
+        backgroundColor = .clear
         contentView.addSubviews(scrollView)
         scrollView.addSubview(scrollContentView)
         scrollContentView.addSubviews(

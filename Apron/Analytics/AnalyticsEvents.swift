@@ -24,6 +24,7 @@ enum RecipeCreationSourceTypeModel: String, Codable {
     case main
     case banner
     case recipePage
+    case searchByIngredients = "search_by_ingredients"
 }
 
 enum RecipeCategoriesType: String, Codable {
@@ -65,6 +66,10 @@ enum AnalyticsEvents {
     case categoriesTapped(String, RecipeCategoriesType)
     case mealPlannerPageViewed
     case mealPlannerMealAdded(String)
+    case communityTapped(String)
+    case searchByIngredientsViewed
+    case searchByIngredientsResult(products: [Product])
+    case accountDeleted(user: User?)
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -122,7 +127,14 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "meal_planner_page_viwed"
         case .mealPlannerMealAdded:
             return "meal_planner_meal_added"
-            
+        case .communityTapped:
+            return "main_page_community_tapped"
+        case .searchByIngredientsViewed:
+            return "search_by_ingredients_viewed"
+        case .searchByIngredientsResult:
+            return "search_by_ingredients_result"
+        case .accountDeleted:
+            return "account_deleted"
         }
     }
 
@@ -180,6 +192,14 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return [:]
         case let .mealPlannerMealAdded(meal):
             return ["recipe_name": meal]
+        case let .communityTapped(community):
+            return ["community_name": community]
+        case .searchByIngredientsViewed:
+            return [:]
+        case let .searchByIngredientsResult(products):
+            return ["product_names": products.compactMap { $0.name }]
+        case let .accountDeleted(user):
+            return ["username": user?.username ?? "", "user_email": user?.email ?? ""]
         }
     }
 }

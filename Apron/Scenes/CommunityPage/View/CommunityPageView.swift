@@ -8,39 +8,57 @@
 
 import UIKit
 
-public final class CommunityPageView: UITableView {
+final class CommunityPageView: UICollectionView {
 
     // MARK: - Initialization
+    init() {
+        let layout: UICollectionViewFlowLayout = {
+            let layout = UICollectionViewFlowLayout()
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 13
+            layout.scrollDirection = .vertical
+            layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+//            layout.sectionHeadersPinToVisibleBounds = true
+            return layout
+        }()
 
-    public init() {
-        super.init(frame: .zero, style: .grouped)
+        super.init(frame: .zero, collectionViewLayout: layout)
 
         configure()
     }
 
-    public required init?(coder: NSCoder) {
-        nil
+    required init?(coder: NSCoder) {
+        return nil
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        configureColors()
     }
 
     // MARK: - Methods
-
     private func configure() {
-        separatorStyle = .none
+        allowsMultipleSelection = false
         showsVerticalScrollIndicator = false
-        tableFooterView = UIView(frame: .init(origin: .zero, size: CGSize(width: 0, height: 64)))
-
+        showsHorizontalScrollIndicator = false
+        keyboardDismissMode = .onDrag
         [
-            CommunityInfoHeaderView.self
+            CommunityInfoHeaderView.self,
         ].forEach {
-            register(aClass: $0)
+            register(
+                viewClass: $0,
+                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader
+            )
         }
 
         [
-            CommunityRecipeCell.self,
-            EmptyListTableCell.self
+            RecipeSearchResultCellv2.self,
+            RecipeSearchSkeletonCell.self,
         ].forEach {
             register(cellClass: $0)
         }
+
         configureColors()
     }
 

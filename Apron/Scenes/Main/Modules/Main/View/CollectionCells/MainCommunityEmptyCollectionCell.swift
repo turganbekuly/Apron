@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import HapticTouch
 import Storages
+import SkeletonView
 
 final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
     // MARK: - Init
@@ -31,6 +32,7 @@ final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.image = APRAssets.iconPlaceholderItem.image
         imageView.clipsToBounds = true
+        imageView.isSkeletonable = true
         return imageView
     }()
 
@@ -40,6 +42,7 @@ final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
         button.clipsToBounds = true
         button.layer.masksToBounds = true
         button.image = APRAssets.iconPlaceholderCard.image
+        imageView.isSkeletonable = true
         return button
     }()
 
@@ -49,6 +52,7 @@ final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
         image.clipsToBounds = true
         image.layer.masksToBounds = true
         image.image = APRAssets.iconPlaceholderCard.image
+        image.isSkeletonable = true
         return image
     }()
 
@@ -83,5 +87,19 @@ final class MainCommunityEmptyCollectionCell: UICollectionViewCell {
 
     private func configureCell() {
         backgroundColor = .clear
+    }
+    
+    // MARK: - Public methods
+    
+    func startAnimation() {
+        imageView.showAnimatedGradientSkeleton()
+        joinButton.showAnimatedGradientSkeleton()
+        communityNameLabel.showAnimatedGradientSkeleton()
+    }
+    
+    func stopAnimation() {
+        imageView.stopSkeletonAnimation()
+        joinButton.stopSkeletonAnimation()
+        communityNameLabel.stopSkeletonAnimation()
     }
 }

@@ -9,6 +9,11 @@
 import Models
 
 protocol MainProviderProtocol {
+    func getCommunity(
+        request: MainDataFlow.GetCommunity.Request,
+        completion: @escaping (MainDataFlow.GetCommunityResult) -> Void
+    )
+    
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
         completion: @escaping (MainDataFlow.GetCommunitiesResult) -> Void
@@ -32,6 +37,11 @@ protocol MainProviderProtocol {
         request: MainDataFlow.GetTrendings.Request,
         completion: @escaping ((MainDataFlow.GetTrendingsResult) -> Void )
     )
+    
+    func getProductsByIds(
+        request: MainDataFlow.GetProductsByIDs.Request,
+        completion: @escaping (MainDataFlow.GetProductsByIDsResult) -> Void
+    )
 }
 
 final class MainProvider: MainProviderProtocol {
@@ -46,6 +56,24 @@ final class MainProvider: MainProviderProtocol {
     }
 
     // MARK: - RecipePageProviderProtocol
+    
+    func getCommunity(
+        request: MainDataFlow.GetCommunity.Request,
+        completion: @escaping (MainDataFlow.GetCommunityResult) -> Void
+    ) {
+        service.getCommunity(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let community = CommunityResponse(json: json) {
+                    completion(.successful(model: community))
+                } else {
+                    completion(.failed(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.failed(error: error))
+            }
+        }
+    }
 
     func getCommunitiesByCategory(
         request: MainDataFlow.GetCommunities.Request,
@@ -133,6 +161,24 @@ final class MainProvider: MainProviderProtocol {
                 }
             case let .failure(error):
                 completion(.failed(error: error))
+            }
+        }
+    }
+    
+    func getProductsByIds(
+        request: MainDataFlow.GetProductsByIDs.Request,
+        completion: @escaping (MainDataFlow.GetProductsByIDsResult) -> Void
+    ) {
+        service.getProductsByIds(request: request) {
+            switch $0 {
+            case let .success(json):
+                if let jsons = json["data"] as? [JSON] {
+                    completion(.success(model: jsons.compactMap { Product(json: $0) }))
+                } else {
+                    completion(.error(error: .invalidData))
+                }
+            case let .failure(error):
+                completion(.error(error: error))
             }
         }
     }

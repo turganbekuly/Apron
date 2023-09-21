@@ -36,16 +36,20 @@ final class IngredientSelectionViewController: ViewController {
         didSet {
             if let products = products, !products.isEmpty {
                 dropDown.dataSource = products.compactMap { $0.name }
+                dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+                    guard let cell = cell as? ProductDropDownCell else { return }
+                    cell.optionLabel.text = products[index].name
+                    cell.productImageView.kf.setImage(
+                        with: URL(string: products[index].image ?? ""),
+                        placeholder: APRAssets.iconPlaceholderItem.image
+                    )
+                }
                 dropDown.show()
             }
         }
     }
 
-    var initialState: IngredientSelectionInitialState? {
-        didSet {
-
-        }
-    }
+    var initialState: IngredientSelectionInitialState?
 
     // MARK: - Views
 
@@ -126,7 +130,7 @@ final class IngredientSelectionViewController: ViewController {
     private func configureNavigation() {
         backButton.configure(with: L10n.IngredientSelection.Ingredient.add)
         backButton.onBackButtonTapped = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popViewController(animated: false)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
@@ -168,7 +172,9 @@ final class IngredientSelectionViewController: ViewController {
     }
 
     private func setupDropdown() {
+        DropDown.appearance().cellHeight = 40
         dropDown.anchorView = recipeTextField
+        dropDown.cellNib = UINib(nibName: "ProductDropDownCell", bundle: nil)
         dropDown.bottomOffset = CGPoint(x: 0, y: (dropDown.anchorView?.plainView.bounds.height)!)
         dropDown.direction = .bottom
         dropDown.selectionAction = { [weak self] (index, product) in

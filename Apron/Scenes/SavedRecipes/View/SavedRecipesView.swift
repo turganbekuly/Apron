@@ -41,7 +41,7 @@ final class SavedRecipesView: UICollectionView {
     // MARK: - Methods
 
     private func configure() {
-        showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
         [
 //            SavedRecipeHeaderView.self,
         ].forEach {

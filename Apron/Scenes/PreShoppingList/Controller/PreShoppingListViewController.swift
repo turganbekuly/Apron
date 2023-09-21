@@ -112,7 +112,7 @@ final class PreShoppingListViewController: ViewController {
         backButton.configure(with: L10n.Common.preview)
         backButton.onBackButtonTapped = { [weak self] in
             self?.delegate?.dismissed()
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popViewController(animated: false)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color

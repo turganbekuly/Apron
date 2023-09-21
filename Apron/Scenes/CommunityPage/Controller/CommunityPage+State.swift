@@ -64,14 +64,14 @@ extension CommunityPageViewController {
 
     func configureRecipes() {
         guard !recipes.isEmpty else {
-            sections = [.init(section: .topView, rows: [.emptyView])]
+            sections = [.init(section: .topView, rows: [.shimmer])]
             mainView.finishInfiniteScroll()
             mainView.reloadData()
             return
         }
         guard let section = sections.firstIndex(where: { $0.section == .topView }) else { return }
         currentPage += 1
-        sections[section].rows = recipes.compactMap { .recipiesView($0) }
+        sections[section].rows = recipes.compactMap { .result($0) }
         mainView.finishInfiniteScroll()
         mainView.reloadData()
     }

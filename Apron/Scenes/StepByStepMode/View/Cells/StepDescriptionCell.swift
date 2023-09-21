@@ -30,7 +30,11 @@ final class StepDescriptionCell: UICollectionViewCell {
     weak var delegate: StepDescriptionCellProtocol?
     private var timerButtonWidth: Constraint?
     private var counter = 120
-    private var stepCount = 0
+    private var stepCount = 0 {
+        didSet {
+            stepLabel.text = "\(L10n.Recipe.StepByStep.Timer.step) \(stepCount)"
+        }
+    }
     private var instruction = RecipeInstruction()
 
     // MARK: - Init
@@ -76,16 +80,29 @@ final class StepDescriptionCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .black
-        label.font = TypographyFonts.bold20
+        label.font = TypographyFonts.regular18
         label.numberOfLines = 0
         label.sizeToFit()
         return label
+    }()
+    
+    private lazy var stepLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = APRAssets.primaryTextMain.color
+        label.font = TypographyFonts.extraBold24
+        return label
+    }()
+    
+    private lazy var roundedCornerView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = APRAssets.tableRoundedCorners.image
+        return imageView
     }()
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 16
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -94,10 +111,15 @@ final class StepDescriptionCell: UICollectionViewCell {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 55, right: 0)
+        scrollView.backgroundColor = .white
         return scrollView
     }()
 
-    private lazy var scrollContentView = UIView()
+    private lazy var scrollContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
 
     private lazy var ingredientsButton: StepStickyBottomButton = {
         let ingredientsView = StepStickyBottomButton()
@@ -124,9 +146,11 @@ final class StepDescriptionCell: UICollectionViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
+        backgroundColor = .clear
         contentView.addSubviews(scrollView)
         scrollView.addSubview(scrollContentView)
-        scrollContentView.addSubviews(stackView, timerButton)
+        scrollContentView.addSubviews(imageView, stepLabel, recipeDescriptionLabel, timerButton)
+        imageView.addSubview(roundedCornerView)
         makeContraints()
         timerButton.configure(with: .timer)
 //        ingredientsButton.configure(with: .ingredient)
@@ -141,24 +165,30 @@ final class StepDescriptionCell: UICollectionViewCell {
             $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.bottom.width.equalToSuperview()
         }
-
-        stackView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+        
+        imageView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(UIScreen.main.bounds.width / 1.4)
+        }
+        
+        stepLabel.snp.makeConstraints {
+            $0.top.equalTo(imageView.snp.bottom)
+            $0.leading.trailing.equalToSuperview().inset(8)
+        }
+        
+        roundedCornerView.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(24)
+        }
+        
+        recipeDescriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(stepLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(8)
         }
 
-        imageView.snp.makeConstraints {
-            $0.height.equalTo(UIScreen.main.bounds.width - 16)
-        }
-
-        for view in stackView.arrangedSubviews {
-            view.snp.makeConstraints {
-                $0.width.equalToSuperview()
-            }
-        }
-
         timerButton.snp.makeConstraints {
-            $0.top.equalTo(stackView.snp.bottom).offset(8)
+            $0.top.equalTo(recipeDescriptionLabel.snp.bottom).offset(8)
             $0.leading.equalToSuperview().offset(8)
             $0.bottom.equalToSuperview().inset(16)
             $0.height.equalTo(38)
@@ -191,13 +221,10 @@ final class StepDescriptionCell: UICollectionViewCell {
         guard let instruction = viewModel.recipeInstruction else { return }
         self.instruction = instruction
         self.stepCount = viewModel.stepCount
-        stackView.removeAllArrangedSubviews()
-        if let image = instruction.image {
-            imageView.kf.setImage(with: URL(string: image))
-            stackView.addArrangedSubview(imageView)
-        }
+        imageView.kf.setImage(
+            with: URL(string: instruction.image ?? ""),
+            placeholder: APRAssets.sbSPlaceholder.image
+        )
         recipeDescriptionLabel.text = instruction.description
-        stackView.addArrangedSubview(recipeDescriptionLabel)
-        stackView.layoutIfNeeded()
     }
 }

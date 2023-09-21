@@ -17,6 +17,8 @@ enum MainEndpoint {
     case getEventRecipes(body: SearchFilterRequestBody)
     case saveRecipe(id: Int)
     case trendingsRecommendations(id: Int)
+    case getCommunity(id: Int)
+    case getSuggestedProducts(ids: [Int])
 }
 
 enum Counter {
@@ -24,12 +26,23 @@ enum Counter {
 }
 
 extension MainEndpoint: AKNetworkTargetType {
+    var isCancellable: Bool {
+        switch self {
+        case .getCommunity:
+            return false
+        default:
+            return true
+        }
+    }
+    
     var baseURL: URL {
         return Configurations.getBaseURL()
     }
 
     var path: String {
         switch self {
+        case .getCommunity(let id):
+            return "communities/\(id)"
         case let .joinCommunity(id):
             return "communities/join/\(id)"
         case .getCommuntiesByCategories:
@@ -42,6 +55,8 @@ extension MainEndpoint: AKNetworkTargetType {
             return "recipes/saveRecipe/\(id)"
         case let .trendingsRecommendations(id):
             return "recipes/trendings/\(id)"
+        case .getSuggestedProducts:
+            return "products/getProductsByIds"
         }
     }
 
@@ -51,17 +66,21 @@ extension MainEndpoint: AKNetworkTargetType {
             return .put
         case .getCommuntiesByCategories:
             return .get
-        case .getMyCommunities:
+        case .getMyCommunities, .getCommunity:
             return .get
         case .getCookNowRecipes, .getEventRecipes:
             return .post
         case .saveRecipe, .trendingsRecommendations:
+            return .post
+        case .getSuggestedProducts:
             return .post
         }
     }
 
     var task: AKNetworkTask {
         switch self {
+        case .getCommunity:
+            return .requestPlain
         case .joinCommunity:
             return .requestPlain
         case .getCommuntiesByCategories:
@@ -78,6 +97,9 @@ extension MainEndpoint: AKNetworkTargetType {
             return .requestPlain
         case .trendingsRecommendations:
             return .requestPlain
+        case let .getSuggestedProducts(ids):
+            let body = ["ids": ids]
+            return .requestParameters(parameters: body, encoding: AKJSONEncoding.default)
         }
     }
 

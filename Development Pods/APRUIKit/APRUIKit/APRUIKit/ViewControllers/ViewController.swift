@@ -10,9 +10,12 @@ import UIKit
 
 open class ViewController: UIViewController, ViewControllerProtocol {
     
+    open override func loadView() {
+        super.loadView()
+        view.backgroundColor = APRAssets.secondary.color
+    }
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = APRAssets.secondary.color
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
 }

@@ -13,10 +13,6 @@ extension MainViewController {
 
     // MARK: - Network
 
-    func getCommunitiesByCategory() {
-        interactor.getCommunitiesByCategory(request: .init())
-    }
-
     func getCookNowRecipes() {
         var searchFilter = SearchFilterRequestBody()
         searchFilter.dayTimeType = [defineRecipeDayTime().rawValue]
@@ -31,5 +27,13 @@ extension MainViewController {
 
     func saveRecipe(with id: Int) {
         interactor.saveRecipe(request: .init(id: id))
+    }
+    
+    func getCommunitiesBy(ids: [Int]) {
+        interactor.getCommunitiesById(communityIds: ids)
+    }
+    
+    func getProductsByIds(ids: [Int]) {
+        interactor.getProductsByIds(request: .init(ids: ids))
     }
 }

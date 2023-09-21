@@ -52,6 +52,7 @@ final class StepFinalStepCell: UICollectionViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
+        backgroundColor = .clear
         contentView.addSubviews(imageView, addCommentButtom)
         addCommentButtom.configure(with: .addComment)
         setupConstraints()

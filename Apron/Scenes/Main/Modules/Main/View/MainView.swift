@@ -35,7 +35,9 @@ public final class MainView: UITableView {
             AdBannerCell.self,
             DynamicCommunityCell.self,
             WhatToCookCell.self,
-            CookNowCell.self
+            CookNowCell.self,
+            CommunityCell.self,
+            SBIMainTableCell.self
         ].forEach {
             register(cellClass: $0)
         }

@@ -18,38 +18,6 @@ protocol StepByStepModeDisplayLogic: AnyObject {
 }
 
 final class StepByStepModeViewController: ViewController {
-
-    struct Section {
-        enum Section {
-            case ingredients
-            case instructions
-            case review
-        }
-        enum Row {
-            case ingredient([RecipeIngredient])
-            case instruction(RecipeInstruction)
-            case review
-        }
-
-        let section: Section
-        let rows: [Row]
-    }
-
-    struct StepperSection {
-        enum Section {
-            case ingredients
-            case steps
-            case review
-        }
-        enum Row {
-            case ingredient
-            case step
-            case review
-        }
-        let section: Section
-        let rows: [Row]
-    }
-
     // MARK: - Properties
     var player: AVAudioPlayer?
     let interactor: StepByStepModeBusinessLogic
@@ -170,34 +138,39 @@ final class StepByStepModeViewController: ViewController {
     }
 
     private func configureViews() {
-        [mainView, stackView, progressBar].forEach { view.addSubview($0) }
+        [mainView, stepperView, stackView].forEach { view.addSubview($0) }
 
         configureColors()
         makeConstraints()
     }
 
     private func makeConstraints() {
-        progressBar.snp.makeConstraints {
+//        progressBar.snp.makeConstraints {
+//            $0.leading.trailing.equalToSuperview().inset(8)
+//            $0.top.equalToSuperview()
+//            $0.height.equalTo(10)
+//        }
+        stepperView.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(8)
-            $0.top.equalToSuperview()
-            $0.height.equalTo(10)
+            $0.height.equalTo(70)
         }
 
         mainView.snp.makeConstraints {
-            $0.top.equalTo(progressBar.snp.bottom).offset(8)
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(stepperView.snp.top)
         }
 
         stackView.snp.makeConstraints {
             $0.trailing.equalToSuperview()
             $0.width.equalTo(120)
-            $0.bottom.equalTo(mainView.snp.bottom).offset(-24)
+            $0.bottom.equalTo(stepperView.snp.top).offset(-16)
         }
     }
 
     private func configureColors() {
-        view.backgroundColor = APRAssets.secondary.color
+        view.backgroundColor = .white
     }
 
     deinit {

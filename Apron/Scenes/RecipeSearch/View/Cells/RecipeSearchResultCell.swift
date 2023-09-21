@@ -45,8 +45,8 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
     // MARK: - Views factory
 
-    private lazy var recipeView: RecipeSearchResultTopView = {
-        let view = RecipeSearchResultTopView()
+    private lazy var recipeView: RoundedTopView = {
+        let view = RoundedTopView()
         view.layer.cornerRadius = 15
         view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         view.clipsToBounds = true
@@ -206,9 +206,9 @@ final class RecipeSearchResultCell: UICollectionViewCell {
 
     func configure(with recipe: RecipeResponse) {
         recipeView.configure(
-            with: RecipeSearchResultTopViewModel(
-                recipeImage: recipe.imageURL,
-                cookTime: "\(recipe.cookTime ?? 0) мин"
+            with: RoundedTopViewModel(
+                image: recipe.imageURL,
+                label: "\(recipe.cookTime ?? 0) мин"
             )
         )
         isSaved = recipe.isSaved ?? false

@@ -26,7 +26,7 @@ final class IngredientView: UIView {
         didSet {
             var value = ""
             if amount != 0.0 {
-                value = "\(amount.clean)"
+                value = amount.shorten
             }
             value += " \(unit)"
             self.measureScopeLabel.text = value
@@ -134,14 +134,5 @@ final class IngredientView: UIView {
     func changeServings(initialCount: Int, changedCount: Int) {
         self.initialServingsCount = initialCount
         self.changedServingsCount = changedCount
-    }
-}
-
-extension Double {
-    var clean: String {
-        if self == 0 {
-            return ""
-        }
-        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
     }
 }
