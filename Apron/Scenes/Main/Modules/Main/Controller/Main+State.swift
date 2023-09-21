@@ -38,7 +38,7 @@ extension MainViewController {
             fetchRemoteConfigFeatures()
             getCookNowRecipes()
             getCommunitiesBy(ids: [77, 79])
-            getProductsByIds(ids: [290, 108, 219, 237, 272, 13])
+            getProductsByIds(ids: [13, 108, 219, 237, 272])
         case let .fetchCookNowRecipes(recipes):
             cookNowRecipesState = .loaded(recipes)
         case .fetchCookNowRecipesFailed:
@@ -58,8 +58,8 @@ extension MainViewController {
             show(type: .error(L10n.Alert.errorMessage))
         case let .fetchedProductsByIds(products):
             self.products = products
-        case let .fetchedProductsByIdsFailed(error):
-            break
+        case .fetchedProductsByIdsFailed:
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
 

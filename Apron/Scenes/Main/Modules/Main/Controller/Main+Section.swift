@@ -139,6 +139,7 @@ extension SBIMainTableCell {
         }
         enum Row {
             case product(Product)
+            case seeAll
         }
         var section: Section
         var rows: [Row]

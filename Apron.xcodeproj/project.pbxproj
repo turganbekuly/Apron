@@ -554,6 +554,8 @@
 		805DBF542AADD0DA004E0EBC /* SBITableCell+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DBF532AADD0DA004E0EBC /* SBITableCell+CollectionView.swift */; };
 		805DBF562AADD322004E0EBC /* SBIMainCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DBF552AADD322004E0EBC /* SBIMainCollectionCell.swift */; };
 		805DBF582AADE674004E0EBC /* Main+SBIMainDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DBF572AADE674004E0EBC /* Main+SBIMainDelegate.swift */; };
+		805DBF862AAF2DC6004E0EBC /* SBIMainSeeAllCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805DBF852AAF2DC6004E0EBC /* SBIMainSeeAllCollectionCell.swift */; };
+		807E73CA2AB9DE8900B92AFA /* SBICommonValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E73C92AB9DE8900B92AFA /* SBICommonValues.swift */; };
 		80BD4B0B2A90E54900CD98F8 /* SearchByIngredients+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD4B0A2A90E54900CD98F8 /* SearchByIngredients+CollectionView.swift */; };
 		80BD4B0E2A90E5EF00CD98F8 /* SBIProductCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD4B0D2A90E5EF00CD98F8 /* SBIProductCollectionCell.swift */; };
 		80BD4B132A90F83000CD98F8 /* SBIIngredientsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD4B122A90F83000CD98F8 /* SBIIngredientsHeaderView.swift */; };
@@ -1318,6 +1320,8 @@
 		805DBF532AADD0DA004E0EBC /* SBITableCell+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SBITableCell+CollectionView.swift"; sourceTree = "<group>"; };
 		805DBF552AADD322004E0EBC /* SBIMainCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBIMainCollectionCell.swift; sourceTree = "<group>"; };
 		805DBF572AADE674004E0EBC /* Main+SBIMainDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Main+SBIMainDelegate.swift"; sourceTree = "<group>"; };
+		805DBF852AAF2DC6004E0EBC /* SBIMainSeeAllCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBIMainSeeAllCollectionCell.swift; sourceTree = "<group>"; };
+		807E73C92AB9DE8900B92AFA /* SBICommonValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBICommonValues.swift; sourceTree = "<group>"; };
 		80BD4B0A2A90E54900CD98F8 /* SearchByIngredients+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchByIngredients+CollectionView.swift"; sourceTree = "<group>"; };
 		80BD4B0D2A90E5EF00CD98F8 /* SBIProductCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBIProductCollectionCell.swift; sourceTree = "<group>"; };
 		80BD4B122A90F83000CD98F8 /* SBIIngredientsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBIIngredientsHeaderView.swift; sourceTree = "<group>"; };
@@ -2562,6 +2566,7 @@
 				6D1EFCF829B7470D00464AD4 /* AdBannerCollectionCell.swift */,
 				80FC61FC2A890679009E66C9 /* CommunityCollectionViewCell.swift */,
 				805DBF552AADD322004E0EBC /* SBIMainCollectionCell.swift */,
+				805DBF852AAF2DC6004E0EBC /* SBIMainSeeAllCollectionCell.swift */,
 			);
 			path = CollectionCells;
 			sourceTree = "<group>";
@@ -3437,6 +3442,14 @@
 			path = TypeAliases;
 			sourceTree = "<group>";
 		};
+		807E73C82AB9DE7900B92AFA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				807E73C92AB9DE8900B92AFA /* SBICommonValues.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		809C462059C24860D824EBB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -3581,6 +3594,7 @@
 		9BAF17463B48D190F90197D7 /* SearchByIngredients */ = {
 			isa = PBXGroup;
 			children = (
+				807E73C82AB9DE7900B92AFA /* Common */,
 				0F370252EAE67943E71C5ED1 /* Controller */,
 				A382DADD2F6AF50E03354B92 /* Provider */,
 				DB17FC6F27639548D769EEF3 /* View */,
@@ -4845,6 +4859,7 @@
 				6D2D0C1628A380BF00BF28F6 /* AddComment+ImagePicker.swift in Sources */,
 				6D7B8BE029A38F190006AB5F /* ViewControllerEndpoints.swift in Sources */,
 				6DD6734B282EC0E300C2AB4C /* GeneralSearchCommunityViewModel.swift in Sources */,
+				807E73CA2AB9DE8900B92AFA /* SBICommonValues.swift in Sources */,
 				2D4D9EB397276733A55226D2 /* SavedRecipes+State.swift in Sources */,
 				6D2817402945CD4900E62A20 /* RecipeSearchResultCellv2.swift in Sources */,
 				6D50ED42289AD15300D5D886 /* RecipeInstructionsView.swift in Sources */,
@@ -4907,6 +4922,7 @@
 				6D8A08CD2835031200133D46 /* DynamicCell+CollectionVIew.swift in Sources */,
 				469CDA563523DB3D0E30E63B /* GeneralSearchResultPresenter.swift in Sources */,
 				E1C8443C546E9A1DD989446D /* GeneralSearchResultPagerViewController.swift in Sources */,
+				805DBF862AAF2DC6004E0EBC /* SBIMainSeeAllCollectionCell.swift in Sources */,
 				6DC59CA2283BC75C00661FAA /* CreateActionType.swift in Sources */,
 				9CF04418CBDD12A4B6AC4710 /* GeneralSearchResultPager+State.swift in Sources */,
 				99D1D41B322DD74384FAA5A5 /* GeneralSearchResultPagerBuilder.swift in Sources */,
@@ -5285,7 +5301,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -5326,7 +5342,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;

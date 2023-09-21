@@ -69,6 +69,7 @@ enum AnalyticsEvents {
     case communityTapped(String)
     case searchByIngredientsViewed
     case searchByIngredientsResult(products: [Product])
+    case accountDeleted(user: User?)
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -131,7 +132,9 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
         case .searchByIngredientsViewed:
             return "search_by_ingredients_viewed"
         case .searchByIngredientsResult:
-            return "searchByIngredientsResult"
+            return "search_by_ingredients_result"
+        case .accountDeleted:
+            return "account_deleted"
         }
     }
 
@@ -194,7 +197,9 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
         case .searchByIngredientsViewed:
             return [:]
         case let .searchByIngredientsResult(products):
-            return ["\(products.compactMap { $0.id})": products.compactMap { $0.name }]
+            return ["product_names": products.compactMap { $0.name }]
+        case let .accountDeleted(user):
+            return ["username": user?.username ?? "", "user_email": user?.email ?? ""]
         }
     }
 }

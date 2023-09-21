@@ -12,6 +12,7 @@ import Models
 import DropDown
 import HapticTouch
 import AlertMessages
+import Extensions
 
 protocol SearchByIngredientsDisplayLogic: AnyObject {
     func displayProductsByIds(viewModel: SearchByIngredientsDataFlow.GetProductsByIDs.ViewModel)
@@ -46,6 +47,8 @@ final class SearchByIngredientsViewController: ViewController {
             updateState()
         }
     }
+    
+    var throttler = Throttler(minimumDelay: 0.3)
     
     var suggestedProducts: [Product] = [] {
         didSet {
@@ -220,8 +223,10 @@ final class SearchByIngredientsViewController: ViewController {
     
     @objc
     private func didEnterRecipe(_ sender: UITextField) {
-        dropDown.hide()
-        getProductsByName(name: sender.text ?? "")
+        throttler.throttle {
+            self.dropDown.hide()
+            self.getProductsByName(name: sender.text ?? "")
+        }
     }
     
     @objc

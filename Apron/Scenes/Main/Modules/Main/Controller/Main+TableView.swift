@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Extensions
 
 extension MainViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,6 +56,9 @@ extension MainViewController: UITableViewDelegate {
         case .adBanner:
             return adBanners.count == 0 ? 0 : ((UIScreen.main.bounds.width / 375) * 134) + 60
         case .searchByIngredients:
+            guard !Device.isSmallIphones() else {
+                return 170
+            }
             return 150
         }
     }
@@ -73,6 +77,10 @@ extension MainViewController: UITableViewDelegate {
         case .adBanner:
             return adBanners.count == 0 ? 0 : ((UIScreen.main.bounds.width / 375) * 134) + 60
         case .searchByIngredients:
+            guard !Device.isSmallIphones() else {
+                return 170
+            }
+            
             return 150
         }
     }

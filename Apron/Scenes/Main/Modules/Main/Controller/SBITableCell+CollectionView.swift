@@ -23,6 +23,9 @@ extension SBIMainTableCell: UICollectionViewDataSource {
         case .product:
             let cell: SBIMainCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
             return cell
+        case .seeAll:
+            let cell: SBIMainSeeAllCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -31,7 +34,7 @@ extension SBIMainTableCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = productsSection[indexPath.section].rows[indexPath.row]
         switch row {
-        case .product:
+        case .product, .seeAll:
             delegate?.sbiProductSelected()
         }
     }
@@ -40,7 +43,17 @@ extension SBIMainTableCell: UICollectionViewDelegateFlowLayout {
         let row = productsSection[indexPath.section].rows[indexPath.row]
         switch row {
         case let .product(product):
-            let width = min(Typography.semibold10(text: product.name ?? "").styled.size().width + 48, collectionView.bounds.width)
+            var productName = ""
+            if let name = product.name {
+                productName = name
+            } else {
+                productName = L10n.SearchByIngredients.Product.seeMore
+            }
+            let space: CGFloat = product.image != nil ? 50 : 26
+            let width = min(Typography.semibold11(text: productName).styled.size().width + space, collectionView.bounds.width)
+            return CGSize(width: width, height: 32)
+        case .seeAll:
+            let width = min(Typography.semibold11(text: "Еще").styled.size().width + 26, collectionView.bounds.width)
             return CGSize(width: width, height: 32)
         }
     }
@@ -51,6 +64,9 @@ extension SBIMainTableCell: UICollectionViewDelegateFlowLayout {
         case let .product(product):
             guard let cell = cell as? SBIMainCollectionCell else { return }
             cell.configure(with: product)
+        case .seeAll:
+            guard let cell = cell as? SBIMainSeeAllCollectionCell else { return }
+            cell.configure()
         }
     }
 }

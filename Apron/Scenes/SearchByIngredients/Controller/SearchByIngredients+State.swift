@@ -25,7 +25,7 @@ extension SearchByIngredientsViewController {
     public func updateState() {
         switch state {
         case .initial:
-            getProductsByIds(ids: [290, 108, 219, 237, 272, 13, 99, 440, 211, 270, 16, 338, 195, 169, 343, 388])
+            getProductsByIds(ids: SBICommonValues.suggestedIds)
             ApronAnalytics.shared.sendAnalyticsEvent(.searchByIngredientsViewed)
         case let .fetchedProductsByIds(products):
             self.suggestedProducts = products

@@ -45,6 +45,7 @@ extension ProfileViewController {
             isLoading(false)
             show(type: .error(L10n.Alert.errorMessage))
         case .deleteAccount:
+            ApronAnalytics.shared.sendAnalyticsEvent(.accountDeleted(user: userStorage.user))
             AuthStorage.shared.clear()
             let vc = AuthorizationBuilder(state: .initial).build()
             vc.hidesBottomBarWhenPushed = true

@@ -14,7 +14,7 @@ final class SBICollectionView: UICollectionView {
     public init() {
         let layout: CollectionViewLeftAlignLayout = {
             let layout = CollectionViewLeftAlignLayout()
-            layout.minimumInteritemSpacing = 4
+            layout.minimumInteritemSpacing = 8
             layout.minimumLineSpacing = 8
             layout.scrollDirection = .vertical
             return layout
@@ -38,11 +38,10 @@ final class SBICollectionView: UICollectionView {
     // MARK: - Methods
 
     private func configure() {
-        allowsMultipleSelection = true
         showsVerticalScrollIndicator = false
         contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         [
-            SBIMainCollectionCell.self,
+            SBIMainCollectionCell.self
         ].forEach {
             register(cellClass: $0)
         }

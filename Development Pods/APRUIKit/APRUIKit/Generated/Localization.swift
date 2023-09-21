@@ -152,7 +152,7 @@ public enum L10n {
   }
 
   public enum Common {
-    /// Все
+    /// Еще
     public static let all = L10n.tr("APRLocalizable", "Common.All")
     /// Отмена
     public static let cancel = L10n.tr("APRLocalizable", "Common.Cancel")
@@ -736,9 +736,19 @@ public enum L10n {
   }
 
   public enum SearchByIngredients {
+    public enum Main {
+      public enum Section {
+        /// Выберите продукты и мы подберем для вас рецепты
+        public static let descr = L10n.tr("APRLocalizable", "SearchByIngredients.Main.Section.Descr")
+        /// Что у вас в холодильнике?
+        public static let title = L10n.tr("APRLocalizable", "SearchByIngredients.Main.Section.Title")
+      }
+    }
     public enum Product {
       /// Вы уже добавили этот продукт
       public static let alreadyAdded = L10n.tr("APRLocalizable", "SearchByIngredients.Product.AlreadyAdded")
+      /// Посмотреть еще ...
+      public static let seeMore = L10n.tr("APRLocalizable", "SearchByIngredients.Product.SeeMore")
       /// Выбранные продукты
       public static let selectedProducts = L10n.tr("APRLocalizable", "SearchByIngredients.Product.SelectedProducts")
       /// Рекомендованные продукты

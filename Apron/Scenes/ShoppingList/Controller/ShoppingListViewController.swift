@@ -85,8 +85,8 @@ final class ShoppingListViewController: ViewController {
     private lazy var orderButton: BlackOpButton = {
         let button = BlackOpButton()
         button.backgroundType = .blackBackground
-        button.setTitle(L10n.ShoppingList.Order.title, for: .normal)
-        //        button.setTitle(L10n.CreateActionFlow.ShareIngredients.title, for: .normal)
+//        button.setTitle(L10n.ShoppingList.Order.title, for: .normal)
+        button.setTitle(L10n.CreateActionFlow.ShareIngredients.title, for: .normal)
         button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 23
         button.layer.masksToBounds = true
@@ -193,18 +193,18 @@ final class ShoppingListViewController: ViewController {
     }
     
     private func configureViews() {
-        [mainView, hStackView, canOrderBannerView].forEach { view.addSubview($0) }
-        canOrderBannerView.delegate = self
+        [mainView, hStackView, /*canOrderBannerView*/].forEach { view.addSubview($0) }
+//        canOrderBannerView.delegate = self
         configureColors()
         makeConstraints()
     }
     
     private func makeConstraints() {
-        canOrderBannerView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.leading.trailing.equalToSuperview()
-            orderBannerViewHeightConstarints = $0.height.equalTo(200).constraint
-        }
+//        canOrderBannerView.snp.makeConstraints {
+//            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+//            $0.leading.trailing.equalToSuperview()
+//            orderBannerViewHeightConstarints = $0.height.equalTo(200).constraint
+//        }
         
         hStackView.snp.makeConstraints {
             $0.height.equalTo(46)
@@ -213,7 +213,8 @@ final class ShoppingListViewController: ViewController {
         }
         
         mainView.snp.makeConstraints {
-            $0.top.equalTo(canOrderBannerView.snp.bottom).offset(8)
+//            $0.top.equalTo(canOrderBannerView.snp.bottom).offset(8)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(orderButton.snp.top).offset(-16)
         }
@@ -247,7 +248,8 @@ final class ShoppingListViewController: ViewController {
             show(type: .error(L10n.ShoppingList.AddProductsToBuyList.title))
             return
         }
-        orderProducts(cartItems: items.filter { $0.bought })
+//        orderProducts(cartItems: items.filter { $0.bought })
+        shareIngredients(cartItems: items.filter { $0.bought })
         ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListCheckoutTapped(items.map { $0.productName }))
         OneSignal.sendTag("shopping_list_checkout_tapped", value: "order_button_tapped")
         OneSignal.addTrigger("shopping_list_checkout_tapped", withValue: "order_button_tapped")

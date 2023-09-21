@@ -25,7 +25,7 @@
 "Common.Share.Title" = "Поделиться";
 "Common.Join.Title" = "Вступить";
 "Common.Joined.Title" = "Уже вступили";
-"Common.All" = "Все";
+"Common.All" = "Еще";
 "Common.Measure.Min" = "мин";
 "Common.Measure.Hours" = "часов";
 "Common.Measure.Seconds" = "сек";
@@ -305,3 +305,6 @@
 "SearchByIngredients.Product.AlreadyAdded" = "Вы уже добавили этот продукт";
 "SearchByIngredients.Product.SelectedProducts" = "Выбранные продукты";
 "SearchByIngredients.Product.SuggestedProducts" = "Рекомендованные продукты";
+"SearchByIngredients.Product.SeeMore" = "Посмотреть еще ...";
+"SearchByIngredients.Main.Section.Title" = "Что у вас в холодильнике?";
+"SearchByIngredients.Main.Section.Descr" = "Выберите продукты и мы подберем для вас рецепты";

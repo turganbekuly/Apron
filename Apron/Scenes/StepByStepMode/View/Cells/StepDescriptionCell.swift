@@ -221,7 +221,10 @@ final class StepDescriptionCell: UICollectionViewCell {
         guard let instruction = viewModel.recipeInstruction else { return }
         self.instruction = instruction
         self.stepCount = viewModel.stepCount
-        imageView.kf.setImage(with: URL(string: instruction.image ?? ""), placeholder: APRAssets.iconPlaceholderCard.image)
+        imageView.kf.setImage(
+            with: URL(string: instruction.image ?? ""),
+            placeholder: APRAssets.sbSPlaceholder.image
+        )
         recipeDescriptionLabel.text = instruction.description
     }
 }

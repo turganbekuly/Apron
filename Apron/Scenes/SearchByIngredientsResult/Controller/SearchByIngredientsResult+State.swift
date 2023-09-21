@@ -23,7 +23,7 @@ extension SearchByIngredientsResultViewController {
     public func updateState() {
         switch state {
         case let .initial(productIds):
-            getRecipes(with: SearchByIngredientsResult(productIds: productIds, size: 50))
+            getRecipes(with: SearchByIngredientsResult(productIds: productIds, size: 100))
         case let .getRecipesSucceed(recipes):
             self.recipes = recipes
         case .getRecipesFailed:

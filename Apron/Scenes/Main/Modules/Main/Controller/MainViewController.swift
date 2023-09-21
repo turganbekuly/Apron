@@ -241,16 +241,16 @@ final class MainViewController: ViewController {
     func defineRecipeDayTime() -> SuggestedDayTimeType {
         let today = Date()
         let hour = Calendar.current.component(.hour, from: today)
-        if (7...12).contains(hour) {
+        if (7...11).contains(hour) {
             return .zavtrak
         }
-        if (13...15).contains(hour) {
+        if (12...14).contains(hour) {
             return .obed
         }
-        if (16...18).contains(hour) {
+        if (15...17).contains(hour) {
             return .poldnik
         }
-        if (19...23).contains(hour) {
+        if (18...23).contains(hour) {
             return .uzhin
         }
         if (0...6).contains(hour) {
@@ -269,7 +269,11 @@ final class MainViewController: ViewController {
             sections.append(
                 .init(
                     section: .searchByIngredients,
-                    rows: [.searchByIngredients("Что у вас в холодильнике?", "Выберите продукты и мы подберем для вас рецепты" , products)]
+                    rows: [.searchByIngredients(
+                        L10n.SearchByIngredients.Main.Section.title,
+                        L10n.SearchByIngredients.Main.Section.descr,
+                        products + [Product()]
+                    )]
                 )
             )
         }

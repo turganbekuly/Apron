@@ -23,7 +23,8 @@ extension SearchByIngredientsResultEndpoint: AKNetworkTargetType {
     var path: String {
         switch self {
         case .getRecipes:
-            return "recipes/getRecipesByProductIds"
+//            return "recipes/getRecipesByProductIds"
+            return "recipes/getMongoRecipesByProductIds"
         }
     }
     

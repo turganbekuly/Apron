@@ -1,18 +1,15 @@
 //
-//  SBIMainCollectionCell.swift
+//  SBIMainSeeAllCollectionCell.swift
 //  Apron
 //
-//  Created by Акарыс Турганбекулы on 10.09.2023.
+//  Created by Акарыс Турганбекулы on 11.09.2023.
 //
 
 import UIKit
 import APRUIKit
 import Models
 
-final class SBIMainCollectionCell: UICollectionViewCell {
-    // MARK: - Properties
-    
-    
+final class SBIMainSeeAllCollectionCell: UICollectionViewCell {
     // MARK: - Init
 
     override init(frame: CGRect) {
@@ -35,15 +32,6 @@ final class SBIMainCollectionCell: UICollectionViewCell {
     
     // MARK: - Views factory
 
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.clipsToBounds = true
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 12
-        return imageView
-    }()
-
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.semibold11
@@ -54,14 +42,6 @@ final class SBIMainCollectionCell: UICollectionViewCell {
     }()
     
     // MARK: - Lifecycle
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        imageView.snp.updateConstraints {
-            $0.leading.equalToSuperview().offset(8)
-            $0.width.equalTo(24)
-        }
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -101,22 +81,15 @@ final class SBIMainCollectionCell: UICollectionViewCell {
     // MARK: - Setup Views
 
     private func setupViews() {
-        contentView.addSubviews(imageView, nameLabel)
+        contentView.addSubview(nameLabel)
         setupConstraints()
         configureCell()
     }
 
     private func setupConstraints() {
-        imageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(8)
-            $0.centerY.equalToSuperview()
-            $0.size.equalTo(24)
-        }
-
         nameLabel.snp.makeConstraints {
-            $0.leading.equalTo(imageView.snp.trailing).offset(8)
-            $0.centerY.equalTo(imageView.snp.centerY)
-            $0.trailing.equalToSuperview().inset(8)
+            $0.centerY.equalToSuperview()
+            $0.leading.leading.equalToSuperview().inset(8)
         }
     }
 
@@ -126,30 +99,10 @@ final class SBIMainCollectionCell: UICollectionViewCell {
 
     // MARK: - Methods
 
-    func configure(with product: Product) {
-        guard let image = product.image,
-              let name = product.name
-        else {
-            imageView.snp.updateConstraints {
-                $0.leading.equalToSuperview().offset(0)
-                $0.width.equalTo(0)
-            }
-            
-            nameLabel.text = "Посмотреть еще ..."
-            return
-        }
-        
-        imageView.kf.setImage(
-            with: URL(string: image),
-            placeholder: APRAssets.iconPlaceholderItem.image,
-            options: [
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(0.4)),
-                .cacheOriginalImage
-            ]
-        )
-        nameLabel.text = name
+    func configure() {
+        nameLabel.text = L10n.SearchByIngredients.Product.seeMore
     }
 }
+
 
 
