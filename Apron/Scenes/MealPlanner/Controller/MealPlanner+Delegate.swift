@@ -36,4 +36,11 @@ extension MealPlannerViewController: MealPlannerCellProtocol {
             actions: [noAction, yesAction]
         )
     }
+    
+    func openRecipe(with id: Int) {
+        let viewController = RecipePageBuilder(state: .initial(id: id, .mealPlanner)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(viewController, animated: false)
+        }
+    }
 }

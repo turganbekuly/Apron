@@ -12,4 +12,8 @@ extension MealPlannerCell: MealPlannerCollectionCellProtocol {
     func removeRecipe(with id: Int, with weekDay: MealPlannerWeekDays) {
         delegate?.removeRecipe(with: id, with: weekDay)
     }
+    
+    func openRecipe(with id: Int) {
+        delegate?.openRecipe(with: id)
+    }
 }

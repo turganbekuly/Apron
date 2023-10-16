@@ -24,6 +24,9 @@ extension MealPlannerViewController: UITableViewDataSource {
         case .monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday:
             let cell: MealPlannerCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .onboarding:
+            let cell: MealPlannerOnboardingCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -46,6 +49,8 @@ extension MealPlannerViewController: UITableViewDelegate {
                 return 220
             }
             return recipes.isEmpty ? 0 : 220
+        case .onboarding:
+            return 136
         }
     }
 
@@ -66,6 +71,8 @@ extension MealPlannerViewController: UITableViewDelegate {
                 return 220
             }
             return recipes.isEmpty ? 0 : 220
+        case .onboarding:
+            return 136
         }
     }
 
@@ -82,6 +89,9 @@ extension MealPlannerViewController: UITableViewDelegate {
             guard let cell = cell as? MealPlannerCell else { return }
             cell.delegate = self
             cell.configure(mealPlanner: planner)
+        case .onboarding:
+            guard let cell = cell as? MealPlannerOnboardingCell else { return }
+            cell.delegate = self
         }
     }
 
@@ -94,6 +104,8 @@ extension MealPlannerViewController: UITableViewDelegate {
         case .monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday:
             let view: MealPlannerHeaderView = tableView.dequeueReusableHeaderFooterView()
             return view
+        default:
+            return UIView()
         }
     }
 
@@ -102,6 +114,8 @@ extension MealPlannerViewController: UITableViewDelegate {
         switch section {
         case .monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday:
             return 40
+        default:
+            return 0
         }
     }
 
@@ -110,6 +124,8 @@ extension MealPlannerViewController: UITableViewDelegate {
         switch section {
         case .monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday:
             return 40
+        default:
+            return 0
         }
     }
 
@@ -126,10 +142,14 @@ extension MealPlannerViewController: UITableViewDelegate {
             guard let view = view as? MealPlannerHeaderView else { return }
             view.delegate = self
             view.configure(with: weekDay)
+        default:
+            break
         }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard !isMealPlannerEmpty else { return }
+        
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             addToCartButton.isHidden = true
         } else {
@@ -137,7 +157,7 @@ extension MealPlannerViewController: UITableViewDelegate {
         }
 
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
-        if bottomEdge >= scrollView.contentSize.height {
+        if bottomEdge >= scrollView.contentSize.height && !isMealPlannerEmpty {
             addToCartButton.isHidden = false
         }
     }

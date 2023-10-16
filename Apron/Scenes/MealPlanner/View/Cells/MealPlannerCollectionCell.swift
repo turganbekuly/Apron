@@ -14,6 +14,7 @@ import Extensions
 
 protocol MealPlannerCollectionCellProtocol: AnyObject {
     func removeRecipe(with id: Int, with weekDay: MealPlannerWeekDays)
+    func openRecipe(with id: Int)
 }
 
 final class MealPlannerCollectionCell: UICollectionViewCell {

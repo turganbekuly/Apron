@@ -7,19 +7,19 @@ workspace 'Apron'
 
 def commonPods
   # Pods for Apron
-
+  
   pod 'PanModal', :inhibit_warnings => true
   pod 'Kingfisher', '~> 7.0'
   pod 'UIScrollView-InfiniteScroll', :inhibit_warnings => true
   pod 'ALProgressView', :inhibit_warnings => true
   pod 'IQKeyboardManagerSwift'
-
+  
   # Dev Tools
-
+  
   pod 'SwiftGen', '~> 6.0'
-
+  
   #Analytics & User interaction
-
+  
   pod 'Amplitude', :inhibit_warnings => true
   pod 'Firebase/Analytics', :inhibit_warnings => true
   pod 'Firebase/Crashlytics', :inhibit_warnings => true
@@ -30,7 +30,7 @@ def commonPods
   pod 'Sentry'
   pod 'Moya', '15.0.0'
   pod 'Wormholy', '1.6.4'
-
+  
 end
 
 def developmentPods
@@ -58,6 +58,10 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.1'
+      xcconfig_path = config.base_configuration_reference.real_path
+      xcconfig = File.read(xcconfig_path)
+      xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+      File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
     end
   end
 end

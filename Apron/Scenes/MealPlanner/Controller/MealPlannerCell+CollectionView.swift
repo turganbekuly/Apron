@@ -45,6 +45,8 @@ extension MealPlannerCell: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = recipesSections[indexPath.section].rows[indexPath.row]
         switch row {
+        case let .recipe(recipe, _):
+            delegate?.openRecipe(with: recipe.id)
         default:
             break
         }

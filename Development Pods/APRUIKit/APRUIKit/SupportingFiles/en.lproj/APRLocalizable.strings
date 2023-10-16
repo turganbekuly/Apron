@@ -257,6 +257,8 @@
 "Profile.Logout.Title" = "Выйти";
 "Profile.MyRecipes.Title" = "Мои рецепты";
 "Profile.ContactWithDevelopers.Title" = "Сообщить о проблеме";
+"Profile.DeleteAccount.Alert.Title" = "Опасно!";
+"Profile.DeleteAccount.Alert.Message" = "Вы действительно хотите удалить ваш профиль? Вы потеряете все свои данные навсегда!";
 
 //MARK: - Add Comment
 "AddComment.ChooseRightEmoji.Title" = "Пожалуйста, выберите подходящий смайлик";
@@ -287,6 +289,8 @@
 //MARK: - Meal Planner
 "MealPlanner.AreYouSure" = "Вы уверены?";
 "MealPlanner.WillBeDeletedFromYourPlan" = "Этот рецепт будет удален из вашего плана питания.";
+"MealPlanner.Onboarding.Title" = "Планировщик меню";
+"MealPlanner.Onboarding.Message" = "Распланируй свой рацион на недели вперед и расслабься";
 
 //MARK: - My Recipes
 "MyRecipes.GetProfileRecipeFailed" = "Не удалось получить ваши рецепты! Пожалуйста, попробуйте еще раз!";

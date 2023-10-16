@@ -42,6 +42,7 @@ extension MealPlannerViewController {
                 .init(section: .friday(.friday), rows: [.friday(nil)]),
                 .init(section: .saturday(.saturday), rows: [.saturday(nil)]),
                 .init(section: .sunday(.sunday), rows: [.sunday(nil)]),
+                .init(section: .onboarding, rows: [.onboarding])
             ]
         case .saveRecipeSucceed:
             getRecipes(

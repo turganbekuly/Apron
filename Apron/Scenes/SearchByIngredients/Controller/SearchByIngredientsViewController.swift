@@ -36,6 +36,7 @@ final class SearchByIngredientsViewController: ViewController {
     }
     
     // MARK: - Properties
+    
     let interactor: SearchByIngredientsBusinessLogic
     var sections: [Section] = [] {
         didSet {
@@ -111,6 +112,7 @@ final class SearchByIngredientsViewController: ViewController {
     }()
     
     // MARK: - Init
+    
     init(interactor: SearchByIngredientsBusinessLogic, state: State) {
         self.interactor = interactor
         self.state = state
@@ -123,6 +125,7 @@ final class SearchByIngredientsViewController: ViewController {
     }
     
     // MARK: - Life Cycle
+    
     override func loadView() {
         super.loadView()
         
@@ -153,6 +156,7 @@ final class SearchByIngredientsViewController: ViewController {
     }
     
     // MARK: - Methods
+    
     private func configureNavigation() {
         backButton.configure(with: "Поиск по ингредиентам")
         backButton.onBackButtonTapped = { [weak self] in
@@ -160,6 +164,7 @@ final class SearchByIngredientsViewController: ViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
+        tabBarController?.tabBar.isHidden = true
     }
     
     private func configureViews() {

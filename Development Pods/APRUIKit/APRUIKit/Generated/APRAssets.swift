@@ -22,6 +22,7 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum APRAssets {
   public static let blue = ColorAsset(name: "blue")
+  public static let brown = ColorAsset(name: "brown")
   public static let colorsYello = ColorAsset(name: "colorsYello")
   public static let darkYello = ColorAsset(name: "darkYello")
   public static let gray = ColorAsset(name: "gray")
@@ -102,6 +103,10 @@ public enum APRAssets {
   public static let iconPlaceholderItem = ImageAsset(name: "icon_placeholder_item")
   public static let mealPlannerLeftArrow = ImageAsset(name: "meal_planner_left_arrow")
   public static let mealPlannerRightArrow = ImageAsset(name: "meal_planner_right_arrow")
+  public static let mealPlannerStep1 = ImageAsset(name: "meal_planner_step_1")
+  public static let mealPlannerStep2 = ImageAsset(name: "meal_planner_step_2")
+  public static let mealPlannerStep3 = ImageAsset(name: "meal_planner_step_3")
+  public static let mealPlannerStep4 = ImageAsset(name: "meal_planner_step_4")
   public static let closeIcon = ImageAsset(name: "close_icon")
   public static let iconCartClose = ImageAsset(name: "icon_cart_close")
   public static let iconNavigationClose = ImageAsset(name: "icon_navigation_close")
@@ -147,6 +152,10 @@ public enum APRAssets {
   public static let searchIcon24 = ImageAsset(name: "search_icon_24")
   public static let searchRoundedView = ImageAsset(name: "search_rounded_view")
   public static let emptyCart = ImageAsset(name: "empty_cart")
+  public static let step1 = ImageAsset(name: "step1")
+  public static let step2 = ImageAsset(name: "step2")
+  public static let step3 = ImageAsset(name: "step3")
+  public static let step4 = ImageAsset(name: "step4")
   public static let tabAddSelectedIcon = ImageAsset(name: "tab_add_selected_icon")
   public static let tabAddUnselectedIcon = ImageAsset(name: "tab_add_unselected_icon")
   public static let tabBarAppIcon = ImageAsset(name: "tab_bar_app_icon")
@@ -164,10 +173,6 @@ public enum APRAssets {
   public static let tabbarAddIcon = ImageAsset(name: "tabbar_add_icon")
   public static let tabbarAddIcon20px = ImageAsset(name: "tabbar_add_icon_20px")
   public static let tabbarAddIconThin = ImageAsset(name: "tabbar_add_icon_thin")
-  public static let step1 = ImageAsset(name: "step1")
-  public static let step2 = ImageAsset(name: "step2")
-  public static let step3 = ImageAsset(name: "step3")
-  public static let step4 = ImageAsset(name: "step4")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

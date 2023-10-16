@@ -13,6 +13,7 @@ import Extensions
 
 protocol MealPlannerCellProtocol: AnyObject {
     func removeRecipe(with id: Int, with weekDay: MealPlannerWeekDays)
+    func openRecipe(with id: Int)
 }
 
 final class MealPlannerCell: UITableViewCell {

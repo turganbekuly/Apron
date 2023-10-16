@@ -45,8 +45,8 @@ extension AuthSignInViewController {
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
-        case .loginFailed:
-            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationFailed("signin"))
+        case let .loginFailed(error):
+            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationFailed("sourceType:signin, backend: \(error)"))
             AuthStorage.shared.clear()
             hideLoader()
             show(type: .error(L10n.Alert.errorMessage))

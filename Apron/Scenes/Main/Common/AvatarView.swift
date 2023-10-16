@@ -37,9 +37,6 @@ final class AvatarView: View {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(onProfileTapped))
         imageView.addGestureRecognizer(tapGR)
         addSubview(imageView)
-
-        guard userStorage.user != nil else { return }
-        self.imageView.setImage(string: userStorage.user?.username ?? "User")
     }
 
     override func setupConstraints() {

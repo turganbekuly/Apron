@@ -17,6 +17,7 @@ public protocol RemoteConfigFieldValues: AnyObject {
     var isRecipeCreationEnabled: Bool { get }
     var isPaidRecipeEnabled: Bool { get }
     var adBannerLink: String { get }
+    var deleteAccountEnabled: Bool { get }
 }
 
 public final class RemoteConfig: RemoteConfigServiceProtocol, RemoteConfigFieldValues {
@@ -98,5 +99,9 @@ extension RemoteConfig {
 
     public var adBannerLink: String {
         return remoteConfigHolder[string: Key.adBannerLink.rawValue]
+    }
+    
+    public var deleteAccountEnabled: Bool {
+        return remoteConfigHolder[bool: Key.deleteAccountEnabled.rawValue]
     }
 }

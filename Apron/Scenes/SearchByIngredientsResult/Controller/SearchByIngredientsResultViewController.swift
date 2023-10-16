@@ -109,6 +109,7 @@ final class SearchByIngredientsResultViewController: ViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
+        tabBarController?.tabBar.isHidden = true
     }
     
     private func configureViews() {

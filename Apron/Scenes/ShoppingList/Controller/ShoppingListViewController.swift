@@ -195,6 +195,11 @@ final class ShoppingListViewController: ViewController {
     private func configureViews() {
         [mainView, hStackView, /*canOrderBannerView*/].forEach { view.addSubview($0) }
 //        canOrderBannerView.delegate = self
+        canOrderBannerView.configure(
+            title: "Закажите продукты онлайн!",
+            description: "Теперь вы можете заказать продукты через нас буквально за 1 клик!",
+            buttonTitle: "Посмотреть как?"
+        )
         configureColors()
         makeConstraints()
     }

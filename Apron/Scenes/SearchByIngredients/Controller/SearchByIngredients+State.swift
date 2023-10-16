@@ -13,6 +13,7 @@ import APRUIKit
 extension SearchByIngredientsViewController {
     
     // MARK: - State
+    
     public enum State {
         case initial
         case fetchedProductsByIds([Product])
@@ -22,6 +23,7 @@ extension SearchByIngredientsViewController {
     }
     
     // MARK: - Methods
+    
     public func updateState() {
         switch state {
         case .initial:

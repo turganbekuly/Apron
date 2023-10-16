@@ -8,6 +8,11 @@
 import UIKit
 import APRUIKit
 
+enum OrderOnlineOnboardingType {
+    case shoppingList
+    case mealPlanner
+}
+
 final class OrderOnlineOnboardingViewController: UIViewController {
     // MARK: - Properties
     
@@ -36,14 +41,39 @@ final class OrderOnlineOnboardingViewController: UIViewController {
         APRAssets.step4.image
     ]
     
+    var mealPlannerImages = [
+        APRAssets.mealPlannerStep1.image,
+        APRAssets.mealPlannerStep2.image,
+        APRAssets.mealPlannerStep3.image,
+        APRAssets.mealPlannerStep4.image
+    ]
+    
+    private var type: OrderOnlineOnboardingType
+    
     // MARK: - Lifecycle
+    
+    init(type: OrderOnlineOnboardingType) {
+        self.type = type
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        sections = [
-            .init(section: .screens, rows: images.compactMap { .screen($0) })
-        ]
+        switch type {
+        case .shoppingList:
+            sections = [
+                .init(section: .screens, rows: images.compactMap { .screen($0) })
+            ]
+        case .mealPlanner:
+            sections = [
+                .init(section: .screens, rows: mealPlannerImages.compactMap { .screen($0) })
+            ]
+        }
     }
     
     // MARK: - Views factory

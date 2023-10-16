@@ -40,6 +40,7 @@ extension MealPlannerViewController: WeeklyCalendarViewProtocol {
             .init(section: .friday(.friday), rows: [.friday(nil)]),
             .init(section: .saturday(.saturday), rows: [.saturday(nil)]),
             .init(section: .sunday(.sunday), rows: [.sunday(nil)]),
+            .init(section: .onboarding, rows: [.onboarding])
         ]
         getRecipes(
             startDate: dateConverter(date: start),
@@ -54,8 +55,10 @@ extension MealPlannerViewController: CreateActionFlowProtocol {
         case .searchRecipes:
             let body = SearchFilterRequestBody()
             let vc = RecipeSearchBuilder(state: .initial(.mealPlannerSearch(body, self))).build()
+            let navBar = MealPlannerNavigationController(rootViewController: vc)
+            navBar.modalPresentationStyle = .overFullScreen
             DispatchQueue.main.async {
-                self.present(vc, animated: true)
+                self.present(navBar, animated: true)
             }
         case .savedRecipe:
             let vc = SavedRecipesBuilder(state: .initial(.mealPlanner(self))).build()

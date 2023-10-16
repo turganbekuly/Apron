@@ -26,8 +26,8 @@ final class FiltersViewController: ViewController {
         .init(section: .dishTypes, rows: SuggestedDishType.allCases.compactMap { .dishType($0) }),
 //        .init(section: .ingredients, rows: ingredients.compactMap { .ingredient($0) }),
 //        .init(section: .addIngredient, rows: [.addIngredient]),
-        .init(section: .eventTypes, rows: SuggestedEventType.allCases.compactMap { .eventType($0) }),
-        .init(section: .lifestyleTypes, rows: SuggestedLifestyleType.allCases.compactMap { .lifestyleType($0) })
+//        .init(section: .eventTypes, rows: SuggestedEventType.allCases.compactMap { .eventType($0) }),
+//        .init(section: .lifestyleTypes, rows: SuggestedLifestyleType.allCases.compactMap { .lifestyleType($0) })
     ]
     var state: State {
         didSet {

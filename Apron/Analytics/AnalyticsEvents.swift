@@ -25,6 +25,7 @@ enum RecipeCreationSourceTypeModel: String, Codable {
     case banner
     case recipePage
     case searchByIngredients = "search_by_ingredients"
+    case mealPlanner = "meal_planner"
 }
 
 enum RecipeCategoriesType: String, Codable {

@@ -562,6 +562,9 @@
 		80BD4B152A90FAB500CD98F8 /* SBIProductSelectedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD4B142A90FAB500CD98F8 /* SBIProductSelectedCollectionCell.swift */; };
 		80BD4B172A926D6A00CD98F8 /* SearchByIngredients+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD4B162A926D6A00CD98F8 /* SearchByIngredients+Delegates.swift */; };
 		80CD14642A2DFDCC006F54B0 /* StepIngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD14632A2DFDCC006F54B0 /* StepIngredientsCell.swift */; };
+		80DB09FE2AD97478006EC54D /* MealPlanner+BannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB09FD2AD97478006EC54D /* MealPlanner+BannerDelegate.swift */; };
+		80DB0A012ADAEEF5006EC54D /* MealPlannerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB0A002ADAEEF5006EC54D /* MealPlannerNavigationController.swift */; };
+		80DB0A032ADAF4AD006EC54D /* MealPlannerOnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB0A022ADAF4AD006EC54D /* MealPlannerOnboardingCell.swift */; };
 		80FA64FD2AADC48A0091A45A /* SBIMainTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA64FC2AADC48A0091A45A /* SBIMainTableCell.swift */; };
 		80FC61FD2A890679009E66C9 /* CommunityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC61FC2A890679009E66C9 /* CommunityCollectionViewCell.swift */; };
 		80FC61FF2A890E93009E66C9 /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC61FE2A890E93009E66C9 /* CommunityCell.swift */; };
@@ -1329,6 +1332,9 @@
 		80BD4B162A926D6A00CD98F8 /* SearchByIngredients+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchByIngredients+Delegates.swift"; sourceTree = "<group>"; };
 		80BFF51F25942A32AD5A10D9 /* SearchByIngredientsResultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchByIngredientsResultViewController.swift; sourceTree = "<group>"; };
 		80CD14632A2DFDCC006F54B0 /* StepIngredientsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIngredientsCell.swift; sourceTree = "<group>"; };
+		80DB09FD2AD97478006EC54D /* MealPlanner+BannerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealPlanner+BannerDelegate.swift"; sourceTree = "<group>"; };
+		80DB0A002ADAEEF5006EC54D /* MealPlannerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlannerNavigationController.swift; sourceTree = "<group>"; };
+		80DB0A022ADAF4AD006EC54D /* MealPlannerOnboardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlannerOnboardingCell.swift; sourceTree = "<group>"; };
 		80FA64FC2AADC48A0091A45A /* SBIMainTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBIMainTableCell.swift; sourceTree = "<group>"; };
 		80FC61FC2A890679009E66C9 /* CommunityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCollectionViewCell.swift; sourceTree = "<group>"; };
 		80FC61FE2A890E93009E66C9 /* CommunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
@@ -2300,6 +2306,7 @@
 			children = (
 				6D170AA5296D8BBD007FA9CF /* MealPlannerCollectionCell.swift */,
 				6DE86F6E2973E2E600164FD9 /* MealPlannerCell.swift */,
+				80DB0A022ADAF4AD006EC54D /* MealPlannerOnboardingCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -3346,6 +3353,7 @@
 		77FC7C932C3F871D70CE4564 /* MealPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				80DB09FF2ADAEEEB006EC54D /* Common */,
 				D168750ABE500AC9E1836650 /* Controller */,
 				61502E94E29A8E54CF6D57DA /* Provider */,
 				6A0B5911F08A561419A37DD5 /* View */,
@@ -3474,6 +3482,14 @@
 				80BD4B122A90F83000CD98F8 /* SBIIngredientsHeaderView.swift */,
 			);
 			path = CollectionHeader;
+			sourceTree = "<group>";
+		};
+		80DB09FF2ADAEEEB006EC54D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				80DB0A002ADAEEF5006EC54D /* MealPlannerNavigationController.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		83DF4E27876B2B6B053B7CB4 /* View */ = {
@@ -3942,6 +3958,7 @@
 				F1658FB0ADB19694E35CF4BE /* MealPlanner+State.swift */,
 				6DE86F702973E38100164FD9 /* MealPlanner+TableView.swift */,
 				6DE86F8729746CA100164FD9 /* MealPlanner+RecipeWrangling.swift */,
+				80DB09FD2AD97478006EC54D /* MealPlanner+BannerDelegate.swift */,
 				6D170A9F296D699F007FA9CF /* MealPlannerCell+CollectionView.swift */,
 				6D7B8BDA299B66FF0006AB5F /* MealPlannerCell+Delegate.swift */,
 				6D7B8BDC299B7E220006AB5F /* MealPlanner+Delegate.swift */,
@@ -4762,6 +4779,7 @@
 				2F697449940542ED75DDA30F /* InstructionSelectionDataFlow.swift in Sources */,
 				6D332DB429CEE76900A96A87 /* Keyboard.swift in Sources */,
 				00A752136B3076C0EA221250 /* InstructionSelectionInteractor.swift in Sources */,
+				80DB09FE2AD97478006EC54D /* MealPlanner+BannerDelegate.swift in Sources */,
 				6D8B4FFD286F14FF00F150A0 /* ShoppingList+CheckDelegate.swift in Sources */,
 				6DC4EB4E283E09BE008D3F57 /* AuthorizationInteractor.swift in Sources */,
 				6D9F7A6D282A759E0053BF5B /* CommunityPage+Delegate.swift in Sources */,
@@ -4872,6 +4890,7 @@
 				DDB3571C5F5E21FAD1B1CFDA /* SavedRecipesService.swift in Sources */,
 				999936B985405C6585E45EDD /* SavedRecipesView.swift in Sources */,
 				6D5716B028B2150500163EAE /* InstructionSelectionHeaderView.swift in Sources */,
+				80DB0A012ADAEEF5006EC54D /* MealPlannerNavigationController.swift in Sources */,
 				093243BEF7FA801DD6EEE994 /* SavedRecipesBuilder.swift in Sources */,
 				6D1EFCFD29B74F0700464AD4 /* AdBannerCell+CollectionView.swift in Sources */,
 				0437D43598F594D2600A1E6B /* SavedRecipesDataFlow.swift in Sources */,
@@ -4901,6 +4920,7 @@
 				7BD988CB175ECB102D6188E5 /* GeneralSearchInteractor.swift in Sources */,
 				6DE47BC22854F87300961C06 /* AddSavedRecipes+CollectionView.swift in Sources */,
 				C184F171976E5C9C900B42CB /* GeneralSearchPresenter.swift in Sources */,
+				80DB0A032ADAF4AD006EC54D /* MealPlannerOnboardingCell.swift in Sources */,
 				6D28173C2943B0D800E62A20 /* Main+WhatToCookDelegates.swift in Sources */,
 				6D0376B128F7D49D00D2EA94 /* RecipeCreationNavigationController.swift in Sources */,
 				54CE33449E989EF94C36F80F /* GeneralSearchResultViewController.swift in Sources */,
@@ -5301,7 +5321,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/Apron.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -5322,7 +5342,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.4;
+				MARKETING_VERSION = 3.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5342,7 +5362,7 @@
 				CODE_SIGN_ENTITLEMENTS = Apron/ApronRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5QQH255ZJ3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Apron/Info.plist;
@@ -5362,7 +5382,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.4;
+				MARKETING_VERSION = 3.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.turganbekuly.apron.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

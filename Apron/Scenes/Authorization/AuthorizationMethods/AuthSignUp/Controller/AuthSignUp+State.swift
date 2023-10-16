@@ -10,6 +10,7 @@ import Models
 import UIKit
 import Storages
 import OneSignal
+import APRUIKit
 
 extension AuthSignUpViewController {
 
@@ -44,10 +45,10 @@ extension AuthSignUpViewController {
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
-        case .signupFailed:
-            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationFailed("signup"))
+        case let .signupFailed(error):
+            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationFailed("sourceType:signup, backend: \(error)"))
             AuthStorage.shared.clear()
-            show(type: .error("Не удалось зарегистрироваться. Пожалуйста, попробуйте позднее!"))
+            show(type: .error(L10n.Alert.errorMessage))
         }
     }
 

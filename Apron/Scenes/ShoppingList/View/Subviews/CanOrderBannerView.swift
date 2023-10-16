@@ -33,7 +33,6 @@ final class CanOrderBannerView: View {
         label.font = TypographyFonts.bold18
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.text = "Закажите продукты онлайн!"
         return label
     }()
     
@@ -43,13 +42,11 @@ final class CanOrderBannerView: View {
         label.font = TypographyFonts.regular16
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.text = "Теперь вы можете заказать продукты через нас буквально за 1 клик!"
         return label
     }()
     
     private lazy var showButton: NavigationButton = {
         let button = NavigationButton()
-        button.setTitle("Посмотреть как?", for: .normal)
         button.backgroundType = .whiteBackground
         button.addTarget(self, action: #selector(showHowButtonTapped), for: .touchUpInside)
         return button
@@ -85,8 +82,9 @@ final class CanOrderBannerView: View {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(closeButton.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().offset(8)
+            $0.trailing.equalTo(closeButton.snp.leading).offset(-8)
+            $0.leading.equalToSuperview().inset(16)
         }
         
         descriptionLabel.snp.makeConstraints {
@@ -111,5 +109,26 @@ final class CanOrderBannerView: View {
     @objc
     private func showHowButtonTapped() {
         delegate?.showOnboarding()
+    }
+    
+    // MARK: - Public methods
+    
+    func configure(
+        title: String,
+        description: String,
+        buttonTitle: String,
+        shouldHideButton: Bool = false
+    ) {
+        titleLabel.text = title
+        descriptionLabel.text = description
+        showButton.setTitle(buttonTitle, for: .normal)
+        
+        if shouldHideButton {
+            closeButton.isHidden = true
+        }
+    }
+    
+    func configure(backgroundColor: UIColor) {
+        containerView.backgroundColor = backgroundColor
     }
 }

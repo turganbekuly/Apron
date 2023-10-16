@@ -9,6 +9,8 @@
 import UIKit
 import Storages
 import RemoteConfig
+import AlertMessages
+import APRUIKit
 
 extension ProfileViewController: UITableViewDataSource {
 
@@ -60,8 +62,26 @@ extension ProfileViewController: UITableViewDelegate {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         case .deleteAccount:
-            let id: Int = userStorage.user?.id ?? 0
-            deleteAccount(with: id)
+            let confirm = AlertActionInfo(
+                title: L10n.Common.yes,
+                type: .normal,
+                action: {
+                    let id: Int = self.userStorage.user?.id ?? 0
+                    self.deleteAccount(with: id)
+                }
+            )
+            
+            let cancel = AlertActionInfo(
+                title: L10n.Common.no,
+                type: .destructive,
+                action: { }
+            )
+
+            showAlert(
+                L10n.Profile.DeleteAccount.Alert.title,
+                message: L10n.Profile.DeleteAccount.Alert.message,
+                actions: [confirm, cancel]
+            )
         case .contactWithDevelopers:
             let link = RemoteConfigManager.shared.remoteConfig.contactWithDevelopersLink
             guard !link.isEmpty else { return }

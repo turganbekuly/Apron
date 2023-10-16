@@ -67,7 +67,7 @@ extension CommunityPageViewController: UICollectionViewDelegateFlowLayout {
         switch row {
         case let .result(recipe):
             guard let cell = cell as? RecipeSearchResultCellv2 else { return }
-//            cell.delegate = self
+            cell.delegate = self
             cell.configure(with: recipe)
         case .shimmer:
             guard let cell = cell as? RecipeSearchSkeletonCell else { return }

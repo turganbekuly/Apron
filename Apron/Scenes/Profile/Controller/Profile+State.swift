@@ -11,6 +11,7 @@ import UIKit
 import Storages
 import APRUIKit
 import OneSignal
+import RemoteConfig
 
 extension ProfileViewController {
 
@@ -39,7 +40,15 @@ extension ProfileViewController {
                 name: model.username,
                 email: model.email
             )
-            sections = [.init(section: .app, rows: [.user, .assistant, .myRecipes, .deleteAccount, .contactWithDevelopers, .logout])]
+            
+            let isDeleteAccountEnabled = RemoteConfigManager.shared.configManager.config(for: RemoteConfigKeys.deleteAccountEnabled)
+            
+            if isDeleteAccountEnabled || model.username == "akarysid@gmail.com" {
+                sections = [.init(section: .app, rows: [.user, .assistant, .myRecipes, .deleteAccount, .contactWithDevelopers, .logout])]
+            } else {
+                sections = [.init(section: .app, rows: [.user, .assistant, .myRecipes, .contactWithDevelopers, .logout])]
+            }
+            
             mainView.reloadData()
         case .fetchProfileFailed:
             isLoading(false)

@@ -44,8 +44,8 @@ extension AuthorizationViewController {
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = navigationVC
             }
-        case .loginFailed:
-            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationFailed("apple"))
+        case let .loginFailed(error):
+            ApronAnalytics.shared.sendAnalyticsEvent(.authorizationFailed("sourceType:apple, backend: \(error)"))
             AuthStorage.shared.clear()
             show(type: .error(L10n.Alert.errorMessage))
         }

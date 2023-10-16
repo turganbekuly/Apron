@@ -11,6 +11,7 @@ import UIKit
 import Storages
 import AlertMessages
 import NVActivityIndicatorView
+import FeatureToggle
 
 protocol ProfileDisplayLogic: AnyObject {
     func displayProfile(with viewModel: ProfileDataFlow.GetProfile.ViewModel)
@@ -45,7 +46,7 @@ final class ProfileViewController: ViewController {
         }
     }
 
-    public var userStorage: UserStorageProtocol = UserStorage()
+    var userStorage: UserStorageProtocol = UserStorage()
 
     // MARK: - Views
     lazy var mainView: ProfileView = {

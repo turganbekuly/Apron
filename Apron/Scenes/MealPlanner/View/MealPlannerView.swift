@@ -36,7 +36,8 @@ public final class MealPlannerView: UITableView {
             register(aClass: $0)
         }
         [
-            MealPlannerCell.self
+            MealPlannerCell.self,
+            MealPlannerOnboardingCell.self
         ].forEach {
             register(cellClass: $0)
         }

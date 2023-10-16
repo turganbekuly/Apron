@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "meal_planner_step_2.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

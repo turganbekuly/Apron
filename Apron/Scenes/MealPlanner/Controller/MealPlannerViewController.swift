@@ -13,6 +13,7 @@ import Storages
 import Extensions
 import NVActivityIndicatorView
 import OneSignal
+import SnapKit
 
 protocol MealPlannerDisplayLogic: AnyObject {
     func displayGetMealPlannerRecipes(
@@ -41,12 +42,18 @@ final class MealPlannerViewController: ViewController {
             mainView.reloadData()
         }
     }
+    
+    var isMealPlannerEmpty = true {
+        didSet {
+            addToCartButton.isHidden = isMealPlannerEmpty
+        }
+    }
 
     var mealPlannerRecipes: [MealPlannerResponse] = [] {
         didSet {
             let isMealPlannerEmpty = (mealPlannerRecipes.reduce(0, { $0 + ($1.recipes?.count ?? 0) }) == 0)
             configurePlannerCells(mealPlanner: mealPlannerRecipes)
-            addToCartButton.isEnabled = !isMealPlannerEmpty
+            self.isMealPlannerEmpty = isMealPlannerEmpty
             guard !isMealPlannerEmpty else {
                 OneSignal.sendTag("meal_planner", value: "no_items")
                 OneSignal.addTrigger("meal_planner", withValue: "no_items")
@@ -64,6 +71,7 @@ final class MealPlannerViewController: ViewController {
     }
 
     // MARK: - Views
+    
     var weekdayCalendarView: WeeklyCalendarView = {
         let view = WeeklyCalendarView()
         return view
@@ -156,9 +164,14 @@ final class MealPlannerViewController: ViewController {
     }
 
     private func configureViews() {
-        [mainView, weekdayCalendarView, activityIndicator, addToCartButton].forEach { view.addSubview($0) }
+        [
+            mainView,
+            weekdayCalendarView,
+            activityIndicator,
+            addToCartButton
+        ].forEach { view.addSubview($0) }
 
-        addToCartButton.isEnabled = false
+        addToCartButton.isHidden = true
         activityIndicator.isHidden = true
         activityIndicator.alpha = 0.0
 
@@ -222,10 +235,23 @@ final class MealPlannerViewController: ViewController {
 
         updateCart(cartItems: cartItems) {
             hideLoader()
+            dismissedWithIngredients()
         }
     }
 
     // MARK: - Methods
+    
+    private func dismissedWithIngredients() {
+        show(
+            type: .regular("Ингредиенты добавлены в корзину", "Посмотреть"),
+            firstAction: {
+                let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+            }
+        )
+    }
 
     private func updateCart(cartItems: [CartItem], completion: () -> Void) {
         let cartManager = CartManager.shared
@@ -294,6 +320,7 @@ final class MealPlannerViewController: ViewController {
             .init(section: .friday(.friday), rows: [.friday(friday)]),
             .init(section: .saturday(.saturday), rows: [.saturday(saturday)]),
             .init(section: .sunday(.sunday), rows: [.sunday(sunday)]),
+            .init(section: .onboarding, rows: [.onboarding])
         ]
     }
 

@@ -30,7 +30,7 @@ extension ShoppingListViewController: CanOrderBannerViewProtocol {
     }
     
     func showOnboarding() {
-        let vc = OrderOnlineOnboardingViewController()
+        let vc = OrderOnlineOnboardingViewController(type: .shoppingList)
         let navController = OrderOnboardingNavigationController(rootViewController: vc)
         DispatchQueue.main.async {
             navController.modalPresentationStyle = .fullScreen

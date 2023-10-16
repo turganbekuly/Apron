@@ -20,6 +20,7 @@ extension MealPlannerViewController {
             case friday(MealPlannerWeekDays)
             case saturday(MealPlannerWeekDays)
             case sunday(MealPlannerWeekDays)
+            case onboarding
         }
         enum Row {
             case monday(MealPlannerResponse?)
@@ -29,6 +30,7 @@ extension MealPlannerViewController {
             case friday(MealPlannerResponse?)
             case saturday(MealPlannerResponse?)
             case sunday(MealPlannerResponse?)
+            case onboarding
         }
 
         let section: Section

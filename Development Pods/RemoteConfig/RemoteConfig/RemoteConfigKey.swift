@@ -13,4 +13,5 @@ public enum RemoteConfigKey: String, CaseIterable {
     case isRecipeCreationEnabled = "ios_recipe_creation_enabled"
     case isPaidRecipeEnabled = "ios_paid_recipe_creation"
     case adBannerLink = "ios_ad_banner_link"
+    case deleteAccountEnabled = "ios_delete_account_enabled"
 }

@@ -51,9 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         let user = AuthStorage.shared
         AppsFlyerLib.shared().start()
+        requestTrackingAuthorization()
         AppsFlyerLib.shared().waitForATTUserAuthorization(timeoutInterval: 120)
         AppsFlyerLib.shared().customData = ["id": 0, "name": user.username ?? "", "email": user.email ?? ""]
-        requestTrackingAuthorization()
     }
 
     func application(

@@ -435,6 +435,12 @@ public enum L10n {
     public static let areYouSure = L10n.tr("APRLocalizable", "MealPlanner.AreYouSure")
     /// Этот рецепт будет удален из вашего плана питания.
     public static let willBeDeletedFromYourPlan = L10n.tr("APRLocalizable", "MealPlanner.WillBeDeletedFromYourPlan")
+    public enum Onboarding {
+      /// Распланируй свой рацион на недели вперед и расслабься
+      public static let message = L10n.tr("APRLocalizable", "MealPlanner.Onboarding.Message")
+      /// Планировщик меню
+      public static let title = L10n.tr("APRLocalizable", "MealPlanner.Onboarding.Title")
+    }
   }
 
   public enum MealPlannerWeekDays {
@@ -529,6 +535,12 @@ public enum L10n {
     public enum DeleteAccount {
       /// Удалить аккаунт
       public static let title = L10n.tr("APRLocalizable", "Profile.DeleteAccount.Title")
+      public enum Alert {
+        /// Вы действительно хотите удалить ваш профиль? Вы потеряете все свои данные навсегда!
+        public static let message = L10n.tr("APRLocalizable", "Profile.DeleteAccount.Alert.Message")
+        /// Опасно!
+        public static let title = L10n.tr("APRLocalizable", "Profile.DeleteAccount.Alert.Title")
+      }
     }
     public enum Logout {
       /// Выйти
