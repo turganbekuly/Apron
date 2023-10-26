@@ -14,10 +14,10 @@ extension CommunityCreationViewController {
 
     func openMediaModal() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { [weak self] _ in
-            self?.checkCameraAccessIfNeeded()
-        }
-        alert.addAction(cameraAction)
+//        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { [weak self] _ in
+//            self?.checkCameraAccessIfNeeded()
+//        }
+//        alert.addAction(cameraAction)
         let galleryAction = UIAlertAction(title: "Выбрать из галереи", style: .default) { [weak self] _ in
             self?.checkLibraryAcceessIfNeeded()
         }

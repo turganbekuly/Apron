@@ -257,8 +257,9 @@
 "Profile.Logout.Title" = "Выйти";
 "Profile.MyRecipes.Title" = "Мои рецепты";
 "Profile.ContactWithDevelopers.Title" = "Сообщить о проблеме";
-"Profile.DeleteAccount.Title" = "Опасно!";
-"Profile.DeleteAccount.Message" = "Вы действительно хотите удалить ваш профиль? Вы потеряете все свои данные навсегда!";
+"Profile.DeleteAccount.Alert.Title" = "Опасно!";
+"Profile.DeleteAccount.Alert.Message" = "Вы действительно хотите удалить ваш профиль? Вы потеряете все свои данные навсегда!";
+"Profile.Edit.Navigation.Title" = "Настройка профиля";
 
 //MARK: - Add Comment
 "AddComment.ChooseRightEmoji.Title" = "Пожалуйста, выберите подходящий смайлик";

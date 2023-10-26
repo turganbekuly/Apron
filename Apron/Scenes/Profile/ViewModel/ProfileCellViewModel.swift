@@ -13,6 +13,7 @@ import UIKit
 public protocol ProfileUserCellProtocol {
     var username: NSAttributedString? { get }
     var email: NSAttributedString? { get }
+    var imageURL: String? { get }
 }
 
 public struct ProfileUserCellViewModel: ProfileUserCellProtocol {
@@ -39,6 +40,10 @@ public struct ProfileUserCellViewModel: ProfileUserCellProtocol {
         }
 
         return Typography.regular16(text: text).styled
+    }
+    
+    public var imageURL: String? {
+        return user?.image
     }
 
     // MARK: - Init

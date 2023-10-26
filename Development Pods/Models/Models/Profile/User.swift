@@ -16,6 +16,8 @@ public struct User: Codable {
         case username
         case myRecipes
         case managedCommunites
+        case image
+        case bonusAmount
     }
 
     // MARK: - Properties
@@ -25,6 +27,8 @@ public struct User: Codable {
     public var username: String?
     public var myRecipes: [RecipeResponse]?
     public var managedCommunites: [CommunityResponse]?
+    public var image: String?
+    public var bonusAmount: Int?
 
     // MARK: - Init
 
@@ -37,6 +41,8 @@ public struct User: Codable {
         self.id = id
         email = json[CodingKeys.email.rawValue] as? String
         username = json[CodingKeys.username.rawValue] as? String
+        image = json[CodingKeys.image.rawValue] as? String
+        bonusAmount = json[CodingKeys.bonusAmount.rawValue] as? Int
         myRecipes = (json[CodingKeys.myRecipes.rawValue] as? [JSON])?
             .compactMap { RecipeResponse(json: $0) } ?? []
         managedCommunites = (json[CodingKeys.managedCommunites.rawValue] as? [JSON])?
@@ -51,6 +57,10 @@ public struct User: Codable {
 
         if let username = username {
             params[CodingKeys.username.rawValue] = username
+        }
+        
+        if let image = image {
+            params[CodingKeys.image.rawValue] = image
         }
 
         return params

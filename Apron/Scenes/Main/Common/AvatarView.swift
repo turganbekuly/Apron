@@ -8,11 +8,13 @@
 import UIKit
 import APRUIKit
 import Storages
+import Models
 
 final class AvatarView: View {
     // MARK: - Private properties
 
     private var userStorage: UserStorageProtocol = UserStorage()
+    private let provider = AKNetworkProvider<ProfileEndpoint>()
 
     // MARK: - Public properties
 
@@ -27,6 +29,8 @@ final class AvatarView: View {
         imageView.image = APRAssets.user.image
         imageView.tintColor = APRAssets.primaryTextMain.color
         imageView.isUserInteractionEnabled = true
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 17.5
         return imageView
     }()
 
@@ -37,6 +41,20 @@ final class AvatarView: View {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(onProfileTapped))
         imageView.addGestureRecognizer(tapGR)
         addSubview(imageView)
+        guard let image = userStorage.user?.image else {
+            getAvatarImage(completion: { [weak self] image in
+                self?.imageView.kf.setImage(
+                    with: URL(string: image ?? ""),
+                    placeholder: APRAssets.user.image
+                )
+            })
+            return
+        }
+        
+        imageView.kf.setImage(
+            with: URL(string: image),
+            placeholder: APRAssets.user.image
+        )
     }
 
     override func setupConstraints() {
@@ -56,5 +74,23 @@ final class AvatarView: View {
     @objc
     private func onProfileTapped() {
         onTap?()
+    }
+}
+
+// MARK: - Private endpoints
+
+private extension AvatarView {
+    private func getAvatarImage(completion: @escaping ((String?) -> Void)) {
+        provider.send(target: .getProfile) { result in
+            switch result {
+            case let .success(json):
+                if let json = User(json: json) {
+                    self.userStorage.user = json
+                    completion(json.image)
+                }
+            case .failure:
+                break
+            }
+        }
     }
 }

@@ -26,6 +26,7 @@ extension RecipeCreationViewController {
             case whenToCook
             case servings
             case cookTime
+            case rules
         }
         var section: Section
         var rows: [Row]

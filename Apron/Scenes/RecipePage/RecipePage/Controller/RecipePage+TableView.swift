@@ -203,10 +203,18 @@ extension RecipePageViewController: UITableViewDelegate {
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }
             }
+            cell.onSourceLinkTapped = { [weak self] link in
+                guard let urlString = link else { return }
+                let vc = WebViewHandler(urlString: urlString)
+                DispatchQueue.main.async {
+                    self?.presentPanModal(vc)
+                }
+            }
             cell.configure(with: InformationCellViewModel(
                 recipeName: recipe?.recipeName ?? "",
                 recipeImage: recipe?.imageURL ?? "",
                 recipeAuthor: recipe?.authorName?.username,
+                recipeSource: recipe?.sourceLink,
                 likeCount: recipe?.likesCount ?? 0,
                 dislikeCount: recipe?.dislikesCount ?? 0
             ))

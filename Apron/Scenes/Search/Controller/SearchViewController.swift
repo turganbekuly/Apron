@@ -138,8 +138,22 @@ final class SearchViewController: ViewController {
                 self?.navigationController?.pushViewController(viewController, animated: false)
             }
         }
+        
+        let bonusView = BonusView()
+        bonusView.onBonusButtonTapped = { [weak self] in
+            let vc = WebViewHandler(urlString: AppConstants.bonusLink)
+            
+            DispatchQueue.main.async {
+                self?.presentPanModal(vc)
+            }
+        }
+        
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: cartView),
+            UIBarButtonItem(customView: bonusView)
+        ]
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
         navigationController?.navigationBar.barTintColor = APRAssets.secondary.color
     }
 

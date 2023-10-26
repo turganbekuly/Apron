@@ -50,6 +50,12 @@ public extension RemoteConfigKeys {
     static var deleteAccountEnabled: ConfigKey<Bool> {
         .init(firebaseKey: .deleteAccountEnabled, abKey: nil, defaultValue: true)
     }
+    static var communitiesList: ConfigKey<[Int]> {
+        .init(firebaseKey: .communitiesList, abKey: nil, defaultValue: [77, 79])
+    }
+    static var recipeSourceTypeEnabled: ConfigKey<Bool> {
+        .init(firebaseKey: .recipeSourceTypeEnabled, abKey: nil, defaultValue: false)
+    }
 }
 
 public struct AdBannerObject: Codable, RemoteConfigSerializable {

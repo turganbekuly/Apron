@@ -21,4 +21,6 @@ public enum FirebaseKeyType: String, CaseIterable {
     case isPaidRecipeEnabled = "ios_paid_recipe_creation"
     case adBannerObject = "ios_ad_banner_object"
     case deleteAccountEnabled = "ios_delete_account_enabled"
+    case communitiesList = "ios_communities_list"
+    case recipeSourceTypeEnabled = "ios_recipe_source_enabled"
 }

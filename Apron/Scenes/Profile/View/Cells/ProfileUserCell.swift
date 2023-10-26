@@ -9,7 +9,7 @@ import APRUIKit
 import UIKit
 
 public protocol ProfileUserCellDelegate: AnyObject {
-    func cell(_ cell: UITableViewCell, didTappedAvatar avatar: UIImageView)
+    func didTapEditProfile()
 }
 
 public final class ProfileUserCell: UITableViewCell {
@@ -29,9 +29,10 @@ public final class ProfileUserCell: UITableViewCell {
 
     private lazy var userImageView: UIImageView = {
         let view = UIImageView(image: APRAssets.user.image)
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedAvatar(_:))))
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 33.3
         return view
     }()
 
@@ -42,6 +43,25 @@ public final class ProfileUserCell: UITableViewCell {
         return label
     }()
 
+    private lazy var editProfileButton: UIButton = {
+        let button = UIButton()
+        let yourAttributes: [NSAttributedString.Key: Any] = [
+            .font: TypographyFonts.semibold17,
+            .foregroundColor: APRAssets.primaryTextMain.color,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+          ]
+        
+        let attributeString = NSMutableAttributedString(
+            string: "Настроить профиль",
+            attributes: yourAttributes
+        )
+        
+        button.setAttributedTitle(attributeString, for: .normal)
+        button.titleLabel?.textAlignment = .left
+        button.addTarget(self, action: #selector(editProfileButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var separatorView = SeparatorView()
 
     // MARK: - Init
@@ -66,48 +86,60 @@ public final class ProfileUserCell: UITableViewCell {
 
     // MARK: - Methods
 
-    @objc
-    private func didTappedAvatar(_ sender: UITapGestureRecognizer) {
-        guard let imageView = sender.view as? UIImageView else { return }
-
-        delegate?.cell(self, didTappedAvatar: imageView)
-    }
-
     public func configure(with viewModel: ProfileUserCellProtocol) {
         usernameLabel.attributedText = viewModel.username
         emailLabel.attributedText = viewModel.email
-
+        
+        if let imageString = viewModel.imageURL,
+           let url = URL(string: imageString) {
+            userImageView.kf.setImage(
+                with: url,
+                placeholder: APRAssets.user.image
+            )
+        }
         configureColors()
     }
 
     private func configureViews() {
         selectionStyle = .none
-        [usernameLabel, emailLabel, userImageView, separatorView].forEach {
-            contentView.addSubview($0)
-        }
+        contentView.addSubviews(
+            usernameLabel,
+            emailLabel,
+            userImageView,
+            separatorView,
+            editProfileButton
+        )
 
         configureColors()
         makeConstraints()
     }
 
     private func makeConstraints() {
-        usernameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(16)
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalTo(userImageView.snp.leading).offset(-38.67)
-        }
-        emailLabel.snp.makeConstraints { make in
-            make.top.equalTo(usernameLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalTo(userImageView.snp.leading).offset(-38.67)
-        }
         userImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15.67)
-            make.trailing.equalToSuperview().inset(22.67)
+            make.leading.equalToSuperview().offset(16)
             make.size.equalTo(CGSize(width: 66.67, height: 66.67))
         }
+        
+        usernameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.leading.equalTo(userImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-38.67)
+        }
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(usernameLabel.snp.bottom)
+            make.leading.equalTo(userImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-38.67)
+        }
+        
+        editProfileButton.snp.makeConstraints {
+            $0.top.equalTo(emailLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(emailLabel.snp.leading)
+            $0.trailing.lessThanOrEqualTo(emailLabel.snp.trailing)
+        }
+        
         separatorView.snp.makeConstraints { make in
-            make.top.equalTo(userImageView.snp.bottom).offset(31.67)
+            make.bottom.equalToSuperview().inset(8)
             make.leading.equalToSuperview().inset(16)
             make.trailing.equalToSuperview().inset(16)
             make.height.equalTo(1)
@@ -121,4 +153,10 @@ public final class ProfileUserCell: UITableViewCell {
         userImageView.tintColor = APRAssets.lightGray.color
     }
 
+    // MARK: - User actions
+    
+    @objc
+    private func editProfileButtonTapped() {
+        delegate?.didTapEditProfile()
+    }
 }

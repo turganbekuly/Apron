@@ -33,6 +33,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
 
     public var icon: UIImage? {
         switch row {
+        case .bonus:
+            return APRAssets.bonusIcon.image
         case .assistant:
             return APRAssets.cookAssistant.image
         case .deleteAccount:
@@ -53,6 +55,8 @@ struct ProfileItemsCellViewModel: ProfileItemsCellViewModelProtocol {
     public var title: NSAttributedString? {
         var title = ""
         switch row {
+        case let .bonus(value):
+            return Typography.semibold16(text: "\(value) Moca Coins").styled
         case .assistant:
             title = L10n.Profile.Assistant.title
         case .deleteAccount:

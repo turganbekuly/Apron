@@ -26,6 +26,7 @@ final class ProfileViewController: ViewController {
         }
         enum Row {
             case user
+            case bonus(Int)
             case assistant
             case deleteAccount
             case contactWithDevelopers
@@ -90,8 +91,13 @@ final class ProfileViewController: ViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         configureNavigation()
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

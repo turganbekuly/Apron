@@ -55,6 +55,9 @@ extension RecipeCreationViewController: UITableViewDataSource {
         case .paidRecipeInfo:
             let cell: RecipeCreationPaidInfoCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .rules:
+            let cell: RecipeCreationRulesCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
         }
     }
 }
@@ -64,7 +67,7 @@ extension RecipeCreationViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .name:
-            return 54
+            return 100
         case .source:
             return 100
         case .image:
@@ -96,13 +99,15 @@ extension RecipeCreationViewController: UITableViewDelegate {
             return 144
         case .paidRecipeInfo:
             return 236
+        case .rules:
+            return 136
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .name:
-            return 54
+            return 100
         case .source:
             return 100
         case .image:
@@ -134,6 +139,8 @@ extension RecipeCreationViewController: UITableViewDelegate {
             return 144
         case .paidRecipeInfo:
             return 236
+        case .rules:
+            return 136
         }
     }
 
@@ -188,6 +195,9 @@ extension RecipeCreationViewController: UITableViewDelegate {
             guard let cell = cell as? RecipeCreationPaidInfoCell else { return }
             cell.delegate = self
             cell.configure(email: recipeCreation?.email, promo: recipeCreation?.promo)
+        case .rules:
+            guard let cell = cell as? RecipeCreationRulesCell else { return }
+            cell.delegate = self
         }
     }
 }

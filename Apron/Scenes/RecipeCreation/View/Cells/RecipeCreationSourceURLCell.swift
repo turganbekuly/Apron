@@ -40,7 +40,7 @@ final class RecipeCreationSourceURLCell: UITableViewCell {
 
     private lazy var roudedTextField: RoundedTextField = {
         let textField = RoundedTextField(
-            placeholder: "Укажите источник рецепта (пр: apron.ws)"
+            placeholder: "Укажите ссылку на рецепт, если он не ваш"
         )
         textField.textField.addTarget(self, action: #selector(didEnterSource(_:)), for: .editingChanged)
         return textField

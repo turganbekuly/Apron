@@ -43,6 +43,13 @@ extension AddCommentViewController {
                 }
 
                 delegate?.commentDidAdd()
+                ApronAnalytics.shared.sendAnalyticsEvent(
+                    .ratingPageResult(
+                        rate: selectedRate?.rawValue ?? 3,
+                        description: addCommentRequestBody?.comment ?? "",
+                        hasPhoto: addCommentRequestBody?.image != nil ? true : false
+                    )
+                )
                 navigationController?.popViewController(animated: true)
             case .failed:
                 show(type: .error(L10n.AddComment.SendMessageError.title))

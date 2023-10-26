@@ -7,12 +7,16 @@
 
 import APRUIKit
 import UIKit
+import RemoteConfig
 
 final class RecipeInformationViewCell: UITableViewCell {
     // MARK: - Properties
     
     var onEditButtonTapped: (() -> Void)?
     var onShareButtonTapped: (() -> Void)?
+    var onSourceLinkTapped: ((String?) -> Void)?
+    
+    private var sourceLink: String?
     
     // MARK: - Init
     
@@ -59,6 +63,7 @@ final class RecipeInformationViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -90,6 +95,29 @@ final class RecipeInformationViewCell: UITableViewCell {
         return view
     }()
     
+    private lazy var sourceStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [sourceLabel])
+        view.axis = .horizontal
+        view.spacing = 8
+        view.layoutMargins = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        view.isLayoutMarginsRelativeArrangement = true
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        view.layer.shadowOpacity = 0.6
+        view.layer.shadowRadius = 15
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
+    private lazy var sourceLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.medium14
+        label.textColor = APRAssets.primaryTextMain.color
+        label.isUserInteractionEnabled = true
+        return label
+    }()
+    
     private lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.font = TypographyFonts.medium14
@@ -116,12 +144,12 @@ final class RecipeInformationViewCell: UITableViewCell {
         backgroundColor = .clear
         selectionStyle = .none
         isUserInteractionEnabled = true
-        [
-            recipeImageView,
-            recipeAuthorStackView
-        ].forEach { contentView.addSubview($0) }
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(sourceLinkHanlder))
+        sourceLabel.addGestureRecognizer(tapGR)
+        sourceStackView.addGestureRecognizer(tapGR)
         
-        recipeImageView.addSubview(ratingStackView)
+        contentView.addSubviews(recipeImageView,recipeAuthorStackView)
+        recipeImageView.addSubviews(ratingStackView, sourceStackView)
         ratingView.addSubview(ratingImageView)
         recipeAuthorStackView.addArrangedSubviews(
             titleLabel,
@@ -157,6 +185,26 @@ final class RecipeInformationViewCell: UITableViewCell {
             $0.top.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(30)
         }
+        
+        sourceStackView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().offset(16)
+            $0.height.equalTo(30)
+        }
+    }
+    
+    // MARK: - Private methods
+    
+    private func getSourceLink(with url: String) -> NSAttributedString {
+        let yourAttributes: [NSAttributedString.Key: Any] = [
+            .font: TypographyFonts.bold14,
+            .foregroundColor: APRAssets.primaryTextMain.color,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        
+        return NSMutableAttributedString(
+            string: url,
+            attributes: yourAttributes
+        )
     }
     
     // MARK: - User actions
@@ -171,11 +219,29 @@ final class RecipeInformationViewCell: UITableViewCell {
         onShareButtonTapped?()
     }
     
+    @objc
+    private func sourceLinkHanlder() {
+        onSourceLinkTapped?(sourceLink)
+    }
+    
     // MARK: - Methods
     
     func configure(with viewModel: IInformationCellViewModel) {
         recipeTitleLabel.text = viewModel.recipeName
         recipeByLabel.text = "от - \(viewModel.recipeAuthor ?? "Аноним")"
+        let isSourceLinkEnabled = RemoteConfigManager.shared.configManager.config(for: RemoteConfigKeys.recipeSourceTypeEnabled)
+        if
+            isSourceLinkEnabled,
+            let url = URL(string: viewModel.recipeSource ?? ""),
+            let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true),
+            let host = urlComponents.host,
+            !host.contains("link.moca.kz")
+        {
+            sourceLink = viewModel.recipeSource
+            sourceLabel.attributedText = getSourceLink(with: host)
+        } else {
+            sourceStackView.isHidden = true
+        }
         recipeImageView.kf.setImage(
             with: URL(string: viewModel.recipeImage ?? ""),
             placeholder: APRAssets.iconPlaceholderItem.image,
@@ -200,6 +266,7 @@ final class RecipeInformationViewCell: UITableViewCell {
             ratingStackView.isHidden = true
         }
         
+        sourceStackView.layoutIfNeeded()
         recipeAuthorStackView.layoutIfNeeded()
         ratingStackView.layoutIfNeeded()
     }

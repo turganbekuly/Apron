@@ -37,6 +37,9 @@ final class RecipePageViewController: ViewController {
         }
     }
     
+    var seconds = 0
+    var timer: Timer?
+    
     var initialState: RecipeCreationSourceTypeModel?
     
     var recipe: RecipeResponse? {
@@ -206,12 +209,15 @@ final class RecipePageViewController: ViewController {
         super.viewWillAppear(animated)
         
         configureNavigation()
+        startTimer()
         self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        ApronAnalytics.shared.sendAnalyticsEvent(.recipePageLeft(after: seconds))
+        cancelTimer()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -274,7 +280,32 @@ final class RecipePageViewController: ViewController {
         NSLog("deinit \(self)")
     }
     
+    // MARK: - Private methods
+    
+    private func startTimer() {
+        cancelTimer()
+        timer = Timer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(fireTimer),
+            userInfo: nil,
+            repeats: true
+        )
+
+        RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
+            
+    }
+    
+    private func cancelTimer() {
+        timer?.invalidate()
+    }
+    
     // MARK: - User actions
+    
+    @objc
+    private func fireTimer() {
+        seconds += 1
+    }
     
     @objc
     private func backButtonTapped() {

@@ -542,6 +542,12 @@ public enum L10n {
         public static let title = L10n.tr("APRLocalizable", "Profile.DeleteAccount.Alert.Title")
       }
     }
+    public enum Edit {
+      public enum Navigation {
+        /// Настройка профиля
+        public static let title = L10n.tr("APRLocalizable", "Profile.Edit.Navigation.Title")
+      }
+    }
     public enum Logout {
       /// Выйти
       public static let title = L10n.tr("APRLocalizable", "Profile.Logout.Title")

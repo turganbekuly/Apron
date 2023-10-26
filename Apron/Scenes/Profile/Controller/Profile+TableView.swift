@@ -29,7 +29,7 @@ extension ProfileViewController: UITableViewDataSource {
         case .user:
             let cell: ProfileUserCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
-        case .logout, .deleteAccount, .contactWithDevelopers, .myRecipes:
+        case .logout, .deleteAccount, .contactWithDevelopers, .myRecipes, .bonus:
             let cell: ProfileItemsCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         case .assistant:
@@ -46,6 +46,12 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
+        case .bonus:
+            let vc = WebViewHandler(urlString: AppConstants.bonusLink)
+            
+            DispatchQueue.main.async {
+                self.presentPanModal(vc)
+            }
         case .logout:
             AuthStorage.shared.clear()
             ApronAnalytics.shared.resetAnalytics()
@@ -85,6 +91,13 @@ extension ProfileViewController: UITableViewDelegate {
         case .contactWithDevelopers:
             let link = RemoteConfigManager.shared.remoteConfig.contactWithDevelopersLink
             guard !link.isEmpty else { return }
+            guard link != "https://wa.me/77064302140" else {
+                if let url = URL(string: link),
+                   UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+                return
+            }
             let webViewController = WebViewHandler(urlString: link)
             presentPanModal(webViewController)
         default:
@@ -96,8 +109,8 @@ extension ProfileViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .user:
-            return 131
-        case .logout, .assistant, .deleteAccount, .contactWithDevelopers, .myRecipes:
+            return 166
+        case .bonus, .logout, .assistant, .deleteAccount, .contactWithDevelopers, .myRecipes:
             return 56
         }
     }
@@ -106,8 +119,8 @@ extension ProfileViewController: UITableViewDelegate {
         let row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .user:
-            return 131
-        case .logout, .assistant, .deleteAccount, .contactWithDevelopers, .myRecipes:
+            return 166
+        case .bonus, .logout, .assistant, .deleteAccount, .contactWithDevelopers, .myRecipes:
             return 56
         }
     }
@@ -120,6 +133,9 @@ extension ProfileViewController: UITableViewDelegate {
 
             cell.delegate = self
             cell.configure(with: ProfileUserCellViewModel(user: userStorage.user))
+        case .bonus:
+            guard let cell = cell as? ProfileItemsCell else { return }
+            cell.configure(with: ProfileItemsCellViewModel(row: row, mode: .top))
         case .assistant:
             guard let cell = cell as? ProfileAssistantCell else { return }
 

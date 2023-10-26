@@ -16,9 +16,9 @@ extension RecipeCreationViewController {
     func openMediaModal() {
         let remoteConfigManager = RemoteConfigManager.shared.remoteConfig
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: L10n.Photo.Action.camera, style: .default) { [weak self] _ in
-            self?.checkCameraAccessIfNeeded()
-        }
+//        let cameraAction = UIAlertAction(title: L10n.Photo.Action.camera, style: .default) { [weak self] _ in
+//            self?.checkCameraAccessIfNeeded()
+//        }
 
         if remoteConfigManager.isGallerySourceEnabled {
             let galleryAction = UIAlertAction(title: L10n.Photo.Action.gallery, style: .default) { [weak self] _ in
@@ -26,7 +26,7 @@ extension RecipeCreationViewController {
             }
             alert.addAction(galleryAction)
         }
-        alert.addAction(cameraAction)
+//        alert.addAction(cameraAction)
         alert.addAction(.init(title: L10n.Common.cancel, style: .cancel))
         DispatchQueue.main.async { [weak self] in
             self?.present(alert, animated: true, completion: nil)

@@ -151,8 +151,21 @@ final class SavedRecipesViewController: ViewController {
                 navigation.pushViewController(viewController, animated: false)
             }
         }
+        
+        let bonusView = BonusView()
+        bonusView.onBonusButtonTapped = { [weak self] in
+            let vc = WebViewHandler(urlString: AppConstants.bonusLink)
+            DispatchQueue.main.async {
+                self?.presentPanModal(vc)
+            }
+        }
+        
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: cartView),
+            UIBarButtonItem(customView: bonusView)
+        ]
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
         navigation.navigationBar.barTintColor = APRAssets.secondary.color
         navigation.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigation.navigationBar.shadowImage = UIImage()

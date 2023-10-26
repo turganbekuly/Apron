@@ -43,10 +43,18 @@ extension ProfileViewController {
             
             let isDeleteAccountEnabled = RemoteConfigManager.shared.configManager.config(for: RemoteConfigKeys.deleteAccountEnabled)
             
-            if isDeleteAccountEnabled || model.username == "akarysid@gmail.com" {
-                sections = [.init(section: .app, rows: [.user, .assistant, .myRecipes, .deleteAccount, .contactWithDevelopers, .logout])]
+            if isDeleteAccountEnabled || model.username == "akarys.turganbekuly@gmail.com" {
+                sections = [
+                    .init(section: .app,
+                          rows: [.user, .bonus(model.bonusAmount ?? 0), .assistant, .myRecipes, .deleteAccount, .contactWithDevelopers, .logout]
+                         )
+                ]
             } else {
-                sections = [.init(section: .app, rows: [.user, .assistant, .myRecipes, .contactWithDevelopers, .logout])]
+                sections = [
+                    .init(section: .app,
+                          rows: [.user, .bonus(model.bonusAmount ?? 0), .assistant, .myRecipes, .contactWithDevelopers, .logout]
+                         )
+                ]
             }
             
             mainView.reloadData()

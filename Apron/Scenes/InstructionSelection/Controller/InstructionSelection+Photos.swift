@@ -14,10 +14,10 @@ extension InstructionSelectionViewController {
 
     func openMediaModal() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: L10n.Photo.Action.camera, style: .default) { [weak self] _ in
-            self?.checkCameraAccessIfNeeded()
-        }
-        alert.addAction(cameraAction)
+//        let cameraAction = UIAlertAction(title: L10n.Photo.Action.camera, style: .default) { [weak self] _ in
+//            self?.checkCameraAccessIfNeeded()
+//        }
+//        alert.addAction(cameraAction)
         let galleryAction = UIAlertAction(title: L10n.Photo.Action.gallery, style: .default) { [weak self] _ in
             self?.checkLibraryAcceessIfNeeded()
         }

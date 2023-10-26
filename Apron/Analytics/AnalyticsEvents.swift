@@ -44,6 +44,7 @@ enum AnalyticsEvents {
     case homePageViewed(CustomerStatus)
     case authorization(AuthorizationModel)
     case authorizationFailed(String)
+    case profileEdited
     case communitiesListPageViewed(CommunitiesListPageViewedModel)
     case communityPageViewed(CommunityPageViewedModel)
     case joinedCommunity(JoinedCommunityModel)
@@ -53,6 +54,7 @@ enum AnalyticsEvents {
     case recipeCreationPageViewed(RecipeCreationSourceTypeModel)
     case recipeCreated(RecipeCreatedModel)
     case recipePageViewed(RecipePageViewedModel)
+    case recipePageLeft(after: Int)
     case recipePageRecommendationTapped(recipeName: String, rowPlace: CGFloat)
     case recipeAddedToFavorite(String)
     case shoppingListViewed
@@ -71,6 +73,10 @@ enum AnalyticsEvents {
     case searchByIngredientsViewed
     case searchByIngredientsResult(products: [Product])
     case accountDeleted(user: User?)
+    case mealPlannerOnboardingPageViewed
+    case shoppingListOnboardingPageViewed
+    case ratingPageViewed
+    case ratingPageResult(rate: Int, description: String, hasPhoto: Bool)
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -82,6 +88,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "authorization"
         case .authorizationFailed:
             return "authorization_failed"
+        case .profileEdited:
+            return "profile_edited"
         case .communitiesListPageViewed:
             return "commuties_list_page_viewed"
         case .communityPageViewed:
@@ -100,6 +108,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "recipe_created"
         case .recipePageViewed:
             return "recipe_page_viewed"
+        case .recipePageLeft:
+            return "recipe_page_left"
         case .recipePageRecommendationTapped:
             return "recipe_page_recommendation_tapped"
         case .recipeAddedToFavorite:
@@ -136,6 +146,14 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "search_by_ingredients_result"
         case .accountDeleted:
             return "account_deleted"
+        case .mealPlannerOnboardingPageViewed:
+            return "meal_planner_onboarding_page_viewed"
+        case .shoppingListOnboardingPageViewed:
+            return "shopping_list_onboarding_page_viewed"
+        case .ratingPageViewed:
+            return "rating_page_viewed"
+        case .ratingPageResult:
+            return "rating_page_result"
         }
     }
 
@@ -147,6 +165,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return model.toJSON()
         case let .authorizationFailed(error):
             return ["result": error]
+        case .profileEdited:
+            return [:]
         case let .communitiesListPageViewed(model):
             return model.toJSON()
         case let .communityPageViewed(model):
@@ -165,6 +185,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return model.toJSON()
         case let .recipePageViewed(model):
             return model.toJSON()
+        case let .recipePageLeft(seconds):
+            return ["seconds": seconds]
         case let .recipePageRecommendationTapped(recipeName, rowPlace):
             return ["recipe_name": recipeName, "row_place": rowPlace]
         case let .recipeAddedToFavorite(recipeName):
@@ -201,6 +223,14 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return ["product_names": products.compactMap { $0.name }]
         case let .accountDeleted(user):
             return ["username": user?.username ?? "", "user_email": user?.email ?? ""]
+        case .mealPlannerOnboardingPageViewed:
+            return [:]
+        case .shoppingListOnboardingPageViewed:
+            return [:]
+        case .ratingPageViewed:
+            return [:]
+        case let .ratingPageResult(rate, description, hasPhoto):
+            return ["rating": rate, "description": description, "hasPhoto": hasPhoto]
         }
     }
 }

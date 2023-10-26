@@ -9,7 +9,16 @@ import Foundation
 import UIKit
 
 extension ProfileViewController: ProfileUserCellDelegate {
-    func cell(_ cell: UITableViewCell, didTappedAvatar avatar: UIImageView) {
-        //
+    func didTapEditProfile() {
+        let vc = EditProfileBuilder(state: .initial(self)).build()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+}
+
+extension ProfileViewController: EditProfileResultProtocol {
+    func updateProfile() {
+        self.mainView.reloadData()
     }
 }

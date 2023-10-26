@@ -142,6 +142,7 @@ final class AddCommentViewController: ViewController {
         super.viewDidLoad()
 
         state = { state }()
+        ApronAnalytics.shared.sendAnalyticsEvent(.ratingPageViewed)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -42,9 +42,10 @@ final class RecipeCreationView: UITableView {
             RecipeCreationAddIngredientCell.self,
             RecipeCreationAddInstructionCell.self,
             RecipeCreationAssignCell.self,
-            RecipeCreationTagsCell.self,
             RecipeCreationPaidCell.self,
-            RecipeCreationPaidInfoCell.self
+            RecipeCreationPaidInfoCell.self,
+            RecipeCreationTagsCell.self,
+            RecipeCreationRulesCell.self
         ].forEach {
             register(cellClass: $0)
         }

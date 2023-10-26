@@ -29,6 +29,14 @@ final class RecipeCreationNamingCell: UITableViewCell {
     }
 
     // MARK: - Views factory
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = TypographyFonts.semibold17
+        label.textColor = .black
+        label.textAlignment = .left
+        return label
+    }()
 
     private lazy var roudedTextField: RoundedTextField = {
         let textField = RoundedTextField(
@@ -43,15 +51,21 @@ final class RecipeCreationNamingCell: UITableViewCell {
     private func setupViews() {
         selectionStyle = .none
         backgroundColor = .clear
-        [roudedTextField].forEach { contentView.addSubview($0) }
+        [titleLabel, roudedTextField].forEach { contentView.addSubview($0) }
         setupConstraints()
     }
 
     private func setupConstraints() {
-        roudedTextField.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview()
+        }
+
+        roudedTextField.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(38)
+            $0.bottom.lessThanOrEqualToSuperview()
         }
     }
 
@@ -65,6 +79,7 @@ final class RecipeCreationNamingCell: UITableViewCell {
     // MARK: - Public methods
 
     func configure(recipeName: String?) {
+        titleLabel.text = "Название рецепта"
         roudedTextField.textField.text = recipeName ?? ""
     }
 }

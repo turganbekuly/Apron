@@ -37,7 +37,10 @@ extension MainViewController {
             configureMainPageCells()
             fetchRemoteConfigFeatures()
             getCookNowRecipes()
-            getCommunitiesBy(ids: [77, 79])
+            let communitiesList = RemoteConfigManager.shared.configManager.config(for: RemoteConfigKeys.communitiesList)
+            if !communitiesList.isEmpty {
+                getCommunitiesBy(ids: communitiesList)
+            }
             getProductsByIds(ids: [13, 108, 219, 237, 272])
         case let .fetchCookNowRecipes(recipes):
             cookNowRecipesState = .loaded(recipes)

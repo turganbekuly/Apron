@@ -276,7 +276,7 @@ final class RecipeCreationViewController: ViewController {
         let remoteConfigManager = RemoteConfigManager.shared
         var sections = [Section]()
         var rows = [RecipeCreationViewController.Section.Row]()
-        rows.append(.name)
+        rows.append(contentsOf: [.name, .source])
 
         if let image = recipe?.imageURL, !image.isEmpty {
             rows.append(.image)
@@ -290,7 +290,7 @@ final class RecipeCreationViewController: ViewController {
             rows.append(.paidRecipe)
         }
 
-        rows.append(contentsOf: [.instruction, .servings, .cookTime, .whenToCook])
+        rows.append(contentsOf: [.instruction, .servings, .cookTime, .whenToCook, .rules])
 
         sections = [.init(section: .info, rows: rows)]
         self.sections = sections

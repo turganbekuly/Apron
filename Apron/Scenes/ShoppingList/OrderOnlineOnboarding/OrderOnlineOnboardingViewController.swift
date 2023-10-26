@@ -66,10 +66,12 @@ final class OrderOnlineOnboardingViewController: UIViewController {
         setupViews()
         switch type {
         case .shoppingList:
+            ApronAnalytics.shared.sendAnalyticsEvent(.shoppingListOnboardingPageViewed)
             sections = [
                 .init(section: .screens, rows: images.compactMap { .screen($0) })
             ]
         case .mealPlanner:
+            ApronAnalytics.shared.sendAnalyticsEvent(.mealPlannerOnboardingPageViewed)
             sections = [
                 .init(section: .screens, rows: mealPlannerImages.compactMap { .screen($0) })
             ]
