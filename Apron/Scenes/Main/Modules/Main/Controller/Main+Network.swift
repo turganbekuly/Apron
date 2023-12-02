@@ -8,14 +8,15 @@
 
 import Foundation
 import Models
+import Storages
 
 extension MainViewController {
 
     // MARK: - Network
 
-    func getCookNowRecipes() {
-        var searchFilter = SearchFilterRequestBody()
-        searchFilter.dayTimeType = [defineRecipeDayTime().rawValue]
+    func getCookNowRecipes(filters: SearchFilterRequestBody) {
+        var searchFilter = filters
+        searchFilter.dayTimeType = LastRecipeHistoryStorage().whenToCook ?? []
         interactor.getCookNowRecipes(request: .init(body: searchFilter))
     }
 

@@ -27,6 +27,11 @@ final class WhatToCookCollectionCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 16
+        imageView.layer.backgroundColor = UIColor.white.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        imageView.layer.shadowOpacity = 0.2
+        imageView.layer.shadowRadius = 3
+        imageView.layer.shadowColor = APRAssets.primaryTextMain.color.cgColor
         return imageView
     }()
 

@@ -67,6 +67,10 @@ public enum L10n {
         /// Вы действительно хотите пропустить?
         public static let title = L10n.tr("APRLocalizable", "Alert.Authorization.Skip.Title")
       }
+      public enum Skipped {
+        /// Вы не авторизованы
+        public static let message = L10n.tr("APRLocalizable", "Alert.Authorization.Skipped.Message")
+      }
     }
     public enum Clear {
       /// Понятно
@@ -430,6 +434,15 @@ public enum L10n {
     }
   }
 
+  public enum Marketplace {
+    public enum Exchange {
+      public enum ToItem {
+        /// Хочу обменять свои Moca Coin-ы на
+        public static let message = L10n.tr("APRLocalizable", "Marketplace.Exchange.ToItem.Message")
+      }
+    }
+  }
+
   public enum MealPlanner {
     /// Вы уверены?
     public static let areYouSure = L10n.tr("APRLocalizable", "MealPlanner.AreYouSure")
@@ -527,6 +540,12 @@ public enum L10n {
     public enum Assistant {
       /// Голосовой ассистент
       public static let title = L10n.tr("APRLocalizable", "Profile.Assistant.Title")
+      public enum Enabled {
+        /// Теперь в "Режиме Готовки" ассистент будет вам озвучивать шаги. Пожалуйста отключите беззвучный режим
+        public static let message = L10n.tr("APRLocalizable", "Profile.Assistant.Enabled.Message")
+        /// Круто!
+        public static let title = L10n.tr("APRLocalizable", "Profile.Assistant.Enabled.Title")
+      }
     }
     public enum ContactWithDevelopers {
       /// Сообщить о проблеме

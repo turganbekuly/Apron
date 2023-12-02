@@ -38,7 +38,8 @@ final class TabBarViewController: AppTabBarController {
         case main
         case search
         case createRecipe
-        case saved
+//        case saved
+        case marketPlace
         case mealPlanner
     }
 
@@ -48,6 +49,7 @@ final class TabBarViewController: AppTabBarController {
     private lazy var favouriteModule = SavedRecipesBuilder(state: .initial(.tab)).build()
     private lazy var shoppingListModule = ShoppingListBuilder(state: .initial(.tab)).build()
     private lazy var mealPlannerModule = MealPlannerBuilder(state: .initial).build()
+    private lazy var marketPlaceModule = MarketplaceBuilder(state: .initial).build()
 
     // MARK: - Init
 
@@ -93,7 +95,8 @@ final class TabBarViewController: AppTabBarController {
             configureViewController(viewController: mainModule, type: .main),
             configureViewController(viewController: searchModule, type: .search),
             configureViewController(viewController: recipeCreationModule, type: .createRecipe),
-            configureViewController(viewController: favouriteModule, type: .saved),
+//            configureViewController(viewController: favouriteModule, type: .saved),
+            configureViewController(viewController: marketPlaceModule, type: .marketPlace),
             configureViewController(viewController: mealPlannerModule, type: .mealPlanner)
         ]
     }
@@ -110,9 +113,12 @@ final class TabBarViewController: AppTabBarController {
         case .createRecipe:
             navigationController.tabBarItem.title = L10n.TabBar.RecipeCreation.title
             navigationController.tabBarItem.image = APRAssets.tabAddSelectedIcon.image
-        case .saved:
-            navigationController.tabBarItem.title = L10n.TabBar.Saved.title
-            navigationController.tabBarItem.image = APRAssets.heart24White.image
+//        case .saved:
+//            navigationController.tabBarItem.title = L10n.TabBar.Saved.title
+//            navigationController.tabBarItem.image = APRAssets.heart24White.image
+        case .marketPlace:
+            navigationController.tabBarItem.title = "Магазин"
+            navigationController.tabBarItem.image = APRAssets.tabStoreIcon.image//UIImage(systemName: "bag")
         case .mealPlanner:
             navigationController.tabBarItem.title = L10n.TabBar.MealPlanner.title
             navigationController.tabBarItem.image = APRAssets.tabPlannerSelectedIcon.image
@@ -169,7 +175,7 @@ extension TabBarViewController: UITabBarControllerDelegate {
 
             return false
         }
-        if index == 3 || index == 4 {
+        if /*index == 3 ||*/ index == 4 {
             handleAuthorizationStatus {
                 self.selectedIndex = index
             }

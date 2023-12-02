@@ -55,9 +55,10 @@ public final class CartButtonView: UIView {
 
     private lazy var itemCounterLabel: UILabel = {
         let label = UILabel()
-        label.font = TypographyFonts.regular14
+        label.font = TypographyFonts.bold14
         label.textColor = .white
-        label.text = "35"
+        label.text = "0"
+        label.textAlignment = .left
         return label
     }()
 
@@ -84,14 +85,14 @@ public final class CartButtonView: UIView {
 
         imageView.snp.makeConstraints {
             $0.size.equalTo(18)
-            $0.leading.equalToSuperview().inset(12)
+            $0.leading.equalToSuperview().inset(8)
             $0.centerY.equalToSuperview()
         }
 
         itemCounterLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalTo(imageView.snp.trailing).offset(8)
-            $0.trailing.equalToSuperview().inset(12)
+            $0.centerY.equalToSuperview().offset(2)
+            $0.leading.equalTo(imageView.snp.trailing).offset(4)
+            $0.trailing.equalToSuperview().inset(8)
         }
     }
 
@@ -99,7 +100,7 @@ public final class CartButtonView: UIView {
 
     private func updateCount() {
         let count = cartManager.itemsCount()
-        itemCounterLabel.text = "\(count)"
+        itemCounterLabel.text = count.roundedWithAbbreviations
     }
 
     // MARK: - User actions

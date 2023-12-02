@@ -16,7 +16,7 @@ public final class CookNowCollectionView: UICollectionView {
             let layout = UICollectionViewFlowLayout()
             layout.minimumInteritemSpacing = 0
             layout.minimumLineSpacing = 13
-            layout.scrollDirection = .horizontal
+            layout.scrollDirection = .vertical
             layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
             return layout
         }()
@@ -39,7 +39,8 @@ public final class CookNowCollectionView: UICollectionView {
     // MARK: - Methods
 
     private func configure() {
-        showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
+        isScrollEnabled = false
 
         [
             RecipeSearchResultCellv2.self,

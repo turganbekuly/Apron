@@ -14,5 +14,6 @@ protocol SavedRecipeOutputModule: AnyObject {
 
 enum SavedRecipesInitialState {
     case tab
+    case profile
     case mealPlanner(SavedRecipeOutputModule)
 }

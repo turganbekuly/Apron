@@ -42,12 +42,6 @@ final class MainViewController: ViewController {
             mainView.reloadData()
         }
     }
-
-    var dynamicCommunities: [CommunityCategory] = [] {
-        didSet {
-            configureCommunities()
-        }
-    }
     
     var communities: [CommunityResponse] = [] {
         didSet {
@@ -86,6 +80,8 @@ final class MainViewController: ViewController {
         }
     }
     
+    var filters = SearchFilterRequestBody()
+    var currentPage = 1
 
     // MARK: - Views
 
@@ -93,7 +89,7 @@ final class MainViewController: ViewController {
         let view = MainView()
         view.dataSource = self
         view.delegate = self
-//        view.refreshControl = refreshControl
+        view.refreshControl = refreshControl
         return view
     }()
 
@@ -206,6 +202,12 @@ final class MainViewController: ViewController {
     private func configureViews() {
         [mainView].forEach { view.addSubview($0) }
 
+        mainView.addInfiniteScroll { [weak self] _ in
+            guard let self = self else { return }
+            self.filters.page = self.currentPage
+            self.getCookNowRecipes(filters: self.filters)
+        }
+        
         configureColors()
         makeConstraints()
     }
@@ -221,34 +223,6 @@ final class MainViewController: ViewController {
     }
 
     // MARK: - Methods
-
-    private func configureCommunities() {
-//        var sections = [Section]()
-//        if !dynamicCommunities.isEmpty {
-//            _ = dynamicCommunities.compactMap { com in
-//                if let communities = com.communities, !communities.isEmpty {
-//                    sections.append(
-//                        .init(
-//                            section: .communities,
-//                            rows: [
-//                                .communities(
-//                                    com.name ?? "",
-//                                    com.communities ?? [],
-//                                    com.id
-//                                )
-//                            ]
-//                        )
-//                    )
-//                }
-//            }
-//        }
-//
-//        sections.append(
-//            .init(section: .whatToCook, rows: [.whatToCook("Что приготовить?")])
-//        )
-//        self.sections = sections
-//        mainView.reloadTableViewWithoutAnimation()
-    }
 
     func defineRecipeDayTime() -> SuggestedDayTimeType {
         let today = Date()
@@ -290,16 +264,20 @@ final class MainViewController: ViewController {
             )
         }
         
-        if !communities.isEmpty {
-            sections.append(
-                .init(
-                    section: .communities,
-                    rows: [
-                        .communities(L10n.Main.Communities.title, communities)
-                    ]
-                )
-            )
-        }
+        sections.append(
+            .init(section: .whatToCook, rows: [.whatToCook(L10n.Main.WhenToCook.title)])
+        )
+        
+//        if !communities.isEmpty {
+//            sections.append(
+//                .init(
+//                    section: .communities,
+//                    rows: [
+//                        .communities(L10n.Main.Communities.title, communities)
+//                    ]
+//                )
+//            )
+//        }
 
         switch eventRecipesState {
         case .failed:
@@ -321,26 +299,13 @@ final class MainViewController: ViewController {
         case .failed:
             break
         case .loading:
-            sections.append(.init(section: .cookNow, rows: [.cookNow("", [])]))
+            sections.append(.init(section: .cookNow, rows: [.recipeLoader]))
         case let .loaded(recipes):
             if !recipes.isEmpty {
-                sections.append(
-                    .init(
-                        section: .cookNow,
-                        rows: [
-                            .cookNow(
-                                "\(L10n.Main.DayTimeCooking.title) \(defineRecipeDayTime().title.lowercased())",
-                                cookNowRecipes
-                            )
-                        ]
-                    )
-                )
+                sections.append(.init(section: .cookNow, rows: recipes.compactMap { .cookNow($0) }))
             }
         }
-
-        sections.append(
-            .init(section: .whatToCook, rows: [.whatToCook(L10n.Main.WhenToCook.title)])
-        )
+        
         self.sections = sections
     }
 
@@ -352,7 +317,7 @@ final class MainViewController: ViewController {
         eventRecipes.removeAll()
         cookNowRecipes.removeAll()
         cookNowRecipesState = .loading
-        getCookNowRecipes()
+        getCookNowRecipes(filters: filters)
         fetchRemoteConfigFeatures()
     }
 

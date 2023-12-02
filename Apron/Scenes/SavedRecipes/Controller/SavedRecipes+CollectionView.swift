@@ -40,17 +40,15 @@ extension SavedRecipesViewController: UICollectionViewDelegateFlowLayout {
         switch row {
         case let .recipe(recipe):
             switch initialState {
-            case .tab:
-                let vc = RecipePageBuilder(state: .initial(id: recipe.id, .saved)).build()
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(vc, animated: false)
-                }
             case .mealPlanner:
                 dismiss(animated: true) {
                     self.outputDelegate?.savedRecipeSelected(recipe: recipe)
                 }
             default:
-                break
+                let vc = RecipePageBuilder(state: .initial(id: recipe.id, .saved)).build()
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: false)
+                }
             }
         default:
             break

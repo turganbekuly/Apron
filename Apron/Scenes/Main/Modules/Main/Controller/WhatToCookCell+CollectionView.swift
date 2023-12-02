@@ -44,8 +44,8 @@ extension WhatToCookCell: UICollectionViewDelegateFlowLayout {
         let row = categoriesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case .category:
-            let categoryCellWidth: CGFloat = (UIScreen.main.bounds.width - 48.0) / 3.0
-            let categoryCellHeight: CGFloat = (UIScreen.main.bounds.width * 168.0) / 375.0
+            let categoryCellWidth: CGFloat = (UIScreen.main.bounds.width - 48.0) / 3.3
+            let categoryCellHeight: CGFloat = (UIScreen.main.bounds.width * 145.0) / 375.0
             let categoryCellSize = CGSize(width: categoryCellWidth, height: categoryCellHeight)
             return categoryCellSize
         }

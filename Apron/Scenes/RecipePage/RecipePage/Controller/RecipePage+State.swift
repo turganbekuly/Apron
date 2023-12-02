@@ -9,6 +9,7 @@
 import Models
 import UIKit
 import APRUIKit
+import Storages
 
 extension RecipePageViewController {
 
@@ -35,6 +36,7 @@ extension RecipePageViewController {
             showLoader()
         case let .displayRecipe(recipe):
             hideLoader()
+            LastRecipeHistoryStorage().whenToCook = recipe.whenToCook
             self.recipe = recipe
             getComments(by: recipe.id)
             getRecommendations(by: recipe.id)

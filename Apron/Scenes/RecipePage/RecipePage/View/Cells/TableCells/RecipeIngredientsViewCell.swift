@@ -173,7 +173,41 @@ final class RecipeIngredientsViewCell: UITableViewCell {
     @objc
     private func addToCartTapped() {
         HapticTouch.generateSuccess()
-        onAddToCartTapped?()
+//        onAddToCartTapped?()
+        animateIngredientsView()
+    }
+    
+    // MARK: - Private method
+    
+    private func animateIngredientsView() {
+        for (index, subview) in ingredientsStackView.subviews.enumerated() {
+            if let subview = subview as? IngredientView, index == 1 {
+                // Define the start and end positions of the animation
+                let startPosition = subview.layer.position
+                let endPosition = addToCartButton.layer.position
+                
+                // Create a CAKeyframeAnimation object
+                let flyAnimation = CAKeyframeAnimation()
+                
+                // Set animation properties
+                flyAnimation.duration = 1.0 // Animation duration in seconds
+                flyAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+                // Set other animation properties if needed
+                
+                // Set values for the keyframes
+                flyAnimation.values = [
+                    NSValue(cgPoint: startPosition),
+                    NSValue(cgPoint: CGPoint(x: startPosition.x + 100, y: startPosition.y - 50)),
+                    NSValue(cgPoint: CGPoint(x: endPosition.x, y: endPosition.y))
+                ]
+                
+                // Set the property you want to animate
+                flyAnimation.keyPath = "position"
+                
+                // Attach the animation to the grocery ingredient's layer
+                subview.layer.add(flyAnimation, forKey: "flyAnimation")
+            }
+        }
     }
 
     // MARK: - Public methods

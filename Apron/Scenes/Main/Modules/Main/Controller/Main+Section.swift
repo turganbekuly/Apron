@@ -22,11 +22,12 @@ extension MainViewController {
         }
         
         enum Row: Equatable {
+            case recipeLoader
             case adBanner([AdBannerObject])
             case searchByIngredients(String, String, [Product])
             case communities(String, [CommunityResponse])
             case whatToCook(String)
-            case cookNow(String, [RecipeResponse])
+            case cookNow(RecipeResponse)
             case eventRecipes(String, [RecipeResponse])
             //            case createRecipe
             
@@ -44,8 +45,8 @@ extension MainViewController {
                     return true
                 case (.eventRecipes, .eventRecipes):
                     return true
-                    //                case (.createRecipe, .createRecipe):
-                    //                    return true
+                case (.recipeLoader, .recipeLoader):
+                    return true
                 default:
                     return false
                 }

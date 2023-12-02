@@ -87,6 +87,8 @@ final class SavedRecipesViewController: ViewController {
         label.text = L10n.SavedRecipes.SavedRecipes.title
         return label
     }()
+    
+    private lazy var backButton = NavigationBackButton()
 
     // MARK: - Init
     init(interactor: SavedRecipesBusinessLogic, state: State) {
@@ -132,43 +134,54 @@ final class SavedRecipesViewController: ViewController {
             return
         }
 
-        let avatarView = AvatarView()
-        avatarView.onTap = { [weak self] in
-            guard let self = self else { return }
-            self.handleAuthorizationStatus {
-                let viewController = ProfileBuilder(state: .initial).build()
+        switch initialState {
+        case .profile:
+            backButton.configure(with: L10n.TabBar.Saved.title)
+            backButton.onBackButtonTapped = { [weak self] in
+                self?.navigationController?.popViewController(animated: false)
+            }
+            navigationController?.navigationBar.backgroundColor = APRAssets.secondary.color
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+            tabBarController?.tabBar.isHidden = true
+        default:
+            let avatarView = AvatarView()
+            avatarView.onTap = { [weak self] in
+                guard let self = self else { return }
+                self.handleAuthorizationStatus {
+                    let viewController = ProfileBuilder(state: .initial).build()
+                    DispatchQueue.main.async {
+                        navigation.pushViewController(viewController, animated: false)
+                    }
+                }
+            }
+
+            let cartView = CartButtonView()
+            cartView.onTap = {
+                let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
+
                 DispatchQueue.main.async {
                     navigation.pushViewController(viewController, animated: false)
                 }
             }
-        }
-
-        let cartView = CartButtonView()
-        cartView.onTap = {
-            let viewController = ShoppingListBuilder(state: .initial(.regular)).build()
-
-            DispatchQueue.main.async {
-                navigation.pushViewController(viewController, animated: false)
+            
+            let bonusView = BonusView()
+            bonusView.onBonusButtonTapped = { [weak self] in
+                let vc = WebViewHandler(urlString: AppConstants.bonusLink)
+                DispatchQueue.main.async {
+                    self?.presentPanModal(vc)
+                }
             }
+            
+            navigationItem.rightBarButtonItems = [
+                UIBarButtonItem(customView: cartView),
+                UIBarButtonItem(customView: bonusView)
+            ]
+            
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
+            navigation.navigationBar.barTintColor = APRAssets.secondary.color
+            navigation.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+            navigation.navigationBar.shadowImage = UIImage()
         }
-        
-        let bonusView = BonusView()
-        bonusView.onBonusButtonTapped = { [weak self] in
-            let vc = WebViewHandler(urlString: AppConstants.bonusLink)
-            DispatchQueue.main.async {
-                self?.presentPanModal(vc)
-            }
-        }
-        
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(customView: cartView),
-            UIBarButtonItem(customView: bonusView)
-        ]
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
-        navigation.navigationBar.barTintColor = APRAssets.secondary.color
-        navigation.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigation.navigationBar.shadowImage = UIImage()
     }
 
     private func configureViews() {

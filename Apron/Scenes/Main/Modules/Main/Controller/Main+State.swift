@@ -36,7 +36,7 @@ extension MainViewController {
             cookNowRecipesState = .loading
             configureMainPageCells()
             fetchRemoteConfigFeatures()
-            getCookNowRecipes()
+            getCookNowRecipes(filters: filters)
             let communitiesList = RemoteConfigManager.shared.configManager.config(for: RemoteConfigKeys.communitiesList)
             if !communitiesList.isEmpty {
                 getCommunitiesBy(ids: communitiesList)
@@ -44,6 +44,7 @@ extension MainViewController {
             getProductsByIds(ids: [13, 108, 219, 237, 272])
         case let .fetchCookNowRecipes(recipes):
             cookNowRecipesState = .loaded(recipes)
+            updateRecipiesList(with: recipes)
         case .fetchCookNowRecipesFailed:
             cookNowRecipesState = .failed
         case let .fetchEventRecipes(recipes):
@@ -85,5 +86,32 @@ extension MainViewController {
         DispatchQueue.main.async { [weak self] in
             self?.refreshControl.endRefreshing()
         }
+    }
+    
+    private func updateRecipiesList(with recipes: [RecipeResponse]) {
+        mainView.finishInfiniteScroll()
+        if self.cookNowRecipes.isEmpty {
+            self.cookNowRecipes = recipes.compactMap { $0 }
+            cofigureEmptyRecipes()
+        } else {
+            self.cookNowRecipes.append(contentsOf: recipes.compactMap { $0 })
+            configureRecipes()
+        }
+    }
+
+    private func configureRecipes() {
+        guard let section = sections.firstIndex(where: { $0.section == .cookNow }) else { return }
+        currentPage += 1
+        sections[section].rows = cookNowRecipes.compactMap { .cookNow($0) }
+        mainView.finishInfiniteScroll()
+        mainView.reloadData()
+    }
+
+    private func cofigureEmptyRecipes() {
+        guard let section = sections.firstIndex(where: { $0.section == .cookNow }) else { return }
+        currentPage += 1
+        sections[section].rows = cookNowRecipes.compactMap { .cookNow($0) }
+        mainView.finishInfiniteScroll()
+        mainView.reloadData()
     }
 }

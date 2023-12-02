@@ -121,6 +121,9 @@ extension WebViewHandler: WKNavigationDelegate {
     }
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript("alert(1);") { response, error in
+            print(response, " - ", error)
+        }
         displayLoading(false)
     }
 }

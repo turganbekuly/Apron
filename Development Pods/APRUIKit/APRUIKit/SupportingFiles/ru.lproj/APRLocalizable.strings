@@ -64,6 +64,7 @@
 "Alert.NameExists.Message" = "Такое имя уже существует, пожалуйста, введите другое";
 "Alert.Authorization.Skip.Title" = "Вы действительно хотите пропустить?";
 "Alert.Authorization.Skip.Message" = "Вы пропустите персонализированный контент и сохранение наших вкусных рецептов.";
+"Alert.Authorization.Skipped.Message" = "Вы не авторизованы";
 
 // MARK: - Authorization
 
@@ -260,6 +261,8 @@
 "Profile.DeleteAccount.Alert.Title" = "Опасно!";
 "Profile.DeleteAccount.Alert.Message" = "Вы действительно хотите удалить ваш профиль? Вы потеряете все свои данные навсегда!";
 "Profile.Edit.Navigation.Title" = "Настройка профиля";
+"Profile.Assistant.Enabled.Title" = "Круто!";
+"Profile.Assistant.Enabled.Message" = "Теперь в \"Режиме Готовки\" ассистент будет вам озвучивать шаги. Пожалуйста отключите беззвучный режим";
 
 //MARK: - Add Comment
 "AddComment.ChooseRightEmoji.Title" = "Пожалуйста, выберите подходящий смайлик";
@@ -313,3 +316,6 @@
 "SearchByIngredients.Product.SeeMore" = "Посмотреть еще ...";
 "SearchByIngredients.Main.Section.Title" = "Что у вас в холодильнике?";
 "SearchByIngredients.Main.Section.Descr" = "Выберите продукты и мы подберем для вас рецепты";
+
+//MARK: - Marketplace
+"Marketplace.Exchange.ToItem.Message" = "Хочу обменять свои Moca Coin-ы на";

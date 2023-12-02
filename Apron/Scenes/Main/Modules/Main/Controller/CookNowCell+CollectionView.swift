@@ -44,9 +44,9 @@ extension CookNowCell: UICollectionViewDelegateFlowLayout {
         let row = recipesSection[indexPath.section].rows[indexPath.row]
         switch row {
         case .shimmer:
-            return CGSize(width: 230, height: 140)
+            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 240)
         case .recipe:
-            return CGSize(width: 230, height: 140)
+            return CGSize(width: (collectionView.bounds.width / 2) - 24, height: 240)
         }
     }
 

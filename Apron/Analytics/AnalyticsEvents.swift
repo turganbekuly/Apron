@@ -67,6 +67,7 @@ enum AnalyticsEvents {
     case authorizationSkipped(Bool)
     case authorizationPageViewed
     case categoriesTapped(String, RecipeCategoriesType)
+    case searchCategoriesTapped(String, SearchSuggestionCategoriesTypes)
     case mealPlannerPageViewed
     case mealPlannerMealAdded(String)
     case communityTapped(String)
@@ -77,6 +78,8 @@ enum AnalyticsEvents {
     case shoppingListOnboardingPageViewed
     case ratingPageViewed
     case ratingPageResult(rate: Int, description: String, hasPhoto: Bool)
+    case marketplacePageViewed
+    case marketplaceItemViewed(leftAfterSeconds: Int)
 }
 
 extension AnalyticsEvents: AnalyticsEventProtocol {
@@ -134,6 +137,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "authorization_page_viewed"
         case .categoriesTapped:
             return "recipe_categories_tapped"
+        case .searchCategoriesTapped:
+            return "search_categories_tapped"
         case .mealPlannerPageViewed:
             return "meal_planner_page_viwed"
         case .mealPlannerMealAdded:
@@ -154,6 +159,10 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return "rating_page_viewed"
         case .ratingPageResult:
             return "rating_page_result"
+        case .marketplacePageViewed:
+            return "marketplace_page_viewed"
+        case .marketplaceItemViewed:
+            return "marketplace_item_viewed"
         }
     }
 
@@ -211,6 +220,8 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return [:]
         case let .categoriesTapped(categoryName, sourceType):
             return ["category_name": categoryName, "source_type": sourceType.rawValue]
+        case let .searchCategoriesTapped(categoryName, sourceType):
+            return ["category_name": categoryName, "source_type": sourceType.title]
         case .mealPlannerPageViewed:
             return [:]
         case let .mealPlannerMealAdded(meal):
@@ -231,6 +242,10 @@ extension AnalyticsEvents: AnalyticsEventProtocol {
             return [:]
         case let .ratingPageResult(rate, description, hasPhoto):
             return ["rating": rate, "description": description, "hasPhoto": hasPhoto]
+        case .marketplacePageViewed:
+            return [:]
+        case let .marketplaceItemViewed(leftAfterSeconds):
+            return ["left_after_seconds": leftAfterSeconds]
         }
     }
 }
