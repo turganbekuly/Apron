@@ -8,6 +8,7 @@
 
 import Models
 import UIKit
+import OneSignal
 
 extension TabBarViewController {
 
@@ -24,6 +25,7 @@ extension TabBarViewController {
             configureInitialState(state)
             performDeeplink()
             pendingDeeplinkProvider.delegate = self
+            OneSignal.addTrigger("current_app_version", withValue: Bundle.main.appVersion)
         }
     }
 

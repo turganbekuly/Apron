@@ -41,7 +41,8 @@ public final class MainView: UICollectionView {
         keyboardDismissMode = .onDrag
 
         [
-            DividerHeaderView.self
+            DividerHeaderView.self,
+            UICollectionReusableView.self
         ].forEach {
             register(
                 viewClass: $0,

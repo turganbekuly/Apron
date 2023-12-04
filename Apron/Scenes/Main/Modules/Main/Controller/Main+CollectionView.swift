@@ -13,12 +13,15 @@ extension MainViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
-
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .communities:
@@ -48,7 +51,10 @@ extension MainViewController: UICollectionViewDataSource {
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .cookNow(recipe):
@@ -61,15 +67,19 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case .communities:
             return CGSize(width: collectionView.bounds.width, height: communities.isEmpty ? 0 : ((UIScreen.main.bounds.width / 2) + 66) * 1.2)
         case .whatToCook:
-//            let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
+            //            let rawCount = CGFloat(WhatToCookCategoryTypes.allCases.count / 3)
             let categoryCellHeight: CGFloat = ((UIScreen.main.bounds.width + 60) * 168.0) / 375.0
-//            return /*rawCount **/ categoryCellHeight
+            //            return /*rawCount **/ categoryCellHeight
             return CGSize(width: collectionView.bounds.width, height: categoryCellHeight)
         case .eventRecipes:
             return CGSize(width: collectionView.bounds.width, height: 185)
@@ -87,8 +97,12 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.bounds.width, height: 150)
         }
     }
-
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
         let row: MainViewController.Section.Row = sections[indexPath.section].rows[indexPath.row]
         switch row {
         case let .communities(title, communities):
@@ -136,22 +150,31 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView,
-                               viewForSupplementaryElementOfKind kind: String,
-                               at indexPath: IndexPath) -> UICollectionReusableView {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
         let section = sections[indexPath.section].section
         switch section {
+        case .searchByIngredients, .whatToCook:
+            let view: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
+            return view
         default:
             let view: DividerHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
             return view
         }
     }
-
-    public func collectionView(_ collectionView: UICollectionView,
-                               layout collectionViewLayout: UICollectionViewLayout,
-                               referenceSizeForHeaderInSection section: Int) -> CGSize {
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
         let section = sections[section].section
         switch section {
+        case .searchByIngredients, .whatToCook:
+            return CGSize(width: collectionView.bounds.width, height: 10)
         case .cookNow:
             return CGSize(width: collectionView.bounds.width, height: 40)
         default:
